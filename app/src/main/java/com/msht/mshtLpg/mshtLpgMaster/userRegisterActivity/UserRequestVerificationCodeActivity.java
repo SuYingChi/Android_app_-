@@ -6,8 +6,8 @@ import android.support.annotation.Nullable;
 
 import com.msht.mshtLpg.mshtLpgMaster.activity.BaseActivity;
 import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonInstance;
-import com.msht.mshtLpg.mshtLpgMaster.netRequestPresent.UserRequestVerificationCodePresenter;
-import com.msht.mshtLpg.mshtLpgMaster.netStringCallback.UserRequestVerificationCodeBean;
+import com.msht.mshtLpg.mshtLpgMaster.Present.UserRequestVerificationCodePresenter;
+import com.msht.mshtLpg.mshtLpgMaster.callback.UserRequestVerificationCodeBean;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IUserRequestVerificationCodeView;
 
 public class UserRequestVerificationCodeActivity extends BaseActivity  implements IUserRequestVerificationCodeView{

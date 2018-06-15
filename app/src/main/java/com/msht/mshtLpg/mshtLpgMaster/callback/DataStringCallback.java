@@ -1,9 +1,9 @@
-package com.msht.mshtLpg.mshtLpgMaster.netStringCallback;
+package com.msht.mshtLpg.mshtLpgMaster.callback;
 
 import android.text.TextUtils;
 
 import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonInstance;
-import com.msht.mshtLpg.mshtLpgMaster.netBean.ErrorBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IBaseView;
 import com.zhy.http.okhttp.callback.StringCallback;
 

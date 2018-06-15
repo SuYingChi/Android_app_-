@@ -1,4 +1,4 @@
-package com.msht.mshtLpg.mshtLpgMaster.netRequestPresent;
+package com.msht.mshtLpg.mshtLpgMaster.Present;
 
 import android.text.TextUtils;
 
@@ -6,9 +6,8 @@ import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IUserRequestVerificationCode
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonInstance;
-import com.msht.mshtLpg.mshtLpgMaster.netBean.ErrorBean;
-import com.msht.mshtLpg.mshtLpgMaster.netStringCallback.DataStringCallback;
-import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IBaseView;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;
+import com.msht.mshtLpg.mshtLpgMaster.callback.DataStringCallback;
 
 public class UserRequestVerificationCodePresenter implements BaseNetRequestPresenter {
 

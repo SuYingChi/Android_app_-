@@ -1,4 +1,4 @@
-package com.msht.mshtLpg.mshtLpgMaster.netBean;
+package com.msht.mshtLpg.mshtLpgMaster.Bean;
 
 public class ErrorBean {
 

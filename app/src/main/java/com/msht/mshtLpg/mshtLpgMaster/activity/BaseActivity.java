@@ -6,7 +6,6 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -14,7 +13,7 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.appInfoUtil.AppUtil;
 import com.msht.mshtLpg.mshtLpgMaster.dialogUtil.DialogUtil;
-import com.msht.mshtLpg.mshtLpgMaster.netBean.LogoutEvent;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.LogoutEvent;
 import com.msht.mshtLpg.mshtLpgMaster.sharepreferenceUtil.SharePreferenceUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IBaseView;
 import com.umeng.analytics.MobclickAgent;

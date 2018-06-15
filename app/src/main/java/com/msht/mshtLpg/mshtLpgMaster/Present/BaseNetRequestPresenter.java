@@ -1,4 +1,4 @@
-package com.msht.mshtLpg.mshtLpgMaster.netRequestPresent;
+package com.msht.mshtLpg.mshtLpgMaster.Present;
 
 public interface BaseNetRequestPresenter {
     void requestNetWork();

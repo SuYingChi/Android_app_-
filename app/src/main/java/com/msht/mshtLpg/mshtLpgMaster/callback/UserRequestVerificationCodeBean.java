@@ -1,4 +1,4 @@
-package com.msht.mshtLpg.mshtLpgMaster.netStringCallback;
+package com.msht.mshtLpg.mshtLpgMaster.callback;
 
 public class UserRequestVerificationCodeBean {
 
