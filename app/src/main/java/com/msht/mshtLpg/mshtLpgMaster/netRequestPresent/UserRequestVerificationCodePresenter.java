@@ -1,0 +1,35 @@
+package com.msht.mshtLpg.mshtLpgMaster.netRequestPresent;
+
+import android.text.TextUtils;
+
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IUserRequestVerificationCodeView;
+import com.zhy.http.okhttp.OkHttpUtils;
+
+import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonInstance;
+import com.msht.mshtLpg.mshtLpgMaster.netBean.ErrorBean;
+import com.msht.mshtLpg.mshtLpgMaster.netStringCallback.DataStringCallback;
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IBaseView;
+
+public class UserRequestVerificationCodePresenter implements BaseNetRequestPresenter {
+
+    IUserRequestVerificationCodeView iView;
+
+    public UserRequestVerificationCodePresenter(IUserRequestVerificationCodeView iView){
+     this.iView = iView;
+    }
+
+    @Override
+    public void requestNetWork() {
+        OkHttpUtils.post().url("").addParams("","").build().execute(new DataStringCallback(iView){
+            @Override
+            public void onResponse(String s, int i) {
+                //一定要先继承再重写
+                super.onResponse(s, i);
+                ErrorBean errorBean = GsonInstance.getGsonInstance().getGson().fromJson(s, ErrorBean.class);
+                if(!TextUtils.isEmpty(errorBean.getResult())&&TextUtils.equals(errorBean.getResult(),"success")){
+                    iView.onNetRequestSuccess(s);
+                }
+            }
+        });
+    }
+}
