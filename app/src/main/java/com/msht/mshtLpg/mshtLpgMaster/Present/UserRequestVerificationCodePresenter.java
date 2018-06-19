@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IUserRequestVerificationCodeView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
-import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonInstance;
+import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;
 import com.msht.mshtLpg.mshtLpgMaster.callback.DataStringCallback;
 
@@ -24,7 +24,7 @@ public class UserRequestVerificationCodePresenter implements BaseNetRequestPrese
             public void onResponse(String s, int i) {
                 //一定要先继承再重写
                 super.onResponse(s, i);
-                ErrorBean errorBean = GsonInstance.getGsonInstance().getGson().fromJson(s, ErrorBean.class);
+                ErrorBean errorBean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
                 if(!TextUtils.isEmpty(errorBean.getResult())&&TextUtils.equals(errorBean.getResult(),"success")){
                     iView.onNetRequestSuccess(s);
                 }

@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.msht.mshtLpg.mshtLpgMaster.R;
 
-public class MainActivity extends BaseActivity {
+public class SplashActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

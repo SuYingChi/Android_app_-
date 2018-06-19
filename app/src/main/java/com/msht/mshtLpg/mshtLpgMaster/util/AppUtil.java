@@ -1,29 +1,31 @@
-package com.msht.mshtLpg.mshtLpgMaster.appInfoUtil;
+package com.msht.mshtLpg.mshtLpgMaster.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.IBinder;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 
-import com.msht.mshtLpg.mshtLpgMaster.activity.BaseActivity;
-import com.msht.mshtLpg.mshtLpgMaster.constant.AppInfoConstant;
-import com.msht.mshtLpg.mshtLpgMaster.sharepreferenceUtil.SharePreferenceUtil;
+import com.msht.mshtLpg.mshtLpgMaster.activity.LoginActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.WebActivity;
+import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public class AppUtil {
     private static final String TAG = "AppUtil";
     private static PackageInfo packageInfo;
-    public static boolean isAppInstalled(Context context, String packageName) {
-        PackageManager pm = context.getPackageManager();
-        boolean installed = false;
+    public static boolean isLPGInstalled( String packageName) {
+        PackageManager pm = LPGApplication.getLPGApplication().getPackageManager();
+        boolean installed;
         try {
-            packageInfo= pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+            packageInfo= pm.getPackageInfo(packageName, 0);
             if(packageInfo!=null){
                 installed = true;
             }else {
@@ -64,4 +66,19 @@ public class AppUtil {
     public  static void logout() {
         SharePreferenceUtil.getInstance().setToken("");
     }
+
+    public static void goWeb(Context mContext, String url) {
+        if (TextUtils.isEmpty(url))
+            return;
+        Intent goweb = new Intent(mContext, WebActivity.class);
+        goweb.putExtra("url", url);
+        mContext.startActivity(goweb);
+    }
+
+    public static void goLogin(Context mContext) {
+        Intent go = new Intent(mContext, LoginActivity.class);
+        mContext.startActivity(go);
+    }
+
+
 }

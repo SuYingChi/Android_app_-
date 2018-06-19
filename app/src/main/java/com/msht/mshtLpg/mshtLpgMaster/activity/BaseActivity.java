@@ -11,10 +11,10 @@ import android.widget.Toast;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.appInfoUtil.AppUtil;
-import com.msht.mshtLpg.mshtLpgMaster.dialogUtil.DialogUtil;
+import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
+import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.LogoutEvent;
-import com.msht.mshtLpg.mshtLpgMaster.sharepreferenceUtil.SharePreferenceUtil;
+import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IBaseView;
 import com.umeng.analytics.MobclickAgent;
 
@@ -22,6 +22,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import butterknife.ButterKnife;
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 
 /**
@@ -31,7 +32,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
 
     private BGASwipeBackHelper mSwipeBackHelper;
     private Context mContext;
-    private SharePreferenceUtil spu;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,8 +39,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setSoftInPutMode();
+        ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-        spu = SharePreferenceUtil.getInstance();
         initStateBar();
         mContext = this;
     }
@@ -96,12 +96,12 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
 
     @Override
     public void showLoading() {
-        DialogUtil.showLodingDialog(this);
+        PopUtil.showCenterLodaingDialog(this);
     }
 
     @Override
     public void dismissLoading() {
-        DialogUtil.hideLoadingDialog(this);
+        PopUtil.hideCenterLoadingDialog(this);
     }
 
     @Override
@@ -116,7 +116,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
 
     @Override
     public String getToken() {
-        return SharePreferenceUtil.getInstance().getToken(this);
+        return SharePreferenceUtil.getInstance().getToken();
     }
     /**
      * 是否支持滑动返回。这里在父类中默认返回 true 来支持滑动返回，如果某个界面不想支持滑动返回则重写该方法返回 false 即可
