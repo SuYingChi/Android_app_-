@@ -36,6 +36,9 @@ public class SplashActivity extends BaseActivity {
                 .start();
 
     }
+
+
+
     private void waitGo(){
         tk = new TimerTask() {
             @Override

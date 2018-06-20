@@ -1,13 +1,11 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
 
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtLpg.mshtLpgMaster.R;
@@ -28,10 +26,9 @@ import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 /**
  * @author mshtyfb
  */
-public abstract class BaseActivity extends AppCompatActivity implements IBaseView , BGASwipeBackHelper.Delegate {
+public  class BaseActivity extends AppCompatActivity implements IBaseView , BGASwipeBackHelper.Delegate {
 
     private BGASwipeBackHelper mSwipeBackHelper;
-    private Context mContext;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +39,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
         initStateBar();
-        mContext = this;
     }
 
     @Override
@@ -106,8 +102,9 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
 
     @Override
     public void onError(String s) {
-        if (AppUtil.isNetworkAvailable(this)) {
+        if (!AppUtil.isNetworkAvailable()) {
            PopUtil.toastInBottom(R.string.net_no_available);
+            onNetError();
         } else {
             PopUtil.toastInBottom(s);
         }
@@ -169,4 +166,10 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         AppUtil.logout();
         EventBus.getDefault().post(new LogoutEvent());
     }
+
+    @Override
+    public void onNetError() {
+
+    }
+
 }

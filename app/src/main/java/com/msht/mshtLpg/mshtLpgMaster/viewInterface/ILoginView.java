@@ -1,5 +1,5 @@
 package com.msht.mshtLpg.mshtLpgMaster.viewInterface;
 
-public interface IUserRequestVerificationCodeView extends IBaseView {
+public interface ILoginView extends IBaseView {
     void onNetRequestSuccess(String s);
 }

@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.BaseActivity" />
-        <activity android:name=".userRegisterActivity.UserRequestVerificationCodeActivity" />
+        <activity android:name=".userRegisterActivity.LoginActivity" />
     </application>
 
 </manifest>

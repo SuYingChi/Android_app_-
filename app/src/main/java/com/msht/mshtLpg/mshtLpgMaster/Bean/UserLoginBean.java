@@ -1,6 +1,6 @@
-package com.msht.mshtLpg.mshtLpgMaster.callback;
+package com.msht.mshtLpg.mshtLpgMaster.Bean;
 
-public class UserRequestVerificationCodeBean {
+public class UserLoginBean {
 
     /**
      * result : success

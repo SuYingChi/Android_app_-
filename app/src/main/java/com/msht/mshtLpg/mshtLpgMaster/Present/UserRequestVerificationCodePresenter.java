@@ -2,7 +2,7 @@ package com.msht.mshtLpg.mshtLpgMaster.Present;
 
 import android.text.TextUtils;
 
-import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IUserRequestVerificationCodeView;
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.ILoginView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
@@ -11,9 +11,9 @@ import com.msht.mshtLpg.mshtLpgMaster.callback.DataStringCallback;
 
 public class UserRequestVerificationCodePresenter implements BaseNetRequestPresenter {
 
-    IUserRequestVerificationCodeView iView;
+    ILoginView iView;
 
-    public UserRequestVerificationCodePresenter(IUserRequestVerificationCodeView iView){
+    public UserRequestVerificationCodePresenter(ILoginView iView){
      this.iView = iView;
     }
 

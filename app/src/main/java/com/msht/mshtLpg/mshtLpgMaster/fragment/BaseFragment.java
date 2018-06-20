@@ -14,7 +14,7 @@ import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IBaseView;
 
 import org.greenrobot.eventbus.EventBus;
 
-public class BaseFragment extends Fragment implements IBaseView{
+public abstract class BaseFragment extends Fragment implements IBaseView{
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -34,12 +34,12 @@ public class BaseFragment extends Fragment implements IBaseView{
 
     @Override
     public void onError(String s) {
-        if (AppUtil.isNetworkAvailable(this.getContext())) {
-            PopUtil.toastInBottom(getResources().getString(R.string.net_exception));
+        if (!AppUtil.isNetworkAvailable()) {
+            PopUtil.toastInBottom(R.string.net_no_available);
+            onNetError();
         } else {
-            PopUtil.toastInBottom(getResources().getString(R.string.net_no_available));
+            PopUtil.toastInBottom(s);
         }
-       PopUtil.toastInBottom(getResources().getString(R.string.unknow_error));
     }
 
     @Override
@@ -52,4 +52,6 @@ public class BaseFragment extends Fragment implements IBaseView{
         AppUtil.logout();
         EventBus.getDefault().post(new LogoutEvent());
     }
+
+    protected abstract void onNetError();
 }

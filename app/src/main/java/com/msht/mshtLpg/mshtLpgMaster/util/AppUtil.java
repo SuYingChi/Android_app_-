@@ -49,8 +49,8 @@ public class AppUtil {
         }
     }
 
-    public static boolean isNetworkAvailable(Context context) {
-        ConnectivityManager manager = (ConnectivityManager) context
+    public static boolean isNetworkAvailable() {
+        ConnectivityManager manager = (ConnectivityManager) LPGApplication.getLPGApplicationContext()
                 .getApplicationContext().getSystemService(
                         Context.CONNECTIVITY_SERVICE);
 

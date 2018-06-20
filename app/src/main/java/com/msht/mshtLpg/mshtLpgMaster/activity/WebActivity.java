@@ -1,4 +1,5 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
-public class WebActivity {
+public class WebActivity extends BaseActivity{
+
 }
