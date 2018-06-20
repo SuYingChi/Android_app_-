@@ -87,7 +87,7 @@ public class PopUtil {
     public static void toastInBottom( String msg) {
 
             if (toast == null) {
-                toast = Toast.makeText(LPGApplication.getLPGApplication(), msg, Toast.LENGTH_LONG);
+                toast = Toast.makeText(LPGApplication.getLPGApplicationContext(), msg, Toast.LENGTH_LONG);
             } else {
                 toast.setText(msg);
             }

@@ -72,9 +72,9 @@ public class LPGApplication extends Application {
     }
 
 
-    public static LPGApplication getLPGApplication() {
+    public static Context getLPGApplicationContext() {
 
-        return instance;
+        return instance.getApplicationContext();
 
     }
 }

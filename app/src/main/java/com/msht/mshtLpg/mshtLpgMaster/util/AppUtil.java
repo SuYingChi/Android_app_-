@@ -22,7 +22,7 @@ public class AppUtil {
     private static final String TAG = "AppUtil";
     private static PackageInfo packageInfo;
     public static boolean isLPGInstalled( String packageName) {
-        PackageManager pm = LPGApplication.getLPGApplication().getPackageManager();
+        PackageManager pm = LPGApplication.getLPGApplicationContext().getPackageManager();
         boolean installed;
         try {
             packageInfo= pm.getPackageInfo(packageName, 0);

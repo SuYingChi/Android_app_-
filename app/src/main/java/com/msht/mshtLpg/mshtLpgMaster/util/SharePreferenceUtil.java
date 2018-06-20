@@ -14,7 +14,7 @@ public class SharePreferenceUtil {
 
 
     public SharePreferenceUtil(String sharePreferencefileName) {
-        loginSp = LPGApplication.getLPGApplication().getSharedPreferences(sharePreferencefileName, Context.MODE_PRIVATE);
+        loginSp = LPGApplication.getLPGApplicationContext().getSharedPreferences(sharePreferencefileName, Context.MODE_PRIVATE);
         loginEditor = loginSp.edit();
     }
 
@@ -31,7 +31,7 @@ public class SharePreferenceUtil {
 
 
     public static SharedPreferences getSharePreferenceFile(String sharePreferencefileName) {
-        return LPGApplication.getLPGApplication().getSharedPreferences(sharePreferencefileName, Context.MODE_PRIVATE);
+        return LPGApplication.getLPGApplicationContext().getSharedPreferences(sharePreferencefileName, Context.MODE_PRIVATE);
     }
 
     public  void setToken(String token) {
