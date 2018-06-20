@@ -107,11 +107,10 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     @Override
     public void onError(String s) {
         if (AppUtil.isNetworkAvailable(this)) {
-            Toast.makeText(this,R.string.net_exception,Toast.LENGTH_LONG).show();
+           PopUtil.toastInBottom(R.string.net_no_available);
         } else {
-            Toast.makeText(this,R.string.net_no_available,Toast.LENGTH_LONG).show();
+            PopUtil.toastInBottom(s);
         }
-        Toast.makeText(this,s,Toast.LENGTH_LONG).show();
     }
 
     @Override

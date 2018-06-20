@@ -43,7 +43,7 @@ public class PopUtil {
     public static PopupWindow showPopWindow(Context context, View anchorView, boolean bottom) {
 
         if (TextUtils.isEmpty(SharePreferenceUtil.getInstance().getToken())) {
-            toastInBottom("请先登录");
+            toastInBottom(R.string.please_login);
             Intent goLogin = new Intent(context, LoginActivity.class);
             context.startActivity(goLogin);
             return null;
@@ -84,16 +84,26 @@ public class PopUtil {
         }
         return window;
     }
-    public static void toastInBottom( String msg) {
+    public static void toastInBottom(int stringResourceId) {
 
             if (toast == null) {
-                toast = Toast.makeText(LPGApplication.getLPGApplicationContext(), msg, Toast.LENGTH_LONG);
+                toast = Toast.makeText(LPGApplication.getLPGApplicationContext(), LPGApplication.getLPGApplicationContext().getString(stringResourceId), Toast.LENGTH_LONG);
             } else {
-                toast.setText(msg);
+                toast.setText(LPGApplication.getLPGApplicationContext().getString(stringResourceId));
             }
             toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 300);
             toast.show();
         }
+    public static void toastInBottom(String string) {
+
+        if (toast == null) {
+            toast = Toast.makeText(LPGApplication.getLPGApplicationContext(), string, Toast.LENGTH_LONG);
+        } else {
+            toast.setText(string);
+        }
+        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 300);
+        toast.show();
+    }
     /**
      * 计算出来的位置，y方向就在anchorView的上面和下面对齐显示，x方向就是与屏幕右边对齐显示
      * 如果anchorView的位置有变化，就可以适当自己额外加入偏移来修正
