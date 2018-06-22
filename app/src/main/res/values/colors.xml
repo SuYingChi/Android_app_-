@@ -4,5 +4,65 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white_transparent">#00000000</color>
+    <color name="bg_edit">#f5f5f5</color>
+    <color name="bg_all">#f5f5f5</color>
+    <color name="bg_weixin">#19cf73</color>
+    <color name="bg_phone">#00a4ff</color>
+    <color name="text_blue">#1EB0FD</color>
+    <color name="transparence">#00000000</color>
+
+
+    <color name="colorPrimary_lib">#ff5f61</color>
+    <color name="colorPrimaryDark_lib">#ff5f61</color>
+    <color name="colorAccent_lib">#ff5f61</color>
+    <color name="text_commen_lib">#333333</color>
+    <color name="white_lib">#ffffff</color>
+    <color name="text_color_white">#66ffffff</color>
+    <color name="line_color_lib">#d9d9d9</color>
+    <color name="none_color_lib">#FFFFFFFF</color>
+
+
+    <color name="plugin_camera_black">#000000</color>
+    <color name="albumback">#E1E0DE</color>
+
+
+    <color name="colorbg">#f3f5f9</color>
+    <color name="bg_dark">#f3f5f9</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="lucency">#00000000</color>
+    <color name="linebg">#e5e5e5</color>
+    <color name="biglinebg">#f5f5f5</color>
+    <color name="line_color">#e5e5e5</color>
+    <color name="bot_gray">#333333</color>
+    <color name="bot_on">#1EB0FD</color>
+    <color name="bg_input_fill">#f9f9f9</color>
+    <color name="bg_input_border">#dddddd</color>
+    <color name="input_text">#333333</color>
+    <color name="textcolor">#333333</color>
+    <color name="bg_btn_enable">#ff9aa4</color>
+    <color name="translucent_background">#00000000</color>
+    <color name="text_commen">#333333</color>
+    <color name="warning_red">#ff3f53</color>
+    <color name="head_color">#FFFFFF</color>
+    <color name="head_text_color">#313131</color>
+    <color name="green">#3cdc91</color>
+    <color name="none_color">#00000000</color>
     <color name="text_hint">#999999</color>
+    <color name="auto_loadmore_text">#000000</color>
+    <color name="text_enable_gray">#c8c8c8</color>
+    <color name="text_enable_attention">#419DF0</color>
+
+    <color name="_1b1b1b">#1b1b1b</color>
+    <color name="_262626">#262626</color>
+    <color name="ececec">#ececec</color>
+    <color name="_666666">#666666</color>
+    <color name="_33000000">#33000000</color>
+    <color name="_80ffffff">#80ffffff</color>
+    <color name="_ff3f53">#ff3f53</color>
+
+    <color name="photoPackDivider">#DDDDDD</color>
+    <color name="color9">#999999</color>
+    <color name="color6">#666666</color>
+    <color name="color3">#333333</color>
 </resources>

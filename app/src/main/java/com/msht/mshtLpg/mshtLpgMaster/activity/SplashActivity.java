@@ -4,15 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
+import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
-import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends BaseActivity implements PermissionUtils.PermissionRequestFinishListener {
 
     private Timer time;
     private TimerTask tk;
@@ -24,16 +23,7 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         time = new Timer();
 
-        AndPermission.with(this)
-                .permission(Permission.Group.LOCATION,Permission.Group.STORAGE,Permission.Group.CAMERA,Permission.Group.PHONE)
-                .onGranted(permissions -> {
-                    // TODO what to do.
-                    waitGo();
-                }).onDenied(permissions -> {
-            PopUtil.toastInBottom("为了更好使用LPG，请赋予权限");
-            waitGo();
-        })
-                .start();
+         PermissionUtils.requestPermissions(SplashActivity.this,SplashActivity.this,Permission.ACCESS_COARSE_LOCATION,Permission.ACCESS_FINE_LOCATION,Permission.CAMERA,Permission.CALL_PHONE,Permission.WRITE_EXTERNAL_STORAGE);
 
     }
 
@@ -65,5 +55,21 @@ public class SplashActivity extends BaseActivity {
         }
         finish();
 
+    }
+
+
+    @Override
+    public void onBackFromSettingPage() {
+        waitGo();
+    }
+
+    @Override
+    public void onPermissionRequestDenied() {
+       waitGo();
+    }
+
+    @Override
+    public void onPermissionRequestSuccess() {
+        waitGo();
     }
 }

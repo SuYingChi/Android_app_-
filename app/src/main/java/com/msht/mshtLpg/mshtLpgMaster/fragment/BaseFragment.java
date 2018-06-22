@@ -53,5 +53,8 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
         EventBus.getDefault().post(new LogoutEvent());
     }
 
-    protected abstract void onNetError();
+    @Override
+    public void onNetError(){
+
+    };
 }

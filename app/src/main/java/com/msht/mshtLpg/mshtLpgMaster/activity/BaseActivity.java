@@ -55,7 +55,7 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
         super.onDestroy();
     }
 
-    private void initStateBar() {
+    protected void initStateBar() {
         ImmersionBar.with(this).statusBarColor(R.color.white_transparent).statusBarDarkFont(true, 0.2f).fitsSystemWindows(true).init();
     }
 

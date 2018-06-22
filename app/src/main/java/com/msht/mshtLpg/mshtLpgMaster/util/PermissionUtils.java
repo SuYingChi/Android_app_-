@@ -9,9 +9,18 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
+
+import com.msht.mshtLpg.mshtLpgMaster.R;
+import com.msht.mshtLpg.mshtLpgMaster.activity.SplashActivity;
+import com.yanzhenjie.permission.Action;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
+import com.yanzhenjie.permission.Setting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -212,6 +221,79 @@ public class PermissionUtils {
     private static boolean isOverMarshmallow() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
     }
+    public static void requestPermissions(Context context, PermissionRequestFinishListener permissionRequestFinishListener, String... permissions) {
+        AndPermission.with(context)
+                .runtime()
+                .permission(permissions)
+                .rationale(new RuntimeRationale())
+                .onGranted(new Action<List<String>>() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+                        permissionRequestFinishListener.onPermissionRequestSuccess();
+                    }
+                })
+                .onDenied(new Action<List<String>>() {
+                    @Override
+                    public void onAction(@NonNull List<String> permissions) {
+                        if (AndPermission.hasAlwaysDeniedPermission(context, permissions)) {
+                          showSettingDialog(context, permissions,permissionRequestFinishListener);
+                        }else {
+                            permissionRequestFinishListener.onPermissionRequestDenied();
+                        }
+
+                    }
+                })
+                .start();
+    }
+
+    /**
+     * Display setting dialog.
+     */
+    public static void showSettingDialog(Context context, final List<String> permissions, PermissionRequestFinishListener permissionRequestFinishListener) {
+        List<String> permissionNames = Permission.transformText(context, permissions);
+        String message = context.getString(R.string.message_permission_always_failed, TextUtils.join("\n", permissionNames));
+
+        new AlertDialog.Builder(context)
+                .setCancelable(false)
+                .setTitle(R.string.title_dialog)
+                .setMessage(message)
+                .setPositiveButton(R.string.setting, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        setPermission(context,permissionRequestFinishListener);
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        permissionRequestFinishListener.onPermissionRequestDenied();
+                    }
+                })
+                .show();
+    }
+    /**
+     * Set permissions.
+     */
+    private static void setPermission(Context context, PermissionRequestFinishListener permissionRequestFinishListener) {
+        AndPermission.with(context)
+                .runtime()
+                .setting()
+                .onComeback(new Setting.Action() {
+                    @Override
+                    public void onAction() {
+                        permissionRequestFinishListener.onBackFromSettingPage();
+                    }
+                })
+                .start();
+    }
+    public interface PermissionRequestFinishListener {
+
+        void onBackFromSettingPage();
+
+        void onPermissionRequestDenied();
+
+        void onPermissionRequestSuccess();
+    }
 
     public interface PermissionCallBack {
         void onPermissionGranted(int requestCode);
@@ -219,4 +301,5 @@ public class PermissionUtils {
     }
 
     private static PermissionCallBack mPermissionCallBack;
+
 }
