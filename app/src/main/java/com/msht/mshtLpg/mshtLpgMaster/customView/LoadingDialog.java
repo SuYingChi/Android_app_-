@@ -1,6 +1,5 @@
 package com.msht.mshtLpg.mshtLpgMaster.customView;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -12,7 +11,7 @@ import com.msht.mshtLpg.mshtLpgMaster.R;
 public class LoadingDialog extends Dialog {
 
     public LoadingDialog(Context context) {
-        super(context);
+        super(context,R.style.Loading_dialog);
 
     }
     @Override

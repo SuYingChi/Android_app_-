@@ -36,21 +36,28 @@ public class SharePreferenceUtil {
 
     public  void setToken(String token) {
         loginEditor.putString(Constants.TOKEN, token);
+        loginEditor.commit();
     }
 
     public  String getToken() {
-        return getStringValue(Constants.LOGIN_SP_FILE_NAME, Constants.TOKEN);
+        return getSPStringValue(Constants.LOGIN_SP_FILE_NAME, Constants.TOKEN);
     }
 
-    public static String  getStringValue(String fileName,String key) {
+    public static String getSPStringValue(String fileName, String key) {
         SharedPreferences sharePreferenceFile = getSharePreferenceFile(fileName);
         return sharePreferenceFile.getString(key,"");
     }
-
-    public static void setStringValue(String fileName, String key, String value) {
+    public static String  getLoginSpStringValue(String key) {
+        SharedPreferences sharePreferenceFile = getSharePreferenceFile(Constants.LOGIN_SP_FILE_NAME);
+        return sharePreferenceFile.getString(key,"");
+    }
+    public static void setSPStringValue(String fileName, String key, String value) {
         SharedPreferences sharePreferenceFile = getSharePreferenceFile(fileName);
         sharePreferenceFile.edit().putString(key,value).apply();
     }
-
+    public static void setLoginSpStringValue(String key, String value) {
+        SharedPreferences sharePreferenceFile = getSharePreferenceFile(Constants.LOGIN_SP_FILE_NAME);
+        sharePreferenceFile.edit().putString(key,value).apply();
+    }
 
 }

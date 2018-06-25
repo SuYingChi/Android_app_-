@@ -36,7 +36,6 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setSoftInPutMode();
-        ButterKnife.bind(this);
         EventBus.getDefault().register(this);
         initStateBar();
     }
@@ -56,7 +55,7 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
     }
 
     protected void initStateBar() {
-        ImmersionBar.with(this).statusBarColor(R.color.white_transparent).statusBarDarkFont(true, 0.2f).fitsSystemWindows(true).init();
+        ImmersionBar.with(this).statusBarColor(R.color.bg_phone).statusBarDarkFont(true, 0.2f).fitsSystemWindows(true).init();
     }
 
     private void setSoftInPutMode() {
@@ -164,6 +163,7 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
     @Override
     public void onLogout() {
         AppUtil.logout();
+        //接收到退出登录消息后做相应操作并跳转到登录页
         EventBus.getDefault().post(new LogoutEvent());
     }
 

@@ -3,7 +3,6 @@ package com.msht.mshtLpg.mshtLpgMaster.callback;
 import android.text.TextUtils;
 
 import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
-import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IBaseView;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -33,13 +32,5 @@ public class DataStringCallback extends StringCallback {
     @Override
     public void onResponse(String s, int i) {
        iView.dismissLoading();
-        ErrorBean errorBean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
-
-        if(!TextUtils.isEmpty(errorBean.getResult())&&TextUtils.equals(errorBean.getError(),"403")){
-            iView.onLogout();
-        }
-        if(!TextUtils.isEmpty(errorBean.getResult())&&TextUtils.equals(errorBean.getResult(),"fail")){
-            iView.onError(errorBean.getResult());
-        }
     }
 }
