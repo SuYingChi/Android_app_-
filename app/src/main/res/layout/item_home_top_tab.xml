@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="200dp"
     android:layout_height="45dp"
-    android:background="@color/white"
     android:orientation="horizontal"
     android:paddingTop="2dp">
 
@@ -11,9 +10,7 @@
         <Button
             android:id="@+id/deliver_order"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:gravity="center"
+            android:layout_height="match_parent"
             android:text="送气订单"
             android:textColor="@color/colorAccent"
             android:textSize="12sp"
@@ -27,9 +24,7 @@
         <Button
             android:id="@+id/recede_order"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:gravity="center"
+            android:layout_height="match_parent"
             android:text="退瓶订单"
             android:textColor="#525252"
             android:textSize="12sp"

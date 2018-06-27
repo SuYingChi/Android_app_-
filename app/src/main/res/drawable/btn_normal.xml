@@ -3,11 +3,7 @@
 
    <solid android:color="@color/msb_color"/>
 
-    <corners
-        android:bottomRightRadius="8dp"
-        android:topRightRadius="8dp">
-
-    </corners>
+    <corners android:radius="20dp"/>
 
 
 </shape>

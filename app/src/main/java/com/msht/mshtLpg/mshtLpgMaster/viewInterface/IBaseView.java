@@ -9,6 +9,8 @@ public  interface IBaseView {
 
     String getToken();
 
+    /*String getEmployerId();*/
+
     void onLogout();
 
     void onNetError();

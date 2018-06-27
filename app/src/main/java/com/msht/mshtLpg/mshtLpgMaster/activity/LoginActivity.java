@@ -32,7 +32,7 @@ public class LoginActivity extends BaseActivity implements ILoginView{
     EditText mobileNumber;
     @BindView(R.id.login_password)
     EditText loginPassword;
-   @BindView(R.id.tv_ok)
+   @BindView(R.id.btn_ok)
     Button btnOk;
 
     private ILoginPresenter iLoginPresenter;
@@ -45,11 +45,11 @@ public class LoginActivity extends BaseActivity implements ILoginView{
         iLoginPresenter= new ILoginPresenter(this);
     }
 
-    @OnClick( R.id.tv_ok)
+    @OnClick( R.id.btn_ok)
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
-            case R.id.tv_ok:
+            case R.id.btn_ok:
                 if (mobileNumber.getText().length() != 11) {
                     PopUtil.toastInBottom( getString(R.string.please_input_right_mobile_number));
                     return;
@@ -69,6 +69,7 @@ public class LoginActivity extends BaseActivity implements ILoginView{
     @Override
     public void onLoginSuccess(UserLoginBean s) {
         SharePreferenceUtil.getInstance().setToken( s.getData().getLoginToken());
+        //SharePreferenceUtil.setLoginSpStringValue(Constants.EMPLOYERID,s.getData().getEmployeeId());
         startActivity( new Intent(this, HomeActivity.class));
         EventBus.getDefault().post(new LoginEventBean(GsonUtil.getGson().toJson(s)));
 
@@ -78,4 +79,6 @@ public class LoginActivity extends BaseActivity implements ILoginView{
     public void onMessageEvent(LoginEventBean event) {
         finish();
     }
+
+
 }

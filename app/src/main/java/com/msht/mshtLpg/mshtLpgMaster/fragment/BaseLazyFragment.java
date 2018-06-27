@@ -149,7 +149,7 @@ public abstract class BaseLazyFragment extends BaseFragment {
      * 默认白色 有特殊需求  重写此方法
      */
     protected void initImmersionBar() {
-        ImmersionBar.with(this).statusBarColor(R.color.white_transparent).statusBarDarkFont(true, 0.2f).fitsSystemWindows(true).init();
+        ImmersionBar.with(this).statusBarColor(R.color.msb_color).statusBarDarkFont(true, 0.2f).fitsSystemWindows(true).init();
     }
 
     /**

@@ -7,8 +7,12 @@ public class Constants {
     public static final String APP_PACKAGE_NAME = "com.msht.mshtLpg.mshtLpgMaster";
     public static final String LOGIN_SP_FILE_NAME = "lpg";
     public static final String TOKEN = "token";
+    public static final String EMPLOYERID = "employerId";
     public static final String FILE_NAME = "lpgImage";
     public static final String LOGIN = BASE_URL+"login";
+    public static final String HOME_TOP_CITEM ="HOME_TOP_CITEM";
+    public static final String HOME_ORDERS_CITEM ="HOME_ORDERS_CITEM";
+
 
 
 }

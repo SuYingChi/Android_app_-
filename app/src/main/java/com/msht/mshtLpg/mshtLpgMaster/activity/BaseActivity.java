@@ -9,6 +9,7 @@ import android.view.WindowManager;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtLpg.mshtLpgMaster.R;
+import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.LogoutEvent;
@@ -55,7 +56,7 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
     }
 
     protected void initStateBar() {
-        ImmersionBar.with(this).statusBarColor(R.color.bg_phone).statusBarDarkFont(true, 0.2f).fitsSystemWindows(true).init();
+        ImmersionBar.with(this).statusBarColor(R.color.msb_color).statusBarDarkFont(true, 0.2f).fitsSystemWindows(true).init();
     }
 
     private void setSoftInPutMode() {
@@ -113,6 +114,12 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
     public String getToken() {
         return SharePreferenceUtil.getInstance().getToken();
     }
+
+/*    @Override
+    public String getEmployerId() {
+        return  SharePreferenceUtil.getLoginSpStringValue(Constants.EMPLOYERID);
+    }*/
+
     /**
      * 是否支持滑动返回。这里在父类中默认返回 true 来支持滑动返回，如果某个界面不想支持滑动返回则重写该方法返回 false 即可
      *

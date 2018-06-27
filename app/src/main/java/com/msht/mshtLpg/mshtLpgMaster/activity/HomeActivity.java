@@ -3,8 +3,11 @@ package com.msht.mshtLpg.mshtLpgMaster.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.msht.mshtLpg.mshtLpgMaster.R;
@@ -18,10 +21,13 @@ import com.msht.mshtLpg.mshtLpgMaster.fragment.OrdersLazyFragment;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class HomeActivity extends BaseActivity {
 
@@ -44,6 +50,13 @@ public class HomeActivity extends BaseActivity {
     private TextView tvTab1;
     @BindView(R.id.tv_tab2)
     private TextView tvTab2;
+    @BindView(R.id.ll_tab0)
+    private LinearLayout llTab0;
+    @BindView(R.id.ll_tab1)
+    private LinearLayout llTab1;
+    @BindView(R.id.ll_tab2)
+    private LinearLayout llTab2;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,7 +122,34 @@ public class HomeActivity extends BaseActivity {
         }
 
     }
-
+    @OnClick({R.id.ll_tab0, R.id.ll_tab1, R.id.ll_tab2})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ll_tab0:
+                if (vp.getCurrentItem() != 0) {
+                    initBottom(0);
+                    vp.setCurrentItem(0, false);
+                    SharePreferenceUtil.setLoginSpStringValue("citem", "0");
+                }
+                break;
+            case R.id.ll_tab1:
+                if (vp.getCurrentItem() != 1) {
+                    initBottom(1);
+                    vp.setCurrentItem(1, false);
+                    SharePreferenceUtil.setLoginSpStringValue("citem", "1");
+                }
+                break;
+            case R.id.ll_tab2:
+                if (vp.getCurrentItem() != 2) {
+                    vp.setCurrentItem(2, false);
+                    initBottom(2);
+                    SharePreferenceUtil.setLoginSpStringValue("citem", "2");
+                }
+                break;
+           default:
+               break;
+        }
+    }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -122,5 +162,20 @@ public class HomeActivity extends BaseActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onDestroy() {
+        list_fragment.clear();
+        f0 = null;
+        f1 = null;
+        f2 = null;
+        System.gc();
+        super.onDestroy();
+//        FloatWindow.destroy();
+    }
+    @Override
+    public boolean isSupportSwipeBack() {
+        return false;
     }
 }

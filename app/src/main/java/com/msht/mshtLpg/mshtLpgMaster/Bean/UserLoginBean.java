@@ -45,6 +45,7 @@ public class UserLoginBean {
 
         private String loginToken;
         private String errorCode;
+        //private String employeeId;
 
         public String getLoginToken() {
             return loginToken;
@@ -61,5 +62,13 @@ public class UserLoginBean {
         public void setErrorCode(String errorCode) {
             this.errorCode = errorCode;
         }
+
+        /*public String getEmployeeId() {
+            return employeeId;
+        }
+
+        public void setEmployeeId(String employeeId) {
+            this.employeeId = employeeId;
+        }*/
     }
 }
