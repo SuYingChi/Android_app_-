@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/orders_detail_command_top_id"
+    android:layout_marginTop="@dimen/margin_Modules"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:padding="@dimen/margin_horizontal"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/orders" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_horizontal"
+        android:text="订单号"
+        android:textColor="@color/head_text_color"
+        android:textSize="@dimen/text_16" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_horizontal"
+        android:text="10245045"
+        android:textColor="@color/lpg_text_light_color"
+        android:textSize="@dimen/text_16" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="待发货"
+        android:textColor="@color/warning_red"
+        android:textSize="@dimen/text_16"
+
+        />
+</LinearLayout>

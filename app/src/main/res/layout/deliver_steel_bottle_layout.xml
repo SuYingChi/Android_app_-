@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line_color_lib">
+
+    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height_normol"
+        android:background="@color/msb_color"
+        android:padding="@dimen/margin_Modules"
+        app:title_text="检验钢瓶" />
+
+
+    <TextView
+        android:id="@+id/tv_scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_Modules"
+        android:text="请扫描要交付用户钢瓶二维码"
+        android:textSize="@dimen/text_nomal" />
+
+    <FrameLayout
+        android:id="@+id/scan_code"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/tv_scan"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_Modules" />
+
+    <LinearLayout
+        android:id="@+id/ll_query_steel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/scan_code"
+        android:layout_alignRight="@id/scan_code"
+        android:layout_below="@id/scan_code"
+        android:layout_marginTop="@dimen/margin_Modules"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_steel_bottle_number"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@drawable/edit_text_background"
+            android:gravity="center"
+            android:hint="手动输入钢瓶编号"
+            android:paddingBottom="@dimen/margin_Modules"
+            android:paddingTop="@dimen/margin_Modules"
+            android:textSize="@dimen/text_nomal"
+
+            />
+
+        <EditText
+            android:id="@+id/et_query_steel_bottle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_right_corner_unselect_bg"
+            android:gravity="center"
+            android:paddingBottom="@dimen/margin_Modules"
+            android:paddingTop="@dimen/margin_Modules"
+            android:text="查询"
+            android:textSize="@dimen/text_nomal" />
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_below="@id/ll_query_steel"
+    android:layout_marginTop="@dimen/margin_Modules"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    >
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcl_deliver_steell_bottle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingBottom="@dimen/margin_Modules"
+            android:paddingTop="@dimen/margin_Modules"
+            android:gravity="center"
+            android:background="@color/white"
+            android:textColor="@color/lpg_text_dark_color"
+            android:text="5kg:"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingBottom="@dimen/margin_Modules"
+            android:paddingTop="@dimen/margin_Modules"
+            android:gravity="center"
+            android:background="@color/white"
+            android:textColor="@color/lpg_text_dark_color"
+            android:text=""
+            />
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingBottom="@dimen/margin_Modules"
+            android:paddingTop="@dimen/margin_Modules"
+            android:gravity="center"
+            android:background="@color/white"
+            android:textColor="@color/lpg_text_dark_color"
+            android:text="15kg:"
+            />
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingBottom="@dimen/margin_Modules"
+            android:paddingTop="@dimen/margin_Modules"
+            android:gravity="center"
+            android:background="@color/white"
+            android:textColor="@color/lpg_text_dark_color"
+            android:text=""
+            />
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingBottom="@dimen/margin_Modules"
+            android:paddingTop="@dimen/margin_Modules"
+            android:gravity="center"
+            android:background="@color/white"
+            android:textColor="@color/lpg_text_dark_color"
+            android:text="50kg:"
+            />
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingBottom="@dimen/margin_Modules"
+            android:paddingTop="@dimen/margin_Modules"
+            android:gravity="center"
+            android:background="@color/white"
+            android:textColor="@color/lpg_text_dark_color"
+            android:text=""
+            />
+
+    <TextView
+        android:id="@+id/tv_save_btn"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:background="@color/msb_color"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:text="保存"
+        android:textColor="@color/white"
+        />
+    </LinearLayout>
+</LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    >
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="应收款"
+    android:layout_marginLeft="@dimen/margin_Modules"
+    />
+    <TextView
+        android:id="@+id/receipt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="92.00"
+        android:textColor="@color/warning_red"
+        android:textSize="@dimen/common_text_size_middle_2"
+        android:layout_marginLeft="@dimen/margin_Modules"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"/>
+    <TextView
+        android:id="@+id/weixin_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="微信支付"
+        android:background="@color/bot_on"
+        android:padding="@dimen/margin_Modules"
+        />
+    <TextView
+        android:id="@+id/cash_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="现金代付"
+        android:background="@color/msb_color"
+        android:padding="@dimen/margin_Modules"
+        />
+    <TextView
+        android:id="@+id/re_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="重新交付"
+        android:background="@color/warning_red"
+        android:padding="@dimen/margin_Modules"
+        />
+</LinearLayout>

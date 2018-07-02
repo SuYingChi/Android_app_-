@@ -244,59 +244,19 @@
                 android:textSize="@dimen/text_nomal" />
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/msb_color"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        >
+        android:text="保存"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:paddingTop="@dimen/margin_Modules"
+        android:paddingBottom="@dimen/margin_Modules"
 
-        <RadioGroup
-            android:id="@+id/rg_sex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/margin_Modules"
-            android:layout_marginBottom="@dimen/margin_Modules"
-            android:layout_marginLeft="@dimen/margin_Modules"
-            >
+        />
 
-            <RadioButton
-                android:id="@+id/rb_Male"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="合格"
-                android:drawableLeft="@drawable/selector_check_btn_bg"
-                style="@style/radioStyle"
-                />
 
-            <RadioButton
-                android:id="@+id/rb_FeMale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="不合格"
-                android:checked="true"
-                android:layout_marginLeft="@dimen/margin_Modules"
-                android:drawableLeft="@drawable/selector_check_btn_bg"
-                style="@style/radioStyle"
-                />
-        </RadioGroup>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/svae"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:text="保存"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_nomal"
-            android:background="@color/msb_color"
-            android:gravity="center"
-            />
-    </LinearLayout>
 </RelativeLayout>

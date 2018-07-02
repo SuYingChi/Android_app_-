@@ -20,7 +20,7 @@ public class SplashActivity extends BaseActivity implements PermissionUtils.Perm
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_splash);
         time = new Timer();
 
          PermissionUtils.requestPermissions(SplashActivity.this,SplashActivity.this,Permission.ACCESS_COARSE_LOCATION,Permission.ACCESS_FINE_LOCATION,Permission.CAMERA,Permission.CALL_PHONE,Permission.WRITE_EXTERNAL_STORAGE);

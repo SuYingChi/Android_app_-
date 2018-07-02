@@ -4,144 +4,26 @@
     android:layout_height="match_parent"
     android:background="@color/line_color_lib"
     >
-<View
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/top_bar_height"
-    android:background="@color/msb_color"
-    />
-    <ImageView
-        android:id="@+id/return_ben"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/return_btn"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginTop="@dimen/margin_Modules"
-        />
-
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:text="订单详情"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:layout_alignTop="@id/return_ben"
-        />
-    <LinearLayout
-        android:id="@+id/client_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:layout_below="@id/tv_title"
-        android:orientation="vertical"
-        android:gravity="center"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@color/lpg_text_dark_color"
-            android:text="海口市龙华区诚田大厦A栋24层2房"
-            android:layout_marginTop="@dimen/margin_Modules"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@color/lpg_text_dark_color"
-            android:text="(有电梯)"
-            android:layout_marginTop="@dimen/margin_Modules"
-            />
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_Modules"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@color/lpg_text_light_color"
-                android:text="世贸彭于晏(先生)"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@color/lpg_text_light_color"
-                android:text="13012345678"
-                android:layout_marginLeft="@dimen/margin_horizontal"
-                />
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginTop="18dp"
-            android:background="@color/_1b1b1b"
-            />
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/margin_Modules"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@color/lpg_text_light_color"
-                android:text="预约时间："
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@color/lpg_text_light_color"
-                android:text="2018.06.08"
-                android:layout_marginLeft="@dimen/margin_horizontal"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@color/lpg_text_light_color"
-                android:text="10:00 - 12:00"
-                android:layout_marginLeft="@dimen/margin_horizontal"
-                />
-        </LinearLayout>
-    </LinearLayout>
-    <TextView
-        android:id="@+id/comment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/client_info"
-        android:layout_alignLeft="@id/client_info"
-        android:layout_alignRight="@id/client_info"
-        android:layout_marginTop="@dimen/margin_Modules"
-        android:textColor="@color/lpg_text_dark_color"
-        android:textSize="14sp"
-        android:text="内部备注：客户要求今晚晚饭前送到"
-        android:background="@color/white"
-        />
+    <include layout="@layout/item_orders_detail_command_topbar"/>
     <LinearLayout
         android:id="@+id/orders_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin_horizontal"
+        android:paddingRight="@dimen/margin_horizontal"
         android:layout_marginTop="@dimen/margin_Modules"
-        android:layout_below="@id/comment"
+        android:layout_below="@id/orders_detail_command_top_id"
         android:background="@color/white"
         android:layout_alignLeft="@id/client_info"
         android:layout_alignRight="@id/client_info"
-        android:paddingVertical="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:paddingBottom="@dimen/margin_Modules"
         >
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/order"
+            android:src="@drawable/orders"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -177,13 +59,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin_horizontal"
+        android:paddingRight="@dimen/margin_horizontal"
         android:layout_marginTop="0.5dp"
         android:layout_below="@id/orders_status"
         android:background="@color/white"
         android:layout_alignLeft="@id/client_info"
         android:layout_alignRight="@id/client_info"
-        android:paddingVertical="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:paddingBottom="@dimen/margin_Modules"
         >
 
         <TextView
@@ -195,7 +79,7 @@
 
             />
         <View
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
         <TextView
@@ -212,13 +96,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin_horizontal"
+        android:paddingRight="@dimen/margin_horizontal"
         android:layout_marginTop="0.5dp"
         android:layout_below="@id/five_kg"
         android:background="@color/white"
         android:layout_alignLeft="@id/client_info"
         android:layout_alignRight="@id/client_info"
-        android:paddingVertical="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:paddingBottom="@dimen/margin_Modules"
         >
 
         <TextView
@@ -247,13 +133,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin_horizontal"
+        android:paddingRight="@dimen/margin_horizontal"
         android:layout_marginTop="0.5dp"
         android:layout_below="@id/fifteen"
         android:background="@color/white"
         android:layout_alignLeft="@id/client_info"
         android:layout_alignRight="@id/client_info"
-        android:paddingVertical="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:paddingBottom="@dimen/margin_Modules"
         >
 
         <TextView
@@ -283,13 +171,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin_horizontal"
+        android:paddingRight="@dimen/margin_horizontal"
         android:layout_marginTop="0.5dp"
         android:layout_below="@id/fifty_kg"
         android:background="@color/white"
         android:layout_alignLeft="@id/client_info"
         android:layout_alignRight="@id/client_info"
-        android:paddingVertical="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:paddingBottom="@dimen/margin_Modules"
         >
 
         <TextView
@@ -319,13 +209,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin_horizontal"
+        android:paddingRight="@dimen/margin_horizontal"
         android:layout_marginTop="0.5dp"
         android:layout_below="@id/fare"
         android:background="@color/white"
         android:layout_alignLeft="@id/client_info"
         android:layout_alignRight="@id/client_info"
-        android:paddingVertical="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:paddingBottom="@dimen/margin_Modules"
         >
         <View
             android:layout_width="match_parent"
@@ -348,7 +240,7 @@
     </LinearLayout>
     <TextView
         android:id="@+id/dispatch_orders_time"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_Modules"
         android:layout_alignLeft="@id/client_info"
@@ -358,7 +250,8 @@
         android:textSize="14sp"
         android:textColor="@color/lpg_text_light_color"
         android:text="下单时间：2010-06-08 15:20"
-        android:paddingVertical="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:paddingBottom="@dimen/margin_Modules"
         />
     <Button
         android:id="@+id/hand_over_steel_bottle"

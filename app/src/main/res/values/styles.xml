@@ -273,4 +273,10 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowNoTitle">false</item>
     </style>
+    <style name="radioStyle">
+        <item name="android:button">@null</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:drawablePadding">@dimen/margin_Modules</item>
+    </style>
 </resources>

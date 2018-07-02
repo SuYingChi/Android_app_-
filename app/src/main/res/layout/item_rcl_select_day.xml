@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_Modules"
+    android:background="@drawable/rcl_select"
+    >
+<TextView
+    android:id="@+id/tv_select_day"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="今天 （11-14 周二）"
+    android:textColor="@color/lpg_text_dark_color"
+    />
+</LinearLayout>

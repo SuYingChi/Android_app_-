@@ -23,10 +23,14 @@
     <dimen name="text_nomal">15sp</dimen>
     <dimen name="text_small">14sp</dimen>
     <dimen name="text_top_title">30sp</dimen>
+    <dimen name="text_top_title_big">50sp</dimen>
     <dimen name="dialog_text_size">17sp</dimen>
     <dimen name="space">25dp</dimen>
     <dimen name="text_16">16sp</dimen>
     <dimen name="top_bar_height">150dp</dimen>
     <dimen name="top_bar_height_normol">50dp</dimen>
     <dimen name="topbar_title_bottom_margin">8dp</dimen>
+    <dimen name="line_margin">2dp</dimen>
+    <dimen name="lin_width">1dp</dimen>
+    <dimen name="rcl_margin">5dp</dimen>
 </resources>

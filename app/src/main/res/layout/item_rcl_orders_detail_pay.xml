@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/five_kg"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/orders_status"
+    android:layout_marginTop="0.5dp"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:padding="@dimen/margin_horizontal"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5kg瓶装气"
+        android:textColor="@color/head_text_color"
+        android:textSize="@dimen/text_16"
+
+        />
+    <TextView
+        android:id="@+id/steel_bottle_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x1"
+        android:layout_marginLeft="@dimen/margin_horizontal"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/steel_bottle_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50.00"
+        android:textColor="@color/warning_red"
+        android:textSize="@dimen/text_16"
+
+        />
+</LinearLayout>

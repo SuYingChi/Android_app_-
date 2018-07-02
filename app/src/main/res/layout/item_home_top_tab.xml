@@ -12,7 +12,7 @@
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="送气订单"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/msb_color"
             android:textSize="12sp"
             android:background="@drawable/btn_left_corner_bg"
             />

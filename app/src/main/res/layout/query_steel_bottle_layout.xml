@@ -2,11 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/line_color_lib"
-    >
-    <include
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/line_color_lib">
+    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
         android:id="@+id/topbar"
-        layout="@layout/steel_query_topbar_layout"/>
+        android:background="@color/msb_color"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height_normol"
+        android:padding="@dimen/margin_Modules"
+        app:title_text = "钢瓶查询"
+        />
     <RelativeLayout
         android:id="@+id/steel_bottle_info"
         android:layout_width="match_parent"

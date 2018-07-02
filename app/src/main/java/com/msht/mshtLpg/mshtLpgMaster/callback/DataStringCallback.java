@@ -1,6 +1,7 @@
 package com.msht.mshtLpg.mshtLpgMaster.callback;
 
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IBaseView;
@@ -27,6 +28,7 @@ public class DataStringCallback extends StringCallback {
         e.printStackTrace();
         iView.dismissLoading();
         iView.onError(e.toString());
+
     }
 
     @Override
