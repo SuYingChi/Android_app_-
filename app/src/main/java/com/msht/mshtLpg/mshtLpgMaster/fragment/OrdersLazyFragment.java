@@ -1,6 +1,5 @@
 package com.msht.mshtLpg.mshtLpgMaster.fragment;
 
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,7 +35,7 @@ public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, 
     RecyclerView rclHome;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
-    @BindView(R.id.tablayout)
+    @BindView(R.id.transfer_to_storage_tablayout)
     SlidingTabLayout tabLayout;
     @BindView(R.id.deliver_order)
     private Button btnTab0;

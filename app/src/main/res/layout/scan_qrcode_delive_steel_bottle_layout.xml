@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line_color_lib">
+
+    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
+        android:id="@+id/my_setting_fragment_layout_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height_normol"
+        android:background="@color/msb_color"
+        android:padding="@dimen/margin_Modules"
+        app:title_text="检验钢瓶" />
+
+
+    <TextView
+        android:id="@+id/tv_scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_setting_fragment_layout_topbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_Modules"
+        android:text="请扫描要交付用户钢瓶二维码"
+        android:textColor="@color/lpg_text_dark_color"
+        android:textSize="@dimen/text_16" />
+
+    <FrameLayout
+        android:id="@+id/scan_code"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/tv_scan"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_Modules" />
+
+    <LinearLayout
+        android:id="@+id/ll_scan_qrcode_query_steel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/scan_code"
+        android:layout_below="@id/scan_code"
+        android:layout_marginTop="@dimen/margin_Modules"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_scan_qrcode_steel_bottle_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="手动输入钢瓶编号"
+            android:padding="@dimen/margin_Modules"
+            android:textSize="@dimen/text_nomal"
+
+            />
+
+        <TextView
+            android:id="@+id/et_scan_qrcode_query_steel_bottle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_right_corner_unselect_bg"
+            android:padding="@dimen/margin_Modules"
+            android:text="查询"
+            android:textSize="@dimen/text_nomal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll_scan_qrcode_query_steel"
+        android:layout_marginTop="@dimen/margin_Modules"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/scan_qrcode_rcl_deliver_steell_bottle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_Modules"
+                android:layout_marginRight="@dimen/margin_Modules"
+                android:background="@color/white" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:paddingBottom="@dimen/margin_Modules"
+                android:paddingTop="@dimen/margin_Modules"
+                android:text="5kg:"
+                android:textColor="@color/lpg_text_dark_color" />
+
+            <TextView
+                android:id="@+id/scan_qrcode_delive_five_steel_bottle_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:paddingBottom="@dimen/margin_Modules"
+                android:paddingTop="@dimen/margin_Modules"
+                android:text=""
+                android:textColor="@color/lpg_text_dark_color" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:paddingBottom="@dimen/margin_Modules"
+                android:paddingTop="@dimen/margin_Modules"
+                android:text="15kg:"
+                android:textColor="@color/lpg_text_dark_color" />
+
+            <TextView
+                android:id="@+id/scan_qrcode_delive_fifteen_steel_bottle_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:paddingBottom="@dimen/margin_Modules"
+                android:paddingTop="@dimen/margin_Modules"
+                android:text=""
+                android:textColor="@color/lpg_text_dark_color" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:paddingBottom="@dimen/margin_Modules"
+                android:paddingTop="@dimen/margin_Modules"
+                android:text="50kg:"
+                android:textColor="@color/lpg_text_dark_color" />
+
+            <TextView
+                android:id="@+id/scan_qrcode_delive_fifty_steel_bottle_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:paddingBottom="@dimen/margin_Modules"
+                android:paddingTop="@dimen/margin_Modules"
+                android:text=""
+                android:textColor="@color/lpg_text_dark_color" />
+
+            <TextView
+                android:id="@+id/tv_save_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/msb_color"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/margin_Modules"
+                android:paddingTop="@dimen/margin_Modules"
+                android:text="保存"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

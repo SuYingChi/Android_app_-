@@ -4,10 +4,20 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/margin_Modules"
     android:background="@color/white"
-    android:orientation="horizontal"
-    android:padding="@dimen/margin_horizontal"
+    android:orientation="vertical"
    >
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rcl_margin"
+        android:background="@color/line_color_lib"
+        />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/margin_Modules"
+    android:paddingBottom="@dimen/margin_Modules"
+    >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,10 +31,16 @@
         android:layout_weight="1" />
 
     <TextView
-        android:id="@+id/discount"
+        android:id="@+id/item_rcl_order_detail_pay_v6_discount"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="170"
-        android:textColor="@color/warning_red"
+        android:textColor="@color/green"
         android:textSize="@dimen/text_nomal" />
+</LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rcl_margin"
+        android:background="@color/line_color_lib"
+        />
 </LinearLayout>

@@ -1,49 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-<com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
-    android:id="@+id/topbar"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/top_bar_height_normol"
-    android:background="@color/msb_color"
-    android:padding="@dimen/margin_Modules"
-    app:title_text = "我的收入"
-    />
+    android:orientation="vertical">
+
+    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
+        android:id="@+id/my_income_layout_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height_normol"
+        android:background="@color/msb_color"
+        android:padding="@dimen/margin_Modules"
+        app:title_text="我的收入" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/msb_color"
-        android:orientation="vertical"
-        >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="总收入 （元）"
-        android:textColor="@color/white"
-        android:layout_marginTop="@dimen/margin_horizontal"
-        android:layout_gravity="center"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="22.00"
-        android:textColor="@color/white"
-        android:textSize="50sp"
-        android:layout_marginTop="@dimen/margin_Modules"
-        android:layout_gravity="center"
-        />
-    <TextView
-        android:id="@+id/tv_month_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="月份统计 >"
-        android:textColor="@color/white"
-        android:layout_marginTop="@dimen/margin_Modules"
-        android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/margin_Modules"
-        />
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_horizontal"
+            android:text="总收入 （元）"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/my_income_total_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_Modules"
+            android:text="22.00"
+            android:textColor="@color/white"
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/tv_my_income_month_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/margin_Modules"
+            android:layout_marginTop="@dimen/margin_Modules"
+            android:text="月份统计 >"
+            android:textColor="@color/white" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/line_color_lib">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcl_my_income"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginLeft="@dimen/margin_Modules"
+            android:layout_marginRight="@dimen/margin_Modules"
+            />
+    </RelativeLayout>
 </LinearLayout>

@@ -1,51 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-
-    >
- <ImageView
-     android:id="@+id/iv_track"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:src="@drawable/order"
-     android:layout_marginLeft="@dimen/margin_horizontal"
-     android:layout_centerVertical="true"
-     />
-    <TextView
-        android:id="@+id/tv_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:text="用户:"
-        android:layout_toRightOf="@id/iv_track"
-        />
-    <TextView
-        android:id="@+id/tv_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/tv_user"
-        android:text="彭于晏"
-        android:layout_toRightOf="@id/tv_user"
-        />
-    <TextView
-        android:id="@+id/tv_track_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2017-08-05 8:05:50"
-        android:layout_below="@id/tv_user"
-        android:layout_alignLeft="@id/tv_user"
-        android:layout_marginTop="@dimen/margin_Modules"
-
-        />
+    android:layout_height="wrap_content">
 
     <View
-        android:background="@color/bg_all"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_alignLeft="@id/tv_user"
-        android:layout_below="@id/tv_track_time"
+        android:layout_alignLeft="@id/tv_item_rcl_steel_bottle_track_user"
         android:layout_marginTop="@dimen/margin_Modules"
+        android:background="@color/bg_all" />
+
+    <ImageView
+        android:id="@+id/iv_track"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/margin_horizontal"
+        android:src="@drawable/order" />
+
+    <TextView
+        android:id="@+id/tv_item_rcl_steel_bottle_track_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_horizontal"
+        android:layout_marginTop="@dimen/margin_Modules"
+        android:layout_toRightOf="@id/iv_track"
+        android:text="用户:" />
+
+    <TextView
+        android:id="@+id/tv_item_rcl_steel_bottle_track_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tv_item_rcl_steel_bottle_track_user"
+        android:layout_toRightOf="@id/tv_item_rcl_steel_bottle_track_user"
+        android:text="彭于晏" />
+
+    <TextView
+        android:id="@+id/tv_item_rcl_steel_bottle_track_track_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_item_rcl_steel_bottle_track_user"
+        android:layout_below="@id/tv_item_rcl_steel_bottle_track_user"
+        android:layout_marginTop="@dimen/margin_Modules"
+        android:text="2017-08-05 8:05:50"
+
         />
 </RelativeLayout>

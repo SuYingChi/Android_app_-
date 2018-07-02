@@ -2,24 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_Modules"
     android:background="@color/white"
-    android:orientation="vertical"
-    >
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/rcl_margin"
-        android:background="@color/line_color_lib"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/margin_Modules"
-        >
+    android:orientation="horizontal"
+    android:padding="@dimen/margin_horizontal">
+
     <TextView
-        android:id="@+id/item_rcl_month_count_month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2018年8月"
+        android:text="自有产权瓶置换"
         android:textColor="@color/lpg_text_dark_color"
         android:textSize="@dimen/text_nomal" />
 
@@ -29,11 +20,10 @@
         android:layout_weight="1" />
 
     <TextView
-        android:id="@+id/item_rcl_month_count"
+        android:id="@+id/item_rcl_order_detail_pay_v5_discount"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="+170"
-        android:textColor="@color/green"
+        android:text="170"
+        android:textColor="@color/warning_red"
         android:textSize="@dimen/text_nomal" />
-</LinearLayout>
 </LinearLayout>

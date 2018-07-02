@@ -5,42 +5,39 @@
     android:padding="@dimen/margin_Modules">
 
     <TextView
-        android:id="@+id/tv_orders"
+        android:id="@+id/tv_item_rcl_my_income_orders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="订单号："
-        android:textSize="@dimen/text_16"
         android:textColor="@color/lpg_text_dark_color"
-        />
+        android:textSize="@dimen/text_16" />
 
     <TextView
-        android:id="@+id/tv_orders_number"
+        android:id="@+id/tv_item_rcl_my_income_orders_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/tv_orders"
+        android:layout_toRightOf="@+id/tv_item_rcl_my_income_orders"
         android:text="12145041"
-        android:textSize="@dimen/text_16"
         android:textColor="@color/lpg_text_dark_color"
-        />
+        android:textSize="@dimen/text_16" />
 
     <TextView
-        android:id="@+id/tv_orders_time"
+        android:id="@+id/tv_item_rcl_my_income_orders_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignleft="@+id/tv_orders"
-        android:layout_below="@+id/tv_orders"
-        android:text="2018-10-09 16:16"
-        android:textSize="@dimen/text_nomal"
+        android:layout_alignleft="@+id/tv_item_rcl_my_income_orders"
+        android:layout_below="@+id/tv_item_rcl_my_income_orders"
         android:layout_marginTop="@dimen/margin_Modules"
-        />
+        android:text="2018-10-09 16:16"
+        android:textSize="@dimen/text_nomal" />
+
     <TextView
-        android:id="@+id/tv_income"
+        android:id="@+id/tv_item_rcl_my_income_orders_income"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:textSize="@dimen/text_top_title"
-        android:textColor="@color/green"
-        android:text="+300"
         android:layout_centerVertical="true"
-        />
+        android:text="+300"
+        android:textColor="@color/green"
+        android:textSize="@dimen/text_top_title" />
 </RelativeLayout>

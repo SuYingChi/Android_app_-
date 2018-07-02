@@ -3,136 +3,141 @@
     android:id="@+id/orders_detail_command_top_id"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
-        android:background="@color/msb_color"
-        />
+        android:background="@color/msb_color" />
+
     <ImageView
         android:id="@+id/return_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/return_btn"
         android:layout_marginLeft="@dimen/margin_horizontal"
         android:layout_marginTop="@dimen/margin_Modules"
-        />
+        android:src="@drawable/return_btn" />
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/tv_comman_topbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@id/return_btn"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="订单详情"
         android:textColor="@color/white"
-        android:textSize="18sp"
-        android:layout_alignTop="@id/return_btn"
-        />
+        android:textSize="18sp" />
+
     <LinearLayout
-        android:id="@+id/client_info"
+        android:id="@+id/ll_orders_detail_command_topbar_client_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_below="@id/tv_comman_topbar_title"
         android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:layout_below="@id/tv_title"
-        android:orientation="vertical"
+        android:background="@color/white"
         android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_horizontal"
         >
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@color/lpg_text_dark_color"
+            android:layout_marginTop="@dimen/margin_Modules"
             android:text="海口市龙华区诚田大厦A栋24层2房"
-            android:layout_marginTop="@dimen/margin_Modules"
-            />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="15sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@color/lpg_text_dark_color"
-            android:text="(有电梯)"
             android:layout_marginTop="@dimen/margin_Modules"
-            />
+            android:text="(有电梯)"
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="15sp" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_Modules"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
+
             <TextView
+                android:id="@+id/comman_topbar_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@color/lpg_text_light_color"
+                android:gravity="top"
                 android:text="世贸彭于晏(先生)"
-                android:gravity="top"
-                />
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="15sp" />
+
             <TextView
+                android:id="@+id/comman_topbar_telephone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@color/lpg_text_light_color"
-                android:text="13012345678"
-                android:gravity="top"
                 android:layout_marginLeft="@dimen/margin_horizontal"
-                />
+                android:gravity="top"
+                android:text="13012345678"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="15sp" />
+
             <ImageView
-                android:id="@+id/call_phone_btn"
+                android:id="@+id/comman_topbar_call_phone_btn"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:src="@drawable/call_phone"
                 android:layout_marginLeft="@dimen/margin_horizontal"
-                />
+                android:src="@drawable/call_phone" />
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="18dp"
-            android:background="@color/_1b1b1b"
-            />
+            android:background="@color/_1b1b1b" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/margin_Modules"
-            >
+            android:layout_marginVertical="@dimen/margin_Modules">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@color/lpg_text_light_color"
                 android:text="预约时间："
-                />
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="15sp" />
+
             <TextView
+                android:id="@+id/comman_topbar_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@color/lpg_text_light_color"
+                android:layout_marginLeft="@dimen/margin_horizontal"
                 android:text="2018.06.08"
-                android:layout_marginLeft="@dimen/margin_horizontal"
-                />
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="15sp" />
+
             <TextView
+                android:id="@+id/comman_topbar_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@color/lpg_text_light_color"
-                android:text="10:00 - 12:00"
                 android:layout_marginLeft="@dimen/margin_horizontal"
-                />
+                android:text="10:00 - 12:00"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
+
     <TextView
-        android:id="@+id/comment"
+        android:id="@+id/comman_topbar_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/client_info"
-        android:layout_alignLeft="@id/client_info"
-        android:layout_alignRight="@id/client_info"
+        android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_below="@id/ll_orders_detail_command_topbar_client_info"
         android:layout_marginTop="@dimen/margin_Modules"
-        android:textColor="@color/lpg_text_dark_color"
-        android:textSize="14sp"
-        android:text="内部备注：客户要求今晚晚饭前送到"
         android:background="@color/white"
         android:padding="@dimen/margin_horizontal"
-        />
+        android:text="内部备注：客户要求今晚晚饭前送到"
+        android:textColor="@color/lpg_text_dark_color"
+        android:textSize="14sp" />
 </RelativeLayout>

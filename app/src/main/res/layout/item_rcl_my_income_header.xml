@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/line_color_lib"
-    android:padding="@dimen/margin_Modules"
     android:gravity="center_vertical"
-    >
-   <ImageView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:src="@drawable/orders"
-       />
+    android:orientation="horizontal"
+    android:padding="@dimen/margin_Modules">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/orders" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_Modules"
         android:text="收入明细"
         android:textColor="@color/lpg_text_dark_color"
-        android:textSize="@dimen/text_16"
-        android:layout_marginLeft="@dimen/margin_Modules"
-        />
+        android:textSize="@dimen/text_16" />
 
 </LinearLayout>

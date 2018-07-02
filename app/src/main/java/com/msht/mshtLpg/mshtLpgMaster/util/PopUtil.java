@@ -1,6 +1,5 @@
 package com.msht.mshtLpg.mshtLpgMaster.util;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -139,7 +138,7 @@ public class PopUtil {
     public static void showTopLoadingDialog(Context context) {
         if(topLoadingDialog==null){
             topLoadingDialog = new Dialog(context, R.style.Dialog_Fullscreen);
-            topLoadingDialog.setContentView(R.layout.item_empty_loading_top);
+            topLoadingDialog.setContentView(R.layout.empty_loading_top);
         }else if(context!=null&&!centerLoadingDialog.isShowing()){
             topLoadingDialog.show();
         }

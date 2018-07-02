@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/msb_color"
     android:layout_width="match_parent"
     android:layout_height="@dimen/top_bar_height_normol"
-    android:padding="@dimen/margin_Modules"
-    >
+    android:background="@color/msb_color"
+    android:padding="@dimen/margin_Modules">
+
     <ImageView
         android:id="@+id/return_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/return_btn"
         android:layout_centerVertical="true"
-        />
+        android:src="@drawable/return_btn" />
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="编辑地址"
-        android:textColor="@color/white"
-        android:textSize="@dimen/common_text_size_middle_2"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        />
+        android:text="编辑地址"
+        android:textColor="@color/white"
+        android:textSize="@dimen/common_text_size_middle_2" />
 
 </RelativeLayout>

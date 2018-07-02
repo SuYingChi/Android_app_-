@@ -6,7 +6,7 @@
     android:background="@color/line_color_lib"
     >
     <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
-        android:id="@+id/topbar"
+        android:id="@+id/my_setting_fragment_layout_topbar"
         android:background="@color/msb_color"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_normol"
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="请扫描要交付用户钢瓶二维码"
-        android:layout_below="@id/topbar"
+        android:layout_below="@id/my_setting_fragment_layout_topbar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/margin_Modules"
         android:textSize="@dimen/text_nomal"
@@ -32,7 +32,7 @@
         android:layout_marginTop="@dimen/margin_Modules"
         />
     <LinearLayout
-        android:id="@+id/ll_query_steel"
+        android:id="@+id/ll_scan_qrcode_query_steel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -42,7 +42,7 @@
         android:layout_marginTop="@dimen/margin_Modules"
         >
         <EditText
-            android:id="@+id/et_steel_bottle_number"
+            android:id="@+id/et_scan_qrcode_steel_bottle_number"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="3"
@@ -55,7 +55,7 @@
 
             />
         <EditText
-            android:id="@+id/et_query_steel_bottle"
+            android:id="@+id/et_scan_qrcode_query_steel_bottle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -72,7 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@id/ll_query_steel"
+        android:layout_below="@id/ll_scan_qrcode_query_steel"
         android:layout_marginTop="@dimen/margin_Modules"
         >
         <LinearLayout

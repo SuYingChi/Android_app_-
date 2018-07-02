@@ -1,162 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="修改接收重瓶数量"
         android:gravity="center"
-        />
+        android:text="修改接收重瓶数量" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/margin_Modules"
-        >
+        android:padding="@dimen/margin_Modules">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5kg瓶"
-            />
+            android:text="5kg瓶" />
+
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1" />
+
         <TextView
-            android:id="@+id/_five"
+            android:id="@+id/modify_bottle_number_alert_five"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-"
-            android:textSize="@dimen/text_16"
+            android:layout_marginRight="@dimen/margin_Modules"
             android:background="@color/line_color_lib"
             android:paddingLeft="@dimen/margin_Modules"
             android:paddingRight="@dimen/margin_Modules"
-            android:layout_marginRight="@dimen/margin_Modules"
-            />
+            android:text="-"
+            android:textSize="@dimen/text_16" />
+
         <TextView
-            android:id="@+id/five_bottle_number"
+            android:id="@+id/modify_bottle_number_alert_five_bottle_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_Modules"
+            android:background="@color/line_color_lib"
+            android:paddingLeft="@dimen/margin_Modules"
+            android:paddingRight="@dimen/margin_Modules"
             android:text="1"
             android:textSize="@dimen/text_16"
-            android:background="@color/line_color_lib"
-            android:paddingLeft="@dimen/margin_Modules"
-            android:paddingRight="@dimen/margin_Modules"
-            android:layout_marginRight="@dimen/margin_Modules"
 
             />
+
         <TextView
-            android:id="@+id/five_plus"
+            android:id="@+id/modify_bottle_number_alert_five_plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+"
-            android:textSize="@dimen/text_16"
             android:background="@color/line_color_lib"
             android:paddingLeft="@dimen/margin_Modules"
             android:paddingRight="@dimen/margin_Modules"
-            />
+            android:text="+"
+            android:textSize="@dimen/text_16" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/margin_Modules"
-        >
+        android:padding="@dimen/margin_Modules">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="15kg瓶"
-            />
+            android:text="15kg瓶" />
+
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1" />
+
         <TextView
-            android:id="@+id/_15"
+            android:id="@+id/modify_bottle_number_alert_15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-"
-            android:textSize="@dimen/text_16"
+            android:layout_marginRight="@dimen/margin_Modules"
             android:background="@color/line_color_lib"
             android:paddingLeft="@dimen/margin_Modules"
             android:paddingRight="@dimen/margin_Modules"
-            android:layout_marginRight="@dimen/margin_Modules"
-            />
+            android:text="-"
+            android:textSize="@dimen/text_16" />
+
         <TextView
-            android:id="@+id/fifteen_number"
+            android:id="@+id/modify_bottle_number_alert_fifteen_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_Modules"
+            android:background="@color/line_color_lib"
+            android:paddingLeft="@dimen/margin_Modules"
+            android:paddingRight="@dimen/margin_Modules"
             android:text="1"
             android:textSize="@dimen/text_16"
-            android:background="@color/line_color_lib"
-            android:paddingLeft="@dimen/margin_Modules"
-            android:paddingRight="@dimen/margin_Modules"
-            android:layout_marginRight="@dimen/margin_Modules"
 
             />
+
         <TextView
-            android:id="@+id/fifteen_plus"
+            android:id="@+id/modify_bottle_number_alert_fifteen_plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+"
-            android:textSize="@dimen/text_16"
             android:background="@color/line_color_lib"
             android:paddingLeft="@dimen/margin_Modules"
             android:paddingRight="@dimen/margin_Modules"
-            />
+            android:text="+"
+            android:textSize="@dimen/text_16" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/margin_Modules"
-        >
+        android:padding="@dimen/margin_Modules">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="50kg瓶"
-            />
+            android:text="50kg瓶" />
+
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1" />
+
         <TextView
-            android:id="@+id/_50"
+            android:id="@+id/modify_bottle_number_alert_50"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-"
-            android:textSize="@dimen/text_16"
+            android:layout_marginRight="@dimen/margin_Modules"
             android:background="@color/line_color_lib"
             android:paddingLeft="@dimen/margin_Modules"
             android:paddingRight="@dimen/margin_Modules"
-            android:layout_marginRight="@dimen/margin_Modules"
-            />
+            android:text="-"
+            android:textSize="@dimen/text_16" />
+
         <TextView
-            android:id="@+id/fifty_number"
+            android:id="@+id/modify_bottle_number_alert_fifty_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_Modules"
+            android:background="@color/line_color_lib"
+            android:paddingLeft="@dimen/margin_Modules"
+            android:paddingRight="@dimen/margin_Modules"
             android:text="1"
             android:textSize="@dimen/text_16"
-            android:background="@color/line_color_lib"
-            android:paddingLeft="@dimen/margin_Modules"
-            android:paddingRight="@dimen/margin_Modules"
-            android:layout_marginRight="@dimen/margin_Modules"
 
             />
+
         <TextView
-            android:id="@+id/ffity_plus"
+            android:id="@+id/modify_bottle_number_alert_ffity_plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+"
-            android:textSize="@dimen/text_16"
             android:background="@color/line_color_lib"
             android:paddingLeft="@dimen/margin_Modules"
             android:paddingRight="@dimen/margin_Modules"
-            />
+            android:text="+"
+            android:textSize="@dimen/text_16" />
     </LinearLayout>
 </LinearLayout>

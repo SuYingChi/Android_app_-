@@ -3,12 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/line_color_lib"
-    >
+    android:orientation="vertical">
 
     <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
-        android:id="@+id/topbar"
+        android:id="@+id/exchange_topbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_normol"
         android:background="@color/msb_color"
@@ -18,6 +17,5 @@
         android:id="@+id/rcl_exchange_steel_bottle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        />
+        android:background="@color/white" />
 </LinearLayout>

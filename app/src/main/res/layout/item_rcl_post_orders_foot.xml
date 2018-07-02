@@ -3,19 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="@dimen/margin_Modules"
-    >
-<TextView
-     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="运费"
-    android:textColor="@color/lpg_text_dark_color"
-    android:textSize="@dimen/text_16"
-    />
-    <View android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"/>
+    android:padding="@dimen/margin_Modules">
+
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="运费"
+        android:textColor="@color/lpg_text_dark_color"
+        android:textSize="@dimen/text_16" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/item_rcl_post_orders_foot_cost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="90.00"

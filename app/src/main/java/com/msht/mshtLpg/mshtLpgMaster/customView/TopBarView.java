@@ -17,9 +17,9 @@ public class TopBarView extends RelativeLayout {
 
     public TopBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        LayoutInflater.from(context).inflate(R.layout.item_comman_topbar, this, true);
+        LayoutInflater.from(context).inflate(R.layout.comman_topbar, this, true);
         titleBarLeftBtn = (ImageView) findViewById(R.id.return_btn);
-        titleBarTitle = (TextView) findViewById(R.id.tv_title);
+        titleBarTitle = (TextView) findViewById(R.id.tv_comman_topbar_title);
 
         TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.topBar);
         if (attributes != null) {

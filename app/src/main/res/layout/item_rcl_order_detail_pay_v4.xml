@@ -8,10 +8,10 @@
     android:layout_marginTop="0.5dp"
     android:background="@color/white"
     android:orientation="horizontal"
-    android:padding="@dimen/margin_horizontal"
-    >
+    android:padding="@dimen/margin_horizontal">
 
     <TextView
+        android:id="@+id/item_rcl_order_detail_pay_v4_steel_bottle_model"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="5kg瓶装气"
@@ -19,20 +19,21 @@
         android:textSize="@dimen/text_16"
 
         />
+
     <TextView
-        android:id="@+id/steel_bottle_number"
+        android:id="@+id/item_rcl_order_detail_pay_v4_steel_bottle_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="x1"
         android:layout_marginLeft="@dimen/margin_horizontal"
-        />
+        android:text="x1" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
     <TextView
-        android:id="@+id/steel_bottle_cost"
+        android:id="@+id/item_rcl_order_detail_pay_v4_steel_bottle_cost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="50.00"

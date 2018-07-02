@@ -7,7 +7,7 @@
     android:background="@color/line_color_lib"
     >
 <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
-    android:id="@+id/topbar"
+    android:id="@+id/my_setting_fragment_layout_topbar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/top_bar_height_normol"
     android:background="@color/msb_color"

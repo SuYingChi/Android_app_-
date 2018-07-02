@@ -28,11 +28,11 @@ public class LoginActivity extends BaseActivity implements ILoginView{
 
 
 
-    @BindView(R.id.mobile_number)
+    @BindView(R.id.et_login_mobile_number)
     EditText mobileNumber;
-    @BindView(R.id.login_password)
+    @BindView(R.id.login_login_password)
     EditText loginPassword;
-   @BindView(R.id.btn_ok)
+   @BindView(R.id.btn_login)
     Button btnOk;
 
     private ILoginPresenter iLoginPresenter;
@@ -45,11 +45,11 @@ public class LoginActivity extends BaseActivity implements ILoginView{
         iLoginPresenter= new ILoginPresenter(this);
     }
 
-    @OnClick( R.id.btn_ok)
+    @OnClick( R.id.btn_login)
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
-            case R.id.btn_ok:
+            case R.id.btn_login:
                 if (mobileNumber.getText().length() != 11) {
                     PopUtil.toastInBottom( getString(R.string.please_input_right_mobile_number));
                     return;

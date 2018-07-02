@@ -17,6 +17,7 @@
            android:src="@drawable/order"
            />
        <TextView
+           android:id="@+id/item_rcl_home_fragment_order_order_number"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:textSize="@dimen/text_16"
@@ -29,6 +30,7 @@
            android:layout_height="match_parent"
            android:layout_weight="1"/>
        <TextView
+           android:id="@+id/item_rcl_home_fragment_order_statu"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:textSize="@dimen/text_16"
@@ -70,7 +72,7 @@
 
 
                 <TextView
-                    android:id="@+id/comment_time"
+                    android:id="@+id/item_rcl_home_fragment_order_user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
@@ -80,7 +82,7 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/comment_number"
+                    android:id="@+id/item_rcl_home_fragment_order_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
@@ -95,7 +97,7 @@
 
             </LinearLayout>
             <TextView
-                android:id="@+id/comment_name"
+                android:id="@+id/item_rcl_home_fragment_order_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -111,7 +113,6 @@
         </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/comment_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/order"
@@ -147,6 +148,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"/>
         <TextView
+            android:id="@+id/tv_item_rcl_home_fragment_order_5_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_16"
@@ -176,6 +178,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"/>
         <TextView
+            android:id="@+id/tv_item_rcl_home_fragment_order_15_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_16"
@@ -205,6 +208,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"/>
         <TextView
+            android:id="@+id/tv_item_rcl_home_fragment_order_50_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_16"
@@ -239,6 +243,7 @@
             android:text="总价"
             />
         <TextView
+            android:id="@+id/tv_item_rcl_home_fragment_order_cost"
             android:layout_marginLeft="@dimen/margin_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -266,6 +271,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"/>
         <Button
+            android:id="@+id/btn_item_rcl_home_fragment_order_pay"
             android:layout_marginLeft="@dimen/margin_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
@@ -280,6 +286,6 @@
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:background="@color/line_color_lib"
-        android:layout_below="@id/topbar"
+        android:layout_below="@id/my_setting_fragment_layout_topbar"
         />
 </LinearLayout>

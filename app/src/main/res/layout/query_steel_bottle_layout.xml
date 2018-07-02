@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/line_color_lib">
     <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
-        android:id="@+id/topbar"
+        android:id="@+id/my_setting_fragment_layout_topbar"
         android:background="@color/msb_color"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_normol"
@@ -19,7 +19,7 @@
         android:background="@drawable/authorized_steel_bottle"
         android:paddingVertical="@dimen/margin_horizontal"
         android:paddingHorizontal="@dimen/margin_horizontal"
-        android:layout_below="@id/topbar"
+        android:layout_below="@id/my_setting_fragment_layout_topbar"
 
         >
         <ImageView

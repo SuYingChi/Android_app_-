@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/msb_color"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/top_bar_height_normol"
-    android:padding="@dimen/margin_Modules"
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     >
     <ImageView
         android:id="@+id/return_btn"
@@ -13,14 +10,14 @@
         android:layout_centerVertical="true"
         />
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/tv_comman_topbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="钢瓶查询"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="@dimen/common_text_size_middle_2"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         />
 
-</RelativeLayout>
+</merge>

@@ -6,8 +6,7 @@
     android:layout_marginTop="@dimen/margin_Modules"
     android:background="@color/white"
     android:orientation="horizontal"
-    android:padding="@dimen/margin_horizontal"
-    >
+    android:padding="@dimen/margin_horizontal">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -23,6 +22,7 @@
         android:textSize="@dimen/text_16" />
 
     <TextView
+        android:id="@+id/item_rcl_orders_detail_pay_v3_orders_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_horizontal"
@@ -36,11 +36,10 @@
         android:layout_weight="1" />
 
     <TextView
+        android:id="@+id/item_rcl_orders_detail_pay_v3_staus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="待发货"
         android:textColor="@color/warning_red"
-        android:textSize="@dimen/text_16"
-
-        />
+        android:textSize="@dimen/text_16" />
 </LinearLayout>

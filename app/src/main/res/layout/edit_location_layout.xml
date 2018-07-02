@@ -1,89 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/line_color"
-    >
-<include layout="@layout/item_edit_location_topbar"/>
-<LinearLayout
-    android:id="@+id/ll_location_edit_name"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/margin_Modules"
-    android:background="@color/white"
-    >
-    <TextView
-        android:layout_width="63dp"
-        android:layout_height="wrap_content"
-        android:text="姓名"
-        android:textSize="@dimen/text_nomal"
-        android:textColor="@color/lpg_text_dark_color"
-        />
-    <EditText
-        android:id="@+id/et_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="世贸吴彦祖"
-        android:textSize="15sp"
-        android:textColorHint="@color/text_hint"
-        android:background="@null"
-        android:inputType="number"
-        android:maxLength="11"
-        android:textColor="#ffffff"
-        android:textCursorDrawable="@null"
-        android:layout_marginLeft="30dp"
-        />
+    android:orientation="vertical">
 
-</LinearLayout>
+    <include layout="@layout/edit_location_topbar" />
+
     <LinearLayout
-        android:id="@+id/ll_sex"
+        android:id="@+id/ll_location_edit_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_Modules"
         android:background="@color/white"
-        android:layout_marginTop="2dp"
-        >
+        android:padding="@dimen/margin_Modules">
+
         <TextView
             android:layout_width="63dp"
             android:layout_height="wrap_content"
             android:text="姓名"
-            android:textSize="@dimen/text_nomal"
             android:textColor="@color/lpg_text_dark_color"
-            />
+            android:textSize="@dimen/text_nomal" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:background="@null"
+            android:hint="世贸吴彦祖"
+            android:inputType="number"
+            android:maxLength="11"
+            android:textColor="#ffffff"
+            android:textColorHint="@color/text_hint"
+            android:textCursorDrawable="@null"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_sex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="@color/white"
+        android:padding="@dimen/margin_Modules">
+
+        <TextView
+            android:layout_width="63dp"
+            android:layout_height="wrap_content"
+            android:text="姓名"
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_nomal" />
+
         <TextView
             android:id="@+id/tv_sex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:layout_weight="1"
             android:text="先生"
-            android:textSize="15sp"
-            android:layout_marginLeft="30dp"
-            />
+            android:textSize="15sp" />
+
         <ImageView
             android:id="@+id/iv_sex"
-            android:layout_marginLeft="@dimen/click_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/right_angle"
             android:layout_gravity="center"
-            />
+            android:layout_marginLeft="@dimen/click_area"
+            android:src="@drawable/right_angle" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ll_mobile_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_Modules"
-        android:background="@color/white"
         android:layout_marginTop="2dp"
-        >
+        android:background="@color/white"
+        android:padding="@dimen/margin_Modules">
+
         <TextView
             android:layout_width="63dp"
             android:layout_height="wrap_content"
             android:text="手机号"
-            android:textSize="@dimen/text_nomal"
             android:textColor="@color/lpg_text_dark_color"
-            />
+            android:textSize="@dimen/text_nomal" />
 
         <TextView
             android:id="@+id/tv_mobile_number"
@@ -93,70 +93,69 @@
             android:layout_weight="1"
             android:text="13812345677"
             android:textSize="15sp" />
+
         <ImageView
             android:id="@+id/iv_mobile_number"
-            android:layout_marginLeft="@dimen/click_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/right_angle"
             android:layout_gravity="center"
-            />
+            android:layout_marginLeft="@dimen/click_area"
+            android:src="@drawable/right_angle" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ll_user_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_Modules"
-        android:background="@color/white"
         android:layout_marginTop="@dimen/margin_Modules"
-        >
+        android:background="@color/white"
+        android:padding="@dimen/margin_Modules">
+
         <TextView
             android:layout_width="63dp"
             android:layout_height="wrap_content"
             android:text="用户地址"
-            android:textSize="@dimen/text_nomal"
             android:textColor="@color/lpg_text_dark_color"
-            />
+            android:textSize="@dimen/text_nomal" />
 
         <EditText
             android:id="@+id/et_user_location"
             android:layout_width="match_parent"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="请输入您的详细地址"
-            android:textSize="15sp"
-            android:textColorHint="@color/text_hint"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="1"
             android:background="@null"
+            android:hint="请输入您的详细地址"
             android:inputType="number"
             android:maxLength="11"
             android:textColor="#ffffff"
+            android:textColorHint="@color/text_hint"
             android:textCursorDrawable="@null"
-            android:layout_marginLeft="30dp"
-            />
+            android:textSize="15sp" />
+
         <ImageView
             android:id="@+id/iv_user_location"
-            android:layout_marginLeft="@dimen/click_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/right_angle"
             android:layout_gravity="center"
-            />
+            android:layout_marginLeft="@dimen/click_area"
+            android:src="@drawable/right_angle" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ll_edit_elevator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_Modules"
-        android:background="@color/white"
         android:layout_marginTop="2dp"
-        >
+        android:background="@color/white"
+        android:padding="@dimen/margin_Modules">
+
         <TextView
             android:layout_width="63dp"
             android:layout_height="wrap_content"
             android:text="电梯房"
-            android:textSize="@dimen/text_nomal"
             android:textColor="@color/lpg_text_dark_color"
-            />
+            android:textSize="@dimen/text_nomal" />
 
         <TextView
             android:id="@+id/tv_elevator"
@@ -166,108 +165,111 @@
             android:layout_weight="1"
             android:text="是"
             android:textSize="15sp" />
+
         <ImageView
             android:id="@+id/iv_elevator"
-            android:layout_marginLeft="@dimen/click_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/right_angle"
             android:layout_gravity="center"
-            />
+            android:layout_marginLeft="@dimen/click_area"
+            android:src="@drawable/right_angle" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ll_house_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_Modules"
-        android:background="@color/white"
         android:layout_marginTop="2dp"
-        >
+        android:background="@color/white"
+        android:padding="@dimen/margin_Modules">
+
         <TextView
             android:layout_width="63dp"
             android:layout_height="wrap_content"
             android:text="门牌号"
-            android:textSize="@dimen/text_nomal"
             android:textColor="@color/lpg_text_dark_color"
-            />
+            android:textSize="@dimen/text_nomal" />
+
         <EditText
             android:id="@+id/et_building"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="A"
-            android:textSize="15sp"
-            android:textColorHint="@color/text_hint"
+            android:layout_marginLeft="30dp"
             android:background="@drawable/edit_text_background"
+            android:hint="A"
             android:maxLength="2"
             android:textColor="#ffffff"
+            android:textColorHint="@color/text_hint"
             android:textCursorDrawable="@null"
-            android:layout_marginLeft="30dp"/>
+            android:textSize="15sp" />
+
         <TextView
             android:id="@+id/tv_building"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="栋"
-            android:textSize="15sp"
             android:layout_marginLeft="5dp"
-            />
+            android:text="栋"
+            android:textSize="15sp" />
+
         <EditText
             android:id="@+id/et_floor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="24"
-            android:textSize="15sp"
-            android:textColorHint="@color/text_hint"
+            android:layout_marginLeft="@dimen/margin_Modules"
             android:background="@drawable/edit_text_background"
+            android:hint="24"
             android:maxLength="2"
             android:textColor="#ffffff"
+            android:textColorHint="@color/text_hint"
             android:textCursorDrawable="@null"
-           android:layout_marginLeft="@dimen/margin_Modules"/>
+            android:textSize="15sp" />
+
         <TextView
             android:id="@+id/tv_floor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="楼"
-            android:textSize="15sp"
             android:layout_marginLeft="5dp"
-            />
+            android:text="楼"
+            android:textSize="15sp" />
+
         <EditText
             android:id="@+id/et_room"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="5"
-            android:textSize="15sp"
-            android:textColorHint="@color/text_hint"
+            android:layout_marginLeft="@dimen/margin_Modules"
             android:background="@drawable/edit_text_background"
+            android:hint="5"
             android:maxLength="2"
             android:textColor="#ffffff"
+            android:textColorHint="@color/text_hint"
             android:textCursorDrawable="@null"
-            android:layout_marginLeft="@dimen/margin_Modules"/>
+            android:textSize="15sp" />
+
         <TextView
             android:id="@+id/tv_room"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="房"
-            android:textSize="15sp"
             android:layout_marginLeft="5dp"
-            />
+            android:text="房"
+            android:textSize="15sp" />
     </LinearLayout>
+
     <TextView
         android:id="@+id/protocol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:textColor="@color/colorPrimaryDark_lib"
-        android:text="《居民用户办理须知》"
         android:layout_gravity="center"
-        />
+        android:layout_marginTop="80dp"
+        android:text="《居民用户办理须知》"
+        android:textColor="@color/colorPrimaryDark_lib" />
+
     <Button
         android:id="@+id/save_user_location"
         android:layout_width="300dp"
         android:layout_height="44dp"
-        android:background="@drawable/btn_normal"
-        android:text="保存"
-        android:textColor="@color/white"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/margin_Modules"
-        />
+        android:background="@drawable/btn_normal"
+        android:text="保存"
+        android:textColor="@color/white" />
 </LinearLayout>

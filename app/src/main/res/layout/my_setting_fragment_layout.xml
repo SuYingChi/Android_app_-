@@ -6,13 +6,13 @@
     android:orientation="vertical">
 
     <View
-        android:id="@+id/topbar"
+        android:id="@+id/my_setting_fragment_layout_topbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"
         android:background="@color/msb_color" />
 
     <TextView
-        android:id="@+id/tv_username"
+        android:id="@+id/my_setting_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -22,10 +22,10 @@
         android:textSize="@dimen/text_top_title" />
 
     <TextView
-        android:id="@+id/user_location"
+        android:id="@+id/my_setting_user_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_username"
+        android:layout_below="@id/my_setting_username"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/margin_Modules"
         android:text="服务点：海口市龙华区国贸网点"
@@ -33,18 +33,19 @@
         android:textSize="@dimen/text_16" />
 
     <ImageView
-        android:id="@+id/iv"
+        android:id="@+id/iv_my_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/user_location"
+        android:layout_below="@id/my_setting_user_location"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/margin_Modules"
-        android:src="@drawable/order" />
+        android:src="@drawable/scan_code" />
 
     <TextView
+        android:id="@+id/my_setting_online"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/iv"
+        android:layout_below="@id/iv_my_setting"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/margin_Modules"
         android:background="@drawable/onlline"
@@ -53,22 +54,21 @@
         android:textColor="@color/warning_red" />
 
     <LinearLayout
-        android:id="@+id/ll_1"
+        android:id="@+id/ll_my_setting_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/topbar"
+        android:layout_below="@id/my_setting_fragment_layout_topbar"
         android:background="@color/white"
-        android:paddingTop="15dp"
-        android:paddingHorizontal="15dp">
+        android:paddingHorizontal="15dp"
+        android:paddingTop="15dp">
 
         <RelativeLayout
-            android:id="@+id/my_steel_bottle"
+            android:id="@+id/my_setting_my_steel_bottle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
             android:gravity="center"
-            >
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/iv_my_steel_bottle"
@@ -80,14 +80,14 @@
                 android:id="@+id/tv_my_steel_bottle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="我的钢瓶"
                 android:layout_alignLeft="@id/iv_my_steel_bottle"
                 android:layout_below="@id/iv_my_steel_bottle"
+                android:text="我的钢瓶"
                 android:textColor="@color/lpg_text_dark_color" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/mobile_open_account"
+            android:id="@+id/my_setting_mobile_open_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -106,15 +106,15 @@
                 android:id="@+id/tv_mobile_open_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="移动开户"
                 android:layout_alignLeft="@id/iv_mobile_open_account"
                 android:layout_below="@id/iv_mobile_open_account"
+                android:gravity="center"
+                android:text="移动开户"
                 android:textColor="@color/lpg_text_dark_color" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/out_warehouse"
+            android:id="@+id/my_setting_out_warehouse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -133,15 +133,15 @@
                 android:id="@+id/tv_out_warehouse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="调拨出库"
                 android:layout_alignLeft="@id/iv_out_warehouse"
                 android:layout_below="@id/iv_out_warehouse"
+                android:gravity="center"
+                android:text="调拨出库"
                 android:textColor="@color/lpg_text_dark_color" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/in_warehouse"
+            android:id="@+id/my_setting_in_storage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -149,7 +149,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/iv_in_warehouse"
+                android:id="@+id/iv_in_storage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/steel_bottle"
@@ -157,33 +157,33 @@
                 />
 
             <TextView
-                android:id="@+id/tv_in_warehouse"
+                android:id="@+id/tv_in_storage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/iv_in_storage"
+                android:layout_below="@id/iv_in_storage"
                 android:gravity="center"
                 android:text="调拨入库"
-                android:layout_alignLeft="@id/iv_in_warehouse"
-                android:layout_below="@id/iv_in_warehouse"
                 android:textColor="@color/lpg_text_dark_color" />
         </RelativeLayout>
     </LinearLayout>
+
     <LinearLayout
-        android:id="@+id/ll_2"
+        android:id="@+id/ll_my_setting_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ll_1"
+        android:layout_below="@id/ll_my_setting_1"
         android:background="@color/white"
-        android:paddingVertical="20dp"
-        android:paddingHorizontal="15dp">
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="20dp">
 
         <RelativeLayout
-            android:id="@+id/register_steel_bottle"
+            android:id="@+id/my_setting_register_steel_bottle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
             android:gravity="center"
-            >
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/iv_register_steel_bottle"
@@ -195,14 +195,14 @@
                 android:id="@+id/tv_register_steel_bottle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="钢瓶注册"
                 android:layout_alignLeft="@id/iv_register_steel_bottle"
                 android:layout_below="@id/iv_register_steel_bottle"
+                android:text="钢瓶注册"
                 android:textColor="@color/lpg_text_dark_color" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/check_steel_bottle"
+            android:id="@+id/my_setting_check_steel_bottle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -221,15 +221,15 @@
                 android:id="@+id/tv_check_steel_bottle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="钢瓶检验"
                 android:layout_alignLeft="@id/iv_check_steel_bottle"
                 android:layout_below="@id/iv_check_steel_bottle"
+                android:gravity="center"
+                android:text="钢瓶检验"
                 android:textColor="@color/lpg_text_dark_color" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/get_steel_bottle_out_warehouse"
+            android:id="@+id/my_setting_get_steel_bottle_out_warehouse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -248,15 +248,15 @@
                 android:id="@+id/tv_get_steel_bottle_out_warehouse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="领瓶出库"
                 android:layout_alignLeft="@id/iv_get_steel_bottle_out_warehouse"
                 android:layout_below="@id/iv_get_steel_bottle_out_warehouse"
+                android:gravity="center"
+                android:text="领瓶出库"
                 android:textColor="@color/lpg_text_dark_color" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/get_steel_bottle_in_warehouse"
+            android:id="@+id/my_setting_get_steel_bottle_in_warehouse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -275,114 +275,114 @@
                 android:id="@+id/tv_get_steel_bottle_in_warehouse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="返瓶入库"
                 android:layout_alignLeft="@id/iv_get_steel_bottle_in_warehouse"
                 android:layout_below="@id/iv_get_steel_bottle_in_warehouse"
+                android:gravity="center"
+                android:text="返瓶入库"
                 android:textColor="@color/lpg_text_dark_color" />
         </RelativeLayout>
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/ll_my_setting_my_income"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_my_setting_2"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/ll_2"
-        android:id="@+id/ll_my_income"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="15dp"
         android:background="@color/white"
-        >
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/my_income"
-        />
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/my_income" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/lpg_text_dark_color"
-            android:textSize="@dimen/text_nomal"
+            android:layout_marginLeft="@dimen/margin_horizontal"
             android:text="我的收入"
-            android:layout_marginLeft="@dimen/margin_horizontal"
-            />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_nomal" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:src="@drawable/my_income"
-            />
+            android:src="@drawable/my_income" />
     </LinearLayout>
+
     <LinearLayout
-        android:layout_below="@id/ll_my_income"
-        android:id="@+id/ll_about_me"
+        android:id="@+id/ll_my_setting_about_me"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="15dp"
+        android:layout_below="@id/ll_my_setting_my_income"
         android:background="@color/white"
-        >
+        android:orientation="horizontal"
+        android:padding="15dp">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/about_me"
-            />
+            android:src="@drawable/about_me" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/lpg_text_dark_color"
-            android:textSize="@dimen/text_nomal"
+            android:layout_marginLeft="@dimen/margin_horizontal"
             android:text="关于我们"
-            android:layout_marginLeft="@dimen/margin_horizontal"
-            />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_nomal" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:src="@drawable/about_me"
-            />
+            android:src="@drawable/about_me" />
     </LinearLayout>
+
     <LinearLayout
-        android:layout_below="@id/ll_about_me"
-        android:id="@+id/ll_register_login"
+        android:id="@+id/ll_my_setting_register_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="15dp"
+        android:layout_below="@id/ll_my_setting_about_me"
         android:background="@color/white"
-        >
+        android:orientation="horizontal"
+        android:padding="15dp">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/unregister_login"
-            />
+            android:src="@drawable/unregister_login" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/lpg_text_dark_color"
-            android:textSize="@dimen/text_nomal"
-            android:text="注销登录"
             android:layout_marginLeft="@dimen/margin_horizontal"
-            />
+            android:text="注销登录"
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_nomal" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:src="@drawable/unregister_login"
-            />
+            android:src="@drawable/unregister_login" />
     </LinearLayout>
 </RelativeLayout>

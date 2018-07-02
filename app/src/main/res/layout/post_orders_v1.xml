@@ -11,14 +11,14 @@
         android:background="@color/msb_color"
         />
    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
-       android:id="@+id/topbar"
+       android:id="@+id/my_setting_fragment_layout_topbar"
        android:layout_width="match_parent"
        android:layout_height="@dimen/top_bar_height_normol"
        android:background="@color/msb_color"
        app:text_title = "提交订单"
        />
     <LinearLayout
-        android:id="@+id/ll_post_bottom"
+        android:id="@+id/ll_post_orders_v2_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -61,15 +61,15 @@
         android:id="@+id/scr"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/topbar"
-        android:layout_above="@id/ll_post_bottom"
+        android:layout_below="@id/my_setting_fragment_layout_topbar"
+        android:layout_above="@id/ll_post_orders_v2_bottom"
         >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
     <LinearLayout
-        android:id="@+id/client_info"
+        android:id="@+id/ll_orders_detail_command_topbar_client_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -194,9 +194,9 @@
         android:id="@+id/comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/client_info"
-        android:layout_alignLeft="@id/client_info"
-        android:layout_alignRight="@id/client_info"
+        android:layout_below="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
         android:layout_marginTop="@dimen/margin_Modules"
         android:textColor="@color/lpg_text_dark_color"
         android:textSize="14sp"
@@ -210,12 +210,12 @@
         android:id="@+id/rcl_post_orders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/client_info"
+        android:layout_below="@id/ll_orders_detail_command_topbar_client_info"
         android:layout_marginTop="@dimen/margin_Modules"
         android:background="@color/white"
         android:layout_marginBottom="@dimen/margin_Modules"
-        android:layout_alignLeft="@id/client_info"
-        android:layout_alignRight="@id/client_info"
+        android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
 
         />
     </RelativeLayout>

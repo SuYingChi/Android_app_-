@@ -5,7 +5,7 @@
     xmlns:tl="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <View
-        android:id="@+id/topbar"
+        android:id="@+id/my_setting_fragment_layout_topbar"
         android:layout_height="50dp"
         android:layout_width="match_parent"
         android:background="@color/msb_color"
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:background="@color/line_color_lib"
-        android:layout_below="@id/topbar"
+        android:layout_below="@id/my_setting_fragment_layout_topbar"
         />
     <LinearLayout
         android:layout_width="wrap_content"
@@ -22,10 +22,10 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:orientation="vertical">
-        <include layout="@layout/item_home_top_tab" />
+        <include layout="@layout/homefragment_top_tab" />
     </LinearLayout>
     <com.flyco.tablayout.SlidingTabLayout
-        android:id="@+id/tablayout"
+        android:id="@+id/transfer_to_storage_tablayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/white"
@@ -40,7 +40,7 @@
         tl:tl_textsize="18sp"
         tl:tl_underline_color="#e5e5e5"
         tl:tl_underline_height="0.5dp"
-        android:layout_below="@id/topbar"
+        android:layout_below="@id/my_setting_fragment_layout_topbar"
         />
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -49,7 +49,7 @@
         android:layout_height="match_parent"
         app:srlEnableHeaderTranslationContent="true"
         app:srlEnableOverScrollBounce="false"
-        android:layout_below="@id/tablayout"
+        android:layout_below="@id/transfer_to_storage_tablayout"
         >
 
         <android.support.v7.widget.RecyclerView

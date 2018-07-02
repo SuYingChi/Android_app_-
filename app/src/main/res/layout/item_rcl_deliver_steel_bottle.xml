@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/margin_Modules"
+    android:orientation="horizontal"
     android:paddingBottom="@dimen/margin_Modules"
-    >
+    android:paddingTop="@dimen/margin_Modules">
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="编号"
         android:gravity="center"
-        />
+        android:text="编号" />
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="规格"
         android:gravity="center"
-        />
+        android:text="规格" />
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="状态"
         android:gravity="center"
-        />
+        android:text="状态" />
 </LinearLayout>

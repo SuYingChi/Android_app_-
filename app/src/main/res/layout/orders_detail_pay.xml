@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView   xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/line_color_lib"
-
     >
 <include
     android:id="@+id/orders_detail_command_top"
@@ -23,18 +19,6 @@
         android:background="@color/white"
         android:layout_marginTop="@dimen/margin_Modules"
         />
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcl_orders_total_cost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rcl_orders_detail"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
-        android:paddingLeft="@dimen/margin_horizontal"
-        android:paddingRight="@dimen/margin_horizontal"
-        android:background="@color/white"
-        android:layout_marginTop="@dimen/margin_Modules"
-        />
     <LinearLayout
         android:id="@+id/user_change_cost"
         android:layout_width="match_parent"
@@ -42,7 +26,7 @@
         android:orientation="horizontal"
         android:background="@color/white"
         android:layout_marginTop="@dimen/margin_Modules"
-        android:layout_below="@id/rcl_orders_total_cost"
+        android:layout_below="@id/rcl_orders_detail"
         android:paddingLeft="@dimen/margin_horizontal"
         android:paddingRight="@dimen/margin_horizontal"
         android:layout_marginLeft="@dimen/margin_horizontal"
@@ -61,7 +45,7 @@
             android:layout_weight="1"
             />
         <TextView
-            android:id="@+id/discount"
+            android:id="@+id/item_rcl_order_detail_pay_discount"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="-170"
@@ -129,7 +113,7 @@
         </LinearLayout>
     </LinearLayout>
     <include
-        layout="@layout/item_pay_bottom_tab"
+        layout="@layout/pay_bottom_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ll_time"
@@ -139,4 +123,3 @@
 
         />
 </RelativeLayout>
-</ScrollView>

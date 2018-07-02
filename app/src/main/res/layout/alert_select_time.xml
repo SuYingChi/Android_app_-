@@ -20,16 +20,18 @@
         android:orientation="horizontal"
         >
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/select_day"
+            android:id="@+id/rcl_select_day"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@color/white"
             />
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/select_time"
+            android:id="@+id/rcl_select_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@color/white"
             />
     </LinearLayout>
 </LinearLayout>
