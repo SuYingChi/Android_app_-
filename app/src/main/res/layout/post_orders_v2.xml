@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_normol"
         android:background="@color/msb_color"
-        app:text_title = "提交订单"
+        app:title_text= "提交订单"
         />
     <LinearLayout
         android:id="@+id/ll_post_orders_v2_bottom"

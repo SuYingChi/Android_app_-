@@ -186,17 +186,17 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/iv_register_steel_bottle"
+                android:id="@+id/iv_my_setting_register_steel_bottle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/steel_bottle" />
 
             <TextView
-                android:id="@+id/tv_register_steel_bottle"
+                android:id="@+id/tv_my_setting_register_steel_bottle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/iv_register_steel_bottle"
-                android:layout_below="@id/iv_register_steel_bottle"
+                android:layout_alignLeft="@id/iv_my_setting_register_steel_bottle"
+                android:layout_below="@id/iv_my_setting_register_steel_bottle"
                 android:text="钢瓶注册"
                 android:textColor="@color/lpg_text_dark_color" />
         </RelativeLayout>
@@ -210,7 +210,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/iv_check_steel_bottle"
+                android:id="@+id/iv_my_setting_check_steel_bottle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/steel_bottle"
@@ -218,11 +218,11 @@
                 />
 
             <TextView
-                android:id="@+id/tv_check_steel_bottle"
+                android:id="@+id/tv_my_setting_check_steel_bottle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/iv_check_steel_bottle"
-                android:layout_below="@id/iv_check_steel_bottle"
+                android:layout_alignLeft="@id/iv_my_setting_check_steel_bottle"
+                android:layout_below="@id/iv_my_setting_check_steel_bottle"
                 android:gravity="center"
                 android:text="钢瓶检验"
                 android:textColor="@color/lpg_text_dark_color" />
@@ -237,7 +237,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/iv_get_steel_bottle_out_warehouse"
+                android:id="@+id/iv_my_setting_get_steel_bottle_out_warehouse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/steel_bottle"
@@ -245,11 +245,11 @@
                 />
 
             <TextView
-                android:id="@+id/tv_get_steel_bottle_out_warehouse"
+                android:id="@+id/tv_my_setting_get_steel_bottle_out_warehouse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/iv_get_steel_bottle_out_warehouse"
-                android:layout_below="@id/iv_get_steel_bottle_out_warehouse"
+                android:layout_alignLeft="@id/iv_my_setting_get_steel_bottle_out_warehouse"
+                android:layout_below="@id/iv_my_setting_get_steel_bottle_out_warehouse"
                 android:gravity="center"
                 android:text="领瓶出库"
                 android:textColor="@color/lpg_text_dark_color" />
@@ -264,7 +264,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/iv_get_steel_bottle_in_warehouse"
+                android:id="@+id/iv_my_setting_get_steel_bottle_in_warehouse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/steel_bottle"
@@ -272,11 +272,11 @@
                 />
 
             <TextView
-                android:id="@+id/tv_get_steel_bottle_in_warehouse"
+                android:id="@+id/tv_my_setting_get_steel_bottle_in_warehouse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/iv_get_steel_bottle_in_warehouse"
-                android:layout_below="@id/iv_get_steel_bottle_in_warehouse"
+                android:layout_alignLeft="@id/iv_my_setting_get_steel_bottle_in_warehouse"
+                android:layout_below="@id/iv_my_setting_get_steel_bottle_in_warehouse"
                 android:gravity="center"
                 android:text="返瓶入库"
                 android:textColor="@color/lpg_text_dark_color" />

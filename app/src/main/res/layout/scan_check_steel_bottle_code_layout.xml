@@ -10,6 +10,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
+    <com.uuzuche.lib_zxing.view.ViewfinderView
+        android:id="@+id/scan_steel_bottle_qrcode_viewfinder_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:inner_width="200dp"
+        app:inner_height="200dp"
+        app:inner_margintop="@dimen/margin_Modules"
+        app:inner_corner_length="30dp"
+        app:inner_corner_width="5dp"
+        app:inner_scan_speed="10"
+        app:inner_scan_iscircle="false"
+        />
     <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
         android:id="@+id/my_setting_fragment_layout_topbar"
         android:background="@color/msb_color"
@@ -308,18 +320,5 @@
             android:paddingBottom="@dimen/margin_Modules"
             />
     </LinearLayout>
-    <com.uuzuche.lib_zxing.view.ViewfinderView
-        android:id="@+id/scan_steel_bottle_qrcode_viewfinder_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/ll_scan_steel_bottle_qrcode_query_steel_by_hand"
-        android:layout_below="@id/tv_scan_steel_bottle_qrcode"
-        app:inner_width="250dp"
-        app:inner_height="250dp"
-        app:inner_margintop="@dimen/margin_Modules"
-        app:inner_corner_length="30dp"
-        app:inner_corner_width="5dp"
-        app:inner_scan_speed="10"
-        app:inner_scan_iscircle="false"
-        />
+
 </RelativeLayout>

@@ -16,7 +16,7 @@
         android:id="@+id/tv_item_rcl_my_income_orders_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/tv_item_rcl_my_income_orders"
+        android:layout_toRightOf="@id/tv_item_rcl_my_income_orders"
         android:text="12145041"
         android:textColor="@color/lpg_text_dark_color"
         android:textSize="@dimen/text_16" />
@@ -25,7 +25,7 @@
         android:id="@+id/tv_item_rcl_my_income_orders_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignleft="@+id/tv_item_rcl_my_income_orders"
+        android:layout_alignLeft="@id/tv_item_rcl_my_income_orders"
         android:layout_below="@+id/tv_item_rcl_my_income_orders"
         android:layout_marginTop="@dimen/margin_Modules"
         android:text="2018-10-09 16:16"

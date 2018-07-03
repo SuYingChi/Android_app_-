@@ -34,4 +34,5 @@
     <dimen name="line_margin">2dp</dimen>
     <dimen name="lin_width">1dp</dimen>
     <dimen name="rcl_margin">5dp</dimen>
+    <dimen name="scan_view_margin_top">80dp</dimen>
 </resources>
