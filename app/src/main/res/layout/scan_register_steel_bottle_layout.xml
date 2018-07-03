@@ -5,16 +5,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/line_color_lib"
     >
+    <SurfaceView
+        android:id="@+id/register_steel_bottle_preview_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
     <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
         android:id="@+id/my_setting_fragment_layout_topbar"
         android:background="@color/msb_color"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_normol"
         android:padding="@dimen/margin_Modules"
-        app:title_text = "检验钢瓶"
+        app:title_text = "钢瓶註冊"
         />
     <TextView
-        android:id="@+id/tv_scan"
+        android:id="@+id/tv_register_steel_bottle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="请扫描要交付用户钢瓶二维码"
@@ -23,57 +28,30 @@
         android:layout_marginTop="@dimen/margin_Modules"
         android:textSize="@dimen/text_nomal"
         />
-    <FrameLayout
-        android:id="@+id/scan_code"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_below="@id/tv_scan"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_Modules"
+    <TextView
+        android:id="@+id/register_steel_bottle_save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/msb_color"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:text="保存"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:paddingTop="@dimen/margin_Modules"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:layout_marginLeft="@dimen/margin_Modules"
+        android:layout_marginRight="@dimen/margin_Modules"
         />
     <LinearLayout
-        android:id="@+id/ll_scan_qrcode_query_steel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/scan_code"
-        android:layout_alignLeft="@id/scan_code"
-        android:layout_alignRight="@id/scan_code"
-        android:layout_marginTop="@dimen/margin_Modules"
-        >
-        <EditText
-            android:id="@+id/et_scan_qrcode_steel_bottle_number"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:background="@drawable/edit_text_background"
-            android:hint="手动输入钢瓶编号"
-            android:textSize="@dimen/text_nomal"
-            android:paddingTop="@dimen/margin_Modules"
-            android:paddingBottom="@dimen/margin_Modules"
-            android:gravity="center"
-
-            />
-        <EditText
-            android:id="@+id/et_scan_qrcode_query_steel_bottle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/btn_right_corner_unselect_bg"
-            android:text="查询"
-            android:gravity="center"
-            android:textSize="@dimen/text_nomal"
-            android:paddingTop="@dimen/margin_Modules"
-            android:paddingBottom="@dimen/margin_Modules"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_check_steel_bottle_result"
+        android:id="@+id/ll_register_steel_bottle_check_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@id/ll_scan_qrcode_query_steel"
-        android:layout_marginTop="@dimen/margin_Modules"
+        android:layout_above="@id/register_steel_bottle_save_btn"
+        android:layout_marginBottom="@dimen/margin_Modules"
+        android:layout_marginLeft="@dimen/margin_Modules"
+        android:layout_marginRight="@dimen/margin_Modules"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -244,19 +222,55 @@
                 android:textSize="@dimen/text_nomal" />
         </LinearLayout>
     </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
+
+    <LinearLayout
+        android:id="@+id/ll_register_steel_bottle_query_steel"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/msb_color"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:text="保存"
-        android:gravity="center"
-        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_Modules"
+        android:layout_above="@id/ll_register_steel_bottle_check_result"
+        >
+    <EditText
+        android:id="@+id/et_scan_qrcode_steel_bottle_number"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="@drawable/edit_text_background"
+        android:hint="手动输入钢瓶编号"
+        android:textSize="@dimen/text_nomal"
         android:paddingTop="@dimen/margin_Modules"
         android:paddingBottom="@dimen/margin_Modules"
+        android:gravity="center"
 
         />
-
+    <TextView
+        android:id="@+id/et_scan_qrcode_query_steel_bottle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/btn_right_corner_unselect_bg"
+        android:text="查询"
+        android:gravity="center"
+        android:textSize="@dimen/text_nomal"
+        android:paddingTop="@dimen/margin_Modules"
+        android:paddingBottom="@dimen/margin_Modules"
+        />
+    </LinearLayout>
+    <com.uuzuche.lib_zxing.view.ViewfinderView
+        android:id="@+id/scan_steel_bottle_qrcode_viewfinder_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ll_register_steel_bottle_query_steel"
+        android:layout_below="@id/tv_register_steel_bottle"
+        app:inner_width="250dp"
+        app:inner_height="250dp"
+        app:inner_margintop="@dimen/margin_Modules"
+        app:inner_corner_length="30dp"
+        app:inner_corner_width="5dp"
+        app:inner_scan_speed="10"
+        app:inner_scan_iscircle="false"
+        />
 
 </RelativeLayout>

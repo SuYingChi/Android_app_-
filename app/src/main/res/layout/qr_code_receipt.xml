@@ -52,7 +52,7 @@
             android:layout_marginTop="@dimen/margin_Modules"
             />
         <ImageView
-            android:id="@+id/oq_code_iv"
+            android:id="@+id/qr_code_iv"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="@dimen/margin_Modules"

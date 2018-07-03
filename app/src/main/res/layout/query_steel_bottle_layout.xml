@@ -226,16 +226,22 @@
         </LinearLayout>
 
     </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-
-        android:id="@+id/steel_bottle_track"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/steel_bottle_produce_info"
         android:layout_alignLeft="@id/steel_bottle_produce_info"
         android:layout_alignRight="@id/steel_bottle_produce_info"
-        android:background="@color/white"
         >
+        <android.support.v7.widget.RecyclerView
 
-    </android.support.v7.widget.RecyclerView>
+            android:id="@+id/steel_bottle_track"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
+
 </RelativeLayout>
