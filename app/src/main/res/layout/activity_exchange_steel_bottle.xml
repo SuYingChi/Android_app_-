@@ -12,7 +12,7 @@
         android:layout_height="@dimen/top_bar_height_normol"
         android:background="@color/msb_color"
         app:title_text="钢瓶置换" />
-
+    <include layout="@layout/item_rcl_exchange_steel_bottle_header"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rcl_exchange_steel_bottle"
         android:layout_width="match_parent"

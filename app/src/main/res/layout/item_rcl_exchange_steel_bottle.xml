@@ -10,7 +10,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center" />
+        android:gravity="center"
+        />
 
     <Spinner
         android:id="@+id/exchange_steel_years_spinner"
@@ -26,7 +27,7 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/exchange_steel_50"
+            android:id="@+id/exchange_reduce"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/margin_Modules"
@@ -37,7 +38,7 @@
             android:textSize="@dimen/text_16" />
 
         <TextView
-            android:id="@+id/exchange_steel_fifty_number"
+            android:id="@+id/exchange_steel_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/margin_Modules"
@@ -50,7 +51,7 @@
             />
 
         <TextView
-            android:id="@+id/exchange_steel_fity_plus"
+            android:id="@+id/exchange_steel_plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/line_color_lib"

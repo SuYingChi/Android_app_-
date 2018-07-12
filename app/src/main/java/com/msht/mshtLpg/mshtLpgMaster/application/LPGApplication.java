@@ -16,6 +16,7 @@ import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.util.concurrent.TimeUnit;
@@ -58,6 +59,7 @@ public class LPGApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        ZXingLibrary.initDisplayOpinion(this);
         BGASwipeBackHelper.init(this, null);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new MLoggerInterceptor("http", true))

@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_discount"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/margin_Modules"
     android:background="@color/white"
-    android:orientation="vertical"
-   >
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/rcl_margin"
-        android:background="@color/line_color_lib"
-        />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:paddingLeft="@dimen/margin_horizontal"
+    android:paddingRight="@dimen/margin_horizontal"
     android:paddingTop="@dimen/margin_Modules"
     android:paddingBottom="@dimen/margin_Modules"
-    >
+   >
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,7 +20,7 @@
         android:textSize="@dimen/text_nomal" />
 
     <View
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
@@ -37,10 +31,4 @@
         android:text="170"
         android:textColor="@color/green"
         android:textSize="@dimen/text_nomal" />
-</LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/rcl_margin"
-        android:background="@color/line_color_lib"
-        />
 </LinearLayout>

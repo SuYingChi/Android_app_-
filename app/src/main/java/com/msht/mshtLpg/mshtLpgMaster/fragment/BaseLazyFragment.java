@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtLpg.mshtLpgMaster.R;
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IBaseView;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -18,7 +19,7 @@ import butterknife.Unbinder;
 /**
  * 当使用viewpager加载Fragment，沉浸式的使用，原理懒加载
  */
-public abstract class BaseLazyFragment extends BaseFragment {
+public abstract class BaseLazyFragment extends BaseFragment{
 
     protected Activity mActivity;
     protected View mRootView;

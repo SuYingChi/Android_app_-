@@ -8,7 +8,7 @@ public interface IOrderView extends IBaseView{
 
     int getOrdersType();
 
-    int getOrdersScheduleType();
+    int getOrdersStatus();
 
     void onGetOrdersSuccess(OrdersBean s);
 

@@ -11,6 +11,7 @@ import com.msht.mshtLpg.mshtLpgMaster.Bean.LoginEventBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.UserLoginBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.ILoginPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
+import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
@@ -69,7 +70,7 @@ public class LoginActivity extends BaseActivity implements ILoginView{
     @Override
     public void onLoginSuccess(UserLoginBean s) {
         SharePreferenceUtil.getInstance().setToken( s.getData().getLoginToken());
-        //SharePreferenceUtil.setLoginSpStringValue(Constants.EMPLOYERID,s.getData().getEmployeeId());
+        SharePreferenceUtil.setLoginSpIntValue(Constants.EMPLOYERID,s.getData().getEmployeeId());
         startActivity( new Intent(this, HomeActivity.class));
         EventBus.getDefault().post(new LoginEventBean(GsonUtil.getGson().toJson(s)));
 

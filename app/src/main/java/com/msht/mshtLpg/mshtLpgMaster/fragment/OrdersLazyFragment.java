@@ -1,7 +1,13 @@
 package com.msht.mshtLpg.mshtLpgMaster.fragment;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,51 +19,52 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrdersBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrdersPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.adapter.RclHomeAdapter;
+import com.msht.mshtLpg.mshtLpgMaster.activity.LoginActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.OrdersDetailActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.SplashActivity;
+import com.msht.mshtLpg.mshtLpgMaster.adapter.OrdersFragmentRclAdapter;
+import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
+import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
+import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.yanzhenjie.permission.Permission;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, OnRefreshListener {
+public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, OnRefreshListener, OrdersFragmentRclAdapter.OnOrdersFragmentRclClicklistener, PermissionUtils.PermissionRequestFinishListener {
     private IOrdersPresenter iOrdersPresenter;
-    @BindView(R.id.rcl_home)
+    @BindView(R.id.rcl_home_orders_fragment)
     RecyclerView rclHome;
-    @BindView(R.id.refreshLayout)
+    @BindView(R.id.refreshLayout_home_orders_fragment)
     SmartRefreshLayout refreshLayout;
-    @BindView(R.id.transfer_to_storage_tablayout)
+    @BindView(R.id.tablayout_home_orders_fragment)
     SlidingTabLayout tabLayout;
     @BindView(R.id.deliver_order)
-    private Button btnTab0;
+    Button btnTab0;
     @BindView(R.id.recede_order)
-    private Button btnTab1;
+    Button btnTab1;
 
-    private List<OrdersBean> list;
-    private RclHomeAdapter adapter;
+
+    private List<OrdersBean.DataBean.ListBean> list = new ArrayList<OrdersBean.DataBean.ListBean>();
+    private OrdersFragmentRclAdapter adapter;
     private int ordersType;
-    private int deliveryPage0;
-    private int ordersScheduleType;
-    private int retreatOrderPage0;
-    private int deliveryPage1;
-    private int deliveryPage2;
-    private int deliveryPage3;
-    private int retreatOrderPage1;
-    private int retreatOrderPage2;
-    private int retreatOrderPage3;
+    private int ordersStatus;
     private AutoLoadMoreAdapter autoLoadMoreAdapter;
     private int page;
-
-
+    private final String[] tabTitles = {"全部", "待验瓶", "待付款", "已完成"};
+    private String mobile;
 
 
     @Override
@@ -73,14 +80,17 @@ public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, 
         rclHome.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         refreshLayout.setEnableLoadMore(false);
         refreshLayout.setOnRefreshListener(this);
-        initTopTab(Integer.valueOf(SharePreferenceUtil.getLoginSpStringValue(Constants.HOME_TOP_CITEM)));
+        initTopTab(SharePreferenceUtil.getLoginSpIntValue(Constants.HOME_TOP_CITEM));
+        for (String title : tabTitles) {
+            tabLayout.addNewTab(title);
+        }
         tabLayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                ordersScheduleType = position;
-                SharePreferenceUtil.setLoginSpStringValue(Constants.HOME_ORDERS_CITEM,ordersScheduleType+"");
-                initPage();
-                iOrdersPresenter.getOrders();
+                ordersStatus = position;
+                SharePreferenceUtil.setLoginSpIntValue(Constants.HOME_ORDERS_SCHEDULE_CITEM, ordersStatus);
+
+                onRefresh(refreshLayout);
             }
 
             @Override
@@ -88,13 +98,12 @@ public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, 
 
             }
         });
-        tabLayout.setCurrentTab(Integer.valueOf(SharePreferenceUtil.getLoginSpStringValue(Constants.HOME_ORDERS_CITEM)));
-        ordersScheduleType = Integer.valueOf(SharePreferenceUtil.getLoginSpStringValue(Constants.HOME_ORDERS_CITEM));
-
+        tabLayout.setCurrentTab(SharePreferenceUtil.getLoginSpIntValue(Constants.HOME_ORDERS_SCHEDULE_CITEM));
+        ordersStatus = SharePreferenceUtil.getLoginSpIntValue(Constants.HOME_ORDERS_SCHEDULE_CITEM);
     }
 
-    private void initTopTab(Integer item) {
-        ordersType= item;
+    private void initTopTab(int item) {
+        ordersType = item;
         if (item == 0) {
             btnTab0.setBackgroundResource(R.drawable.btn_left_corner_bg);
             btnTab1.setBackgroundResource(R.drawable.btn_right_corner_unselect_bg);
@@ -115,6 +124,7 @@ public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, 
         }
 
     }
+
     @OnClick({R.id.deliver_order, R.id.recede_order})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -122,7 +132,7 @@ public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, 
                 if (ordersType != 0) {
                     initTopTab(0);
                     ordersType = 0;
-                    SharePreferenceUtil.setLoginSpStringValue("HOME_TOP_CITEM", "0");
+                    SharePreferenceUtil.setLoginSpIntValue(Constants.HOME_FRAGMENT_TOP_TAB_ITEM, 0);
 
                 }
                 break;
@@ -130,7 +140,7 @@ public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, 
                 if (ordersType != 1) {
                     initTopTab(1);
                     ordersType = 1;
-                    SharePreferenceUtil.setLoginSpStringValue("HOME_TOP_CITEM", "1");
+                    SharePreferenceUtil.setLoginSpIntValue(Constants.HOME_FRAGMENT_TOP_TAB_ITEM, 1);
 
                 }
                 break;
@@ -138,16 +148,30 @@ public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, 
             default:
                 break;
         }
-        initPage();
-        iOrdersPresenter.getOrders();
+        onRefresh(refreshLayout);
     }
+
     @Override
     protected void initData() {
-        initPage();
-        iOrdersPresenter.getOrders();
+        adapter = new OrdersFragmentRclAdapter(list, getActivity(), this);
+        autoLoadMoreAdapter = new AutoLoadMoreAdapter(getContext(), adapter);
+        autoLoadMoreAdapter.setOnLoadListener(new AutoLoadMoreAdapter.OnLoadListener() {
+            @Override
+            public void onRetry() {
+
+            }
+
+            @Override
+            public void onLoadMore() {
+                page++;
+                iOrdersPresenter.getOrders();
+            }
+        });
+        rclHome.setAdapter(autoLoadMoreAdapter);
+        ((DefaultItemAnimator) rclHome.getItemAnimator()).setSupportsChangeAnimations(false);
+
+        onRefresh(refreshLayout);
     }
-
-
 
 
     @Override
@@ -161,48 +185,31 @@ public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, 
     }
 
     @Override
-    public int getOrdersScheduleType() {
-        return ordersScheduleType;
+    public int getOrdersStatus() {
+        return ordersStatus;
     }
 
     @Override
-    public void onGetOrdersSuccess(OrdersBean s) {
+    public void onGetOrdersSuccess(OrdersBean ordersBean) {
         refreshLayout.finishRefresh(1000);
-        if (adapter == null) {
-            rclHome.setLayoutManager(new LinearLayoutManager(getContext()));
-            adapter = new RclHomeAdapter(list, getActivity());
-            autoLoadMoreAdapter = new AutoLoadMoreAdapter(getContext(), adapter);
-            autoLoadMoreAdapter.setOnLoadListener(new AutoLoadMoreAdapter.OnLoadListener() {
-                @Override
-                public void onRetry() {
-
-                }
-
-                @Override
-                public void onLoadMore() {
-                    onLoadMoreInitPage();
-                    iOrdersPresenter.getOrders();
-                }
-            });
-            rclHome.setAdapter(autoLoadMoreAdapter);
-        }
-
-
         if (page == 1) {
             list.clear();
         } else {
             autoLoadMoreAdapter.finishLoading();
         }
-     /*   list.addAll(s.getData().getList());
-        if (s.getData().getPaging().isIs_end()) {
+
+        if (page == ordersBean.getData().getPage().getPages()) {
             autoLoadMoreAdapter.disable();
-        }*/
+        } else {
+            autoLoadMoreAdapter.enable();
+        }
+        list.addAll(ordersBean.getData().getList());
         autoLoadMoreAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        page=1;
+        page = 1;
         iOrdersPresenter.getOrders();
     }
 
@@ -210,68 +217,60 @@ public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, 
     public void onError(String s) {
         super.onError(s);
         refreshLayout.finishRefresh();
+        autoLoadMoreAdapter.finishLoading();
+        switch (s) {
+            case "未登录":
+                Intent goLogin = new Intent(this.getActivity(), LoginActivity.class);
+                startActivity(goLogin);
+                break;
+            case "未知的订单状态":
+                break;
+
+            default:
+
+                break;
+        }
+
     }
 
-  private void onLoadMoreInitPage(){
-       switch (ordersType){
-           case 0:
-               switch (ordersScheduleType){
-                   case 0:
-                       deliveryPage0++;
-                       page=deliveryPage0;
-                       break;
-                   case 1:
-                       deliveryPage1++;
-                       page=deliveryPage1;
-                       break;
-                   case 2:
-                       deliveryPage2++;
-                       page=deliveryPage2;
-                       break;
-                   case 3:
-                       deliveryPage3++;
-                       page=deliveryPage3;
-                       break;
-                   default:
-                       break;
-               }
-               break;
-           case 1:
-               switch (ordersScheduleType){
-                   case 0:
-                       retreatOrderPage0++;
-                       page=retreatOrderPage0;
-                       break;
-                   case 1:
-                       retreatOrderPage1++;
-                       page=retreatOrderPage1;
-                       break;
-                   case 2:
-                       retreatOrderPage2++;
-                       page=retreatOrderPage2;
-                       break;
-                   case 3:
-                       retreatOrderPage3++;
-                       page=retreatOrderPage3;
-                       break;
-                   default:
-                       break;
-               }
-               break;
-           default:
-               break;
-       }
+
+    @Override
+    public void onClickCallButton(String mobile) {
+        this.mobile = mobile;
+        PermissionUtils.requestPermissions(getContext(), this, Permission.CALL_PHONE);
     }
 
-    private void initPage() {
-       deliveryPage0 = 1;
-       deliveryPage1 = 1;
-       deliveryPage2 = 1;
-       deliveryPage3 = 1;
-        retreatOrderPage0 =1;
-        retreatOrderPage1 =1;
-        retreatOrderPage2 =1;
-        retreatOrderPage3 =1;
-        page = 1;
+    @Override
+    public void onClckOrderButton(int orderId) {
+        Intent intent = new Intent(getActivity(), OrdersDetailActivity.class);
+        intent.putExtra("orderId", orderId);
+        startActivity(intent);
     }
+
+    @Override
+    public void onClickItem() {
+
+    }
+
+    @Override
+    public void onBackFromSettingPage() {
+
+    }
+
+    @Override
+    public void onPermissionRequestDenied(List<String> permissions) {
+        PopUtil.toastInBottom("请允许LPG拨打电话");
+    }
+
+    @Override
+    public void onPermissionRequestSuccess(List<String> permissions) {
+        if (ActivityCompat.checkSelfPermission(LPGApplication.getLPGApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + mobile));
+        startActivity(intent);
+
+
+    }
+
 }

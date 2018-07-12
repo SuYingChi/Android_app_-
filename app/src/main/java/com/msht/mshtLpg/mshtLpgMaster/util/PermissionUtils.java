@@ -229,7 +229,7 @@ public class PermissionUtils {
                 .onGranted(new Action<List<String>>() {
                     @Override
                     public void onAction(List<String> permissions) {
-                        permissionRequestFinishListener.onPermissionRequestSuccess();
+                        permissionRequestFinishListener.onPermissionRequestSuccess( permissions);
                     }
                 })
                 .onDenied(new Action<List<String>>() {
@@ -238,7 +238,7 @@ public class PermissionUtils {
                         if (AndPermission.hasAlwaysDeniedPermission(context, permissions)) {
                           showSettingDialog(context, permissions,permissionRequestFinishListener);
                         }else {
-                            permissionRequestFinishListener.onPermissionRequestDenied();
+                            permissionRequestFinishListener.onPermissionRequestDenied(permissions);
                         }
 
                     }
@@ -266,7 +266,7 @@ public class PermissionUtils {
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        permissionRequestFinishListener.onPermissionRequestDenied();
+                        permissionRequestFinishListener.onPermissionRequestDenied(permissions);
                     }
                 })
                 .show();
@@ -290,9 +290,9 @@ public class PermissionUtils {
 
         void onBackFromSettingPage();
 
-        void onPermissionRequestDenied();
+        void onPermissionRequestDenied(List<String> permissions);
 
-        void onPermissionRequestSuccess();
+        void onPermissionRequestSuccess(List<String> permissions);
     }
 
     public interface PermissionCallBack {

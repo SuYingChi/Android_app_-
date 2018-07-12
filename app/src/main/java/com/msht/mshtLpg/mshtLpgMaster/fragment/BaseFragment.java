@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.LogoutEvent;
 import com.msht.mshtLpg.mshtLpgMaster.R;
+import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
@@ -45,6 +46,11 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
     @Override
     public String getToken() {
         return SharePreferenceUtil.getInstance().getToken();
+    }
+
+    @Override
+    public int getEmployerId() {
+        return SharePreferenceUtil.getLoginSpIntValue(Constants.EMPLOYERID);
     }
 
     @Override

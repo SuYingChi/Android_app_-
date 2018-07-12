@@ -51,6 +51,10 @@ public class SharePreferenceUtil {
         SharedPreferences sharePreferenceFile = getSharePreferenceFile(Constants.LOGIN_SP_FILE_NAME);
         return sharePreferenceFile.getString(key,"");
     }
+    public static int  getLoginSpIntValue(String key) {
+        SharedPreferences sharePreferenceFile = getSharePreferenceFile(Constants.LOGIN_SP_FILE_NAME);
+        return sharePreferenceFile.getInt(key,0);
+    }
     public static void setSPStringValue(String fileName, String key, String value) {
         SharedPreferences sharePreferenceFile = getSharePreferenceFile(fileName);
         sharePreferenceFile.edit().putString(key,value).apply();
@@ -58,6 +62,10 @@ public class SharePreferenceUtil {
     public static void setLoginSpStringValue(String key, String value) {
         SharedPreferences sharePreferenceFile = getSharePreferenceFile(Constants.LOGIN_SP_FILE_NAME);
         sharePreferenceFile.edit().putString(key,value).apply();
+    }
+    public static void setLoginSpIntValue(String key, int value) {
+        SharedPreferences sharePreferenceFile = getSharePreferenceFile(Constants.LOGIN_SP_FILE_NAME);
+        sharePreferenceFile.edit().putInt(key,value).apply();
     }
 
 }

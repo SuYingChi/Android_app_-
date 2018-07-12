@@ -4,9 +4,12 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:paddingBottom="@dimen/margin_Modules"
-    android:paddingTop="@dimen/margin_Modules">
+    android:paddingTop="@dimen/margin_Modules"
+    android:background="@color/white"
+    >
 
     <TextView
+        android:id="@+id/bottle_number"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -14,6 +17,7 @@
         android:text="编号" />
 
     <TextView
+        android:id="@+id/bottle_model"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -21,6 +25,7 @@
         android:text="规格" />
 
     <TextView
+        android:id="@+id/bottle_status"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

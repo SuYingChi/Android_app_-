@@ -8,6 +8,7 @@ import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
 import com.yanzhenjie.permission.Permission;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -64,12 +65,13 @@ public class SplashActivity extends BaseActivity implements PermissionUtils.Perm
     }
 
     @Override
-    public void onPermissionRequestDenied() {
-       waitGo();
+    public void onPermissionRequestDenied(List<String> permissions) {
+        waitGo();
     }
 
     @Override
-    public void onPermissionRequestSuccess() {
+    public void onPermissionRequestSuccess(List<String> permissions) {
         waitGo();
     }
+
 }

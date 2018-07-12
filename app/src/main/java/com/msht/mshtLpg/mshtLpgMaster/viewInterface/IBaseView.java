@@ -9,7 +9,7 @@ public  interface IBaseView {
 
     String getToken();
 
-    /*String getEmployerId();*/
+    int getEmployerId();
 
     void onLogout();
 

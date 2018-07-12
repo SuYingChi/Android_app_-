@@ -6,7 +6,7 @@ public class UserLoginBean {
     /**
      * result : success
      * msg : 登录成功
-     * data : {"loginToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJBUFAiLCJwYXNzd29yZCI6ImUxMGFkYzM5NDliYTU5YWJiZTU2ZTA1N2YyMGY4ODNlIiwiaXNzIjoiU2VydmljZSIsIm1vYmlsZSI6IjE4NTk5OTg4ODg4IiwiZXhwIjoxODQ1NTE1MDkyLCJpYXQiOjE1Mjk4OTU4OTJ9.iRu7vTULPhbus5JAze44W4QiOQ1qyOPI8yjsnR8LbTM","errorCode":"200"}
+     * data : {"loginToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJBUFAiLCJwYXNzd29yZCI6ImUxMGFkYzM5NDliYTU5YWJiZTU2ZTA1N2YyMGY4ODNlIiwiaXNzIjoiU2VydmljZSIsIm1vYmlsZSI6IjE4NTk5OTg4ODg4IiwiZXhwIjoxODQ2Mzc5NTkzLCJpYXQiOjE1MzA3NjAzOTN9.2nV1ARc0a-LSW93ETI9igypKFfb3nH5rIkQHkvtCy8s","errorCode":"200","employeeId":6}
      */
 
     private String result;
@@ -39,13 +39,14 @@ public class UserLoginBean {
 
     public static class DataBean {
         /**
-         * loginToken : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJBUFAiLCJwYXNzd29yZCI6ImUxMGFkYzM5NDliYTU5YWJiZTU2ZTA1N2YyMGY4ODNlIiwiaXNzIjoiU2VydmljZSIsIm1vYmlsZSI6IjE4NTk5OTg4ODg4IiwiZXhwIjoxODQ1NTE1MDkyLCJpYXQiOjE1Mjk4OTU4OTJ9.iRu7vTULPhbus5JAze44W4QiOQ1qyOPI8yjsnR8LbTM
+         * loginToken : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJBUFAiLCJwYXNzd29yZCI6ImUxMGFkYzM5NDliYTU5YWJiZTU2ZTA1N2YyMGY4ODNlIiwiaXNzIjoiU2VydmljZSIsIm1vYmlsZSI6IjE4NTk5OTg4ODg4IiwiZXhwIjoxODQ2Mzc5NTkzLCJpYXQiOjE1MzA3NjAzOTN9.2nV1ARc0a-LSW93ETI9igypKFfb3nH5rIkQHkvtCy8s
          * errorCode : 200
+         * employeeId : 6
          */
 
         private String loginToken;
         private String errorCode;
-        //private String employeeId;
+        private int employeeId;
 
         public String getLoginToken() {
             return loginToken;
@@ -63,12 +64,12 @@ public class UserLoginBean {
             this.errorCode = errorCode;
         }
 
-        /*public String getEmployeeId() {
+        public int getEmployeeId() {
             return employeeId;
         }
 
-        public void setEmployeeId(String employeeId) {
+        public void setEmployeeId(int employeeId) {
             this.employeeId = employeeId;
-        }*/
+        }
     }
 }

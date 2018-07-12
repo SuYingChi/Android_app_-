@@ -115,10 +115,10 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
         return SharePreferenceUtil.getInstance().getToken();
     }
 
-/*    @Override
-    public String getEmployerId() {
-        return  SharePreferenceUtil.getLoginSpStringValue(Constants.EMPLOYERID);
-    }*/
+    @Override
+    public int getEmployerId() {
+        return  SharePreferenceUtil.getLoginSpIntValue(Constants.EMPLOYERID);
+    }
 
     /**
      * 是否支持滑动返回。这里在父类中默认返回 true 来支持滑动返回，如果某个界面不想支持滑动返回则重写该方法返回 false 即可
