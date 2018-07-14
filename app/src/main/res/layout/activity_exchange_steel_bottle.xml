@@ -12,10 +12,67 @@
         android:layout_height="@dimen/top_bar_height_normol"
         android:background="@color/msb_color"
         app:title_text="钢瓶置换" />
-    <include layout="@layout/item_rcl_exchange_steel_bottle_header"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcl_exchange_steel_bottle"
+
+    <include layout="@layout/item_rcl_exchange_steel_bottle_header" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/ll_pay_orders_v2_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:orientation="horizontal"
+
+            >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="共计"
+                android:textColor="@color/lpg_text_dark_color" />
+
+            <TextView
+                android:id="@+id/exchange_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_Modules"
+                android:text="92.00"
+                android:textColor="@color/msb_color"
+                android:textSize="@dimen/text_top_title" />
+
+            <TextView
+                android:id="@+id/exchange_save_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/msb_color"
+                android:gravity="center_vertical"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:text="保存"
+                android:textColor="@color/white" />
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/ll_pay_orders_v2_bottom"
+            >
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcl_exchange_steel_bottle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
 </LinearLayout>

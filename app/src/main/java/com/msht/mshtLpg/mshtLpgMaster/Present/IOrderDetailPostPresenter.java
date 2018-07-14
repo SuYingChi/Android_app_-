@@ -9,5 +9,7 @@ public class IOrderDetailPostPresenter {
     public IOrderDetailPostPresenter(IOrderDetailPostView iOrderDetailPostView) {
         this.iOrderDetailPostView = iOrderDetailPostView;
     }
-    public void postOrders(){}
+    public void postOrders(){
+
+    }
 }

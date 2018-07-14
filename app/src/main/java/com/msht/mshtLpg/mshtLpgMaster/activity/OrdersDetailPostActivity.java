@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 public class OrdersDetailPostActivity extends BaseActivity implements IOrderDetailPostView {
 
 
-    @BindView(R.id.post_orders_v2_topbar)
+    @BindView(R.id.pay_orders_v2_topbar)
     TopBarView topBarView;
     @BindView(R.id.location)
     TextView tvLocation;
@@ -74,6 +74,8 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
     TextView tvPostBtn;
     @BindView(R.id.ll_discount)
     LinearLayout llDiscount;
+    @BindView(R.id.ll_orders_detail_command_topbar_client_info)
+    LinearLayout client_info;
 
     private IOrderDetailPostPresenter iOrderDetailPostPresenter;
     private OrderDetailBean bean;
@@ -81,6 +83,8 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
     private int emptyFifteenNum = 0;
     private int emptyFiftyNum = 0;
     private int exchangeFee;
+    private int floor;
+    private int isElevator;
 
 
     @Override
@@ -163,6 +167,13 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
                 iOrderDetailPostPresenter.postOrders();
             }
         });
+        client_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OrdersDetailPostActivity.this, EditLocationActivity.class);
+                startActivityForResult(intent,Constants.EDIT_FLOOR_REQUEST_CODE);
+            }
+        });
     }
 
     @Override
@@ -177,6 +188,11 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
             if (data != null ) {
                 exchangeFee = data.getIntExtra(Constants.EXCHANGE_FEE,0);
                 tvDiscount.setText(exchangeFee+"");
+            }
+        } if (requestCode == Constants.EDIT_FLOOR_REQUEST_CODE && resultCode == RESULT_OK) {
+            if (data != null ) {
+                floor = data.getIntExtra(Constants.FLOOR,0);
+                isElevator = data.getIntExtra(Constants.IS_ELEVATOR,0);
             }
         }
 

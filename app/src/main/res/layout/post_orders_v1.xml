@@ -18,7 +18,7 @@
        app:title_text= "提交订单"
        />
     <LinearLayout
-        android:id="@+id/ll_post_orders_v2_bottom"
+        android:id="@+id/ll_pay_orders_v2_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -62,7 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/my_setting_fragment_layout_topbar"
-        android:layout_above="@id/ll_post_orders_v2_bottom"
+        android:layout_above="@id/ll_pay_orders_v2_bottom"
         >
     <RelativeLayout
         android:layout_width="match_parent"

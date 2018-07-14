@@ -2,12 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/line_color"
     android:orientation="vertical">
 
-    <include layout="@layout/edit_location_topbar" />
+    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height_normol"
+        android:background="@color/msb_color"
+        app:title_text= "编辑地址"
+        />
 
-    <LinearLayout
+<!--    <LinearLayout
         android:id="@+id/ll_location_edit_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -140,7 +147,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/click_area"
             android:src="@drawable/right_angle" />
-    </LinearLayout>
+    </LinearLayout>-->
 
     <LinearLayout
         android:id="@+id/ll_edit_elevator"
@@ -157,13 +164,12 @@
             android:textColor="@color/lpg_text_dark_color"
             android:textSize="@dimen/text_nomal" />
 
-        <TextView
-            android:id="@+id/tv_elevator"
+        <Spinner
+            android:id="@+id/spinner_elevator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_weight="1"
-            android:text="是"
             android:textSize="15sp" />
 
         <ImageView
@@ -186,11 +192,11 @@
         <TextView
             android:layout_width="63dp"
             android:layout_height="wrap_content"
-            android:text="门牌号"
+            android:text="楼层"
             android:textColor="@color/lpg_text_dark_color"
             android:textSize="@dimen/text_nomal" />
 
-        <EditText
+        <!--<EditText
             android:id="@+id/et_building"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -210,7 +216,7 @@
             android:layout_marginLeft="5dp"
             android:text="栋"
             android:textSize="15sp" />
-
+-->
         <EditText
             android:id="@+id/et_floor"
             android:layout_width="wrap_content"
@@ -222,6 +228,7 @@
             android:textColor="#ffffff"
             android:textColorHint="@color/text_hint"
             android:textCursorDrawable="@null"
+            android:inputType="number"
             android:textSize="15sp" />
 
         <TextView
@@ -232,7 +239,7 @@
             android:text="楼"
             android:textSize="15sp" />
 
-        <EditText
+ <!--       <EditText
             android:id="@+id/et_room"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -251,7 +258,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="房"
-            android:textSize="15sp" />
+            android:textSize="15sp" />-->
     </LinearLayout>
 
     <TextView

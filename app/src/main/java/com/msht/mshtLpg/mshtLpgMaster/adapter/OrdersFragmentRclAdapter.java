@@ -50,7 +50,7 @@ public class OrdersFragmentRclAdapter extends RecyclerView.Adapter{
 
         if (holder instanceof OrdersHolder){
             //送气待验瓶
-        if( holder.getItemViewType() == 1) {
+        if( holder.getItemViewType() == 0) {
             ((OrdersHolder) holder).order_number.setText(bean.getOrderId()+"");
             ((OrdersHolder) holder).order_statu.setText(bean.getOrderStatus()+"");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
@@ -260,7 +260,44 @@ public class OrdersFragmentRclAdapter extends RecyclerView.Adapter{
 
     @Override
     public int getItemViewType(int position) {
-        return list.get(position).getOrderType();
+       int ordertype = list.get(position).getOrderType();
+       int orderStatus = list.get(position).getOrderStatus();
+       int itemType = 0;
+       //送气单
+       if(ordertype ==1 ){
+        switch (orderStatus){
+            //待验瓶
+            case 2:
+                itemType = 0;
+                break;
+                //待付款
+            case 0:
+                itemType = 1;
+                break;
+                //已完成
+            case 3:
+                itemType = 2;
+                break;
+        }
+       }//退瓶单
+       else if(ordertype == 0){
+           switch (orderStatus){
+               //待验瓶
+               case 2:
+                   itemType = 3;
+                   break;
+               //待付款
+               case 0:
+                   itemType = 4;
+                   break;
+               //已完成
+               case 3:
+                   itemType = 5;
+                   break;
+           }
+        }
+
+        return  itemType;
     }
 
      class OrdersHolder extends RecyclerView.ViewHolder {

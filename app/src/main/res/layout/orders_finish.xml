@@ -15,49 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_normol"
         android:background="@color/msb_color"
-        app:title_text= "提交订单"
+        app:title_text= "订单详情"
         />
-    <LinearLayout
-        android:id="@+id/ll_pay_orders_v2_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        android:layout_alignParentBottom="true"
-        >
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="共计"
-            android:textColor="@color/lpg_text_dark_color"
-            />
-        <TextView
-            android:id="@+id/post_orders_v2_cost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="92.00"
-            android:textSize="@dimen/text_top_title"
-            android:textColor="@color/msb_color"
-            android:layout_marginLeft="@dimen/margin_Modules"
-            />
-        <TextView
-            android:id="@+id/post_orders_v2_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="提交"
-            android:background="@color/msb_color"
-            android:textColor="@color/white"
-            android:gravity="center_vertical"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            />
-    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -613,6 +572,43 @@
                 android:paddingLeft="@dimen/margin_horizontal"
                 android:paddingRight="@dimen/margin_horizontal"
                 />
+            <LinearLayout
+                android:id="@+id/ll_payAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_Modules"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/margin_Modules"
+                android:paddingLeft="@dimen/margin_horizontal"
+                android:paddingRight="@dimen/margin_horizontal"
+                android:paddingTop="@dimen/margin_Modules"
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="实付款"
+                    android:textColor="@color/head_text_color"
+                    android:textSize="@dimen/text_16"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/payAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50"
+                    android:textColor="@color/warning_red"
+                    android:textSize="@dimen/text_16"
+
+                    />
+            </LinearLayout>
         </LinearLayout>
 </RelativeLayout>
     </ScrollView>
