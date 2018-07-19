@@ -41,6 +41,12 @@
         <activity android:name=".activity.OrdersDetailActivity"/>
         <activity android:name=".activity.ScanCodeDeliverSteelBottleActivity"/>
         <activity android:name=".activity.OrdersDetailPostActivity"/>
+        <activity android:name=".activity.ExchangeReviewActivity"/>
+       <activity android:name=".activity.OrdersDetailPayActivity"/>
+        <activity android:name=".activity.QRCodeReceiptActivity"/>
+        <activity android:name=".activity.EditLocationActivity"/>
+        <activity android:name=".activity.OrdersDetailFinishActivity"/>
+        <activity android:name=".activity.ExchangeSteelBottleActivity"/>
     </application>
 
 </manifest>
