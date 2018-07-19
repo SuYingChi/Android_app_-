@@ -92,7 +92,7 @@
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/five_num"
+            android:id="@+id/five_gas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="50"
@@ -132,7 +132,7 @@
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/fifteen_num"
+            android:id="@+id/fifteen_gas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="50"
@@ -173,7 +173,7 @@
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/fifty_num"
+            android:id="@+id/fifty_gas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="50"

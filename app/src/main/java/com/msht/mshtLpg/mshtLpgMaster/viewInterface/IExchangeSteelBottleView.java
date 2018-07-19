@@ -1,7 +1,13 @@
 package com.msht.mshtLpg.mshtLpgMaster.viewInterface;
 
-import com.msht.mshtLpg.mshtLpgMaster.Bean.SubstitutionListBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.BottleReplacePriceBean;
 
 public interface IExchangeSteelBottleView extends IBaseView {
-    void  onGetSubstitutionListSuccess(SubstitutionListBean bean);
+    void onGetReplacePriceSuccess(BottleReplacePriceBean bean);
+
+    String getBottleWeight();
+
+    String getBottleProduceDate();
+
+    String getCorrosionType();
 }

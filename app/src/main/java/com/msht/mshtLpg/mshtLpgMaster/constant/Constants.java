@@ -4,31 +4,31 @@ import com.msht.mshtLpg.mshtLpgMaster.BuildConfig;
 
 public class Constants {
     //凡是接口里有replacelist的都去掉，改为增加一个retrieveAmount字段，空瓶置换有单独接口返回数据
-    public static final String BASE_URL = BuildConfig.DEBUG ? "http://192.168.0.104:7799/msht/lpgEmpOrder/": "";
-    //18599988888
-    public static final String LOGIN = BASE_URL+"login";
 
-    public static final String QUERY_ORDERS = BASE_URL+"getOrderByPage";
+ //阿里云地址 http://120.76.193.86:7799
+    public static final String BASE_URL = BuildConfig.DEBUG ? "http://192.168.0.104:7799/msht/": "";
+    //18599988888
+    public static final String LOGIN = BASE_URL+"lpgEmpOrder/login";
+    //1是送气单 0是退瓶单
+    public static final String QUERY_ORDERS = BASE_URL+"lpgEmpOrder/getOrderByPage";
     //订单列表点击订单进入订单详情，订单状态是待验瓶时，不只有金额，提交后才有金额，不同的订单状态，点击跳转到相应的订单详情
-    public static final String ORDER_DETAIL =  BASE_URL+"getOrderDetail";
-    //扫码验瓶 0重 1空,(参数填bottleCode == 9000008 ，verifyType = 1 有数据)
-    public static final String SCAN_BOTTLE_QR_CODE = BASE_URL+"verifyBottle";
-    //扫码后的订单详情需要实时地再去获取最新气价和押金（siteid = 2有数据）
-    public static final String  GET_GAS_AND_DEPOSIT= BASE_URL+"getGasAndDeposit";
-    //扫码后的订单详情需要实时地再去获取最新运费，只跟无电梯时的楼层有关
-    public static final String  GET_Delivery_FEE = BASE_URL+"getAllDeliveryFee";
+    public static final String ORDER_DETAIL =  BASE_URL+"lpgEmpOrder/getOrderDetail";
+    //扫码验瓶 0重 1空,(参数填bottleCode == 9000008 ，verifyType = 1 有数据,订单待验瓶状态时 正常应该填2 ，此时先填1，回收客户空瓶时填3)
+    public static final String VERIFY_BOTTLE_BY_QR_CODE = BASE_URL+"lpgEmpOrder/verifyBottle";
+    //扫码后的订单详情需要实时地再去获取最新气价和押金，再计算出气价和押金（siteid = 2有数据）
+    public static final String  GET_GAS_AND_DEPOSIT= BASE_URL+"lpgDepositMsg/getGasAndDeposit ";
+    //扫码后的订单详情需要实时地再去获取最新运费，再计算出气价和押金，只跟无电梯时的楼层有关
+    public static final String  GET_Delivery_FEE = BASE_URL+"lpgDeliveryFee/getAllDeliveryFee ";
    //提交订单，等待付款 （orderId 111，isDelivery 0 orderType 1 deliveryBottleIds 15），
-    public static final String  POST_ORDER= BASE_URL+"orderMsgComfirm";
+    public static final String  POST_ORDER= BASE_URL+"lpgEmpOrder/orderMsgComfirm";
     //获取自有产权钢瓶置换价格
-    public static final String  QUERY_REPLACE_PRICE=BASE_URL+"queryReplacePrice";
+    public static final String  QUERY_REPLACE_PRICE=BASE_URL+"lpgReplacePrice/queryReplacePrice ";
     //微信付款
     public static final String WEIXIN_PAY = "https://smart-market.msbapp.cn:442/msht/weixinScanPay/scanPay2";
-    //查询订单状态是否已付款
-    public static final String QUERY_ORDER_PAY_STATUS = BASE_URL+"queryOrder";
+    //根据订单ID查询订单状态，再微信支付后查询订单是否已付款
+    public static final String QUERY_ORDER_DETAIL_BY_ORDER_ID = BASE_URL+"lpgOrder/queryOrder";
    //订单详情提交页面，点击自有产权瓶时的查询接口
- public static final String RELACE_BOTTLE_LIST= BASE_URL+"getReplaceBottleList";
-
-
+    public static final String REPLACE_BOTTLE_LIST = BASE_URL+"lpgEmpOrder/getReplaceBottleList";
 
 
 
@@ -73,9 +73,16 @@ public class Constants {
     public static final String EXCHANGE_FIFTEEN_FEE = "EXCHANGE_FIFTEEN_FEE";
     public static final String EXCHANGE_FIFTY_FEE = "EXCHANGE_FIFTY_FEE";
     public static final String EXCHANGE_DISCOUNT = "EXCHANGE_DISCOUNT";
-    public static final String SUBSTITUTION_LIST = BASE_URL + "getSubstitutionList";
 
     public static final int EDIT_FLOOR_REQUEST_CODE = 101;
     public static final String FLOOR = "floor";
     public static final String IS_ELEVATOR = "IS_ELEVATOR";
+    public static final String HEAVY_BOTTLE_LIST = "HEAVY_BOTTLE_LIST";
+    public static final String EMPTY_BOTTLE_LIST = "EMPTY_BOTTLE_LIST";
+    public static final String SCANFRAGMENT_TYPE = "SCANFRAGMENT_TYPE";
+   public static  final String COMFIRM_ORDERS_BEAN = "COMFIRM_ORDERS_BEAN";
+   public static final String IS_DELIVERY = "isDelivery";
+   public static final String reFiveBottleCount = "reFiveBottleCount";
+    public static final String PAY_AMOUNT = "payAmount";
+    public static final String PAY_TYPE = "payType";
 }

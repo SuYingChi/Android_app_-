@@ -9,9 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.msht.mshtLpg.mshtLpgMaster.Bean.DeliveryBean;
+import com.msht.mshtLpg.mshtLpgMaster.Present.IDeliveryPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.SpinnerAdapter;
+import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IDeliveryView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +36,7 @@ public class EditLocationActivity extends BaseActivity {
     List<String> list = new ArrayList<String>();
     private int selectElevator  = 0;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +44,8 @@ public class EditLocationActivity extends BaseActivity {
         ButterKnife.bind(this);
         spinnerAdapter = new SpinnerAdapter(this);
         spinner.setAdapter(spinnerAdapter);
-        list.add("是");
-        list.add("否");
+        list.add("1");
+        list.add("0");
         spinnerAdapter.setData(list);
         spinnerAdapter.notifyDataSetChanged();
         spinner.setSelection(selectElevator);
@@ -48,8 +53,8 @@ public class EditLocationActivity extends BaseActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent();
-                intent.putExtra("elevator",selectElevator );
-                intent.putExtra("floor",Integer.valueOf(editText.getText().toString()));
+                intent.putExtra(Constants.IS_ELEVATOR,selectElevator );
+                intent.putExtra(Constants.FLOOR,Integer.valueOf(editText.getText().toString()));
                 setResult(RESULT_OK, intent);
                 finish();
             }
@@ -58,8 +63,8 @@ public class EditLocationActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra("elevator",selectElevator );
-                intent.putExtra("floor",Integer.valueOf(editText.getText().toString()));
+                intent.putExtra(Constants.IS_ELEVATOR,selectElevator );
+                intent.putExtra(Constants.FLOOR,Integer.valueOf(editText.getText().toString()));
                 setResult(RESULT_OK, intent);
                 finish();
             }
@@ -67,14 +72,8 @@ public class EditLocationActivity extends BaseActivity {
         spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(position==0){
-                    selectElevator  = 0;
-                }else if(position==1){
-                    selectElevator = 1;
-                }
+               selectElevator = position;
             }
         });
     }
-
-
 }

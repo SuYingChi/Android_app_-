@@ -1,9 +1,9 @@
 package com.msht.mshtLpg.mshtLpgMaster.viewInterface;
 
-import com.msht.mshtLpg.mshtLpgMaster.Bean.ScanBottleQRCodeBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 
 public interface IScanCodeDeliverSteelBottleView extends IBaseView {
-    void onGetBottleInfoSuccess(ScanBottleQRCodeBean scanBottleQRCodeBean);
-    String getBottleId();
-
+    void onGetBottleInfoSuccess(VerifyBottleBean verifyBottleBean);
+    String getBottleCode();
+    int getFragmentType();
 }

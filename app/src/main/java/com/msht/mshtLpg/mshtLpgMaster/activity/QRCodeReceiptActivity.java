@@ -40,11 +40,11 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
     private ScheduledFuture<?> a;
     private ScheduledFuture<?> b;
     private ScheduledThreadPoolExecutor executor;
-    private String id;
     private String orderType;
     private String payType;
-    private String body;
+    private String body = "付款";
     private String payAmount;
+    private String orderId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +52,10 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
         setContentView(R.layout.qr_code_receipt);
         ButterKnife.bind(this);
         Intent intent = getIntent();
-        id =  intent.getStringExtra(Constants.ORDER_ID);
+        orderId =  intent.getStringExtra(Constants.ORDER_ID);
         orderType = intent.getStringExtra(Constants.URL_PARAMS_ORDER_TYPE);
+        payAmount = intent.getStringExtra(Constants.PAY_AMOUNT);
+        payType = intent.getStringExtra(Constants.PAY_TYPE);
         getQRcodeImageUrlPresenter = new GetQRcodeImageUrlPresenter(this);
         getOrderStatusPresenter = new GetOrderStatusPresenter(this);
         executor = new ScheduledThreadPoolExecutor(2);
@@ -67,7 +69,7 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
                 5000,
                 5000,
                 TimeUnit.MILLISECONDS);
-        ordersNumber.setText(id);
+        ordersNumber.setText(orderId);
         account.setText(payAmount);
     }
 
@@ -131,7 +133,7 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
 
     @Override
     public String getId() {
-        return id;
+        return orderId;
     }
 
     @Override
@@ -141,7 +143,7 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
 
     @Override
     public String getOrderId() {
-        return id;
+        return orderId;
     }
 
     @Override

@@ -25,7 +25,7 @@ public class IOrderDetailPresenter {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
                 OrderDetailBean bean = GsonUtil.getGson().fromJson(s, OrderDetailBean.class);
-                if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "failed")) {
+                if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
                     iOrderDetailView.onError(bean.getMsg());
 
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {

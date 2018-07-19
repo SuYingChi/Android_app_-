@@ -1,6 +1,6 @@
 package com.msht.mshtLpg.mshtLpgMaster.viewInterface;
 
-import com.msht.mshtLpg.mshtLpgMaster.Bean.OrdersBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.OrdersListBeanV2;
 
 public interface IOrderView extends IBaseView{
 
@@ -10,6 +10,6 @@ public interface IOrderView extends IBaseView{
 
     int getOrdersStatus();
 
-    void onGetOrdersSuccess(OrdersBean s);
+    void onGetOrdersSuccess(OrdersListBeanV2 bean);
 
 }

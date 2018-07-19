@@ -11,9 +11,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
@@ -26,14 +25,17 @@ import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
-import com.msht.mshtLpg.mshtLpgMaster.Bean.ScanBottleQRCodeBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IScanbottleCodePresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
+import com.msht.mshtLpg.mshtLpgMaster.activity.ScanCodeDeliverSteelBottleActivity;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.ScanBottleQRCodeRclAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.handler.MyCaptureHandler;
+import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IScanCodeDeliverSteelBottleView;
 import com.uuzuche.lib_zxing.camera.CameraManager;
@@ -46,6 +48,7 @@ import java.util.List;
 import java.util.Vector;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Callback, IScanCodeDeliverSteelBottleView {
 
@@ -69,11 +72,12 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
     @BindView(R.id.scan_qrcode_delive_fifty_steel_bottle_number)
     TextView fiftyBottleNumber;
     @BindView(R.id.tv_save_btn)
-    TextView saveBtn;
-
-    private static final String TAG = "CaptureFragment";
+    TextView nextBtn;
+    @BindView(R.id.tv_scan_delive_steel_bottle)
+    TextView title;
+    private static final String TAG = "MyCaptureFragment";
     private MyCaptureHandler handler;
-    private boolean hasSurface;
+    protected boolean hasSurface;
     private Vector<BarcodeFormat> decodeFormats;
     private String characterSet;
     private InactivityTimer inactivityTimer;
@@ -83,14 +87,22 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
     private boolean vibrate;
     private SurfaceHolder surfaceHolder;
     private Camera camera;
-    private List<ScanBottleQRCodeBean> list = new ArrayList<ScanBottleQRCodeBean>();
+
+    private List<VerifyBottleBean> list = new ArrayList<VerifyBottleBean>();
+    private List<VerifyBottleBean> empList = new ArrayList<VerifyBottleBean>();
     private ScanBottleQRCodeRclAdapter adapter;
-    private IScanbottleCodePresenter iScanbottleCodePresenter;
-    private String bottleId;
-    private CaptureFrgamnetNextBtnClickListener captureFrgamnetNextBtnClickListener;
+    protected IScanbottleCodePresenter iScanbottleCodePresenter;
+    private String bottleCode;
+    protected CaptureActivityListener captureActivityListener;
     private int orderFiveNum = 0;
     private int orderFifteenNum = 0;
     private int orderFiftyNum = 0;
+    protected OrderDetailBean bean;
+    private int remainFive = 0;
+    private int remainFifteen = 0;
+    private int remainFifty = 0;
+    private int fragmentType;
+    private ScanCodeDeliverSteelBottleActivity activity;
 
 
     @Override
@@ -98,14 +110,26 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: ");
         Bundle bundle = getArguments();
-        orderFiveNum = bundle.getInt(Constants.ORDER_FIVE_NUM);
-        orderFifteenNum = bundle.getInt(Constants.ORDER_FIFTEEN_NUM);
-        orderFiftyNum = bundle.getInt(Constants.ORDER_FIFTY_NUM);
+        if (bundle != null) {
+            fragmentType = bundle.getInt(Constants.SCANFRAGMENT_TYPE);
+            if (fragmentType == 1) {
+                orderFiveNum = bundle.getInt(Constants.ORDER_FIVE_NUM, 0);
+                orderFifteenNum = bundle.getInt(Constants.ORDER_FIFTEEN_NUM, 0);
+                orderFiftyNum = bundle.getInt(Constants.ORDER_FIFTY_NUM, 0);
+            } else if (fragmentType == 2) {
+                remainFive = bundle.getInt(Constants.REMAIN_FIVE_NUM);
+                remainFifteen = bundle.getInt(Constants.REMAIN_FIFTEEN_NUM);
+                remainFifty = bundle.getInt(Constants.REMAIN_FIFTY_NUM);
+            } else {
+                return;
+            }
+        } else {
+            return;
+        }
         CameraManager.init(LPGApplication.getLPGApplicationContext());
         iScanbottleCodePresenter = new IScanbottleCodePresenter(this);
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this.getActivity());
-
     }
 
     @Nullable
@@ -113,27 +137,52 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: ");
         View view = inflater.inflate(R.layout.scan_delive_steel_bottle_layout, null);
+        ButterKnife.bind(this, view);
         surfaceHolder = surfaceView.getHolder();
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().finish();
+                captureActivityListener.onCaptureFragmenBackBtnClick(fragmentType);
             }
         });
         queryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bottleId = etInput.getText().toString();
-                iScanbottleCodePresenter.scanbottle();
+                bottleCode = etInput.getText().toString();
+                iScanbottleCodePresenter.queryBottleByQRCode();
             }
         });
 
-        saveBtn.setOnClickListener(new View.OnClickListener() {
+        nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                captureFrgamnetNextBtnClickListener.onCaptureFragmentClickNextBtn();
+                if (fragmentType == 1) {
+                    captureActivityListener.onClickNextBtnAndSendVerifyBottleList(fragmentType, list);
+                } else if (fragmentType == 2) {
+                    captureActivityListener.onClickNextBtnAndSendVerifyBottleList(fragmentType, empList);
+                }
+
             }
         });
+        if (fragmentType == 1) {
+            adapter = new ScanBottleQRCodeRclAdapter(list, getActivity());
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            recyclerView.setAdapter(adapter);
+            fiveBottleNumber.setText(BottleCaculteUtil.getBottleNum(list, 5) + "");
+            fifteenBottleNumber.setText(BottleCaculteUtil.getBottleNum(list, 15) + "");
+            fiftyBottleNumber.setText(BottleCaculteUtil.getBottleNum(list, 50) + "");
+            title.setText("请扫描要交付用户钢瓶");
+
+
+        } else if (fragmentType == 2) {
+            adapter = new ScanBottleQRCodeRclAdapter(empList, getActivity());
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            recyclerView.setAdapter(adapter);
+            fiveBottleNumber.setText(BottleCaculteUtil.getBottleNum(list, 5) + "");
+            fifteenBottleNumber.setText(BottleCaculteUtil.getBottleNum(list, 15) + "");
+            fiftyBottleNumber.setText(BottleCaculteUtil.getBottleNum(list, 50) + "");
+            title.setText("请扫描并回收用户钢瓶");
+        }
 
         return view;
     }
@@ -142,7 +191,8 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
     @Override
     public void onResume() {
         super.onResume();
-
+        String s = fragmentType == 1 ? "交付钢瓶" : "回收钢瓶";
+        PopUtil.toastInBottom(s);
         if (hasSurface) {
             initCamera(surfaceHolder);
         } else {
@@ -159,13 +209,6 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
         }
         initBeepSound();
         vibrate = true;
-
-        adapter = new ScanBottleQRCodeRclAdapter(list, getActivity());
-        recyclerView.setAdapter(adapter);
-        ((DefaultItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-        fiveBottleNumber.setText(adapter.getFiveNum()+"");
-        fifteenBottleNumber.setText(adapter.getFifteenNum()+"");
-        fiftyBottleNumber.setText(adapter.getFiftyNum()+"");
     }
 
     @Override
@@ -196,16 +239,13 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
         Log.d(TAG, "handleDecode: ");
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
-
-        if (result == null || TextUtils.isEmpty(result.getText())) {
-            PopUtil.toastInBottom("扫描钢瓶二维码失败，请输入钢瓶编号手动查询");
-        } else {
-            String bottleUrl = result.getText();
-            int index = bottleUrl.indexOf("id=");
-            bottleId = bottleUrl.substring(index + 3);
-            iScanbottleCodePresenter.scanbottle();
-        }
+        String bottleUrl = result.getText();
+        int index = bottleUrl.indexOf("id=");
+        bottleCode = bottleUrl.substring(index + 3);
+        PopUtil.toastInBottom(result.getText());
+        iScanbottleCodePresenter.queryBottleByQRCode();
     }
+
 
     private void initCamera(SurfaceHolder surfaceHolder) {
         try {
@@ -323,53 +363,59 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
     }
 
     @Override
-    public void onGetBottleInfoSuccess(ScanBottleQRCodeBean scanBottleQRCodeBean) {
-        if (orderFiveNum <= adapter.getFiveNum()) {
-            PopUtil.toastInBottom("5kg數量已达同规格的订单重瓶的数量");
-        } else if (orderFifteenNum <= adapter.getFifteenNum()) {
-            PopUtil.toastInBottom("15kg數量已达同规格的订单重瓶的数量");
-
-        } else if (orderFiftyNum <= adapter.getFiftyNum()) {
-            PopUtil.toastInBottom("50kg數量已达同规格的订单重瓶的数量");
-
-        } else if (list.contains(scanBottleQRCodeBean)) {
+    public void onGetBottleInfoSuccess(VerifyBottleBean verifyBottleBean) {
+        if (isContainBottle(list,verifyBottleBean.getData().getBottleCode())) {
             PopUtil.toastInBottom("钢瓶已添加");
-
-        } else {
-            list.add(scanBottleQRCodeBean);
-            adapter.notifyDataSetChanged();
-            fiveBottleNumber.setText(adapter.getFiveNum()+"");
-            fifteenBottleNumber.setText(adapter.getFifteenNum()+"");
-            fiftyBottleNumber.setText(adapter.getFiftyNum()+"");
-
-            Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
-            handler.sendMessageDelayed(reDecode, 1000);
+        }else if(fragmentType == 1) {
+             if (verifyBottleBean.getData().getBottleWeight() == 5&&BottleCaculteUtil.getBottleNum(list,5) >= orderFiveNum ) {
+                PopUtil.toastInBottom("5kg钢瓶已达到订单数");
+            } else if (verifyBottleBean.getData().getBottleWeight() == 15&&BottleCaculteUtil.getBottleNum(list,15) >= orderFiveNum) {
+                PopUtil.toastInBottom("15kg钢瓶已达到订单数");
+            } else if (verifyBottleBean.getData().getBottleWeight() == 50&&BottleCaculteUtil.getBottleNum(list,50) >= orderFiveNum) {
+                PopUtil.toastInBottom("50kg钢瓶已达到订单数");
+            } else {
+                list.add(verifyBottleBean);
+                adapter.notifyDataSetChanged();
+                fiveBottleNumber.setText(String.format("%d",BottleCaculteUtil.getBottleNum(list,5)));
+                fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list,15)));
+                fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list,50)));
+            }
+        }else if(fragmentType == 2){
+            if (verifyBottleBean.getData().getBottleWeight() == 5&&BottleCaculteUtil.getBottleNum(empList,5) >= remainFive ) {
+                PopUtil.toastInBottom("5kg钢瓶已达到订单数");
+            } else if (verifyBottleBean.getData().getBottleWeight() == 15&&BottleCaculteUtil.getBottleNum(empList,15) >= remainFifteen) {
+                PopUtil.toastInBottom("15kg钢瓶已达到订单数");
+            } else if (verifyBottleBean.getData().getBottleWeight() == 50&&BottleCaculteUtil.getBottleNum(empList,50) >= remainFifty) {
+                PopUtil.toastInBottom("50kg钢瓶已达到订单数");
+            } else {
+                empList.add(verifyBottleBean);
+                adapter.notifyDataSetChanged();
+                fiveBottleNumber.setText(String.format("%d",BottleCaculteUtil.getBottleNum(empList,5)));
+                fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(empList,15)));
+                fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(empList,50)));
+            }
         }
-    }
-
-    @Override
-    public String getBottleId() {
-        return bottleId;
-    }
-
-
-    @Override
-    public void onError(String s) {
-        super.onError(s);
         Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
         handler.sendMessageDelayed(reDecode, 1000);
     }
 
-    public int getFiveNum() {
-        return Integer.valueOf(fiveBottleNumber.getText().toString());
+    private boolean isContainBottle(List<VerifyBottleBean> list,String bottleCode) {
+        for (VerifyBottleBean bean : list) {
+            if (bean.getData().getBottleCode().equals(bottleCode)) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public int getFifteenNum() {
-        return Integer.valueOf(fifteenBottleNumber.getText().toString());
+    @Override
+    public String getBottleCode() {
+        return bottleCode;
     }
 
-    public int getFiftyNum() {
-        return Integer.valueOf(fiftyBottleNumber.getText().toString());
+    @Override
+    public int getFragmentType() {
+        return fragmentType;
     }
 
     public interface CameraInitCallBack {
@@ -381,11 +427,23 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
         void callBack(Exception e);
     }
 
-    public interface CaptureFrgamnetNextBtnClickListener {
-        void onCaptureFragmentClickNextBtn();
+    public interface CaptureActivityListener {
+        //fragment发送扫描的List<VerifyBottleBean> list给actvity
+        void onClickNextBtnAndSendVerifyBottleList(int fragmentType, List<VerifyBottleBean> list);
+
+        void onCaptureFragmenBackBtnClick(int fragmentType);
     }
 
-    public void setCaptureFrgamnetNextBtnClickListener(CaptureFrgamnetNextBtnClickListener captureFrgamnetNextBtnClickListener) {
-        this.captureFrgamnetNextBtnClickListener = captureFrgamnetNextBtnClickListener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.captureActivityListener = (CaptureActivityListener) getActivity();
+    }
+
+    @Override
+    public void onError(String s) {
+        super.onError(s);
+        Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
+        handler.sendMessageDelayed(reDecode, 1000);
     }
 }

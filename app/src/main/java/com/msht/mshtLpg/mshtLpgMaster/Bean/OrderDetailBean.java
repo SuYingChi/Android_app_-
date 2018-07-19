@@ -1,13 +1,12 @@
 package com.msht.mshtLpg.mshtLpgMaster.Bean;
 
-import java.io.Serializable;
 
-public class OrderDetailBean implements Serializable {
+public class OrderDetailBean  {
 
     /**
      * result : success
      * msg : 查询成功
-     * data : {"orderId":49,"orderType":1,"orderStatus":2,"orderSource":2,"appointmentTime":"","createDate":"","buyer":"张三","sex":1,"mobile":"18976991791","orderAddressId":77,"longitude":"56.56","latitude":"23.90","addressShort":"","address":"海口市白龙北路5号","floor":3,"roomNum":"111","isElevator":1,"fiveBottleCount":1,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":0,"fifteenGasFee":0,"fiftyGasFee":0,"fiveDeliveryFee":0,"fifteenDeliveryFee":0,"fiftyDeliveryFee":0,"realAmount":5.2}
+     * data : {"siteId":2,"orderId":165,"orderType":1,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"黄水亮","sex":1,"mobile":"13098966725","orderAddressId":180,"longitude":"110.30204","latitude":"20.020434","addressShort":"","address":"海南省海口市龙华区金贸西路8号诚田国际商务大厦","floor":1,"roomNum":"","isElevator":0,"fiveBottleCount":1,"fifteenBottleCount":1,"fiftyBottleCount":0,"fiveGasFee":0,"fifteenGasFee":0,"fiftyGasFee":0,"fiveDeliveryFee":5,"fifteenDeliveryFee":15,"fiftyDeliveryFee":50,"fiveDepositFee":5,"fifteenDepositFee":15,"fiftyDepositFee":50,"retrieveAmount":0,"realAmount":40.4}
      */
 
     private String result;
@@ -40,41 +39,51 @@ public class OrderDetailBean implements Serializable {
 
     public static class DataBean {
         /**
-         * orderId : 49
+         * siteId : 2
+         * orderId : 165
          * orderType : 1
          * orderStatus : 2
-         * orderSource : 2
+         * orderSource : 1
+         * isDelivery : 0
          * appointmentTime :
          * createDate :
-         * buyer : 张三
+         * remarks :
+         * buyer : 黄水亮
          * sex : 1
-         * mobile : 18976991791
-         * orderAddressId : 77
-         * longitude : 56.56
-         * latitude : 23.90
+         * mobile : 13098966725
+         * orderAddressId : 180
+         * longitude : 110.30204
+         * latitude : 20.020434
          * addressShort :
-         * address : 海口市白龙北路5号
-         * floor : 3
-         * roomNum : 111
-         * isElevator : 1
+         * address : 海南省海口市龙华区金贸西路8号诚田国际商务大厦
+         * floor : 1
+         * roomNum :
+         * isElevator : 0
          * fiveBottleCount : 1
-         * fifteenBottleCount : 0
+         * fifteenBottleCount : 1
          * fiftyBottleCount : 0
          * fiveGasFee : 0
          * fifteenGasFee : 0
          * fiftyGasFee : 0
-         * fiveDeliveryFee : 0
-         * fifteenDeliveryFee : 0
-         * fiftyDeliveryFee : 0
-         * realAmount : 5.2
+         * fiveDeliveryFee : 5
+         * fifteenDeliveryFee : 15
+         * fiftyDeliveryFee : 50
+         * fiveDepositFee : 5
+         * fifteenDepositFee : 15
+         * fiftyDepositFee : 50
+         * retrieveAmount : 0
+         * realAmount : 40.4
          */
 
+        private int siteId;
         private int orderId;
         private int orderType;
         private int orderStatus;
         private int orderSource;
+        private int isDelivery;
         private String appointmentTime;
         private String createDate;
+        private String remarks;
         private String buyer;
         private int sex;
         private String mobile;
@@ -95,17 +104,48 @@ public class OrderDetailBean implements Serializable {
         private int fiveDeliveryFee;
         private int fifteenDeliveryFee;
         private int fiftyDeliveryFee;
+        private int fiveDepositFee;
+        private int fifteenDepositFee;
+        private int fiftyDepositFee;
+        private int retrieveAmount;
         private double realAmount;
 
-        public String getRemarks() {
-            return remarks;
+        public int getReFiveBottleCount() {
+            return reFiveBottleCount;
         }
 
-        public void setRemarks(String remarks) {
-            this.remarks = remarks;
+        public void setReFiveBottleCount(int reFiveBottleCount) {
+            this.reFiveBottleCount = reFiveBottleCount;
         }
 
-        private String remarks;
+        public int getReFifteenBottleCount() {
+            return reFifteenBottleCount;
+        }
+
+        public void setReFifteenBottleCount(int reFifteenBottleCount) {
+            this.reFifteenBottleCount = reFifteenBottleCount;
+        }
+
+        public int getReFiftyBottleCount() {
+            return reFiftyBottleCount;
+        }
+
+        public void setReFiftyBottleCount(int reFiftyBottleCount) {
+            this.reFiftyBottleCount = reFiftyBottleCount;
+        }
+
+        private int reFiveBottleCount;
+        private int reFifteenBottleCount;
+        private int reFiftyBottleCount;
+
+        public int getSiteId() {
+            return siteId;
+        }
+
+        public void setSiteId(int siteId) {
+            this.siteId = siteId;
+        }
+
         public int getOrderId() {
             return orderId;
         }
@@ -138,6 +178,14 @@ public class OrderDetailBean implements Serializable {
             this.orderSource = orderSource;
         }
 
+        public int getIsDelivery() {
+            return isDelivery;
+        }
+
+        public void setIsDelivery(int isDelivery) {
+            this.isDelivery = isDelivery;
+        }
+
         public String getAppointmentTime() {
             return appointmentTime;
         }
@@ -152,6 +200,14 @@ public class OrderDetailBean implements Serializable {
 
         public void setCreateDate(String createDate) {
             this.createDate = createDate;
+        }
+
+        public String getRemarks() {
+            return remarks;
+        }
+
+        public void setRemarks(String remarks) {
+            this.remarks = remarks;
         }
 
         public String getBuyer() {
@@ -312,6 +368,38 @@ public class OrderDetailBean implements Serializable {
 
         public void setFiftyDeliveryFee(int fiftyDeliveryFee) {
             this.fiftyDeliveryFee = fiftyDeliveryFee;
+        }
+
+        public int getFiveDepositFee() {
+            return fiveDepositFee;
+        }
+
+        public void setFiveDepositFee(int fiveDepositFee) {
+            this.fiveDepositFee = fiveDepositFee;
+        }
+
+        public int getFifteenDepositFee() {
+            return fifteenDepositFee;
+        }
+
+        public void setFifteenDepositFee(int fifteenDepositFee) {
+            this.fifteenDepositFee = fifteenDepositFee;
+        }
+
+        public int getFiftyDepositFee() {
+            return fiftyDepositFee;
+        }
+
+        public void setFiftyDepositFee(int fiftyDepositFee) {
+            this.fiftyDepositFee = fiftyDepositFee;
+        }
+
+        public int getRetrieveAmount() {
+            return retrieveAmount;
+        }
+
+        public void setRetrieveAmount(int retrieveAmount) {
+            this.retrieveAmount = retrieveAmount;
         }
 
         public double getRealAmount() {

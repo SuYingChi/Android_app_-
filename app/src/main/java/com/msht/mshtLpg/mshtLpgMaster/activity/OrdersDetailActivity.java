@@ -46,11 +46,11 @@ public class OrdersDetailActivity extends BaseActivity implements IOrderDetailVi
     TextView tvTime;
     @BindView(R.id.comman_topbar_comment)
     TextView tvComment;
-    @BindView(R.id.five_num)
+    @BindView(R.id.five_gas)
     TextView fiveFee;
-    @BindView(R.id.fifteen_num)
+    @BindView(R.id.fifteen_gas)
     TextView fifteenFee;
-    @BindView(R.id.fifty_num)
+    @BindView(R.id.fifty_gas)
     TextView fiftyFee;
     @BindView(R.id.total_fee)
     TextView totalFee;
@@ -88,7 +88,7 @@ public class OrdersDetailActivity extends BaseActivity implements IOrderDetailVi
                 break;
             case R.id.hand_over_steel_bottle:
                 Intent intent = new Intent(this, ScanCodeDeliverSteelBottleActivity.class);
-                intent.putExtra(Constants.ORDER_DETAIL_BEAN,bean);
+                intent.putExtra(Constants.ORDER_ID,orderId);
                 startActivity(intent);
                 break;
             default:
@@ -117,8 +117,8 @@ public class OrdersDetailActivity extends BaseActivity implements IOrderDetailVi
     }
 
     @Override
-    public int getOrderId() {
-        return orderId;
+    public String getOrderId() {
+        return orderId+"";
     }
 
     @Override

@@ -6,7 +6,7 @@
     android:padding="@dimen/margin_Modules">
 
     <Spinner
-        android:id="@+id/exchange_steel_type_spinner"
+        android:id="@+id/exchange_steel_weight_spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -14,7 +14,13 @@
         />
 
     <Spinner
-        android:id="@+id/exchange_steel_years_spinner"
+    android:id="@+id/exchange_steel_years_spinner"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:gravity="center" />
+    <Spinner
+        android:id="@+id/exchange_steel_level_spinner"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

@@ -9,128 +9,146 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
+import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPostPresenter;
+import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
-import com.msht.mshtLpg.mshtLpgMaster.fragment.MyCaptureEmptyFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MyCaptureFragment;
+import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.LogUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailPostView;
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailView;
 import com.yanzhenjie.permission.Permission;
 
+import java.io.Serializable;
 import java.util.List;
 
 import butterknife.ButterKnife;
 
-public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements MyCaptureFragment.CaptureFrgamnetNextBtnClickListener, MyCaptureEmptyFragment.CaptureEmptyFrgamnetBtnClickListener,PermissionUtils.PermissionRequestFinishListener {
+public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements MyCaptureFragment.CaptureActivityListener, PermissionUtils.PermissionRequestFinishListener, IOrderDetailView{
 
 
     private MyCaptureFragment captureFragment;
-    private MyCaptureEmptyFragment myCaptureEmptybottleFragment;
+    private MyCaptureFragment captureEmptybottleFragment;
     private int scanedfiveNum = 0;
     private int scanedfifteenNum = 0;
     private int scanedfiftyNum = 0;
-    private int emptyFiveNum = 0;
-    private int emptyFifteenNum = 0;
-    private int emptyFiftyNum = 0;
-    private BaseFragment currentFragment;
-    private OrderDetailBean orderDetailBean;
     private int orderfiveNum = 0;
-    private int orderfifteenNum =0;
-    private int orderfiftyNum=0;
+    private int orderfifteenNum = 0;
+    private int orderfiftyNum = 0;
+    private int orderId;
+    private FragmentTransaction transaction;
+    private List<VerifyBottleBean> heavyBottleList;
+    private List<VerifyBottleBean> emptyBottleList;
+    private OrderDetailBean bean;
+    private int emptyFive;
+    private int emptyFifteen;
+    private int emptyFifty;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scan_code_deliver_steel_bottle_activity);
         ButterKnife.bind(this);
+        Intent intent = getIntent();
+        orderId = intent.getIntExtra(Constants.ORDER_ID, 0);
         PermissionUtils.requestPermissions(this, this, Permission.CAMERA);
-        orderDetailBean = (OrderDetailBean) getIntent().getSerializableExtra(Constants.ORDER_DETAIL_BEAN);
-        orderfiveNum= orderDetailBean.getData().getFiveBottleCount();
-        orderfifteenNum =orderDetailBean.getData().getFifteenBottleCount();
-        orderfiftyNum=orderDetailBean.getData().getFiftyBottleCount();
-        captureFragment = new MyCaptureFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(Constants.ORDER_FIVE_NUM, orderfiveNum);
-        bundle.putInt(Constants.ORDER_FIFTEEN_NUM, orderfifteenNum);
-        bundle.putInt(Constants.ORDER_FIFTY_NUM, orderfiftyNum);
-        captureFragment.setArguments(bundle);
-        showFragment(captureFragment);
-        captureFragment.setCameraInitCallBack(new MyCaptureFragment.CameraInitCallBack() {
-            @Override
-            public void callBack(Exception e) {
-                if (e == null) {
 
-                } else {
-                    LogUtils.d("TAG", "callback:    " + e);
-                }
-            }
-        });
-        captureFragment.setCaptureFrgamnetNextBtnClickListener(this);
     }
 
 
     @Override
-    public void onCaptureFragmentClickNextBtn() {
-        scanedfiveNum = captureFragment.getFiveNum();
-        scanedfifteenNum = captureFragment.getFifteenNum();
-        scanedfiftyNum = captureFragment.getFiftyNum();
-        if(scanedfiveNum!=orderfiveNum||scanedfifteenNum!=orderfifteenNum||scanedfiftyNum!=orderfiftyNum){
-            PopUtil.toastInBottom("未扫描订单要求的钢瓶数量和规格，无法跳转下一步");
-        }else {
-            myCaptureEmptybottleFragment = new MyCaptureEmptyFragment();
-            Bundle bundle = new Bundle();
-            bundle.putInt(Constants.SCANED_FIVE_NUM, scanedfiveNum);
-            bundle.putInt(Constants.SCANED_FIFTEEN_NUM, scanedfifteenNum);
-            bundle.putInt(Constants.SCANED_FIFTY_NUM, scanedfiftyNum);
-            myCaptureEmptybottleFragment.setArguments(bundle);
-            showFragment(myCaptureEmptybottleFragment);
-            myCaptureEmptybottleFragment.setEmptyCameraInitCallBack(new MyCaptureEmptyFragment.EmptyCameraInitCallBack() {
-                @Override
-                public void callBack(Exception e) {
-                    if (e == null) {
-                    } else {
-                        LogUtils.d("TAG", "callback:    " + e);
+    public void onClickNextBtnAndSendVerifyBottleList(int fragmentType, List<VerifyBottleBean> list) {
+        if(fragmentType == 1) {
+            this.heavyBottleList = list;
+            scanedfiveNum = BottleCaculteUtil.getBottleNum(list,5);
+            scanedfifteenNum = BottleCaculteUtil.getBottleNum(list,15);;
+            scanedfiftyNum = BottleCaculteUtil.getBottleNum(list,50);;
+            if(scanedfiveNum!=orderfiveNum||scanedfifteenNum!=orderfifteenNum||scanedfiftyNum!=orderfiftyNum){
+                PopUtil.toastInBottom("未达到订单要求钢瓶数和规格"+"请按订单要求扫描验瓶"+"5kg瓶"+orderfiveNum+"15kg瓶"+orderfifteenNum+"50kg瓶"+orderfiftyNum);
+            }else {
+                Bundle bundle = new Bundle();
+                captureEmptybottleFragment = new MyCaptureFragment();
+                bundle.putInt(Constants.REMAIN_FIVE_NUM, orderfiveNum - scanedfiveNum);
+                bundle.putInt(Constants.REMAIN_FIFTEEN_NUM, orderfifteenNum - scanedfifteenNum);
+                bundle.putInt(Constants.REMAIN_FIFTY_NUM, orderfiftyNum - scanedfiftyNum);
+                bundle.putInt(Constants.SCANFRAGMENT_TYPE,2);
+                captureEmptybottleFragment.setArguments(bundle);
+                showFragment(captureEmptybottleFragment);
+                captureEmptybottleFragment.setCameraInitCallBack(new MyCaptureFragment.CameraInitCallBack() {
+                    @Override
+                    public void callBack(Exception e) {
+                        if (e == null) {
+
+                        } else {
+                            LogUtils.d("TAG", "callback:    " + e);
+                        }
                     }
-                }
-            });
+                });
+            }
+
+
+        }else {
+            emptyBottleList = list;
+            emptyFive = BottleCaculteUtil.getBottleNum(emptyBottleList,5);
+            emptyFifteen = BottleCaculteUtil.getBottleNum(emptyBottleList,15);
+            emptyFifty = BottleCaculteUtil.getBottleNum(emptyBottleList,50);
+
+            Intent intent = new Intent(this,OrdersDetailPostActivity.class);
+            Bundle bundle=new Bundle();
+            bundle.putInt(Constants.ORDER_ID,orderId);
+            bundle.putSerializable(Constants.HEAVY_BOTTLE_LIST,(Serializable)heavyBottleList);
+            bundle.putSerializable(Constants.EMPTY_BOTTLE_LIST,(Serializable)emptyBottleList);
+            bundle.putInt("starttype",1);
+            intent.putExtras(bundle);
+            startActivity(intent);
+
         }
 
     }
 
-    @Override
-    public void onEmptyBottleClickNextBtn() {
-        emptyFiveNum = myCaptureEmptybottleFragment.getFiveNum();
-        emptyFifteenNum = myCaptureEmptybottleFragment.getFifteenNum();
-        emptyFiftyNum = myCaptureEmptybottleFragment.getFiftyNum();
-        Intent intent = new Intent(this, OrdersDetailPostActivity.class);
-        intent.putExtra(Constants.ORDER_DETAIL_BEAN,orderDetailBean);
-        intent.putExtra(Constants.EMPTY_FIVE_NUM, emptyFiveNum);
-        intent.putExtra(Constants.EMPTY_FIFTEEN_NUM, emptyFifteenNum);
-        intent.putExtra(Constants.EMPTY_FIFTY_NUM, emptyFiftyNum);
-        startActivity(intent);
-    }
 
     @Override
-    public void onEmptyBottleClickReturnBtn() {
-     showFragment(captureFragment);
+    public void onCaptureFragmenBackBtnClick(int fragmentType) {
+        if(fragmentType == 1){
+            finish();
+        }else if(fragmentType == 2){
+            showFragment(captureFragment);
+        }
     }
 
 
-    private void showFragment(BaseFragment fragment) {
+/*    private void showFragment(BaseFragment fragment) {
         if (currentFragment != fragment) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.hide(currentFragment);
+            transaction = getSupportFragmentManager().beginTransaction();
+            if (currentFragment != null && currentFragment.isVisible()) {
+                transaction.hide(currentFragment);
+            }
             currentFragment = fragment;
             if (!fragment.isAdded()) {
-                transaction.add(R.id.fl_my_container, fragment).show(fragment).commit();
+                transaction.add(R.id.fl_my_container, fragment).show(fragment);
             } else {
-                transaction.show(fragment).commit();
+                transaction.show(fragment);
             }
+            transaction.commit();
         }
+    }*/
+    private void showFragment(BaseFragment fragment){
+        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fl_my_container,fragment).commit();
     }
-
+  /*  private void removeEmptyFragment() {
+        if (captureEmptybottleFragment !=null&& captureEmptybottleFragment.isAdded()) {
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.remove(captureEmptybottleFragment).commit();
+            captureEmptybottleFragment = null;
+        }
+    }*/
     @Override
     public void onBackFromSettingPage() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -145,6 +163,55 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
 
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
-
+        new IOrderDetailPresenter(this).getOrderDetail();
     }
+
+
+    @Override
+    public void onGetOrdersDetailSuccess(OrderDetailBean bean) {
+        this.bean = bean;
+        orderfiveNum = bean.getData().getFiveBottleCount();
+        orderfifteenNum = bean.getData().getFifteenBottleCount();
+        orderfiftyNum = bean.getData().getFiftyBottleCount();
+
+        captureFragment = new MyCaptureFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constants.ORDER_FIVE_NUM, orderfiveNum);
+        bundle.putInt(Constants.ORDER_FIFTEEN_NUM, orderfifteenNum);
+        bundle.putInt(Constants.ORDER_FIFTY_NUM, orderfiftyNum);
+        bundle.putInt(Constants.SCANFRAGMENT_TYPE,1);
+        captureFragment.setArguments(bundle);
+        captureFragment.setCameraInitCallBack(new MyCaptureFragment.CameraInitCallBack() {
+            @Override
+            public void callBack(Exception e) {
+                if (e == null) {
+
+                } else {
+                    LogUtils.d("TAG", "callback:    " + e);
+                }
+            }
+        });
+
+        showFragment(captureFragment);
+    }
+
+    @Override
+    public String getOrderId() {
+        return orderId+"";
+    }
+
+
+
+
+ /*   @Override
+    public void onPostOrdersSuccess(OrderDetailBean bean) {
+
+        Intent intent = new Intent(this,OrdersDetailPostActivity.class);
+        Bundle bundle=new Bundle();
+        bundle.putInt(Constants.ORDER_ID,orderId);
+        bundle.putSerializable(Constants.HEAVY_BOTTLE_LIST,(Serializable)heavyBottleList);
+        bundle.putSerializable(Constants.EMPTY_BOTTLE_LIST,(Serializable)emptyBottleList);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }*/
 }

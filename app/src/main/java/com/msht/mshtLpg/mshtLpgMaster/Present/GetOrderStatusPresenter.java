@@ -17,7 +17,7 @@ public class GetOrderStatusPresenter {
     }
 
     public void getOrderStatus() {
-        OkHttpUtils.get().url(Constants.QUERY_ORDER_PAY_STATUS).addParams("id", iGetPayQRcodeView.getId())
+        OkHttpUtils.get().url(Constants.QUERY_ORDER_DETAIL_BY_ORDER_ID).addParams("id", iGetPayQRcodeView.getId())
                 .addParams("orderType",iGetPayQRcodeView.getOrderType()).build().execute(new DataStringCallback(iGetPayQRcodeView) {
             @Override
             public void onResponse(String s, int i) {

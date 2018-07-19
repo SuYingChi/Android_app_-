@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
+import com.githang.statusbar.StatusBarCompat;
 import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
@@ -22,6 +23,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 
 /**
@@ -30,6 +32,8 @@ import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 public  class BaseActivity extends AppCompatActivity implements IBaseView , BGASwipeBackHelper.Delegate {
 
     private BGASwipeBackHelper mSwipeBackHelper;
+    private ImmersionBar mImmersionBar;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,8 +41,8 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setSoftInPutMode();
-        EventBus.getDefault().register(this);
         initStateBar();
+
     }
 
     @Override
@@ -49,14 +53,19 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
 
     @Override
     protected void onDestroy() {
-        ImmersionBar.with(this).destroy();
-        EventBus.getDefault().unregister(this);
+        if (mImmersionBar != null)
+            mImmersionBar.destroy();  //在BaseActivity里销毁
+     /*   EventBus.getDefault().unregister(this);*/
+
         MobclickAgent.onPause(this);
         super.onDestroy();
     }
 
     protected void initStateBar() {
-        ImmersionBar.with(this).statusBarColor(R.color.msb_color).statusBarDarkFont(true, 0.2f).fitsSystemWindows(true).init();
+ /*       mImmersionBar = ImmersionBar.with(this);
+        //ImmersionBar.with(this).statusBarColor(R.color.msb_color).statusBarDarkFont(true, 0.2f).fitsSystemWindows(true).init();
+        mImmersionBar.statusBarColor(R.color.msb_color).transparentNavigationBar().init();*/
+
     }
 
     private void setSoftInPutMode() {

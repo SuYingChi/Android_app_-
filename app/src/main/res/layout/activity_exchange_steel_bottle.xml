@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/line_color_lib"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    >
 
     <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
         android:id="@+id/exchange_topbar"
@@ -41,7 +43,7 @@
                 android:textColor="@color/lpg_text_dark_color" />
 
             <TextView
-                android:id="@+id/exchange_cost"
+                android:id="@+id/discount_cost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_Modules"
@@ -50,7 +52,7 @@
                 android:textSize="@dimen/text_top_title" />
 
             <TextView
-                android:id="@+id/exchange_save_btn"
+                android:id="@+id/discount_save_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@color/msb_color"

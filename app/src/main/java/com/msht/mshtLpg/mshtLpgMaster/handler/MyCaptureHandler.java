@@ -32,19 +32,11 @@ public final class MyCaptureHandler extends Handler {
         return state;
     }
 
-    public void setState(com.uuzuche.lib_zxing.decoding.CaptureActivityHandler.State state) {
-        this.state = state;
-    }
 
     private com.uuzuche.lib_zxing.decoding.CaptureActivityHandler.State state;
 
 
 
-    public enum State {
-        PREVIEW,
-        SUCCESS,
-        DONE
-    }
 
     public MyCaptureHandler(MyCaptureFragment fragment, Vector<BarcodeFormat> decodeFormats,
                             String characterSet, ViewfinderView viewfinderView) {

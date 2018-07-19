@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/line_color_lib">
+    android:background="@color/line_color_lib"
+    android:fitsSystemWindows="true"
+    >
     <SurfaceView
         android:id="@+id/scan_delive_steel_bottle_preview_view"
         android:layout_width="wrap_content"
@@ -135,6 +137,7 @@
         android:layout_height="200dp"
         android:layout_above="@id/scan_delive_bottom"
         android:layout_margin="@dimen/margin_Modules"
+        android:background="@color/white"
         >
         <include
             android:id="@+id/header"
@@ -148,7 +151,7 @@
             android:layout_below="@+id/header"
             android:layout_marginLeft="@dimen/margin_Modules"
             android:layout_marginRight="@dimen/margin_Modules"
-            android:background="@color/white" />
+            />
     </RelativeLayout>
     <LinearLayout
         android:id="@+id/ll_scan_delive_steel_bottle_query"

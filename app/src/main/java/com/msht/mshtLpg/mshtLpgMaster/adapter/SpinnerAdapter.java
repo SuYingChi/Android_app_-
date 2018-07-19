@@ -56,7 +56,7 @@ public class SpinnerAdapter extends BaseAdapter {
         holder.mTextView.setText(datas.get(position));
         return view;
     }
-    class Holder{
+   public class Holder{
         private TextView mTextView;
     }
 }

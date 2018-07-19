@@ -4,53 +4,67 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.msht.mshtLpg.mshtLpgMaster.Bean.ScanBottleQRCodeBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.fragment.MyCaptureFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ScanBottleQRCodeRclAdapter extends RecyclerView.Adapter{
+public class ScanBottleQRCodeRclAdapter extends RecyclerView.Adapter<ScanBottleQRCodeRclAdapter.ScanHolder>{
     private final LayoutInflater inflater;
-    private  List<ScanBottleQRCodeBean> list;
+    private  List<VerifyBottleBean> list ;
     private  Activity activity;
     private int fiveNum = 0;
     private int fifteenNum = 0;
     private int fiftyNum = 0;
 
-    public ScanBottleQRCodeRclAdapter(List<ScanBottleQRCodeBean> list, Activity activity) {
+    public ScanBottleQRCodeRclAdapter( List<VerifyBottleBean> list,Activity activity) {
         this.list = list;
         this.activity = activity;
         this.inflater = LayoutInflater.from(activity);
     }
 
 
+
+
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ScanHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ScanHolder(inflater.inflate(R.layout.item_rcl_deliver_steel_bottle,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ScanBottleQRCodeBean bean = list.get(position);
-        if(holder instanceof ScanHolder){
-            ((ScanHolder) holder).tvBottleModel.setText(bean.getData().getBottleWeight()+"");
-            ((ScanHolder) holder).tvBottleNumber.setText(bean.getData().getBottleNum());
-            ((ScanHolder) holder).tvBottleStatus.setText(bean.getData().getIsHeavy()==0?"重瓶":"空瓶");
-        }
+    public void onBindViewHolder(@NonNull ScanHolder holder, int position) {
+        VerifyBottleBean bean = list.get(position);
+            Log.d("suyingchi", "onBindViewHolder: "+bean.getData().getBottleWeight()+""+bean.getData().getBottleNum());
+            holder.tvBottleModel.setText(bean.getData().getBottleWeight()+"");
+            holder.tvBottleNumber.setText(bean.getData().getBottleNum());
+            holder.tvBottleStatus.setText(bean.getData().getIsHeavy()==0?"重瓶":"空瓶");
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    reduceItem(position);
+                }
+            });
+    }
+
+    private void reduceItem(int position) {
+        list.remove(position);
+        notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
+        Log.d("suyingchi", "getItemCount: "+list.size());
         return list.size();
     }
 
@@ -69,31 +83,5 @@ public class ScanBottleQRCodeRclAdapter extends RecyclerView.Adapter{
 
     }
 
-   public int getFiveNum(){
 
-        for(ScanBottleQRCodeBean bean:list){
-            if (bean.getData().getBottleWeight() == 5){
-                fiveNum++;
-            }
-        }
-        return fiveNum;
-    }
-
-  public   int getFifteenNum(){
-        for(ScanBottleQRCodeBean bean:list){
-            if (bean.getData().getBottleWeight() == 15){
-                fifteenNum++;
-            }
-        }
-        return fifteenNum;
-    }
-
-  public   int getFiftyNum(){
-        for(ScanBottleQRCodeBean bean:list){
-            if (bean.getData().getBottleWeight() == 50){
-                fiftyNum++;
-            }
-        }
-        return fiftyNum;
-    }
 }

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
 
@@ -65,23 +66,23 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
         if (holder instanceof ViewHolder) {
             int index = list.get(position).getSelectBottleModeIndex();
             int index2 = list.get(position).getSelectBottleYearsIndex();
+            int index3 = list.get(position).getmSelectBottleLevelIndex();
             ((ViewHolder) holder).mModelSpinnerAdapter.setData(list.get(position).getmBottleModelList());
             ((ViewHolder) holder).mModelSpinnerAdapter.notifyDataSetChanged();
             ((ViewHolder) holder).mYearSpinnerAdapter.setData(list.get(position).getmBottleYearsList());
             ((ViewHolder) holder).mYearSpinnerAdapter.notifyDataSetChanged();
+            ((ViewHolder) holder).mLevelSpinnerAdapter.setData(list.get(position).getmBottleLevelList());
+            ((ViewHolder) holder).mLevelSpinnerAdapter.notifyDataSetChanged();
             ((ViewHolder) holder).mModelSpinner.setSelection(index);
             ((ViewHolder) holder).mYearsSpinner.setSelection(index2);
+            ((ViewHolder) holder).levelSpinner.setSelection(index3);
             ((ViewHolder) holder).tvSteelNum.setText(list.get(position).getBottleNum() + "");
-            ((ViewHolder) holder).tvAccount.setText(list.get(position).getDiscount()+ "");
+            ((ViewHolder) holder).tvAccount.setText(list.get(position).getDiscount() + "");
             ((ViewHolder) holder).tvReduce.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int selectBottleModeIndex = list.get(position).getSelectBottleModeIndex();
-                    int selectBottleModeYear = list.get(position).getSelectBottleYearsIndex();
                     if (list.get(position).getBottleNum() > 0) {
-                        list.get(position).setBottleNum(list.get(position).getBottleNum() - 1);
-                        ((ViewHolder) holder).tvSteelNum.setText(list.get(position).getBottleNum() + "");
-                        onExchangeRclClicklistener.onBottleNumChange(list.get(position).getBottleNum(), ((ViewHolder) holder).tvAccount,selectBottleModeIndex , selectBottleModeYear);
+                        onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()-1);
                     }
                 }
             });
@@ -89,21 +90,14 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     int selectBottleModeIndex = list.get(position).getSelectBottleModeIndex();
-                    int selectBottleModeYear = list.get(position).getSelectBottleYearsIndex();
                     int bottleNum = list.get(position).getBottleNum();
 
-                    if(selectBottleModeIndex == 0 && bottleNum < remainFive){
-                        list.get(position).setBottleNum(list.get(position).getBottleNum() + 1);
-                        ((ViewHolder) holder).tvSteelNum.setText(list.get(position).getBottleNum() + "");
-                        onExchangeRclClicklistener.onBottleNumChange(list.get(position).getBottleNum(), ((ViewHolder) holder).tvAccount,selectBottleModeIndex ,selectBottleModeYear );
-                    }else if(selectBottleModeIndex == 1 && bottleNum < remainFifteen){
-                        list.get(position).setBottleNum(list.get(position).getBottleNum() + 1);
-                        ((ViewHolder) holder).tvSteelNum.setText(list.get(position).getBottleNum() + "");
-                        onExchangeRclClicklistener.onBottleNumChange(list.get(position).getBottleNum(), ((ViewHolder) holder).tvAccount,selectBottleModeIndex ,selectBottleModeYear );
-                    }else if(selectBottleModeIndex == 2 && bottleNum < remainFifty){
-                        list.get(position).setBottleNum(list.get(position).getBottleNum() + 1);
-                        ((ViewHolder) holder).tvSteelNum.setText(list.get(position).getBottleNum() + "");
-                        onExchangeRclClicklistener.onBottleNumChange(list.get(position).getBottleNum(), ((ViewHolder) holder).tvAccount,selectBottleModeIndex ,selectBottleModeYear );
+                    if (selectBottleModeIndex == 0 && bottleNum < remainFive) {
+                        onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()+1);
+                    } else if (selectBottleModeIndex == 1 && bottleNum < remainFifteen) {
+                        onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()+1);
+                    } else if (selectBottleModeIndex == 2 && bottleNum < remainFifty) {
+                        onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()+1);
                     }
                 }
             });
@@ -111,7 +105,7 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int p, long id) {
                     list.get(position).setmSelectBottleModeIndex(p);
-                    onExchangeRclClicklistener.onSpinnerChange(p,list.get(position).getSelectBottleYearsIndex(),list.get(position).getBottleNum(),((ViewHolder) holder).tvAccount);
+                    onExchangeRclClicklistener.onSpinnerChange( position,((ViewHolder) holder).tvAccount,p, list.get(position).getSelectBottleYearsIndex(), list.get(position).getmSelectBottleLevelIndex(), list.get(position).getBottleNum());
                 }
 
                 @Override
@@ -123,7 +117,19 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int p, long id) {
                     list.get(position).setmSelectBottleYearsIndex(p);
-                    onExchangeRclClicklistener.onSpinnerChange(list.get(position).getSelectBottleModeIndex(),p,list.get(position).getBottleNum(),((ViewHolder) holder).tvAccount);
+                    onExchangeRclClicklistener.onSpinnerChange(position,((ViewHolder) holder).tvAccount,list.get(position).getSelectBottleModeIndex(), p, list.get(position).getmSelectBottleLevelIndex(), list.get(position).getBottleNum());
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+            ((ViewHolder) holder).levelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int p, long id) {
+                    list.get(position).setSelectBottleLevelIndex(p);
+                    onExchangeRclClicklistener.onSpinnerChange(position,((ViewHolder) holder).tvAccount,list.get(position).getSelectBottleModeIndex(), list.get(position).getSelectBottleYearsIndex(), p, list.get(position).getBottleNum());
                 }
 
                 @Override
@@ -150,17 +156,24 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
                     modelList.add("15kg");
                     modelList.add("50kg");
                     List<String> yearList = new ArrayList<>();
-                    yearList.add("1");
-                    yearList.add("2");
-                    yearList.add("3");
-                    yearList.add("4");
-                    yearList.add("5");
-                    yearList.add("6");
+                    yearList.add("2018");
+                    yearList.add("2017");
+                    yearList.add("2016");
+                    yearList.add("2015");
+                    yearList.add("2014");
+                    yearList.add("2013");
                     yearList.add("6年以上");
+                    List<String> levelList = new ArrayList<>();
+                    modelList.add("A");
+                    modelList.add("B");
+                    modelList.add("C");
+                    modelList.add("D");
                     data.setmBottleModelList(modelList);
                     data.setmBottleYearsList(yearList);
+                    data.setmBottleLevelList(levelList);
                     data.setmSelectBottleModeIndex(0);
                     data.setmSelectBottleYearsIndex(0);
+                    data.setSelectBottleLevelIndex(0);
                     data.setBottleNum(0);
                     data.setDiscount(0);
                     list.add(data);
@@ -177,9 +190,9 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
 
     public interface OnExchangeRclClicklistener {
 
-        void onBottleNumChange(int steelNum, TextView tvAccount, int modelSelectIndex, int yearSelectIndex);
+        void onBottleNumChange( int rclItemPosition,TextView tvAccount,TextView tvBottleNum ,int steelNum);
 
-        void onSpinnerChange(int modelIndex, int yearsIndex, int bottleNum, TextView tvAccount);
+        void onSpinnerChange(int rclItemPosition ,TextView tvAccount,int modelSelectIndex, int yearSelectIndex,int levelSelectIndex,int steelNum);
 
     }
 
@@ -192,19 +205,25 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
         TextView tvReduce;
         @BindView(R.id.exchange_steel_account)
         TextView tvAccount;
-        @BindView(R.id.exchange_steel_type_spinner)
+        @BindView(R.id.exchange_steel_weight_spinner)
         Spinner mModelSpinner;
         @BindView(R.id.exchange_steel_years_spinner)
         Spinner mYearsSpinner;
+        @BindView(R.id.exchange_steel_level_spinner)
+        Spinner levelSpinner;
         SpinnerAdapter mYearSpinnerAdapter;
         SpinnerAdapter mModelSpinnerAdapter;
+        SpinnerAdapter mLevelSpinnerAdapter;
 
         public ViewHolder(View v) {
             super(v);
+            ButterKnife.bind(this, v);
             mModelSpinnerAdapter = new SpinnerAdapter(activity);
             mYearSpinnerAdapter = new SpinnerAdapter(activity);
+            mLevelSpinnerAdapter = new SpinnerAdapter(activity);
             mModelSpinner.setAdapter(mModelSpinnerAdapter);
             mYearsSpinner.setAdapter(mYearSpinnerAdapter);
+            levelSpinner.setAdapter(mLevelSpinnerAdapter);
 
         }
     }
@@ -216,6 +235,16 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
 
         public ViewHolderFoot(View v) {
             super(v);
+            ButterKnife.bind(this, v);
         }
     }
+
+    public double getTotalDiscount() {
+        double totalDiscount = 0;
+        for (ExchangeRclBean itemBean : list) {
+            totalDiscount += itemBean.getDiscount();
+        }
+        return totalDiscount;
+    }
+
 }

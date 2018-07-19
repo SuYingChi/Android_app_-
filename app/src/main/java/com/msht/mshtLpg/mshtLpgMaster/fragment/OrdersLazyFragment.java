@@ -5,24 +5,25 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.fan.baselib.loadmore.AutoLoadMoreAdapter;
-import com.flyco.tablayout.SlidingTabLayout;
-import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.msht.mshtLpg.mshtLpgMaster.Bean.OrdersBean;
-import com.msht.mshtLpg.mshtLpgMaster.Present.IOrdersPresenter;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.OrdersListBeanV2;
+import com.msht.mshtLpg.mshtLpgMaster.Present.IOrdersListPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.activity.LoginActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.OrdersDetailActivity;
-import com.msht.mshtLpg.mshtLpgMaster.activity.SplashActivity;
-import com.msht.mshtLpg.mshtLpgMaster.adapter.OrdersFragmentRclAdapter;
+import com.msht.mshtLpg.mshtLpgMaster.activity.OrdersDetailFinishActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.OrdersDetailPayActivity;
+import com.msht.mshtLpg.mshtLpgMaster.adapter.OrdersListRclAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
@@ -31,37 +32,35 @@ import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yanzhenjie.permission.Permission;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, OnRefreshListener, OrdersFragmentRclAdapter.OnOrdersFragmentRclClicklistener, PermissionUtils.PermissionRequestFinishListener {
-    private IOrdersPresenter iOrdersPresenter;
+public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, OnRefreshListener, OrdersListRclAdapter.OnOrdersFragmentRclClicklistener, PermissionUtils.PermissionRequestFinishListener, OnLoadMoreListener {
+    private IOrdersListPresenter iOrdersListPresenter;
     @BindView(R.id.rcl_home_orders_fragment)
     RecyclerView rclHome;
     @BindView(R.id.refreshLayout_home_orders_fragment)
     SmartRefreshLayout refreshLayout;
     @BindView(R.id.tablayout_home_orders_fragment)
-    SlidingTabLayout tabLayout;
+    TabLayout tabLayout;
     @BindView(R.id.deliver_order)
     Button btnTab0;
     @BindView(R.id.recede_order)
     Button btnTab1;
 
 
-    private List<OrdersBean.DataBean.ListBean> list = new ArrayList<OrdersBean.DataBean.ListBean>();
-    private OrdersFragmentRclAdapter adapter;
+    private List<OrdersListBeanV2.DataBean.ListBean> list = new ArrayList<OrdersListBeanV2.DataBean.ListBean>();
+    private OrdersListRclAdapter adapter;
     private int ordersType;
     private int ordersStatus;
-    private AutoLoadMoreAdapter autoLoadMoreAdapter;
+    //private AutoLoadMoreAdapter autoLoadMoreAdapter;
     private int page;
     private final String[] tabTitles = {"全部", "待验瓶", "待付款", "已完成"};
     private String mobile;
@@ -74,31 +73,36 @@ public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, 
 
     @Override
     protected void initView() {
-        EventBus.getDefault().register(this);
-        ButterKnife.bind(this, mRootView);
-        iOrdersPresenter = new IOrdersPresenter(OrdersLazyFragment.this);
+
+        iOrdersListPresenter = new IOrdersListPresenter(OrdersLazyFragment.this);
         rclHome.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        refreshLayout.setEnableLoadMore(false);
+        refreshLayout.setEnableAutoLoadMore(true);
         refreshLayout.setOnRefreshListener(this);
+        refreshLayout.setOnLoadMoreListener(this);
         initTopTab(SharePreferenceUtil.getLoginSpIntValue(Constants.HOME_TOP_CITEM));
         for (String title : tabTitles) {
-            tabLayout.addNewTab(title);
+            tabLayout.addTab(tabLayout.newTab().setText(title));
         }
-        tabLayout.setOnTabSelectListener(new OnTabSelectListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onTabSelect(int position) {
-                ordersStatus = position;
+            public void onTabSelected(TabLayout.Tab tab) {
+                ordersStatus = tab.getPosition();
                 SharePreferenceUtil.setLoginSpIntValue(Constants.HOME_ORDERS_SCHEDULE_CITEM, ordersStatus);
 
                 onRefresh(refreshLayout);
             }
 
             @Override
-            public void onTabReselect(int position) {
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
-        tabLayout.setCurrentTab(SharePreferenceUtil.getLoginSpIntValue(Constants.HOME_ORDERS_SCHEDULE_CITEM));
+        tabLayout.getTabAt(SharePreferenceUtil.getLoginSpIntValue(Constants.HOME_ORDERS_SCHEDULE_CITEM)).select();
         ordersStatus = SharePreferenceUtil.getLoginSpIntValue(Constants.HOME_ORDERS_SCHEDULE_CITEM);
     }
 
@@ -153,9 +157,9 @@ public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, 
 
     @Override
     protected void initData() {
-        adapter = new OrdersFragmentRclAdapter(list, getActivity(), this);
-        autoLoadMoreAdapter = new AutoLoadMoreAdapter(getContext(), adapter);
-        autoLoadMoreAdapter.setOnLoadListener(new AutoLoadMoreAdapter.OnLoadListener() {
+        adapter = new OrdersListRclAdapter(list, getActivity(), this);
+        //autoLoadMoreAdapter = new AutoLoadMoreAdapter(getContext(), adapter);
+      /*  autoLoadMoreAdapter.setOnLoadListener(new AutoLoadMoreAdapter.OnLoadListener() {
             @Override
             public void onRetry() {
 
@@ -164,13 +168,14 @@ public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, 
             @Override
             public void onLoadMore() {
                 page++;
-                iOrdersPresenter.getOrders();
+                Log.d("suyingchi", "onLoadMore: page = "+page);
+                iOrdersListPresenter.getOrders();
             }
-        });
-        rclHome.setAdapter(autoLoadMoreAdapter);
-        ((DefaultItemAnimator) rclHome.getItemAnimator()).setSupportsChangeAnimations(false);
-
-        onRefresh(refreshLayout);
+        });*/
+       // rclHome.setAdapter(autoLoadMoreAdapter);
+        rclHome.setAdapter(adapter);
+        page = 1;
+        iOrdersListPresenter.getOrders();
     }
 
 
@@ -190,39 +195,35 @@ public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, 
     }
 
     @Override
-    public void onGetOrdersSuccess(OrdersBean ordersBean) {
-        refreshLayout.finishRefresh(1000);
+    public void onGetOrdersSuccess(OrdersListBeanV2 ordersBean) {
+        refreshLayout.finishRefresh();
         if (page == 1) {
             list.clear();
-        } else {
-            autoLoadMoreAdapter.finishLoading();
         }
-
-        if (page == ordersBean.getData().getPage().getPages()) {
-            autoLoadMoreAdapter.disable();
-        } else {
-            autoLoadMoreAdapter.enable();
-        }
+        refreshLayout.finishLoadMore();
         list.addAll(ordersBean.getData().getList());
-        autoLoadMoreAdapter.notifyDataSetChanged();
+        Log.d("suyingchi", "onGetOrdersSuccess: page = "+page+"getPageSize===="+ordersBean.getData().getPage().getPages());
+        if (page == ordersBean.getData().getPage().getPageSize()) {
+            refreshLayout.setEnableAutoLoadMore(false);
+        } else {
+            refreshLayout.setEnableAutoLoadMore(true);
+        }
+        adapter.notifyDataSetChanged();
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         page = 1;
-        iOrdersPresenter.getOrders();
+        iOrdersListPresenter.getOrders();
     }
 
     @Override
     public void onError(String s) {
         super.onError(s);
         refreshLayout.finishRefresh();
-        autoLoadMoreAdapter.finishLoading();
+        //autoLoadMoreAdapter.finishLoading();
+        refreshLayout.finishLoadMore();
         switch (s) {
-            case "未登录":
-                Intent goLogin = new Intent(this.getActivity(), LoginActivity.class);
-                startActivity(goLogin);
-                break;
             case "未知的订单状态":
                 break;
 
@@ -240,11 +241,26 @@ public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, 
         PermissionUtils.requestPermissions(getContext(), this, Permission.CALL_PHONE);
     }
 
+
+
     @Override
-    public void onClckOrderButton(int orderId) {
-        Intent intent = new Intent(getActivity(), OrdersDetailActivity.class);
-        intent.putExtra("orderId", orderId);
-        startActivity(intent);
+    public void onClckOrderButton(int orderId,int orderType) {
+        if(orderType==0){
+            Intent intent = new Intent(getActivity(), OrdersDetailActivity.class);
+            intent.putExtra(Constants.ORDER_ID, orderId);
+            intent.putExtra("starttype",2);
+            startActivity(intent);
+        }else if(orderType==1){
+            Intent intent = new Intent(getActivity(), OrdersDetailPayActivity.class);
+            intent.putExtra(Constants.ORDER_ID, orderId);
+            intent.putExtra("starttype",2);
+            startActivity(intent);
+        }else if(orderType==2){
+            Intent intent = new Intent(getActivity(), OrdersDetailFinishActivity.class);
+            intent.putExtra(Constants.ORDER_ID, orderId);
+            intent.putExtra("starttype",2);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -273,4 +289,10 @@ public class OrdersLazyFragment extends BaseLazyFragment implements IOrderView, 
 
     }
 
+    @Override
+    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+        page++;
+        Log.d("suyingchi", "onLoadMore: page = "+page);
+        iOrdersListPresenter.getOrders();
+    }
 }

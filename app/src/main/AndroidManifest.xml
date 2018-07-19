@@ -40,6 +40,7 @@
             />
         <activity android:name=".activity.OrdersDetailActivity"/>
         <activity android:name=".activity.ScanCodeDeliverSteelBottleActivity"/>
+        <activity android:name=".activity.OrdersDetailPostActivity"/>
     </application>
 
 </manifest>
