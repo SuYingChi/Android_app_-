@@ -27,8 +27,6 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
     TopBarView topBarView;
     @BindView(R.id.rcl_exchange_steel_bottle)
     RecyclerView recyclerView;
-    @BindView(R.id.discount_cost)
-    TextView textView;
     @BindView(R.id.discount_save_btn)
     TextView saveBtn;
     @BindView(R.id.discount_cost)
