@@ -410,11 +410,10 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
     public String getReplaceBottleStr() {
         StringBuffer stringBuffer = new StringBuffer();
         for(int i=0;i<exchangeList.size();i++){
-           int level =  exchangeList.get(i).getmSelectBottleLevelIndex();
+           int levelIndex =  exchangeList.get(i).getmSelectBottleLevelIndex();
            int modelIndex = exchangeList.get(i).getSelectBottleModeIndex();
-           int yearIndex = exchangeList.get(i).getSelectBottleYearsIndex();
+           int year = exchangeList.get(i).getSelectBottleYearsIndex();
            int weight= 0;
-           String year = "";
            int num = exchangeList.get(i).getBottleNum();
            switch (modelIndex){
                 case 0:
@@ -428,29 +427,20 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
                     break;
                 default:break;
             }
-            switch (yearIndex){
+            String level="";
+            switch (levelIndex){
                 case 0:
-                    year = "2018";
+                    level = "A";
                     break;
                 case 1:
-                    year = "2017";
+                    level = "B";
                     break;
                 case 2:
-                    year = "2016";
+                    level = "C";
                     break;
                 case 3:
-                    year = "2015";
+                    level = "D";
                     break;
-                case 4:
-                    year = "2014";
-                    break;
-                case 5:
-                    year = "2013";
-                    break;
-                case 6:
-                    year = "6年以上";
-                    break;
-
                 default:break;
             }
             if(i==0){

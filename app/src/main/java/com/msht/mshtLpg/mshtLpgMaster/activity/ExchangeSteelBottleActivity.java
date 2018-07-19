@@ -43,7 +43,7 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
     private ExchangeBottleRclAdapter myAdapter;
     private int weight;
     private String year;
-    private int corrosionType;
+    private String corrosionType;
     private double steelNum;
     private int rclItemPosition;
     private TextView tvItemAccount;
@@ -124,32 +124,22 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
                 break;
             default:break;
         }
-        switch (yearSelectIndex){
+        switch (levelSelectIndex){
             case 0:
-                year = "2018";
+                corrosionType = "A";
                 break;
             case 1:
-                year = "2017";
+                corrosionType = "B";
                 break;
             case 2:
-                year = "2016";
+                corrosionType = "C";
                 break;
             case 3:
-                year = "2015";
+                corrosionType = "D";
                 break;
-            case 4:
-                year = "2014";
-                break;
-            case 5:
-                year = "2013";
-                break;
-            case 6:
-                year = "6年以上";
-                break;
-
             default:break;
         }
-        corrosionType = levelSelectIndex;
+        year = yearSelectIndex+"";
         this.steelNum = steelNum;
         this.rclItemPosition = rclItemPosition;
         this.tvItemAccount = tvAccount;
@@ -159,9 +149,8 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
     //访问后台折价接口
     @Override
     public void onGetReplacePriceSuccess(BottleReplacePriceBean bean) {
-        //解析拿到数据
-        bottlePrice = 10;
 
+        bottlePrice = bean.getData().getBottlePrice();
         double itemDiscount = bottlePrice * steelNum;
         //在适配器那边已经刷新spinner的选中数据源
         dataList.get(rclItemPosition).setDiscount(itemDiscount);
@@ -182,7 +171,7 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
 
     @Override
     public String getCorrosionType() {
-        return corrosionType +"";
+        return corrosionType;
     }
 
 
