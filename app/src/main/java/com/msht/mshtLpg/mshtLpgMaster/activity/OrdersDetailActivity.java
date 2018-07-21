@@ -62,7 +62,7 @@ public class OrdersDetailActivity extends BaseActivity implements IOrderDetailVi
     TextView tvOrderId;
     @BindView(R.id.deliver_fee)
     TextView deliverFee;
-    private int orderId;
+    private String orderId;
     private IOrderDetailPresenter iOrderDetailPresenter;
     private OrderDetailBean bean;
 
@@ -72,7 +72,7 @@ public class OrdersDetailActivity extends BaseActivity implements IOrderDetailVi
         setContentView(R.layout.orders_detail_layout_deliver_steel_bottle);
         ButterKnife.bind(this);
         Intent intent = getIntent();
-        orderId = intent.getIntExtra(Constants.ORDER_ID, 0);
+        orderId = intent.getStringExtra(Constants.ORDER_ID);
         iOrderDetailPresenter = new IOrderDetailPresenter(this);
         iOrderDetailPresenter.getOrderDetail();
     }
@@ -108,17 +108,18 @@ public class OrdersDetailActivity extends BaseActivity implements IOrderDetailVi
         tvTime.setText(bean.getData().getAppointmentTime());
         tvComment.setText(bean.getData().getRemarks());
         tvOrderId.setText(bean.getData().getOrderId()+"");
-        fiveFee.setText(bean.getData().getFiveBottleCount() * bean.getData().getFiveGasFee()+"");
-        fifteenFee.setText(bean.getData().getFifteenBottleCount() * bean.getData().getFifteenGasFee()+"");
-        fiftyFee.setText(bean.getData().getFiftyBottleCount() * bean.getData().getFiftyGasFee()+"");
+        fiveFee.setText(bean.getData().getFiveBottleCount() +"");
+        fifteenFee.setText(bean.getData().getFifteenBottleCount() +"");
+        fiftyFee.setText(bean.getData().getFiftyBottleCount() +"");
         deliverFee.setText(bean.getData().getFiveBottleCount()*bean.getData().getFiveDeliveryFee()+bean.getData().getFifteenBottleCount()*bean.getData().getFifteenDeliveryFee()+bean.getData().getFiftyBottleCount()*bean.getData().getFiftyDeliveryFee()+"");
-        totalFee.setText(String.valueOf(Integer.valueOf(fiveFee.getText().toString())+Integer.valueOf(fifteenFee.getText().toString())+Integer.valueOf(fiftyFee.getText().toString())));
+        //totalFee.setText(String.valueOf(Integer.valueOf(fiveFee.getText().toString())+Integer.valueOf(fifteenFee.getText().toString())+Integer.valueOf(fiftyFee.getText().toString())));
+        totalFee.setText(bean.getData().getRealAmount()+"");
         dispatchOrdersTime.setText(bean.getData().getCreateDate());
     }
 
     @Override
     public String getOrderId() {
-        return orderId+"";
+        return orderId;
     }
 
     @Override

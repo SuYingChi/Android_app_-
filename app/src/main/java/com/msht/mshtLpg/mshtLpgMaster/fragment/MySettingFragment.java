@@ -5,6 +5,7 @@ import com.msht.mshtLpg.mshtLpgMaster.R;
 public class MySettingFragment extends BaseLazyFragment{
     @Override
     protected int setLayoutId() {
-        return R.layout.fragment_my_setting_temp;
+        return R.layout.my_setting_fragment_layout;
     }
+
 }

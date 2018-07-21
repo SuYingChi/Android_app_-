@@ -1,7 +1,7 @@
 package com.msht.mshtLpg.mshtLpgMaster.Present;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.GetPayQRCodeBean;
-import com.msht.mshtLpg.mshtLpgMaster.Bean.GetQRcodeErrorBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.GetPayQRErrorBean;
 import com.msht.mshtLpg.mshtLpgMaster.callback.DataStringCallback;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
@@ -25,11 +25,21 @@ public class GetQRcodeImageUrlPresenter {
                 super.onResponse(s, i);
                 if (s.contains("success")) {
                     GetPayQRCodeBean bean = GsonUtil.getGson().fromJson(s, GetPayQRCodeBean.class);
-                    iGetPayQRcodeView.onGetQRCodeImageURLSuccess(bean);
+                  iGetPayQRcodeView.getHandler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            iGetPayQRcodeView.onGetQRCodeImageURLSuccess(bean);
+                        }
+                    });
 
                 } else if (s.contains("error")&&s.contains("生成二维码失败")) {
-                  GetQRcodeErrorBean bean= GsonUtil.getGson().fromJson(s,GetQRcodeErrorBean.class);
-                  iGetPayQRcodeView.onGetQRCodeImageError(bean);
+                  GetPayQRErrorBean bean= GsonUtil.getGson().fromJson(s,GetPayQRErrorBean.class);
+                 /*   iGetPayQRcodeView.getHandler().post(new Runnable() {
+                        @Override
+                        public void run() {*/
+                            iGetPayQRcodeView.onGetQRCodeImageURLError(bean);
+                    /*    }
+                    });*/
                 }
             }
 

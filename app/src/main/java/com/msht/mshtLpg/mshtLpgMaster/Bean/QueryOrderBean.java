@@ -65,13 +65,13 @@ public class QueryOrderBean {
         private String mobile;
         private int retrieveAmount;
         private String deliveryTime;
-        private int realAmount;
+        private  Double realAmount;
         private int orderStatus;
         private int fiveBottleCount;
         private int fifteenBottleCount;
         private int fiftyBottleCount;
-        private int depositAmount;
-        private int deliveryAmount;
+        private Double depositAmount;
+        private Double deliveryAmount;
         private int orderId;
         private String createDate;
 
@@ -139,11 +139,11 @@ public class QueryOrderBean {
             this.deliveryTime = deliveryTime;
         }
 
-        public int getRealAmount() {
+        public Double getRealAmount() {
             return realAmount;
         }
 
-        public void setRealAmount(int realAmount) {
+        public void setRealAmount(Double realAmount) {
             this.realAmount = realAmount;
         }
 
@@ -179,19 +179,19 @@ public class QueryOrderBean {
             this.fiftyBottleCount = fiftyBottleCount;
         }
 
-        public int getDepositAmount() {
+        public Double getDepositAmount() {
             return depositAmount;
         }
 
-        public void setDepositAmount(int depositAmount) {
+        public void setDepositAmount(Double depositAmount) {
             this.depositAmount = depositAmount;
         }
 
-        public int getDeliveryAmount() {
+        public Double getDeliveryAmount() {
             return deliveryAmount;
         }
 
-        public void setDeliveryAmount(int deliveryAmount) {
+        public void setDeliveryAmount(Double deliveryAmount) {
             this.deliveryAmount = deliveryAmount;
         }
 

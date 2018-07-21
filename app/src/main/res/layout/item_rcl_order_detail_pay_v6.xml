@@ -28,7 +28,7 @@
         android:id="@+id/item_rcl_order_detail_pay_v6_discount"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="170"
+        android:text=""
         android:textColor="@color/green"
         android:textSize="@dimen/text_nomal" />
 </LinearLayout>

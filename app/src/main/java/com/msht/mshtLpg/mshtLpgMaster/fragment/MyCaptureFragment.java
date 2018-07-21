@@ -98,11 +98,9 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
     private int orderFifteenNum = 0;
     private int orderFiftyNum = 0;
     protected OrderDetailBean bean;
-    private int remainFive = 0;
-    private int remainFifteen = 0;
-    private int remainFifty = 0;
     private int fragmentType;
     private ScanCodeDeliverSteelBottleActivity activity;
+    private String verifyType="";
 
 
     @Override
@@ -113,13 +111,15 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
         if (bundle != null) {
             fragmentType = bundle.getInt(Constants.SCANFRAGMENT_TYPE);
             if (fragmentType == 1) {
+                verifyType = "2";
                 orderFiveNum = bundle.getInt(Constants.ORDER_FIVE_NUM, 0);
                 orderFifteenNum = bundle.getInt(Constants.ORDER_FIFTEEN_NUM, 0);
                 orderFiftyNum = bundle.getInt(Constants.ORDER_FIFTY_NUM, 0);
             } else if (fragmentType == 2) {
-                remainFive = bundle.getInt(Constants.REMAIN_FIVE_NUM);
-                remainFifteen = bundle.getInt(Constants.REMAIN_FIFTEEN_NUM);
-                remainFifty = bundle.getInt(Constants.REMAIN_FIFTY_NUM);
+                verifyType = "3";
+                orderFiveNum = bundle.getInt(Constants.ORDER_FIVE_NUM, 0);
+                orderFifteenNum = bundle.getInt(Constants.ORDER_FIFTEEN_NUM, 0);
+                orderFiftyNum = bundle.getInt(Constants.ORDER_FIFTY_NUM, 0);
             } else {
                 return;
             }
@@ -241,7 +241,7 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
         playBeepSoundAndVibrate();
         String bottleUrl = result.getText();
         int index = bottleUrl.indexOf("id=");
-        bottleCode = bottleUrl.substring(index + 3);
+        bottleCode = bottleUrl.substring(index + 3).trim();
         PopUtil.toastInBottom(result.getText());
         iScanbottleCodePresenter.queryBottleByQRCode();
     }
@@ -369,30 +369,34 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
         }else if(fragmentType == 1) {
              if (verifyBottleBean.getData().getBottleWeight() == 5&&BottleCaculteUtil.getBottleNum(list,5) >= orderFiveNum ) {
                 PopUtil.toastInBottom("5kg钢瓶已达到订单数");
-            } else if (verifyBottleBean.getData().getBottleWeight() == 15&&BottleCaculteUtil.getBottleNum(list,15) >= orderFiveNum) {
+            } else if (verifyBottleBean.getData().getBottleWeight() == 15&&BottleCaculteUtil.getBottleNum(list,15) >= orderFifteenNum) {
                 PopUtil.toastInBottom("15kg钢瓶已达到订单数");
-            } else if (verifyBottleBean.getData().getBottleWeight() == 50&&BottleCaculteUtil.getBottleNum(list,50) >= orderFiveNum) {
+            } else if (verifyBottleBean.getData().getBottleWeight() == 50&&BottleCaculteUtil.getBottleNum(list,50) >= orderFiftyNum) {
                 PopUtil.toastInBottom("50kg钢瓶已达到订单数");
-            } else {
+            } else if(verifyBottleBean.getData().getIsHeavy()== 0){
                 list.add(verifyBottleBean);
                 adapter.notifyDataSetChanged();
                 fiveBottleNumber.setText(String.format("%d",BottleCaculteUtil.getBottleNum(list,5)));
                 fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list,15)));
                 fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list,50)));
-            }
+            }else {
+                 PopUtil.toastInBottom("不能交付空瓶");
+             }
         }else if(fragmentType == 2){
-            if (verifyBottleBean.getData().getBottleWeight() == 5&&BottleCaculteUtil.getBottleNum(empList,5) >= remainFive ) {
+            if (verifyBottleBean.getData().getBottleWeight() == 5&&BottleCaculteUtil.getBottleNum(empList,5) >= orderFiveNum ) {
                 PopUtil.toastInBottom("5kg钢瓶已达到订单数");
-            } else if (verifyBottleBean.getData().getBottleWeight() == 15&&BottleCaculteUtil.getBottleNum(empList,15) >= remainFifteen) {
+            } else if (verifyBottleBean.getData().getBottleWeight() == 15&&BottleCaculteUtil.getBottleNum(empList,15) >= orderFifteenNum) {
                 PopUtil.toastInBottom("15kg钢瓶已达到订单数");
-            } else if (verifyBottleBean.getData().getBottleWeight() == 50&&BottleCaculteUtil.getBottleNum(empList,50) >= remainFifty) {
+            } else if (verifyBottleBean.getData().getBottleWeight() == 50&&BottleCaculteUtil.getBottleNum(empList,50) >= orderFiftyNum) {
                 PopUtil.toastInBottom("50kg钢瓶已达到订单数");
-            } else {
+            } else if(verifyBottleBean.getData().getIsHeavy()== 1){
                 empList.add(verifyBottleBean);
                 adapter.notifyDataSetChanged();
                 fiveBottleNumber.setText(String.format("%d",BottleCaculteUtil.getBottleNum(empList,5)));
                 fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(empList,15)));
                 fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(empList,50)));
+            }else {
+                PopUtil.toastInBottom("不能回收重瓶");
             }
         }
         Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
@@ -416,6 +420,12 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
     @Override
     public int getFragmentType() {
         return fragmentType;
+    }
+
+    @Override
+    public String getVerifyType() {
+
+        return verifyType;
     }
 
     public interface CameraInitCallBack {

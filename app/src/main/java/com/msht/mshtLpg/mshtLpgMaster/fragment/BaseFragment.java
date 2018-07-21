@@ -91,4 +91,9 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
         if (mImmersionBar != null)
             mImmersionBar.destroy();
     }
+
+    @Override
+    public String getOrderType() {
+        return SharePreferenceUtil.getInstance().getOrderType();
+    }
 }

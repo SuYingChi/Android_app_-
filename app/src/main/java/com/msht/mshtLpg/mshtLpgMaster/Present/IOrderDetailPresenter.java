@@ -18,7 +18,7 @@ public class IOrderDetailPresenter {
     }
 
     public void getOrderDetail() {
-        OkHttpUtils.get().url(Constants.ORDER_DETAIL).addParams("id", iOrderDetailView.getOrderId() + "")
+        OkHttpUtils.get().url(Constants.ORDER_DETAIL).addParams("id", iOrderDetailView.getOrderId())
                 .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iOrderDetailView.getToken()).build().execute(new DataStringCallback(iOrderDetailView) {
             @Override
             public void onResponse(String s, int i) {

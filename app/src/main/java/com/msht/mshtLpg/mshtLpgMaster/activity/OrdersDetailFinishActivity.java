@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
+import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
@@ -91,43 +92,39 @@ public class OrdersDetailFinishActivity extends BaseActivity  implements IOrderD
     private String room;
     private int isElevator;
     private String orderId;
-    private int fiveGasFee;
-    private int fifteenGasFee;
-    private int fiftyGasFee;
-    private int totalGas;
+    private double fiveGasFee;
+    private double fifteenGasFee;
+    private double fiftyGasFee;
+    private double totalGas;
     private int remain5;
-    private int fiveTotalDeposite;
+    private double fiveTotalDeposite;
     private int remain15;
-    private int fifteenteenTotalDeposite;
+    private double fifteenteenTotalDeposite;
     private int remain50;
-    private int fiftyTotalDeposite;
-    private int totalDeposite;
-    private int fiveDeliveryFee;
-    private int fifteenDeliveryFee;
-    private int fiftyDeliveryFee;
-    private int totalFiveDelivery;
-    private int totalFifteenDelivery;
-    private int totalFiftyDelivery;
-    private int totalDeliveryfare;
-    private int exchange;
-    private int totalfare;
+    private double fiftyTotalDeposite;
+    private double totalDeposite;
+    private double fiveDeliveryFee;
+    private double fifteenDeliveryFee;
+    private double fiftyDeliveryFee;
+    private double totalFiveDelivery;
+    private double totalFifteenDelivery;
+    private double totalFiftyDelivery;
+    private double totalDeliveryfare;
+    private double exchange;
+    private double totalfare;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.orders_finish);
         ButterKnife.bind(this);
+        Intent intent = getIntent();
+        orderId = intent.getStringExtra(Constants.ORDER_ID);
         new IOrderDetailPresenter(this).getOrderDetail();
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-            }
-        });
-        callBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PermissionUtils.requestPermissions(OrdersDetailFinishActivity.this, OrdersDetailFinishActivity.this, Permission.CALL_PHONE);
             }
         });
     }
@@ -213,6 +210,12 @@ public class OrdersDetailFinishActivity extends BaseActivity  implements IOrderD
         tvDiscount.setText(exchange + "");
         totalfare = totalGas+totalDeposite+totalDeliveryfare-exchange;
         tvPayAmount.setText(totalfare+"");
+        callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PermissionUtils.requestPermissions(OrdersDetailFinishActivity.this, OrdersDetailFinishActivity.this, Permission.CALL_PHONE);
+            }
+        });
     }
 
     @Override

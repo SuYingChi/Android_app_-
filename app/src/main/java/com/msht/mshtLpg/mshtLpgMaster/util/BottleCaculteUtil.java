@@ -20,17 +20,6 @@ public class BottleCaculteUtil {
         return num;
     }
 
-    public static void setRemian5(int remian5) {
-        BottleCaculteUtil.remian5 = remian5;
-    }
-
-    public static void setRemian15(int remian15) {
-        BottleCaculteUtil.remian15 = remian15;
-    }
-
-    public static void setRemian50(int remian50) {
-        BottleCaculteUtil.remian50 = remian50;
-    }
   /*  public static int getExchangeBottleFare(List<BottleReplacePriceBean.DataBean> list,int year,int weight,int level){
         for(BottleReplacePriceBean.DataBean dataBean:list){
 

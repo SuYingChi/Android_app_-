@@ -42,7 +42,6 @@ public class ExchangeReviewActivity extends BaseActivity implements IExchangeRev
         orderId = intent.getStringExtra(Constants.ORDER_ID);
         iExchangeReviewPresenter = new IExchangeReviewPresenter(this);
         iExchangeReviewPresenter.getExchangeReview();
-        initView();
     }
 
     private void initView() {
@@ -62,7 +61,7 @@ public class ExchangeReviewActivity extends BaseActivity implements IExchangeRev
     @Override
     public void onGetExchangeReviewSuccess(ExchangeReviewBean bean) {
         dataList.addAll(bean.getData());
-        myAdapter.notifyDataSetChanged();
+        initView();
     }
 
     @Override

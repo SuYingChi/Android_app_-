@@ -17,7 +17,7 @@ public class GetOrderStatusPresenter {
     }
 
     public void getOrderStatus() {
-        OkHttpUtils.get().url(Constants.QUERY_ORDER_DETAIL_BY_ORDER_ID).addParams("id", iGetPayQRcodeView.getId())
+        OkHttpUtils.get().url(Constants.QUERY_ORDER_DETAIL_BY_ORDER_ID).addParams("id", iGetPayQRcodeView.getOrderId())
                 .addParams("orderType",iGetPayQRcodeView.getOrderType()).build().execute(new DataStringCallback(iGetPayQRcodeView) {
             @Override
             public void onResponse(String s, int i) {
@@ -25,7 +25,13 @@ public class GetOrderStatusPresenter {
                 super.onResponse(s, i);
                     QueryOrderBean bean = GsonUtil.getGson().fromJson(s, QueryOrderBean.class);
                     if(TextUtils.equals(bean.getResult(),"success")){
-                        iGetPayQRcodeView.onGetOrderStatusSuccess(bean);
+
+                       iGetPayQRcodeView.getHandler().post(new Runnable() {
+                           @Override
+                           public void run() {
+                               iGetPayQRcodeView.onGetOrderStatusSuccess(bean);
+                          }
+                       }) ;
                     }
             }
 

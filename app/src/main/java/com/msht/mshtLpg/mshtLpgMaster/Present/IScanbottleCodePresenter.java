@@ -18,13 +18,13 @@ public class IScanbottleCodePresenter {
 
     public void queryBottleByQRCode() {
         OkHttpUtils.get().url(Constants.VERIFY_BOTTLE_BY_QR_CODE).addParams(Constants.URL_PARAMS_BOTTLE_CODE,iScanCodeDeliverSteelBottleView.getBottleCode()).
-                addParams(Constants.URL_PARAMS_VERIFYTYPE,"1").addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iScanCodeDeliverSteelBottleView.getToken()).build().execute(new DataStringCallback(iScanCodeDeliverSteelBottleView) {
+                addParams(Constants.URL_PARAMS_VERIFYTYPE,iScanCodeDeliverSteelBottleView.getVerifyType()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iScanCodeDeliverSteelBottleView.getToken()).build().execute(new DataStringCallback(iScanCodeDeliverSteelBottleView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
                 VerifyBottleBean bean = GsonUtil.getGson().fromJson(s, VerifyBottleBean.class);
-                if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "failed")) {
+                if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
                     iScanCodeDeliverSteelBottleView.onError(bean.getMsg());
 
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {

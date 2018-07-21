@@ -19,7 +19,10 @@ public class IOrderDetailPostPresenter {
         this.iOrderDetailPostView = iOrderDetailPostView;
     }
     public void postOrders(){
-        OkHttpUtils.get().url(Constants.POST_ORDER).addParams(Constants.ORDER_ID, iOrderDetailPostView.getOrderId() )
+   /*    String i = iOrderDetailPostView.getReFiveBottleCount();
+        iOrderDetailPostView.getIsDelivery();*/
+        OkHttpUtils.get().url(Constants.POST_ORDER).addParams(Constants.ORDER_ID, iOrderDetailPostView.getOrderId())
+                .addParams(Constants.URL_PARAMS_ORDER_TYPE,iOrderDetailPostView.getOrderType())
                 .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iOrderDetailPostView.getToken())
                 .addParams(Constants.IS_DELIVERY,iOrderDetailPostView.getIsDelivery())
                 .addParams(Constants.reFiveBottleCount,iOrderDetailPostView.getReFiveBottleCount())

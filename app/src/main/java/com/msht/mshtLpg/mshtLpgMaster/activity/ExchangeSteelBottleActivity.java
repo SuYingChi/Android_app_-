@@ -34,9 +34,8 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
     private int remainFive;
     private int remainFifteen;
     private int remainFifty;
-    private ArrayList<ExchangeRclBean> dataList = new ArrayList<>();
+    private ArrayList<ExchangeRclBean> dataList = new ArrayList<ExchangeRclBean>();
     private IExchangeSteelBottlePresenter iExchangeSteelBottlePresenter;
-    private int discount;
     private double bottlePrice = 0;
     private ExchangeBottleRclAdapter myAdapter;
     private int weight;
@@ -60,17 +59,23 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
     }
 
     private void initView() {
-        topBarView.setLeftBtnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
         myAdapter = new ExchangeBottleRclAdapter(dataList, this, this, remainFive, remainFifteen, remainFifty);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(myAdapter);
+        topBarView.setLeftBtnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("exchangelist", dataList);
+                intent.putExtras(bundle);
+                intent.putExtra(Constants.EXCHANGE_FEE, myAdapter.getTotalDiscount());
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +84,7 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("exchangelist", dataList);
                 intent.putExtras(bundle);
-                intent.putExtra(Constants.EXCHANGE_FEE, discount);
+                intent.putExtra(Constants.EXCHANGE_FEE, myAdapter.getTotalDiscount());
                 setResult(RESULT_OK, intent);
                 finish();
             }
@@ -99,9 +104,6 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
         tvTotalDiscount.setText(myAdapter.getTotalDiscount()+"");
     }
 
-    private Double getItemDiscountOnSpinnerChange(int modelSelectIndex, int yearSelectIndex,int levelSelectIndex,int steelNum) {
-     return null;
-    }
     private Double getItemDiscountOnBottleNumChange(int steelNum) {
         return bottlePrice*steelNum;
     }
@@ -137,7 +139,7 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
                 break;
             default:break;
         }
-        year = yearSelectIndex+"";
+        year = yearSelectIndex+1+"";
         this.steelNum = steelNum;
         this.rclItemPosition = rclItemPosition;
         this.tvItemAccount = tvAccount;

@@ -98,16 +98,16 @@ public class OrderDetailBean  {
         private int fiveBottleCount;
         private int fifteenBottleCount;
         private int fiftyBottleCount;
-        private int fiveGasFee;
-        private int fifteenGasFee;
-        private int fiftyGasFee;
-        private int fiveDeliveryFee;
-        private int fifteenDeliveryFee;
-        private int fiftyDeliveryFee;
-        private int fiveDepositFee;
-        private int fifteenDepositFee;
-        private int fiftyDepositFee;
-        private int retrieveAmount;
+        private double fiveGasFee;
+        private double fifteenGasFee;
+        private double fiftyGasFee;
+        private double fiveDeliveryFee;
+        private double fifteenDeliveryFee;
+        private double fiftyDeliveryFee;
+        private double fiveDepositFee;
+        private double fifteenDepositFee;
+        private double fiftyDepositFee;
+        private double retrieveAmount;
         private double realAmount;
 
         public int getReFiveBottleCount() {
@@ -322,79 +322,79 @@ public class OrderDetailBean  {
             this.fiftyBottleCount = fiftyBottleCount;
         }
 
-        public int getFiveGasFee() {
+        public double getFiveGasFee() {
             return fiveGasFee;
         }
 
-        public void setFiveGasFee(int fiveGasFee) {
+        public void setFiveGasFee(double fiveGasFee) {
             this.fiveGasFee = fiveGasFee;
         }
 
-        public int getFifteenGasFee() {
+        public double getFifteenGasFee() {
             return fifteenGasFee;
         }
 
-        public void setFifteenGasFee(int fifteenGasFee) {
+        public void setFifteenGasFee(double fifteenGasFee) {
             this.fifteenGasFee = fifteenGasFee;
         }
 
-        public int getFiftyGasFee() {
+        public double getFiftyGasFee() {
             return fiftyGasFee;
         }
 
-        public void setFiftyGasFee(int fiftyGasFee) {
+        public void setFiftyGasFee(double fiftyGasFee) {
             this.fiftyGasFee = fiftyGasFee;
         }
 
-        public int getFiveDeliveryFee() {
+        public double getFiveDeliveryFee() {
             return fiveDeliveryFee;
         }
 
-        public void setFiveDeliveryFee(int fiveDeliveryFee) {
+        public void setFiveDeliveryFee(double fiveDeliveryFee) {
             this.fiveDeliveryFee = fiveDeliveryFee;
         }
 
-        public int getFifteenDeliveryFee() {
+        public double getFifteenDeliveryFee() {
             return fifteenDeliveryFee;
         }
 
-        public void setFifteenDeliveryFee(int fifteenDeliveryFee) {
+        public void setFifteenDeliveryFee(double fifteenDeliveryFee) {
             this.fifteenDeliveryFee = fifteenDeliveryFee;
         }
 
-        public int getFiftyDeliveryFee() {
+        public double getFiftyDeliveryFee() {
             return fiftyDeliveryFee;
         }
 
-        public void setFiftyDeliveryFee(int fiftyDeliveryFee) {
+        public void setFiftyDeliveryFee(double fiftyDeliveryFee) {
             this.fiftyDeliveryFee = fiftyDeliveryFee;
         }
 
-        public int getFiveDepositFee() {
+        public double getFiveDepositFee() {
             return fiveDepositFee;
         }
 
-        public void setFiveDepositFee(int fiveDepositFee) {
+        public void setFiveDepositFee(double fiveDepositFee) {
             this.fiveDepositFee = fiveDepositFee;
         }
 
-        public int getFifteenDepositFee() {
+        public double getFifteenDepositFee() {
             return fifteenDepositFee;
         }
 
-        public void setFifteenDepositFee(int fifteenDepositFee) {
+        public void setFifteenDepositFee(double fifteenDepositFee) {
             this.fifteenDepositFee = fifteenDepositFee;
         }
 
-        public int getFiftyDepositFee() {
+        public double getFiftyDepositFee() {
             return fiftyDepositFee;
         }
 
-        public void setFiftyDepositFee(int fiftyDepositFee) {
+        public void setFiftyDepositFee(double fiftyDepositFee) {
             this.fiftyDepositFee = fiftyDepositFee;
         }
 
-        public int getRetrieveAmount() {
+        public double getRetrieveAmount() {
             return retrieveAmount;
         }
 

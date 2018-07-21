@@ -28,7 +28,7 @@ public class IOrdersListPresenter {
         OkHttpUtils.get().url(Constants.QUERY_ORDERS)
                 .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iOrderView.getToken()).
                 addParams(Constants.URL_PARAMS_ORDER_STATUS, iOrderView.getOrdersStatus() + "")
-                .addParams(Constants.URL_PARAMS_ORDER_TYPE,  + iOrderView.getOrdersType()+"")
+                .addParams(Constants.URL_PARAMS_ORDER_TYPE,  iOrderView.getOrderType())
                 .addParams(Constants.URL_PARAMS_PAGE_NUM, iOrderView.getPage() + "")
                 .addParams("pageSize","2")
                 .build().execute(new DataStringCallback(iOrderView) {

@@ -2,7 +2,8 @@ package com.msht.mshtLpg.mshtLpgMaster.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.os.Handler;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,14 +11,17 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.GetPayQRCodeBean;
-import com.msht.mshtLpg.mshtLpgMaster.Bean.GetQRcodeErrorBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.GetPayQRErrorBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.QueryOrderBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.GetOrderStatusPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.Present.GetQRcodeImageUrlPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
+import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IGetPayQRcodeView;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -25,26 +29,28 @@ import java.util.concurrent.TimeUnit;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcodeView{
+public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcodeView {
 
 
-   @BindView(R.id.qr_code_iv)
-   ImageView ivqrQRCode;
-   @BindView(R.id.orders_number)
+    @BindView(R.id.qr_code_iv)
+    ImageView ivqrQRCode;
+    @BindView(R.id.orders_number)
     TextView ordersNumber;
-   @BindView(R.id.account)
-   TextView account;
+    @BindView(R.id.account)
+    TextView account;
     private GetQRcodeImageUrlPresenter getQRcodeImageUrlPresenter;
     private String QRCodeUrl;
     private GetOrderStatusPresenter getOrderStatusPresenter;
     private ScheduledFuture<?> a;
     private ScheduledFuture<?> b;
     private ScheduledThreadPoolExecutor executor;
-    private String orderType;
     private String payType;
     private String body = "付款";
     private String payAmount;
     private String orderId;
+    Handler handler = new Handler();
+    private Timer time = new Timer();
+    private TimerTask tk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +58,13 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
         setContentView(R.layout.qr_code_receipt);
         ButterKnife.bind(this);
         Intent intent = getIntent();
-        orderId =  intent.getStringExtra(Constants.ORDER_ID);
-        orderType = intent.getStringExtra(Constants.URL_PARAMS_ORDER_TYPE);
+        orderId = intent.getStringExtra(Constants.ORDER_ID);
         payAmount = intent.getStringExtra(Constants.PAY_AMOUNT);
         payType = intent.getStringExtra(Constants.PAY_TYPE);
         getQRcodeImageUrlPresenter = new GetQRcodeImageUrlPresenter(this);
         getOrderStatusPresenter = new GetOrderStatusPresenter(this);
+        ordersNumber.setText(orderId);
+        account.setText(payAmount);
         executor = new ScheduledThreadPoolExecutor(2);
         a = executor.scheduleWithFixedDelay(
                 new GetQRCodeImageTask(),
@@ -69,14 +76,28 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
                 5000,
                 5000,
                 TimeUnit.MILLISECONDS);
-        ordersNumber.setText(orderId);
-        account.setText(payAmount);
-    }
+        executor.schedule( new FinishPayTask(),8, TimeUnit.MINUTES);
+        // getQRcodeImageUrlPresenter.getQRcodeUrl();
+ /*       tk = new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        getQRcodeImageUrlPresenter.getQRcodeUrl();
+                    }
+                });
+            }
+        };
+        time.schedule(tk,0,2000);*/
 
+    }
 
 
     @Override
     public void onGetQRCodeImageURLSuccess(GetPayQRCodeBean bean) {
+        // Log.d("suyingchi", "onGetQRCodeImageURLSuccess: ");
+        PopUtil.toastInBottom("onGetQRCodeImageURLSuccess");
         QRCodeUrl = bean.getData();
         Glide.with(QRCodeReceiptActivity.this).load(QRCodeUrl)
                 .apply(new RequestOptions().centerCrop())
@@ -85,12 +106,13 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
     }
 
     @Override
-    public void onGetQRCodeImageError(GetQRcodeErrorBean bean) {
+    public void onGetQRCodeImageURLError(GetPayQRErrorBean bean) {
 
     }
 
     @Override
     public void onGetOrderStatusSuccess(QueryOrderBean bean) {
+        PopUtil.toastInBottom("onGetOrderStatusSuccess");
         String s = "";
         int sta = bean.getData().getOrderStatus();
         switch (sta) {
@@ -109,9 +131,9 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
                 //已完成
                 s = "已完成";
                 executor.shutdown();
-               Intent intent =  new Intent(this,OrdersDetailFinishActivity.class);
-               intent.putExtra(Constants.ORDER_ID,"");
-               startActivity(intent);
+                Intent intent = new Intent(this, OrdersDetailFinishActivity.class);
+                intent.putExtra(Constants.ORDER_ID, orderId);
+                startActivity(intent);
                 break;
             case 4:
                 s = "已退款";
@@ -131,15 +153,6 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
 
     }
 
-    @Override
-    public String getId() {
-        return orderId;
-    }
-
-    @Override
-    public String getOrderType() {
-        return orderType;
-    }
 
     @Override
     public String getOrderId() {
@@ -162,11 +175,16 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
     }
 
     @Override
+    public Handler getHandler() {
+
+        return handler;
+    }
+
+    @Override
     public void onError(String s) {
         Toast.makeText(this, s, Toast.LENGTH_LONG).show();
 
     }
-
 
 
     @Override
@@ -178,15 +196,34 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
     private class GetQRCodeImageTask implements Runnable {
         @Override
         public void run() {
-            getQRcodeImageUrlPresenter.getQRcodeUrl();
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    PopUtil.toastInBottom("GetQRCodeImageTask");
+                    getQRcodeImageUrlPresenter.getQRcodeUrl();
+                }
+            });
+
         }
     }
 
     private class QueryOrderStatusTask implements Runnable {
         @Override
         public void run() {
-            getOrderStatusPresenter.getOrderStatus();
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    PopUtil.toastInBottom("QueryOrderStatusTask");
+                    getOrderStatusPresenter.getOrderStatus();
+                }
+            });
+        }
+    }
+
+    private class FinishPayTask implements Runnable {
+        @Override
+        public void run() {
+            finish();
         }
     }
 }
-

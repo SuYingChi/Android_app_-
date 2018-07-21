@@ -103,19 +103,19 @@ public class OrdersDetailPayActivity extends BaseActivity implements IOrderDetai
     private double fiftyTotalDeposite;
     private double totalDeposite;
     private double totalFiveDelivery;
-    private int totalFifteenDelivery;
-    private int totalFiftyDelivery;
+    private double totalFifteenDelivery;
+    private double totalFiftyDelivery;
     private double totalDeliveryfare;
     private IOrderDetailPresenter iOrderDetailPresenter;
     private int isElevator;
-    private int fiveGasFee;
-    private int fifteenGasFee;
-    private int fiftyGasFee;
-    private int totalGas;
+    private double fiveGasFee;
+    private double fifteenGasFee;
+    private double fiftyGasFee;
+    private double totalGas;
     private double totalfare;
-    private int fiveDeliveryFee;
-    private int fifteenDeliveryFee;
-    private int fiftyDeliveryFee;
+    private double fiveDeliveryFee;
+    private double fifteenDeliveryFee;
+    private double fiftyDeliveryFee;
     private String orderType;
     private String payType;
 
@@ -134,25 +134,6 @@ public class OrdersDetailPayActivity extends BaseActivity implements IOrderDetai
             @Override
             public void onClick(View v) {
                 finish();
-            }
-        });
-        tvpay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                orderType = "1";
-                payType = "12";
-                Intent intent = new Intent(OrdersDetailPayActivity.this, QRCodeReceiptActivity.class);
-                intent.putExtra(Constants.ORDER_ID,orderId);
-                intent.putExtra(Constants.URL_PARAMS_ORDER_TYPE,orderType);
-                intent.putExtra(Constants.PAY_AMOUNT,totalfare+"");
-                intent.putExtra(Constants.PAY_TYPE,payType);
-                startActivity(intent);
-            }
-        });
-        callBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PermissionUtils.requestPermissions(OrdersDetailPayActivity.this, OrdersDetailPayActivity.this, Permission.CALL_PHONE);
             }
         });
         llDiscount.setOnClickListener(new View.OnClickListener() {
@@ -181,7 +162,7 @@ public class OrdersDetailPayActivity extends BaseActivity implements IOrderDetai
         tvTime.setText(orderDetailBean.getData().getAppointmentTime());
         tvComment.setText(orderDetailBean.getData().getRemarks());
         orderId = orderDetailBean.getData().getOrderId()+"";
-        tvOrderId.setText(orderId + "");
+        tvOrderId.setText(orderId );
         tvDispatchOrderTime.setText(orderDetailBean.getData().getCreateDate());
         tvDispatchBottleTime.setText(orderDetailBean.getData().getAppointmentTime());
         //气价
@@ -246,6 +227,25 @@ public class OrdersDetailPayActivity extends BaseActivity implements IOrderDetai
         totalfare = totalGas+totalDeposite+totalDeliveryfare-exchange;
         tvTotal.setText(totalfare+"");
 
+        tvpay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                orderType = "1";
+                payType = "12";
+                Intent intent = new Intent(OrdersDetailPayActivity.this, QRCodeReceiptActivity.class);
+                intent.putExtra(Constants.ORDER_ID,orderId);
+                intent.putExtra(Constants.URL_PARAMS_ORDER_TYPE,orderType);
+                intent.putExtra(Constants.PAY_AMOUNT,totalfare+"");
+                intent.putExtra(Constants.PAY_TYPE,payType);
+                startActivity(intent);
+            }
+        });
+        callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PermissionUtils.requestPermissions(OrdersDetailPayActivity.this, OrdersDetailPayActivity.this, Permission.CALL_PHONE);
+            }
+        });
 
     }
 

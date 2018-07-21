@@ -17,7 +17,7 @@ import com.msht.mshtLpg.mshtLpgMaster.customView.SlidableViewPager;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseLazyFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.DispatchOrdersLazyFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MySettingFragment;
-import com.msht.mshtLpg.mshtLpgMaster.fragment.OrdersLazyFragment;
+import com.msht.mshtLpg.mshtLpgMaster.fragment.OrdersListLazyFragment;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
 
@@ -32,7 +32,7 @@ public class HomeActivity extends BaseActivity {
 
 
      long exitTime;
-     OrdersLazyFragment f0;
+     OrdersListLazyFragment f0;
      DispatchOrdersLazyFragment f1;
      MySettingFragment f2;
      List<BaseLazyFragment> list_fragment = new ArrayList<BaseLazyFragment>();
@@ -67,7 +67,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void initView() {
-        f0 = new OrdersLazyFragment();
+        f0 = new OrdersListLazyFragment();
         f1 = new DispatchOrdersLazyFragment();
         f2 = new MySettingFragment();
         list_fragment.add(f0);

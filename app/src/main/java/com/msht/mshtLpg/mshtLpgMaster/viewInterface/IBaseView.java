@@ -14,4 +14,6 @@ public  interface IBaseView {
     void onLogout();
 
     void onNetError();
+
+    String getOrderType();
 }

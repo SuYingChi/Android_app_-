@@ -11,6 +11,7 @@ public class SharePreferenceUtil {
     private static SharePreferenceUtil sharePreferenceUtil;
     private   SharedPreferences loginSp;
     private   SharedPreferences.Editor loginEditor;
+    private String orderType;
 
 
     public SharePreferenceUtil(String sharePreferencefileName) {
@@ -68,4 +69,11 @@ public class SharePreferenceUtil {
         sharePreferenceFile.edit().putInt(key,value).apply();
     }
 
+    public String getOrderType() {
+        return getSPStringValue(Constants.LOGIN_SP_FILE_NAME, Constants.ORDER_TYPE);
+    }
+    public void setOrderType(String orderType){
+        loginEditor.putString(Constants.ORDER_TYPE, orderType);
+        loginEditor.commit();
+    }
 }

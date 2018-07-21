@@ -40,14 +40,10 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
     private int orderfiveNum = 0;
     private int orderfifteenNum = 0;
     private int orderfiftyNum = 0;
-    private int orderId;
+    private String orderId;
     private FragmentTransaction transaction;
     private List<VerifyBottleBean> heavyBottleList;
     private List<VerifyBottleBean> emptyBottleList;
-    private OrderDetailBean bean;
-    private int emptyFive;
-    private int emptyFifteen;
-    private int emptyFifty;
 
 
     @Override
@@ -56,7 +52,7 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
         setContentView(R.layout.scan_code_deliver_steel_bottle_activity);
         ButterKnife.bind(this);
         Intent intent = getIntent();
-        orderId = intent.getIntExtra(Constants.ORDER_ID, 0);
+        orderId = intent.getStringExtra(Constants.ORDER_ID);
         PermissionUtils.requestPermissions(this, this, Permission.CAMERA);
 
     }
@@ -74,9 +70,9 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
             }else {
                 Bundle bundle = new Bundle();
                 captureEmptybottleFragment = new MyCaptureFragment();
-                bundle.putInt(Constants.REMAIN_FIVE_NUM, orderfiveNum - scanedfiveNum);
-                bundle.putInt(Constants.REMAIN_FIFTEEN_NUM, orderfifteenNum - scanedfifteenNum);
-                bundle.putInt(Constants.REMAIN_FIFTY_NUM, orderfiftyNum - scanedfiftyNum);
+                bundle.putInt(Constants.ORDER_FIVE_NUM, orderfiveNum);
+                bundle.putInt(Constants.ORDER_FIFTEEN_NUM, orderfifteenNum );
+                bundle.putInt(Constants.ORDER_FIFTY_NUM, orderfiftyNum);
                 bundle.putInt(Constants.SCANFRAGMENT_TYPE,2);
                 captureEmptybottleFragment.setArguments(bundle);
                 showFragment(captureEmptybottleFragment);
@@ -95,13 +91,9 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
 
         }else {
             emptyBottleList = list;
-            emptyFive = BottleCaculteUtil.getBottleNum(emptyBottleList,5);
-            emptyFifteen = BottleCaculteUtil.getBottleNum(emptyBottleList,15);
-            emptyFifty = BottleCaculteUtil.getBottleNum(emptyBottleList,50);
-
             Intent intent = new Intent(this,OrdersDetailPostActivity.class);
             Bundle bundle=new Bundle();
-            bundle.putInt(Constants.ORDER_ID,orderId);
+            bundle.putString(Constants.ORDER_ID,orderId);
             bundle.putSerializable(Constants.HEAVY_BOTTLE_LIST,(Serializable)heavyBottleList);
             bundle.putSerializable(Constants.EMPTY_BOTTLE_LIST,(Serializable)emptyBottleList);
             bundle.putInt("starttype",1);
@@ -169,7 +161,6 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
 
     @Override
     public void onGetOrdersDetailSuccess(OrderDetailBean bean) {
-        this.bean = bean;
         orderfiveNum = bean.getData().getFiveBottleCount();
         orderfifteenNum = bean.getData().getFifteenBottleCount();
         orderfiftyNum = bean.getData().getFiftyBottleCount();
@@ -197,7 +188,7 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
 
     @Override
     public String getOrderId() {
-        return orderId+"";
+        return orderId;
     }
 
 

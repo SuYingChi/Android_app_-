@@ -6,8 +6,6 @@ public interface IOrderView extends IBaseView{
 
     int getPage();
 
-    int getOrdersType();
-
     int getOrdersStatus();
 
     void onGetOrdersSuccess(OrdersListBeanV2 bean);

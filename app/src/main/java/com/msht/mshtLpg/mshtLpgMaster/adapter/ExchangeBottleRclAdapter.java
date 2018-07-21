@@ -46,17 +46,15 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == 1) {
-            View v = LayoutInflater.from(parent.getContext())
+            View v = inflater
                     .inflate(R.layout.item_rcl_exchange_steel_bottle, parent, false);
             ViewHolder vh = new ViewHolder(v);
             return vh;
-        } else if (viewType == 100) {
-            View v = LayoutInflater.from(parent.getContext())
+        } else {
+            View v = inflater
                     .inflate(R.layout.item_exchange_bottle_rcl_foot, parent, false);
             ViewHolderFoot vh = new ViewHolderFoot(v);
             return vh;
-        } else {
-            return null;
         }
     }
 
@@ -98,6 +96,8 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
                         onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()+1);
                     } else if (selectBottleModeIndex == 2 && bottleNum < remainFifty) {
                         onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()+1);
+                    }else {
+                        PopUtil.toastInBottom("无法再增加置换空瓶数，同重量钢瓶的置换空瓶数与扫码回收的空瓶数只能小于等于交付用户钢瓶数，");
                     }
                 }
             });
@@ -164,10 +164,10 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
                     yearList.add("2013");
                     yearList.add("6年以上");
                     List<String> levelList = new ArrayList<>();
-                    modelList.add("A");
-                    modelList.add("B");
-                    modelList.add("C");
-                    modelList.add("D");
+                    levelList.add("A");
+                    levelList.add("B");
+                    levelList.add("C");
+                    levelList.add("D");
                     data.setmBottleModelList(modelList);
                     data.setmBottleYearsList(yearList);
                     data.setmBottleLevelList(levelList);
@@ -187,7 +187,10 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         return list.size() + 1;
     }
-
+    @Override
+    public int getItemViewType(int position) {
+        return position == list.size()?100:1;
+    }
     public interface OnExchangeRclClicklistener {
 
         void onBottleNumChange( int rclItemPosition,TextView tvAccount,TextView tvBottleNum ,int steelNum);

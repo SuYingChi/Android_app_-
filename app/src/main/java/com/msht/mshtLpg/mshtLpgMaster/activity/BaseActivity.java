@@ -188,4 +188,9 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
 
     }
 
+    @Override
+    public String getOrderType() {
+        return  SharePreferenceUtil.getInstance().getOrderType();
+    }
+
 }

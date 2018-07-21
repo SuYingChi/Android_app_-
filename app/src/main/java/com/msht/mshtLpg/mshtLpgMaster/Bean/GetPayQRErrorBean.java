@@ -1,6 +1,6 @@
 package com.msht.mshtLpg.mshtLpgMaster.Bean;
 
-public class GetQRcodeErrorBean {
+public class GetPayQRErrorBean {
 
     /**
      * timestamp : 1
