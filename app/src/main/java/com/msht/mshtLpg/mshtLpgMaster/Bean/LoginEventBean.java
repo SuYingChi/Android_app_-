@@ -1,13 +1,14 @@
 package com.msht.mshtLpg.mshtLpgMaster.Bean;
 
 public class LoginEventBean {
-    private final String s;
 
-    public LoginEventBean(String s) {
-        this.s=s;
+    private  UserLoginBean bean;
+
+    public LoginEventBean(UserLoginBean s) {
+        bean = s;
     }
 
-    public String getS() {
-        return s;
+    public UserLoginBean getUserLoginBean() {
+        return bean;
     }
 }
