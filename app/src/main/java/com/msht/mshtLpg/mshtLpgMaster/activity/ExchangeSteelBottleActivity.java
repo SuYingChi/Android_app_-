@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class ExchangeSteelBottleActivity extends BaseActivity implements ExchangeBottleRclAdapter.OnExchangeRclClicklistener, IExchangeSteelBottleView {
     @BindView(R.id.exchange_topbar)
@@ -44,12 +45,13 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
     private double steelNum;
     private int rclItemPosition;
     private TextView tvItemAccount;
+    private Unbinder unbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exchange_steel_bottle);
-        ButterKnife.bind(this);
+       unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
         remainFive = intent.getIntExtra(Constants.REMAIN_FIVE_NUM, 0);
         remainFifteen = intent.getIntExtra(Constants.REMAIN_FIFTEEN_NUM, 0);
@@ -174,5 +176,9 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
         return corrosionType;
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+    }
 }

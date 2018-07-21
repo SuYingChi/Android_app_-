@@ -2,11 +2,10 @@ package com.msht.mshtLpg.mshtLpgMaster.Bean;
 
 public class UserLoginBean {
 
-
     /**
      * result : success
      * msg : 登录成功
-     * data : {"loginToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJBUFAiLCJwYXNzd29yZCI6ImUxMGFkYzM5NDliYTU5YWJiZTU2ZTA1N2YyMGY4ODNlIiwiaXNzIjoiU2VydmljZSIsIm1vYmlsZSI6IjE4NTk5OTg4ODg4IiwiZXhwIjoxODQ2Mzc5NTkzLCJpYXQiOjE1MzA3NjAzOTN9.2nV1ARc0a-LSW93ETI9igypKFfb3nH5rIkQHkvtCy8s","errorCode":"200","employeeId":6}
+     * data : {"employeeName":"张三","loginToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJBUFAiLCJwYXNzd29yZCI6ImUxMGFkYzM5NDliYTU5YWJiZTU2ZTA1N2YyMGY4ODNlIiwiaXNzIjoiU2VydmljZSIsIm1vYmlsZSI6IjE4Nzc5ODg0NjQzIiwiZXhwIjoxODQ3NzYxMDk5LCJpYXQiOjE1MzIxNDE4OTl9.-cQ_AqvB0XU0rgxYt8REbxImTK09azUOez4n0EpOZ-A","errorCode":"200","siteId":2,"siteName":"海师站2","employeeId":28}
      */
 
     private String result;
@@ -39,14 +38,28 @@ public class UserLoginBean {
 
     public static class DataBean {
         /**
-         * loginToken : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJBUFAiLCJwYXNzd29yZCI6ImUxMGFkYzM5NDliYTU5YWJiZTU2ZTA1N2YyMGY4ODNlIiwiaXNzIjoiU2VydmljZSIsIm1vYmlsZSI6IjE4NTk5OTg4ODg4IiwiZXhwIjoxODQ2Mzc5NTkzLCJpYXQiOjE1MzA3NjAzOTN9.2nV1ARc0a-LSW93ETI9igypKFfb3nH5rIkQHkvtCy8s
+         * employeeName : 张三
+         * loginToken : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJBUFAiLCJwYXNzd29yZCI6ImUxMGFkYzM5NDliYTU5YWJiZTU2ZTA1N2YyMGY4ODNlIiwiaXNzIjoiU2VydmljZSIsIm1vYmlsZSI6IjE4Nzc5ODg0NjQzIiwiZXhwIjoxODQ3NzYxMDk5LCJpYXQiOjE1MzIxNDE4OTl9.-cQ_AqvB0XU0rgxYt8REbxImTK09azUOez4n0EpOZ-A
          * errorCode : 200
-         * employeeId : 6
+         * siteId : 2
+         * siteName : 海师站2
+         * employeeId : 28
          */
 
+        private String employeeName;
         private String loginToken;
         private String errorCode;
+        private int siteId;
+        private String siteName;
         private int employeeId;
+
+        public String getEmployeeName() {
+            return employeeName;
+        }
+
+        public void setEmployeeName(String employeeName) {
+            this.employeeName = employeeName;
+        }
 
         public String getLoginToken() {
             return loginToken;
@@ -62,6 +75,22 @@ public class UserLoginBean {
 
         public void setErrorCode(String errorCode) {
             this.errorCode = errorCode;
+        }
+
+        public int getSiteId() {
+            return siteId;
+        }
+
+        public void setSiteId(int siteId) {
+            this.siteId = siteId;
+        }
+
+        public String getSiteName() {
+            return siteName;
+        }
+
+        public void setSiteName(String siteName) {
+            this.siteName = siteName;
         }
 
         public int getEmployeeId() {

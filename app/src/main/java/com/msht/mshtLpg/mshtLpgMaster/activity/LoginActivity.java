@@ -24,6 +24,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 public class LoginActivity extends BaseActivity implements ILoginView{
 
@@ -37,12 +38,13 @@ public class LoginActivity extends BaseActivity implements ILoginView{
     Button btnOk;
 
     private ILoginPresenter iLoginPresenter;
+    private Unbinder unbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         iLoginPresenter= new ILoginPresenter(this);
     }
 
@@ -81,5 +83,10 @@ public class LoginActivity extends BaseActivity implements ILoginView{
         finish();
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+        EventBus.getDefault().unregister(this);
+    }
 }

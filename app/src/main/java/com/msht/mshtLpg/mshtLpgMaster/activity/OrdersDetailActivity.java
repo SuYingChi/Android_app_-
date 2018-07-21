@@ -26,6 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 public class OrdersDetailActivity extends BaseActivity implements IOrderDetailView, PermissionUtils.PermissionRequestFinishListener {
     @BindView(R.id.return_btn)
@@ -65,12 +66,13 @@ public class OrdersDetailActivity extends BaseActivity implements IOrderDetailVi
     private String orderId;
     private IOrderDetailPresenter iOrderDetailPresenter;
     private OrderDetailBean bean;
+    private Unbinder unbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.orders_detail_layout_deliver_steel_bottle);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
         iOrderDetailPresenter = new IOrderDetailPresenter(this);
@@ -140,5 +142,11 @@ public class OrdersDetailActivity extends BaseActivity implements IOrderDetailVi
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTelephone.getText().toString()));
         startActivity(intent);
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 }

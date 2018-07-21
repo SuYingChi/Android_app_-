@@ -28,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcodeView {
 
@@ -51,12 +52,13 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
     Handler handler = new Handler();
     private Timer time = new Timer();
     private TimerTask tk;
+    private Unbinder unbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.qr_code_receipt);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
         payAmount = intent.getStringExtra(Constants.PAY_AMOUNT);
@@ -191,6 +193,7 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
     protected void onDestroy() {
         super.onDestroy();
         executor.shutdown();
+        unbinder.unbind();
     }
 
     private class GetQRCodeImageTask implements Runnable {
@@ -226,4 +229,6 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
             finish();
         }
     }
+
+
 }

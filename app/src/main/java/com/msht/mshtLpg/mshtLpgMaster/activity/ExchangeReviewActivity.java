@@ -20,6 +20,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class ExchangeReviewActivity extends BaseActivity implements IExchangeReviewView {
 
@@ -31,13 +32,14 @@ public class ExchangeReviewActivity extends BaseActivity implements IExchangeRev
     private String orderId;
     private List<ExchangeReviewBean.DataBean> dataList = new ArrayList<ExchangeReviewBean.DataBean>();
     private ExchangeReviewBottleRclAdapter myAdapter;
+    private Unbinder unbinder;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exchange_review);
-        ButterKnife.bind(this);
+       unbinder =  ButterKnife.bind(this);
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
         iExchangeReviewPresenter = new IExchangeReviewPresenter(this);
@@ -67,5 +69,11 @@ public class ExchangeReviewActivity extends BaseActivity implements IExchangeRev
     @Override
     public String getOrderId() {
         return orderId;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 }

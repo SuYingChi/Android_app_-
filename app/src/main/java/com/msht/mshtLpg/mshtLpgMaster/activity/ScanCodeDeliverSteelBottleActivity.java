@@ -28,6 +28,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements MyCaptureFragment.CaptureActivityListener, PermissionUtils.PermissionRequestFinishListener, IOrderDetailView{
 
@@ -44,13 +45,14 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
     private FragmentTransaction transaction;
     private List<VerifyBottleBean> heavyBottleList;
     private List<VerifyBottleBean> emptyBottleList;
+    private Unbinder unbinder;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scan_code_deliver_steel_bottle_activity);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
         PermissionUtils.requestPermissions(this, this, Permission.CAMERA);
@@ -205,4 +207,10 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
         intent.putExtras(bundle);
         startActivity(intent);
     }*/
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+    }
 }

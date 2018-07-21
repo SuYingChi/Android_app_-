@@ -25,6 +25,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class OrdersDetailPayActivity extends BaseActivity implements IOrderDetailView ,PermissionUtils.PermissionRequestFinishListener{
     private OrderDetailBean bean;
@@ -118,13 +119,14 @@ public class OrdersDetailPayActivity extends BaseActivity implements IOrderDetai
     private double fiftyDeliveryFee;
     private String orderType;
     private String payType;
+    private Unbinder unbinder;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pay_orders);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         //从首页订单列表跳转过来
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
@@ -271,5 +273,11 @@ public class OrdersDetailPayActivity extends BaseActivity implements IOrderDetai
         }
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTel.getText().toString()));
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 }

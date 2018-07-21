@@ -27,6 +27,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 public class HomeActivity extends BaseActivity {
 
@@ -56,12 +57,13 @@ public class HomeActivity extends BaseActivity {
      LinearLayout llTab1;
     @BindView(R.id.ll_tab2)
      LinearLayout llTab2;
+    private Unbinder unbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         initView();
 
     }
@@ -164,11 +166,12 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
+        super.onDestroy();
         list_fragment.clear();
         f0 = null;
         f1 = null;
         f2 = null;
-        super.onDestroy();
+        unbinder.unbind();
     }
     @Override
     public boolean isSupportSwipeBack() {

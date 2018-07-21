@@ -22,6 +22,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class EditLocationActivity extends BaseActivity {
     @BindView(R.id.top_bar)
@@ -35,13 +36,14 @@ public class EditLocationActivity extends BaseActivity {
     private SpinnerAdapter spinnerAdapter;
     List<String> list = new ArrayList<String>();
     private int selectElevator  = 0;
+    private Unbinder unbinder;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_location_layout);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         spinnerAdapter = new SpinnerAdapter(this);
         spinner.setAdapter(spinnerAdapter);
         list.add("1");
@@ -75,5 +77,12 @@ public class EditLocationActivity extends BaseActivity {
                selectElevator = position;
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+
     }
 }

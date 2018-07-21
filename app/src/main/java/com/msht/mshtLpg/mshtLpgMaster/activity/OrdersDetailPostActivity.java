@@ -39,6 +39,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class OrdersDetailPostActivity extends BaseActivity implements IOrderDetailView, IOrdesDespositView, IDeliveryView, IOrderDetailPostView,PermissionUtils.PermissionRequestFinishListener {
 
@@ -161,6 +162,7 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
     private String emptyFive;
     private String emptyFifteen;
     private String emptyFifyt;
+    private Unbinder unbinder;
 
     //更规范的写法是写个handler在子线程执行完后，调度其他子线程的开启，后边再优化
     /*@SuppressLint("HandlerLeak")
@@ -211,7 +213,7 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_orders_v2);
-        ButterKnife.bind(this);
+       unbinder =  ButterKnife.bind(this);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         //从扫码界面跳转过来
@@ -586,5 +588,11 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
         }
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTel.getText().toString()));
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 }

@@ -25,6 +25,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class OrdersDetailFinishActivity extends BaseActivity  implements IOrderDetailView,PermissionUtils.PermissionRequestFinishListener{
     @BindView(R.id.pay_orders_v2_topbar)
@@ -112,12 +113,13 @@ public class OrdersDetailFinishActivity extends BaseActivity  implements IOrderD
     private double totalDeliveryfare;
     private double exchange;
     private double totalfare;
+    private Unbinder unbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.orders_finish);
-        ButterKnife.bind(this);
+       unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
         new IOrderDetailPresenter(this).getOrderDetail();
@@ -240,5 +242,11 @@ public class OrdersDetailFinishActivity extends BaseActivity  implements IOrderD
         }
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTel.getText().toString()));
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 }
