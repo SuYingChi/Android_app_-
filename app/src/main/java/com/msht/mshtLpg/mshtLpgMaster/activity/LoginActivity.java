@@ -72,7 +72,7 @@ public class LoginActivity extends BaseActivity implements ILoginView{
     @Override
     public void onLoginSuccess(UserLoginBean s) {
         SharePreferenceUtil.getInstance().setToken( s.getData().getLoginToken());
-        SharePreferenceUtil.setLoginSpIntValue(Constants.EMPLOYERID,s.getData().getEmployeeId());
+        SharePreferenceUtil.setLoginSpStringValue(Constants.EMPLOYERID,s.getData().getEmployeeId()+"");
         startActivity( new Intent(this, HomeActivity.class));
         EventBus.getDefault().postSticky(new LoginEventBean(s));
 

@@ -31,8 +31,8 @@ public class Constants {
     public static final String QUERY_ORDER_DETAIL_BY_ORDER_ID = BASE_URL+"lpgOrder/queryOrder";
    //订单详情提交页面，点击自有产权瓶时的查询接口
     public static final String REPLACE_BOTTLE_LIST = BASE_URL+"lpgEmpOrder/getReplaceBottleList";
-
-
+   //内部领瓶
+    public static final String INNER_FETCH = BASE_URL+"lpgEmpBottle/innerFetch";
 
 
     public static final String URL_PARAMS_LOGIN_TOKEN = "loginToken";
@@ -89,4 +89,5 @@ public class Constants {
     public static final String PAY_AMOUNT = "payAmount";
     public static final String PAY_TYPE = "payType";
     public static final String ORDER_TYPE = "orderType";
+
 }

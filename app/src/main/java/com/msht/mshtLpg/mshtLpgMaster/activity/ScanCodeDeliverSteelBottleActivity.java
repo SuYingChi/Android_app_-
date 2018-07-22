@@ -194,20 +194,6 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
     }
 
 
-
-
- /*   @Override
-    public void onPostOrdersSuccess(OrderDetailBean bean) {
-
-        Intent intent = new Intent(this,OrdersDetailPostActivity.class);
-        Bundle bundle=new Bundle();
-        bundle.putInt(Constants.ORDER_ID,orderId);
-        bundle.putSerializable(Constants.HEAVY_BOTTLE_LIST,(Serializable)heavyBottleList);
-        bundle.putSerializable(Constants.EMPTY_BOTTLE_LIST,(Serializable)emptyBottleList);
-        intent.putExtras(bundle);
-        startActivity(intent);
-    }*/
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

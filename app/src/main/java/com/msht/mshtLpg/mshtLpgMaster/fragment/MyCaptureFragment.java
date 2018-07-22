@@ -76,28 +76,28 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
     @BindView(R.id.tv_scan_delive_steel_bottle)
     TextView title;
     private static final String TAG = "MyCaptureFragment";
-    private MyCaptureHandler handler;
+    protected MyCaptureHandler handler;
     protected boolean hasSurface;
-    private Vector<BarcodeFormat> decodeFormats;
-    private String characterSet;
+    protected Vector<BarcodeFormat> decodeFormats;
+    protected String characterSet;
     private InactivityTimer inactivityTimer;
-    private MediaPlayer mediaPlayer;
-    private boolean playBeep;
+    protected MediaPlayer mediaPlayer;
+    protected boolean playBeep;
     private static final float BEEP_VOLUME = 0.10f;
-    private boolean vibrate;
+    protected boolean vibrate;
     private SurfaceHolder surfaceHolder;
-    private Camera camera;
+    protected Camera camera;
 
     private List<VerifyBottleBean> list = new ArrayList<VerifyBottleBean>();
     private List<VerifyBottleBean> empList = new ArrayList<VerifyBottleBean>();
     private ScanBottleQRCodeRclAdapter adapter;
-    protected IScanbottleCodePresenter iScanbottleCodePresenter;
+    private IScanbottleCodePresenter iScanbottleCodePresenter;
     private String bottleCode;
-    protected CaptureActivityListener captureActivityListener;
+    private CaptureActivityListener captureActivityListener;
     private int orderFiveNum = 0;
     private int orderFifteenNum = 0;
     private int orderFiftyNum = 0;
-    protected OrderDetailBean bean;
+    private OrderDetailBean bean;
     private int fragmentType;
     private ScanCodeDeliverSteelBottleActivity activity;
     private String verifyType="";
@@ -110,18 +110,18 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
         Bundle bundle = getArguments();
         if (bundle != null) {
             fragmentType = bundle.getInt(Constants.SCANFRAGMENT_TYPE);
+            //扫描交付用户钢瓶
             if (fragmentType == 1) {
                 verifyType = "2";
                 orderFiveNum = bundle.getInt(Constants.ORDER_FIVE_NUM, 0);
                 orderFifteenNum = bundle.getInt(Constants.ORDER_FIFTEEN_NUM, 0);
                 orderFiftyNum = bundle.getInt(Constants.ORDER_FIFTY_NUM, 0);
-            } else if (fragmentType == 2) {
+            }//扫描回收空瓶
+            else if (fragmentType == 2) {
                 verifyType = "3";
                 orderFiveNum = bundle.getInt(Constants.ORDER_FIVE_NUM, 0);
                 orderFifteenNum = bundle.getInt(Constants.ORDER_FIFTEEN_NUM, 0);
                 orderFiftyNum = bundle.getInt(Constants.ORDER_FIFTY_NUM, 0);
-            } else {
-                return;
             }
         } else {
             return;
@@ -247,7 +247,7 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
     }
 
 
-    private void initCamera(SurfaceHolder surfaceHolder) {
+    protected void initCamera(SurfaceHolder surfaceHolder) {
         try {
             CameraManager.get().openDriver(surfaceHolder);
             camera = CameraManager.get().getCamera();
@@ -284,7 +284,7 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
     public void surfaceDestroyed(SurfaceHolder holder) {
         hasSurface = false;
         if (camera != null) {
-            if (camera != null && CameraManager.get().isPreviewing()) {
+            if ( CameraManager.get().isPreviewing()) {
                 if (!CameraManager.get().isUseOneShotPreviewCallback()) {
                     camera.setPreviewCallback(null);
                 }
@@ -305,7 +305,7 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
 
     }
 
-    private void initBeepSound() {
+    protected void initBeepSound() {
         if (playBeep && mediaPlayer == null) {
             // The volume on STREAM_SYSTEM is not adjustable, and users found it
             // too loud,
@@ -329,9 +329,9 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
         }
     }
 
-    private static final long VIBRATE_DURATION = 200L;
+    protected static final long VIBRATE_DURATION = 200L;
 
-    private void playBeepSoundAndVibrate() {
+    protected void playBeepSoundAndVibrate() {
         if (playBeep && mediaPlayer != null) {
             mediaPlayer.start();
         }
@@ -344,7 +344,7 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
     /**
      * When the beep has finished playing, rewind to queue up another one.
      */
-    private final MediaPlayer.OnCompletionListener beepListener = new MediaPlayer.OnCompletionListener() {
+    protected final MediaPlayer.OnCompletionListener beepListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
             mediaPlayer.seekTo(0);
@@ -353,7 +353,7 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
 
 
     @Nullable
-    CameraInitCallBack callBack;
+   protected CameraInitCallBack callBack;
 
     /**
      * Set callback for Camera check whether Camera init success or not.
@@ -403,7 +403,7 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
         handler.sendMessageDelayed(reDecode, 1000);
     }
 
-    private boolean isContainBottle(List<VerifyBottleBean> list,String bottleCode) {
+    protected boolean isContainBottle(List<VerifyBottleBean> list,String bottleCode) {
         for (VerifyBottleBean bean : list) {
             if (bean.getData().getBottleCode().equals(bottleCode)) {
                 return true;

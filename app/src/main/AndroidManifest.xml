@@ -47,6 +47,7 @@
         <activity android:name=".activity.EditLocationActivity"/>
         <activity android:name=".activity.OrdersDetailFinishActivity"/>
         <activity android:name=".activity.ExchangeSteelBottleActivity"/>
+        <activity android:name=".activity.InnerFetchActivity" />
     </application>
 
 </manifest>

@@ -70,8 +70,8 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
     }
 
     @Override
-    public int getEmployerId() {
-        return SharePreferenceUtil.getLoginSpIntValue(Constants.EMPLOYERID);
+    public String getEmployerId() {
+        return SharePreferenceUtil.getLoginSpStringValue(Constants.EMPLOYERID);
     }
 
     @Override

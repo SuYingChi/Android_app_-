@@ -125,8 +125,8 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
     }
 
     @Override
-    public int getEmployerId() {
-        return  SharePreferenceUtil.getLoginSpIntValue(Constants.EMPLOYERID);
+    public String getEmployerId() {
+        return  SharePreferenceUtil.getLoginSpStringValue(Constants.EMPLOYERID);
     }
 
     /**

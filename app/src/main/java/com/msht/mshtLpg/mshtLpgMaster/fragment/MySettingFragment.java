@@ -1,13 +1,15 @@
 package com.msht.mshtLpg.mshtLpgMaster.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.LoginEventBean;
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
+import com.msht.mshtLpg.mshtLpgMaster.activity.InnerFetchActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -20,6 +22,8 @@ public class MySettingFragment extends BaseLazyFragment{
         TextView tvName;
     @BindView(R.id.my_setting_user_location)
     TextView tvSite;
+    @BindView(R.id.iv_my_setting_get_steel_bottle_out_warehouse)
+    ImageView tvInnerDistribute;
     private String name="";
     private String siteName="";
 
@@ -37,6 +41,12 @@ public class MySettingFragment extends BaseLazyFragment{
     @Override
     protected void initView() {
         super.initView();
+        tvInnerDistribute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               startActivity(new Intent(getActivity(),InnerFetchActivity.class));
+            }
+        });
     }
 
     @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
