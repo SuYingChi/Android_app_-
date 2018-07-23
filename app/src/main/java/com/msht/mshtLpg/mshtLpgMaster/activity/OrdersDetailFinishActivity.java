@@ -209,6 +209,14 @@ public class OrdersDetailFinishActivity extends BaseActivity  implements IOrderD
         }else {
             tvDiscount.setText(exchange+"");
         }
+        llDiscount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(OrdersDetailFinishActivity.this,ExchangeReviewActivity.class);
+                intent.putExtra(Constants.ORDER_ID,orderId);
+                startActivity(intent);
+            }
+        });
         tvDiscount.setText(exchange + "");
         totalfare = totalGas+totalDeposite+totalDeliveryfare-exchange;
         tvPayAmount.setText(totalfare+"");

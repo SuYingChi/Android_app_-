@@ -37,4 +37,24 @@ public class IDeliveryPresenter {
 
         });
     }
+
+    public void getIsElevatorDelivery() {
+        OkHttpUtils.get().url(Constants.GET_Delivery_FEE).addParams("floors", "1")
+                .build().execute(new DataStringCallback(iDeliveryView) {
+            @Override
+            public void onResponse(String s, int i) {
+                //先继承再重写或重写覆盖请求错误的场景
+                super.onResponse(s, i);
+                DeliveryBean bean = GsonUtil.getGson().fromJson(s, DeliveryBean.class);
+                if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
+                    iDeliveryView.onError(bean.getMsg());
+
+                } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
+
+                    iDeliveryView.onGetDeliverySuccess(bean);
+                }
+            }
+
+        });
+    }
 }

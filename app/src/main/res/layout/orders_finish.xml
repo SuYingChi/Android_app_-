@@ -212,7 +212,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="待发货"
+                    android:text="已付款"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 

@@ -54,7 +54,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_statu.setText("送气待验瓶");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
-            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"男":"女");
+            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"  (男)":"  (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
             ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
@@ -87,7 +87,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_statu.setText("送气待付款");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
-            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"男":"女");
+            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
             ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
@@ -120,7 +120,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_statu.setText("送气已完成");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
-            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"男":"女");
+            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
             ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
@@ -153,7 +153,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_statu.setText("退瓶待验瓶");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
-            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"男":"女");
+            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
             ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
@@ -187,7 +187,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
-            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"男":"女");
+            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
             ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
@@ -221,7 +221,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_statu.setText("退瓶已完成");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
-            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"男":"女");
+            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":"(女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
             ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
@@ -252,7 +252,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_statu.setText("送气其他");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
-            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"男":"女");
+            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
             ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
@@ -283,7 +283,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_statu.setText("退瓶其他");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
-            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"男":"女");
+            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
             ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");

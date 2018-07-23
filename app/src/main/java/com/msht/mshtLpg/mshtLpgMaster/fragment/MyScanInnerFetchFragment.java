@@ -43,9 +43,9 @@ public class MyScanInnerFetchFragment extends MyCaptureFragment  implements Iinn
     EditText etInput;
     @BindView(R.id.btn_scan_qrcode_query_steel_bottle)
     TextView tvQuery;
-    @BindView(R.id.et_employer)
-    EditText etEmployer;
-    @BindView(R.id.scan_delive_bottom)
+    @BindView(R.id.tv_employer)
+    EditText tvEmployer;
+    @BindView(R.id.tv_scan_delive_bottom)
     TextView tvNext;
     @BindView(R.id.scan_rcl_deliver_steel_bottle)
     RecyclerView recyclerView;
@@ -59,7 +59,6 @@ public class MyScanInnerFetchFragment extends MyCaptureFragment  implements Iinn
     private String employerId;
     private ScanBottleQRCodeRclAdapter adapter;
     private boolean isEmployerQuerySuccess = false;
-    private String verifyType;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,7 +91,7 @@ public class MyScanInnerFetchFragment extends MyCaptureFragment  implements Iinn
 
     @Override
     public String getEmployeeCode() {
-        return employerId;
+        return innnerFetchActivityListener.getEmpolyerId();
     }
 
 
@@ -130,15 +129,19 @@ public class MyScanInnerFetchFragment extends MyCaptureFragment  implements Iinn
                 innnerFetchActivityListener.onCaptureFragmenBackBtnClick(fragmentType);
             }
         });
-        queryBtn.setOnClickListener(new View.OnClickListener() {
+        tvQuery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bottleCode = etInput.getText().toString();
                 iScanInnerPresenter.innerFetchQueryBottle();
             }
         });
-
-        nextBtn.setOnClickListener(new View.OnClickListener() {
+        if(innnerFetchActivityListener.getInnerType()==1){
+            topBarView.setTitle("内部领瓶");
+        }else if(innnerFetchActivityListener.getInnerType() == 2){
+            topBarView.setTitle("内部返瓶");
+        }
+        tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (fragmentType == 2) {
@@ -150,12 +153,25 @@ public class MyScanInnerFetchFragment extends MyCaptureFragment  implements Iinn
             }
         });
         if (fragmentType == 1) {
-
+            tvQuery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    bottleCode = etInput.getText().toString();
+                    iScanInnerPresenter.innerFetchQueryEmpolyer();
+                }
+            });
 
         } else if (fragmentType == 2) {
             adapter = new ScanBottleQRCodeRclAdapter(list, getActivity());
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerView.setAdapter(adapter);
+            tvQuery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    bottleCode = etInput.getText().toString();
+                    iScanInnerPresenter.innerFetchQueryBottle();
+                }
+            });
         }
 
         return view;
@@ -164,6 +180,7 @@ public class MyScanInnerFetchFragment extends MyCaptureFragment  implements Iinn
     public void onAttach(Context context) {
         super.onAttach(context);
         this.innnerFetchActivityListener = (InnnerFetchActivityListener) getActivity();
+
     }
 
     @Override
@@ -202,7 +219,8 @@ public class MyScanInnerFetchFragment extends MyCaptureFragment  implements Iinn
         playBeepSoundAndVibrate();
         String bottleUrl = result.getText();
         if(fragmentType == 1){
-            employerId = "";
+            employerId =bottleUrl ;
+            tvEmployer.setText(employerId);
             iScanInnerPresenter.innerFetchQueryEmpolyer();
         } else if(fragmentType == 2) {
             int index = bottleUrl.indexOf("id=");
@@ -229,9 +247,10 @@ public class MyScanInnerFetchFragment extends MyCaptureFragment  implements Iinn
     }
 
     @Override
-    public void onGetEmployerInfoSuccess(String employerId) {
+    public void onGetEmployerInfoSuccess() {
         isEmployerQuerySuccess  = true;
-        this.employerId = employerId;
+
+
     }
 
     public interface InnnerFetchActivityListener {
@@ -239,6 +258,12 @@ public class MyScanInnerFetchFragment extends MyCaptureFragment  implements Iinn
         void onClickNextBtnAndSendEmployerId(String employerId);
 
         void onCaptureFragmenBackBtnClick(int fragmentType);
+
+        String getEmpolyerId();
+
+        String getUrl();
+
+        int getInnerType();
     }
 
    @Override
@@ -247,8 +272,13 @@ public class MyScanInnerFetchFragment extends MyCaptureFragment  implements Iinn
     }
 
     @Override
-    public String getVerifyType() {
-
-        return verifyType;
+    public String getUrl() {
+       return   innnerFetchActivityListener.getUrl();
     }
+
+    @Override
+    public int getInnerType() {
+        return innnerFetchActivityListener.getInnerType();
+    }
+
 }

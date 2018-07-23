@@ -82,8 +82,8 @@ public class ComfirmOrdersBean implements Serializable{
         private double fifteenDepositFee;
         private double fiftyDepositFee;
         private double fiveDeliveryFee;
-        private int fifteenDeliveryFee;
-        private int fiftyDeliveryFee;
+        private double fifteenDeliveryFee;
+        private double fiftyDeliveryFee;
 
         public String getUserName() {
             return userName;
@@ -237,7 +237,7 @@ public class ComfirmOrdersBean implements Serializable{
             this.fiveDeliveryFee = fiveDeliveryFee;
         }
 
-        public int getFifteenDeliveryFee() {
+        public double getFifteenDeliveryFee() {
             return fifteenDeliveryFee;
         }
 
@@ -245,7 +245,7 @@ public class ComfirmOrdersBean implements Serializable{
             this.fifteenDeliveryFee = fifteenDeliveryFee;
         }
 
-        public int getFiftyDeliveryFee() {
+        public double getFiftyDeliveryFee() {
             return fiftyDeliveryFee;
         }
 

@@ -91,11 +91,13 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
                     int bottleNum = list.get(position).getBottleNum();
 
                     if (selectBottleModeIndex == 0 && bottleNum < remainFive) {
-                        onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()+1);
+                        PopUtil.toastInBottom("只能置换15kg");
+                       // onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()+1);
                     } else if (selectBottleModeIndex == 1 && bottleNum < remainFifteen) {
                         onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()+1);
                     } else if (selectBottleModeIndex == 2 && bottleNum < remainFifty) {
-                        onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()+1);
+                        PopUtil.toastInBottom("只能置换15kg");
+                       // onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()+1);
                     }else {
                         PopUtil.toastInBottom("无法再增加置换空瓶数，同重量钢瓶的置换空瓶数与扫码回收的空瓶数只能小于等于交付用户钢瓶数，");
                     }

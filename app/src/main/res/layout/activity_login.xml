@@ -38,8 +38,8 @@
             android:hint="请输入手机号"
             android:inputType="number"
             android:maxLength="11"
-            android:textColor="#ffffff"
-            android:textColorHint="@color/textcolor"
+            android:textColor="@color/textcolor"
+            android:textColorHint="#ffffff "
             android:textCursorDrawable="@null"
             android:textSize="15sp" />
     </LinearLayout>
@@ -85,8 +85,8 @@
             android:layout_weight="1"
             android:background="@null"
             android:hint="@string/login_passwor"
-            android:textColor="#ffffff"
-            android:textColorHint="@color/textcolor"
+            android:textColor="@color/textcolor"
+            android:textColorHint="#ffffff"
             android:textCursorDrawable="@null"
             android:textSize="15sp" />
 

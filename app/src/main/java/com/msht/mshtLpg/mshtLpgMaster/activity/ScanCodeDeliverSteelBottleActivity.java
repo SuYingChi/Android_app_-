@@ -77,7 +77,6 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
                 bundle.putInt(Constants.ORDER_FIFTY_NUM, orderfiftyNum);
                 bundle.putInt(Constants.SCANFRAGMENT_TYPE,2);
                 captureEmptybottleFragment.setArguments(bundle);
-                showFragment(captureEmptybottleFragment);
                 captureEmptybottleFragment.setCameraInitCallBack(new MyCaptureFragment.CameraInitCallBack() {
                     @Override
                     public void callBack(Exception e) {
@@ -88,6 +87,7 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
                         }
                     }
                 });
+                showFragment(captureEmptybottleFragment);
             }
 
 

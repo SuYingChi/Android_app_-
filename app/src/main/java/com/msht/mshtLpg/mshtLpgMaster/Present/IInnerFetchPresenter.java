@@ -21,7 +21,7 @@ public class IInnerFetchPresenter {
     }
 
     public void  innerFetchComfirm() {
-        OkHttpUtils.get().url(Constants.INNER_FETCH).addParams("employeeCode", iinnerFetchView.getEmployeeCode()).addParams("bottleIds", iinnerFetchView.getBottleIds()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iinnerFetchView.getToken()).build().execute(new DataStringCallback(iinnerFetchView) {
+        OkHttpUtils.get().url(iinnerFetchView.getUrl()).addParams("employeeCode", iinnerFetchView.getEmployeeCode()).addParams("bottleIds", iinnerFetchView.getBottleIds()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iinnerFetchView.getToken()).build().execute(new DataStringCallback(iinnerFetchView) {
             @Override
             public void onResponse(String s, int i) {
                 super.onResponse(s, i);
@@ -57,7 +57,7 @@ public class IInnerFetchPresenter {
 
     }
     public void innerFetchQueryEmpolyer(){
-        OkHttpUtils.get().url("").addParams("employeeCode", iinnerFetchView.getEmployeeCode()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iinnerFetchView.getToken()).build().execute(new DataStringCallback(iinnerFetchView) {
+        OkHttpUtils.get().url(Constants.QUERY_EMPOLYER).addParams("employeeCode", iinnerFetchView.getEmployeeCode()).addParams("employeeCode",iinnerFetchView.getEmployeeCode()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iinnerFetchView.getToken()).build().execute(new DataStringCallback(iinnerFetchView) {
             @Override
             public void onResponse(String s, int i) {
                 super.onResponse(s, i);
@@ -67,7 +67,7 @@ public class IInnerFetchPresenter {
 
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
 
-                    iinnerFetchView.onGetEmployerInfoSuccess("");
+                    iinnerFetchView.onGetEmployerInfoSuccess();
                 }
             }
         });

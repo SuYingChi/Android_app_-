@@ -220,14 +220,10 @@ public class OrdersDetailPayActivity extends BaseActivity implements IOrderDetai
         totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
         tvDeliverFee.setText(totalDeliveryfare + "");
         exchange = orderDetailBean.getData().getRetrieveAmount();
-        if(exchange==0){
-            llDiscount.setVisibility(View.GONE);
-        }else {
-            tvDiscount.setText(exchange+"");
-        }
         tvDiscount.setText(exchange + "");
         totalfare = totalGas+totalDeposite+totalDeliveryfare-exchange;
-        tvTotal.setText(totalfare+"");
+        //tvTotal.setText(totalfare+"");
+        tvTotal.setText(bean.getData().getRealAmount()+"");
 
         tvpay.setOnClickListener(new View.OnClickListener() {
             @Override

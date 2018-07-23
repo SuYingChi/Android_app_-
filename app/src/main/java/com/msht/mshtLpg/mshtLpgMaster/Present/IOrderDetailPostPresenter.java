@@ -1,10 +1,12 @@
 package com.msht.mshtLpg.mshtLpgMaster.Present;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.ComfirmOrdersBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailCheckBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyEmployerBean;
 import com.msht.mshtLpg.mshtLpgMaster.activity.OrdersDetailPostActivity;
 import com.msht.mshtLpg.mshtLpgMaster.callback.DataStringCallback;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
@@ -40,13 +42,16 @@ public class IOrderDetailPostPresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                ComfirmOrdersBean bean = GsonUtil.getGson().fromJson(s, ComfirmOrdersBean.class);
+                Log.d("suyingchi", "onResponse: before from json---------"+s);
+                VerifyEmployerBean bean = GsonUtil.getGson().fromJson(s, VerifyEmployerBean.class);
+
+                Log.d("suyingchi", "onResponse: after from json");
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
                     iOrderDetailPostView.onError(bean.getMsg());
 
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
-
-                    iOrderDetailPostView.onPostOrdersSuccess(bean);
+                    ComfirmOrdersBean comfirmOrdersBean = GsonUtil.getGson().fromJson(s,ComfirmOrdersBean.class);
+                    iOrderDetailPostView.onPostOrdersSuccess(comfirmOrdersBean);
                 }
             }
 

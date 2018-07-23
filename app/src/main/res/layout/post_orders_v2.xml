@@ -296,7 +296,7 @@
                     android:id="@+id/five_gas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
@@ -334,7 +334,7 @@
                     android:id="@+id/fifteen_gas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
@@ -373,7 +373,7 @@
                     android:id="@+id/fifty_gas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
@@ -412,7 +412,7 @@
                     android:id="@+id/five_deposit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
@@ -451,7 +451,7 @@
                     android:id="@+id/fifteen_deposit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
@@ -488,7 +488,7 @@
                     android:id="@+id/fifty_deposit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
@@ -526,7 +526,7 @@
                     android:id="@+id/gas_fee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
@@ -565,7 +565,7 @@
                     android:id="@+id/deposit_fee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
@@ -603,7 +603,7 @@
                     android:id="@+id/deliver_fee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 

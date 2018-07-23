@@ -7,9 +7,10 @@ public class Constants {
 
  //阿里云地址 http://120.76.193.86:7799
     //public static final String BASE_URL = BuildConfig.DEBUG ? "http://192.168.0.104:7799/msht/": "";
-    // public static final String BASE_URL = BuildConfig.DEBUG ? "http://192.168.0.112:7799/msht/": "";
+     public static final String BASE_URL = BuildConfig.DEBUG ? "http://192.168.0.122:7799/msht/": "";
     //18599988888
-    public static final String BASE_URL = BuildConfig.DEBUG ? "http://120.76.193.86:7799/msht/": "";
+    //public static final String BASE_URL = BuildConfig.DEBUG ? "http://120.76.193.86:7799/msht/": "";
+
     public static final String LOGIN = BASE_URL+"lpgEmpOrder/login";
     //1是送气单 0是退瓶单
     public static final String QUERY_ORDERS = BASE_URL+"lpgEmpOrder/getOrderByPage";
@@ -30,9 +31,14 @@ public class Constants {
     //根据订单ID查询订单状态，再微信支付后查询订单是否已付款
     public static final String QUERY_ORDER_DETAIL_BY_ORDER_ID = BASE_URL+"lpgOrder/queryOrder";
    //订单详情提交页面，点击自有产权瓶时的查询接口
-    public static final String REPLACE_BOTTLE_LIST = BASE_URL+"lpgEmpOrder/getReplaceBottleList";
+    public static final String REPLACE_BOTTLE_LIST = BASE_URL+"lpgReplacePrice/getReplaceBottleList";
    //内部领瓶
     public static final String INNER_FETCH = BASE_URL+"lpgEmpBottle/innerFetch";
+    //内部返瓶
+    public static final String INNER_RETURN = BASE_URL+"lpgEmpBottle/innerReturn";
+
+//员工工号验证
+    public static final String QUERY_EMPOLYER = BASE_URL + "lpgEmpOrder/verifyEmployee";
 
 
     public static final String URL_PARAMS_LOGIN_TOKEN = "loginToken";
@@ -89,5 +95,6 @@ public class Constants {
     public static final String PAY_AMOUNT = "payAmount";
     public static final String PAY_TYPE = "payType";
     public static final String ORDER_TYPE = "orderType";
+
 
 }

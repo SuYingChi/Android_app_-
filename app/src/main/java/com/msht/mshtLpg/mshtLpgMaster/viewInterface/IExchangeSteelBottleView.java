@@ -10,4 +10,6 @@ public interface IExchangeSteelBottleView extends IBaseView {
     String getBottleProduceDate();
 
     String getCorrosionType();
+
+    String getYear();
 }

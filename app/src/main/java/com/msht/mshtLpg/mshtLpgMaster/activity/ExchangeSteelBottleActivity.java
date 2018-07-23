@@ -57,10 +57,6 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
         remainFifteen = intent.getIntExtra(Constants.REMAIN_FIFTEEN_NUM, 0);
         remainFifty = intent.getIntExtra(Constants.REMAIN_FIFTY_NUM, 0);
         iExchangeSteelBottlePresenter = new IExchangeSteelBottlePresenter(this);
-        initView();
-    }
-
-    private void initView() {
         myAdapter = new ExchangeBottleRclAdapter(dataList, this, this, remainFive, remainFifteen, remainFifty);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -95,6 +91,7 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
     }
 
 
+
     @Override
     public void onBottleNumChange(int rclItemPosition, TextView tvAccount, TextView tvBottleNum, int steelNum) {
     //计算对应Item价格,并刷新总价
@@ -114,7 +111,7 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
     public void onSpinnerChange(int rclItemPosition, TextView tvAccount,int modelSelectIndex, int yearSelectIndex,int levelSelectIndex,int steelNum) {
      //计算对应Item价格,并刷新总价
 
-        switch (modelSelectIndex){
+       /* switch (modelSelectIndex){
             case 0:
                 weight = 5;
                 break;
@@ -125,7 +122,8 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
                 weight = 50;
                 break;
             default:break;
-        }
+        }*/
+       weight =15;
         switch (levelSelectIndex){
             case 0:
                 corrosionType = "A";
@@ -175,6 +173,12 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
     public String getCorrosionType() {
         return corrosionType;
     }
+
+    @Override
+    public String getYear() {
+        return year;
+    }
+
 
     @Override
     protected void onDestroy() {
