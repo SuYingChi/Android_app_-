@@ -1,12 +1,15 @@
 package com.msht.mshtLpg.mshtLpgMaster.fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.githang.statusbar.StatusBarCompat;
+import com.google.zxing.Result;
 import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.LogoutEvent;
 import com.msht.mshtLpg.mshtLpgMaster.R;
@@ -96,4 +99,13 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
     public String getOrderType() {
         return SharePreferenceUtil.getInstance().getOrderType();
     }
+
+    //扫描二维码的frgament 需要重写这三个方法
+    public   void  handleDecode(Result obj, Bitmap barcode){};
+
+    public  void drawViewfinder(){};
+
+    public  Handler getHandler(){
+        return null;
+    };
 }

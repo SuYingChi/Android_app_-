@@ -119,9 +119,9 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
     private String orderId;
     private GasAndDepositBean gasAndDepositBean;
     private IGasAndDepositPresenter iGasAndDepositPresenter;
-    private int fiveDeliveryFee;
-    private int fifteenDeliveryFee;
-    private int fiftyDeliveryFee;
+    private double fiveDeliveryFee;
+    private double fifteenDeliveryFee;
+    private double fiftyDeliveryFee;
     private double fiveDeposite;
     private double fifteenDeposite;
     private double fiftyDeposite;
@@ -252,7 +252,11 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
                 tvDiscount.setText(exchangeFee+"");
                 tvDiscount.setText(exchangeFee + "");
                 totalfare -= exchangeFee;
-                tvCost.setText((totalfare + "").substring(0,5));
+                if(((totalfare + "").length())>6) {
+                    tvCost.setText((totalfare + "").substring(0, 5));
+                }else {
+                    tvCost.setText((totalfare + ""));
+                }
                 Bundle bundle = data.getExtras();
                 if (bundle != null) {
                     exchangeList = (List<ExchangeRclBean>) bundle.getSerializable("exchangelist");
@@ -482,6 +486,11 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
     }
 
     @Override
+    public String getIsElevator() {
+        return isElevator+"";
+    }
+
+    @Override
     public void onGasAndDepositGetSuccess(GasAndDepositBean bean) {
         this.gasAndDepositBean = bean;
         fiveDeposite = bean.getData().getDepositPrice().getFiveDepositPrice();
@@ -504,7 +513,11 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
         totalGas = fiveGasFee + fifteenGasFee + fiftyGasFee;
 
         totalfare += totalGas;
-        tvCost.setText(totalfare + "");
+        if(((totalfare + "").length())>6) {
+            tvCost.setText((totalfare + "").substring(0, 5));
+        }else {
+            tvCost.setText((totalfare + ""));
+        }
         tvGasFee.setText(totalGas + "");
 
         //押金
@@ -536,7 +549,11 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
         } else {
             llDepositFare.setVisibility(View.VISIBLE);
             totalfare += totalDeposite;
-            tvCost.setText(totalfare + "");
+            if(((totalfare + "").length())>6) {
+                tvCost.setText((totalfare + "").substring(0, 5));
+            }else {
+                tvCost.setText((totalfare + ""));
+            }
             tvDepositeFee.setText(totalDeposite + "");
         }
         if (isElevator != 1) {
@@ -564,7 +581,11 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
             totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
 
         totalfare += totalDeliveryfare;
-        tvCost.setText(totalfare + "");
+        if(((totalfare + "").length())>6) {
+            tvCost.setText((totalfare + "").substring(0, 5));
+        }else {
+            tvCost.setText((totalfare + ""));
+        }
         tvDeliverFee.setText(totalDeliveryfare + "");
 
 

@@ -228,7 +228,7 @@
             android:id="@+id/deliver_fee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="50"
+            android:text=""
             android:textColor="@color/warning_red"
             android:textSize="@dimen/text_16"
 
@@ -270,7 +270,7 @@
             android:id="@+id/total_fee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="150"
+            android:text=""
             android:textColor="@color/warning_red"
             android:textSize="@dimen/text_16" />
     </LinearLayout>

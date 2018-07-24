@@ -29,4 +29,6 @@ public interface IOrderDetailPostView extends IBaseView{
    String getRecycleBottleIds();
 
    String getReplaceBottleStr();
+
+    String getIsElevator();
 }

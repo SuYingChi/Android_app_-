@@ -26,6 +26,7 @@ public class ILoginPresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
+
                 UserLoginBean bean = GsonUtil.getGson().fromJson(s, UserLoginBean.class);
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "failed")) {
                     switch (bean.getData().getErrorCode()) {

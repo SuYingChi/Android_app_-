@@ -58,31 +58,31 @@ public class DeliveryBean {
              * fiftyDeliveryFee : 10
              */
 
-            private int fiveDeliveryFee;
-            private int fifteenDeliveryFee;
-            private int fiftyDeliveryFee;
+            private double fiveDeliveryFee;
+            private double fifteenDeliveryFee;
+            private double fiftyDeliveryFee;
 
-            public int getFiveDeliveryFee() {
+            public double getFiveDeliveryFee() {
                 return fiveDeliveryFee;
             }
 
-            public void setFiveDeliveryFee(int fiveDeliveryFee) {
+            public void setFiveDeliveryFee(double fiveDeliveryFee) {
                 this.fiveDeliveryFee = fiveDeliveryFee;
             }
 
-            public int getFifteenDeliveryFee() {
+            public double getFifteenDeliveryFee() {
                 return fifteenDeliveryFee;
             }
 
-            public void setFifteenDeliveryFee(int fifteenDeliveryFee) {
+            public void setFifteenDeliveryFee(double fifteenDeliveryFee) {
                 this.fifteenDeliveryFee = fifteenDeliveryFee;
             }
 
-            public int getFiftyDeliveryFee() {
+            public double getFiftyDeliveryFee() {
                 return fiftyDeliveryFee;
             }
 
-            public void setFiftyDeliveryFee(int fiftyDeliveryFee) {
+            public void setFiftyDeliveryFee(double fiftyDeliveryFee) {
                 this.fiftyDeliveryFee = fiftyDeliveryFee;
             }
         }

@@ -23,6 +23,7 @@ import android.util.Log;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.ResultPointCallback;
+import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MyCaptureFragment;
 import com.uuzuche.lib_zxing.activity.CaptureFragment;
 import com.uuzuche.lib_zxing.decoding.DecodeFormatManager;
@@ -41,12 +42,12 @@ public final class MyDecodeThread extends Thread {
 
     public static final String BARCODE_BITMAP = "barcode_bitmap";
     private static final String TAG = "MyDecodeThread";
-    private final MyCaptureFragment fragment;
+    private final BaseFragment fragment;
     private final Hashtable<DecodeHintType, Object> hints;
     private Handler handler;
     private final CountDownLatch handlerInitLatch;
 
-    public MyDecodeThread(MyCaptureFragment fragment,
+    public MyDecodeThread(BaseFragment fragment,
                           Vector<BarcodeFormat> decodeFormats,
                           String characterSet,
                           ResultPointCallback resultPointCallback) {

@@ -3,6 +3,7 @@ package com.msht.mshtLpg.mshtLpgMaster.Present;
 import android.text.TextUtils;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;
 import com.msht.mshtLpg.mshtLpgMaster.callback.DataStringCallback;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
@@ -23,12 +24,12 @@ public class IScanbottleCodePresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                VerifyBottleBean bean = GsonUtil.getGson().fromJson(s, VerifyBottleBean.class);
-                if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
-                    iScanCodeDeliverSteelBottleView.onError(bean.getMsg());
+                ErrorBean ErrorBean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
+                if (!TextUtils.isEmpty(ErrorBean.getResult()) && TextUtils.equals(ErrorBean.getResult(), "fail")) {
+                    iScanCodeDeliverSteelBottleView.onError(ErrorBean.getMsg());
 
-                } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
-
+                } else if (!TextUtils.isEmpty(ErrorBean.getResult()) && TextUtils.equals(ErrorBean.getResult(), "success")) {
+                    VerifyBottleBean bean = GsonUtil.getGson().fromJson(s, VerifyBottleBean.class);
                     iScanCodeDeliverSteelBottleView.onGetBottleInfoSuccess(bean);
                 }
             }

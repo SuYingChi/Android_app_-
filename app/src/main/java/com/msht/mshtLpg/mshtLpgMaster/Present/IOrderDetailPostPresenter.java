@@ -4,10 +4,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.ComfirmOrdersBean;
-import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
-import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailCheckBean;
-import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyEmployerBean;
-import com.msht.mshtLpg.mshtLpgMaster.activity.OrdersDetailPostActivity;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;
 import com.msht.mshtLpg.mshtLpgMaster.callback.DataStringCallback;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
@@ -36,6 +33,7 @@ public class IOrderDetailPostPresenter {
                 .addParams("deliveryBottleIds",iOrderDetailPostView.getDeliveryBottleIds())
                 .addParams("recycleBottleIds",iOrderDetailPostView.getRecycleBottleIds())
                 .addParams("floor",iOrderDetailPostView.getFloor())
+                .addParams("isElevator",iOrderDetailPostView.getIsElevator())
                 .addParams("replaceBottleStr",iOrderDetailPostView.getReplaceBottleStr())
                 .build().execute(new DataStringCallback(iOrderDetailPostView) {
             @Override
@@ -43,7 +41,7 @@ public class IOrderDetailPostPresenter {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
                 Log.d("suyingchi", "onResponse: before from json---------"+s);
-                VerifyEmployerBean bean = GsonUtil.getGson().fromJson(s, VerifyEmployerBean.class);
+                ErrorBean bean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
 
                 Log.d("suyingchi", "onResponse: after from json");
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {

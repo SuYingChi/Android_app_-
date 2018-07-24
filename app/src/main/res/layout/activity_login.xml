@@ -88,7 +88,9 @@
             android:textColor="@color/textcolor"
             android:textColorHint="#ffffff"
             android:textCursorDrawable="@null"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:inputType="numberPassword"
+            />
 
     </LinearLayout>
 

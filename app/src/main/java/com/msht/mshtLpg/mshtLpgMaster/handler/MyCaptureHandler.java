@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
+import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MyCaptureFragment;
 import com.msht.mshtLpg.mshtLpgMaster.thread.MyDecodeThread;
 import com.uuzuche.lib_zxing.activity.CaptureFragment;
@@ -25,7 +26,7 @@ public final class MyCaptureHandler extends Handler {
 
     private static final String TAG = com.uuzuche.lib_zxing.decoding.CaptureActivityHandler.class.getSimpleName();
 
-    private final MyCaptureFragment fragment;
+    private final BaseFragment fragment;
     private final MyDecodeThread decodeThread;
 
     public com.uuzuche.lib_zxing.decoding.CaptureActivityHandler.State getState() {
@@ -38,7 +39,7 @@ public final class MyCaptureHandler extends Handler {
 
 
 
-    public MyCaptureHandler(MyCaptureFragment fragment, Vector<BarcodeFormat> decodeFormats,
+    public MyCaptureHandler(BaseFragment fragment, Vector<BarcodeFormat> decodeFormats,
                             String characterSet, ViewfinderView viewfinderView) {
         this.fragment = fragment;
         decodeThread = new MyDecodeThread(fragment, decodeFormats, characterSet,

@@ -48,6 +48,7 @@
         <activity android:name=".activity.OrdersDetailFinishActivity"/>
         <activity android:name=".activity.ExchangeSteelBottleActivity"/>
         <activity android:name=".activity.InnerActivity" />
+        <activity android:name=".activity.RegisterBottleActivity" />
     </application>
 
 </manifest>

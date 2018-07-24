@@ -4,7 +4,7 @@ package com.msht.mshtLpg.mshtLpgMaster.Present;
 import android.text.TextUtils;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.BottleReplacePriceBean;
-import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyEmployerBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;
 import com.msht.mshtLpg.mshtLpgMaster.callback.DataStringCallback;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
@@ -29,7 +29,7 @@ public class IExchangeSteelBottlePresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                VerifyEmployerBean bean = GsonUtil.getGson().fromJson(s, VerifyEmployerBean.class);
+                ErrorBean bean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
                     iExchangeSteelBottleView.onError(bean.getMsg());
 
@@ -52,12 +52,12 @@ public class IExchangeSteelBottlePresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                BottleReplacePriceBean bean = GsonUtil.getGson().fromJson(s, BottleReplacePriceBean.class);
-                if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
-                    iExchangeSteelBottleView.onError(bean.getMsg());
+                ErrorBean ErrorBean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
+                if (!TextUtils.isEmpty(ErrorBean.getResult()) && TextUtils.equals(ErrorBean.getResult(), "fail")) {
+                    iExchangeSteelBottleView.onError(ErrorBean.getMsg());
 
-                } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
-
+                } else if (!TextUtils.isEmpty(ErrorBean.getResult()) && TextUtils.equals(ErrorBean.getResult(), "success")) {
+                    BottleReplacePriceBean bean = GsonUtil.getGson().fromJson(s, BottleReplacePriceBean.class);
                     iExchangeSteelBottleView.onGetReplacePriceSuccess(bean);
                 }
             }

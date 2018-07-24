@@ -157,21 +157,6 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     @Override
     protected void initData() {
         adapter = new OrdersListRclAdapter(list, getActivity(), this);
-        //autoLoadMoreAdapter = new AutoLoadMoreAdapter(getContext(), adapter);
-      /*  autoLoadMoreAdapter.setOnLoadListener(new AutoLoadMoreAdapter.OnLoadListener() {
-            @Override
-            public void onRetry() {
-
-            }
-
-            @Override
-            public void onLoadMore() {
-                page++;
-                Log.d("suyingchi", "onLoadMore: page = "+page);
-                iOrdersListPresenter.getOrders();
-            }
-        });*/
-       // rclHome.setAdapter(autoLoadMoreAdapter);
         rclHome.setAdapter(adapter);
         page = 1;
         iOrdersListPresenter.getOrders();

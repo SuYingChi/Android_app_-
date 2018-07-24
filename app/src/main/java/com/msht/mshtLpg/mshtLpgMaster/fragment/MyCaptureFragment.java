@@ -235,6 +235,7 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
      * @param result
      * @param barcode
      */
+    @Override
     public void handleDecode(Result result, Bitmap barcode) {
         Log.d(TAG, "handleDecode: ");
         inactivityTimer.onActivity();
@@ -296,10 +297,12 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
         }
     }
 
+    @Override
     public Handler getHandler() {
         return handler;
     }
 
+    @Override
     public void drawViewfinder() {
         viewfinderView.drawViewfinder();
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.LoginEventBean;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.activity.InnerActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.RegisterBottleActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -26,6 +27,8 @@ public class MySettingFragment extends BaseLazyFragment{
     ImageView tvInnerDistribute;
     @BindView(R.id.iv_my_setting_get_steel_bottle_in_warehouse)
     ImageView ivInnerReturn;
+    @BindView(R.id.iv_my_setting_register_steel_bottle)
+    ImageView ivRegisterBottle;
     private String name="";
     private String siteName="";
 
@@ -48,7 +51,7 @@ public class MySettingFragment extends BaseLazyFragment{
             public void onClick(View v) {
              Intent intent =    new Intent(getActivity(),InnerActivity.class);
              intent.putExtra("innerType",1);
-             startActivity(new Intent(getActivity(),InnerActivity.class));
+             startActivity(intent);
             }
         });
         ivInnerReturn.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +59,14 @@ public class MySettingFragment extends BaseLazyFragment{
             public void onClick(View v) {
                 Intent intent =    new Intent(getActivity(),InnerActivity.class);
                 intent.putExtra("innerType",2);
-                startActivity(new Intent(getActivity(),InnerActivity.class));
+                startActivity(intent);
+            }
+        });
+        ivRegisterBottle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =    new Intent(getActivity(),RegisterBottleActivity.class);
+                startActivity(intent);
             }
         });
     }

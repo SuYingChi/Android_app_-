@@ -7,9 +7,9 @@ public class Constants {
 
  //阿里云地址 http://120.76.193.86:7799
     //public static final String BASE_URL = BuildConfig.DEBUG ? "http://192.168.0.104:7799/msht/": "";
-     public static final String BASE_URL = BuildConfig.DEBUG ? "http://192.168.0.122:7799/msht/": "";
+     //public static final String BASE_URL = BuildConfig.DEBUG ? "http://192.168.0.122:7799/msht/": "";
     //18599988888
-    //public static final String BASE_URL = BuildConfig.DEBUG ? "http://120.76.193.86:7799/msht/": "";
+    public static final String BASE_URL = BuildConfig.DEBUG ? "http://120.76.193.86:7799/msht/": "";
 
     public static final String LOGIN = BASE_URL+"lpgEmpOrder/login";
     //1是送气单 0是退瓶单
@@ -40,6 +40,10 @@ public class Constants {
 //员工工号验证
     public static final String QUERY_EMPOLYER = BASE_URL + "lpgEmpOrder/verifyEmployee";
 
+//钢瓶注册 查询钢瓶信息
+    public static final String GET_BOOTLEINFO_BY_ID=BASE_URL+"lpgBottle/getBottleInfo";
+    //钢瓶注册 修改钢瓶信息
+    public static final String UPDATE_BOTTLE_INFO=BASE_URL+"lpgBottle/updateBottleProperties";
 
     public static final String URL_PARAMS_LOGIN_TOKEN = "loginToken";
     public static final String URL_PARAMS_ORDER_TYPE = "orderType";

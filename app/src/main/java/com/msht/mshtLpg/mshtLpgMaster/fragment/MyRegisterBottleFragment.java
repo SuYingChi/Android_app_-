@@ -1,6 +1,5 @@
 package com.msht.mshtLpg.mshtLpgMaster.fragment;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
@@ -12,29 +11,30 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
-import com.msht.mshtLpg.mshtLpgMaster.Bean.ScanInnerFetchBottleBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.GetBottleInfo;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
-import com.msht.mshtLpg.mshtLpgMaster.Present.IInnerFetchPresenter;
+import com.msht.mshtLpg.mshtLpgMaster.Present.IRegisterBottlePresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.ScanBottleQRCodeRclAdapter;
+import com.msht.mshtLpg.mshtLpgMaster.adapter.SpinnerAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
-import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.handler.MyCaptureHandler;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
-import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IinnerFetchView;
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IRegisterBottleView;
 import com.uuzuche.lib_zxing.camera.CameraManager;
 import com.uuzuche.lib_zxing.decoding.InactivityTimer;
 import com.uuzuche.lib_zxing.view.ViewfinderView;
@@ -42,39 +42,42 @@ import com.uuzuche.lib_zxing.view.ViewfinderView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Vector;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetchView, SurfaceHolder.Callback {
+public class MyRegisterBottleFragment extends BaseFragment implements IRegisterBottleView, SurfaceHolder.Callback {
     @BindView(R.id.scan_delive_topbar)
     TopBarView topBarView;
     @BindView(R.id.et_scan_qrcode_steel_bottle_number)
     EditText etInput;
     @BindView(R.id.btn_scan_qrcode_query_steel_bottle)
     TextView tvQuery;
-    @BindView(R.id.tv_employer)
-    EditText tvEmployer;
     @BindView(R.id.tv_scan_delive_bottom)
     TextView tvNext;
-    @BindView(R.id.scan_rcl_deliver_steel_bottle)
-    RecyclerView recyclerView;
     @BindView(R.id.scan_delive_steel_bottle_preview_view)
     SurfaceView surfaceView;
     @BindView(R.id.scan_delive_steel_bottle_qrcode_viewfinder_view)
     ViewfinderView viewfinderView;
-    private int fragmentType;
-    private IInnerFetchPresenter iScanInnerPresenter;
+    @BindView(R.id.weight)
+    Spinner spWeight;
+    @BindView(R.id.bottle_number)
+    TextView tvBottleNumber;
+    @BindView(R.id.property_unit)
+    TextView tvProduceUnit;
+    @BindView(R.id.creat_time)
+    TextView tvProduceTime;
+    @BindView(R.id.producer)
+    TextView tvProducer;
+    @BindView(R.id.bottle_code)
+    TextView tvBottleCode;
+    private IRegisterBottlePresenter iRegisterBottlePresenter;
     protected InactivityTimer inactivityTimer;
     protected SurfaceHolder surfaceHolder;
     private String bottleCode;
-    private InnnerFetchActivityListener innnerFetchActivityListener;
     private List<VerifyBottleBean> list = new ArrayList<VerifyBottleBean>();
-    private String employerId;
-    private ScanBottleQRCodeRclAdapter adapter;
-    private boolean isEmployerQuerySuccess = false;
+    private List<String> spinnerList = new ArrayList<String>();
     private boolean hasSurface;
     private Camera camera;
     private Vector<BarcodeFormat> decodeFormats;
@@ -85,63 +88,29 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
     private static final float BEEP_VOLUME = 0.10f;
     private MyCaptureHandler handler;
     protected static final long VIBRATE_DURATION = 200L;
+    private String bottleWeight;
+    private String bottleNum;
+    private String producer;
+    private String propertyUnit;
+    private String createTime;
+    private String nextCheckTime;
+    private SpinnerAdapter spWeightAdapter;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            fragmentType = bundle.getInt(Constants.SCANFRAGMENT_TYPE);
-            //扫描员工二维码FRAGMENT
-        } else {
-            return;
-        }
         CameraManager.init(LPGApplication.getLPGApplicationContext());
-        iScanInnerPresenter = new IInnerFetchPresenter(this);
+        iRegisterBottlePresenter = new IRegisterBottlePresenter(this);
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this.getActivity());
-    }
-
-
-    @Override
-    public void onInnerFetchComfirmSuccess(ScanInnerFetchBottleBean bean) {
-        PopUtil.toastInBottom("内部领瓶成功");
-        Objects.requireNonNull(getActivity()).finish();
-    }
-
-
-    @Override
-    public String getEmployeeCode() {
-        return innnerFetchActivityListener.getEmpolyerId();
-    }
-
-
-    @Override
-    public String getBottleIds() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < list.size(); i++) {
-            String id = list.get(i).getData().getId() + "";
-            if (i == 0) {
-                stringBuilder.append(id);
-            } else {
-                stringBuilder.append(",").append(id);
-            }
-        }
-        return stringBuilder.toString();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = null;
-        if (fragmentType == 1) {
-            view = inflater.inflate(R.layout.inner_fetch_no_rcl_layout, null);
-        } else if (fragmentType == 2) {
-            view = inflater.inflate(R.layout.inner_fetch_layout, null);
-            adapter = new ScanBottleQRCodeRclAdapter(list, getActivity());
-            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            recyclerView.setAdapter(adapter);
-        }
+        View view = inflater.inflate(R.layout.register_bottle_layout, null);
+
         if (view != null) {
             ButterKnife.bind(this, view);
         } else {
@@ -151,39 +120,22 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                innnerFetchActivityListener.onCaptureFragmenBackBtnClick(fragmentType);
+                getActivity().finish();
             }
         });
-        if (innnerFetchActivityListener.getInnerType() == 1) {
-            topBarView.setTitle("内部领瓶");
-        } else if (innnerFetchActivityListener.getInnerType() == 2) {
-            topBarView.setTitle("内部返瓶");
-        }
-        tvNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (fragmentType == 2) {
-                    iScanInnerPresenter.innerFetchComfirm();
-                } else if (fragmentType == 1 && isEmployerQuerySuccess) {
-                    innnerFetchActivityListener.onClickNextBtnAndSendEmployerId(employerId);
-                }
-
-            }
-        });
-
         tvQuery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (fragmentType == 1) {
-                    bottleCode = etInput.getText().toString();
-                    iScanInnerPresenter.innerFetchQueryEmpolyer();
-                }
-             else if(fragmentType ==2) {
-                        bottleCode = etInput.getText().toString();
-                        iScanInnerPresenter.innerFetchQueryBottle();
-                }
+                bottleCode = etInput.getText().toString();
+                iRegisterBottlePresenter.getBottleInfo();
             }
         });
+
+        spWeightAdapter = new SpinnerAdapter(getActivity());
+        spWeight.setAdapter(spWeightAdapter);
+        spinnerList.add("5kg        ");
+        spinnerList.add("15kg        ");
+        spinnerList.add("50kg        ");
 
         return view;
     }
@@ -191,16 +143,12 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.innnerFetchActivityListener = (InnnerFetchActivityListener) getActivity();
-
     }
 
 
     @Override
     public void onResume() {
         super.onResume();
-        String s = fragmentType == 1 ? "扫描员工二维码" : "扫描领瓶二维码";
-        PopUtil.toastInBottom(s);
         if (hasSurface) {
             initCamera(surfaceHolder);
         } else {
@@ -292,16 +240,10 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
         String bottleUrl = result.getText();
-        if (fragmentType == 1) {
-            employerId = bottleUrl;
-            tvEmployer.setText(employerId);
-            iScanInnerPresenter.innerFetchQueryEmpolyer();
-        } else if (fragmentType == 2) {
-            int index = bottleUrl.indexOf("id=");
-            bottleCode = bottleUrl.substring(index + 3).trim();
-            PopUtil.toastInBottom(result.getText());
-            iScanInnerPresenter.innerFetchQueryBottle();
-        }
+        int index = bottleUrl.indexOf("id=");
+        bottleCode = bottleUrl.substring(index + 3).trim();
+        PopUtil.toastInBottom(result.getText());
+        iRegisterBottlePresenter.getBottleInfo();
     }
 
     protected void playBeepSoundAndVibrate() {
@@ -335,37 +277,6 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
         inactivityTimer.shutdown();
     }
 
-    @Override
-    public void onGetInnerFetchBottleInfoSuccess(VerifyBottleBean verifyBottleBean) {
-        if (isContainBottle(list, verifyBottleBean.getData().getBottleCode())) {
-            PopUtil.toastInBottom("钢瓶已添加");
-        } else if (fragmentType == 2) {
-            if (verifyBottleBean.getData().getIsHeavy() == 1) {
-                list.add(verifyBottleBean);
-                adapter.notifyDataSetChanged();
-            } else {
-                PopUtil.toastInBottom("不能回收重瓶");
-            }
-        }
-        Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
-        handler.sendMessageDelayed(reDecode, 1000);
-    }
-
-    private boolean isContainBottle(List<VerifyBottleBean> list, String bottleCode) {
-        for (VerifyBottleBean bean : list) {
-            if (bean.getData().getBottleCode().equals(bottleCode)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public void onGetEmployerInfoSuccess() {
-        isEmployerQuerySuccess = true;
-
-
-    }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -396,18 +307,61 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
         }
     }
 
-    public interface InnnerFetchActivityListener {
+    @Override
+    public void onGetBottleInfoSuccess(GetBottleInfo getBottleInfoBean) {
+      bottleCode = getBottleInfoBean.getData().getBottleCode();
+      bottleWeight= getBottleInfoBean.getData().getBottleWeight()+"";
+      bottleNum = getBottleInfoBean.getData().getBottleNum();
+      producer = getBottleInfoBean.getData().getProducer();
+      propertyUnit=  getBottleInfoBean.getData().getPropertyUnit();
+      createTime =getBottleInfoBean.getData().getCreateTime();
+      nextCheckTime = getBottleInfoBean.getData().getNextCheckTime();
+      tvProducer.setText(producer);
+      tvBottleNumber.setText(bottleNum);
+      tvProduceTime.setText(createTime);
+      spWeightAdapter.setData(spinnerList);
+      spWeightAdapter.notifyDataSetChanged();
+      tvProduceUnit.setText(propertyUnit);
+      tvBottleCode.setText(bottleCode);
+      tvNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iRegisterBottlePresenter.update_bottle_info();
+            }
+        });
+      spWeight.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-        void onClickNextBtnAndSendEmployerId(String employerId);
+       @Override
+       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+           switch (position){
+               case 0:
+                   bottleWeight = 5+"";
+                   break;
+               case 1:
+                   bottleWeight = 15+"";
+                   break;
+               case 2:
+                   bottleWeight = 50+"";
+                   break;
+                   default:
+                       break;
+           }
+       }
 
-        void onCaptureFragmenBackBtnClick(int fragmentType);
+       @Override
+       public void onNothingSelected(AdapterView<?> parent) {
 
-        String getEmpolyerId();
-
-        String getUrl();
-
-        int getInnerType();
+       }
+   });
     }
+
+    @Override
+    public void onUpdateBottleInfoSuccess(ErrorBean errorBean) {
+        PopUtil.toastInBottom("修改钢瓶注册信息成功");
+        Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
+        handler.sendMessageDelayed(reDecode, 1000);
+    }
+
 
     @Override
     public String getBottleCode() {
@@ -415,18 +369,33 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
     }
 
     @Override
-    public String getVerifyType() {
-        return null;
+    public String getBottleNum() {
+        return bottleNum;
     }
 
     @Override
-    public String getUrl() {
-        return innnerFetchActivityListener.getUrl();
+    public String getBottleWeight() {
+        return bottleWeight;
     }
 
     @Override
-    public int getInnerType() {
-        return innnerFetchActivityListener.getInnerType();
+    public String getProducer() {
+        return producer;
+    }
+
+    @Override
+    public String getPropertyUnit() {
+        return propertyUnit;
+    }
+
+    @Override
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    @Override
+    public String getNextCheckTime() {
+        return nextCheckTime;
     }
 
     @Override

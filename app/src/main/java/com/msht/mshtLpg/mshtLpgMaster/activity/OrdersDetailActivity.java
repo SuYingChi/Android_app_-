@@ -113,10 +113,12 @@ public class OrdersDetailActivity extends BaseActivity implements IOrderDetailVi
         fiveFee.setText(bean.getData().getFiveBottleCount() +"");
         fifteenFee.setText(bean.getData().getFifteenBottleCount() +"");
         fiftyFee.setText(bean.getData().getFiftyBottleCount() +"");
-        deliverFee.setText(bean.getData().getFiveBottleCount()*bean.getData().getFiveDeliveryFee()+bean.getData().getFifteenBottleCount()*bean.getData().getFifteenDeliveryFee()+bean.getData().getFiftyBottleCount()*bean.getData().getFiftyDeliveryFee()+"");
+        //deliverFee.setText(bean.getData().getFiveBottleCount()*bean.getData().getFiveDeliveryFee()+bean.getData().getFifteenBottleCount()*bean.getData().getFifteenDeliveryFee()+bean.getData().getFiftyBottleCount()*bean.getData().getFiftyDeliveryFee()+"");
         //totalFee.setText(String.valueOf(Integer.valueOf(fiveFee.getText().toString())+Integer.valueOf(fifteenFee.getText().toString())+Integer.valueOf(fiftyFee.getText().toString())));
+        deliverFee.setText("验瓶后产生运费");
         totalFee.setText(bean.getData().getRealAmount()+"");
         dispatchOrdersTime.setText(bean.getData().getCreateDate());
+
     }
 
     @Override

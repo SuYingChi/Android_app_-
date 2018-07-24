@@ -125,7 +125,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
         scanEmpolyerFragment = new MyScanInnerFetchFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(Constants.SCANFRAGMENT_TYPE,1);
-        myScanBottleFragment.setArguments(bundle);
+        scanEmpolyerFragment.setArguments(bundle);
         scanEmpolyerFragment.setCameraInitCallBack(new MyCaptureFragment.CameraInitCallBack() {
             @Override
             public void callBack(Exception e) {
