@@ -83,9 +83,8 @@ public class HomeActivity extends BaseActivity {
 
 
         vp.setAdapter(new HomeActivityFragmentPagerAdapter(getSupportFragmentManager(), list_fragment));
-        //vp.setCurrentItem(SharePreferenceUtil.getLoginSpIntValue(Constants.HOME_ACTIVITY_BOTTOM_TAB_ITEM));
-        //initBottom(SharePreferenceUtil.getLoginSpIntValue(Constants.HOME_ACTIVITY_BOTTOM_TAB_ITEM));
-        initBottom(0);
+        vp.setCurrentItem(SharePreferenceUtil.getLoginSpIntValue(Constants.HOME_ACTIVITY_BOTTOM_TAB_ITEM));
+        initBottom(SharePreferenceUtil.getLoginSpIntValue(Constants.HOME_ACTIVITY_BOTTOM_TAB_ITEM));
         vp.setOffscreenPageLimit(3);
 
         vp.setScanScroll(false);

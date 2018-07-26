@@ -30,6 +30,7 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
     private Activity activity;
     private LayoutInflater inflater;
     private List<ExchangeRclBean> list;
+    private long mClickTime;
 
     public ExchangeBottleRclAdapter(List<ExchangeRclBean> list, Activity activity, OnExchangeRclClicklistener onExchangeRclClicklistener, int remainFive, int remainFifteen, int remainFifty) {
         this.list = list;
@@ -143,11 +144,16 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     //日后补上dialog
-                    PopUtil.toastInBottom("移除该条空瓶置换");
-                    list.remove(position);
-                    notifyDataSetChanged();
+                    if(System.currentTimeMillis()-mClickTime<800) {
+                        PopUtil.toastInBottom("移除该条空瓶置换");
+                        list.remove(position);
+                        notifyDataSetChanged();
+                    }else {
+                        mClickTime=System.currentTimeMillis();
+                    }
                 }
             });
+
         } else if (holder instanceof ViewHolderFoot) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -1,5 +1,6 @@
 package com.msht.mshtLpg.mshtLpgMaster.util;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +12,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
@@ -26,7 +29,7 @@ public class PopUtil {
     private static Dialog topLoadingDialog;
 
     public static void showCenterLodaingDialog(Context context) {
-        if(centerLoadingDialog ==null){
+        if(context!=null&&centerLoadingDialog ==null){
             centerLoadingDialog = new LoadingDialog(context);
         }else if(context!=null&&!centerLoadingDialog.isShowing()){
             centerLoadingDialog.show();
@@ -160,5 +163,10 @@ public class PopUtil {
         if(dialog !=null&& dialog.isShowing()&&context!=null){
             dialog.dismiss();
         }
+    }
+    public static  void hideInput(Context context, EditText et) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(et.getWindowToken(), 0);
     }
 }

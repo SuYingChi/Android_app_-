@@ -9,17 +9,13 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.FrameLayout;
 
-import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
-import com.msht.mshtLpg.mshtLpgMaster.Present.VerifyEmployerPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
-import com.msht.mshtLpg.mshtLpgMaster.fragment.MyCaptureFragment;
+import com.msht.mshtLpg.mshtLpgMaster.fragment.MyDeliverUserBottleFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MyScanInnerFetchFragment;
 import com.msht.mshtLpg.mshtLpgMaster.util.LogUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
-import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IinnerFetchVerifyView;
-import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IinnerFetchView;
 import com.yanzhenjie.permission.Permission;
 
 import java.util.List;
@@ -70,7 +66,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
         bundle.putString(Constants.EMPLOYERID, employerId);
         bundle.putInt(Constants.SCANFRAGMENT_TYPE,2);
         myScanBottleFragment.setArguments(bundle);
-        myScanBottleFragment.setCameraInitCallBack(new MyCaptureFragment.CameraInitCallBack() {
+        myScanBottleFragment.setCameraInitCallBack(new MyDeliverUserBottleFragment.CameraInitCallBack() {
             @Override
             public void callBack(Exception e) {
                 if (e == null) {
@@ -126,7 +122,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
         Bundle bundle = new Bundle();
         bundle.putInt(Constants.SCANFRAGMENT_TYPE,1);
         scanEmpolyerFragment.setArguments(bundle);
-        scanEmpolyerFragment.setCameraInitCallBack(new MyCaptureFragment.CameraInitCallBack() {
+        scanEmpolyerFragment.setCameraInitCallBack(new MyDeliverUserBottleFragment.CameraInitCallBack() {
             @Override
             public void callBack(Exception e) {
                 if (e == null) {

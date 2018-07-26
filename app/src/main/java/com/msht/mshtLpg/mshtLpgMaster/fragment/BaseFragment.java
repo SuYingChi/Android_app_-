@@ -21,6 +21,8 @@ import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IBaseView;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public abstract class BaseFragment extends Fragment implements IBaseView{
 
@@ -36,6 +38,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
     @Override
     public void showLoading() {
         PopUtil.showCenterLodaingDialog(this.getContext());
+
     }
 
     @Override
@@ -76,7 +79,6 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
     public String getEmployerId() {
         return SharePreferenceUtil.getLoginSpStringValue(Constants.EMPLOYERID);
     }
-
     @Override
     public void onLogout() {
         AppUtil.logout();

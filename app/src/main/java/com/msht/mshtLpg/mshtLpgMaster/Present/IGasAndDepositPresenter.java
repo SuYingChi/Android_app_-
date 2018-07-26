@@ -7,11 +7,12 @@ import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;
 import com.msht.mshtLpg.mshtLpgMaster.callback.DataStringCallback;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IBackBottleDetailPostView;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrdesDespositView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 public class IGasAndDepositPresenter {
-    private final IOrdesDespositView iOrdesDespositView;
+    private  IOrdesDespositView iOrdesDespositView;
 
     public IGasAndDepositPresenter(IOrdesDespositView iOrdesDespositView) {
         this.iOrdesDespositView =iOrdesDespositView;

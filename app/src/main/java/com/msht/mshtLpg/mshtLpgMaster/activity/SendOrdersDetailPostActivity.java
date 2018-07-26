@@ -42,7 +42,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class OrdersDetailPostActivity extends BaseActivity implements IOrderDetailView, IOrdesDespositView, IDeliveryView, IOrderDetailPostView,PermissionUtils.PermissionRequestFinishListener {
+public class SendOrdersDetailPostActivity extends BaseActivity implements IOrderDetailView, IOrdesDespositView, IDeliveryView, IOrderDetailPostView,PermissionUtils.PermissionRequestFinishListener {
 
 
     @BindView(R.id.pay_orders_v2_topbar)
@@ -111,8 +111,8 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
     LinearLayout callBtn;
 
     private double exchangeFee;
-    private int floor;
-    private int isElevator;
+    private String floor;
+    private String isElevator;
     private List<VerifyBottleBean> heavyBottleList;
     private IOrderDetailPresenter iOrderDetailPresenter;
     private List<VerifyBottleBean> emptyBottleList;
@@ -168,11 +168,11 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
     //更规范的写法是写个handler在子线程执行完后，调度其他子线程的开启，后边再优化
     /*@SuppressLint("HandlerLeak")
     private class MyHandler extends Handler {
-        private WeakReference<OrdersDetailPostActivity> ref;
+        private WeakReference<SendOrdersDetailPostActivity> ref;
 
-        public MyHandler(OrdersDetailPostActivity activity) {
+        public MyHandler(SendOrdersDetailPostActivity activity) {
             if (activity != null) {
-                ref = new WeakReference<OrdersDetailPostActivity>(activity);
+                ref = new WeakReference<SendOrdersDetailPostActivity>(activity);
             }
         }
 
@@ -181,7 +181,7 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
             if (ref == null) {
                 return;
             }
-            OrdersDetailPostActivity v = ref.get();
+            SendOrdersDetailPostActivity v = ref.get();
             if (v == null) {
                 return;
             }
@@ -262,14 +262,13 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
                     exchangeList = (List<ExchangeRclBean>) bundle.getSerializable("exchangelist");
                 }
             }
-        }
-        if (requestCode == Constants.EDIT_FLOOR_REQUEST_CODE && resultCode == RESULT_OK) {
+        }else if (requestCode == Constants.EDIT_FLOOR_REQUEST_CODE && resultCode == RESULT_OK) {
             if (data != null) {
-                floor = data.getIntExtra(Constants.FLOOR, 0);
+                floor = data.getStringExtra(Constants.FLOOR);
                 tvFloor.setText(floor + "层");
-                isElevator = data.getIntExtra(Constants.IS_ELEVATOR, 0);
-                tvElevator.setText(isElevator == 1 ? "(有电梯)" : "(无电梯)");
-                if (isElevator != 1) {
+                isElevator = data.getStringExtra(Constants.IS_ELEVATOR);
+                tvElevator.setText(isElevator == "1" ? "(有电梯)" : "(无电梯)");
+                if (!isElevator.equals("1")) {
                     iDeliveryPresenter.getDelivery();
                 }else {
                     iDeliveryPresenter.getIsElevatorDelivery();
@@ -284,10 +283,10 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
     public void onGetOrdersDetailSuccess(OrderDetailBean bean) {
         orderDetailBean = bean;
         siteId = bean.getData().getSiteId()+"";
-        floor = bean.getData().getFloor();
+        floor = bean.getData().getFloor()+"";
         orderId = bean.getData().getOrderId()+"";
         room = bean.getData().getRoomNum();
-        isElevator = bean.getData().getIsElevator();
+        isElevator = bean.getData().getIsElevator()+"";
         orderFiveNum= bean.getData().getFiveBottleCount();
         orderFifteenNum= bean.getData().getFifteenBottleCount();
         orderFiftyNum= bean.getData().getFiftyBottleCount();
@@ -302,7 +301,7 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
             @Override
             public void onClick(View v) {
                 if(remain15>0){
-                    Intent intent = new Intent(OrdersDetailPostActivity.this, ExchangeSteelBottleActivity.class);
+                    Intent intent = new Intent(SendOrdersDetailPostActivity.this, ExchangeSteelBottleActivity.class);
                     intent.putExtra(Constants.REMAIN_FIVE_NUM, remain5);
                     intent.putExtra(Constants.REMAIN_FIFTEEN_NUM, remain15);
                     intent.putExtra(Constants.REMAIN_FIFTY_NUM, remain50);
@@ -317,7 +316,7 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
         client_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OrdersDetailPostActivity.this, EditLocationActivity.class);
+                Intent intent = new Intent(SendOrdersDetailPostActivity.this, EditLocationActivity.class);
                 intent.putExtra(Constants.FLOOR, floor);
                 intent.putExtra(Constants.IS_ELEVATOR, isElevator);
                 startActivityForResult(intent, Constants.EDIT_FLOOR_REQUEST_CODE);
@@ -327,13 +326,13 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PermissionUtils.requestPermissions(OrdersDetailPostActivity.this, OrdersDetailPostActivity.this, Permission.CALL_PHONE);
+                PermissionUtils.requestPermissions(SendOrdersDetailPostActivity.this, SendOrdersDetailPostActivity.this, Permission.CALL_PHONE);
             }
         });
         tvLocation.setText(orderDetailBean.getData().getAddress());
         tvFloor.setText(floor + "层");
         tvRoom.setText(room + "房");
-        tvElevator.setText(isElevator == 1 ? "(有电梯)" : "(无电梯)");
+        tvElevator.setText(isElevator.equals("1") ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 1 ? "(先生)" : "(女士)").toString());
         tvTel.setText(orderDetailBean.getData().getMobile());
         tvDay.setText(orderDetailBean.getData().getCreateDate());
@@ -352,7 +351,7 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
 
     @Override
     public void onPostOrdersSuccess(ComfirmOrdersBean bean) {
-        Intent intent = new Intent(this, OrdersDetailPayActivity.class);
+        Intent intent = new Intent(this, SendBottleOrdersDetailPayActivity.class);
         intent.putExtra(Constants.ORDER_ID, orderId);
         startActivity(intent);
     }
@@ -412,15 +411,15 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
 
     @Override
     public String getFloor() {
-        if(isElevator==1){
-            floor =1;
+        if(isElevator.equals("1")){
+            floor ="1";
         }
         return floor+"";
     }
 
     @Override
     public String getRecycleBottleIds() {
-        StringBuffer sf = new StringBuffer();
+        StringBuilder sf = new StringBuilder();
         for(int i = 0; i< emptyBottleList.size(); i++){
             if(i==0){
                 sf.append(emptyBottleList.get(i).getData().getId());
@@ -556,7 +555,7 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
             }
             tvDepositeFee.setText(totalDeposite + "");
         }
-        if (isElevator != 1) {
+        if (!isElevator.equals("1")) {
             iDeliveryPresenter.getDelivery();
         }else {
             iDeliveryPresenter.getIsElevatorDelivery();

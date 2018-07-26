@@ -3,7 +3,6 @@ package com.msht.mshtLpg.mshtLpgMaster.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -133,7 +132,7 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
                 //已完成
                 s = "已完成";
                 executor.shutdown();
-                Intent intent = new Intent(this, OrdersDetailFinishActivity.class);
+                Intent intent = new Intent(this, SendBottleOrdersDetailFinishActivity.class);
                 intent.putExtra(Constants.ORDER_ID, orderId);
                 startActivity(intent);
                 break;

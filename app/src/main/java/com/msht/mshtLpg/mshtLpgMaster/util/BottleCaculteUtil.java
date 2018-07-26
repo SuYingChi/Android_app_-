@@ -19,6 +19,14 @@ public class BottleCaculteUtil {
         }
         return num;
     }
+    public static boolean isContainBottle(List<VerifyBottleBean> list,String bottleCode) {
+        for (VerifyBottleBean bean : list) {
+            if (bean.getData().getBottleCode().equals(bottleCode)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
   /*  public static int getExchangeBottleFare(List<BottleReplacePriceBean.DataBean> list,int year,int weight,int level){
         for(BottleReplacePriceBean.DataBean dataBean:list){

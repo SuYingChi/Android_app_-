@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.LoginEventBean;
+import com.msht.mshtLpg.mshtLpgMaster.Present.ILogoutPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.activity.InnerActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.RegisterBottleActivity;
+import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -29,6 +32,8 @@ public class MySettingFragment extends BaseLazyFragment{
     ImageView ivInnerReturn;
     @BindView(R.id.iv_my_setting_register_steel_bottle)
     ImageView ivRegisterBottle;
+    @BindView(R.id.ll_my_setting_unregister_login)
+    LinearLayout llUnregister;
     private String name="";
     private String siteName="";
 
@@ -46,6 +51,10 @@ public class MySettingFragment extends BaseLazyFragment{
     @Override
     protected void initView() {
         super.initView();
+        name = SharePreferenceUtil.getLoginSpStringValue("employeeName");
+        siteName = SharePreferenceUtil.getLoginSpStringValue("siteName");
+        tvName.setText(name);
+        tvSite.setText(siteName);
         tvInnerDistribute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +78,13 @@ public class MySettingFragment extends BaseLazyFragment{
                 startActivity(intent);
             }
         });
+        llUnregister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             new ILogoutPresenter(MySettingFragment.this).logout();
+            }
+        });
+
     }
 
     @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)

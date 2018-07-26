@@ -35,8 +35,9 @@ public class EditLocationActivity extends BaseActivity {
     Button btn;
     private SpinnerAdapter spinnerAdapter;
     List<String> list = new ArrayList<String>();
-    private int selectElevator  = 0;
     private Unbinder unbinder;
+    private String floor;
+    private String isElevator;
 
 
     @Override
@@ -44,18 +45,36 @@ public class EditLocationActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_location_layout);
         unbinder = ButterKnife.bind(this);
+        Bundle bundle = getIntent().getExtras();
+        if(bundle==null){
+            return;
+        }
+        floor = bundle.getString(Constants.FLOOR);
+        editText.setText(floor);
+        isElevator = bundle.getString(Constants.IS_ELEVATOR);
         spinnerAdapter = new SpinnerAdapter(this);
         spinner.setAdapter(spinnerAdapter);
-        list.add("1");
-        list.add("0");
+        list.add("无电梯");
+        list.add("有电梯");
         spinnerAdapter.setData(list);
         spinnerAdapter.notifyDataSetChanged();
-        spinner.setSelection(selectElevator);
+        spinner.setSelection(Integer.valueOf(isElevator));
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                isElevator  = position+"";
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent();
-                intent.putExtra(Constants.IS_ELEVATOR,selectElevator );
+                intent.putExtra(Constants.IS_ELEVATOR,isElevator );
                 intent.putExtra(Constants.FLOOR,Integer.valueOf(editText.getText().toString()));
                 setResult(RESULT_OK, intent);
                 finish();
@@ -65,16 +84,10 @@ public class EditLocationActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra(Constants.IS_ELEVATOR,selectElevator );
+                intent.putExtra(Constants.IS_ELEVATOR,isElevator );
                 intent.putExtra(Constants.FLOOR,Integer.valueOf(editText.getText().toString()));
                 setResult(RESULT_OK, intent);
                 finish();
-            }
-        });
-        spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               selectElevator = position;
             }
         });
     }

@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class OrdersDetailPayActivity extends BaseActivity implements IOrderDetailView ,PermissionUtils.PermissionRequestFinishListener{
+public class SendBottleOrdersDetailPayActivity extends BaseActivity implements IOrderDetailView ,PermissionUtils.PermissionRequestFinishListener{
     private OrderDetailBean bean;
     private int remain5;
     private int remain15;
@@ -141,7 +141,7 @@ public class OrdersDetailPayActivity extends BaseActivity implements IOrderDetai
         llDiscount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent =  new Intent(OrdersDetailPayActivity.this,ExchangeReviewActivity.class);
+               Intent intent =  new Intent(SendBottleOrdersDetailPayActivity.this,ExchangeReviewActivity.class);
                intent.putExtra(Constants.ORDER_ID,orderId);
                startActivity(intent);
             }
@@ -230,7 +230,7 @@ public class OrdersDetailPayActivity extends BaseActivity implements IOrderDetai
             public void onClick(View v) {
                 orderType = "1";
                 payType = "12";
-                Intent intent = new Intent(OrdersDetailPayActivity.this, QRCodeReceiptActivity.class);
+                Intent intent = new Intent(SendBottleOrdersDetailPayActivity.this, QRCodeReceiptActivity.class);
                 intent.putExtra(Constants.ORDER_ID,orderId);
                 intent.putExtra(Constants.URL_PARAMS_ORDER_TYPE,orderType);
                 intent.putExtra(Constants.PAY_AMOUNT,totalfare+"");
@@ -241,7 +241,7 @@ public class OrdersDetailPayActivity extends BaseActivity implements IOrderDetai
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PermissionUtils.requestPermissions(OrdersDetailPayActivity.this, OrdersDetailPayActivity.this, Permission.CALL_PHONE);
+                PermissionUtils.requestPermissions(SendBottleOrdersDetailPayActivity.this, SendBottleOrdersDetailPayActivity.this, Permission.CALL_PHONE);
             }
         });
 

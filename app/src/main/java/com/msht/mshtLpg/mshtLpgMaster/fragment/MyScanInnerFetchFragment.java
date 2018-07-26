@@ -1,6 +1,5 @@
 package com.msht.mshtLpg.mshtLpgMaster.fragment;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
@@ -45,26 +44,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Vector;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetchView, SurfaceHolder.Callback {
-    @BindView(R.id.scan_delive_topbar)
-    TopBarView topBarView;
-    @BindView(R.id.et_scan_qrcode_steel_bottle_number)
-    EditText etInput;
-    @BindView(R.id.btn_scan_qrcode_query_steel_bottle)
-    TextView tvQuery;
-    @BindView(R.id.tv_employer)
-    EditText tvEmployer;
-    @BindView(R.id.tv_scan_delive_bottom)
-    TextView tvNext;
-    @BindView(R.id.scan_rcl_deliver_steel_bottle)
-    RecyclerView recyclerView;
-    @BindView(R.id.scan_delive_steel_bottle_preview_view)
-    SurfaceView surfaceView;
-    @BindView(R.id.scan_delive_steel_bottle_qrcode_viewfinder_view)
-    ViewfinderView viewfinderView;
     private int fragmentType;
     private IInnerFetchPresenter iScanInnerPresenter;
     protected InactivityTimer inactivityTimer;
@@ -85,6 +65,14 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
     private static final float BEEP_VOLUME = 0.10f;
     private MyCaptureHandler handler;
     protected static final long VIBRATE_DURATION = 200L;
+    private RecyclerView recyclerView;
+    private SurfaceView surfaceView;
+    private TopBarView topBarView;
+    private TextView tvNext;
+    private TextView tvQuery;
+    private EditText etInput;
+    private ViewfinderView viewfinderView;
+    private TextView tvEmployer;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -129,6 +117,11 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
         }
         return stringBuilder.toString();
     }
+    //遗留bug 后续需要解决
+    @Override
+    public void showLoading() {
+
+    }
 
     @Nullable
     @Override
@@ -136,18 +129,21 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
         View view = null;
         if (fragmentType == 1) {
             view = inflater.inflate(R.layout.inner_fetch_no_rcl_layout, null);
+            tvEmployer = (TextView)view.findViewById(R.id.tv_employer);
         } else if (fragmentType == 2) {
             view = inflater.inflate(R.layout.inner_fetch_layout, null);
+            recyclerView= (RecyclerView)view.findViewById(R.id.scan_rcl_deliver_steel_bottle);
             adapter = new ScanBottleQRCodeRclAdapter(list, getActivity());
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerView.setAdapter(adapter);
         }
-        if (view != null) {
-            ButterKnife.bind(this, view);
-        } else {
-            return null;
-        }
+        surfaceView = (SurfaceView)view.findViewById(R.id.scan_delive_steel_bottle_preview_view);
         surfaceHolder = surfaceView.getHolder();
+        topBarView = (TopBarView)view.findViewById(R.id.scan_delive_topbar);
+        tvNext = (TextView)view.findViewById(R.id.tv_scan_delive_bottom);
+        tvQuery = (TextView)view.findViewById(R.id.btn_scan_qrcode_query_steel_bottle);
+        etInput = (EditText)view.findViewById(R.id.et_scan_qrcode_steel_bottle_number);
+        viewfinderView = (ViewfinderView)view.findViewById(R.id.scan_delive_steel_bottle_qrcode_viewfinder_view);
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -272,12 +268,12 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
     }
 
     @Nullable
-    protected MyCaptureFragment.CameraInitCallBack callBack;
+    protected MyDeliverUserBottleFragment.CameraInitCallBack callBack;
 
     /**
      * Set callback for Camera check whether Camera init success or not.
      */
-    public void setCameraInitCallBack(MyCaptureFragment.CameraInitCallBack callBack) {
+    public void setCameraInitCallBack(MyDeliverUserBottleFragment.CameraInitCallBack callBack) {
         this.callBack = callBack;
     }
 
@@ -297,9 +293,12 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
             tvEmployer.setText(employerId);
             iScanInnerPresenter.innerFetchQueryEmpolyer();
         } else if (fragmentType == 2) {
-            int index = bottleUrl.indexOf("id=");
-            bottleCode = bottleUrl.substring(index + 3).trim();
-            PopUtil.toastInBottom(result.getText());
+            if(bottleUrl.length()==10){
+                bottleCode = bottleUrl;
+            }else if(bottleUrl.contains("id=")){
+                int index = bottleUrl.indexOf("id=");
+                bottleCode = bottleUrl.substring(index + 3).trim();
+            }
             iScanInnerPresenter.innerFetchQueryBottle();
         }
     }

@@ -66,7 +66,7 @@ public abstract class BaseLazyFragment extends BaseFragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, mRootView);
+        unbinder = ButterKnife.bind(this, mRootView);
         initView();
         if (isLazyLoad()) {
             mIsPrepare = true;

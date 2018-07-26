@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class OrdersDetailFinishActivity extends BaseActivity  implements IOrderDetailView,PermissionUtils.PermissionRequestFinishListener{
+public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implements IOrderDetailView,PermissionUtils.PermissionRequestFinishListener{
     @BindView(R.id.pay_orders_v2_topbar)
     TopBarView topBarView;
     @BindView(R.id.location)
@@ -212,7 +212,7 @@ public class OrdersDetailFinishActivity extends BaseActivity  implements IOrderD
         llDiscount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =  new Intent(OrdersDetailFinishActivity.this,ExchangeReviewActivity.class);
+                Intent intent =  new Intent(SendBottleOrdersDetailFinishActivity.this,ExchangeReviewActivity.class);
                 intent.putExtra(Constants.ORDER_ID,orderId);
                 startActivity(intent);
             }
@@ -223,7 +223,7 @@ public class OrdersDetailFinishActivity extends BaseActivity  implements IOrderD
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PermissionUtils.requestPermissions(OrdersDetailFinishActivity.this, OrdersDetailFinishActivity.this, Permission.CALL_PHONE);
+                PermissionUtils.requestPermissions(SendBottleOrdersDetailFinishActivity.this, SendBottleOrdersDetailFinishActivity.this, Permission.CALL_PHONE);
             }
         });
     }

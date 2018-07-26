@@ -1,6 +1,7 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -173,6 +174,8 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(LogoutEvent messageEvent) {
+        Intent goLogin = new Intent(this, LoginActivity.class);
+        startActivity(goLogin);
         finish();
     }
 

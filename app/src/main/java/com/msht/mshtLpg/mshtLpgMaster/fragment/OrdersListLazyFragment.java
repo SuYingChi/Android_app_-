@@ -17,9 +17,12 @@ import android.widget.Button;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrdersListBeanV2;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrdersListPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.activity.OrdersDetailActivity;
-import com.msht.mshtLpg.mshtLpgMaster.activity.OrdersDetailFinishActivity;
-import com.msht.mshtLpg.mshtLpgMaster.activity.OrdersDetailPayActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.BackBottleOrdersCancleActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.BackBottleOrdersDetailActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.BackBottleOrdersFinishActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.SendBottleOrdersDetailActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.SendBottleOrdersDetailFinishActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.SendBottleOrdersDetailPayActivity;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.OrdersListRclAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
@@ -60,6 +63,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     //private AutoLoadMoreAdapter autoLoadMoreAdapter;
     private int page;
     private final String[] tabTitles = {"全部", "待验瓶", "待付款", "已完成"};
+    private final String[] tabTitlesReturnBottle = {"全部","待验瓶","已完成","已取消"};
     private String mobile;
 
 
@@ -72,14 +76,10 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     protected void initView() {
 
         iOrdersListPresenter = new IOrdersListPresenter(OrdersListLazyFragment.this);
-        rclHome.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         refreshLayout.setEnableAutoLoadMore(true);
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
         initTopTab(SharePreferenceUtil.getLoginSpIntValue(Constants.HOME_TOP_CITEM));
-        for (String title : tabTitles) {
-            tabLayout.addTab(tabLayout.newTab().setText(title));
-        }
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -101,6 +101,9 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
         });
         tabLayout.getTabAt(SharePreferenceUtil.getLoginSpIntValue(Constants.HOME_ORDERS_SCHEDULE_CITEM)).select();
         ordersStatus = SharePreferenceUtil.getLoginSpIntValue(Constants.HOME_ORDERS_SCHEDULE_CITEM);
+        adapter = new OrdersListRclAdapter(list, getActivity(), this);
+        rclHome.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        rclHome.setAdapter(adapter);
     }
 
     private void initTopTab(int item) {
@@ -112,7 +115,9 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
             btnTab0.setTextColor(ContextCompat.getColor(getContext(), R.color.bot_gray));
             btnTab1.setTextColor(ContextCompat.getColor(getContext(), R.color.text_enable_gray));
 
-
+            for (String title : tabTitles) {
+                tabLayout.addTab(tabLayout.newTab().setText(title));
+            }
         }
         if (item == 1) {
             ordersType =0;
@@ -121,7 +126,9 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
 
             btnTab0.setTextColor(ContextCompat.getColor(getContext(), R.color.text_enable_gray));
             btnTab1.setTextColor(ContextCompat.getColor(getContext(), R.color.bot_gray));
-
+            for (String title : tabTitlesReturnBottle) {
+                tabLayout.addTab(tabLayout.newTab().setText(title));
+            }
 
         }
         SharePreferenceUtil.getInstance().setOrderType(ordersType+"");
@@ -136,6 +143,10 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
                     initTopTab(0);
                     ordersType = 1;
                     SharePreferenceUtil.setLoginSpIntValue(Constants.HOME_FRAGMENT_TOP_TAB_ITEM, 0);
+                    tabLayout.removeAllTabs();
+                    for (String title : tabTitles) {
+                        tabLayout.addTab(tabLayout.newTab().setText(title));
+                    }
 
                 }
                 break;
@@ -144,6 +155,10 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
                     initTopTab(1);
                     ordersType = 0;
                     SharePreferenceUtil.setLoginSpIntValue(Constants.HOME_FRAGMENT_TOP_TAB_ITEM, 1);
+                    tabLayout.removeAllTabs();
+                    for (String title : tabTitlesReturnBottle) {
+                        tabLayout.addTab(tabLayout.newTab().setText(title));
+                    }
 
                 }
                 break;
@@ -156,8 +171,6 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
 
     @Override
     protected void initData() {
-        adapter = new OrdersListRclAdapter(list, getActivity(), this);
-        rclHome.setAdapter(adapter);
         page = 1;
         iOrdersListPresenter.getOrders();
     }
@@ -224,19 +237,32 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     @Override
     public void onClckOrderButton(int orderId,int orderType) {
         if(orderType==0){
-            Intent intent = new Intent(getActivity(), OrdersDetailActivity.class);
+            Intent intent = new Intent(getActivity(), SendBottleOrdersDetailActivity.class);
             intent.putExtra(Constants.ORDER_ID, orderId+"");
             startActivity(intent);
         }else if(orderType==1){
-            Intent intent = new Intent(getActivity(), OrdersDetailPayActivity.class);
+            Intent intent = new Intent(getActivity(), SendBottleOrdersDetailPayActivity.class);
             intent.putExtra(Constants.ORDER_ID, orderId+"");
             startActivity(intent);
         }else if(orderType==2){
-            Intent intent = new Intent(getActivity(), OrdersDetailFinishActivity.class);
+            Intent intent = new Intent(getActivity(), SendBottleOrdersDetailFinishActivity.class);
+            intent.putExtra(Constants.ORDER_ID, orderId+"");
+            startActivity(intent);
+        }else if(orderType==3){
+            Intent intent = new Intent(getActivity(), BackBottleOrdersDetailActivity.class);
+            intent.putExtra(Constants.ORDER_ID, orderId+"");
+            startActivity(intent);
+        }else if(orderType == 4){
+            Intent intent = new Intent(getActivity(), BackBottleOrdersFinishActivity.class);
+            intent.putExtra(Constants.ORDER_ID, orderId+"");
+            startActivity(intent);
+        }else if(orderType == 5){
+            Intent intent = new Intent(getActivity(), BackBottleOrdersCancleActivity.class);
             intent.putExtra(Constants.ORDER_ID, orderId+"");
             startActivity(intent);
         }
     }
+
 
     @Override
     public void onClickItem() {

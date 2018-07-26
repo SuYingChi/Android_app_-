@@ -10,12 +10,17 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -25,12 +30,11 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.GetBottleInfo;
-import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IRegisterBottlePresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.adapter.ScanBottleQRCodeRclAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.SpinnerAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
+import com.msht.mshtLpg.mshtLpgMaster.customView.TimeSelecteDialog;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.handler.MyCaptureHandler;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
@@ -63,20 +67,19 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
     @BindView(R.id.weight)
     Spinner spWeight;
     @BindView(R.id.bottle_number)
-    TextView tvBottleNumber;
+    EditText etBottleNumber;
     @BindView(R.id.property_unit)
-    TextView tvProduceUnit;
+    EditText etProduceUnit;
     @BindView(R.id.creat_time)
-    TextView tvProduceTime;
+    TextView tvCreatTime;
     @BindView(R.id.producer)
-    TextView tvProducer;
+    EditText etProducer;
     @BindView(R.id.bottle_code)
     TextView tvBottleCode;
     private IRegisterBottlePresenter iRegisterBottlePresenter;
     protected InactivityTimer inactivityTimer;
     protected SurfaceHolder surfaceHolder;
     private String bottleCode;
-    private List<VerifyBottleBean> list = new ArrayList<VerifyBottleBean>();
     private List<String> spinnerList = new ArrayList<String>();
     private boolean hasSurface;
     private Camera camera;
@@ -95,6 +98,8 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
     private String createTime;
     private String nextCheckTime;
     private SpinnerAdapter spWeightAdapter;
+    private TimeSelecteDialog timeSelecteDialog;
+    private boolean isRestart;
 
 
     @Override
@@ -103,7 +108,16 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
         CameraManager.init(LPGApplication.getLPGApplicationContext());
         iRegisterBottlePresenter = new IRegisterBottlePresenter(this);
         hasSurface = false;
+        isRestart  = false;
         inactivityTimer = new InactivityTimer(this.getActivity());
+        spinnerList.add("5kg        ");
+        spinnerList.add("15kg        ");
+        spinnerList.add("50kg        ");
+    }
+
+    @Override
+    public void showLoading() {
+
     }
 
     @Nullable
@@ -133,9 +147,26 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
 
         spWeightAdapter = new SpinnerAdapter(getActivity());
         spWeight.setAdapter(spWeightAdapter);
-        spinnerList.add("5kg        ");
-        spinnerList.add("15kg        ");
-        spinnerList.add("50kg        ");
+        spWeightAdapter.setData(spinnerList);
+        spWeightAdapter.notifyDataSetChanged();
+        etInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+              if(s.toString().length()==10){
+                  hideInput(MyRegisterBottleFragment.this.getContext(),etInput);
+              }
+            }
+        });
 
         return view;
     }
@@ -145,26 +176,47 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
         super.onAttach(context);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("suyingchi", "onPause: ");
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d("suyingchi", "onSaveInstanceState: ");
+        isRestart = true;
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d("suyingchi", "onStop: ");
+    }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (hasSurface) {
-            initCamera(surfaceHolder);
-        } else {
-            surfaceHolder.addCallback(this);
-            surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        }
-        decodeFormats = null;
-        characterSet = null;
+        Log.d("suyingchi", "onResume: hasSurface"+hasSurface);
+           if (hasSurface) {
+               initCamera(surfaceHolder);
+           } else {
+               surfaceHolder.addCallback(this);
+               surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+           }
+           decodeFormats = null;
+           characterSet = null;
 
-        playBeep = true;
-        AudioManager audioService = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
-        if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
-            playBeep = false;
-        }
-        initBeepSound();
-        vibrate = true;
+           playBeep = true;
+           AudioManager audioService = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+           if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
+               playBeep = false;
+           }
+           initBeepSound();
+           vibrate = true;
+
     }
 
     protected void initBeepSound() {
@@ -220,12 +272,12 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
     }
 
     @Nullable
-    protected MyCaptureFragment.CameraInitCallBack callBack;
+    protected MyDeliverUserBottleFragment.CameraInitCallBack callBack;
 
     /**
      * Set callback for Camera check whether Camera init success or not.
      */
-    public void setCameraInitCallBack(MyCaptureFragment.CameraInitCallBack callBack) {
+    public void setCameraInitCallBack(MyDeliverUserBottleFragment.CameraInitCallBack callBack) {
         this.callBack = callBack;
     }
 
@@ -240,9 +292,12 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
         String bottleUrl = result.getText();
-        int index = bottleUrl.indexOf("id=");
-        bottleCode = bottleUrl.substring(index + 3).trim();
-        PopUtil.toastInBottom(result.getText());
+        if(bottleUrl.length()==10){
+            bottleCode = bottleUrl;
+        }else if(bottleUrl.contains("id=")){
+            int index = bottleUrl.indexOf("id=");
+            bottleCode = bottleUrl.substring(index + 3).trim();
+        }
         iRegisterBottlePresenter.getBottleInfo();
     }
 
@@ -275,11 +330,13 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
         }
         CameraManager.get().closeDriver();
         inactivityTimer.shutdown();
+
     }
 
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+        Log.d("suyingchi", "surfaceCreated:    hasSurface"+hasSurface);
         if (!hasSurface) {
             hasSurface = true;
             initCamera(holder);
@@ -288,13 +345,14 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
+        Log.d("suyingchi", "surfaceChanged: ");
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
+        Log.d("suyingchi", "surfaceDestroyed: ");
         hasSurface = false;
-        if (camera != null) {
+       /* if (camera != null) {
             if (CameraManager.get().isPreviewing()) {
                 if (!CameraManager.get().isUseOneShotPreviewCallback()) {
                     camera.setPreviewCallback(null);
@@ -304,7 +362,7 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
                 CameraManager.get().getAutoFocusCallback().setHandler(null, 0);
                 CameraManager.get().setPreviewing(false);
             }
-        }
+        }*/
     }
 
     @Override
@@ -316,13 +374,12 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
       propertyUnit=  getBottleInfoBean.getData().getPropertyUnit();
       createTime =getBottleInfoBean.getData().getCreateTime();
       nextCheckTime = getBottleInfoBean.getData().getNextCheckTime();
-      tvProducer.setText(producer);
-      tvBottleNumber.setText(bottleNum);
-      tvProduceTime.setText(createTime);
-      spWeightAdapter.setData(spinnerList);
-      spWeightAdapter.notifyDataSetChanged();
-      tvProduceUnit.setText(propertyUnit);
+      etProducer.setText(producer);
+      etBottleNumber.setText(bottleNum);
+      tvCreatTime.setText(createTime);
+      etProduceUnit.setText(propertyUnit);
       tvBottleCode.setText(bottleCode);
+      hideInput(MyRegisterBottleFragment.this.getContext(),etInput);
       tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -353,6 +410,21 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
 
        }
    });
+    /*    tvCreatTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(timeSelecteDialog==null) {
+                    timeSelecteDialog = new TimeSelecteDialog(MyRegisterBottleFragment.this.getContext());
+                    timeSelecteDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+
+                        }
+                    });
+                }
+                PopUtil.showDialog(MyRegisterBottleFragment.this.getContext(),timeSelecteDialog);
+            }
+        });*/
     }
 
     @Override
@@ -362,7 +434,12 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
         handler.sendMessageDelayed(reDecode, 1000);
     }
 
+    private void hideInput(Context context, EditText et){
+        InputMethodManager inputMethodManager =
+                (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(et.getWindowToken(), 0);
 
+    }
     @Override
     public String getBottleCode() {
         return bottleCode;
@@ -370,31 +447,37 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
 
     @Override
     public String getBottleNum() {
+        bottleNum =  etBottleNumber.getText().toString();
         return bottleNum;
     }
 
     @Override
     public String getBottleWeight() {
+
         return bottleWeight;
     }
 
     @Override
     public String getProducer() {
+        producer =  etProducer.getText().toString();
         return producer;
     }
 
     @Override
     public String getPropertyUnit() {
+        propertyUnit =  etProduceUnit.getText().toString();
         return propertyUnit;
     }
 
     @Override
     public String getCreateTime() {
+        createTime =  tvCreatTime.getText().toString();
         return createTime;
     }
 
     @Override
     public String getNextCheckTime() {
+
         return nextCheckTime;
     }
 

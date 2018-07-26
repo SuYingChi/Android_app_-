@@ -45,6 +45,9 @@ public class Constants {
     //钢瓶注册 修改钢瓶信息
     public static final String UPDATE_BOTTLE_INFO=BASE_URL+"lpgBottle/updateBottleProperties";
 
+    public static final String  LOGOUT = BASE_URL+"lpgEmployee/logout";
+
+
     public static final String URL_PARAMS_LOGIN_TOKEN = "loginToken";
     public static final String URL_PARAMS_ORDER_TYPE = "orderType";
     public static final String URL_PARAMS_ORDER_STATUS="orderStatus";

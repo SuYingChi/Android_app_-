@@ -10,17 +10,16 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
-import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPostPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
-import com.msht.mshtLpg.mshtLpgMaster.fragment.MyCaptureFragment;
+import com.msht.mshtLpg.mshtLpgMaster.fragment.MyBackBottleFragment;
+import com.msht.mshtLpg.mshtLpgMaster.fragment.MyDeliverUserBottleFragment;
 import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.LogUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
-import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailPostView;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailView;
 import com.yanzhenjie.permission.Permission;
 
@@ -30,22 +29,19 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements MyCaptureFragment.CaptureActivityListener, PermissionUtils.PermissionRequestFinishListener, IOrderDetailView{
+public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements MyDeliverUserBottleFragment.CaptureActivityListener, PermissionUtils.PermissionRequestFinishListener, IOrderDetailView{
 
 
-    private MyCaptureFragment captureFragment;
-    private MyCaptureFragment captureEmptybottleFragment;
-    private int scanedfiveNum = 0;
-    private int scanedfifteenNum = 0;
-    private int scanedfiftyNum = 0;
+    private MyDeliverUserBottleFragment deliverUserBottleFragment;
+    private MyDeliverUserBottleFragment captureEmptybottleFragment;
     private int orderfiveNum = 0;
     private int orderfifteenNum = 0;
     private int orderfiftyNum = 0;
     private String orderId;
-    private FragmentTransaction transaction;
     private List<VerifyBottleBean> heavyBottleList;
-    private List<VerifyBottleBean> emptyBottleList;
     private Unbinder unbinder;
+    private int orderType;
+    private MyBackBottleFragment backBottleFragment;
 
 
     @Override
@@ -64,40 +60,44 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
     public void onClickNextBtnAndSendVerifyBottleList(int fragmentType, List<VerifyBottleBean> list) {
         if(fragmentType == 1) {
             this.heavyBottleList = list;
-            scanedfiveNum = BottleCaculteUtil.getBottleNum(list,5);
-            scanedfifteenNum = BottleCaculteUtil.getBottleNum(list,15);;
-            scanedfiftyNum = BottleCaculteUtil.getBottleNum(list,50);;
-            if(scanedfiveNum!=orderfiveNum||scanedfifteenNum!=orderfifteenNum||scanedfiftyNum!=orderfiftyNum){
+            int scanedfiveNum = BottleCaculteUtil.getBottleNum(list, 5);
+            int scanedfifteenNum = BottleCaculteUtil.getBottleNum(list, 15);
+            ;
+            int scanedfiftyNum = BottleCaculteUtil.getBottleNum(list, 50);
+            ;
+            if(scanedfiveNum !=orderfiveNum|| scanedfifteenNum !=orderfifteenNum|| scanedfiftyNum !=orderfiftyNum){
                 PopUtil.toastInBottom("未达到订单要求钢瓶数和规格"+"请按订单要求扫描验瓶"+"5kg瓶"+orderfiveNum+"15kg瓶"+orderfifteenNum+"50kg瓶"+orderfiftyNum);
             }else {
-                Bundle bundle = new Bundle();
-                captureEmptybottleFragment = new MyCaptureFragment();
-                bundle.putInt(Constants.ORDER_FIVE_NUM, orderfiveNum);
-                bundle.putInt(Constants.ORDER_FIFTEEN_NUM, orderfifteenNum );
-                bundle.putInt(Constants.ORDER_FIFTY_NUM, orderfiftyNum);
-                bundle.putInt(Constants.SCANFRAGMENT_TYPE,2);
-                captureEmptybottleFragment.setArguments(bundle);
-                captureEmptybottleFragment.setCameraInitCallBack(new MyCaptureFragment.CameraInitCallBack() {
-                    @Override
-                    public void callBack(Exception e) {
-                        if (e == null) {
+                if(captureEmptybottleFragment == null) {
+                    Bundle bundle = new Bundle();
+                    captureEmptybottleFragment = new MyDeliverUserBottleFragment();
+                    bundle.putInt(Constants.ORDER_FIVE_NUM, orderfiveNum);
+                    bundle.putInt(Constants.ORDER_FIFTEEN_NUM, orderfifteenNum);
+                    bundle.putInt(Constants.ORDER_FIFTY_NUM, orderfiftyNum);
+                    bundle.putInt(Constants.SCANFRAGMENT_TYPE, 2);
+                    captureEmptybottleFragment.setArguments(bundle);
+                    captureEmptybottleFragment.setCameraInitCallBack(new MyDeliverUserBottleFragment.CameraInitCallBack() {
+                        @Override
+                        public void callBack(Exception e) {
+                            if (e == null) {
 
-                        } else {
-                            LogUtils.d("TAG", "callback:    " + e);
+                            } else {
+                                LogUtils.d("TAG", "callback:    " + e);
+                            }
                         }
-                    }
-                });
+                    });
+                }
                 showFragment(captureEmptybottleFragment);
             }
 
 
         }else {
-            emptyBottleList = list;
-            Intent intent = new Intent(this,OrdersDetailPostActivity.class);
+            List<VerifyBottleBean> emptyBottleList = list;
+            Intent intent = new Intent(this,SendOrdersDetailPostActivity.class);
             Bundle bundle=new Bundle();
             bundle.putString(Constants.ORDER_ID,orderId);
             bundle.putSerializable(Constants.HEAVY_BOTTLE_LIST,(Serializable)heavyBottleList);
-            bundle.putSerializable(Constants.EMPTY_BOTTLE_LIST,(Serializable)emptyBottleList);
+            bundle.putSerializable(Constants.EMPTY_BOTTLE_LIST,(Serializable) emptyBottleList);
             bundle.putInt("starttype",1);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -112,7 +112,7 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
         if(fragmentType == 1){
             finish();
         }else if(fragmentType == 2){
-            showFragment(captureFragment);
+            showFragment(deliverUserBottleFragment);
         }
     }
 
@@ -133,7 +133,7 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
         }
     }*/
     private void showFragment(BaseFragment fragment){
-        transaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fl_my_container,fragment).commit();
     }
   /*  private void removeEmptyFragment() {
@@ -166,26 +166,48 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
         orderfiveNum = bean.getData().getFiveBottleCount();
         orderfifteenNum = bean.getData().getFifteenBottleCount();
         orderfiftyNum = bean.getData().getFiftyBottleCount();
+        orderType = bean.getData().getOrderType();
+         //送气单的扫码界面
+        if(orderType == 1) {
+            deliverUserBottleFragment = new MyDeliverUserBottleFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(Constants.ORDER_FIVE_NUM, orderfiveNum);
+            bundle.putInt(Constants.ORDER_FIFTEEN_NUM, orderfifteenNum);
+            bundle.putInt(Constants.ORDER_FIFTY_NUM, orderfiftyNum);
+            bundle.putInt(Constants.SCANFRAGMENT_TYPE, 1);
+            deliverUserBottleFragment.setArguments(bundle);
+            deliverUserBottleFragment.setCameraInitCallBack(new MyDeliverUserBottleFragment.CameraInitCallBack() {
+                @Override
+                public void callBack(Exception e) {
+                    if (e == null) {
 
-        captureFragment = new MyCaptureFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(Constants.ORDER_FIVE_NUM, orderfiveNum);
-        bundle.putInt(Constants.ORDER_FIFTEEN_NUM, orderfifteenNum);
-        bundle.putInt(Constants.ORDER_FIFTY_NUM, orderfiftyNum);
-        bundle.putInt(Constants.SCANFRAGMENT_TYPE,1);
-        captureFragment.setArguments(bundle);
-        captureFragment.setCameraInitCallBack(new MyCaptureFragment.CameraInitCallBack() {
-            @Override
-            public void callBack(Exception e) {
-                if (e == null) {
-
-                } else {
-                    LogUtils.d("TAG", "callback:    " + e);
+                    } else {
+                        LogUtils.d("TAG", "callback:    " + e);
+                    }
                 }
-            }
-        });
+            });
+            showFragment(deliverUserBottleFragment);
+        }//退瓶单的扫码界面
+        else if(orderType == 0){
+            backBottleFragment = new MyBackBottleFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(Constants.ORDER_FIVE_NUM, orderfiveNum);
+            bundle.putInt(Constants.ORDER_FIFTEEN_NUM, orderfifteenNum);
+            bundle.putInt(Constants.ORDER_FIFTY_NUM, orderfiftyNum);
+            bundle.putString(Constants.ORDER_ID,orderId);
+            backBottleFragment.setArguments(bundle);
+            backBottleFragment.setCameraInitCallBack(new MyBackBottleFragment.CameraInitCallBack() {
+                @Override
+                public void callBack(Exception e) {
+                    if (e == null) {
 
-        showFragment(captureFragment);
+                    } else {
+                        LogUtils.d("TAG", "callback:    " + e);
+                    }
+                }
+            });
+            showFragment(backBottleFragment);
+        }
     }
 
     @Override

@@ -9,9 +9,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.widget.FrameLayout;
 
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
-import com.msht.mshtLpg.mshtLpgMaster.fragment.MyCaptureFragment;
+import com.msht.mshtLpg.mshtLpgMaster.fragment.MyDeliverUserBottleFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MyRegisterBottleFragment;
 import com.msht.mshtLpg.mshtLpgMaster.util.LogUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
@@ -64,7 +63,7 @@ public class RegisterBottleActivity extends BaseActivity implements  PermissionU
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
         registerBottleFragment = new MyRegisterBottleFragment();
-        registerBottleFragment.setCameraInitCallBack(new MyCaptureFragment.CameraInitCallBack() {
+        registerBottleFragment.setCameraInitCallBack(new MyDeliverUserBottleFragment.CameraInitCallBack() {
             @Override
             public void callBack(Exception e) {
                 if (e == null) {

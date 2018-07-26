@@ -346,15 +346,16 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
        else if(ordertype == 0){
            switch (orderStatus){
                //待验瓶
-               case 2:
+               case 7:
+               case 6:
                    itemType = 3;
-                   break;
-               //待付款
-               case 0:
-                   itemType = 4;
                    break;
                //已完成
                case 3:
+                   itemType = 4;
+                   break;
+               //已取消
+               case 5:
                    itemType = 5;
                    break;
                default:
