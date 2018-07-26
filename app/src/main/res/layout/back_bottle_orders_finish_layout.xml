@@ -164,7 +164,6 @@
         android:paddingTop="@dimen/margin_Modules"
         android:layout_marginLeft="@dimen/margin_horizontal"
         android:layout_marginRight="@dimen/margin_horizontal"
-        android:visibility=""
         >
 
         <TextView
