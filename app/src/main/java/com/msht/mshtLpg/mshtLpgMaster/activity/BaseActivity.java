@@ -33,8 +33,6 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
 
     private BGASwipeBackHelper mSwipeBackHelper;
     private ImmersionBar mImmersionBar;
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         initSwipeBackFinish();
