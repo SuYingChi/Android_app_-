@@ -54,13 +54,13 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_statu.setText("送气待验瓶");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
-            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"男":"女");
+            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"  (男)":"  (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
             ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
             ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getFiftyBottleCount()+"");
             ((OrdersHolder) holder).sendBottleTime.setText(bean.getAppointmentTime());
-             ((OrdersHolder) holder).orderBtn.setText("验瓶");
+             ((OrdersHolder) holder).orderBtn.setText("送气待验瓶");
             ((OrdersHolder) holder).orderBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -87,13 +87,13 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_statu.setText("送气待付款");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
-            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"男":"女");
+            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
             ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
             ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getFiftyBottleCount()+"");
             ((OrdersHolder) holder).sendBottleTime.setText(bean.getAppointmentTime());
-            ((OrdersHolder) holder).orderBtn.setText("付款");
+            ((OrdersHolder) holder).orderBtn.setText("送气待付款");
             ((OrdersHolder) holder).orderBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -120,13 +120,13 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_statu.setText("送气已完成");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
-            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"男":"女");
+            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
             ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
             ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getFiftyBottleCount()+"");
             ((OrdersHolder) holder).sendBottleTime.setText(bean.getAppointmentTime());
-            ((OrdersHolder) holder).orderBtn.setText("已付款");
+            ((OrdersHolder) holder).orderBtn.setText("送气已完成");
             ((OrdersHolder) holder).orderBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -153,13 +153,13 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_statu.setText("退瓶待验瓶");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
-            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"男":"女");
+            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
             ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
             ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getFiftyBottleCount()+"");
             ((OrdersHolder) holder).sendBottleTime.setText(bean.getAppointmentTime());
-            ((OrdersHolder) holder).orderBtn.setText("验瓶");
+            ((OrdersHolder) holder).orderBtn.setText("退瓶待验瓶");
             ((OrdersHolder) holder).orderBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -183,17 +183,17 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
         else if (holder.getItemViewType() == 4) {
 
             ((OrdersHolder) holder).order_number.setText(bean.getOrderId()+"");
-            ((OrdersHolder) holder).order_statu.setText("退瓶待付款");
+            ((OrdersHolder) holder).order_statu.setText("退瓶已完成");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
-            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"男":"女");
+            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
             ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
             ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getFiftyBottleCount()+"");
             ((OrdersHolder) holder).sendBottleTime.setText(bean.getAppointmentTime());
-            ((OrdersHolder) holder).orderBtn.setText("退瓶付款");
+            ((OrdersHolder) holder).orderBtn.setText("退瓶已完成");
             ((OrdersHolder) holder).orderBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -218,16 +218,16 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
         else if (holder.getItemViewType() == 5) {
 
             ((OrdersHolder) holder).order_number.setText(bean.getOrderId()+"");
-            ((OrdersHolder) holder).order_statu.setText("退瓶已完成");
+            ((OrdersHolder) holder).order_statu.setText("退瓶已取消");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
-            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"男":"女");
+            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":"(女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
             ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
             ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getFiftyBottleCount()+"");
             ((OrdersHolder) holder).sendBottleTime.setText(bean.getAppointmentTime());
-            ((OrdersHolder) holder).orderBtn.setText("退瓶已完成");
+            ((OrdersHolder) holder).orderBtn.setText("退瓶已取消");
             ((OrdersHolder) holder).orderBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -252,7 +252,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_statu.setText("送气其他");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
-            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"男":"女");
+            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
             ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
@@ -283,7 +283,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_statu.setText("退瓶其他");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
-            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"男":"女");
+            ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
             ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
@@ -346,15 +346,16 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
        else if(ordertype == 0){
            switch (orderStatus){
                //待验瓶
-               case 2:
+               case 7:
+               case 6:
                    itemType = 3;
-                   break;
-               //待付款
-               case 0:
-                   itemType = 4;
                    break;
                //已完成
                case 3:
+                   itemType = 4;
+                   break;
+               //已取消
+               case 5:
                    itemType = 5;
                    break;
                default:

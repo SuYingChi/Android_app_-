@@ -27,13 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class OrdersDetailPayActivity extends BaseActivity implements IOrderDetailView ,PermissionUtils.PermissionRequestFinishListener{
-    private OrderDetailBean bean;
-    private int remain5;
-    private int remain15;
-    private int remain50;
-    private double exchange;
-
+public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implements IOrderDetailView,PermissionUtils.PermissionRequestFinishListener{
     @BindView(R.id.pay_orders_v2_topbar)
     TopBarView topBarView;
     @BindView(R.id.location)
@@ -88,68 +82,58 @@ public class OrdersDetailPayActivity extends BaseActivity implements IOrderDetai
     LinearLayout llDepositFare;
     @BindView(R.id.floor)
     TextView tvFloor;
-    @BindView(R.id.receipt)
-    TextView tvTotal;
-    @BindView(R.id.weixin_pay)
-    TextView tvpay;
     @BindView(R.id.room)
     TextView tvroom;
+    @BindView(R.id.payAmount)
+    TextView tvPayAmount;
     @BindView(R.id.comman_topbar_call_phone_btn)
     LinearLayout callBtn;
+    private OrderDetailBean bean;
     private int floor;
     private String room;
-    private String orderId;
-    private double fiveTotalDeposite;
-    private double fifteenteenTotalDeposite;
-    private double fiftyTotalDeposite;
-    private double totalDeposite;
-    private double totalFiveDelivery;
-    private double totalFifteenDelivery;
-    private double totalFiftyDelivery;
-    private double totalDeliveryfare;
-    private IOrderDetailPresenter iOrderDetailPresenter;
     private int isElevator;
+    private String orderId;
     private double fiveGasFee;
     private double fifteenGasFee;
     private double fiftyGasFee;
     private double totalGas;
-    private double totalfare;
+    private int remain5;
+    private double fiveTotalDeposite;
+    private int remain15;
+    private double fifteenteenTotalDeposite;
+    private int remain50;
+    private double fiftyTotalDeposite;
+    private double totalDeposite;
     private double fiveDeliveryFee;
     private double fifteenDeliveryFee;
     private double fiftyDeliveryFee;
-    private String orderType;
-    private String payType;
+    private double totalFiveDelivery;
+    private double totalFifteenDelivery;
+    private double totalFiftyDelivery;
+    private double totalDeliveryfare;
+    private double exchange;
+    private double totalfare;
     private Unbinder unbinder;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pay_orders);
-        unbinder = ButterKnife.bind(this);
-        //从首页订单列表跳转过来
+        setContentView(R.layout.orders_finish);
+       unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
-        iOrderDetailPresenter = new IOrderDetailPresenter(this);
-        iOrderDetailPresenter.getOrderDetail();
+        new IOrderDetailPresenter(this).getOrderDetail();
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        llDiscount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               Intent intent =  new Intent(OrdersDetailPayActivity.this,ExchangeReviewActivity.class);
-               intent.putExtra(Constants.ORDER_ID,orderId);
-               startActivity(intent);
-            }
-        });
     }
 
     @Override
     public void onGetOrdersDetailSuccess(OrderDetailBean orderDetailBean) {
+
         this.bean = orderDetailBean;
         tvLocation.setText(orderDetailBean.getData().getAddress());
         floor = orderDetailBean.getData().getFloor();
@@ -164,7 +148,7 @@ public class OrdersDetailPayActivity extends BaseActivity implements IOrderDetai
         tvTime.setText(orderDetailBean.getData().getAppointmentTime());
         tvComment.setText(orderDetailBean.getData().getRemarks());
         orderId = orderDetailBean.getData().getOrderId()+"";
-        tvOrderId.setText(orderId );
+        tvOrderId.setText(orderId + "");
         tvDispatchOrderTime.setText(orderDetailBean.getData().getCreateDate());
         tvDispatchBottleTime.setText(orderDetailBean.getData().getAppointmentTime());
         //气价
@@ -225,35 +209,28 @@ public class OrdersDetailPayActivity extends BaseActivity implements IOrderDetai
         }else {
             tvDiscount.setText(exchange+"");
         }
-        tvDiscount.setText(exchange + "");
-        totalfare = totalGas+totalDeposite+totalDeliveryfare-exchange;
-        tvTotal.setText(totalfare+"");
-
-        tvpay.setOnClickListener(new View.OnClickListener() {
+        llDiscount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                orderType = "1";
-                payType = "12";
-                Intent intent = new Intent(OrdersDetailPayActivity.this, QRCodeReceiptActivity.class);
+                Intent intent =  new Intent(SendBottleOrdersDetailFinishActivity.this,ExchangeReviewActivity.class);
                 intent.putExtra(Constants.ORDER_ID,orderId);
-                intent.putExtra(Constants.URL_PARAMS_ORDER_TYPE,orderType);
-                intent.putExtra(Constants.PAY_AMOUNT,totalfare+"");
-                intent.putExtra(Constants.PAY_TYPE,payType);
                 startActivity(intent);
             }
         });
+        tvDiscount.setText(exchange + "");
+        totalfare = totalGas+totalDeposite+totalDeliveryfare-exchange;
+        tvPayAmount.setText(totalfare+"");
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PermissionUtils.requestPermissions(OrdersDetailPayActivity.this, OrdersDetailPayActivity.this, Permission.CALL_PHONE);
+                PermissionUtils.requestPermissions(SendBottleOrdersDetailFinishActivity.this, SendBottleOrdersDetailFinishActivity.this, Permission.CALL_PHONE);
             }
         });
-
     }
 
     @Override
     public String getOrderId() {
-        return orderId + "";
+        return orderId;
     }
 
     @Override

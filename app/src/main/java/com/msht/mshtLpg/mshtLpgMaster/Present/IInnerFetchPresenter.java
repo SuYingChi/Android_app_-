@@ -4,7 +4,7 @@ import android.text.TextUtils;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.ScanInnerFetchBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
-import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyEmployerBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;
 import com.msht.mshtLpg.mshtLpgMaster.callback.DataStringCallback;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
@@ -21,7 +21,7 @@ public class IInnerFetchPresenter {
     }
 
     public void  innerFetchComfirm() {
-        OkHttpUtils.get().url(Constants.INNER_FETCH).addParams("employeeCode", iinnerFetchView.getEmployeeCode()).addParams("bottleIds", iinnerFetchView.getBottleIds()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iinnerFetchView.getToken()).build().execute(new DataStringCallback(iinnerFetchView) {
+        OkHttpUtils.get().url(iinnerFetchView.getUrl()).addParams("employeeCode", iinnerFetchView.getEmployeeCode()).addParams("bottleIds", iinnerFetchView.getBottleIds()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iinnerFetchView.getToken()).build().execute(new DataStringCallback(iinnerFetchView) {
             @Override
             public void onResponse(String s, int i) {
                 super.onResponse(s, i);
@@ -30,7 +30,6 @@ public class IInnerFetchPresenter {
                     iinnerFetchView.onError(bean.getMsg());
 
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
-
                     iinnerFetchView.onInnerFetchComfirmSuccess(bean);
                 }
             }
@@ -43,13 +42,13 @@ public class IInnerFetchPresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                VerifyBottleBean bean = GsonUtil.getGson().fromJson(s, VerifyBottleBean.class);
+                ErrorBean bean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
                     iinnerFetchView.onError(bean.getMsg());
 
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
-
-                    iinnerFetchView.onGetInnerFetchBottleInfoSuccess(bean);
+                    VerifyBottleBean verifyBottleBean = GsonUtil.getGson().fromJson(s, VerifyBottleBean.class);
+                    iinnerFetchView.onGetInnerFetchBottleInfoSuccess(verifyBottleBean);
                 }
             }
 
@@ -57,17 +56,17 @@ public class IInnerFetchPresenter {
 
     }
     public void innerFetchQueryEmpolyer(){
-        OkHttpUtils.get().url("").addParams("employeeCode", iinnerFetchView.getEmployeeCode()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iinnerFetchView.getToken()).build().execute(new DataStringCallback(iinnerFetchView) {
+        OkHttpUtils.get().url(Constants.QUERY_EMPOLYER).addParams("employeeCode", iinnerFetchView.getEmployeeCode()).addParams("employeeCode",iinnerFetchView.getEmployeeCode()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iinnerFetchView.getToken()).build().execute(new DataStringCallback(iinnerFetchView) {
             @Override
             public void onResponse(String s, int i) {
                 super.onResponse(s, i);
-                VerifyEmployerBean bean = GsonUtil.getGson().fromJson(s, VerifyEmployerBean.class);
+                ErrorBean bean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
                     iinnerFetchView.onError(bean.getMsg());
 
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
 
-                    iinnerFetchView.onGetEmployerInfoSuccess("");
+                    iinnerFetchView.onGetEmployerInfoSuccess();
                 }
             }
         });

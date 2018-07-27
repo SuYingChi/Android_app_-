@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line_color_lib"
+    android:fitsSystemWindows="true"
+    >
+
+    <include layout="@layout/item_orders_detail_command_topbar" />
+
+    <LinearLayout
+        android:id="@+id/orders_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/orders_detail_command_top_id"
+        android:layout_marginTop="@dimen/margin_Modules"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingLeft="@dimen/margin_horizontal"
+        android:paddingRight="@dimen/margin_horizontal"
+        android:paddingTop="@dimen/margin_Modules"
+        android:layout_marginLeft="@dimen/margin_horizontal"
+        android:layout_marginRight="@dimen/margin_horizontal"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/orders" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:text="订单号"
+            android:textColor="@color/head_text_color"
+            android:textSize="@dimen/text_16" />
+
+        <TextView
+            android:id="@+id/tv_orderid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:text="10245045"
+            android:textColor="@color/lpg_text_light_color"
+            android:textSize="@dimen/text_16" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/order_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="押金明细"
+            android:textColor="@color/warning_red"
+            android:textSize="@dimen/text_16"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/orders_detail_five_kg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_below="@id/orders_status"
+        android:layout_marginTop="0.5dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingLeft="@dimen/margin_horizontal"
+        android:paddingRight="@dimen/margin_horizontal"
+        android:paddingTop="@dimen/margin_Modules"
+        android:layout_marginLeft="@dimen/margin_horizontal"
+        android:layout_marginRight="@dimen/margin_horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5kg气瓶"
+            android:textColor="@color/head_text_color"
+            android:textSize="@dimen/text_16"
+
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/five_gas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50"
+            android:textColor="@color/warning_red"
+            android:textSize="@dimen/text_16"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/orders_detail_fifteen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_below="@id/orders_detail_five_kg"
+        android:layout_marginTop="0.5dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingLeft="@dimen/margin_horizontal"
+        android:paddingRight="@dimen/margin_horizontal"
+        android:paddingTop="@dimen/margin_Modules"
+        android:layout_marginLeft="@dimen/margin_horizontal"
+        android:layout_marginRight="@dimen/margin_horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15kg气瓶"
+            android:textColor="@color/head_text_color"
+            android:textSize="@dimen/text_16"
+
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/fifteen_gas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50"
+            android:textColor="@color/warning_red"
+            android:textSize="@dimen/text_16"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/orders_detail_fifty_kg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_below="@id/orders_detail_fifteen"
+        android:layout_marginTop="0.5dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingLeft="@dimen/margin_horizontal"
+        android:paddingRight="@dimen/margin_horizontal"
+        android:paddingTop="@dimen/margin_Modules"
+        android:layout_marginLeft="@dimen/margin_horizontal"
+        android:layout_marginRight="@dimen/margin_horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50kg气瓶"
+            android:textColor="@color/head_text_color"
+            android:textSize="@dimen/text_16"
+
+
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/fifty_gas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50"
+            android:textColor="@color/warning_red"
+            android:textSize="@dimen/text_16"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/total_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_below="@id/orders_detail_fifty_kg"
+        android:layout_marginTop="0.5dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingLeft="@dimen/margin_horizontal"
+        android:paddingRight="@dimen/margin_horizontal"
+        android:paddingTop="@dimen/margin_Modules"
+        android:layout_marginLeft="@dimen/margin_horizontal"
+        android:layout_marginRight="@dimen/margin_horizontal"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共计："
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
+
+        <TextView
+            android:id="@+id/total_fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/warning_red"
+            android:textSize="@dimen/text_16" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/dispatch_orders_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_below="@id/total_cost"
+        android:layout_marginTop="@dimen/margin_Modules"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:text="下单时间：2010-06-08 15:20"
+        android:textColor="@color/lpg_text_light_color"
+        android:textSize="14sp"
+        android:layout_marginLeft="@dimen/margin_horizontal"
+        android:layout_marginRight="@dimen/margin_horizontal"
+        />
+
+</RelativeLayout>

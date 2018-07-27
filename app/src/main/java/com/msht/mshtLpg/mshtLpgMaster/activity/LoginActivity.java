@@ -3,6 +3,7 @@ package com.msht.mshtLpg.mshtLpgMaster.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -73,6 +74,8 @@ public class LoginActivity extends BaseActivity implements ILoginView{
     public void onLoginSuccess(UserLoginBean s) {
         SharePreferenceUtil.getInstance().setToken( s.getData().getLoginToken());
         SharePreferenceUtil.setLoginSpStringValue(Constants.EMPLOYERID,s.getData().getEmployeeId()+"");
+        SharePreferenceUtil.setLoginSpStringValue("employeeName",s.getData().getEmployeeName());
+        SharePreferenceUtil.setLoginSpStringValue("siteName",s.getData().getSiteName());
         startActivity( new Intent(this, HomeActivity.class));
         EventBus.getDefault().postSticky(new LoginEventBean(s));
 

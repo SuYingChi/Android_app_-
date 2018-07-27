@@ -6,7 +6,8 @@ public class VerifyBottleBean implements Serializable{
     /**
      * result : success
      * msg : 钢瓶验证成功
-     * data : {"id":67,"ids":"","isScrap":1,"isHeavy":0,"siteId":2,"bottleCode":"88888909","bottleNum":"67","bottleWeight":50,"producer":"钢瓶厂家2","propertyUnit":"","createTime":"2018-07-18","checkTime":"","lastCheckTime":"","nextCheckTime":"","checkStatus":0,"discardTime":"","status":4,"stationId":"","trackId":"","employeeId":28,"employeeName":"","userId":"","orderId":"","deliveryBottleIds":"","recycleBottleIds":"","builder":"客服系统-超级管理员"}
+     * data : {"id":67,"ids":"","isScrap":1,"isHeavy":0,"siteId":2,"bottleCode":"88888909","bottleNum":"67
+     * ","bottleWeight":50,"producer":"钢瓶厂家2","propertyUnit":"","createTime":"2018-07-18","checkTime":"","lastCheckTime":"","nextCheckTime":"","checkStatus":0,"discardTime":"","status":4,"stationId":"","trackId":"","employeeId":28,"employeeName":"","userId":"","orderId":"","deliveryBottleIds":"","recycleBottleIds":"","builder":"客服系统-超级管理员"}
      */
 
     private String result;

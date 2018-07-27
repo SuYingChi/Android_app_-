@@ -132,7 +132,7 @@
             android:textColor="@color/white" />
     </LinearLayout>-->
     <TextView
-        android:id="@+id/scan_delive_bottom"
+        android:id="@+id/tv_scan_delive_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/msb_color"
@@ -148,7 +148,7 @@
         android:id="@+id/scan_delive_steel_bottle_rlt"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_above="@id/scan_delive_bottom"
+        android:layout_above="@id/tv_scan_delive_bottom"
         android:layout_margin="@dimen/margin_Modules"
         android:background="@color/white"
         >

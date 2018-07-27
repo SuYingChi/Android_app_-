@@ -153,6 +153,7 @@
         <item name="android:background">@color/lucency</item>
         <item name="android:backgroundDimAmount">0.5</item>
         <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item><!--动画-->
+        <item name="android:gravity">bottom</item>
     </style>
 
     <style name="ActionSheetDialogAnimation" parent="@android:style/Animation.Dialog">

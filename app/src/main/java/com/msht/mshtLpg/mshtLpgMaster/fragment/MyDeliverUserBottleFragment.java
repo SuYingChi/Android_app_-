@@ -50,7 +50,7 @@ import java.util.Vector;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Callback, IScanCodeDeliverSteelBottleView {
+public class MyDeliverUserBottleFragment extends BaseFragment implements SurfaceHolder.Callback, IScanCodeDeliverSteelBottleView {
 
 
     @BindView(R.id.scan_delive_steel_bottle_qrcode_viewfinder_view)
@@ -75,7 +75,7 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
     TextView nextBtn;
     @BindView(R.id.tv_scan_delive_steel_bottle)
     TextView title;
-    private static final String TAG = "MyCaptureFragment";
+    private static final String TAG = "MyDeliverUserBottleFragment";
     protected MyCaptureHandler handler;
     protected boolean hasSurface;
     protected Vector<BarcodeFormat> decodeFormats;
@@ -106,7 +106,6 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate: ");
         Bundle bundle = getArguments();
         if (bundle != null) {
             fragmentType = bundle.getInt(Constants.SCANFRAGMENT_TYPE);
@@ -130,6 +129,11 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
         iScanbottleCodePresenter = new IScanbottleCodePresenter(this);
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this.getActivity());
+    }
+
+    @Override
+    public void showLoading() {
+
     }
 
     @Nullable
@@ -235,14 +239,17 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
      * @param result
      * @param barcode
      */
+    @Override
     public void handleDecode(Result result, Bitmap barcode) {
-        Log.d(TAG, "handleDecode: ");
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
         String bottleUrl = result.getText();
-        int index = bottleUrl.indexOf("id=");
-        bottleCode = bottleUrl.substring(index + 3).trim();
-        PopUtil.toastInBottom(result.getText());
+        if(bottleUrl.length()==10){
+            bottleCode = bottleUrl;
+        }else if(bottleUrl.contains("id=")){
+            int index = bottleUrl.indexOf("id=");
+            bottleCode = bottleUrl.substring(index + 3).trim();
+        }
         iScanbottleCodePresenter.queryBottleByQRCode();
     }
 
@@ -296,10 +303,12 @@ public class MyCaptureFragment extends BaseFragment implements SurfaceHolder.Cal
         }
     }
 
+    @Override
     public Handler getHandler() {
         return handler;
     }
 
+    @Override
     public void drawViewfinder() {
         viewfinderView.drawViewfinder();
 

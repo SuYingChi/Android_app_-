@@ -1,4 +1,4 @@
 package com.msht.mshtLpg.mshtLpgMaster.Bean;
 
-public class VerifyEmployerBean {
+public class UpdateBottleInfo {
 }

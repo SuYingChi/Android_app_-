@@ -132,7 +132,7 @@
             android:textColor="@color/white" />
     </LinearLayout>-->
     <TextView
-        android:id="@+id/scan_delive_bottom"
+        android:id="@+id/tv_scan_delive_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/msb_color"
@@ -147,19 +147,17 @@
         android:id="@+id/scan_delive_steel_bottle_rlt"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_above="@id/scan_delive_bottom"
+        android:layout_above="@id/tv_scan_delive_bottom"
         android:background="@color/white"
         >
-    <EditText
-        android:id="@+id/et_employer"
+    <TextView
+        android:id="@+id/tv_employer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_background"
-        android:hint="手动输入员工工号"
+        android:text=""
         android:padding="@dimen/margin_Modules"
-        android:inputType="number"
         android:textColor="@color/textcolor"
-        android:textColorHint="@color/bg_input_border"
         android:textCursorDrawable="@null"
         android:textSize="15sp"
         android:layout_centerHorizontal="true"

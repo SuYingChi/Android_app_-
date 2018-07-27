@@ -38,7 +38,9 @@ public class TopBarView extends RelativeLayout {
             titleBarLeftBtn.setOnClickListener(onClickListener);
         }
     }
-
+    public void setTitle(String title){
+        titleBarTitle.setText(title);
+    }
     public ImageView getTitleBarLeftBtn() {
         return titleBarLeftBtn;
     }

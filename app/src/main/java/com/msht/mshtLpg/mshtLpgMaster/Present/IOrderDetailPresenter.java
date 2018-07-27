@@ -3,7 +3,7 @@ package com.msht.mshtLpg.mshtLpgMaster.Present;
 import android.text.TextUtils;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
-import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;
 import com.msht.mshtLpg.mshtLpgMaster.callback.DataStringCallback;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
@@ -24,13 +24,13 @@ public class IOrderDetailPresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                OrderDetailBean bean = GsonUtil.getGson().fromJson(s, OrderDetailBean.class);
+                ErrorBean bean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
                     iOrderDetailView.onError(bean.getMsg());
 
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
-
-                    iOrderDetailView.onGetOrdersDetailSuccess(bean);
+                    OrderDetailBean orderDetailBean = GsonUtil.getGson().fromJson(s, OrderDetailBean.class);
+                    iOrderDetailView.onGetOrdersDetailSuccess(orderDetailBean);
                 }
             }
 

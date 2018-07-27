@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -41,7 +42,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class OrdersDetailPostActivity extends BaseActivity implements IOrderDetailView, IOrdesDespositView, IDeliveryView, IOrderDetailPostView,PermissionUtils.PermissionRequestFinishListener {
+public class SendOrdersDetailPostActivity extends BaseActivity implements IOrderDetailView, IOrdesDespositView, IDeliveryView, IOrderDetailPostView,PermissionUtils.PermissionRequestFinishListener {
 
 
     @BindView(R.id.pay_orders_v2_topbar)
@@ -109,18 +110,18 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
     @BindView(R.id.comman_topbar_call_phone_btn)
     LinearLayout callBtn;
 
-    private int exchangeFee;
-    private int floor;
-    private int isElevator;
+    private double exchangeFee;
+    private String floor;
+    private String isElevator;
     private List<VerifyBottleBean> heavyBottleList;
     private IOrderDetailPresenter iOrderDetailPresenter;
     private List<VerifyBottleBean> emptyBottleList;
     private String orderId;
     private GasAndDepositBean gasAndDepositBean;
     private IGasAndDepositPresenter iGasAndDepositPresenter;
-    private int fiveDeliveryFee;
-    private int fifteenDeliveryFee;
-    private int fiftyDeliveryFee;
+    private double fiveDeliveryFee;
+    private double fifteenDeliveryFee;
+    private double fiftyDeliveryFee;
     private double fiveDeposite;
     private double fifteenDeposite;
     private double fiftyDeposite;
@@ -137,7 +138,7 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
     private double fiftyTotalDeposite;
     private double totalDeposite;
     private double totalGas;
-    private double totalfare;
+    private double totalfare = 0;
     private double totalFiveDelivery;
     private double totalFifteenDelivery;
     private double totalFiftyDelivery;
@@ -167,11 +168,11 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
     //更规范的写法是写个handler在子线程执行完后，调度其他子线程的开启，后边再优化
     /*@SuppressLint("HandlerLeak")
     private class MyHandler extends Handler {
-        private WeakReference<OrdersDetailPostActivity> ref;
+        private WeakReference<SendOrdersDetailPostActivity> ref;
 
-        public MyHandler(OrdersDetailPostActivity activity) {
+        public MyHandler(SendOrdersDetailPostActivity activity) {
             if (activity != null) {
-                ref = new WeakReference<OrdersDetailPostActivity>(activity);
+                ref = new WeakReference<SendOrdersDetailPostActivity>(activity);
             }
         }
 
@@ -180,7 +181,7 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
             if (ref == null) {
                 return;
             }
-            OrdersDetailPostActivity v = ref.get();
+            SendOrdersDetailPostActivity v = ref.get();
             if (v == null) {
                 return;
             }
@@ -226,10 +227,12 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
             iGasAndDepositPresenter = new IGasAndDepositPresenter(this);
             iDeliveryPresenter = new IDeliveryPresenter(this);
             iPostPresenter = new IOrderDetailPostPresenter(this);
-            iOrderDetailPresenter.getOrderDetail();
+
             emptyFive = BottleCaculteUtil.getBottleNum(emptyBottleList, 5)+"";
             emptyFifteen = BottleCaculteUtil.getBottleNum(emptyBottleList, 15)+"";
             emptyFifyt = BottleCaculteUtil.getBottleNum(emptyBottleList, 50)+"";
+
+            iOrderDetailPresenter.getOrderDetail();
         }
 
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
@@ -245,29 +248,30 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constants.EXCHANGE_EMPTY_BOTTLE_REQUEST_CODE && resultCode == RESULT_OK) {
             if (data != null) {
-                exchangeFee = data.getIntExtra(Constants.EXCHANGE_FEE, 0);
-                if(exchangeFee==0){
-                    llDiscount.setVisibility(View.GONE);
-                }else {
-                    tvDiscount.setText(exchangeFee+"");
-                }
+                exchangeFee = data.getDoubleExtra(Constants.EXCHANGE_FEE, 0);
+                tvDiscount.setText(exchangeFee+"");
                 tvDiscount.setText(exchangeFee + "");
                 totalfare -= exchangeFee;
-                tvCost.setText(totalfare + "");
+                if(((totalfare + "").length())>6) {
+                    tvCost.setText((totalfare + "").substring(0, 5));
+                }else {
+                    tvCost.setText((totalfare + ""));
+                }
                 Bundle bundle = data.getExtras();
                 if (bundle != null) {
                     exchangeList = (List<ExchangeRclBean>) bundle.getSerializable("exchangelist");
                 }
             }
-        }
-        if (requestCode == Constants.EDIT_FLOOR_REQUEST_CODE && resultCode == RESULT_OK) {
+        }else if (requestCode == Constants.EDIT_FLOOR_REQUEST_CODE && resultCode == RESULT_OK) {
             if (data != null) {
-                floor = data.getIntExtra(Constants.FLOOR, 0);
+                floor = data.getStringExtra(Constants.FLOOR);
                 tvFloor.setText(floor + "层");
-                isElevator = data.getIntExtra(Constants.IS_ELEVATOR, 0);
-                tvElevator.setText(isElevator == 1 ? "(有电梯)" : "(无电梯)");
-                if (isElevator != 1) {
+                isElevator = data.getStringExtra(Constants.IS_ELEVATOR);
+                tvElevator.setText(isElevator == "1" ? "(有电梯)" : "(无电梯)");
+                if (!isElevator.equals("1")) {
                     iDeliveryPresenter.getDelivery();
+                }else {
+                    iDeliveryPresenter.getIsElevatorDelivery();
                 }
 
             }
@@ -279,36 +283,40 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
     public void onGetOrdersDetailSuccess(OrderDetailBean bean) {
         orderDetailBean = bean;
         siteId = bean.getData().getSiteId()+"";
-        floor = bean.getData().getFloor();
+        floor = bean.getData().getFloor()+"";
         orderId = bean.getData().getOrderId()+"";
         room = bean.getData().getRoomNum();
-        isElevator = bean.getData().getIsElevator();
+        isElevator = bean.getData().getIsElevator()+"";
         orderFiveNum= bean.getData().getFiveBottleCount();
         orderFifteenNum= bean.getData().getFifteenBottleCount();
         orderFiftyNum= bean.getData().getFiftyBottleCount();
         isDelivery = bean.getData().getIsDelivery()+"";
         remain5 = orderFiveNum- BottleCaculteUtil.getBottleNum(emptyBottleList, 5);
-        remain15 = orderFiveNum- BottleCaculteUtil.getBottleNum(emptyBottleList, 15);
-        remain50 = orderFiveNum- BottleCaculteUtil.getBottleNum(emptyBottleList, 50);
+        remain15 = orderFifteenNum- BottleCaculteUtil.getBottleNum(emptyBottleList, 15);
+        remain50 = orderFiftyNum- BottleCaculteUtil.getBottleNum(emptyBottleList, 50);
         exchangeFee = 0;
         tvDiscount.setText(exchangeFee+"");
         //startActivityforresult 自有产权置换点击事件
         llDiscount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(remain15>0){
+                    Intent intent = new Intent(SendOrdersDetailPostActivity.this, ExchangeSteelBottleActivity.class);
+                    intent.putExtra(Constants.REMAIN_FIVE_NUM, remain5);
+                    intent.putExtra(Constants.REMAIN_FIFTEEN_NUM, remain15);
+                    intent.putExtra(Constants.REMAIN_FIFTY_NUM, remain50);
+                    startActivityForResult(intent, Constants.EXCHANGE_EMPTY_BOTTLE_REQUEST_CODE);
+                }else {
+                    PopUtil.toastInBottom("只能置换15KG空瓶，暂不支持置换5KG和50KG空瓶");
+                }
 
-                Intent intent = new Intent(OrdersDetailPostActivity.this, ExchangeSteelBottleActivity.class);
-                intent.putExtra(Constants.REMAIN_FIVE_NUM, remain5);
-                intent.putExtra(Constants.REMAIN_FIFTEEN_NUM, remain15);
-                intent.putExtra(Constants.REMAIN_FIFTY_NUM, remain50);
-                startActivityForResult(intent, Constants.EXCHANGE_EMPTY_BOTTLE_REQUEST_CODE);
 
             }
         });
         client_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OrdersDetailPostActivity.this, EditLocationActivity.class);
+                Intent intent = new Intent(SendOrdersDetailPostActivity.this, EditLocationActivity.class);
                 intent.putExtra(Constants.FLOOR, floor);
                 intent.putExtra(Constants.IS_ELEVATOR, isElevator);
                 startActivityForResult(intent, Constants.EDIT_FLOOR_REQUEST_CODE);
@@ -318,13 +326,13 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PermissionUtils.requestPermissions(OrdersDetailPostActivity.this, OrdersDetailPostActivity.this, Permission.CALL_PHONE);
+                PermissionUtils.requestPermissions(SendOrdersDetailPostActivity.this, SendOrdersDetailPostActivity.this, Permission.CALL_PHONE);
             }
         });
         tvLocation.setText(orderDetailBean.getData().getAddress());
         tvFloor.setText(floor + "层");
         tvRoom.setText(room + "房");
-        tvElevator.setText(isElevator == 1 ? "(有电梯)" : "(无电梯)");
+        tvElevator.setText(isElevator.equals("1") ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 1 ? "(先生)" : "(女士)").toString());
         tvTel.setText(orderDetailBean.getData().getMobile());
         tvDay.setText(orderDetailBean.getData().getCreateDate());
@@ -343,7 +351,7 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
 
     @Override
     public void onPostOrdersSuccess(ComfirmOrdersBean bean) {
-        Intent intent = new Intent(this, OrdersDetailPayActivity.class);
+        Intent intent = new Intent(this, SendBottleOrdersDetailPayActivity.class);
         intent.putExtra(Constants.ORDER_ID, orderId);
         startActivity(intent);
     }
@@ -403,12 +411,15 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
 
     @Override
     public String getFloor() {
+        if(isElevator.equals("1")){
+            floor ="1";
+        }
         return floor+"";
     }
 
     @Override
     public String getRecycleBottleIds() {
-        StringBuffer sf = new StringBuffer();
+        StringBuilder sf = new StringBuilder();
         for(int i = 0; i< emptyBottleList.size(); i++){
             if(i==0){
                 sf.append(emptyBottleList.get(i).getData().getId());
@@ -422,14 +433,14 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
     @Override
     public String getReplaceBottleStr() {
         if(exchangeList.size()!=0) {
-            StringBuffer stringBuffer = new StringBuffer();
+            StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < exchangeList.size(); i++) {
                 int levelIndex = exchangeList.get(i).getmSelectBottleLevelIndex();
                 int modelIndex = exchangeList.get(i).getSelectBottleModeIndex();
-                int year = exchangeList.get(i).getSelectBottleYearsIndex();
+                int year = exchangeList.get(i).getSelectBottleYearsIndex()+1;
                 int weight = 0;
                 int num = exchangeList.get(i).getBottleNum();
-                switch (modelIndex) {
+              /*  switch (modelIndex) {
                     case 0:
                         weight = 5;
                         break;
@@ -441,7 +452,8 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
                         break;
                     default:
                         break;
-                }
+                }*/
+                weight = 15;
                 String level = "";
                 switch (levelIndex) {
                     case 0:
@@ -460,16 +472,21 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
                         break;
                 }
                 if (i == 0) {
-                    stringBuffer.append(weight).append(year).append(num).append(level);
+                    stringBuilder.append(weight).append(",").append(year).append(",").append(num).append(",").append(level);
                 } else {
-                    stringBuffer.append("|").append(weight).append(year).append(num).append(level);
+                    stringBuilder.append("|").append(weight).append(",").append(year).append(",").append(num).append(",").append(level);
                 }
             }
-            return stringBuffer.toString();
+            return stringBuilder.toString();
         }else{
             return "";
         }
 
+    }
+
+    @Override
+    public String getIsElevator() {
+        return isElevator+"";
     }
 
     @Override
@@ -481,6 +498,9 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
         fiveGas = bean.getData().getGasPrice().getFivePrice();
         fifteenGas = bean.getData().getGasPrice().getFifteenPrice();
         fiftyGas = bean.getData().getGasPrice().getFiftyPrice();
+        Log.d("suyingchi", "onGasAndDepositGetSuccess: "+fiveGas);
+        Log.d("suyingchi", "onGasAndDepositGetSuccess: "+fifteenGas);
+        Log.d("suyingchi", "onGasAndDepositGetSuccess: "+fiftyGas);
 
         //气价
         fiveGasFee = orderFiveNum * fiveGas;
@@ -492,7 +512,11 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
         totalGas = fiveGasFee + fifteenGasFee + fiftyGasFee;
 
         totalfare += totalGas;
-        tvCost.setText(totalfare + "");
+        if(((totalfare + "").length())>6) {
+            tvCost.setText((totalfare + "").substring(0, 5));
+        }else {
+            tvCost.setText((totalfare + ""));
+        }
         tvGasFee.setText(totalGas + "");
 
         //押金
@@ -516,7 +540,7 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
         } else {
             llFiftyDeposite.setVisibility(View.VISIBLE);
             fiftyTotalDeposite = remain50 * fiftyDeposite;
-            tvFiftyGas.setText(fiftyTotalDeposite + "");
+            tvFiftyDeposite.setText(fiftyTotalDeposite + "");
         }
         totalDeposite = fiveTotalDeposite + fifteenteenTotalDeposite + fiftyTotalDeposite;
         if (totalDeposite == 0) {
@@ -524,11 +548,17 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
         } else {
             llDepositFare.setVisibility(View.VISIBLE);
             totalfare += totalDeposite;
-            tvCost.setText(totalfare + "");
+            if(((totalfare + "").length())>6) {
+                tvCost.setText((totalfare + "").substring(0, 5));
+            }else {
+                tvCost.setText((totalfare + ""));
+            }
             tvDepositeFee.setText(totalDeposite + "");
         }
-        if (isElevator != 1) {
+        if (!isElevator.equals("1")) {
             iDeliveryPresenter.getDelivery();
+        }else {
+            iDeliveryPresenter.getIsElevatorDelivery();
         }
     }
 
@@ -547,14 +577,14 @@ public class OrdersDetailPostActivity extends BaseActivity implements IOrderDeta
             totalFiveDelivery = orderDetailBean.getData().getFiveBottleCount() * fiveDeliveryFee;
             totalFifteenDelivery = orderDetailBean.getData().getFifteenBottleCount() * fifteenDeliveryFee;
             totalFiftyDelivery = orderDetailBean.getData().getFiftyBottleCount() * fiftyDeliveryFee;
-            if(isElevator==1){
-                totalDeliveryfare  = 0;
-            }else{
-                totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
-            }
+            totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
 
         totalfare += totalDeliveryfare;
-        tvCost.setText(totalfare + "");
+        if(((totalfare + "").length())>6) {
+            tvCost.setText((totalfare + "").substring(0, 5));
+        }else {
+            tvCost.setText((totalfare + ""));
+        }
         tvDeliverFee.setText(totalDeliveryfare + "");
 
 

@@ -47,6 +47,8 @@
         android:layout_height="50dp"
         android:layout_below="@id/my_orders_fragment_layout_topbar"
         android:background="@color/white"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
         />
 
 

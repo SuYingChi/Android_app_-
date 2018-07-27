@@ -23,9 +23,6 @@ public class ScanBottleQRCodeRclAdapter extends RecyclerView.Adapter<ScanBottleQ
     private final LayoutInflater inflater;
     private  List<VerifyBottleBean> list ;
     private  Activity activity;
-    private int fiveNum = 0;
-    private int fifteenNum = 0;
-    private int fiftyNum = 0;
 
     public ScanBottleQRCodeRclAdapter( List<VerifyBottleBean> list,Activity activity) {
         this.list = list;
@@ -47,7 +44,7 @@ public class ScanBottleQRCodeRclAdapter extends RecyclerView.Adapter<ScanBottleQ
         VerifyBottleBean bean = list.get(position);
             Log.d("suyingchi", "onBindViewHolder: "+bean.getData().getBottleWeight()+""+bean.getData().getBottleNum());
             holder.tvBottleModel.setText(bean.getData().getBottleWeight()+"");
-            holder.tvBottleNumber.setText(bean.getData().getBottleNum());
+            holder.tvBottleNumber.setText(bean.getData().getBottleCode());
             holder.tvBottleStatus.setText(bean.getData().getIsHeavy()==0?"重瓶":"空瓶");
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

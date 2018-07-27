@@ -14,9 +14,13 @@ public interface IinnerFetchView extends IBaseView{
 
    void onGetInnerFetchBottleInfoSuccess(VerifyBottleBean verifyBottleBean);
 
-   void onGetEmployerInfoSuccess(String EmployerId);
+   void onGetEmployerInfoSuccess();
 
    String getBottleCode();
 
     String getVerifyType();
+
+    String getUrl();
+
+    int getInnerType();
 }

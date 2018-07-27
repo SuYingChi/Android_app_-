@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import com.msht.mshtLpg.mshtLpgMaster.activity.LoginActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.WebActivity;
 import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
+import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
@@ -65,6 +66,9 @@ public class AppUtil {
     }
     public  static void logout() {
         SharePreferenceUtil.getInstance().setToken("");
+        SharePreferenceUtil.setLoginSpStringValue(Constants.EMPLOYERID,"");
+        SharePreferenceUtil.setLoginSpStringValue("employeeName","");
+        SharePreferenceUtil.setLoginSpStringValue("siteName","");
     }
 
     public static void goWeb(Context mContext, String url) {

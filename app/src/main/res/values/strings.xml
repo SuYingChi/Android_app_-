@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">mshtLpg</string>
+    <string name="app_name">LPG配送端</string>
     <string name="net_exception">网络异常</string>
     <string name="net_no_available">网络不可用</string>
     <string name="str_loading">加载中</string>

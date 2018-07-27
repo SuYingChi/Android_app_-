@@ -3,19 +3,24 @@ package com.msht.mshtLpg.mshtLpgMaster.Present;
 import android.text.TextUtils;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;
 import com.msht.mshtLpg.mshtLpgMaster.callback.DataStringCallback;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IBackBottleView;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IScanCodeDeliverSteelBottleView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 public class IScanbottleCodePresenter {
+    private  IBackBottleView iBackBottleView;
     private  IScanCodeDeliverSteelBottleView iScanCodeDeliverSteelBottleView;
 
     public IScanbottleCodePresenter(IScanCodeDeliverSteelBottleView iScanCodeDeliverSteelBottleView) {
         this.iScanCodeDeliverSteelBottleView = iScanCodeDeliverSteelBottleView;
     }
-
+    public IScanbottleCodePresenter(IBackBottleView iBackBottleView) {
+        this.iBackBottleView = iBackBottleView;
+    }
     public void queryBottleByQRCode() {
         OkHttpUtils.get().url(Constants.VERIFY_BOTTLE_BY_QR_CODE).addParams(Constants.URL_PARAMS_BOTTLE_CODE,iScanCodeDeliverSteelBottleView.getBottleCode()).
                 addParams(Constants.URL_PARAMS_VERIFYTYPE,iScanCodeDeliverSteelBottleView.getVerifyType()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iScanCodeDeliverSteelBottleView.getToken()).build().execute(new DataStringCallback(iScanCodeDeliverSteelBottleView) {
@@ -23,13 +28,32 @@ public class IScanbottleCodePresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                VerifyBottleBean bean = GsonUtil.getGson().fromJson(s, VerifyBottleBean.class);
-                if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
-                    iScanCodeDeliverSteelBottleView.onError(bean.getMsg());
+                ErrorBean ErrorBean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
+                if (!TextUtils.isEmpty(ErrorBean.getResult()) && TextUtils.equals(ErrorBean.getResult(), "fail")) {
+                    iScanCodeDeliverSteelBottleView.onError(ErrorBean.getMsg());
 
-                } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
-
+                } else if (!TextUtils.isEmpty(ErrorBean.getResult()) && TextUtils.equals(ErrorBean.getResult(), "success")) {
+                    VerifyBottleBean bean = GsonUtil.getGson().fromJson(s, VerifyBottleBean.class);
                     iScanCodeDeliverSteelBottleView.onGetBottleInfoSuccess(bean);
+                }
+            }
+
+        });
+    }
+    public void queryBackBottleByQRCode() {
+        OkHttpUtils.get().url(Constants.VERIFY_BOTTLE_BY_QR_CODE).addParams(Constants.URL_PARAMS_BOTTLE_CODE,iBackBottleView.getBottleCode()).
+                addParams(Constants.URL_PARAMS_VERIFYTYPE,iBackBottleView.getVerifyType()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iBackBottleView.getToken()).build().execute(new DataStringCallback(iBackBottleView) {
+            @Override
+            public void onResponse(String s, int i) {
+                //先继承再重写或重写覆盖请求错误的场景
+                super.onResponse(s, i);
+                ErrorBean errorBean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
+                if (!TextUtils.isEmpty(errorBean.getResult()) && TextUtils.equals(errorBean.getResult(), "fail")) {
+                    iBackBottleView.onError(errorBean.getMsg());
+
+                } else if (!TextUtils.isEmpty(errorBean.getResult()) && TextUtils.equals(errorBean.getResult(), "success")) {
+                    VerifyBottleBean bean = GsonUtil.getGson().fromJson(s, VerifyBottleBean.class);
+                    iBackBottleView.onGetBottleInfoSuccess(bean);
                 }
             }
 

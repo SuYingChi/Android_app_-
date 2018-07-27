@@ -27,7 +27,7 @@
     <application
         android:name=".application.LPGApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -48,15 +48,18 @@
             android:name="LpgClient"
             android:value="3467b1afa91a2c36f7c45cf95b85aa4d"/>
         <activity android:name=".activity.OrdersDetailActivity"/>
+        <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".activity.SendBottleOrdersDetailActivity"/>
         <activity android:name=".activity.ScanCodeDeliverSteelBottleActivity"/>
-        <activity android:name=".activity.OrdersDetailPostActivity"/>
+        <activity android:name=".activity.SendOrdersDetailPostActivity"/>
         <activity android:name=".activity.ExchangeReviewActivity"/>
-       <activity android:name=".activity.OrdersDetailPayActivity"/>
+       <activity android:name=".activity.SendBottleOrdersDetailPayActivity"/>
         <activity android:name=".activity.QRCodeReceiptActivity"/>
         <activity android:name=".activity.EditLocationActivity"/>
-        <activity android:name=".activity.OrdersDetailFinishActivity"/>
+        <activity android:name=".activity.SendBottleOrdersDetailFinishActivity"/>
         <activity android:name=".activity.ExchangeSteelBottleActivity"/>
-        <activity android:name=".activity.InnerFetchActivity" />
+        <activity android:name=".activity.InnerActivity" />
+        <activity android:name=".activity.RegisterBottleActivity" />
     </application>
 
 </manifest>

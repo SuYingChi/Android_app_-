@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_normol"
         android:background="@color/msb_color"
-        app:title_text= "提交订单"
+        app:title_text= "订单付款"
         />
     <include
         android:id="@+id/pay_bottom_tab"
@@ -222,7 +222,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="待发货"
+                    android:text="待付款"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
