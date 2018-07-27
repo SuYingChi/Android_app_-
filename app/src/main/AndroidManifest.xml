@@ -58,6 +58,10 @@
         <activity android:name=".activity.ExchangeSteelBottleActivity"/>
         <activity android:name=".activity.InnerActivity" />
         <activity android:name=".activity.RegisterBottleActivity" />
+        <activity android:name=".activity.BackBottleOrdersFinishActivity" />
+        <activity android:name=".activity.BackBottleOrdersDetailActivity" />
+        <activity android:name=".activity.BackBottleOrdersCancleActivity" />
+        <activity android:name=".activity.BackBottleDetailPostActivity" />
     </application>
 
 </manifest>

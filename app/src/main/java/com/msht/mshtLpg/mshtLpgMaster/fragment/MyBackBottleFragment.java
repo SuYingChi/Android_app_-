@@ -136,19 +136,21 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
             @Override
             public void onClick(View v) {
                 bottleCode = etInput.getText().toString();
-                iScanbottleCodePresenter.queryBottleByQRCode();
+                iScanbottleCodePresenter.queryBackBottleByQRCode();
             }
         });
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), BackBottleDetailPostActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString(Constants.ORDER_ID, orderId);
-                bundle.putSerializable(Constants.EMPTY_BOTTLE_LIST, (Serializable) list);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                if (checkList(list)) {
+                    Intent intent = new Intent(getActivity(), BackBottleDetailPostActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString(Constants.ORDER_ID, orderId);
+                    bundle.putSerializable(Constants.EMPTY_BOTTLE_LIST, (Serializable) list);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
             }
         });
         adapter = new ScanBottleQRCodeRclAdapter(list, getActivity());
@@ -156,6 +158,22 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
         recyclerView.setAdapter(adapter);
         title.setText("请扫描并回收用户钢瓶");
         return view;
+    }
+
+    private boolean checkList(List<VerifyBottleBean> list) {
+        if (BottleCaculteUtil.getBottleNum(list, 5) < orderFiveNum) {
+            PopUtil.toastInBottom("5kg钢瓶未达到订单数");
+            return false;
+        } else if (BottleCaculteUtil.getBottleNum(list, 15) < orderFifteenNum) {
+            PopUtil.toastInBottom("15kg钢瓶未达到订单数");
+            return false;
+        } else if (BottleCaculteUtil.getBottleNum(list, 50) < orderFiftyNum) {
+            PopUtil.toastInBottom("50kg钢瓶未达到订单数");
+            return false;
+        }else {
+            return true;
+        }
+
     }
 
     @Override
@@ -285,6 +303,7 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
          */
         void callBack(Exception e);
     }
+
     /**
      * Set callback for Camera check whether Camera init success or not.
      */
@@ -295,7 +314,6 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
 
     @Override
     public void onGetBottleInfoSuccess(VerifyBottleBean verifyBottleBean) {
-
         if (BottleCaculteUtil.isContainBottle(list, verifyBottleBean.getData().getBottleCode())) {
             PopUtil.toastInBottom("钢瓶已添加");
         } else if (verifyBottleBean.getData().getBottleWeight() == 5 && BottleCaculteUtil.getBottleNum(list, 5) >= orderFiveNum) {
@@ -312,7 +330,7 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
             fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50)));
         }
         Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
-        handler.sendMessageDelayed(reDecode,1000);
+        handler.sendMessageDelayed(reDecode, 1000);
     }
 
     @Override
@@ -353,6 +371,7 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
             }
         }
     }
+
     @Override
     public void onError(String s) {
         super.onError(s);

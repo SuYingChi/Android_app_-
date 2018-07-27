@@ -53,7 +53,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_number.setText(bean.getOrderId()+"");
             ((OrdersHolder) holder).order_statu.setText("送气待验瓶");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
-            ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
+            ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()==1?"（有电梯）":"（无电梯）"));
             ((OrdersHolder) holder).sex.setText(bean.getSex()==0?"  (男)":"  (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
@@ -86,7 +86,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_number.setText(bean.getOrderId()+"");
             ((OrdersHolder) holder).order_statu.setText("送气待付款");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
-            ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
+            ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()==1?"（有电梯）":"（无电梯）"));
             ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
@@ -119,7 +119,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_number.setText(bean.getOrderId()+"");
             ((OrdersHolder) holder).order_statu.setText("送气已完成");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
-            ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
+            ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()==1?"（有电梯）":"（无电梯）"));
             ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
             ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
@@ -152,12 +152,12 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_number.setText(bean.getOrderId()+"");
             ((OrdersHolder) holder).order_statu.setText("退瓶待验瓶");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
-            ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
+            ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()==1?"（有电梯）":"（无电梯）"));
             ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
-            ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
-            ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
-            ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getFiftyBottleCount()+"");
+            ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getReFiveBottleCount()+"");
+            ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getReFifteenBottleCount()+"");
+            ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getReFiftyBottleCount()+"");
             ((OrdersHolder) holder).sendBottleTime.setText(bean.getAppointmentTime());
             ((OrdersHolder) holder).orderBtn.setText("退瓶待验瓶");
             ((OrdersHolder) holder).orderBtn.setOnClickListener(new View.OnClickListener() {
@@ -186,12 +186,12 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_statu.setText("退瓶已完成");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
-            ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
+            ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()==1?"（有电梯）":"（无电梯）"));
             ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
-            ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
-            ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
-            ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getFiftyBottleCount()+"");
+            ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getReFiveBottleCount()+"");
+            ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getReFifteenBottleCount()+"");
+            ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getReFiftyBottleCount()+"");
             ((OrdersHolder) holder).sendBottleTime.setText(bean.getAppointmentTime());
             ((OrdersHolder) holder).orderBtn.setText("退瓶已完成");
             ((OrdersHolder) holder).orderBtn.setOnClickListener(new View.OnClickListener() {
@@ -220,12 +220,12 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_number.setText(bean.getOrderId()+"");
             ((OrdersHolder) holder).order_statu.setText("退瓶已取消");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
-            ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
+            ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()==1 ?"（有电梯）":"（无电梯）"));
             ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":"(女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
-            ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
-            ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
-            ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getFiftyBottleCount()+"");
+            ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getReFiveBottleCount()+"");
+            ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getReFifteenBottleCount()+"");
+            ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getReFiftyBottleCount()+"");
             ((OrdersHolder) holder).sendBottleTime.setText(bean.getAppointmentTime());
             ((OrdersHolder) holder).orderBtn.setText("退瓶已取消");
             ((OrdersHolder) holder).orderBtn.setOnClickListener(new View.OnClickListener() {
@@ -251,12 +251,12 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_number.setText(bean.getOrderId()+"");
             ((OrdersHolder) holder).order_statu.setText("送气其他");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
-            ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
+            ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()==1?"（有电梯）":"（无电梯）"));
             ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
-            ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
-            ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
-            ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getFiftyBottleCount()+"");
+            ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getReFiveBottleCount()+"");
+            ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getReFifteenBottleCount()+"");
+            ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getReFiftyBottleCount()+"");
             ((OrdersHolder) holder).sendBottleTime.setText(bean.getAppointmentTime());
             ((OrdersHolder) holder).orderBtn.setText("其他类型送气订单");
             ((OrdersHolder) holder).orderBtn.setOnClickListener(new View.OnClickListener() {
@@ -282,12 +282,12 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).order_number.setText(bean.getOrderId()+"");
             ((OrdersHolder) holder).order_statu.setText("退瓶其他");
             ((OrdersHolder) holder).user.setText(bean.getBuyer());
-            ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()=="1"?"（有电梯）":"（无电梯）"));
+            ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()==1?"（有电梯）":"（无电梯）"));
             ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
-            ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
-            ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
-            ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getFiftyBottleCount()+"");
+            ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getReFiveBottleCount()+"");
+            ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getReFifteenBottleCount()+"");
+            ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getReFiftyBottleCount()+"");
             ((OrdersHolder) holder).sendBottleTime.setText(bean.getAppointmentTime());
             ((OrdersHolder) holder).orderBtn.setText("其他类型退瓶订单");
             ((OrdersHolder) holder).orderBtn.setOnClickListener(new View.OnClickListener() {

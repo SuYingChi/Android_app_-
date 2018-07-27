@@ -1,12 +1,14 @@
 package com.msht.mshtLpg.mshtLpgMaster.Bean;
 
 
+import java.util.List;
+
 public class OrderDetailBean  {
 
     /**
      * result : success
      * msg : 查询成功
-     * data : {"siteId":2,"orderId":165,"orderType":1,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"黄水亮","sex":1,"mobile":"13098966725","orderAddressId":180,"longitude":"110.30204","latitude":"20.020434","addressShort":"","address":"海南省海口市龙华区金贸西路8号诚田国际商务大厦","floor":1,"roomNum":"","isElevator":0,"fiveBottleCount":1,"fifteenBottleCount":1,"fiftyBottleCount":0,"fiveGasFee":0,"fifteenGasFee":0,"fiftyGasFee":0,"fiveDeliveryFee":5,"fifteenDeliveryFee":15,"fiftyDeliveryFee":50,"fiveDepositFee":5,"fifteenDepositFee":15,"fiftyDepositFee":50,"retrieveAmount":0,"realAmount":40.4}
+     * data : {"siteId":1,"orderId":233,"orderType":0,"orderStatus":6,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"黄水亮","sex":1,"mobile":"13098966725","orderAddressId":248,"longitude":"56.56","latitude":"23.90","addressShort":"","address":"海口市建军32号","floor":1,"roomNum":"","isElevator":1,"fiveBottleCount":0,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":0,"fifteenGasFee":0,"fiftyGasFee":0,"fiveDeliveryFee":0,"fifteenDeliveryFee":0,"fiftyDeliveryFee":0,"fiveDepositFee":0,"fifteenDepositFee":0,"fiftyDepositFee":0,"reFiveBottleCount":1,"reFifteenBottleCount":1,"reFiftyBottleCount":0,"retrieveAmount":0,"realAmount":20,"depositList":[{"id":26,"ids":"","userId":34,"orderId":165,"retrieveId":233,"bottleWeight":5,"reFiveAmount":5,"reFifteenAmount":0,"reFiftyAmount":0,"isPay":0,"status":0},{"id":27,"ids":"","userId":34,"orderId":165,"retrieveId":233,"bottleWeight":15,"reFiveAmount":0,"reFifteenAmount":15,"reFiftyAmount":0,"isPay":0,"status":0}]}
      */
 
     private String result;
@@ -39,10 +41,10 @@ public class OrderDetailBean  {
 
     public static class DataBean {
         /**
-         * siteId : 2
-         * orderId : 165
-         * orderType : 1
-         * orderStatus : 2
+         * siteId : 1
+         * orderId : 233
+         * orderType : 0
+         * orderStatus : 6
          * orderSource : 1
          * isDelivery : 0
          * appointmentTime :
@@ -51,28 +53,32 @@ public class OrderDetailBean  {
          * buyer : 黄水亮
          * sex : 1
          * mobile : 13098966725
-         * orderAddressId : 180
-         * longitude : 110.30204
-         * latitude : 20.020434
+         * orderAddressId : 248
+         * longitude : 56.56
+         * latitude : 23.90
          * addressShort :
-         * address : 海南省海口市龙华区金贸西路8号诚田国际商务大厦
+         * address : 海口市建军32号
          * floor : 1
          * roomNum :
-         * isElevator : 0
-         * fiveBottleCount : 1
-         * fifteenBottleCount : 1
+         * isElevator : 1
+         * fiveBottleCount : 0
+         * fifteenBottleCount : 0
          * fiftyBottleCount : 0
          * fiveGasFee : 0
          * fifteenGasFee : 0
          * fiftyGasFee : 0
-         * fiveDeliveryFee : 5
-         * fifteenDeliveryFee : 15
-         * fiftyDeliveryFee : 50
-         * fiveDepositFee : 5
-         * fifteenDepositFee : 15
-         * fiftyDepositFee : 50
+         * fiveDeliveryFee : 0
+         * fifteenDeliveryFee : 0
+         * fiftyDeliveryFee : 0
+         * fiveDepositFee : 0
+         * fifteenDepositFee : 0
+         * fiftyDepositFee : 0
+         * reFiveBottleCount : 1
+         * reFifteenBottleCount : 1
+         * reFiftyBottleCount : 0
          * retrieveAmount : 0
-         * realAmount : 40.4
+         * realAmount : 20
+         * depositList : [{"id":26,"ids":"","userId":34,"orderId":165,"retrieveId":233,"bottleWeight":5,"reFiveAmount":5,"reFifteenAmount":0,"reFiftyAmount":0,"isPay":0,"status":0},{"id":27,"ids":"","userId":34,"orderId":165,"retrieveId":233,"bottleWeight":15,"reFiveAmount":0,"reFifteenAmount":15,"reFiftyAmount":0,"isPay":0,"status":0}]
          */
 
         private int siteId;
@@ -107,36 +113,12 @@ public class OrderDetailBean  {
         private double fiveDepositFee;
         private double fifteenDepositFee;
         private double fiftyDepositFee;
-        private double retrieveAmount;
-        private double realAmount;
-
-        public int getReFiveBottleCount() {
-            return reFiveBottleCount;
-        }
-
-        public void setReFiveBottleCount(int reFiveBottleCount) {
-            this.reFiveBottleCount = reFiveBottleCount;
-        }
-
-        public int getReFifteenBottleCount() {
-            return reFifteenBottleCount;
-        }
-
-        public void setReFifteenBottleCount(int reFifteenBottleCount) {
-            this.reFifteenBottleCount = reFifteenBottleCount;
-        }
-
-        public int getReFiftyBottleCount() {
-            return reFiftyBottleCount;
-        }
-
-        public void setReFiftyBottleCount(int reFiftyBottleCount) {
-            this.reFiftyBottleCount = reFiftyBottleCount;
-        }
-
         private int reFiveBottleCount;
         private int reFifteenBottleCount;
         private int reFiftyBottleCount;
+        private double retrieveAmount;
+        private double realAmount;
+        private List<DepositListBean> depositList;
 
         public int getSiteId() {
             return siteId;
@@ -394,11 +376,35 @@ public class OrderDetailBean  {
             this.fiftyDepositFee = fiftyDepositFee;
         }
 
+        public int getReFiveBottleCount() {
+            return reFiveBottleCount;
+        }
+
+        public void setReFiveBottleCount(int reFiveBottleCount) {
+            this.reFiveBottleCount = reFiveBottleCount;
+        }
+
+        public int getReFifteenBottleCount() {
+            return reFifteenBottleCount;
+        }
+
+        public void setReFifteenBottleCount(int reFifteenBottleCount) {
+            this.reFifteenBottleCount = reFifteenBottleCount;
+        }
+
+        public int getReFiftyBottleCount() {
+            return reFiftyBottleCount;
+        }
+
+        public void setReFiftyBottleCount(int reFiftyBottleCount) {
+            this.reFiftyBottleCount = reFiftyBottleCount;
+        }
+
         public double getRetrieveAmount() {
             return retrieveAmount;
         }
 
-        public void setRetrieveAmount(int retrieveAmount) {
+        public void setRetrieveAmount(double retrieveAmount) {
             this.retrieveAmount = retrieveAmount;
         }
 
@@ -408,6 +414,130 @@ public class OrderDetailBean  {
 
         public void setRealAmount(double realAmount) {
             this.realAmount = realAmount;
+        }
+
+        public List<DepositListBean> getDepositList() {
+            return depositList;
+        }
+
+        public void setDepositList(List<DepositListBean> depositList) {
+            this.depositList = depositList;
+        }
+
+        public static class DepositListBean {
+            /**
+             * id : 26
+             * ids :
+             * userId : 34
+             * orderId : 165
+             * retrieveId : 233
+             * bottleWeight : 5
+             * reFiveAmount : 5
+             * reFifteenAmount : 0
+             * reFiftyAmount : 0
+             * isPay : 0
+             * status : 0
+             */
+
+            private int id;
+            private String ids;
+            private int userId;
+            private int orderId;
+            private int retrieveId;
+            private int bottleWeight;
+            private double reFiveAmount;
+            private double reFifteenAmount;
+            private double reFiftyAmount;
+            private int isPay;
+            private int status;
+
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
+
+            public String getIds() {
+                return ids;
+            }
+
+            public void setIds(String ids) {
+                this.ids = ids;
+            }
+
+            public int getUserId() {
+                return userId;
+            }
+
+            public void setUserId(int userId) {
+                this.userId = userId;
+            }
+
+            public int getOrderId() {
+                return orderId;
+            }
+
+            public void setOrderId(int orderId) {
+                this.orderId = orderId;
+            }
+
+            public int getRetrieveId() {
+                return retrieveId;
+            }
+
+            public void setRetrieveId(int retrieveId) {
+                this.retrieveId = retrieveId;
+            }
+
+            public int getBottleWeight() {
+                return bottleWeight;
+            }
+
+            public void setBottleWeight(int bottleWeight) {
+                this.bottleWeight = bottleWeight;
+            }
+
+            public double getReFiveAmount() {
+                return reFiveAmount;
+            }
+
+            public void setReFiveAmount(double reFiveAmount) {
+                this.reFiveAmount = reFiveAmount;
+            }
+
+            public double getReFifteenAmount() {
+                return reFifteenAmount;
+            }
+
+            public void setReFifteenAmount(double reFifteenAmount) {
+                this.reFifteenAmount = reFifteenAmount;
+            }
+
+            public double getReFiftyAmount() {
+                return reFiftyAmount;
+            }
+
+            public void setReFiftyAmount(double reFiftyAmount) {
+                this.reFiftyAmount = reFiftyAmount;
+            }
+
+            public int getIsPay() {
+                return isPay;
+            }
+
+            public void setIsPay(int isPay) {
+                this.isPay = isPay;
+            }
+
+            public int getStatus() {
+                return status;
+            }
+
+            public void setStatus(int status) {
+                this.status = status;
+            }
         }
     }
 }

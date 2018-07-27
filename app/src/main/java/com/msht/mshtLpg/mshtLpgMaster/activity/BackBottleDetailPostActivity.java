@@ -39,7 +39,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
-public class BackBottleDetailPostActivity extends BaseActivity implements IBackBottleDetailPostView ,IOrderDetailView,IOrdesDespositView,PermissionUtils.PermissionRequestFinishListener{
+public class BackBottleDetailPostActivity extends BaseActivity implements IBackBottleDetailPostView ,IOrderDetailView,PermissionUtils.PermissionRequestFinishListener{
     @BindView(R.id.return_btn)
     ImageView returnBtn;
     @BindView(R.id.location)
@@ -90,15 +90,17 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
     private String isDelivery;
     private IOrderDetailPostPresenter iOrderDetailPostPresenter;
     private String siteId;
-    private IGasAndDepositPresenter iGasAndDepositPresenter;
     private double fiveDeposit;
     private double fifteenDeposit;
     private double fiftyDeposit;
+    private String fiveDeposite;
+    private String fifteenDeposite;
+    private String fiftyDeposite;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.back_bottle_orders_detail_layout);
+        setContentView(R.layout.back_bottle_orders_post_layout);
         unbinder =  ButterKnife.bind(this);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -110,7 +112,6 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
             emptyFifyt = BottleCaculteUtil.getBottleNum(backBottleList, 50)+"";
             iOrderDetailPresenter = new IOrderDetailPresenter(this);
             iOrderDetailPostPresenter= new IOrderDetailPostPresenter(this);
-            iGasAndDepositPresenter = new IGasAndDepositPresenter(this);
             iOrderDetailPresenter.getOrderDetail();
         }
 
@@ -169,8 +170,16 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
         orderFive = bean.getData().getReFiveBottleCount() +"";
         orderFifteen  = bean.getData().getReFifteenBottleCount() +"";
         orderFifty = bean.getData().getReFiftyBottleCount() +"";
+
+        fiveDeposite  = BottleCaculteUtil.getDeposite(bean,5);
+        fifteenDeposite  = BottleCaculteUtil.getDeposite(bean,15);
+        fiftyDeposite  = BottleCaculteUtil.getDeposite(bean,50);
+        fiveFee.setText(fiveDeposite);
+        fifteenFee.setText(fifteenDeposite);
+        fiftyFee.setText(fiftyDeposite);
+        totalFee.setText(bean.getData().getRealAmount()+"");
+
         dispatchOrdersTime.setText(bean.getData().getCreateDate());
-        iGasAndDepositPresenter.getGasAndDeposit();
 
     }
 
@@ -248,21 +257,6 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
         startActivity(intent);
     }
 
-    @Override
-    public void onGasAndDepositGetSuccess(GasAndDepositBean bean) {
-        fiveDeposit = bean.getData().getDepositPrice().getFiveDepositPrice();
-        fifteenDeposit = bean.getData().getDepositPrice().getFifteenDepositPrice();
-        fiftyDeposit = bean.getData().getDepositPrice().getFiftyDepositPrice();
-        fiveFee.setText(Integer.valueOf(orderFive)*fiveDeposit+"");
-        fifteenFee.setText(Integer.valueOf(orderFifteen)*fifteenDeposit+"");
-        fiftyFee.setText(Integer.valueOf(orderFifty)*fiftyDeposit+"");
-        totalFee.setText(detailBean.getData().getRealAmount()+"");
-    }
-
-    @Override
-    public String getSiteId() {
-        return siteId;
-    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

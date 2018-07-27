@@ -16,6 +16,7 @@ import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
+import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailView;
@@ -65,6 +66,10 @@ public class BackBottleOrdersDetailActivity extends BaseActivity implements IOrd
     private IOrderDetailPresenter iOrderDetailPresenter;
     private OrderDetailBean bean;
     private Unbinder unbinder;
+    private String retriveId;
+    private String fiveDeposite;
+    private String fifteenDeposite;
+    private String fiftyDeposite;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -107,14 +112,20 @@ public class BackBottleOrdersDetailActivity extends BaseActivity implements IOrd
         tvDay.setText(bean.getData().getCreateDate());
         tvTime.setText(bean.getData().getAppointmentTime());
         tvComment.setText(bean.getData().getRemarks());
-        tvOrderId.setText(bean.getData().getOrderId()+"");
-        fiveFee.setText(bean.getData().getReFiveBottleCount()*bean.getData().getFiveDepositFee()+"");
-        fifteenFee.setText(bean.getData().getReFifteenBottleCount()*bean.getData().getFifteenDepositFee()+"");
-        fiftyFee.setText(bean.getData().getReFiftyBottleCount()*bean.getData().getFiftyDepositFee()+"");
+        retriveId =bean.getData().getOrderId()+"";
+        tvOrderId.setText(retriveId);
+        fiveDeposite  = BottleCaculteUtil.getDeposite(bean,5);
+        fifteenDeposite  = BottleCaculteUtil.getDeposite(bean,15);
+        fiftyDeposite  = BottleCaculteUtil.getDeposite(bean,50);
+        fiveFee.setText(fiveDeposite);
+        fifteenFee.setText(fifteenDeposite);
+        fiftyFee.setText(fiftyDeposite);
         totalFee.setText(bean.getData().getRealAmount()+"");
         dispatchOrdersTime.setText(bean.getData().getCreateDate());
 
     }
+
+
 
     @Override
     public String getOrderId() {
