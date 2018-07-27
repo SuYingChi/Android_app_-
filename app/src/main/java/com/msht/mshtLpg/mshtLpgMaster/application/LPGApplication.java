@@ -63,8 +63,8 @@ public class LPGApplication extends Application {
         BGASwipeBackHelper.init(this, null);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new MLoggerInterceptor("http", true))
-                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
-                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                .connectTimeout(30000L, TimeUnit.MILLISECONDS)
+                .readTimeout(30000L, TimeUnit.MILLISECONDS)
 
                 .build();
 

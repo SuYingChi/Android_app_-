@@ -59,7 +59,7 @@ public class IOrderDetailPostPresenter {
         });
     }
     public void postBackBottleOrders(){
-        OkHttpUtils.get().url(Constants.POST_ORDER).addParams(Constants.ORDER_ID, iOrderDetailPostView.getOrderId())
+        OkHttpUtils.get().url(Constants.POST_ORDER).addParams(Constants.ORDER_ID, iBackBottleDetailPostView.getOrderId())
                 .addParams(Constants.URL_PARAMS_ORDER_TYPE,iBackBottleDetailPostView.getOrderType())
                 .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iBackBottleDetailPostView.getToken())
                 .addParams(Constants.IS_DELIVERY,iBackBottleDetailPostView.getIsDelivery())

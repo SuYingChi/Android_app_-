@@ -191,9 +191,9 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
         else if(orderType == 0){
             backBottleFragment = new MyBackBottleFragment();
             Bundle bundle = new Bundle();
-            bundle.putInt(Constants.ORDER_FIVE_NUM, orderfiveNum);
-            bundle.putInt(Constants.ORDER_FIFTEEN_NUM, orderfifteenNum);
-            bundle.putInt(Constants.ORDER_FIFTY_NUM, orderfiftyNum);
+            bundle.putInt(Constants.ORDER_FIVE_NUM, bean.getData().getReFiveBottleCount());
+            bundle.putInt(Constants.ORDER_FIFTEEN_NUM, bean.getData().getReFifteenBottleCount());
+            bundle.putInt(Constants.ORDER_FIFTY_NUM, bean.getData().getReFiftyBottleCount());
             bundle.putString(Constants.ORDER_ID,orderId);
             backBottleFragment.setArguments(bundle);
             backBottleFragment.setCameraInitCallBack(new MyBackBottleFragment.CameraInitCallBack() {

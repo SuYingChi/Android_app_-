@@ -7,7 +7,7 @@ public class OrdersListBeanV2 {
     /**
      * result : success
      * msg : 订单信息查询成功
-     * data : {"page":{"pageNum":1,"pageSize":10,"pages":2,"total":12},"list":[{"siteId":"","orderId":158,"orderType":1,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"黄水亮","sex":1,"mobile":"13098966725","orderAddressId":"","longitude":"","latitude":"","addressShort":"","address":"","floor":"","roomNum":"","isElevator":"","fiveBottleCount":0,"fifteenBottleCount":1,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":15.2,"bottleReplaceList":""},{"siteId":"","orderId":156,"orderType":1,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"陈宏","sex":1,"mobile":"18976475828","orderAddressId":171,"longitude":"110.302035","latitude":"20.020395","addressShort":"","address":"龙华区秀英街道金茂西路诚田商务大厦A栋24楼","floor":24,"roomNum":"001","isElevator":1,"fiveBottleCount":2,"fifteenBottleCount":1,"fiftyBottleCount":1,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":96.5,"bottleReplaceList":""},{"siteId":"","orderId":155,"orderType":1,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"陈宏","sex":1,"mobile":"18976475828","orderAddressId":170,"longitude":"110.302035","latitude":"20.020395","addressShort":"","address":"龙华区秀英街道金茂西路诚田商务大厦A栋24楼","floor":24,"roomNum":"001","isElevator":1,"fiveBottleCount":1,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":25.9,"bottleReplaceList":""},{"siteId":"","orderId":146,"orderType":1,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"陈宏","sex":1,"mobile":"18976475828","orderAddressId":161,"longitude":"110.302035","latitude":"20.020395","addressShort":"","address":"龙华区秀英街道金茂西路诚田商务大厦A栋24楼","floor":24,"roomNum":"001","isElevator":1,"fiveBottleCount":0,"fifteenBottleCount":2,"fiftyBottleCount":9,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":482.2,"bottleReplaceList":""},{"siteId":"","orderId":74,"orderType":1,"orderStatus":5,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"李四","sex":1,"mobile":"18976991792","orderAddressId":103,"longitude":"56.56","latitude":"23.90","addressShort":"","address":"海口市白龙北路5号","floor":5,"roomNum":"","isElevator":0,"fiveBottleCount":2,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":45,"bottleReplaceList":""},{"siteId":"","orderId":73,"orderType":1,"orderStatus":1,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"李四","sex":1,"mobile":"18976991792","orderAddressId":102,"longitude":"56.56","latitude":"23.90","addressShort":"","address":"海口市白龙北路5555555555号","floor":1,"roomNum":"","isElevator":0,"fiveBottleCount":1,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":45,"bottleReplaceList":""},{"siteId":"","orderId":56,"orderType":1,"orderStatus":5,"orderSource":2,"isDelivery":1,"appointmentTime":"","createDate":"","remarks":"","buyer":"刘备","sex":1,"mobile":"18779884643","orderAddressId":85,"longitude":"131","latitude":"12","addressShort":"","address":"金花市场","floor":3,"roomNum":"311","isElevator":1,"fiveBottleCount":1,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":5.2,"bottleReplaceList":""},{"siteId":"","orderId":54,"orderType":1,"orderStatus":2,"orderSource":2,"isDelivery":1,"appointmentTime":"","createDate":"","remarks":"","buyer":"刘备","sex":1,"mobile":"18779884643","orderAddressId":83,"longitude":"131","latitude":"12","addressShort":"","address":"金花市场","floor":3,"roomNum":"311","isElevator":1,"fiveBottleCount":0,"fifteenBottleCount":0,"fiftyBottleCount":1,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":50.2,"bottleReplaceList":""},{"siteId":"","orderId":50,"orderType":1,"orderStatus":2,"orderSource":2,"isDelivery":1,"appointmentTime":"","createDate":"","remarks":"","buyer":"刘备","sex":1,"mobile":"18779884643","orderAddressId":78,"longitude":"131","latitude":"12","addressShort":"","address":"金花市场","floor":3,"roomNum":"311","isElevator":1,"fiveBottleCount":0,"fifteenBottleCount":0,"fiftyBottleCount":1,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":50.2,"bottleReplaceList":""},{"siteId":"","orderId":49,"orderType":1,"orderStatus":2,"orderSource":2,"isDelivery":1,"appointmentTime":"","createDate":"","remarks":"","buyer":"张三","sex":1,"mobile":"18976991791","orderAddressId":77,"longitude":"56.56","latitude":"23.90","addressShort":"","address":"海口市白龙北路5号","floor":3,"roomNum":"111","isElevator":1,"fiveBottleCount":1,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":5.2,"bottleReplaceList":""}]}
+     * data : {"page":{"pageNum":1,"pageSize":1,"pages":1,"total":1},"list":[{"siteId":1,"orderId":233,"orderType":0,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"黄水亮","sex":1,"mobile":"13098966725","orderAddressId":248,"longitude":"56.56","latitude":"23.90","addressShort":"","address":"海口市建军32号","floor":1,"roomNum":"","isElevator":1,"fiveBottleCount":0,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","reFiveBottleCount":1,"reFifteenBottleCount":1,"reFiftyBottleCount":0,"retrieveAmount":"","realAmount":20,"depositList":""}]}
      */
 
     private String result;
@@ -40,8 +40,8 @@ public class OrdersListBeanV2 {
 
     public static class DataBean {
         /**
-         * page : {"pageNum":1,"pageSize":10,"pages":2,"total":12}
-         * list : [{"siteId":"","orderId":158,"orderType":1,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"黄水亮","sex":1,"mobile":"13098966725","orderAddressId":"","longitude":"","latitude":"","addressShort":"","address":"","floor":"","roomNum":"","isElevator":"","fiveBottleCount":0,"fifteenBottleCount":1,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":15.2,"bottleReplaceList":""},{"siteId":"","orderId":156,"orderType":1,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"陈宏","sex":1,"mobile":"18976475828","orderAddressId":171,"longitude":"110.302035","latitude":"20.020395","addressShort":"","address":"龙华区秀英街道金茂西路诚田商务大厦A栋24楼","floor":24,"roomNum":"001","isElevator":1,"fiveBottleCount":2,"fifteenBottleCount":1,"fiftyBottleCount":1,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":96.5,"bottleReplaceList":""},{"siteId":"","orderId":155,"orderType":1,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"陈宏","sex":1,"mobile":"18976475828","orderAddressId":170,"longitude":"110.302035","latitude":"20.020395","addressShort":"","address":"龙华区秀英街道金茂西路诚田商务大厦A栋24楼","floor":24,"roomNum":"001","isElevator":1,"fiveBottleCount":1,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":25.9,"bottleReplaceList":""},{"siteId":"","orderId":146,"orderType":1,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"陈宏","sex":1,"mobile":"18976475828","orderAddressId":161,"longitude":"110.302035","latitude":"20.020395","addressShort":"","address":"龙华区秀英街道金茂西路诚田商务大厦A栋24楼","floor":24,"roomNum":"001","isElevator":1,"fiveBottleCount":0,"fifteenBottleCount":2,"fiftyBottleCount":9,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":482.2,"bottleReplaceList":""},{"siteId":"","orderId":74,"orderType":1,"orderStatus":5,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"李四","sex":1,"mobile":"18976991792","orderAddressId":103,"longitude":"56.56","latitude":"23.90","addressShort":"","address":"海口市白龙北路5号","floor":5,"roomNum":"","isElevator":0,"fiveBottleCount":2,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":45,"bottleReplaceList":""},{"siteId":"","orderId":73,"orderType":1,"orderStatus":1,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"李四","sex":1,"mobile":"18976991792","orderAddressId":102,"longitude":"56.56","latitude":"23.90","addressShort":"","address":"海口市白龙北路5555555555号","floor":1,"roomNum":"","isElevator":0,"fiveBottleCount":1,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":45,"bottleReplaceList":""},{"siteId":"","orderId":56,"orderType":1,"orderStatus":5,"orderSource":2,"isDelivery":1,"appointmentTime":"","createDate":"","remarks":"","buyer":"刘备","sex":1,"mobile":"18779884643","orderAddressId":85,"longitude":"131","latitude":"12","addressShort":"","address":"金花市场","floor":3,"roomNum":"311","isElevator":1,"fiveBottleCount":1,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":5.2,"bottleReplaceList":""},{"siteId":"","orderId":54,"orderType":1,"orderStatus":2,"orderSource":2,"isDelivery":1,"appointmentTime":"","createDate":"","remarks":"","buyer":"刘备","sex":1,"mobile":"18779884643","orderAddressId":83,"longitude":"131","latitude":"12","addressShort":"","address":"金花市场","floor":3,"roomNum":"311","isElevator":1,"fiveBottleCount":0,"fifteenBottleCount":0,"fiftyBottleCount":1,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":50.2,"bottleReplaceList":""},{"siteId":"","orderId":50,"orderType":1,"orderStatus":2,"orderSource":2,"isDelivery":1,"appointmentTime":"","createDate":"","remarks":"","buyer":"刘备","sex":1,"mobile":"18779884643","orderAddressId":78,"longitude":"131","latitude":"12","addressShort":"","address":"金花市场","floor":3,"roomNum":"311","isElevator":1,"fiveBottleCount":0,"fifteenBottleCount":0,"fiftyBottleCount":1,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":50.2,"bottleReplaceList":""},{"siteId":"","orderId":49,"orderType":1,"orderStatus":2,"orderSource":2,"isDelivery":1,"appointmentTime":"","createDate":"","remarks":"","buyer":"张三","sex":1,"mobile":"18976991791","orderAddressId":77,"longitude":"56.56","latitude":"23.90","addressShort":"","address":"海口市白龙北路5号","floor":3,"roomNum":"111","isElevator":1,"fiveBottleCount":1,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","retrieveAmount":"","realAmount":5.2,"bottleReplaceList":""}]
+         * page : {"pageNum":1,"pageSize":1,"pages":1,"total":1}
+         * list : [{"siteId":1,"orderId":233,"orderType":0,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"黄水亮","sex":1,"mobile":"13098966725","orderAddressId":248,"longitude":"56.56","latitude":"23.90","addressShort":"","address":"海口市建军32号","floor":1,"roomNum":"","isElevator":1,"fiveBottleCount":0,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","reFiveBottleCount":1,"reFifteenBottleCount":1,"reFiftyBottleCount":0,"retrieveAmount":"","realAmount":20,"depositList":""}]
          */
 
         private PageBean page;
@@ -66,9 +66,9 @@ public class OrdersListBeanV2 {
         public static class PageBean {
             /**
              * pageNum : 1
-             * pageSize : 10
-             * pages : 2
-             * total : 12
+             * pageSize : 1
+             * pages : 1
+             * total : 1
              */
 
             private int pageNum;
@@ -111,9 +111,9 @@ public class OrdersListBeanV2 {
 
         public static class ListBean {
             /**
-             * siteId :
-             * orderId : 158
-             * orderType : 1
+             * siteId : 1
+             * orderId : 233
+             * orderType : 0
              * orderStatus : 2
              * orderSource : 1
              * isDelivery : 0
@@ -123,16 +123,16 @@ public class OrdersListBeanV2 {
              * buyer : 黄水亮
              * sex : 1
              * mobile : 13098966725
-             * orderAddressId :
-             * longitude :
-             * latitude :
+             * orderAddressId : 248
+             * longitude : 56.56
+             * latitude : 23.90
              * addressShort :
-             * address :
-             * floor :
+             * address : 海口市建军32号
+             * floor : 1
              * roomNum :
-             * isElevator :
+             * isElevator : 1
              * fiveBottleCount : 0
-             * fifteenBottleCount : 1
+             * fifteenBottleCount : 0
              * fiftyBottleCount : 0
              * fiveGasFee :
              * fifteenGasFee :
@@ -143,12 +143,15 @@ public class OrdersListBeanV2 {
              * fiveDepositFee :
              * fifteenDepositFee :
              * fiftyDepositFee :
+             * reFiveBottleCount : 1
+             * reFifteenBottleCount : 1
+             * reFiftyBottleCount : 0
              * retrieveAmount :
-             * realAmount : 15.2
-             * bottleReplaceList :
+             * realAmount : 20
+             * depositList :
              */
 
-            private String siteId;
+            private int siteId;
             private int orderId;
             private int orderType;
             private int orderStatus;
@@ -160,14 +163,14 @@ public class OrdersListBeanV2 {
             private String buyer;
             private int sex;
             private String mobile;
-            private String orderAddressId;
+            private int orderAddressId;
             private String longitude;
             private String latitude;
             private String addressShort;
             private String address;
-            private String floor;
+            private int floor;
             private String roomNum;
-            private String isElevator;
+            private int isElevator;
             private int fiveBottleCount;
             private int fifteenBottleCount;
             private int fiftyBottleCount;
@@ -180,15 +183,18 @@ public class OrdersListBeanV2 {
             private String fiveDepositFee;
             private String fifteenDepositFee;
             private String fiftyDepositFee;
+            private int reFiveBottleCount;
+            private int reFifteenBottleCount;
+            private int reFiftyBottleCount;
             private String retrieveAmount;
             private double realAmount;
-            private String bottleReplaceList;
+            private String depositList;
 
-            public String getSiteId() {
+            public int getSiteId() {
                 return siteId;
             }
 
-            public void setSiteId(String siteId) {
+            public void setSiteId(int siteId) {
                 this.siteId = siteId;
             }
 
@@ -280,11 +286,11 @@ public class OrdersListBeanV2 {
                 this.mobile = mobile;
             }
 
-            public String getOrderAddressId() {
+            public int getOrderAddressId() {
                 return orderAddressId;
             }
 
-            public void setOrderAddressId(String orderAddressId) {
+            public void setOrderAddressId(int orderAddressId) {
                 this.orderAddressId = orderAddressId;
             }
 
@@ -320,11 +326,11 @@ public class OrdersListBeanV2 {
                 this.address = address;
             }
 
-            public String getFloor() {
+            public int getFloor() {
                 return floor;
             }
 
-            public void setFloor(String floor) {
+            public void setFloor(int floor) {
                 this.floor = floor;
             }
 
@@ -336,11 +342,11 @@ public class OrdersListBeanV2 {
                 this.roomNum = roomNum;
             }
 
-            public String getIsElevator() {
+            public int getIsElevator() {
                 return isElevator;
             }
 
-            public void setIsElevator(String isElevator) {
+            public void setIsElevator(int isElevator) {
                 this.isElevator = isElevator;
             }
 
@@ -440,6 +446,30 @@ public class OrdersListBeanV2 {
                 this.fiftyDepositFee = fiftyDepositFee;
             }
 
+            public int getReFiveBottleCount() {
+                return reFiveBottleCount;
+            }
+
+            public void setReFiveBottleCount(int reFiveBottleCount) {
+                this.reFiveBottleCount = reFiveBottleCount;
+            }
+
+            public int getReFifteenBottleCount() {
+                return reFifteenBottleCount;
+            }
+
+            public void setReFifteenBottleCount(int reFifteenBottleCount) {
+                this.reFifteenBottleCount = reFifteenBottleCount;
+            }
+
+            public int getReFiftyBottleCount() {
+                return reFiftyBottleCount;
+            }
+
+            public void setReFiftyBottleCount(int reFiftyBottleCount) {
+                this.reFiftyBottleCount = reFiftyBottleCount;
+            }
+
             public String getRetrieveAmount() {
                 return retrieveAmount;
             }
@@ -456,12 +486,12 @@ public class OrdersListBeanV2 {
                 this.realAmount = realAmount;
             }
 
-            public String getBottleReplaceList() {
-                return bottleReplaceList;
+            public String getDepositList() {
+                return depositList;
             }
 
-            public void setBottleReplaceList(String bottleReplaceList) {
-                this.bottleReplaceList = bottleReplaceList;
+            public void setDepositList(String depositList) {
+                this.depositList = depositList;
             }
         }
     }

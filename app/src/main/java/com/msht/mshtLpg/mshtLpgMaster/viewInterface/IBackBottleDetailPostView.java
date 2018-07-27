@@ -18,4 +18,6 @@ public interface IBackBottleDetailPostView extends IBaseView {
     String getIsElevator();
 
     void onPostOrdersSuccess(ComfirmOrdersBean comfirmOrdersBean);
+
+    String getOrderId();
 }
