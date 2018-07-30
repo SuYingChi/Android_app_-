@@ -8,4 +8,5 @@ public interface IScanCodeDeliverSteelBottleView extends IBaseView {
     int getFragmentType();
 
     String getVerifyType();
+
 }

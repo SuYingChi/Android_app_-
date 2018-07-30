@@ -267,7 +267,7 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
                 floor = data.getStringExtra(Constants.FLOOR);
                 tvFloor.setText(floor + "层");
                 isElevator = data.getStringExtra(Constants.IS_ELEVATOR);
-                tvElevator.setText(isElevator == "1" ? "(有电梯)" : "(无电梯)");
+                tvElevator.setText(isElevator.equals("1") ? "(有电梯)" : "(无电梯)");
                 if (!isElevator.equals("1")) {
                     iDeliveryPresenter.getDelivery();
                 }else {
@@ -316,6 +316,7 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
         client_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                totalfare-=totalDeliveryfare;
                 Intent intent = new Intent(SendOrdersDetailPostActivity.this, EditLocationActivity.class);
                 intent.putExtra(Constants.FLOOR, floor);
                 intent.putExtra(Constants.IS_ELEVATOR, isElevator);

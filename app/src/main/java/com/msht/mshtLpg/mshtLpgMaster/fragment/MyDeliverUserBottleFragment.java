@@ -13,6 +13,8 @@ import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
@@ -35,6 +37,7 @@ import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.handler.MyCaptureHandler;
+import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IScanCodeDeliverSteelBottleView;
@@ -139,7 +142,6 @@ public class MyDeliverUserBottleFragment extends BaseFragment implements Surface
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: ");
         View view = inflater.inflate(R.layout.scan_delive_steel_bottle_layout, null);
         ButterKnife.bind(this, view);
         surfaceHolder = surfaceView.getHolder();
@@ -147,6 +149,24 @@ public class MyDeliverUserBottleFragment extends BaseFragment implements Surface
             @Override
             public void onClick(View v) {
                 captureActivityListener.onCaptureFragmenBackBtnClick(fragmentType);
+            }
+        });
+        etInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().length()==8||s.toString().length()==9){
+                    AppUtil.hideInput(MyDeliverUserBottleFragment.this.getContext(),etInput);
+                }
             }
         });
         queryBtn.setOnClickListener(new View.OnClickListener() {
@@ -244,7 +264,7 @@ public class MyDeliverUserBottleFragment extends BaseFragment implements Surface
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
         String bottleUrl = result.getText();
-        if(bottleUrl.length()==10){
+        if(bottleUrl.length()==10||bottleUrl.length()==8){
             bottleCode = bottleUrl;
         }else if(bottleUrl.contains("id=")){
             int index = bottleUrl.indexOf("id=");
@@ -258,6 +278,7 @@ public class MyDeliverUserBottleFragment extends BaseFragment implements Surface
         try {
             CameraManager.get().openDriver(surfaceHolder);
             camera = CameraManager.get().getCamera();
+            camera.startPreview();
         } catch (Exception e) {
             if (callBack != null) {
                 callBack.callBack(e);
@@ -408,8 +429,12 @@ public class MyDeliverUserBottleFragment extends BaseFragment implements Surface
                 PopUtil.toastInBottom("不能回收重瓶");
             }
         }
-        Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
-        handler.sendMessageDelayed(reDecode, 1000);
+        if (handler == null) {
+            handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
+        }
+            Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
+            handler.sendMessageDelayed(reDecode, 1000);
+
     }
 
     protected boolean isContainBottle(List<VerifyBottleBean> list,String bottleCode) {
@@ -436,6 +461,7 @@ public class MyDeliverUserBottleFragment extends BaseFragment implements Surface
 
         return verifyType;
     }
+
 
     public interface CameraInitCallBack {
         /**

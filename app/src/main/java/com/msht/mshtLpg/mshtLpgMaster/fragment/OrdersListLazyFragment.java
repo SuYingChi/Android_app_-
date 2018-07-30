@@ -271,7 +271,9 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
 
     @Override
     public void onBackFromSettingPage() {
-
+        if (ActivityCompat.checkSelfPermission(LPGApplication.getLPGApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            getActivity().finish();
+        }
     }
 
     @Override

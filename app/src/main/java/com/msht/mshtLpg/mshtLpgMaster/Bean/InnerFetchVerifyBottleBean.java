@@ -1,8 +1,6 @@
 package com.msht.mshtLpg.mshtLpgMaster.Bean;
 
-import java.io.Serializable;
-
-public class VerifyBottleBean implements Serializable{
+public class InnerFetchVerifyBottleBean {
 
     /**
      * result : success
@@ -38,7 +36,7 @@ public class VerifyBottleBean implements Serializable{
         this.data = data;
     }
 
-    public static class DataBean implements Serializable{
+    public static class DataBean {
         /**
          * id : 210
          * ids :
@@ -323,5 +321,4 @@ public class VerifyBottleBean implements Serializable{
             this.useDays = useDays;
         }
     }
-
 }

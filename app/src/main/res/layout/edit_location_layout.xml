@@ -219,13 +219,12 @@
 -->
         <EditText
             android:id="@+id/et_floor"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_Modules"
             android:background="@drawable/edit_text_background"
-            android:hint="24"
             android:maxLength="2"
-            android:textColor="#ffffff"
+            android:textColor="@color/textcolor"
             android:textColorHint="@color/text_hint"
             android:textCursorDrawable="@null"
             android:inputType="number"

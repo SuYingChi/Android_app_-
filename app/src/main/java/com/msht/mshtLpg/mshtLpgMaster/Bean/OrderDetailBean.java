@@ -8,7 +8,7 @@ public class OrderDetailBean  {
     /**
      * result : success
      * msg : 查询成功
-     * data : {"siteId":1,"orderId":233,"orderType":0,"orderStatus":6,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"黄水亮","sex":1,"mobile":"13098966725","orderAddressId":248,"longitude":"56.56","latitude":"23.90","addressShort":"","address":"海口市建军32号","floor":1,"roomNum":"","isElevator":1,"fiveBottleCount":0,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":0,"fifteenGasFee":0,"fiftyGasFee":0,"fiveDeliveryFee":0,"fifteenDeliveryFee":0,"fiftyDeliveryFee":0,"fiveDepositFee":0,"fifteenDepositFee":0,"fiftyDepositFee":0,"reFiveBottleCount":1,"reFifteenBottleCount":1,"reFiftyBottleCount":0,"retrieveAmount":0,"realAmount":20,"depositList":[{"id":26,"ids":"","userId":34,"orderId":165,"retrieveId":233,"bottleWeight":5,"reFiveAmount":5,"reFifteenAmount":0,"reFiftyAmount":0,"isPay":0,"status":0},{"id":27,"ids":"","userId":34,"orderId":165,"retrieveId":233,"bottleWeight":15,"reFiveAmount":0,"reFifteenAmount":15,"reFiftyAmount":0,"isPay":0,"status":0}]}
+     * data : {"siteId":1,"orderId":267,"orderType":0,"orderStatus":6,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"张三2","sex":1,"mobile":"18681497590","orderAddressId":282,"longitude":"110.30204","latitude":"20.020434","addressShort":"","address":"海南省海口市龙华区金贸西路8号诚田国际商务大厦","floor":24,"roomNum":"1","isElevator":1,"fiveBottleCount":0,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":0,"fifteenGasFee":0,"fiftyGasFee":0,"fiveDeliveryFee":1,"fifteenDeliveryFee":3,"fiftyDeliveryFee":5,"fiveDepositFee":0,"fifteenDepositFee":0,"fiftyDepositFee":0,"reFiveBottleCount":0,"reFifteenBottleCount":1,"reFiftyBottleCount":0,"retrieveAmount":0,"realAmount":132,"depositList":[{"id":51,"ids":"","userId":47,"orderId":260,"retrieveId":267,"bottleWeight":15,"reFiveAmount":0,"reFifteenAmount":132,"reFiftyAmount":0,"isPay":0,"status":0}]}
      */
 
     private String result;
@@ -42,7 +42,7 @@ public class OrderDetailBean  {
     public static class DataBean {
         /**
          * siteId : 1
-         * orderId : 233
+         * orderId : 267
          * orderType : 0
          * orderStatus : 6
          * orderSource : 1
@@ -50,35 +50,35 @@ public class OrderDetailBean  {
          * appointmentTime :
          * createDate :
          * remarks :
-         * buyer : 黄水亮
+         * buyer : 张三2
          * sex : 1
-         * mobile : 13098966725
-         * orderAddressId : 248
-         * longitude : 56.56
-         * latitude : 23.90
+         * mobile : 18681497590
+         * orderAddressId : 282
+         * longitude : 110.30204
+         * latitude : 20.020434
          * addressShort :
-         * address : 海口市建军32号
-         * floor : 1
-         * roomNum :
+         * address : 海南省海口市龙华区金贸西路8号诚田国际商务大厦
+         * floor : 24
+         * roomNum : 1
          * isElevator : 1
          * fiveBottleCount : 0
          * fifteenBottleCount : 0
          * fiftyBottleCount : 0
-         * fiveGasFee : 0
-         * fifteenGasFee : 0
-         * fiftyGasFee : 0
-         * fiveDeliveryFee : 0
-         * fifteenDeliveryFee : 0
-         * fiftyDeliveryFee : 0
-         * fiveDepositFee : 0
-         * fifteenDepositFee : 0
-         * fiftyDepositFee : 0
-         * reFiveBottleCount : 1
+         * fiveGasFee : 0.0
+         * fifteenGasFee : 0.0
+         * fiftyGasFee : 0.0
+         * fiveDeliveryFee : 1.0
+         * fifteenDeliveryFee : 3.0
+         * fiftyDeliveryFee : 5.0
+         * fiveDepositFee : 0.0
+         * fifteenDepositFee : 0.0
+         * fiftyDepositFee : 0.0
+         * reFiveBottleCount : 0
          * reFifteenBottleCount : 1
          * reFiftyBottleCount : 0
-         * retrieveAmount : 0
-         * realAmount : 20
-         * depositList : [{"id":26,"ids":"","userId":34,"orderId":165,"retrieveId":233,"bottleWeight":5,"reFiveAmount":5,"reFifteenAmount":0,"reFiftyAmount":0,"isPay":0,"status":0},{"id":27,"ids":"","userId":34,"orderId":165,"retrieveId":233,"bottleWeight":15,"reFiveAmount":0,"reFifteenAmount":15,"reFiftyAmount":0,"isPay":0,"status":0}]
+         * retrieveAmount : 0.0
+         * realAmount : 132.0
+         * depositList : [{"id":51,"ids":"","userId":47,"orderId":260,"retrieveId":267,"bottleWeight":15,"reFiveAmount":0,"reFifteenAmount":132,"reFiftyAmount":0,"isPay":0,"status":0}]
          */
 
         private int siteId;
@@ -426,15 +426,15 @@ public class OrderDetailBean  {
 
         public static class DepositListBean {
             /**
-             * id : 26
+             * id : 51
              * ids :
-             * userId : 34
-             * orderId : 165
-             * retrieveId : 233
-             * bottleWeight : 5
-             * reFiveAmount : 5
-             * reFifteenAmount : 0
-             * reFiftyAmount : 0
+             * userId : 47
+             * orderId : 260
+             * retrieveId : 267
+             * bottleWeight : 15
+             * reFiveAmount : 0.0
+             * reFifteenAmount : 132.0
+             * reFiftyAmount : 0.0
              * isPay : 0
              * status : 0
              */

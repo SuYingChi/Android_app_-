@@ -43,10 +43,28 @@ public class BottleCaculteUtil {
 
         for (OrderDetailBean.DataBean.DepositListBean depositListBean : list) {
             if (depositListBean.getBottleWeight() == weight) {
-                deposite += depositListBean.getReFiveAmount();
+                if(weight == 5){
+                    deposite += depositListBean.getReFiveAmount();
+                }else if(weight == 15){
+                    deposite += depositListBean.getReFifteenAmount();
+                }else if(weight == 50){
+                    deposite += depositListBean.getReFiftyAmount();
+                }
             }
         }
 
         return deposite + "";
+    }
+
+    public static String getBottleIds(List<VerifyBottleBean> list){
+        StringBuilder sf = new StringBuilder();
+        for(int i = 0; i< list.size(); i++){
+            if(i==0){
+                sf.append(list.get(i).getData().getId());
+            }else {
+                sf.append(",").append(list.get(i).getData().getId());
+            }
+        }
+        return sf.toString();
     }
 }

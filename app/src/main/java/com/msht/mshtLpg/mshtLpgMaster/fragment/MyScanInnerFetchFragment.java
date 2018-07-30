@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.InnerFetchVerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.ScanInnerFetchBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IInnerFetchPresenter;
@@ -73,6 +74,8 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
     private EditText etInput;
     private ViewfinderView viewfinderView;
     private TextView tvEmployer;
+    private TextView tvTitle;
+    private String verifyType;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,7 +103,11 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
 
     @Override
     public String getEmployeeCode() {
-        return innnerFetchActivityListener.getEmpolyerId();
+        if(fragmentType == 1){
+            return employerId;
+        }else {
+            return innnerFetchActivityListener.getEmpolyerId();
+        }
     }
 
 
@@ -130,12 +137,16 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
         if (fragmentType == 1) {
             view = inflater.inflate(R.layout.inner_fetch_no_rcl_layout, null);
             tvEmployer = (TextView)view.findViewById(R.id.tv_employer);
+            tvTitle = (TextView)view.findViewById(R.id.tv_scan_delive_steel_bottle);
+            tvTitle.setText("请扫描员工二维码");
         } else if (fragmentType == 2) {
             view = inflater.inflate(R.layout.inner_fetch_layout, null);
             recyclerView= (RecyclerView)view.findViewById(R.id.scan_rcl_deliver_steel_bottle);
             adapter = new ScanBottleQRCodeRclAdapter(list, getActivity());
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerView.setAdapter(adapter);
+            tvTitle = (TextView)view.findViewById(R.id.tv_scan_delive_steel_bottle);
+            tvTitle.setText("请扫描钢瓶二维码");
         }
         surfaceView = (SurfaceView)view.findViewById(R.id.scan_delive_steel_bottle_preview_view);
         surfaceHolder = surfaceView.getHolder();
@@ -144,6 +155,7 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
         tvQuery = (TextView)view.findViewById(R.id.btn_scan_qrcode_query_steel_bottle);
         etInput = (EditText)view.findViewById(R.id.et_scan_qrcode_steel_bottle_number);
         viewfinderView = (ViewfinderView)view.findViewById(R.id.scan_delive_steel_bottle_qrcode_viewfinder_view);
+
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,12 +167,14 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
         } else if (innnerFetchActivityListener.getInnerType() == 2) {
             topBarView.setTitle("内部返瓶");
         }
+
         tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (fragmentType == 2) {
                     iScanInnerPresenter.innerFetchComfirm();
                 } else if (fragmentType == 1 && isEmployerQuerySuccess) {
+                    employerId = etInput.getText().toString();
                     innnerFetchActivityListener.onClickNextBtnAndSendEmployerId(employerId);
                 }
 
@@ -171,7 +185,7 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
             @Override
             public void onClick(View v) {
                 if (fragmentType == 1) {
-                    bottleCode = etInput.getText().toString();
+                    employerId = etInput.getText().toString();
                     iScanInnerPresenter.innerFetchQueryEmpolyer();
                 }
              else if(fragmentType ==2) {
@@ -253,6 +267,7 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
         try {
             CameraManager.get().openDriver(surfaceHolder);
             camera = CameraManager.get().getCamera();
+            camera.startPreview();
         } catch (Exception e) {
             if (callBack != null) {
                 callBack.callBack(e);
@@ -339,12 +354,15 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
         if (isContainBottle(list, verifyBottleBean.getData().getBottleCode())) {
             PopUtil.toastInBottom("钢瓶已添加");
         } else if (fragmentType == 2) {
-            if (verifyBottleBean.getData().getIsHeavy() == 1) {
+            if (verifyBottleBean.getData().getIsHeavy() == 0) {
                 list.add(verifyBottleBean);
                 adapter.notifyDataSetChanged();
             } else {
-                PopUtil.toastInBottom("不能回收重瓶");
+                PopUtil.toastInBottom("不能领空瓶");
             }
+        }
+        if (handler == null) {
+            handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
         }
         Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
         handler.sendMessageDelayed(reDecode, 1000);
@@ -362,6 +380,7 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
     @Override
     public void onGetEmployerInfoSuccess() {
         isEmployerQuerySuccess = true;
+        tvEmployer.setText(employerId);
 
 
     }
@@ -406,6 +425,8 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
         String getUrl();
 
         int getInnerType();
+
+        String getVerifyType();
     }
 
     @Override
@@ -415,7 +436,7 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
 
     @Override
     public String getVerifyType() {
-        return null;
+        return innnerFetchActivityListener.getVerifyType();
     }
 
     @Override

@@ -236,6 +236,7 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
         try {
             CameraManager.get().openDriver(surfaceHolder);
             camera = CameraManager.get().getCamera();
+            camera.startPreview();
         } catch (Exception e) {
             if (callBack != null) {
                 callBack.callBack(e);
@@ -329,8 +330,12 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
             fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15)));
             fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50)));
         }
-        Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
-        handler.sendMessageDelayed(reDecode, 1000);
+        if (handler == null) {
+            handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
+        }
+            Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
+            handler.sendMessageDelayed(reDecode, 1000);
+
     }
 
     @Override

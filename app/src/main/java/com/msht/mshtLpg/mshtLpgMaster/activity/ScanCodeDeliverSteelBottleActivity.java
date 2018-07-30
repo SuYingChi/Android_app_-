@@ -92,12 +92,11 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
 
 
         }else {
-            List<VerifyBottleBean> emptyBottleList = list;
             Intent intent = new Intent(this,SendOrdersDetailPostActivity.class);
             Bundle bundle=new Bundle();
             bundle.putString(Constants.ORDER_ID,orderId);
             bundle.putSerializable(Constants.HEAVY_BOTTLE_LIST,(Serializable)heavyBottleList);
-            bundle.putSerializable(Constants.EMPTY_BOTTLE_LIST,(Serializable) emptyBottleList);
+            bundle.putSerializable(Constants.EMPTY_BOTTLE_LIST,(Serializable) list);
             bundle.putInt("starttype",1);
             intent.putExtras(bundle);
             startActivity(intent);

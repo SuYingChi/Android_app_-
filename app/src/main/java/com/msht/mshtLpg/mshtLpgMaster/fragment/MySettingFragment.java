@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.LoginEventBean;
@@ -13,6 +14,7 @@ import com.msht.mshtLpg.mshtLpgMaster.Present.ILogoutPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.activity.InnerActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.RegisterBottleActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.TransferStorageListActivity;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -34,6 +36,10 @@ public class MySettingFragment extends BaseLazyFragment{
     ImageView ivRegisterBottle;
     @BindView(R.id.ll_my_setting_unregister_login)
     LinearLayout llUnregister;
+    @BindView(R.id.my_setting_out_warehouse)
+    RelativeLayout out_transfer;
+    @BindView(R.id.my_setting_in_storage)
+    RelativeLayout in_transfer;
     private String name="";
     private String siteName="";
 
@@ -84,7 +90,22 @@ public class MySettingFragment extends BaseLazyFragment{
              new ILogoutPresenter(MySettingFragment.this).logout();
             }
         });
-
+        out_transfer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(getActivity(),TransferStorageListActivity.class);
+                intent.putExtra("transferType","0");
+                startActivity(intent);
+            }
+        });
+        in_transfer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(getActivity(),TransferStorageListActivity.class);
+                intent.putExtra("transferType","1");
+                startActivity(intent);
+            }
+        });
     }
 
     @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)

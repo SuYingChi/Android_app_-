@@ -51,6 +51,9 @@
         <activity android:name=".activity.BackBottleOrdersDetailActivity" />
         <activity android:name=".activity.BackBottleOrdersCancleActivity" />
         <activity android:name=".activity.BackBottleDetailPostActivity" />
+        <activity android:name=".activity.TransferStorageListActivity" />
+        <activity android:name=".activity.ScanTransferStorageActivity" />
+        <activity android:name=".activity.TransferStorageFinishActivty" />
     </application>
 
 </manifest>

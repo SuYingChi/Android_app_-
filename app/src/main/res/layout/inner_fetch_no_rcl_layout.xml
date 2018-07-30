@@ -158,7 +158,6 @@
         android:text=""
         android:padding="@dimen/margin_Modules"
         android:textColor="@color/textcolor"
-        android:textCursorDrawable="@null"
         android:textSize="15sp"
         android:layout_centerHorizontal="true"
         />

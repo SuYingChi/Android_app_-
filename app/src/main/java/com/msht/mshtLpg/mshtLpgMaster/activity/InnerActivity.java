@@ -37,6 +37,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
 
     private String innerUrl = "";
     private int innerType=0;
+    private String verifyType;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,8 +47,10 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
          innerType =intent.getIntExtra("innerType",0);
         if(innerType == 1){
             innerUrl = Constants.INNER_FETCH;
+            verifyType = "7";
         }else if(innerType  == 2){
             innerUrl = Constants.INNER_RETURN;
+            verifyType = "6";
         }
         unbinder = ButterKnife.bind(this);
         PermissionUtils.requestPermissions(this, this, Permission.CAMERA);
@@ -102,6 +105,11 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
     @Override
     public int getInnerType() {
         return innerType;
+    }
+
+    @Override
+    public String getVerifyType() {
+        return verifyType;
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.msht.mshtLpg.mshtLpgMaster.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.SpinnerAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
+import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IDeliveryView;
 
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class EditLocationActivity extends BaseActivity {
-    @BindView(R.id.top_bar)
+    @BindView(R.id.topbar)
     TopBarView topBarView;
     @BindView(R.id.spinner_elevator)
     Spinner spinner;
@@ -85,9 +87,14 @@ public class EditLocationActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.putExtra(Constants.IS_ELEVATOR,isElevator );
-                intent.putExtra(Constants.FLOOR,Integer.valueOf(editText.getText().toString()));
-                setResult(RESULT_OK, intent);
-                finish();
+                if(TextUtils.isEmpty(editText.getText().toString())){
+                    PopUtil.toastInBottom("楼层不能为空");
+                }else {
+                    intent.putExtra(Constants.FLOOR,editText.getText().toString());
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+
             }
         });
     }

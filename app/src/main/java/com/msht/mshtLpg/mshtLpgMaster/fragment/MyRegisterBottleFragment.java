@@ -257,6 +257,7 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
         try {
             CameraManager.get().openDriver(surfaceHolder);
             camera = CameraManager.get().getCamera();
+            camera.startPreview();
         } catch (Exception e) {
             if (callBack != null) {
                 callBack.callBack(e);
@@ -352,7 +353,7 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
     public void surfaceDestroyed(SurfaceHolder holder) {
         Log.d("suyingchi", "surfaceDestroyed: ");
         hasSurface = false;
-       /* if (camera != null) {
+        if (camera != null) {
             if (CameraManager.get().isPreviewing()) {
                 if (!CameraManager.get().isUseOneShotPreviewCallback()) {
                     camera.setPreviewCallback(null);
@@ -362,7 +363,7 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
                 CameraManager.get().getAutoFocusCallback().setHandler(null, 0);
                 CameraManager.get().setPreviewing(false);
             }
-        }*/
+        }
     }
 
     @Override
@@ -430,8 +431,12 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
     @Override
     public void onUpdateBottleInfoSuccess(ErrorBean errorBean) {
         PopUtil.toastInBottom("修改钢瓶注册信息成功");
-        Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
-        handler.sendMessageDelayed(reDecode, 1000);
+        if (handler == null) {
+            handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
+        }
+            Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
+            handler.sendMessageDelayed(reDecode, 1000);
+
     }
 
     private void hideInput(Context context, EditText et){

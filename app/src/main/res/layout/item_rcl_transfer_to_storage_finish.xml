@@ -36,7 +36,7 @@
             android:id="@+id/item_rcl_transfer_to_storage_orders_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="待验瓶" />
+            android:text="已完成" />
     </LinearLayout>
 
     <LinearLayout
@@ -65,11 +65,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <EditText
+            <TextView
                 android:id="@+id/item_rcl_transfer_to_storage_orders_five_kg_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="x1"
                 android:textColor="@color/lpg_text_light_color"
                 android:textSize="@dimen/text_16" />
         </LinearLayout>
@@ -96,11 +96,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <EditText
+            <TextView
                 android:id="@+id/item_rcl_transfer_to_storage_orders_fifteen_kg_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
+
+                android:text="x1"
                 android:textColor="@color/lpg_text_light_color" />
         </LinearLayout>
 
@@ -126,12 +127,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <EditText
+            <TextView
                 android:id="@+id/item_rcl_transfer_to_storage_orders_fifty_kg_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="x1"
                 android:textColor="@color/lpg_text_light_color"
-                android:text="0"
                 android:textSize="@dimen/text_16" />
         </LinearLayout>
 
@@ -152,54 +153,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_Modules"
-                android:text="重新入库共计"
+                android:text="共计"
                 android:textColor="@color/head_text_color" />
 
             <TextView
                 android:id="@+id/item_rcl_transfer_to_storage_orders_total_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="x5"
                 android:textColor="@color/lpg_text_light_color"
                 android:textSize="@dimen/text_16" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0.5dp"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:padding="@dimen/margin_Modules">
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/scan_code" />
-
-            <TextView
-                android:id="@+id/tv_scan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/margin_Modules"
-                android:text="扫描入库"
-                android:textColor="@color/head_text_color" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/item_rcl_transfer_to_storage_orders_modify"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="修改"
-                android:textColor="@color/lpg_text_light_color" />
-        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
