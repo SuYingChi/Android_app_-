@@ -328,7 +328,7 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
             tvEmployer.setText(employerId);
             iScanInnerPresenter.innerFetchQueryEmpolyer();
         } else if (fragmentType == 2) {
-            if(bottleUrl.length()==10){
+            if(bottleUrl.length()==10||bottleUrl.length()==8||bottleUrl.length()==9){
                 bottleCode = bottleUrl;
             }else if(bottleUrl.contains("id=")){
                 int index = bottleUrl.indexOf("id=");

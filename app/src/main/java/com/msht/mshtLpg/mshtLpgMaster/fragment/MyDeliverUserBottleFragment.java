@@ -264,7 +264,7 @@ public class MyDeliverUserBottleFragment extends BaseFragment implements Surface
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
         String bottleUrl = result.getText();
-        if(bottleUrl.length()==10||bottleUrl.length()==8){
+        if(bottleUrl.length()==10||bottleUrl.length()==8||bottleUrl.length()==9){
             bottleCode = bottleUrl;
         }else if(bottleUrl.contains("id=")){
             int index = bottleUrl.indexOf("id=");
