@@ -44,16 +44,21 @@ public class Constants {
     public static final String GET_BOOTLEINFO_BY_ID=BASE_URL+"lpgBottle/getBottleInfo";
     //钢瓶注册 修改钢瓶信息
     public static final String UPDATE_BOTTLE_INFO=BASE_URL+"lpgBottle/updateBottleProperties";
-
+   //登出
     public static final String  LOGOUT = BASE_URL+"lpgEmployee/logout";
-
+   //修改调拨单数量
     public static final String UPDATE_TRANSFER = BASE_URL+"lpgEmpBottle/updateTransfer";
-
+   //调拨单列表
     public static final String GET_TAANSFER_LIST = BASE_URL+"lpgEmpBottle/getTransferByCondition";
-
+   //调拨入库
     public static final String POST_INPUT_REPERTORY =BASE_URL+"lpgEmpBottle/inputRepertory";
-
+   //调拨出库
     public static final String POST_OUT_REPERTORY =BASE_URL+"lpgEmpBottle/outputRepertory";
+   //我的钢瓶
+    public static final String MY_BOTTLE_LIST = "";
+   //用户注册
+    public static final String REGISTER_EMPLOYER = "";
+
 
     public static final String URL_PARAMS_LOGIN_TOKEN = "loginToken";
     public static final String URL_PARAMS_ORDER_TYPE = "orderType";
@@ -109,6 +114,5 @@ public class Constants {
     public static final String PAY_AMOUNT = "payAmount";
     public static final String PAY_TYPE = "payType";
     public static final String ORDER_TYPE = "orderType";
-
 
 }

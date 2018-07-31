@@ -12,7 +12,9 @@ import android.widget.TextView;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.LoginEventBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.ILogoutPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
+import com.msht.mshtLpg.mshtLpgMaster.activity.MyBottleActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.InnerActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.RegisterEmployerActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.RegisterBottleActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.TransferStorageListActivity;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
@@ -40,6 +42,10 @@ public class MySettingFragment extends BaseLazyFragment{
     RelativeLayout out_transfer;
     @BindView(R.id.my_setting_in_storage)
     RelativeLayout in_transfer;
+    @BindView(R.id.my_setting_my_steel_bottle)
+    RelativeLayout myBottle;
+    @BindView(R.id.my_setting_mobile_open_account)
+    RelativeLayout register;
     private String name="";
     private String siteName="";
 
@@ -106,6 +112,21 @@ public class MySettingFragment extends BaseLazyFragment{
                 startActivity(intent);
             }
         });
+        myBottle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(getActivity(),MyBottleActivity.class);
+                startActivity(intent);
+            }
+        });
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(getActivity(),RegisterEmployerActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)

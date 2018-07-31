@@ -1,5 +1,6 @@
 package com.msht.mshtLpg.mshtLpgMaster.util;
 
+import com.msht.mshtLpg.mshtLpgMaster.Bean.MyBottleListBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 
@@ -20,7 +21,15 @@ public class BottleCaculteUtil {
         }
         return num;
     }
-
+    public static int getMyBottleNum(List<MyBottleListBean.ListBean> list, int weight) {
+        int num = 0;
+        for (MyBottleListBean.ListBean bean : list) {
+            if (Integer.valueOf(bean.getData().getBottleWeight()) == weight) {
+                num++;
+            }
+        }
+        return num;
+    }
     public static boolean isContainBottle(List<VerifyBottleBean> list, String bottleCode) {
         for (VerifyBottleBean bean : list) {
             if (bean.getData().getBottleCode().equals(bottleCode)) {

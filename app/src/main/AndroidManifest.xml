@@ -54,6 +54,8 @@
         <activity android:name=".activity.TransferStorageListActivity" />
         <activity android:name=".activity.ScanTransferStorageActivity" />
         <activity android:name=".activity.TransferStorageFinishActivty" />
+        <activity android:name=".activity.MyBottleActivity" />
+        <activity android:name=".activity.RegisterEmployerActivity" />
     </application>
 
 </manifest>
