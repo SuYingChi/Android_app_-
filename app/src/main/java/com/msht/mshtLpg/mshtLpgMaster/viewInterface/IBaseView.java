@@ -16,4 +16,11 @@ public  interface IBaseView {
     void onNetError();
 
     String getOrderType();
+
+  /*  String getEmployeeName();
+
+    String getSiteName();
+
+    String getSiteId();*/
+
 }

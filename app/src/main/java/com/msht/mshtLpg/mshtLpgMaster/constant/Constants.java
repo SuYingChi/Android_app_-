@@ -6,10 +6,10 @@ public class Constants {
     //凡是接口里有replacelist的都去掉，改为增加一个retrieveAmount字段，空瓶置换有单独接口返回数据
 
  //阿里云地址 http://120.76.193.86:7799
-    //public static final String BASE_URL = BuildConfig.DEBUG ? "http://192.168.0.104:7799/msht/": "";
+    public static final String BASE_URL = BuildConfig.DEBUG ? "http://192.168.0.108:7799/msht/": "";
     //public static final String BASE_URL = BuildConfig.DEBUG ? "http://172.20.10.9:7799/msht/": "";
     //18599988888
-    public static final String BASE_URL = BuildConfig.DEBUG ? "http://120.76.193.86:7799/msht/": "";
+    //public static final String BASE_URL = BuildConfig.DEBUG ? "http://120.76.193.86:7799/msht/": "";
 
     public static final String LOGIN = BASE_URL+"lpgEmpOrder/login";
     //1是送气单 0是退瓶单
@@ -58,6 +58,11 @@ public class Constants {
     public static final String MY_BOTTLE_LIST = "";
    //用户注册
     public static final String REGISTER_EMPLOYER = "";
+    //我的收入
+    public static final String MY_INCOME = "";
+    //月份统计列表
+    public static final String MONTH_COUNT = "";
+
 
 
     public static final String URL_PARAMS_LOGIN_TOKEN = "loginToken";

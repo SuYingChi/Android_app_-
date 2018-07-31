@@ -126,21 +126,40 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
 
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
-        scanEmpolyerFragment = new MyScanInnerFetchFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(Constants.SCANFRAGMENT_TYPE,1);
-        scanEmpolyerFragment.setArguments(bundle);
-        scanEmpolyerFragment.setCameraInitCallBack(new MyDeliverUserBottleFragment.CameraInitCallBack() {
-            @Override
-            public void callBack(Exception e) {
-                if (e == null) {
+        if(innerType == 1){
+            scanEmpolyerFragment = new MyScanInnerFetchFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(Constants.SCANFRAGMENT_TYPE,1);
+            scanEmpolyerFragment.setArguments(bundle);
+            scanEmpolyerFragment.setCameraInitCallBack(new MyDeliverUserBottleFragment.CameraInitCallBack() {
+                @Override
+                public void callBack(Exception e) {
+                    if (e == null) {
 
-                } else {
-                    LogUtils.d("TAG", "callback:    " + e);
+                    } else {
+                        LogUtils.d("TAG", "callback:    " + e);
+                    }
                 }
-            }
-        });
-        showFragment(scanEmpolyerFragment);
+            });
+            showFragment(scanEmpolyerFragment);
+        }else if(innerType == 2){
+            Bundle bundle = new Bundle();
+            myScanBottleFragment = new MyScanInnerFetchFragment();
+            bundle.putInt(Constants.SCANFRAGMENT_TYPE,2);
+            myScanBottleFragment.setArguments(bundle);
+            myScanBottleFragment.setCameraInitCallBack(new MyDeliverUserBottleFragment.CameraInitCallBack() {
+                @Override
+                public void callBack(Exception e) {
+                    if (e == null) {
+
+                    } else {
+                        LogUtils.d("TAG", "callback:    " + e);
+                    }
+                }
+            });
+            showFragment(myScanBottleFragment);
+        }
+
     }
 
     @Override

@@ -36,6 +36,23 @@ public class IInnerFetchPresenter {
             }
         });
     }
+    public void  innerReturnComfirm() {
+        OkHttpUtils.get().url(iinnerFetchView.getUrl()).addParams("siteId", iinnerFetchView.getSiteId()).addParams("bottleIds", iinnerFetchView.getBottleIds()).
+                addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iinnerFetchView.getToken()).
+                build().execute(new DataStringCallback(iinnerFetchView) {
+            @Override
+            public void onResponse(String s, int i) {
+                super.onResponse(s, i);
+                ScanInnerFetchBottleBean bean = GsonUtil.getGson().fromJson(s, ScanInnerFetchBottleBean.class);
+                if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
+                    iinnerFetchView.onError(bean.getMsg());
+
+                } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
+                    iinnerFetchView.onInnerFetchComfirmSuccess(bean);
+                }
+            }
+        });
+    }
     public void innerFetchQueryBottle(){
         OkHttpUtils.get().url(Constants.VERIFY_BOTTLE_BY_QR_CODE).addParams(Constants.URL_PARAMS_BOTTLE_CODE,iinnerFetchView.getBottleCode()).
                 addParams(Constants.URL_PARAMS_VERIFYTYPE,iinnerFetchView.getVerifyType()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iinnerFetchView.getToken()).build().execute(new DataStringCallback(iinnerFetchView) {

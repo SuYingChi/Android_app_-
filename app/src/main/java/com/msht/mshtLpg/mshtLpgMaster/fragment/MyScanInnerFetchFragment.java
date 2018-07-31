@@ -37,6 +37,7 @@ import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.handler.MyCaptureHandler;
 import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
+import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IinnerFetchView;
 import com.uuzuche.lib_zxing.camera.CameraManager;
 import com.uuzuche.lib_zxing.decoding.InactivityTimer;
@@ -99,7 +100,11 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
 
     @Override
     public void onInnerFetchComfirmSuccess(ScanInnerFetchBottleBean bean) {
-        PopUtil.toastInBottom("内部领瓶成功");
+        if (innnerFetchActivityListener.getInnerType() == 1) {
+            PopUtil.toastInBottom("内部领瓶成功");
+        } else if (innnerFetchActivityListener.getInnerType() == 2) {
+            PopUtil.toastInBottom("内部返瓶成功");
+        }
         Objects.requireNonNull(getActivity()).finish();
     }
 
@@ -175,7 +180,11 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
             @Override
             public void onClick(View v) {
                 if (fragmentType == 2) {
-                    iScanInnerPresenter.innerFetchComfirm();
+                    if (innnerFetchActivityListener.getInnerType() == 1) {
+                        iScanInnerPresenter.innerFetchComfirm();
+                    } else if (innnerFetchActivityListener.getInnerType() == 2) {
+                        iScanInnerPresenter.innerReturnComfirm();
+                    }
                 } else if (fragmentType == 1 && isEmployerQuerySuccess) {
                     employerId = etInput.getText().toString();
                     innnerFetchActivityListener.onClickNextBtnAndSendEmployerId(employerId);
@@ -467,6 +476,11 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
     @Override
     public int getInnerType() {
         return innnerFetchActivityListener.getInnerType();
+    }
+
+    @Override
+    public String getSiteId() {
+        return  SharePreferenceUtil.getLoginSpStringValue("siteId");
     }
 
     @Override

@@ -24,4 +24,6 @@ public interface IinnerFetchView extends IBaseView{
     String getUrl();
 
     int getInnerType();
+
+    String getSiteId();
 }

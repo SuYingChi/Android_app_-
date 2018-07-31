@@ -14,6 +14,7 @@ import com.msht.mshtLpg.mshtLpgMaster.Present.ILogoutPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.activity.MyBottleActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.InnerActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.MyIncomeActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.RegisterEmployerActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.RegisterBottleActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.TransferStorageListActivity;
@@ -46,6 +47,8 @@ public class MySettingFragment extends BaseLazyFragment{
     RelativeLayout myBottle;
     @BindView(R.id.my_setting_mobile_open_account)
     RelativeLayout register;
+    @BindView(R.id.ll_my_setting_my_income)
+    LinearLayout llMyIncome;
     private String name="";
     private String siteName="";
 
@@ -123,6 +126,13 @@ public class MySettingFragment extends BaseLazyFragment{
             @Override
             public void onClick(View v) {
                 Intent intent =  new Intent(getActivity(),RegisterEmployerActivity.class);
+                startActivity(intent);
+            }
+        });
+        llMyIncome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(getActivity(),MyIncomeActivity.class);
                 startActivity(intent);
             }
         });

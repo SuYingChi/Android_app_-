@@ -52,7 +52,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/line_color_lib">
-
+        <include
+            android:id="@+id/header"
+            layout="@layout/item_rcl_my_income_header"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rcl_my_income"
             android:layout_width="match_parent"
@@ -60,6 +62,7 @@
             android:background="@color/white"
             android:layout_marginLeft="@dimen/margin_Modules"
             android:layout_marginRight="@dimen/margin_Modules"
+            android:layout_below="@id/header"
             />
     </RelativeLayout>
 </LinearLayout>

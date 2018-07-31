@@ -56,6 +56,8 @@
         <activity android:name=".activity.TransferStorageFinishActivty" />
         <activity android:name=".activity.MyBottleActivity" />
         <activity android:name=".activity.RegisterEmployerActivity" />
+        <activity android:name=".activity.MonthCountActivity" />
+        <activity android:name=".activity.MyIncomeActivity" />
     </application>
 
 </manifest>
