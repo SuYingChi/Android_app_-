@@ -48,7 +48,7 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
     private Unbinder unBinder;
     private final String[] titles = {"全部", "待验瓶", "已完成"};
     private TransferToStorageRclAdapter adapter;
-    private List<TransferStorageListBean.DataBean> list = new ArrayList<TransferStorageListBean.DataBean>();
+    private List<TransferStorageListBean.DataBean.ListBean> list = new ArrayList<TransferStorageListBean.DataBean.ListBean>();
     private String id;
     private String fiveCount;
     private String fifteenCount;
@@ -104,7 +104,7 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
             tabLayout.addTab(tabLayout.newTab().setText(title));
         }
         tabLayout.getTabAt(0).select();
-        adapter = new TransferToStorageRclAdapter(this,this,list,1);
+        adapter = new TransferToStorageRclAdapter(this,this,list,Integer.valueOf(transferType));
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
     }
@@ -137,12 +137,12 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
             list.clear();
         }
         refreshLayout.finishLoadMore();
-        list.addAll(transferStorageListBean.getData());
-    /*    if (pageNum == transferStorageListBean.getData().getPageSize()) {
+        list.addAll(transferStorageListBean.getData().getList());
+        if (pageNum == transferStorageListBean.getData().getPage().getPages()) {
             refreshLayout.setEnableAutoLoadMore(false);
         } else {
             refreshLayout.setEnableAutoLoadMore(true);
-        }*/
+        }
         adapter.notifyDataSetChanged();
     }
 
@@ -191,7 +191,7 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
     }
 
     @Override
-    public void onClickScanCodeBtn(int itemPosition, String orderId) {
+    public void onClickScanCodeBtn(int itemPosition, String orderId, int transformType) {
         id = list.get(itemPosition).getId()+"";
         fiveCount = list.get(itemPosition).getFiveCount()+"";
         fifteenCount = list.get(itemPosition).getFiveCount()+"";
@@ -201,12 +201,12 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
         intent.putExtra(Constants.ORDER_FIVE_NUM,fiveCount);
         intent.putExtra(Constants.ORDER_FIFTEEN_NUM,fifteenCount);
         intent.putExtra(Constants.ORDER_FIFTY_NUM,fiftyCount);
-        intent.putExtra("TransferType",list.get(itemPosition).getTransformType()+"");
+        intent.putExtra("TransferType",transformType+"");
         startActivity(intent);
     }
 
     @Override
-    public void onClckModifyBtn(int position, int five, int fifteen, int itemPosition, String orderId) {
+    public void onClckModifyBtn(int position, int five, int fifteen, int itemPosition, String orderId, int transformType) {
         id = list.get(itemPosition).getId()+"";
         fiveCount = list.get(itemPosition).getFiveCount()+"";
         fifteenCount = list.get(itemPosition).getFiveCount()+"";

@@ -3,6 +3,7 @@ package com.msht.mshtLpg.mshtLpgMaster.adapter;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,69 +25,70 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
     private int transformType;
     private Activity activity;
     private onTransferToStorageRclAdapterClickListener listener;
-    private List<TransferStorageListBean.DataBean> list;
+    private List<TransferStorageListBean.DataBean.ListBean> list;
 
-    public TransferToStorageRclAdapter(Activity activity, onTransferToStorageRclAdapterClickListener listener, List<TransferStorageListBean.DataBean> list, int transformType) {
-        this.activity = activity;
+    public TransferToStorageRclAdapter(Activity activity, onTransferToStorageRclAdapterClickListener listener, List<TransferStorageListBean.DataBean.ListBean> list, int transformType) {
+        this.inflater = LayoutInflater.from(activity);
         this.listener = listener;
         this.list = list;
-        this.inflater = LayoutInflater.from(activity);
         this.transformType = transformType;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         switch (viewType) {
             case 0:
             case 2:
-                return new OrdersHolder(inflater.inflate(R.layout.item_rcl_transfer_to_storage, parent, false));
-                case 1:
-                case 3:
-                return new OrdersFinishHolder(inflater.inflate(R.layout.item_rcl_transfer_to_storage_finish,parent,false));
-            default:
-                return null;
+               View ss =  inflater.inflate(R.layout.item_rcl_transfer_to_storage, parent, false);
+                return new OrdersHolder(ss);
+            case 1:
+            case 3:
+                View sss = inflater.inflate(R.layout.item_rcl_transfer_to_storage_finish, parent, false);
+                return new OrdersFinishHolder(sss);
+                default:
+                 return null;
         }
-
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        TransferStorageListBean.DataBean bean = list.get(position);
-          if (holder instanceof OrdersHolder){
-                  int five = bean.getFiveCount();
-                  int fifteen = bean.getFifteenCount();
-                  int fifty = bean.getFifthCount();
-                  int orderId = bean.getId();
-                  ((OrdersHolder) holder).etFive.setText(five+"");
-                  ((OrdersHolder) holder).etFifteen.setText(fifteen+"");
-                  ((OrdersHolder) holder).etFifty.setText(fifty+"");
-                  ((OrdersHolder) holder).tvOrder.setText(orderId+"");
-                  ((OrdersHolder) holder).tvTotal.setText(five+fifteen+fifty+"");
-                  ((OrdersHolder) holder).tvModify.setOnClickListener(new View.OnClickListener() {
-                      @Override
-                      public void onClick(View v) {
-                          listener.onClckModifyBtn(position,five,fifteen,fifty,orderId+"");
-                      }
-                  });
-                  ((OrdersHolder) holder).tvScan.setOnClickListener(new View.OnClickListener() {
-                      @Override
-                      public void onClick(View v) {
-                          listener.onClickScanCodeBtn(position,orderId+"");
-                      }
-                  });
-          }else if(holder instanceof OrdersFinishHolder){
-              int five = bean.getFiveCount();
-              int fifteen = bean.getFifteenCount();
-              int fifty = bean.getFifthCount();
-              int orderId = bean.getId();
-              ((OrdersFinishHolder) holder).tvFive.setText(five+"");
-              ((OrdersFinishHolder) holder).tvFifteen.setText(fifteen+"");
-              ((OrdersFinishHolder) holder).tvFifty.setText(fifty+"");
-              ((OrdersFinishHolder) holder).tvOrder.setText(orderId+"");
-              ((OrdersFinishHolder) holder).tvTotal.setText(five+fifteen+fifty+"");
-          }
+        TransferStorageListBean.DataBean.ListBean bean = list.get(position);
+        if (holder instanceof OrdersHolder) {
+            int five = bean.getFiveCount();
+            int fifteen = bean.getFifteenCount();
+            int fifty = bean.getFifthCount();
+            int orderId = bean.getId();
+            ((OrdersHolder) holder).etFive.setText(five + "");
+            ((OrdersHolder) holder).etFifteen.setText(fifteen + "");
+            ((OrdersHolder) holder).etFifty.setText(fifty + "");
+            ((OrdersHolder) holder).tvOrder.setText(orderId + "");
+            ((OrdersHolder) holder).tvTotal.setText(five + fifteen + fifty + "");
+            ((OrdersHolder) holder).tvModify.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onClckModifyBtn(position, five, fifteen, fifty, orderId + "", transformType);
+                }
+            });
+            ((OrdersHolder) holder).tvScan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onClickScanCodeBtn(position, orderId + "", transformType);
+                }
+            });
+        } else if (holder instanceof OrdersFinishHolder) {
+            int five = bean.getFiveCount();
+            int fifteen = bean.getFifteenCount();
+            int fifty = bean.getFifthCount();
+            int orderId = bean.getId();
+            ((OrdersFinishHolder) holder).tvFive.setText(five + "");
+            ((OrdersFinishHolder) holder).tvFifteen.setText(fifteen + "");
+            ((OrdersFinishHolder) holder).tvFifty.setText(fifty + "");
+            ((OrdersFinishHolder) holder).tvOrder.setText(orderId + "");
+            ((OrdersFinishHolder) holder).tvTotal.setText(five + fifteen + fifty + "");
+        }
     }
 
     @Override
@@ -177,8 +179,8 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
     }
 
     public interface onTransferToStorageRclAdapterClickListener {
-        void onClickScanCodeBtn(int itemPosition, String orderId);
+        void onClickScanCodeBtn(int itemPosition, String orderId, int transformType);
 
-        void onClckModifyBtn(int position, int five, int fifteen, int itemPosition, String orderId);
+        void onClckModifyBtn(int position, int five, int fifteen, int itemPosition, String orderId, int transformType);
     }
 }

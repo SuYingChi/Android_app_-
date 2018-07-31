@@ -4,16 +4,15 @@ import java.util.List;
 
 public class TransferStorageListBean {
 
-
     /**
      * result : success
      * msg : 查询成功
-     * data : [{"id":26,"ids":"","transformType":1,"dept":"海师站","siteName":"","planDay":1532620800000,"proposer":"test","siteId":1,"fiveCount":20,"fifteenCount":10,"fifthCount":2,"trackName":"","state":0,"bottleIds":""},{"id":29,"ids":"","transformType":0,"dept":"海师站","siteName":"","planDay":1532707200000,"proposer":"test","siteId":1,"fiveCount":2,"fifteenCount":2,"fifthCount":2,"trackName":"","state":0,"bottleIds":""},{"id":31,"ids":"","transformType":1,"dept":"海师站","siteName":"","planDay":1532620800000,"proposer":"admin1","siteId":1,"fiveCount":1,"fifteenCount":0,"fifthCount":0,"trackName":"","state":0,"bottleIds":""}]
+     * data : {"page":{"pageNum":1,"pageSize":0,"pages":0,"total":0},"list":[{"id":1,"ids":"","transformType":1,"dept":"龙华门市部","siteName":"秀英气站","planDay":1543075200000,"proposer":"小年轻","siteId":2,"fiveCount":15,"fifteenCount":20,"fifthCount":50,"trackName":"--","state":1,"bottleIds":""},{"id":5,"ids":"","transformType":1,"dept":"","siteName":"","planDay":1530374400000,"proposer":"","siteId":2,"fiveCount":1,"fifteenCount":1,"fifthCount":1,"trackName":"--","state":0,"bottleIds":""}]}
      */
 
     private String result;
     private String msg;
-    private List<DataBean> data;
+    private DataBean data;
 
     public String getResult() {
         return result;
@@ -31,157 +30,229 @@ public class TransferStorageListBean {
         this.msg = msg;
     }
 
-    public List<DataBean> getData() {
+    public DataBean getData() {
         return data;
     }
 
-    public void setData(List<DataBean> data) {
+    public void setData(DataBean data) {
         this.data = data;
     }
 
     public static class DataBean {
         /**
-         * id : 26
-         * ids :
-         * transformType : 1
-         * dept : 海师站
-         * siteName :
-         * planDay : 1532620800000
-         * proposer : test
-         * siteId : 1
-         * fiveCount : 20
-         * fifteenCount : 10
-         * fifthCount : 2
-         * trackName :
-         * state : 0
-         * bottleIds :
+         * page : {"pageNum":1,"pageSize":0,"pages":0,"total":0}
+         * list : [{"id":1,"ids":"","transformType":1,"dept":"龙华门市部","siteName":"秀英气站","planDay":1543075200000,"proposer":"小年轻","siteId":2,"fiveCount":15,"fifteenCount":20,"fifthCount":50,"trackName":"--","state":1,"bottleIds":""},{"id":5,"ids":"","transformType":1,"dept":"","siteName":"","planDay":1530374400000,"proposer":"","siteId":2,"fiveCount":1,"fifteenCount":1,"fifthCount":1,"trackName":"--","state":0,"bottleIds":""}]
          */
 
-        private int id;
-        private String ids;
-        private int transformType;
-        private String dept;
-        private String siteName;
-        private long planDay;
-        private String proposer;
-        private int siteId;
-        private int fiveCount;
-        private int fifteenCount;
-        private int fifthCount;
-        private String trackName;
-        private int state;
-        private String bottleIds;
+        private PageBean page;
+        private List<ListBean> list;
 
-        public int getId() {
-            return id;
+        public PageBean getPage() {
+            return page;
         }
 
-        public void setId(int id) {
-            this.id = id;
+        public void setPage(PageBean page) {
+            this.page = page;
         }
 
-        public String getIds() {
-            return ids;
+        public List<ListBean> getList() {
+            return list;
         }
 
-        public void setIds(String ids) {
-            this.ids = ids;
+        public void setList(List<ListBean> list) {
+            this.list = list;
         }
 
-        public int getTransformType() {
-            return transformType;
+        public static class PageBean {
+            /**
+             * pageNum : 1
+             * pageSize : 0
+             * pages : 0
+             * total : 0
+             */
+
+            private int pageNum;
+            private int pageSize;
+            private int pages;
+            private int total;
+
+            public int getPageNum() {
+                return pageNum;
+            }
+
+            public void setPageNum(int pageNum) {
+                this.pageNum = pageNum;
+            }
+
+            public int getPageSize() {
+                return pageSize;
+            }
+
+            public void setPageSize(int pageSize) {
+                this.pageSize = pageSize;
+            }
+
+            public int getPages() {
+                return pages;
+            }
+
+            public void setPages(int pages) {
+                this.pages = pages;
+            }
+
+            public int getTotal() {
+                return total;
+            }
+
+            public void setTotal(int total) {
+                this.total = total;
+            }
         }
 
-        public void setTransformType(int transformType) {
-            this.transformType = transformType;
-        }
+        public static class ListBean {
+            /**
+             * id : 1
+             * ids :
+             * transformType : 1
+             * dept : 龙华门市部
+             * siteName : 秀英气站
+             * planDay : 1543075200000
+             * proposer : 小年轻
+             * siteId : 2
+             * fiveCount : 15
+             * fifteenCount : 20
+             * fifthCount : 50
+             * trackName : --
+             * state : 1
+             * bottleIds :
+             */
 
-        public String getDept() {
-            return dept;
-        }
+            private int id;
+            private String ids;
+            private int transformType;
+            private String dept;
+            private String siteName;
+            private long planDay;
+            private String proposer;
+            private int siteId;
+            private int fiveCount;
+            private int fifteenCount;
+            private int fifthCount;
+            private String trackName;
+            private int state;
+            private String bottleIds;
 
-        public void setDept(String dept) {
-            this.dept = dept;
-        }
+            public int getId() {
+                return id;
+            }
 
-        public String getSiteName() {
-            return siteName;
-        }
+            public void setId(int id) {
+                this.id = id;
+            }
 
-        public void setSiteName(String siteName) {
-            this.siteName = siteName;
-        }
+            public String getIds() {
+                return ids;
+            }
 
-        public long getPlanDay() {
-            return planDay;
-        }
+            public void setIds(String ids) {
+                this.ids = ids;
+            }
 
-        public void setPlanDay(long planDay) {
-            this.planDay = planDay;
-        }
+            public int getTransformType() {
+                return transformType;
+            }
 
-        public String getProposer() {
-            return proposer;
-        }
+            public void setTransformType(int transformType) {
+                this.transformType = transformType;
+            }
 
-        public void setProposer(String proposer) {
-            this.proposer = proposer;
-        }
+            public String getDept() {
+                return dept;
+            }
 
-        public int getSiteId() {
-            return siteId;
-        }
+            public void setDept(String dept) {
+                this.dept = dept;
+            }
 
-        public void setSiteId(int siteId) {
-            this.siteId = siteId;
-        }
+            public String getSiteName() {
+                return siteName;
+            }
 
-        public int getFiveCount() {
-            return fiveCount;
-        }
+            public void setSiteName(String siteName) {
+                this.siteName = siteName;
+            }
 
-        public void setFiveCount(int fiveCount) {
-            this.fiveCount = fiveCount;
-        }
+            public long getPlanDay() {
+                return planDay;
+            }
 
-        public int getFifteenCount() {
-            return fifteenCount;
-        }
+            public void setPlanDay(long planDay) {
+                this.planDay = planDay;
+            }
 
-        public void setFifteenCount(int fifteenCount) {
-            this.fifteenCount = fifteenCount;
-        }
+            public String getProposer() {
+                return proposer;
+            }
 
-        public int getFifthCount() {
-            return fifthCount;
-        }
+            public void setProposer(String proposer) {
+                this.proposer = proposer;
+            }
 
-        public void setFifthCount(int fifthCount) {
-            this.fifthCount = fifthCount;
-        }
+            public int getSiteId() {
+                return siteId;
+            }
 
-        public String getTrackName() {
-            return trackName;
-        }
+            public void setSiteId(int siteId) {
+                this.siteId = siteId;
+            }
 
-        public void setTrackName(String trackName) {
-            this.trackName = trackName;
-        }
+            public int getFiveCount() {
+                return fiveCount;
+            }
 
-        public int getState() {
-            return state;
-        }
+            public void setFiveCount(int fiveCount) {
+                this.fiveCount = fiveCount;
+            }
 
-        public void setState(int state) {
-            this.state = state;
-        }
+            public int getFifteenCount() {
+                return fifteenCount;
+            }
 
-        public String getBottleIds() {
-            return bottleIds;
-        }
+            public void setFifteenCount(int fifteenCount) {
+                this.fifteenCount = fifteenCount;
+            }
 
-        public void setBottleIds(String bottleIds) {
-            this.bottleIds = bottleIds;
+            public int getFifthCount() {
+                return fifthCount;
+            }
+
+            public void setFifthCount(int fifthCount) {
+                this.fifthCount = fifthCount;
+            }
+
+            public String getTrackName() {
+                return trackName;
+            }
+
+            public void setTrackName(String trackName) {
+                this.trackName = trackName;
+            }
+
+            public int getState() {
+                return state;
+            }
+
+            public void setState(int state) {
+                this.state = state;
+            }
+
+            public String getBottleIds() {
+                return bottleIds;
+            }
+
+            public void setBottleIds(String bottleIds) {
+                this.bottleIds = bottleIds;
+            }
         }
     }
 }

@@ -194,7 +194,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
         }
         refreshLayout.finishLoadMore();
         list.addAll(ordersBean.getData().getList());
-        if (page == ordersBean.getData().getPage().getPageSize()) {
+        if (page == ordersBean.getData().getPage().getPages()) {
             refreshLayout.setEnableAutoLoadMore(false);
         } else {
             refreshLayout.setEnableAutoLoadMore(true);
