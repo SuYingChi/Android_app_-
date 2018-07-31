@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_marginLeft="@dimen/margin_width10"
-    android:layout_marginStart="@dimen/margin_width10"
-    android:layout_marginRight="@dimen/margin_width10"
-    android:layout_marginEnd="@dimen/margin_width10"
+    android:layout_marginLeft="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginEnd="10dp"
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -12,16 +12,16 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/margin_width45"
+        android:minHeight="45dp"
         android:background="@color/white">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/margin_width10"
-            android:layout_marginStart="@dimen/margin_width10"
-            android:textColor="@color/color_383838"
-            android:textSize="@dimen/text_width16"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/textcolor"
+            android:textSize="16sp"
             android:text="@string/select_buy_bottle"/>
     </RelativeLayout>
     <LinearLayout
@@ -36,29 +36,29 @@
         android:background="@color/transparent">
         <ImageView
             android:id="@+id/id_bottle_image"
-            android:layout_width="@dimen/margin_width80"
-            android:layout_height="@dimen/margin_width80"
-            android:layout_margin="@dimen/margin_width10"
-            android:layout_marginTop="@dimen/margin_width10"
-            android:layout_marginBottom="@dimen/margin_width10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:contentDescription="@string/picture_text"
-            android:src="@drawable/steel_cylinder_xh"/>
+            android:src="@drawable/steel_bottle"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/id_tv_amount1"
             android:layout_toStartOf="@+id/id_tv_amount1"
-            android:layout_marginRight="@dimen/margin_width5"
-            android:layout_marginEnd="@dimen/margin_width5"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_toRightOf="@+id/id_bottle_image"
             android:layout_toEndOf="@+id/id_bottle_image">
             <TextView
                 android:id="@+id/id_bottle_type1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_width16"
-                android:textColor="@color/color_383838"
+                android:textSize="16sp"
+                android:textColor="@color/textcolor"
                 android:textStyle="bold"
                 android:text="@string/steel_bottle_type1"/>
             <TextView
@@ -66,22 +66,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_bottle_type1"
-                android:layout_marginTop="@dimen/margin_width6"
-                android:textColor="@color/color_9e9e9e"
-                android:textSize="@dimen/text_width14"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="14sp"
                 android:text="@string/count_text"/>
             <TextView
                 android:id="@+id/id_tv_count1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_bottle_type1"
-                android:layout_marginTop="@dimen/margin_width6"
+                android:layout_marginTop="6dp"
                 android:layout_toRightOf="@+id/id_pledge_text"
                 android:layout_toEndOf="@+id/id_pledge_text"
-                android:layout_marginLeft="@dimen/margin_width10"
-                android:layout_marginStart="@dimen/margin_width10"
-                android:textColor="@color/color_9e9e9e"
-                android:textSize="@dimen/text_width14"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="14sp"
                 android:text="@string/default_text"/>
         </RelativeLayout>
         <TextView
@@ -91,10 +91,10 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="@dimen/margin_width10"
-            android:layout_marginEnd="@dimen/margin_width10"
-            android:textColor="@color/colorOrange"
-            android:textSize="@dimen/text_width18"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:textColor="@color/msb_color"
+            android:textSize="18sp"
             android:text="@string/default_value0"/>
     </RelativeLayout>
     </LinearLayout>
@@ -110,21 +110,21 @@
         android:background="@color/transparent">
         <ImageView
             android:id="@+id/id_bottle_image2"
-            android:layout_width="@dimen/margin_width80"
-            android:layout_height="@dimen/margin_width80"
-            android:layout_margin="@dimen/margin_width10"
-            android:layout_marginTop="@dimen/margin_width10"
-            android:layout_marginBottom="@dimen/margin_width10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:contentDescription="@string/picture_text"
-            android:src="@drawable/steel_cylinder_xh"/>
+            android:src="@drawable/steel_bottle"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/id_tv_amount2"
             android:layout_toStartOf="@+id/id_tv_amount2"
-            android:layout_marginRight="@dimen/margin_width5"
-            android:layout_marginEnd="@dimen/margin_width5"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
             android:background="@color/transparent"
             android:layout_toRightOf="@+id/id_bottle_image2"
             android:layout_toEndOf="@+id/id_bottle_image2">
@@ -132,8 +132,8 @@
                 android:id="@+id/id_bottle_type2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_width16"
-                android:textColor="@color/color_383838"
+                android:textSize="16sp"
+                android:textColor="@color/textcolor"
                 android:textStyle="bold"
                 android:text="@string/steel_bottle_type2"/>
             <TextView
@@ -141,22 +141,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_bottle_type2"
-                android:layout_marginTop="@dimen/margin_width6"
-                android:textColor="@color/color_9e9e9e"
-                android:textSize="@dimen/text_width14"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="14sp"
                 android:text="@string/count_text"/>
             <TextView
                 android:id="@+id/id_tv_count2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_bottle_type2"
-                android:layout_marginTop="@dimen/margin_width6"
+                android:layout_marginTop="6dp"
                 android:layout_toRightOf="@+id/id_pledge_text2"
                 android:layout_toEndOf="@+id/id_pledge_text2"
-                android:layout_marginLeft="@dimen/margin_width10"
-                android:layout_marginStart="@dimen/margin_width10"
-                android:textColor="@color/color_9e9e9e"
-                android:textSize="@dimen/text_width14"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="14sp"
                 android:text="@string/default_text"/>
         </RelativeLayout>
         <TextView
@@ -166,10 +166,10 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="@dimen/margin_width10"
-            android:layout_marginEnd="@dimen/margin_width10"
-            android:textColor="@color/colorOrange"
-            android:textSize="@dimen/text_width18"
+            android:layout_marginRight="10sp"
+            android:layout_marginEnd="10sp"
+            android:textColor="@color/msb_color"
+            android:textSize="18sp"
             android:text="@string/default_value0"/>
     </RelativeLayout>
     </LinearLayout>
@@ -185,13 +185,13 @@
         android:background="@color/white">
         <ImageView
             android:id="@+id/id_bottle_image3"
-            android:layout_width="@dimen/margin_width80"
-            android:layout_height="@dimen/margin_width80"
-            android:layout_margin="@dimen/margin_width10"
-            android:layout_marginTop="@dimen/margin_width10"
-            android:layout_marginBottom="@dimen/margin_width10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:contentDescription="@string/picture_text"
-            android:src="@drawable/steel_cylinder_xh"/>
+            android:src="@drawable/steel_bottle"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -199,16 +199,16 @@
             android:background="@color/transparent"
             android:layout_toLeftOf="@+id/id_tv_amount3"
             android:layout_toStartOf="@+id/id_tv_amount3"
-            android:layout_marginRight="@dimen/margin_width5"
-            android:layout_marginEnd="@dimen/margin_width5"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_toRightOf="@+id/id_bottle_image3"
             android:layout_toEndOf="@+id/id_bottle_image3">
             <TextView
                 android:id="@+id/id_bottle_type3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_width16"
-                android:textColor="@color/color_383838"
+                android:textSize="16sp"
+                android:textColor="@color/textcolor"
                 android:textStyle="bold"
                 android:text="@string/steel_bottle_type3"/>
             <TextView
@@ -216,22 +216,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_bottle_type3"
-                android:layout_marginTop="@dimen/margin_width6"
-                android:textColor="@color/color_9e9e9e"
-                android:textSize="@dimen/text_width14"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="14sp"
                 android:text="@string/count_text"/>
             <TextView
                 android:id="@+id/id_tv_count3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_bottle_type3"
-                android:layout_marginTop="@dimen/margin_width6"
+                android:layout_marginTop="6dp"
                 android:layout_toRightOf="@+id/id_pledge_text3"
                 android:layout_toEndOf="@+id/id_pledge_text3"
-                android:layout_marginLeft="@dimen/margin_width10"
-                android:layout_marginStart="@dimen/margin_width10"
-                android:textColor="@color/color_9e9e9e"
-                android:textSize="@dimen/text_width14"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="14sp"
                 android:text="@string/default_text"/>
         </RelativeLayout>
         <TextView
@@ -241,10 +241,10 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="@dimen/margin_width10"
-            android:layout_marginEnd="@dimen/margin_width10"
-            android:textColor="@color/colorOrange"
-            android:textSize="@dimen/text_width18"
+            android:layout_marginRight="10sp"
+            android:layout_marginEnd="10sp"
+            android:textColor="@color/msb_color"
+            android:textSize="18sp"
             android:text="@string/default_value0"/>
     </RelativeLayout>
     </LinearLayout>

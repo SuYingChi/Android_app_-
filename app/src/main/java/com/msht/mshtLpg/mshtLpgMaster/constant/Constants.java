@@ -7,9 +7,9 @@ public class Constants {
 
  //阿里云地址 http://120.76.193.86:7799
     //public static final String BASE_URL = BuildConfig.DEBUG ? "http://192.168.0.104:7799/msht/": "";
-     public static final String BASE_URL = BuildConfig.DEBUG ? "http://192.168.0.108:7799/msht/": "";
+    // public static final String BASE_URL = BuildConfig.DEBUG ? "http://192.168.0.108:7799/msht/": "";
     //18599988888
-    //public static final String BASE_URL = BuildConfig.DEBUG ? "http://120.76.193.86:7799/msht/": "";
+    public static final String BASE_URL = BuildConfig.DEBUG ? "http://120.76.193.86:7799/msht/": "";
 
     public static final String LOGIN = BASE_URL+"lpgEmpOrder/login";
     //1是送气单 0是退瓶单

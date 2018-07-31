@@ -1,4 +1,4 @@
-package com.msht.minshengbao.MoveSelectAddress;
+package com.msht.mshtLpg.mshtLpgMaster.mapAddress;
 
 import android.content.Context;
 

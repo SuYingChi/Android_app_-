@@ -2,19 +2,17 @@ package com.msht.mshtLpg.mshtLpgMaster.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class ReplacePlaceOrderActivity extends BaseActivity implements View.OnClickListener {
+public class SendCustomerOrderActivity extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.scan_delive_topbar)
     TopBarView topBarView;
     @BindView(R.id.id_select_address_layout)
@@ -25,7 +23,7 @@ public class ReplacePlaceOrderActivity extends BaseActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_replace_place_order);
+        setContentView(R.layout.activity_send_customer_order);
         unbinder = ButterKnife.bind(this);
         mContext=this;
         layoutSelectAddress.setOnClickListener(this);
@@ -47,10 +45,9 @@ public class ReplacePlaceOrderActivity extends BaseActivity implements View.OnCl
         }
     }
     private void onStartDeliveryAddress() {
-        Intent intent=new Intent(mContext,EditLocationActivity.class);
+        Intent intent=new Intent(mContext,DeliveryAddressActivity.class);
         startActivityForResult(intent,SELECT_SUCCESS_CODE);
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

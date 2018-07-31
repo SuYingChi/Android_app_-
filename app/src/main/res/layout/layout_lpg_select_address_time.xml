@@ -3,16 +3,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/margin_width10"
-    android:layout_marginStart="@dimen/margin_width10"
-    android:layout_marginRight="@dimen/margin_width10"
-    android:layout_marginEnd="@dimen/margin_width10"
+    android:layout_marginLeft="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginEnd="10dp"
     android:background="@color/white">
     <RelativeLayout
         android:id="@+id/id_select_address_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_width10"
+        android:layout_marginTop="10dp"
         android:background="@color/transparent">
         <TextView
             android:id="@+id/id_tv_address"
@@ -20,49 +20,49 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:layout_marginLeft="@dimen/margin_width10"
-            android:layout_marginStart="@dimen/margin_width10"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_toLeftOf="@+id/id_forward"
             android:layout_toStartOf="@+id/id_forward"
-            android:layout_marginRight="@dimen/margin_width5"
-            android:layout_marginEnd="@dimen/margin_width5"
-            android:textSize="@dimen/text_width16"
-            android:textColor="@color/color_383838"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
+            android:textSize="16sp"
+            android:textColor="@color/textcolor"
             android:textStyle="bold"
             android:hint="@string/please_select_address"/>
         <TextView
             android:id="@+id/id_tv_elevator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_width5"
+            android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/id_tv_address"
-            android:textSize="@dimen/text_width16"
-            android:textColor="@color/color_383838"
+            android:textSize="16sp"
+            android:textColor="@color/textcolor"
             android:textStyle="bold" />
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/margin_width15"
-            android:layout_marginBottom="@dimen/margin_width10"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
             android:layout_below="@+id/id_tv_elevator">
             <TextView
                 android:id="@+id/id_tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_width14"
-                android:textColor="@color/color_383838" />
+                android:textSize="14sp"
+                android:textColor="@color/textcolor" />
             <TextView
                 android:id="@+id/id_tv_mobile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/id_tv_username"
                 android:layout_toEndOf="@+id/id_tv_username"
-                android:layout_marginLeft="@dimen/margin_width10"
-                android:layout_marginStart="@dimen/margin_width10"
-                android:textSize="@dimen/text_width14"
-                android:textColor="@color/color_383838"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:textSize="14sp"
+                android:textColor="@color/textcolor"
                 />
         </RelativeLayout>
         <ImageView
@@ -72,31 +72,31 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="@dimen/margin_width10"
-            android:layout_marginEnd="@dimen/margin_width10"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:contentDescription="@string/default_text"
-            android:src="@drawable/forward_2x"/>
+            android:src="@drawable/right_angle"/>
     </RelativeLayout>
     <include layout="@layout/layout_line_interval"/>
     <RelativeLayout
         android:id="@+id/id_select_time_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/margin_width45">
+        android:minHeight="45dp">
         <TextView
             android:id="@+id/id_delivery_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_width10"
-            android:layout_marginTop="@dimen/margin_width10"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:layout_centerInParent="true"
             android:layout_toStartOf="@+id/id_forward_time"
             android:layout_toLeftOf="@+id/id_forward_time"
-            android:layout_marginRight="@dimen/margin_width5"
-            android:layout_marginEnd="@dimen/margin_width5"
-            android:textSize="@dimen/text_width16"
-            android:textColor="@color/color_383838"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
+            android:textSize="16sp"
+            android:textColor="@color/textcolor"
             android:text="@string/quick_delivery"/>
         <ImageView
             android:id="@+id/id_forward_time"
@@ -105,9 +105,9 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="@dimen/margin_width10"
-            android:layout_marginEnd="@dimen/margin_width10"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:contentDescription="@string/default_text"
-            android:src="@drawable/forward_2x"/>
+            android:src="@drawable/right_angle"/>
     </RelativeLayout>
 </LinearLayout>

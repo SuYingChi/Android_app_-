@@ -6,19 +6,22 @@
     android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/id_map_img"
-        android:layout_width="@dimen/margin_14"
-        android:layout_height="@dimen/margin_20"
-        android:layout_marginLeft="@dimen/margin_10"
-        android:layout_marginTop="@dimen/margin_10"
-        android:src="@drawable/server_addr_xh"/>
+        android:layout_width="15dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/picture_text"/>
     <TextView
         android:id="@+id/address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/id_map_img"
-        android:layout_marginLeft="@dimen/margin_10"
-        android:textColor="@color/black1"
+        android:layout_toEndOf="@+id/id_map_img"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/textcolor"
         android:text="标题"
         android:textSize="16sp"/>
     <TextView
@@ -26,11 +29,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/address"
-        android:layout_marginTop="@dimen/margin_5"
+        android:layout_marginTop="6dp"
         android:layout_toRightOf="@+id/id_map_img"
-        android:layout_marginLeft="@dimen/margin_10"
-        android:layout_marginBottom="@dimen/margin_10"
+        android:layout_toEndOf="@+id/id_map_img"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
         android:text="详细地址"
-        android:textSize="@dimen/text_15"/>
+        android:textSize="14sp"/>
 
 </RelativeLayout>

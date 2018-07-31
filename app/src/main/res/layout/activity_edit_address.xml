@@ -1,9 +1,382 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/line_color"
     tools:context="com.msht.mshtLpg.mshtLpgMaster.activity.EditAddressActivity">
+    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height_normol"
+        android:background="@color/msb_color"
+        app:title_text= "编辑地址"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/line_color">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:minHeight="50dp">
+                <TextView
+                    android:id="@+id/id_name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="70dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:text="姓名"
+                    android:textColor="@color/lpg_text_dark_color"
+                    android:textSize="@dimen/text_nomal" />
+
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toRightOf="@+id/id_name_text"
+                    android:layout_toEndOf="@+id/id_name_text"
+                    android:background="@null"
+                    android:hint="世贸吴彦祖"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:textColor="@color/textcolor"
+                    android:textColorHint="@color/text_hint"
+                    android:textCursorDrawable="@null"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+            <include layout="@layout/layout_line_interval"/>
+            <RelativeLayout
+                android:id="@+id/id_sex_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:minHeight="50dp">
+                <TextView
+                    android:id="@+id/id_sex_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="70dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:text="性别"
+                    android:textColor="@color/lpg_text_dark_color"
+                    android:textSize="@dimen/text_nomal" />
+
+                <TextView
+                    android:id="@+id/et_sex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toLeftOf="@+id/iv_user_sex"
+                    android:layout_toStartOf="@+id/iv_user_sex"
+                    android:layout_toRightOf="@+id/id_sex_text"
+                    android:layout_toEndOf="@+id/id_sex_text"
+                    android:background="@null"
+                    android:maxLength="11"
+                    android:text="男"
+                    android:textColor="@color/textcolor"
+                    android:textColorHint="@color/text_hint"
+                    android:textCursorDrawable="@null"
+                    android:textSize="15sp" />
+                <ImageView
+                    android:id="@+id/iv_user_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:contentDescription="@string/picture_text"
+                    android:src="@drawable/right_angle" />
+            </RelativeLayout>
+            <include layout="@layout/layout_line_interval"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:minHeight="50dp">
+                <TextView
+                    android:id="@+id/id_phone_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="70dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:text="手机号"
+                    android:textColor="@color/lpg_text_dark_color"
+                    android:textSize="@dimen/text_nomal" />
+
+                <EditText
+                    android:id="@+id/id_et_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toRightOf="@+id/id_phone_text"
+                    android:layout_toEndOf="@+id/id_phone_text"
+                    android:background="@null"
+                    android:hint="请输入您的手机号"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:textColor="#ffffff"
+                    android:textColorHint="@color/text_hint"
+                    android:textCursorDrawable="@null"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/line_color"/>
+            <RelativeLayout
+                android:id="@+id/id_address_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:minHeight="50dp">
+                <TextView
+                    android:id="@+id/id_address_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="70dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:text="用户地址"
+                    android:textColor="@color/lpg_text_dark_color"
+                    android:textSize="@dimen/text_nomal" />
+
+                <TextView
+                    android:id="@+id/et_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toRightOf="@+id/id_address_text"
+                    android:layout_toEndOf="@+id/id_address_text"
+                    android:layout_toLeftOf="@+id/iv_user_address"
+                    android:layout_toStartOf="@+id/iv_user_address"
+                    android:textColorHint="@color/text_hint"
+                    android:textCursorDrawable="@null"
+                    android:textSize="15sp" />
+                <ImageView
+                    android:id="@+id/iv_user_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:contentDescription="@string/picture_text"
+                    android:src="@drawable/right_angle" />
+            </RelativeLayout>
+            <include layout="@layout/layout_line_interval"/>
+            <RelativeLayout
+                android:id="@+id/id_elevator_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:minHeight="50dp">
+                <TextView
+                    android:id="@+id/id_elevator_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="70dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:text="电梯房"
+                    android:textColor="@color/lpg_text_dark_color"
+                    android:textSize="@dimen/text_nomal" />
+
+                <TextView
+                    android:id="@+id/tv_elevator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toRightOf="@+id/id_elevator_text"
+                    android:layout_toEndOf="@+id/id_elevator_text"
+                    android:layout_toLeftOf="@+id/iv_user_elevator"
+                    android:layout_toStartOf="@+id/iv_user_elevator"
+                    android:text="是"
+                    android:textColorHint="@color/text_hint"
+                    android:textCursorDrawable="@null"
+                    android:textSize="15sp" />
+                <ImageView
+                    android:id="@+id/iv_user_elevator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:contentDescription="@string/picture_text"
+                    android:src="@drawable/right_angle" />
+            </RelativeLayout>
+            <include layout="@layout/layout_line_interval"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:minHeight="50dp">
+                <TextView
+                    android:id="@+id/id_doorplate_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="70dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="门牌号"
+                    android:textColor="@color/textcolor"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/id_et_ridgepole"
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center_horizontal"
+                    android:layout_toEndOf="@+id/id_doorplate_text"
+                    android:layout_toRightOf="@+id/id_doorplate_text"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/lpg_text_light_color"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:id="@+id/id_ridgepole_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_toEndOf="@+id/id_et_ridgepole"
+                    android:layout_toRightOf="@+id/id_et_ridgepole"
+                    android:text="栋"
+                    android:textColor="@color/textcolor"
+                    android:textSize="16sp" />
+                <EditText
+                    android:id="@+id/id_et_floor"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_horizontal"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/id_ridgepole_text"
+                    android:layout_toRightOf="@+id/id_ridgepole_text"
+                    android:inputType="textCapCharacters"
+                    android:textColor="@color/lpg_text_light_color"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/id_floor_text"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_toEndOf="@+id/id_et_floor"
+                    android:layout_toRightOf="@+id/id_et_floor"
+                    android:text="楼"
+                    android:textColor="@color/textcolor"
+                    android:textSize="16sp" />
+                <EditText
+                    android:id="@+id/id_et_room"
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_horizontal"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/id_floor_text"
+                    android:layout_toRightOf="@+id/id_floor_text"
+                    android:textColor="@color/lpg_text_light_color"
+                    android:textSize="16sp"
+                    android:inputType="textCapCharacters" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/id_door_text"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_toEndOf="@+id/id_et_room"
+                    android:layout_toRightOf="@+id/id_et_room"
+                    android:text="房"
+                    android:textColor="@color/textcolor"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:background="@color/transparent">
+                <TextView
+                    android:id="@+id/protocol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="《居民用户办理须知》"
+                    android:textColor="@color/colorPrimaryDark_lib" />
+                <Button
+                    android:id="@+id/save_user_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="45dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center"
+                    android:layout_below="@+id/protocol"
+                    android:layout_marginTop="@dimen/margin_Modules"
+                    android:background="@drawable/btn_normal"
+                    android:text="保存"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

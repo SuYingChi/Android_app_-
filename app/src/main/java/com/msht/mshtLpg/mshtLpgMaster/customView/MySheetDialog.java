@@ -1,4 +1,4 @@
-package com.msht.minshengbao.ViewUI.Dialog;
+package com.msht.mshtLpg.mshtLpgMaster.customView;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -9,12 +9,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
-import com.msht.minshengbao.adapter.ActionSheetAdapter;
-import com.msht.minshengbao.R;
-import com.msht.minshengbao.ViewUI.ButtonUI.ButtonM;
-import com.msht.minshengbao.ViewUI.widget.ListViewForScrollView;
+import com.msht.mshtLpg.mshtLpgMaster.R;
+import com.msht.mshtLpg.mshtLpgMaster.activity.ActionSheetAdapter;
+
 
 /**
  * Demo class
@@ -36,7 +37,7 @@ public class MySheetDialog {
          * @param item 下标
          * @param string 性别
          */
-        void onClick(String item,String string);
+        void onClick(String item, String string);
     }
     public MySheetDialog setOnSheetItemClickListener(OnSheetItemClickListener listener){
         this.itemClickListener=listener;
@@ -60,9 +61,9 @@ public class MySheetDialog {
 
         // 设置Dialog最小宽度为屏幕宽度
         view.setMinimumWidth(display.getWidth());
-        TextView tvTitle=(TextView)view.findViewById(R.id.id_tv_title);
-        ButtonM btnCancel = (ButtonM ) view.findViewById(R.id.cancelBtn);
-        ListViewForScrollView mListView=(ListViewForScrollView)view.findViewById(R.id.id_list_data);
+        TextView tvTitle=view.findViewById(R.id.id_tv_title);
+        Button btnCancel =view.findViewById(R.id.cancelBtn);
+        ListView mListView=view.findViewById(R.id.id_list_data);
         tvTitle.setText(mTitle);
         ActionSheetAdapter mAdapter =new ActionSheetAdapter(context,mList);
         mListView.setAdapter(mAdapter);
@@ -83,7 +84,7 @@ public class MySheetDialog {
                 dialog.dismiss();
             }
         });
-        dialog = new Dialog(context, R.style.ActionSheetDialogStyle);
+        dialog = new Dialog(context, R.style.BottomAnimDialogStyle);
         dialog.setContentView(view);
         Window dialogWindow = dialog.getWindow();
         if (dialogWindow!=null){

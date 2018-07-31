@@ -10,9 +10,14 @@
     <string name="title_dialog">Tips</string>
     <string name="resume">Resume</string>
     <string name="cancel">Cancel</string>
+    <string name="count_text">数量</string>
+    <string name="default_text">XXXX</string>
+    <string name="default_value0">0</string>
     <string name="message_permission_always_failed">Please give us permission in the settings:\n\n%1$s</string>
     <string name="setting">Setting</string>
     <string name="message_setting_comeback">The user comes back from the settings page.</string>
+    <string name="next_step">下一步</string>
+    <string name="not_have_address">当前没有添加地址</string>
     <string name="successfully">已获得权限</string>
     <string name="please_allow_all_permission">为更好使用LPG，请赋予位置，电话，内存，相机权限</string>
     <string name="account_login">账号登录</string>
@@ -21,7 +26,24 @@
     <string name="login_error_password">密码错误</string>
     <string name="login_account_not_register">账号为注册</string>
     <string name="login_unknown_error">系统错误</string>
+    <string name="no_login">未登录</string>
+    <string name="picture_text">图片说明</string>
     <string name="please_input_password">请输入正确密码</string>
     <string name="please_input_right_mobile_number">请输入正确手机号</string>
-    <string name="no_login">未登录</string>
+    <string name="please_select_address">请选择配送地址</string>
+    <string name="place_order_text">代客下单</string>
+    <string name="pledge_text">押金:</string>
+    <string name="quick_delivery">立即配送</string>
+    <string name="select_buy_bottle">气瓶选购</string>
+    <string name="send_server">提交</string>
+    <string name="steel_bottle_type1">5kg瓶装气</string>
+    <string name="steel_bottle_type2">15kg瓶装气</string>
+    <string name="steel_bottle_type3">50kg瓶装气</string>
+    !--符号 -->
+    <string name="subtract_symbol">-</string>
+    <string name="add_symbol">+</string>
+    <string name="total_count">总量：</string>
+    <string name="total_text">共计：</string>
+    <string name="transportation_expense">运费</string>
+    <string name="zero_value">0</string>
 </resources>

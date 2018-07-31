@@ -8,15 +8,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_change_background"
-        android:minHeight="@dimen/margin_width45">
+        android:background="@color/msb_color"
+        android:minHeight="45sp">
         <TextView
             android:id="@+id/id_tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_width16"
+            android:textSize="16sp"
             android:text="@string/default_text"/>
     </RelativeLayout>
     <include layout="@layout/layout_line_gray"/>
@@ -24,25 +24,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white">
-        <com.msht.minshengbao.ViewUI.widget.ListViewForScrollView
+        <ListView
             android:id="@+id/id_list_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        </com.msht.minshengbao.ViewUI.widget.ListViewForScrollView>
+        </ListView>
     </RelativeLayout>
-    <com.msht.minshengbao.ViewUI.ButtonUI.ButtonM
+    <Button
         android:id="@+id/cancelBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/margin_width45"
-        android:layout_marginBottom="@dimen/margin_width10"
-        android:layout_marginTop="@dimen/margin_width10"
-        android:text="@string/cancel_text"
-        android:textColor="@color/color_383838"
-        android:textSize="@dimen/text_width16"
-        android:gravity="center"
-        app:backColor="@color/white"
-        app:backColorPress="@color/background_gray"
-        app:textColor="@color/blue"/>
+        android:minHeight="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/selector_touch_background"
+        android:text="取消"
+        android:textColor="@color/textcolor"
+        android:textSize="16sp"
+        android:gravity="center"/>
 
 </LinearLayout>

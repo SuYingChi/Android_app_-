@@ -1,4 +1,4 @@
-package com.msht.minshengbao.adapter;
+package com.msht.mshtLpg.mshtLpgMaster.activity;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.msht.minshengbao.R;
+
+import com.msht.mshtLpg.mshtLpgMaster.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,7 +58,7 @@ public class ActionSheetAdapter extends BaseAdapter {
         if (convertView == null) {
             holder =new ViewHolder();
             convertView = mInflater.inflate(R.layout.item_my_actionsheet, null);
-            holder.btnText=(TextView) convertView.findViewById(R.id.id_btn_text);
+            holder.btnText=convertView.findViewById(R.id.id_btn_text);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();

@@ -1,4 +1,4 @@
-package com.msht.minshengbao.MoveSelectAddress;
+package com.msht.mshtLpg.mshtLpgMaster.Bean;
 
 import java.io.Serializable;
 
@@ -11,12 +11,16 @@ public class LocationBean implements Serializable {
     private double lat;
     private String title;
     private String content;
+    private String mCity;
+    private String mArea;
 
-    public LocationBean(double lon,double lat,String title,String content){
+    public LocationBean(double lon,double lat,String title,String content,String city,String area){
         this.lon = lon;
         this.lat = lat;
         this.title = title;
         this.content = content;
+        this.mCity=city;
+        this.mArea=area;
     }
 
     public double getLon() {
@@ -33,5 +37,11 @@ public class LocationBean implements Serializable {
 
     public String getContent() {
         return content;
+    }
+    public String getCity() {
+        return mCity;
+    }
+    public String getArea() {
+        return mArea;
     }
 }
