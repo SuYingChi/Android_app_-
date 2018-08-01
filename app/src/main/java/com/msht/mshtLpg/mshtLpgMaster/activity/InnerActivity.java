@@ -13,7 +13,7 @@ import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MyScanDeliverUserBottleFragment;
-import com.msht.mshtLpg.mshtLpgMaster.fragment.MyScanInnerFetchFragment;
+import com.msht.mshtLpg.mshtLpgMaster.fragment.MyScanInnerFragment;
 import com.msht.mshtLpg.mshtLpgMaster.util.LogUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
@@ -24,15 +24,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragment.InnnerFetchActivityListener, PermissionUtils.PermissionRequestFinishListener{
+public class InnerActivity extends BaseActivity implements MyScanInnerFragment.InnnerFetchActivityListener, PermissionUtils.PermissionRequestFinishListener{
     @BindView(R.id.fl_my_container)
     FrameLayout framContainer;
 
     private Unbinder unbinder;
     private String employerId;
     private FragmentTransaction transaction;
-    private MyScanInnerFetchFragment scanEmpolyerFragment;
-    private MyScanInnerFetchFragment myScanBottleFragment;
+    private MyScanInnerFragment scanEmpolyerFragment;
+    private MyScanInnerFragment myScanBottleFragment;
 
 
     private String innerUrl = "";
@@ -65,7 +65,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
     public void onClickNextBtnAndSendEmployerId( String employerId) {
         this.employerId = employerId;
         Bundle bundle = new Bundle();
-        myScanBottleFragment = new MyScanInnerFetchFragment();
+        myScanBottleFragment = new MyScanInnerFragment();
         bundle.putString(Constants.EMPLOYERID, employerId);
         bundle.putInt(Constants.SCANFRAGMENT_TYPE,2);
         myScanBottleFragment.setArguments(bundle);
@@ -127,7 +127,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
         if(innerType == 1){
-            scanEmpolyerFragment = new MyScanInnerFetchFragment();
+            scanEmpolyerFragment = new MyScanInnerFragment();
             Bundle bundle = new Bundle();
             bundle.putInt(Constants.SCANFRAGMENT_TYPE,1);
             scanEmpolyerFragment.setArguments(bundle);
@@ -144,7 +144,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
             showFragment(scanEmpolyerFragment);
         }else if(innerType == 2){
             Bundle bundle = new Bundle();
-            myScanBottleFragment = new MyScanInnerFetchFragment();
+            myScanBottleFragment = new MyScanInnerFragment();
             bundle.putInt(Constants.SCANFRAGMENT_TYPE,2);
             myScanBottleFragment.setArguments(bundle);
             myScanBottleFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {

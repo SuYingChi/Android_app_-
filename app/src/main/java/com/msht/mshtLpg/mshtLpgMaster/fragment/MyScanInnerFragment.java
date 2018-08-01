@@ -48,7 +48,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Vector;
 
-public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetchView, SurfaceHolder.Callback {
+public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView, SurfaceHolder.Callback {
     private int fragmentType;
     private IInnerFetchPresenter iScanInnerPresenter;
     protected InactivityTimer inactivityTimer;
@@ -219,7 +219,7 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
             @Override
             public void afterTextChanged(Editable s) {
                 if(s.toString().length()==10){
-                    AppUtil.hideInput(MyScanInnerFetchFragment.this.getContext(),etInput);
+                    AppUtil.hideInput(MyScanInnerFragment.this.getContext(),etInput);
                 }
             }
         });
