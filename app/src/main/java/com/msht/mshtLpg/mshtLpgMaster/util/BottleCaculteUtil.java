@@ -76,4 +76,19 @@ public class BottleCaculteUtil {
         }
         return sf.toString();
     }
+
+    public static boolean checkBottleListbyOrderNum(List<VerifyBottleBean> list,int orderFiveNum,int orderFifteenNum,int orderFiftyNum) {
+        if (BottleCaculteUtil.getBottleNum(list, 5) < orderFiveNum) {
+            PopUtil.toastInBottom("5kg钢瓶未达到订单数");
+            return false;
+        } else if (BottleCaculteUtil.getBottleNum(list, 15) < orderFifteenNum) {
+            PopUtil.toastInBottom("15kg钢瓶未达到订单数");
+            return false;
+        } else if (BottleCaculteUtil.getBottleNum(list, 50) < orderFiftyNum) {
+            PopUtil.toastInBottom("50kg钢瓶未达到订单数");
+            return false;
+        }else {
+            return true;
+        }
+    }
 }

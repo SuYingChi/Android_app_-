@@ -146,7 +146,7 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkList(list)) {
+                if (BottleCaculteUtil.checkBottleListbyOrderNum(list,orderFiveNum,orderFifteenNum,orderFiftyNum)) {
                     Intent intent = new Intent(getActivity(), BackBottleDetailPostActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString(Constants.ORDER_ID, orderId);
@@ -181,21 +181,6 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
         return view;
     }
 
-    private boolean checkList(List<VerifyBottleBean> list) {
-        if (BottleCaculteUtil.getBottleNum(list, 5) < orderFiveNum) {
-            PopUtil.toastInBottom("5kg钢瓶未达到订单数");
-            return false;
-        } else if (BottleCaculteUtil.getBottleNum(list, 15) < orderFifteenNum) {
-            PopUtil.toastInBottom("15kg钢瓶未达到订单数");
-            return false;
-        } else if (BottleCaculteUtil.getBottleNum(list, 50) < orderFiftyNum) {
-            PopUtil.toastInBottom("50kg钢瓶未达到订单数");
-            return false;
-        }else {
-            return true;
-        }
-
-    }
 
     @Override
     public void onResume() {

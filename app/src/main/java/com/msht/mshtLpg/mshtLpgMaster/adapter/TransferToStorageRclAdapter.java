@@ -98,7 +98,7 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
         int orderType = list.get(position).getState();
-        //"transformType": 1,重瓶入库 0：空瓶出库
+        //"transformType": 气站到网点 1 重瓶入库 0：空瓶出库
         switch (transformType) {
             case 0:
                 switch (orderType) {

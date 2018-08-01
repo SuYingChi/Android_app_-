@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
@@ -140,7 +141,9 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iPostTransferPresenter.postTransferOrders();
+              if(BottleCaculteUtil.checkBottleListbyOrderNum(list,Integer.valueOf(fiveCount),Integer.valueOf(fifteenCount),Integer.valueOf(fiftyCount))){
+                  iPostTransferPresenter.postTransferOrders();
+              }
             }
         });
         etInput.addTextChangedListener(new TextWatcher() {
@@ -204,13 +207,26 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
                 PopUtil.toastInBottom("15kg钢瓶已达到订单数");
             } else if (verifyBottleBean.getData().getBottleWeight() == 50 && BottleCaculteUtil.getBottleNum(list, 50) >= Integer.valueOf(fiftyCount)) {
                 PopUtil.toastInBottom("50kg钢瓶已达到订单数");
-            } else if (verifyBottleBean.getData().getIsHeavy() == 1) {
+                //空瓶调拨出库单
+            } else if (TextUtils.equals(transferType,"0")&&verifyBottleBean.getData().getIsHeavy() == 1) {
                 list.add(verifyBottleBean);
                 adapter.notifyDataSetChanged();
                 fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5)));
                 fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15)));
                 fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50)));
-            } else {
+
+            } else if(TextUtils.equals(transferType,"0")&&verifyBottleBean.getData().getIsHeavy() == 0){
+                PopUtil.toastInBottom("只能调拨空瓶出库");
+            }else if(TextUtils.equals(transferType,"1")&&verifyBottleBean.getData().getIsHeavy() == 1){
+                PopUtil.toastInBottom("只能调拨重瓶入库");
+            }  //重瓶调拨入库单
+            else if(TextUtils.equals(transferType,"1")&&verifyBottleBean.getData().getIsHeavy() == 0){
+                list.add(verifyBottleBean);
+                adapter.notifyDataSetChanged();
+                fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5)));
+                fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15)));
+                fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50)));
+            }else {
                 PopUtil.toastInBottom("不能扫描钢瓶");
             }
         }
@@ -244,19 +260,19 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
 
     @Override
     public String getFiveCount() {
-        fiveCount = BottleCaculteUtil.getBottleNum(list, 5) + "";
+
         return fiveCount;
     }
 
     @Override
     public String getFifteenCount() {
-        fifteenCount = BottleCaculteUtil.getBottleNum(list, 15) + "";
+
         return fifteenCount;
     }
 
     @Override
     public String getFiftyCount() {
-        fiftyCount = BottleCaculteUtil.getBottleNum(list, 50) + "";
+
         return fiftyCount;
     }
 

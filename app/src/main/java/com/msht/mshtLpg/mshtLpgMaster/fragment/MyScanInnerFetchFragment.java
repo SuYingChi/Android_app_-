@@ -36,6 +36,7 @@ import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.handler.MyCaptureHandler;
 import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
+import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IinnerFetchView;
@@ -180,9 +181,9 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
             @Override
             public void onClick(View v) {
                 if (fragmentType == 2) {
-                    if (innnerFetchActivityListener.getInnerType() == 1) {
+                    if (getInnerType() == 1) {
                         iScanInnerPresenter.innerFetchComfirm();
-                    } else if (innnerFetchActivityListener.getInnerType() == 2) {
+                    } else if (getInnerType() == 2) {
                         iScanInnerPresenter.innerReturnComfirm();
                     }
                 } else if (fragmentType == 1 && isEmployerQuerySuccess) {
@@ -383,11 +384,14 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
         if (isContainBottle(list, verifyBottleBean.getData().getBottleCode())) {
             PopUtil.toastInBottom("钢瓶已添加");
         } else if (fragmentType == 2) {
-            if (verifyBottleBean.getData().getIsHeavy() == 0) {
+            if (getInnerType() ==1 && verifyBottleBean.getData().getIsHeavy() == 0) {
                 list.add(verifyBottleBean);
                 adapter.notifyDataSetChanged();
-            } else {
+            } else if(getInnerType() ==1 && verifyBottleBean.getData().getIsHeavy() == 1){
                 PopUtil.toastInBottom("不能领空瓶");
+            }else if(getInnerType() ==2 ){
+                list.add(verifyBottleBean);
+                adapter.notifyDataSetChanged();
             }
         }
         if (handler == null) {
