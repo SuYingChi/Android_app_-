@@ -3,7 +3,6 @@ package com.msht.mshtLpg.mshtLpgMaster.adapter;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,13 +68,13 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
             ((OrdersHolder) holder).tvModify.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onClckModifyBtn(position, five, fifteen, fifty, orderId + "", transformType);
+                    listener.onClckModifyBtn(position, five, fifteen, fifty, orderId + "");
                 }
             });
             ((OrdersHolder) holder).tvScan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onClickScanCodeBtn(position, orderId + "", transformType);
+                    listener.onClickScanCodeBtn(position, orderId + "");
                 }
             });
         } else if (holder instanceof OrdersFinishHolder) {
@@ -179,8 +178,8 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
     }
 
     public interface onTransferToStorageRclAdapterClickListener {
-        void onClickScanCodeBtn(int itemPosition, String orderId, int transformType);
+        void onClickScanCodeBtn(int itemPosition, String orderId);
 
-        void onClckModifyBtn(int position, int five, int fifteen, int itemPosition, String orderId, int transformType);
+        void onClckModifyBtn(int position, int five, int fifteen, int itemPosition, String orderId);
     }
 }
