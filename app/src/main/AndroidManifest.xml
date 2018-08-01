@@ -46,11 +46,9 @@
             android:launchMode="singleTask" />
         <!-- 高德地图 key设置 -->
         <service android:name="com.amap.api.location.APSService" />
-
         <meta-data
-            android:name="LpgClient"
+            android:name="com.amap.api.v2.apikey"
             android:value="3467b1afa91a2c36f7c45cf95b85aa4d" />
-
         <activity android:name=".activity.SendBottleOrdersDetailActivity" />
         <activity android:name=".activity.ScanCodeDeliverSteelBottleActivity" />
         <activity android:name=".activity.SendOrdersDetailPostActivity" />

@@ -18,7 +18,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </com.msht.mshtLpg.mshtLpgMaster.customView.ListViewForScrollView>
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,15 +38,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/id_text1"
                     android:layout_marginTop="20dp"
-                    android:text="请尝试输入小区，写字楼名"/>
-                <TextView
-                    android:id="@+id/id_text3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/id_text2"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:text="详细地址（如门牌号）可稍后输入"/>
+                    android:text="请尝试输入小区，写字楼名,商铺，公司名"/>
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

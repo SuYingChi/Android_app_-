@@ -52,10 +52,10 @@
                     android:layout_toRightOf="@+id/id_name_text"
                     android:layout_toEndOf="@+id/id_name_text"
                     android:background="@null"
-                    android:hint="世贸吴彦祖"
-                    android:inputType="number"
+                    android:hint="请输入您的姓名"
+                    android:textColor="@color/lpg_text_light_color"
+                    android:inputType="textPersonName"
                     android:maxLength="11"
-                    android:textColor="@color/textcolor"
                     android:textColorHint="@color/text_hint"
                     android:textCursorDrawable="@null"
                     android:textSize="15sp" />
@@ -95,7 +95,7 @@
                     android:background="@null"
                     android:maxLength="11"
                     android:text="男"
-                    android:textColor="@color/textcolor"
+                    android:textColor="@color/lpg_text_light_color"
                     android:textColorHint="@color/text_hint"
                     android:textCursorDrawable="@null"
                     android:textSize="15sp" />
@@ -143,11 +143,11 @@
                     android:background="@null"
                     android:hint="请输入您的手机号"
                     android:inputType="phone"
+                    android:textColor="@color/lpg_text_light_color"
                     android:maxLength="11"
-                    android:textColor="#ffffff"
                     android:textColorHint="@color/text_hint"
                     android:textCursorDrawable="@null"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/text_nomal" />
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
@@ -172,7 +172,7 @@
                     android:textSize="@dimen/text_nomal" />
 
                 <TextView
-                    android:id="@+id/et_address"
+                    android:id="@+id/tv_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -185,8 +185,9 @@
                     android:layout_toLeftOf="@+id/iv_user_address"
                     android:layout_toStartOf="@+id/iv_user_address"
                     android:textColorHint="@color/text_hint"
+                    android:textColor="@color/lpg_text_light_color"
                     android:textCursorDrawable="@null"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/text_nomal" />
                 <ImageView
                     android:id="@+id/iv_user_address"
                     android:layout_width="wrap_content"
@@ -234,7 +235,8 @@
                     android:text="是"
                     android:textColorHint="@color/text_hint"
                     android:textCursorDrawable="@null"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textColor="@color/lpg_text_light_color"/>
                 <ImageView
                     android:id="@+id/iv_user_elevator"
                     android:layout_width="wrap_content"

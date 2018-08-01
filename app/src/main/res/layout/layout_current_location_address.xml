@@ -30,7 +30,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:contentDescription="@string/picture_text"/>
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/picture_text"
+            android:src="@drawable/store_address_xh"/>
         <TextView
             android:id="@+id/id_current_address"
             android:layout_width="wrap_content"

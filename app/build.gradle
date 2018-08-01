@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.example.mshtyfb.mshtlpg"
+        applicationId "com.msht.mshtLpg.mshtLpgMaster"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
@@ -14,8 +14,12 @@ android {
     Properties properties = new Properties()
     InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream()
     properties.load(inputStream)
-    def signFile = properties.getProperty('key.file')
+    def signFile = properties.getProperty('signKey.file')
+    def keyFile  =properties.getProperty('key.file')
     signingConfigs {
+        debug{
+            storeFile file(keyFile)
+        }
         release {
             keyAlias 'msht'
             keyPassword 'mshtmsht'
@@ -27,10 +31,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-
     buildTypes {
         debug {
+           // signingConfig signingConfigs.debug
             signingConfig signingConfigs.release
         }
         release {
