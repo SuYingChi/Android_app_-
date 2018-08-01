@@ -51,7 +51,7 @@ import java.util.Vector;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyRegisterBottleFragment extends BaseFragment implements IRegisterBottleView, SurfaceHolder.Callback {
+public class MyScanRegisterBottleFragment extends BaseFragment implements IRegisterBottleView, SurfaceHolder.Callback {
     @BindView(R.id.scan_delive_topbar)
     TopBarView topBarView;
     @BindView(R.id.et_scan_qrcode_steel_bottle_number)
@@ -163,7 +163,7 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
             @Override
             public void afterTextChanged(Editable s) {
               if(s.toString().length()==10){
-                  hideInput(MyRegisterBottleFragment.this.getContext(),etInput);
+                  hideInput(MyScanRegisterBottleFragment.this.getContext(),etInput);
               }
             }
         });
@@ -273,12 +273,12 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
     }
 
     @Nullable
-    protected MyDeliverUserBottleFragment.CameraInitCallBack callBack;
+    protected MyScanDeliverUserBottleFragment.CameraInitCallBack callBack;
 
     /**
      * Set callback for Camera check whether Camera init success or not.
      */
-    public void setCameraInitCallBack(MyDeliverUserBottleFragment.CameraInitCallBack callBack) {
+    public void setCameraInitCallBack(MyScanDeliverUserBottleFragment.CameraInitCallBack callBack) {
         this.callBack = callBack;
     }
 
@@ -380,7 +380,7 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
       tvCreatTime.setText(createTime);
       etProduceUnit.setText(propertyUnit);
       tvBottleCode.setText(bottleCode);
-      hideInput(MyRegisterBottleFragment.this.getContext(),etInput);
+      hideInput(MyScanRegisterBottleFragment.this.getContext(),etInput);
       tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -415,7 +415,7 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
             @Override
             public void onClick(View v) {
                 if(timeSelecteDialog==null) {
-                    timeSelecteDialog = new TimeSelecteDialog(MyRegisterBottleFragment.this.getContext());
+                    timeSelecteDialog = new TimeSelecteDialog(MyScanRegisterBottleFragment.this.getContext());
                     timeSelecteDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public void onDismiss(DialogInterface dialog) {
@@ -423,7 +423,7 @@ public class MyRegisterBottleFragment extends BaseFragment implements IRegisterB
                         }
                     });
                 }
-                PopUtil.showDialog(MyRegisterBottleFragment.this.getContext(),timeSelecteDialog);
+                PopUtil.showDialog(MyScanRegisterBottleFragment.this.getContext(),timeSelecteDialog);
             }
         });*/
     }

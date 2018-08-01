@@ -15,7 +15,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -53,7 +52,7 @@ import java.util.Vector;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyDeliverUserBottleFragment extends BaseFragment implements SurfaceHolder.Callback, IScanCodeDeliverSteelBottleView {
+public class MyScanDeliverUserBottleFragment extends BaseFragment implements SurfaceHolder.Callback, IScanCodeDeliverSteelBottleView {
 
 
     @BindView(R.id.scan_delive_steel_bottle_qrcode_viewfinder_view)
@@ -78,7 +77,7 @@ public class MyDeliverUserBottleFragment extends BaseFragment implements Surface
     TextView nextBtn;
     @BindView(R.id.tv_scan_delive_steel_bottle)
     TextView title;
-    private static final String TAG = "MyDeliverUserBottleFragment";
+    private static final String TAG = "MyScanDeliverUserBottleFragment";
     protected MyCaptureHandler handler;
     protected boolean hasSurface;
     protected Vector<BarcodeFormat> decodeFormats;
@@ -165,7 +164,7 @@ public class MyDeliverUserBottleFragment extends BaseFragment implements Surface
             @Override
             public void afterTextChanged(Editable s) {
                 if(s.toString().length()==8||s.toString().length()==9){
-                    AppUtil.hideInput(MyDeliverUserBottleFragment.this.getContext(),etInput);
+                    AppUtil.hideInput(MyScanDeliverUserBottleFragment.this.getContext(),etInput);
                 }
             }
         });

@@ -10,8 +10,8 @@ import android.widget.FrameLayout;
 
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
-import com.msht.mshtLpg.mshtLpgMaster.fragment.MyDeliverUserBottleFragment;
-import com.msht.mshtLpg.mshtLpgMaster.fragment.MyRegisterBottleFragment;
+import com.msht.mshtLpg.mshtLpgMaster.fragment.MyScanDeliverUserBottleFragment;
+import com.msht.mshtLpg.mshtLpgMaster.fragment.MyScanRegisterBottleFragment;
 import com.msht.mshtLpg.mshtLpgMaster.util.LogUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
@@ -28,7 +28,7 @@ public class RegisterBottleActivity extends BaseActivity implements  PermissionU
 
     private Unbinder unbinder;
     private FragmentTransaction transaction;
-    private MyRegisterBottleFragment registerBottleFragment;
+    private MyScanRegisterBottleFragment registerBottleFragment;
 
 
 
@@ -62,8 +62,8 @@ public class RegisterBottleActivity extends BaseActivity implements  PermissionU
 
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
-        registerBottleFragment = new MyRegisterBottleFragment();
-        registerBottleFragment.setCameraInitCallBack(new MyDeliverUserBottleFragment.CameraInitCallBack() {
+        registerBottleFragment = new MyScanRegisterBottleFragment();
+        registerBottleFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
             @Override
             public void callBack(Exception e) {
                 if (e == null) {

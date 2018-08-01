@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
-import com.msht.mshtLpg.mshtLpgMaster.fragment.MyDeliverUserBottleFragment;
+import com.msht.mshtLpg.mshtLpgMaster.fragment.MyScanDeliverUserBottleFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MyScanTransferBottleFragment;
 import com.msht.mshtLpg.mshtLpgMaster.util.LogUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
@@ -77,7 +77,7 @@ public class ScanTransferStorageActivity extends BaseActivity  implements  Permi
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
         scanTransferBottleFragment = new MyScanTransferBottleFragment();
-        scanTransferBottleFragment.setCameraInitCallBack(new MyDeliverUserBottleFragment.CameraInitCallBack() {
+        scanTransferBottleFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
             @Override
             public void callBack(Exception e) {
                 if (e == null) {

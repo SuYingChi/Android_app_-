@@ -16,7 +16,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -53,7 +52,7 @@ import java.util.Vector;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyBackBottleFragment extends BaseFragment implements IBackBottleView, SurfaceHolder.Callback {
+public class MyScanBackBottleFragment extends BaseFragment implements IBackBottleView, SurfaceHolder.Callback {
 
     @BindView(R.id.scan_delive_steel_bottle_qrcode_viewfinder_view)
     ViewfinderView viewfinderView;
@@ -146,7 +145,7 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkList(list)) {
+                if (BottleCaculteUtil.checkBottleListbyOrderNum(list,orderFiveNum,orderFifteenNum,orderFiftyNum)) {
                     Intent intent = new Intent(getActivity(), BackBottleDetailPostActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString(Constants.ORDER_ID, orderId);
@@ -170,7 +169,7 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
             @Override
             public void afterTextChanged(Editable s) {
                 if(s.toString().length()==10){
-                    AppUtil.hideInput(MyBackBottleFragment.this.getContext(),etInput);
+                    AppUtil.hideInput(MyScanBackBottleFragment.this.getContext(),etInput);
                 }
             }
         });
@@ -181,21 +180,6 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
         return view;
     }
 
-    private boolean checkList(List<VerifyBottleBean> list) {
-        if (BottleCaculteUtil.getBottleNum(list, 5) < orderFiveNum) {
-            PopUtil.toastInBottom("5kg钢瓶未达到订单数");
-            return false;
-        } else if (BottleCaculteUtil.getBottleNum(list, 15) < orderFifteenNum) {
-            PopUtil.toastInBottom("15kg钢瓶未达到订单数");
-            return false;
-        } else if (BottleCaculteUtil.getBottleNum(list, 50) < orderFiftyNum) {
-            PopUtil.toastInBottom("50kg钢瓶未达到订单数");
-            return false;
-        }else {
-            return true;
-        }
-
-    }
 
     @Override
     public void onResume() {

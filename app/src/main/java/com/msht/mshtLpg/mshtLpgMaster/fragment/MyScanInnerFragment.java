@@ -25,7 +25,6 @@ import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
-import com.msht.mshtLpg.mshtLpgMaster.Bean.InnerFetchVerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.ScanInnerFetchBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IInnerFetchPresenter;
@@ -49,7 +48,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Vector;
 
-public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetchView, SurfaceHolder.Callback {
+public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView, SurfaceHolder.Callback {
     private int fragmentType;
     private IInnerFetchPresenter iScanInnerPresenter;
     protected InactivityTimer inactivityTimer;
@@ -180,9 +179,9 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
             @Override
             public void onClick(View v) {
                 if (fragmentType == 2) {
-                    if (innnerFetchActivityListener.getInnerType() == 1) {
+                    if (getInnerType() == 1) {
                         iScanInnerPresenter.innerFetchComfirm();
-                    } else if (innnerFetchActivityListener.getInnerType() == 2) {
+                    } else if (getInnerType() == 2) {
                         iScanInnerPresenter.innerReturnComfirm();
                     }
                 } else if (fragmentType == 1 && isEmployerQuerySuccess) {
@@ -220,7 +219,7 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
             @Override
             public void afterTextChanged(Editable s) {
                 if(s.toString().length()==10){
-                    AppUtil.hideInput(MyScanInnerFetchFragment.this.getContext(),etInput);
+                    AppUtil.hideInput(MyScanInnerFragment.this.getContext(),etInput);
                 }
             }
         });
@@ -312,12 +311,12 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
     }
 
     @Nullable
-    protected MyDeliverUserBottleFragment.CameraInitCallBack callBack;
+    protected MyScanDeliverUserBottleFragment.CameraInitCallBack callBack;
 
     /**
      * Set callback for Camera check whether Camera init success or not.
      */
-    public void setCameraInitCallBack(MyDeliverUserBottleFragment.CameraInitCallBack callBack) {
+    public void setCameraInitCallBack(MyScanDeliverUserBottleFragment.CameraInitCallBack callBack) {
         this.callBack = callBack;
     }
 
@@ -383,11 +382,14 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
         if (isContainBottle(list, verifyBottleBean.getData().getBottleCode())) {
             PopUtil.toastInBottom("钢瓶已添加");
         } else if (fragmentType == 2) {
-            if (verifyBottleBean.getData().getIsHeavy() == 0) {
+            if (getInnerType() ==1 && verifyBottleBean.getData().getIsHeavy() == 0) {
                 list.add(verifyBottleBean);
                 adapter.notifyDataSetChanged();
-            } else {
+            } else if(getInnerType() ==1 && verifyBottleBean.getData().getIsHeavy() == 1){
                 PopUtil.toastInBottom("不能领空瓶");
+            }else if(getInnerType() ==2 ){
+                list.add(verifyBottleBean);
+                adapter.notifyDataSetChanged();
             }
         }
         if (handler == null) {

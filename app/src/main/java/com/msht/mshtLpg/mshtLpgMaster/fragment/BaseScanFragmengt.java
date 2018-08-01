@@ -18,10 +18,7 @@ import android.view.ViewGroup;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
-import com.msht.mshtLpg.mshtLpgMaster.Present.IRegisterBottlePresenter;
-import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
-import com.msht.mshtLpg.mshtLpgMaster.handler.MyCaptureHandler;
 import com.uuzuche.lib_zxing.camera.CameraManager;
 import com.uuzuche.lib_zxing.decoding.InactivityTimer;
 
@@ -121,12 +118,12 @@ public class BaseScanFragmengt extends BaseFragment implements SurfaceHolder.Cal
         }
     };
     @Nullable
-    protected MyDeliverUserBottleFragment.CameraInitCallBack callBack;
+    protected MyScanDeliverUserBottleFragment.CameraInitCallBack callBack;
 
     /**
      * Set callback for Camera check whether Camera init success or not.
      */
-    public void setCameraInitCallBack(MyDeliverUserBottleFragment.CameraInitCallBack callBack) {
+    public void setCameraInitCallBack(MyScanDeliverUserBottleFragment.CameraInitCallBack callBack) {
         this.callBack = callBack;
     }
     protected void initCamera(SurfaceHolder surfaceHolder) {

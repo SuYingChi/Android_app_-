@@ -137,13 +137,24 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
             list.clear();
         }
         refreshLayout.finishLoadMore();
-        list.addAll(transferStorageListBean.getData().getList());
+        List<TransferStorageListBean.DataBean.ListBean> listTemp = transferStorageListBean.getData().getList();
+        list.addAll(filterList(listTemp));
         if (pageNum == transferStorageListBean.getData().getPage().getPages()) {
             refreshLayout.setEnableAutoLoadMore(false);
         } else {
             refreshLayout.setEnableAutoLoadMore(true);
         }
         adapter.notifyDataSetChanged();
+    }
+
+    private List<TransferStorageListBean.DataBean.ListBean> filterList(List<TransferStorageListBean.DataBean.ListBean> listTemp) {
+        List<TransferStorageListBean.DataBean.ListBean> list = new ArrayList<TransferStorageListBean.DataBean.ListBean>();
+        for(TransferStorageListBean.DataBean.ListBean bean:listTemp){
+            if(bean.getTransformType()==Integer.valueOf(transferType)){
+                list.add(bean);
+            }
+        }
+        return list;
     }
 
     @Override
@@ -191,7 +202,7 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
     }
 
     @Override
-    public void onClickScanCodeBtn(int itemPosition, String orderId, int transformType) {
+    public void onClickScanCodeBtn(int itemPosition, String orderId) {
         id = list.get(itemPosition).getId()+"";
         fiveCount = list.get(itemPosition).getFiveCount()+"";
         fifteenCount = list.get(itemPosition).getFiveCount()+"";
@@ -201,12 +212,12 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
         intent.putExtra(Constants.ORDER_FIVE_NUM,fiveCount);
         intent.putExtra(Constants.ORDER_FIFTEEN_NUM,fifteenCount);
         intent.putExtra(Constants.ORDER_FIFTY_NUM,fiftyCount);
-        intent.putExtra("TransferType",transformType+"");
+        intent.putExtra("TransferType",transferType+"");
         startActivity(intent);
     }
 
     @Override
-    public void onClckModifyBtn(int position, int five, int fifteen, int itemPosition, String orderId, int transformType) {
+    public void onClckModifyBtn(int position, int five, int fifteen, int itemPosition, String orderId) {
         id = list.get(itemPosition).getId()+"";
         fiveCount = list.get(itemPosition).getFiveCount()+"";
         fifteenCount = list.get(itemPosition).getFiveCount()+"";
