@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
-import com.msht.mshtLpg.mshtLpgMaster.fragment.MyDeliverUserBottleFragment;
+import com.msht.mshtLpg.mshtLpgMaster.fragment.MyScanDeliverUserBottleFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MyScanInnerFetchFragment;
 import com.msht.mshtLpg.mshtLpgMaster.util.LogUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
@@ -69,7 +69,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
         bundle.putString(Constants.EMPLOYERID, employerId);
         bundle.putInt(Constants.SCANFRAGMENT_TYPE,2);
         myScanBottleFragment.setArguments(bundle);
-        myScanBottleFragment.setCameraInitCallBack(new MyDeliverUserBottleFragment.CameraInitCallBack() {
+        myScanBottleFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
             @Override
             public void callBack(Exception e) {
                 if (e == null) {
@@ -131,7 +131,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
             Bundle bundle = new Bundle();
             bundle.putInt(Constants.SCANFRAGMENT_TYPE,1);
             scanEmpolyerFragment.setArguments(bundle);
-            scanEmpolyerFragment.setCameraInitCallBack(new MyDeliverUserBottleFragment.CameraInitCallBack() {
+            scanEmpolyerFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
                 @Override
                 public void callBack(Exception e) {
                     if (e == null) {
@@ -147,7 +147,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
             myScanBottleFragment = new MyScanInnerFetchFragment();
             bundle.putInt(Constants.SCANFRAGMENT_TYPE,2);
             myScanBottleFragment.setArguments(bundle);
-            myScanBottleFragment.setCameraInitCallBack(new MyDeliverUserBottleFragment.CameraInitCallBack() {
+            myScanBottleFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
                 @Override
                 public void callBack(Exception e) {
                     if (e == null) {

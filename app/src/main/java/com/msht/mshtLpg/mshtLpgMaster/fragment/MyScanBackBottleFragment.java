@@ -16,7 +16,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -53,7 +52,7 @@ import java.util.Vector;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyBackBottleFragment extends BaseFragment implements IBackBottleView, SurfaceHolder.Callback {
+public class MyScanBackBottleFragment extends BaseFragment implements IBackBottleView, SurfaceHolder.Callback {
 
     @BindView(R.id.scan_delive_steel_bottle_qrcode_viewfinder_view)
     ViewfinderView viewfinderView;
@@ -170,7 +169,7 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
             @Override
             public void afterTextChanged(Editable s) {
                 if(s.toString().length()==10){
-                    AppUtil.hideInput(MyBackBottleFragment.this.getContext(),etInput);
+                    AppUtil.hideInput(MyScanBackBottleFragment.this.getContext(),etInput);
                 }
             }
         });

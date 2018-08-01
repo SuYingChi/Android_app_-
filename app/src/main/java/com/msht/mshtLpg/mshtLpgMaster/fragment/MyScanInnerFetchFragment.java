@@ -25,7 +25,6 @@ import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
-import com.msht.mshtLpg.mshtLpgMaster.Bean.InnerFetchVerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.ScanInnerFetchBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IInnerFetchPresenter;
@@ -36,7 +35,6 @@ import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.handler.MyCaptureHandler;
 import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
-import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IinnerFetchView;
@@ -313,12 +311,12 @@ public class MyScanInnerFetchFragment extends BaseFragment implements IinnerFetc
     }
 
     @Nullable
-    protected MyDeliverUserBottleFragment.CameraInitCallBack callBack;
+    protected MyScanDeliverUserBottleFragment.CameraInitCallBack callBack;
 
     /**
      * Set callback for Camera check whether Camera init success or not.
      */
-    public void setCameraInitCallBack(MyDeliverUserBottleFragment.CameraInitCallBack callBack) {
+    public void setCameraInitCallBack(MyScanDeliverUserBottleFragment.CameraInitCallBack callBack) {
         this.callBack = callBack;
     }
 
