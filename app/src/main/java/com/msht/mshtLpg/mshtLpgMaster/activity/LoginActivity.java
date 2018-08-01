@@ -76,6 +76,7 @@ public class LoginActivity extends BaseActivity implements ILoginView{
         SharePreferenceUtil.setLoginSpStringValue(Constants.EMPLOYERID,s.getData().getEmployeeId()+"");
         SharePreferenceUtil.setLoginSpStringValue("employeeName",s.getData().getEmployeeName());
         SharePreferenceUtil.setLoginSpStringValue("siteName",s.getData().getSiteName());
+        SharePreferenceUtil.setLoginSpStringValue("siteId",s.getData().getSiteId()+"");
         startActivity( new Intent(this, HomeActivity.class));
         EventBus.getDefault().postSticky(new LoginEventBean(s));
 

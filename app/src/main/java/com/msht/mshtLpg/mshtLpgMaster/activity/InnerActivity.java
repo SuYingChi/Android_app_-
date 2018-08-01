@@ -37,6 +37,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
 
     private String innerUrl = "";
     private int innerType=0;
+    private String verifyType;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,8 +47,10 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
          innerType =intent.getIntExtra("innerType",0);
         if(innerType == 1){
             innerUrl = Constants.INNER_FETCH;
+            verifyType = "7";
         }else if(innerType  == 2){
             innerUrl = Constants.INNER_RETURN;
+            verifyType = "6";
         }
         unbinder = ButterKnife.bind(this);
         PermissionUtils.requestPermissions(this, this, Permission.CAMERA);
@@ -105,6 +108,11 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
     }
 
     @Override
+    public String getVerifyType() {
+        return verifyType;
+    }
+
+    @Override
     public void onBackFromSettingPage() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             finish();
@@ -118,21 +126,40 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFetchFragm
 
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
-        scanEmpolyerFragment = new MyScanInnerFetchFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(Constants.SCANFRAGMENT_TYPE,1);
-        scanEmpolyerFragment.setArguments(bundle);
-        scanEmpolyerFragment.setCameraInitCallBack(new MyDeliverUserBottleFragment.CameraInitCallBack() {
-            @Override
-            public void callBack(Exception e) {
-                if (e == null) {
+        if(innerType == 1){
+            scanEmpolyerFragment = new MyScanInnerFetchFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(Constants.SCANFRAGMENT_TYPE,1);
+            scanEmpolyerFragment.setArguments(bundle);
+            scanEmpolyerFragment.setCameraInitCallBack(new MyDeliverUserBottleFragment.CameraInitCallBack() {
+                @Override
+                public void callBack(Exception e) {
+                    if (e == null) {
 
-                } else {
-                    LogUtils.d("TAG", "callback:    " + e);
+                    } else {
+                        LogUtils.d("TAG", "callback:    " + e);
+                    }
                 }
-            }
-        });
-        showFragment(scanEmpolyerFragment);
+            });
+            showFragment(scanEmpolyerFragment);
+        }else if(innerType == 2){
+            Bundle bundle = new Bundle();
+            myScanBottleFragment = new MyScanInnerFetchFragment();
+            bundle.putInt(Constants.SCANFRAGMENT_TYPE,2);
+            myScanBottleFragment.setArguments(bundle);
+            myScanBottleFragment.setCameraInitCallBack(new MyDeliverUserBottleFragment.CameraInitCallBack() {
+                @Override
+                public void callBack(Exception e) {
+                    if (e == null) {
+
+                    } else {
+                        LogUtils.d("TAG", "callback:    " + e);
+                    }
+                }
+            });
+            showFragment(myScanBottleFragment);
+        }
+
     }
 
     @Override

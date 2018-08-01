@@ -14,6 +14,8 @@ import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
@@ -34,6 +36,7 @@ import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.handler.MyCaptureHandler;
+import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IBackBottleView;
@@ -153,6 +156,24 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
                 }
             }
         });
+        etInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().length()==10){
+                    AppUtil.hideInput(MyBackBottleFragment.this.getContext(),etInput);
+                }
+            }
+        });
         adapter = new ScanBottleQRCodeRclAdapter(list, getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
@@ -213,7 +234,7 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
         String bottleUrl = result.getText();
-        if (bottleUrl.length() == 10) {
+        if (bottleUrl.length() == 10||bottleUrl.length() == 8) {
             bottleCode = bottleUrl;
         } else if (bottleUrl.contains("id=")) {
             int index = bottleUrl.indexOf("id=");
@@ -236,6 +257,7 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
         try {
             CameraManager.get().openDriver(surfaceHolder);
             camera = CameraManager.get().getCamera();
+            camera.startPreview();
         } catch (Exception e) {
             if (callBack != null) {
                 callBack.callBack(e);
@@ -329,8 +351,12 @@ public class MyBackBottleFragment extends BaseFragment implements IBackBottleVie
             fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15)));
             fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50)));
         }
-        Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
-        handler.sendMessageDelayed(reDecode, 1000);
+        if (handler == null) {
+            handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
+        }
+            Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
+            handler.sendMessageDelayed(reDecode, 1000);
+
     }
 
     @Override

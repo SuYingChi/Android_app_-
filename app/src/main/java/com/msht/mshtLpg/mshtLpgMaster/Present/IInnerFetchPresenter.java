@@ -2,6 +2,7 @@ package com.msht.mshtLpg.mshtLpgMaster.Present;
 
 import android.text.TextUtils;
 
+import com.msht.mshtLpg.mshtLpgMaster.Bean.InnerFetchVerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.ScanInnerFetchBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;
@@ -22,6 +23,23 @@ public class IInnerFetchPresenter {
 
     public void  innerFetchComfirm() {
         OkHttpUtils.get().url(iinnerFetchView.getUrl()).addParams("employeeCode", iinnerFetchView.getEmployeeCode()).addParams("bottleIds", iinnerFetchView.getBottleIds()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iinnerFetchView.getToken()).build().execute(new DataStringCallback(iinnerFetchView) {
+            @Override
+            public void onResponse(String s, int i) {
+                super.onResponse(s, i);
+                ScanInnerFetchBottleBean bean = GsonUtil.getGson().fromJson(s, ScanInnerFetchBottleBean.class);
+                if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
+                    iinnerFetchView.onError(bean.getMsg());
+
+                } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
+                    iinnerFetchView.onInnerFetchComfirmSuccess(bean);
+                }
+            }
+        });
+    }
+    public void  innerReturnComfirm() {
+        OkHttpUtils.get().url(iinnerFetchView.getUrl()).addParams("siteId", iinnerFetchView.getSiteId()).addParams("bottleIds", iinnerFetchView.getBottleIds()).
+                addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iinnerFetchView.getToken()).
+                build().execute(new DataStringCallback(iinnerFetchView) {
             @Override
             public void onResponse(String s, int i) {
                 super.onResponse(s, i);
@@ -56,7 +74,7 @@ public class IInnerFetchPresenter {
 
     }
     public void innerFetchQueryEmpolyer(){
-        OkHttpUtils.get().url(Constants.QUERY_EMPOLYER).addParams("employeeCode", iinnerFetchView.getEmployeeCode()).addParams("employeeCode",iinnerFetchView.getEmployeeCode()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iinnerFetchView.getToken()).build().execute(new DataStringCallback(iinnerFetchView) {
+        OkHttpUtils.get().url(Constants.QUERY_EMPOLYER).addParams("employeeCode", iinnerFetchView.getEmployeeCode()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iinnerFetchView.getToken()).build().execute(new DataStringCallback(iinnerFetchView) {
             @Override
             public void onResponse(String s, int i) {
                 super.onResponse(s, i);

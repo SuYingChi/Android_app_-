@@ -194,7 +194,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
         }
         refreshLayout.finishLoadMore();
         list.addAll(ordersBean.getData().getList());
-        if (page == ordersBean.getData().getPage().getPageSize()) {
+        if (page == ordersBean.getData().getPage().getPages()) {
             refreshLayout.setEnableAutoLoadMore(false);
         } else {
             refreshLayout.setEnableAutoLoadMore(true);
@@ -271,7 +271,9 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
 
     @Override
     public void onBackFromSettingPage() {
-
+        if (ActivityCompat.checkSelfPermission(LPGApplication.getLPGApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            getActivity().finish();
+        }
     }
 
     @Override

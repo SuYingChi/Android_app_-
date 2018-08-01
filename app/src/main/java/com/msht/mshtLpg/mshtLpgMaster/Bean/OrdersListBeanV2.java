@@ -7,7 +7,7 @@ public class OrdersListBeanV2 {
     /**
      * result : success
      * msg : 订单信息查询成功
-     * data : {"page":{"pageNum":1,"pageSize":1,"pages":1,"total":1},"list":[{"siteId":1,"orderId":233,"orderType":0,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"黄水亮","sex":1,"mobile":"13098966725","orderAddressId":248,"longitude":"56.56","latitude":"23.90","addressShort":"","address":"海口市建军32号","floor":1,"roomNum":"","isElevator":1,"fiveBottleCount":0,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","reFiveBottleCount":1,"reFifteenBottleCount":1,"reFiftyBottleCount":0,"retrieveAmount":"","realAmount":20,"depositList":""}]}
+     * data : {"page":{"pageNum":1,"pageSize":2,"pages":6,"total":11},"list":[{"siteId":1,"orderId":269,"orderType":1,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"张三2","sex":1,"mobile":"18681497590","orderAddressId":284,"longitude":"110.30204","latitude":"20.020434","addressShort":"","address":"海南省海口市龙华区金贸西路8号诚田国际商务大厦","floor":24,"roomNum":"1","isElevator":1,"fiveBottleCount":3,"fifteenBottleCount":2,"fiftyBottleCount":2,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","reFiveBottleCount":0,"reFifteenBottleCount":0,"reFiftyBottleCount":0,"retrieveAmount":"","realAmount":145.7,"depositList":[]},{"siteId":1,"orderId":234,"orderType":1,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"李四","sex":1,"mobile":"18976991792","orderAddressId":249,"longitude":"201.21","latitude":"111.54","addressShort":"","address":"海口市长滨路32号111","floor":15,"roomNum":"","isElevator":0,"fiveBottleCount":1,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","reFiveBottleCount":0,"reFifteenBottleCount":0,"reFiftyBottleCount":0,"retrieveAmount":"","realAmount":45,"depositList":[]}]}
      */
 
     private String result;
@@ -40,8 +40,8 @@ public class OrdersListBeanV2 {
 
     public static class DataBean {
         /**
-         * page : {"pageNum":1,"pageSize":1,"pages":1,"total":1}
-         * list : [{"siteId":1,"orderId":233,"orderType":0,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"黄水亮","sex":1,"mobile":"13098966725","orderAddressId":248,"longitude":"56.56","latitude":"23.90","addressShort":"","address":"海口市建军32号","floor":1,"roomNum":"","isElevator":1,"fiveBottleCount":0,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","reFiveBottleCount":1,"reFifteenBottleCount":1,"reFiftyBottleCount":0,"retrieveAmount":"","realAmount":20,"depositList":""}]
+         * page : {"pageNum":1,"pageSize":2,"pages":6,"total":11}
+         * list : [{"siteId":1,"orderId":269,"orderType":1,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"张三2","sex":1,"mobile":"18681497590","orderAddressId":284,"longitude":"110.30204","latitude":"20.020434","addressShort":"","address":"海南省海口市龙华区金贸西路8号诚田国际商务大厦","floor":24,"roomNum":"1","isElevator":1,"fiveBottleCount":3,"fifteenBottleCount":2,"fiftyBottleCount":2,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","reFiveBottleCount":0,"reFifteenBottleCount":0,"reFiftyBottleCount":0,"retrieveAmount":"","realAmount":145.7,"depositList":[]},{"siteId":1,"orderId":234,"orderType":1,"orderStatus":2,"orderSource":1,"isDelivery":0,"appointmentTime":"","createDate":"","remarks":"","buyer":"李四","sex":1,"mobile":"18976991792","orderAddressId":249,"longitude":"201.21","latitude":"111.54","addressShort":"","address":"海口市长滨路32号111","floor":15,"roomNum":"","isElevator":0,"fiveBottleCount":1,"fifteenBottleCount":0,"fiftyBottleCount":0,"fiveGasFee":"","fifteenGasFee":"","fiftyGasFee":"","fiveDeliveryFee":"","fifteenDeliveryFee":"","fiftyDeliveryFee":"","fiveDepositFee":"","fifteenDepositFee":"","fiftyDepositFee":"","reFiveBottleCount":0,"reFifteenBottleCount":0,"reFiftyBottleCount":0,"retrieveAmount":"","realAmount":45,"depositList":[]}]
          */
 
         private PageBean page;
@@ -66,9 +66,9 @@ public class OrdersListBeanV2 {
         public static class PageBean {
             /**
              * pageNum : 1
-             * pageSize : 1
-             * pages : 1
-             * total : 1
+             * pageSize : 2
+             * pages : 6
+             * total : 11
              */
 
             private int pageNum;
@@ -112,28 +112,28 @@ public class OrdersListBeanV2 {
         public static class ListBean {
             /**
              * siteId : 1
-             * orderId : 233
-             * orderType : 0
+             * orderId : 269
+             * orderType : 1
              * orderStatus : 2
              * orderSource : 1
              * isDelivery : 0
              * appointmentTime :
              * createDate :
              * remarks :
-             * buyer : 黄水亮
+             * buyer : 张三2
              * sex : 1
-             * mobile : 13098966725
-             * orderAddressId : 248
-             * longitude : 56.56
-             * latitude : 23.90
+             * mobile : 18681497590
+             * orderAddressId : 284
+             * longitude : 110.30204
+             * latitude : 20.020434
              * addressShort :
-             * address : 海口市建军32号
-             * floor : 1
-             * roomNum :
+             * address : 海南省海口市龙华区金贸西路8号诚田国际商务大厦
+             * floor : 24
+             * roomNum : 1
              * isElevator : 1
-             * fiveBottleCount : 0
-             * fifteenBottleCount : 0
-             * fiftyBottleCount : 0
+             * fiveBottleCount : 3
+             * fifteenBottleCount : 2
+             * fiftyBottleCount : 2
              * fiveGasFee :
              * fifteenGasFee :
              * fiftyGasFee :
@@ -143,12 +143,12 @@ public class OrdersListBeanV2 {
              * fiveDepositFee :
              * fifteenDepositFee :
              * fiftyDepositFee :
-             * reFiveBottleCount : 1
-             * reFifteenBottleCount : 1
+             * reFiveBottleCount : 0
+             * reFifteenBottleCount : 0
              * reFiftyBottleCount : 0
              * retrieveAmount :
-             * realAmount : 20
-             * depositList :
+             * realAmount : 145.7
+             * depositList : []
              */
 
             private int siteId;
@@ -188,7 +188,7 @@ public class OrdersListBeanV2 {
             private int reFiftyBottleCount;
             private String retrieveAmount;
             private double realAmount;
-            private String depositList;
+            private List<?> depositList;
 
             public int getSiteId() {
                 return siteId;
@@ -486,11 +486,11 @@ public class OrdersListBeanV2 {
                 this.realAmount = realAmount;
             }
 
-            public String getDepositList() {
+            public List<?> getDepositList() {
                 return depositList;
             }
 
-            public void setDepositList(String depositList) {
+            public void setDepositList(List<?> depositList) {
                 this.depositList = depositList;
             }
         }

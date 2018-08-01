@@ -1,5 +1,6 @@
 package com.msht.mshtLpg.mshtLpgMaster.util;
 
+import com.msht.mshtLpg.mshtLpgMaster.Bean.MyBottleListBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 
@@ -20,7 +21,15 @@ public class BottleCaculteUtil {
         }
         return num;
     }
-
+    public static int getMyBottleNum(List<MyBottleListBean.ListBean> list, int weight) {
+        int num = 0;
+        for (MyBottleListBean.ListBean bean : list) {
+            if (Integer.valueOf(bean.getData().getBottleWeight()) == weight) {
+                num++;
+            }
+        }
+        return num;
+    }
     public static boolean isContainBottle(List<VerifyBottleBean> list, String bottleCode) {
         for (VerifyBottleBean bean : list) {
             if (bean.getData().getBottleCode().equals(bottleCode)) {
@@ -43,10 +52,28 @@ public class BottleCaculteUtil {
 
         for (OrderDetailBean.DataBean.DepositListBean depositListBean : list) {
             if (depositListBean.getBottleWeight() == weight) {
-                deposite += depositListBean.getReFiveAmount();
+                if(weight == 5){
+                    deposite += depositListBean.getReFiveAmount();
+                }else if(weight == 15){
+                    deposite += depositListBean.getReFifteenAmount();
+                }else if(weight == 50){
+                    deposite += depositListBean.getReFiftyAmount();
+                }
             }
         }
 
         return deposite + "";
+    }
+
+    public static String getBottleIds(List<VerifyBottleBean> list){
+        StringBuilder sf = new StringBuilder();
+        for(int i = 0; i< list.size(); i++){
+            if(i==0){
+                sf.append(list.get(i).getData().getId());
+            }else {
+                sf.append(",").append(list.get(i).getData().getId());
+            }
+        }
+        return sf.toString();
     }
 }

@@ -11,6 +11,7 @@ import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import com.msht.mshtLpg.mshtLpgMaster.activity.LoginActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.WebActivity;
@@ -84,5 +85,10 @@ public class AppUtil {
         mContext.startActivity(go);
     }
 
+    public static void hideInput(Context context, EditText et){
+        InputMethodManager inputMethodManager =
+                (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(et.getWindowToken(), 0);
 
+    }
 }

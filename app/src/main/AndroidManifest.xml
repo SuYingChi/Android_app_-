@@ -66,6 +66,13 @@
         <activity android:name=".activity.BackBottleOrdersDetailActivity" />
         <activity android:name=".activity.BackBottleOrdersCancleActivity" />
         <activity android:name=".activity.BackBottleDetailPostActivity" />
+        <activity android:name=".activity.TransferStorageListActivity" />
+        <activity android:name=".activity.ScanTransferStorageActivity" />
+        <activity android:name=".activity.TransferStorageFinishActivty" />
+        <activity android:name=".activity.MyBottleActivity" />
+        <activity android:name=".activity.RegisterEmployerActivity" />
+        <activity android:name=".activity.MonthCountActivity" />
+        <activity android:name=".activity.MyIncomeActivity" />
         <activity android:name=".activity.SendCustomerOrderActivity" />
         <activity android:name=".activity.DeliveryAddressActivity" />
         <activity android:name=".activity.SelectAddressActivity" />

@@ -5,7 +5,7 @@
     android:background="@color/line_color_lib"
     android:orientation="vertical">
 
-    <view
+    <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/rcl_margin" />
 
@@ -65,11 +65,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:id="@+id/item_rcl_transfer_to_storage_orders_five_kg_number"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="x1"
+                android:text="0"
+                android:gravity="center"
+                android:inputType="number"
+                android:background="@drawable/edit_text_background"
                 android:textColor="@color/lpg_text_light_color"
                 android:textSize="@dimen/text_16" />
         </LinearLayout>
@@ -96,12 +99,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:id="@+id/item_rcl_transfer_to_storage_orders_fifteen_kg_number"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-
-                android:text="x1"
+                android:text="0"
+                android:background="@drawable/edit_text_background"
+                android:gravity="center"
+                android:inputType="number"
                 android:textColor="@color/lpg_text_light_color" />
         </LinearLayout>
 
@@ -127,12 +132,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:id="@+id/item_rcl_transfer_to_storage_orders_fifty_kg_number"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="x1"
                 android:textColor="@color/lpg_text_light_color"
+                android:text="0"
+                android:gravity="center"
+                android:background="@drawable/edit_text_background"
                 android:textSize="@dimen/text_16" />
         </LinearLayout>
 
@@ -160,7 +167,7 @@
                 android:id="@+id/item_rcl_transfer_to_storage_orders_total_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="x5"
+                android:text="0"
                 android:textColor="@color/lpg_text_light_color"
                 android:textSize="@dimen/text_16" />
         </LinearLayout>
@@ -184,6 +191,7 @@
                 android:src="@drawable/scan_code" />
 
             <TextView
+                android:id="@+id/tv_scan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_Modules"

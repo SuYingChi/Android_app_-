@@ -2,7 +2,6 @@ package com.msht.mshtLpg.mshtLpgMaster.adapter;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -30,9 +28,6 @@ public class ScanBottleQRCodeRclAdapter extends RecyclerView.Adapter<ScanBottleQ
         this.inflater = LayoutInflater.from(activity);
     }
 
-
-
-
     @NonNull
     @Override
     public ScanHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,7 +37,6 @@ public class ScanBottleQRCodeRclAdapter extends RecyclerView.Adapter<ScanBottleQ
     @Override
     public void onBindViewHolder(@NonNull ScanHolder holder, int position) {
         VerifyBottleBean bean = list.get(position);
-            Log.d("suyingchi", "onBindViewHolder: "+bean.getData().getBottleWeight()+""+bean.getData().getBottleNum());
             holder.tvBottleModel.setText(bean.getData().getBottleWeight()+"");
             holder.tvBottleNumber.setText(bean.getData().getBottleCode());
             holder.tvBottleStatus.setText(bean.getData().getIsHeavy()==0?"重瓶":"空瓶");

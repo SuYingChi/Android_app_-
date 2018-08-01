@@ -399,7 +399,6 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ButterKnife.bind(this, inflate);
         }
 
-
      }
 
      public interface OnOrdersFragmentRclClicklistener{

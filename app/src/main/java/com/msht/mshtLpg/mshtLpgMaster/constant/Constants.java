@@ -8,6 +8,8 @@ public class Constants {
  //阿里云地址 http://120.76.193.86:7799
     //public static final String BASE_URL = BuildConfig.DEBUG ? "http://192.168.0.104:7799/msht/": "";
     // public static final String BASE_URL = BuildConfig.DEBUG ? "http://192.168.0.108:7799/msht/": "";
+    //public static final String BASE_URL = BuildConfig.DEBUG ? "http://192.168.0.108:7799/msht/": "";
+    //public static final String BASE_URL = BuildConfig.DEBUG ? "http://172.20.10.9:7799/msht/": "";
     //18599988888
     public static final String BASE_URL = BuildConfig.DEBUG ? "http://120.76.193.86:7799/msht/": "";
 
@@ -44,8 +46,25 @@ public class Constants {
     public static final String GET_BOOTLEINFO_BY_ID=BASE_URL+"lpgBottle/getBottleInfo";
     //钢瓶注册 修改钢瓶信息
     public static final String UPDATE_BOTTLE_INFO=BASE_URL+"lpgBottle/updateBottleProperties";
-
+   //登出
     public static final String  LOGOUT = BASE_URL+"lpgEmployee/logout";
+   //修改调拨单数量
+    public static final String UPDATE_TRANSFER = BASE_URL+"lpgEmpBottle/updateTransfer";
+   //调拨单列表
+    public static final String GET_TAANSFER_LIST = BASE_URL+"lpgEmpBottle/getTransferByCondition";
+   //调拨入库
+    public static final String POST_INPUT_REPERTORY =BASE_URL+"lpgEmpBottle/inputRepertory";
+   //调拨出库
+    public static final String POST_OUT_REPERTORY =BASE_URL+"lpgEmpBottle/outputRepertory";
+   //我的钢瓶
+    public static final String MY_BOTTLE_LIST = "";
+   //用户注册
+    public static final String REGISTER_EMPLOYER = "";
+    //我的收入
+    public static final String MY_INCOME = "";
+    //月份统计列表
+    public static final String MONTH_COUNT = "";
+
 
 
     public static final String URL_PARAMS_LOGIN_TOKEN = "loginToken";
@@ -102,6 +121,5 @@ public class Constants {
     public static final String PAY_AMOUNT = "payAmount";
     public static final String PAY_TYPE = "payType";
     public static final String ORDER_TYPE = "orderType";
-
 
 }

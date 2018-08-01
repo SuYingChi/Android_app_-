@@ -43,12 +43,4 @@
         android:background="@color/msb_color"
         android:padding="@dimen/margin_Modules"
         />
-    <TextView
-        android:id="@+id/re_pay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="重新交付"
-        android:background="@color/warning_red"
-        android:padding="@dimen/margin_Modules"
-        />
 </LinearLayout>

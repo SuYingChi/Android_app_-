@@ -60,6 +60,8 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
             PopUtil.toastInBottom(s);
             switch (s) {
                 case "未登录":
+                case "登出返回结果为空":
+                    AppUtil.logout();
                     Intent goLogin = new Intent(this.getActivity(), LoginActivity.class);
                     startActivity(goLogin);
                     break;

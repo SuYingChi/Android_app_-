@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
-    >
+    android:orientation="vertical">
 
     <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
         android:id="@+id/my_setting_fragment_layout_topbar"
@@ -13,62 +12,73 @@
         android:layout_height="@dimen/top_bar_height_normol"
         android:background="@color/msb_color"
         android:padding="@dimen/margin_Modules"
-        app:title_text="配送信息" />
+        app:title_text="调拨入库" />
 
-    <com.flyco.tablayout.SlidingTabLayout
-        android:id="@+id/transfer_to_storage_tablayout"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout_home_orders_fragment"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_bar_height_normol" />
+        android:layout_height="50dp"
+        android:background="@color/white"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        />
 
-    <RelativeLayout
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/line_color_lib">
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_Modules"
+        app:srlEnableHeaderTranslationContent="true"
+        app:srlEnableOverScrollBounce="false">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcl_transfer_to_storage"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/layout_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/top_bar_height_normol"
-        android:layout_gravity="bottom"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:background="@color/line_color_lib">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="当前共租用5个钢瓶，合计：" />
-
-        <TextView
-            android:id="@+id/transfer_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="250.00"
-            android:textColor="@color/warning_red"
-            android:textSize="@dimen/text_16" />
-
-        <TextView
-            android:id="@+id/apply_transfer_to_storage"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:background="@color/msb_color"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcl_transfer_to_storage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" />
+        </RelativeLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    <!--    <LinearLayout
+            android:id="@+id/layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/top_bar_height_normol"
+            android:layout_gravity="bottom"
             android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:text="申请退还"
-            android:textColor="@color/white" />
-    </LinearLayout>
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当前共租用5个钢瓶，合计：" />
+
+            <TextView
+                android:id="@+id/transfer_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="250.00"
+                android:textColor="@color/warning_red"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/apply_transfer_to_storage"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:background="@color/msb_color"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="申请退还"
+                android:textColor="@color/white" />
+        </LinearLayout>-->
 
 </LinearLayout>
