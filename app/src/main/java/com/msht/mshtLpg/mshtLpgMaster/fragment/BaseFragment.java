@@ -6,27 +6,25 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.Toast;
 
-import com.githang.statusbar.StatusBarCompat;
 import com.google.zxing.Result;
 import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.LogoutEvent;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.activity.LoginActivity;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
+import com.msht.mshtLpg.mshtLpgMaster.customView.LoadingDialog;
 import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IBaseView;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
-public abstract class BaseFragment extends Fragment implements IBaseView{
+public abstract class BaseFragment extends Fragment implements IBaseView {
 
     private ImmersionBar mImmersionBar;
+    protected LoadingDialog centerLoadingDialog;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -37,20 +35,37 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
 
     @Override
     public void showLoading() {
-        PopUtil.showCenterLodaingDialog(this.getContext());
+        showCenterLodaingDialog();
 
     }
 
     @Override
     public void dismissLoading() {
-      PopUtil.hideCenterLoadingDialog(this.getContext());
+        hideCenterLoadingDialog();
     }
+
     protected void initStateBar() {
        /* mImmersionBar = ImmersionBar.with(this);
         //ImmersionBar.with(this).statusBarColor(R.color.msb_color).statusBarDarkFont(true, 0.2f).fitsSystemWindows(true).init();
         mImmersionBar.statusBarColor(R.color.msb_color).transparentNavigationBar().init();*/
 
     }
+
+    protected void showCenterLodaingDialog() {
+        if (!this.getActivity().isFinishing() && centerLoadingDialog == null) {
+            centerLoadingDialog = new LoadingDialog(this.getContext());
+        } else if (!this.getActivity().isFinishing() && !centerLoadingDialog.isShowing()) {
+            centerLoadingDialog.show();
+        }
+    }
+
+
+    protected void hideCenterLoadingDialog() {
+        if (centerLoadingDialog != null && centerLoadingDialog.isShowing() && this.getContext() != null) {
+            centerLoadingDialog.dismiss();
+        }
+    }
+
     @Override
     public void onError(String s) {
         if (!AppUtil.isNetworkAvailable()) {
@@ -81,6 +96,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
     public String getEmployerId() {
         return SharePreferenceUtil.getLoginSpStringValue(Constants.EMPLOYERID);
     }
+
     @Override
     public void onLogout() {
         AppUtil.logout();
@@ -88,9 +104,11 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
     }
 
     @Override
-    public void onNetError(){
+    public void onNetError() {
 
-    };
+    }
+
+    ;
 
     @Override
     public void onDestroy() {
@@ -105,11 +123,19 @@ public abstract class BaseFragment extends Fragment implements IBaseView{
     }
 
     //扫描二维码的frgament 需要重写这三个方法
-    public   void  handleDecode(Result obj, Bitmap barcode){};
+    public void handleDecode(Result obj, Bitmap barcode) {
+    }
 
-    public  void drawViewfinder(){};
+    ;
 
-    public  Handler getHandler(){
+    public void drawViewfinder() {
+    }
+
+    ;
+
+    public Handler getHandler() {
         return null;
-    };
+    }
+
+    ;
 }

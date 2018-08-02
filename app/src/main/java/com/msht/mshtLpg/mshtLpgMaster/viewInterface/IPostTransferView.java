@@ -11,7 +11,7 @@ public interface IPostTransferView extends IBaseView {
 
     String carNum();
 
-    String getTransferToStoragerType();
+    String getTransferType();
 
 
 
@@ -22,4 +22,8 @@ public interface IPostTransferView extends IBaseView {
     void onPostTransfersuccess(PostTransferBean bean);
 
     String getUrl();
+
+    String getTransferId();
+
+    String getStationId();
 }

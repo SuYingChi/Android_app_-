@@ -91,9 +91,9 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
         Bundle bundles = getArguments();
         if (bundles != null) {
             orderId = bundles.getString(Constants.ORDER_ID);
-            fiveCount = bundles.getString(Constants.ORDER_ID);
-            fifteenCount = bundles.getString(Constants.ORDER_ID);
-            fiftyCount = bundles.getString(Constants.ORDER_ID);
+            fiveCount = bundles.getString(Constants.ORDER_FIVE_NUM);
+            fifteenCount = bundles.getString(Constants.ORDER_FIFTEEN_NUM);
+            fiftyCount = bundles.getString(Constants.ORDER_FIFTY_NUM);
             transferType = bundles.getString("TransferType");
             iScanbottleCodePresenter = new IScanbottleCodePresenter(this);
             iPostTransferPresenter = new IPostTransferPresenter(this);
@@ -259,6 +259,16 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
     }
 
     @Override
+    public String getTransferId() {
+        return orderId;
+    }
+
+    @Override
+    public String getStationId() {
+        return "1";
+    }
+
+    @Override
     public String getFiveCount() {
 
         return fiveCount;
@@ -282,8 +292,8 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
     }
 
     @Override
-    public String getTransferToStoragerType() {
-        return 1 + "";
+    public String getTransferType() {
+        return 1+"";
     }
 
 
@@ -301,7 +311,11 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
 
     @Override
     public void onPostTransfersuccess(PostTransferBean bean) {
-      PopUtil.toastInBottom("调拨单已完成");
+        if(TextUtils.equals(transferType,"0")){
+            PopUtil.toastInBottom("调拨单出库单已完成");
+        }else if(TextUtils.equals(transferType,"1")){
+            PopUtil.toastInBottom("调拨单入库单已完成");
+        }
         getActivity().finish();
     }
 

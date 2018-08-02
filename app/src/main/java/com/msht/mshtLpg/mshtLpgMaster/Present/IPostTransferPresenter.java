@@ -4,7 +4,6 @@ import android.text.TextUtils;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.PostTransferBean;
-import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.callback.DataStringCallback;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
@@ -23,9 +22,11 @@ public class IPostTransferPresenter {
                 addParams("fifteenCount",iPostTransferView.getFifteenCount())
                 .addParams("fifthCount",iPostTransferView.getFiftyCount())
                 .addParams("trackNumber",iPostTransferView.carNum())
-                .addParams("transferType",iPostTransferView.getTransferToStoragerType())
+                .addParams("transferType",iPostTransferView.getTransferType())
                 .addParams("siteId",iPostTransferView.getSiteId())
-                .addParams("bttleIds",iPostTransferView.getBottleIds())
+                .addParams("bottleIds",iPostTransferView.getBottleIds())
+                .addParams("transferId",iPostTransferView.getTransferId())
+                .addParams("stationId",iPostTransferView.getStationId())
                 .addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iPostTransferView.getToken()).build().execute(new DataStringCallback(iPostTransferView) {
             @Override
             public void onResponse(String s, int i) {

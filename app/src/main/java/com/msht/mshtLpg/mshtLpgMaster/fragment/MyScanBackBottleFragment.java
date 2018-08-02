@@ -116,11 +116,6 @@ public class MyScanBackBottleFragment extends BaseFragment implements IBackBottl
         inactivityTimer = new InactivityTimer(this.getActivity());
     }
 
-    @Override
-    public void showLoading() {
-
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

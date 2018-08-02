@@ -103,7 +103,7 @@ public class MySettingFragment extends BaseLazyFragment{
             @Override
             public void onClick(View v) {
                 Intent intent =  new Intent(getActivity(),TransferStorageListActivity.class);
-                intent.putExtra("transferType","0");
+                intent.putExtra("TransferType","0");
                 startActivity(intent);
             }
         });
@@ -111,7 +111,7 @@ public class MySettingFragment extends BaseLazyFragment{
             @Override
             public void onClick(View v) {
                 Intent intent =  new Intent(getActivity(),TransferStorageListActivity.class);
-                intent.putExtra("transferType","1");
+                intent.putExtra("TransferType","1");
                 startActivity(intent);
             }
         });

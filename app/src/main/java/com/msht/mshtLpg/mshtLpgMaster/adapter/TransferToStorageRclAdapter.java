@@ -3,6 +3,9 @@ package com.msht.mshtLpg.mshtLpgMaster.adapter;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,14 +43,14 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
         switch (viewType) {
             case 0:
             case 2:
-               View ss =  inflater.inflate(R.layout.item_rcl_transfer_to_storage, parent, false);
+                View ss = inflater.inflate(R.layout.item_rcl_transfer_to_storage, parent, false);
                 return new OrdersHolder(ss);
             case 1:
             case 3:
                 View sss = inflater.inflate(R.layout.item_rcl_transfer_to_storage_finish, parent, false);
                 return new OrdersFinishHolder(sss);
-                default:
-                 return null;
+            default:
+                return null;
         }
 
     }
@@ -61,14 +64,74 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
             int fifty = bean.getFifthCount();
             int orderId = bean.getId();
             ((OrdersHolder) holder).etFive.setText(five + "");
+            ((OrdersHolder) holder).etFive.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if (TextUtils.isEmpty(s.toString())) {
+                        ((OrdersHolder) holder).etFive.setText(0 + "");
+                    }
+                    String total = Integer.valueOf(((OrdersHolder) holder).etFive.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteen.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifty.getText().toString()) + "";
+                    ((OrdersHolder) holder).tvTotal.setText(total);
+                }
+            });
             ((OrdersHolder) holder).etFifteen.setText(fifteen + "");
+            ((OrdersHolder) holder).etFifteen.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if (TextUtils.isEmpty(s.toString())) {
+                        ((OrdersHolder) holder).etFifteen.setText(0 + "");
+                    }
+                    String total = Integer.valueOf(((OrdersHolder) holder).etFive.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteen.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifty.getText().toString()) + "";
+                    ((OrdersHolder) holder).tvTotal.setText(total);
+
+                }
+            });
             ((OrdersHolder) holder).etFifty.setText(fifty + "");
+            ((OrdersHolder) holder).etFifty.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if (TextUtils.isEmpty(s.toString())) {
+                        ((OrdersHolder) holder).etFifty.setText(0 + "");
+                    }
+                    String total = Integer.valueOf(((OrdersHolder) holder).etFive.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteen.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifty.getText().toString()) + "";
+                    ((OrdersHolder) holder).tvTotal.setText(total);
+
+                }
+            });
             ((OrdersHolder) holder).tvOrder.setText(orderId + "");
             ((OrdersHolder) holder).tvTotal.setText(five + fifteen + fifty + "");
             ((OrdersHolder) holder).tvModify.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onClckModifyBtn(position, five, fifteen, fifty, orderId + "");
+                    listener.onClckModifyBtn(position, ((OrdersHolder) holder).etFive.getText().toString(), ((OrdersHolder) holder).etFifteen.getText().toString(), ((OrdersHolder) holder).etFifty.getText().toString(), orderId + "");
                 }
             });
             ((OrdersHolder) holder).tvScan.setOnClickListener(new View.OnClickListener() {
@@ -180,6 +243,6 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
     public interface onTransferToStorageRclAdapterClickListener {
         void onClickScanCodeBtn(int itemPosition, String orderId);
 
-        void onClckModifyBtn(int position, int five, int fifteen, int itemPosition, String orderId);
+        void onClckModifyBtn(int position, String five, String fifteen, String itemPosition, String orderId);
     }
 }

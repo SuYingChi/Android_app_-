@@ -1,6 +1,5 @@
 package com.msht.mshtLpg.mshtLpgMaster.util;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -28,7 +27,7 @@ public class PopUtil {
     private static Toast toast;
     private static Dialog topLoadingDialog;
 
-    public static void showCenterLodaingDialog(Context context) {
+  /*  public static void showCenterLodaingDialog(Context context) {
         if(context!=null&&centerLoadingDialog ==null){
             centerLoadingDialog = new LoadingDialog(context);
         }else if(context!=null&&!centerLoadingDialog.isShowing()){
@@ -42,7 +41,7 @@ public class PopUtil {
            centerLoadingDialog.dismiss();
         }
     }
-
+*/
     public static PopupWindow showPopWindow(Context context, View anchorView, boolean bottom) {
 
         if (TextUtils.isEmpty(SharePreferenceUtil.getInstance().getToken())) {

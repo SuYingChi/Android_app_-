@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.View;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.TransferStorageListBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.UpdateTransferBean;
@@ -15,6 +17,7 @@ import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.TransferToStorageRclAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
+import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.ITransferToStorageView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -54,13 +57,16 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
     private String fifteenCount;
     private String fiftyCount;
     private String transferType;
+    private String fiveTemp;
+    private String fifteenTemp;
+    private String fiftyTemp;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transfer_to_storage);
         unBinder = ButterKnife.bind(this);
-        transferType = getIntent().getStringExtra("transferType");
+        transferType = getIntent().getStringExtra("TransferType");
         iTransferToStoragePresenter = new ITransferToStorageListPresenter(this);
         refreshLayout.setEnableAutoLoadMore(true);
         refreshLayout.setOnRefreshListener(this);
@@ -107,6 +113,18 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
         adapter = new TransferToStorageRclAdapter(this,this,list,Integer.valueOf(transferType));
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
+
+        if(TextUtils.equals(transferType,"1")){
+            topBarView.setTitle("重瓶入库");
+        }else if(TextUtils.equals(transferType,"0")){
+            topBarView.setTitle("空瓶出库");
+        }
+        topBarView.setLeftBtnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
@@ -164,22 +182,26 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
 
     @Override
     public String getFiveCount() {
-        return fiveCount;
+        return fiveTemp;
     }
 
     @Override
     public String getFifteenCount() {
-        return fifteenCount;
+        return fifteenTemp;
     }
 
     @Override
     public String getFifthCount() {
-        return fiftyCount;
+        return fiftyTemp;
     }
 
     @Override
     public void onUpdateTransferSuccess(UpdateTransferBean updateTransferBean) {
+        PopUtil.toastInBottom("修改调拨单钢瓶数量成功");
         pageNum = 1;
+        fiveCount = fiveTemp;
+        fifteenCount = fifteenTemp;
+        fiftyCount = fiftyTemp;
         iTransferToStoragePresenter.getTransferOrdersList();
     }
 
@@ -205,8 +227,8 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
     public void onClickScanCodeBtn(int itemPosition, String orderId) {
         id = list.get(itemPosition).getId()+"";
         fiveCount = list.get(itemPosition).getFiveCount()+"";
-        fifteenCount = list.get(itemPosition).getFiveCount()+"";
-        fiftyCount = list.get(itemPosition).getFiveCount()+"";
+        fifteenCount = list.get(itemPosition).getFifteenCount()+"";
+        fiftyCount = list.get(itemPosition).getFifthCount()+"";
         Intent intent = new Intent(this,ScanTransferStorageActivity.class);
         intent.putExtra(Constants.ORDER_ID,id);
         intent.putExtra(Constants.ORDER_FIVE_NUM,fiveCount);
@@ -217,11 +239,11 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
     }
 
     @Override
-    public void onClckModifyBtn(int position, int five, int fifteen, int itemPosition, String orderId) {
-        id = list.get(itemPosition).getId()+"";
-        fiveCount = list.get(itemPosition).getFiveCount()+"";
-        fifteenCount = list.get(itemPosition).getFiveCount()+"";
-        fiftyCount = list.get(itemPosition).getFiveCount()+"";
+    public void onClckModifyBtn(int position, String five, String fifteen, String fifty, String orderId) {
+        id = orderId;
+        fiveTemp = five;
+        fifteenTemp = fifteen;
+        fiftyTemp = fifty;
         iTransferToStoragePresenter.updateTransfer();
     }
 

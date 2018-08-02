@@ -133,10 +133,6 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
         inactivityTimer = new InactivityTimer(this.getActivity());
     }
 
-    @Override
-    public void showLoading() {
-
-    }
 
     @Nullable
     @Override

@@ -8,10 +8,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
-import com.githang.statusbar.StatusBarCompat;
 import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
+import com.msht.mshtLpg.mshtLpgMaster.customView.LoadingDialog;
 import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.LogoutEvent;
@@ -23,8 +23,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 
 /**
@@ -34,6 +32,7 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
 
     private BGASwipeBackHelper mSwipeBackHelper;
     private ImmersionBar mImmersionBar;
+    protected LoadingDialog centerLoadingDialog;
 
 
     @Override
@@ -102,14 +101,27 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
 
     @Override
     public void showLoading() {
-        PopUtil.showCenterLodaingDialog(this);
+        showCenterLodaingDialog();
     }
 
     @Override
     public void dismissLoading() {
-        PopUtil.hideCenterLoadingDialog(this);
+        hideCenterLoadingDialog();
+    }
+    protected void showCenterLodaingDialog() {
+        if (!isFinishing() && centerLoadingDialog == null) {
+            centerLoadingDialog = new LoadingDialog(this);
+        } else if ( !isFinishing() && !centerLoadingDialog.isShowing()) {
+            centerLoadingDialog.show();
+        }
     }
 
+
+    protected void hideCenterLoadingDialog() {
+        if (centerLoadingDialog != null && centerLoadingDialog.isShowing() && !isFinishing()) {
+            centerLoadingDialog.dismiss();
+        }
+    }
     @Override
     public void onError(String s) {
         if (!AppUtil.isNetworkAvailable()) {

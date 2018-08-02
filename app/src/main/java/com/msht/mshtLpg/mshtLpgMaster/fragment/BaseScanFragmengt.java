@@ -84,10 +84,6 @@ public class BaseScanFragmengt extends BaseFragment implements SurfaceHolder.Cal
 
     }
 
-    @Override
-    public void showLoading() {
-
-    }
     protected void initBeepSound() {
         if (playBeep && mediaPlayer == null) {
             getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);

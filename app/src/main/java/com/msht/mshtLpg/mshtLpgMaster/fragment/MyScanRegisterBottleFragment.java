@@ -115,10 +115,6 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
         spinnerList.add("50kg        ");
     }
 
-    @Override
-    public void showLoading() {
-
-    }
 
     @Nullable
     @Override

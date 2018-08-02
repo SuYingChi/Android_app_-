@@ -131,11 +131,6 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
         }
         return stringBuilder.toString();
     }
-    //遗留bug 后续需要解决
-    @Override
-    public void showLoading() {
-
-    }
 
     @Nullable
     @Override
