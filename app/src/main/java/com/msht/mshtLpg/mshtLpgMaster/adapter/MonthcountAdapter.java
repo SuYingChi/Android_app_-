@@ -18,11 +18,11 @@ import butterknife.ButterKnife;
 
 public class MonthcountAdapter extends RecyclerView.Adapter<MonthcountAdapter.ViewHolder>{
 
-    private  List<MonthCountBean.ListBean> list;
+    private  List<MonthCountBean> list;
     private  Activity activity;
     private  LayoutInflater inflate;
 
-    public MonthcountAdapter(List<MonthCountBean.ListBean> list, Activity activity) {
+    public MonthcountAdapter(List<MonthCountBean> list, Activity activity) {
         this.list = list;
         this.activity = activity;
         inflate = LayoutInflater.from(activity);
@@ -36,9 +36,9 @@ public class MonthcountAdapter extends RecyclerView.Adapter<MonthcountAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        MonthCountBean.ListBean bean = list.get(position);
+        MonthCountBean bean = list.get(position);
         holder.tvMonth.setText(bean.getMonth());
-        holder.tvIncome.setText(bean.getIncome());
+        holder.tvIncome.setText(bean.getDeliveryFee()+"");
 
     }
 

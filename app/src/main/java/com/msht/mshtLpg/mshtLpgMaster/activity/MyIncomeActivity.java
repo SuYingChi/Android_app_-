@@ -14,6 +14,7 @@ import com.msht.mshtLpg.mshtLpgMaster.Present.IMyIncomePresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.MyIncomeAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
+import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IMyIncomeView;
 
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class MyIncomeActivity extends BaseActivity implements IMyIncomeView {
     private IMyIncomePresenter iMyIncomePresenter;
     private List<MyIncomeBean.DataBean.ListBean> dataList = new ArrayList<MyIncomeBean.DataBean.ListBean>();
     private MyIncomeAdapter myAdapter;
+    private MyIncomeBean myIncomeBean;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,12 +58,6 @@ public class MyIncomeActivity extends BaseActivity implements IMyIncomeView {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(myAdapter);
-        tvMonthCount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               startActivity(new Intent(MyIncomeActivity.this, MonthCountActivity.class));
-            }
-        });
         iMyIncomePresenter = new IMyIncomePresenter(this);
         iMyIncomePresenter.getMyIncome();
     }
@@ -77,5 +73,15 @@ public class MyIncomeActivity extends BaseActivity implements IMyIncomeView {
         tvTotalIncome.setText(myIncomeBean.getData().getTotalIncome()+"");
         dataList.addAll(myIncomeBean.getData().getList());
         myAdapter.notifyDataSetChanged();
+        tvMonthCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyIncomeActivity.this, MonthCountActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("MyIncomeBean",myIncomeBean);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
 }
