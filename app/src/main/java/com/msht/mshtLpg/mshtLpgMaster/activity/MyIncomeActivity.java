@@ -37,7 +37,7 @@ public class MyIncomeActivity extends BaseActivity implements IMyIncomeView {
 
     private Unbinder unbinder;
     private IMyIncomePresenter iMyIncomePresenter;
-    private List<MyIncomeBean.ListBean> dataList = new ArrayList<MyIncomeBean.ListBean>();
+    private List<MyIncomeBean.DataBean.ListBean> dataList = new ArrayList<MyIncomeBean.DataBean.ListBean>();
     private MyIncomeAdapter myAdapter;
 
     @Override
@@ -74,8 +74,8 @@ public class MyIncomeActivity extends BaseActivity implements IMyIncomeView {
 
     @Override
     public void onGetMyIncomeSuccess(MyIncomeBean myIncomeBean) {
-        tvTotalIncome.setText(myIncomeBean.getTotal());
-        dataList.addAll(myIncomeBean.getListBean());
+        tvTotalIncome.setText(myIncomeBean.getData().getTotalIncome()+"");
+        dataList.addAll(myIncomeBean.getData().getList());
         myAdapter.notifyDataSetChanged();
     }
 }

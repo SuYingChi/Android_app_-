@@ -22,7 +22,7 @@ public class IMyIncomePresenter {
     public void getMyIncome(){
         OkHttpUtils.get().url(Constants.MY_INCOME)
                 .addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iMyIncomeView.getToken()).
-                build().execute(new DataStringCallback(iMyIncomeView) {
+            build().execute(new DataStringCallback(iMyIncomeView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景

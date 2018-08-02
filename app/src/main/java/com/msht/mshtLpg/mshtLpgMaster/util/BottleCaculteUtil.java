@@ -21,10 +21,10 @@ public class BottleCaculteUtil {
         }
         return num;
     }
-    public static int getMyBottleNum(List<MyBottleListBean.ListBean> list, int weight) {
+    public static int getMyBottleNum(List<MyBottleListBean.DataBean.ListBean> list, int weight) {
         int num = 0;
-        for (MyBottleListBean.ListBean bean : list) {
-            if (Integer.valueOf(bean.getData().getBottleWeight()) == weight) {
+        for (MyBottleListBean.DataBean.ListBean bean : list) {
+            if (Integer.valueOf(bean.getBottleWeight()) == weight) {
                 num++;
             }
         }

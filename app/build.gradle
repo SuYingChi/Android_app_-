@@ -14,8 +14,12 @@ android {
     Properties properties = new Properties()
     InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream()
     properties.load(inputStream)
-    def signFile = properties.getProperty('key.file')
+    def signFile = properties.getProperty('signKey.file')
+    def keyFile  =properties.getProperty('key.file')
     signingConfigs {
+        debug{
+            storeFile file(keyFile)
+        }
         release {
             keyAlias 'msht'
             keyPassword 'mshtmsht'
@@ -23,14 +27,13 @@ android {
             storePassword 'mshtmsht'
         }
     }
-    compileOptions{
+    compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-
     buildTypes {
         debug {
+           // signingConfig signingConfigs.debug
             signingConfig signingConfigs.release
         }
         release {
@@ -76,6 +79,7 @@ dependencies {
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
-   /* implementation files('libs/core_3.0.1.jar')*/
+    /* implementation files('libs/core_3.0.1.jar')*/
     implementation 'com.githang:status-bar-compat:0.3'
+    implementation files('libs/AMap2DMap_5.2.0_AMapSearch_6.1.0_AMapLocation_4.1.0_20180619.jar')
 }

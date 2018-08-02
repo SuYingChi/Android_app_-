@@ -22,9 +22,9 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.ViewHo
 
     private  LayoutInflater inflate;
     private  Activity activity;
-    private  List<MyIncomeBean.ListBean> list;
+    private  List<MyIncomeBean.DataBean.ListBean> list;
 
-    public MyIncomeAdapter(List<MyIncomeBean.ListBean> list, Activity activity) {
+    public MyIncomeAdapter(List<MyIncomeBean.DataBean.ListBean> list, Activity activity) {
         this.list = list;
         this.activity = activity;
         inflate = LayoutInflater.from(activity);
@@ -39,10 +39,10 @@ public class MyIncomeAdapter extends RecyclerView.Adapter<MyIncomeAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyIncomeAdapter.ViewHolder holder, int position) {
-        MyIncomeBean.ListBean bean = list.get(position);
-        holder.tvOrderNum.setText(bean.getOrderId());
-        holder.tvOrderTime.setText(bean.getTime());
-        holder.tvIncome.setText(bean.getIncome());
+        MyIncomeBean.DataBean.ListBean bean = list.get(position);
+        holder.tvOrderNum.setText(bean.getOrderId()+"");
+        holder.tvOrderTime.setText(bean.getFinishTime());
+        holder.tvIncome.setText(bean.getDeliveryFee()+"");
     }
 
     @Override

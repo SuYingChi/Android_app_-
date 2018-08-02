@@ -74,7 +74,7 @@
                 android:id="@+id/iv_my_steel_bottle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/steel_bottle" />
+                android:src="@drawable/my_steel_bottle" />
 
             <TextView
                 android:id="@+id/tv_my_steel_bottle"
@@ -98,7 +98,7 @@
                 android:id="@+id/iv_mobile_open_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/steel_bottle"
+                android:src="@drawable/mobility_open_account"
 
                 />
 
@@ -125,7 +125,7 @@
                 android:id="@+id/iv_out_warehouse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/steel_bottle"
+                android:src="@drawable/put_out_storage"
 
                 />
 
@@ -152,7 +152,7 @@
                 android:id="@+id/iv_in_storage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/steel_bottle"
+                android:src="@drawable/put_in_storage"
 
                 />
 
@@ -189,7 +189,7 @@
                 android:id="@+id/iv_my_setting_register_steel_bottle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/steel_bottle" />
+                android:src="@drawable/register" />
 
             <TextView
                 android:id="@+id/tv_my_setting_register_steel_bottle"
@@ -213,7 +213,7 @@
                 android:id="@+id/iv_my_setting_check_steel_bottle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/steel_bottle"
+                android:src="@drawable/steel_bottle_check"
 
                 />
 
@@ -240,7 +240,7 @@
                 android:id="@+id/iv_my_setting_get_steel_bottle_out_warehouse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/steel_bottle"
+                android:src="@drawable/get_bottle_out_storage"
 
                 />
 
@@ -267,7 +267,7 @@
                 android:id="@+id/iv_my_setting_get_steel_bottle_in_warehouse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/steel_bottle"
+                android:src="@drawable/get_bottle_in_storage"
 
                 />
 

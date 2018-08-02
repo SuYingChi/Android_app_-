@@ -280,4 +280,5 @@
         <item name="android:gravity">center</item>
         <item name="android:drawablePadding">@dimen/margin_Modules</item>
     </style>
+
 </resources>

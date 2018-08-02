@@ -199,13 +199,11 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
     public void onEvent(LogoutEvent messageEvent) {
         Intent goLogin = new Intent(this, LoginActivity.class);
         startActivity(goLogin);
-        finish();
     }
 
     @Override
     public void onLogout() {
         AppUtil.logout();
-        //接收到退出登录消息后做相应操作并跳转到登录页
         EventBus.getDefault().post(new LogoutEvent());
     }
 

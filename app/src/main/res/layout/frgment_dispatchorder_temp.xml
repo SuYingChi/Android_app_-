@@ -1,10 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<TextView
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/bg_color"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="下單fragment"
-    />
-</android.support.constraint.ConstraintLayout>
+    android:layout_height="match_parent">
+    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
+        android:id="@+id/scan_delive_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height_normol"
+        android:background="@color/msb_color"
+        android:padding="@dimen/margin_Modules"
+        app:title_text="@string/place_order_text" />
+    <ScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/bg_color">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/bg_color">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:minHeight="45dp"
+                android:background="@color/white">
+                <TextView
+                    android:id="@+id/id_text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/textcolor"
+                    android:textSize="16sp"
+                    android:text="@string/select_buy_bottle"/>
+            </RelativeLayout>
+            <include layout="@layout/layout_lpg_steel_bottle_price_type"/>
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_weight="0.6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:minHeight="45dp"
+            android:background="@color/white">
+            <TextView
+                android:id="@+id/id_total_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
+                android:textColor="@color/msb_color"
+                android:textSize="16sp"
+                android:text="@string/default_value0"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/id_total_amount"
+                android:layout_toStartOf="@+id/id_total_amount"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5sp"
+                android:layout_marginEnd="5sp"
+                android:textSize="16sp"
+                android:textColor="@color/textcolor"
+                android:text="@string/total_count"/>
+        </RelativeLayout>
+        <Button
+            android:id="@+id/id_btn_next"
+            android:layout_weight="0.4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="45dp"
+            android:gravity="center"
+            android:background="@color/msb_color"
+            android:textColor="@color/white"
+            android:text="@string/next_step" />
+    </LinearLayout>
+</LinearLayout>

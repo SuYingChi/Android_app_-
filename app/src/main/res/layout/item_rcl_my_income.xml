@@ -40,4 +40,11 @@
         android:text="+300"
         android:textColor="@color/green"
         android:textSize="@dimen/text_top_title" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rcl_margin"
+        android:background="@color/line_black"
+        android:layout_below="@id/tv_item_rcl_my_income_orders_time"
+        android:layout_marginTop="@dimen/rcl_margin"
+        />
 </RelativeLayout>

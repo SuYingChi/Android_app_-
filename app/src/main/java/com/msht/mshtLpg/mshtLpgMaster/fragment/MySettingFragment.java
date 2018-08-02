@@ -28,7 +28,7 @@ import butterknife.BindView;
 
 public class MySettingFragment extends BaseLazyFragment{
     @BindView(R.id.my_setting_username)
-        TextView tvName;
+    TextView tvName;
     @BindView(R.id.my_setting_user_location)
     TextView tvSite;
     @BindView(R.id.iv_my_setting_get_steel_bottle_out_warehouse)
@@ -141,8 +141,8 @@ public class MySettingFragment extends BaseLazyFragment{
 
     @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
     public void onMessageEvent(LoginEventBean event) {
-         name = event.getUserLoginBean().getData().getEmployeeName();
-         siteName = event.getUserLoginBean().getData().getSiteName();
+        name = event.getUserLoginBean().getData().getEmployeeName();
+        siteName = event.getUserLoginBean().getData().getSiteName();
         tvName.setText(name);
         tvSite.setText(siteName);
     }

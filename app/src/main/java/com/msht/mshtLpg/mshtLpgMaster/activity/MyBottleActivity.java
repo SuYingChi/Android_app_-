@@ -38,7 +38,7 @@ public class MyBottleActivity extends BaseActivity implements IMyBottleView {
     TextView tvFifty;
     private Unbinder unbinder;
     private IMyBottlePresenter iMyBottlePresenter;
-    private List<MyBottleListBean.ListBean> dataList=new ArrayList<MyBottleListBean.ListBean>();
+    private List<MyBottleListBean.DataBean.ListBean> dataList=new ArrayList<MyBottleListBean.DataBean.ListBean>();
     private MyBottleRclAdapter myAdapter;
     private int fiveCount;
     private int fifteenCount;
@@ -69,7 +69,7 @@ public class MyBottleActivity extends BaseActivity implements IMyBottleView {
 
     @Override
     public void onGetMyBottleListSuccess(MyBottleListBean myBottleListBean) {
-       dataList.addAll(myBottleListBean.getListBean());
+       dataList.addAll(myBottleListBean.getData().getList());
        myAdapter.notifyDataSetChanged();
        fiveCount  = BottleCaculteUtil.getMyBottleNum(dataList,5);
        fifteenCount = BottleCaculteUtil.getMyBottleNum(dataList,15);

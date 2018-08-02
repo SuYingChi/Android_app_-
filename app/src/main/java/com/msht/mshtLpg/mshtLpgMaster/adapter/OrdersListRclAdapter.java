@@ -31,9 +31,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
         this.inflater = LayoutInflater.from(activity);
         this.activity = activity;
         this.onOrderListRclClicklistener = onOrderListRclClicklistener;
-
     }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

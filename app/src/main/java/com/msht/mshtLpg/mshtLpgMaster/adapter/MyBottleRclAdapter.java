@@ -18,10 +18,10 @@ import butterknife.ButterKnife;
 
 public class MyBottleRclAdapter extends RecyclerView.Adapter<MyBottleRclAdapter.ViewHolder> {
     private  LayoutInflater inflater;
-    private List<MyBottleListBean.ListBean> list;
+    private List<MyBottleListBean.DataBean.ListBean> list;
     private  Activity activity;
 
-    public MyBottleRclAdapter(List<MyBottleListBean.ListBean> list, Activity activity) {
+    public MyBottleRclAdapter(List<MyBottleListBean.DataBean.ListBean> list, Activity activity) {
         this.list = list;
         this.activity = activity;
         this.inflater = LayoutInflater.from(activity);
@@ -35,10 +35,10 @@ public class MyBottleRclAdapter extends RecyclerView.Adapter<MyBottleRclAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyBottleRclAdapter.ViewHolder holder, int position) {
-        MyBottleListBean.ListBean bean = list.get(position);
-        holder.tvBottleModel.setText(bean.getData().getBottleWeight()+"");
-        holder.tvBottleNumber.setText(bean.getData().getBottleCode());
-        holder.tvBottleStatus.setText(bean.getData().getIsHeavy()==0?"重瓶":"空瓶");
+        MyBottleListBean.DataBean.ListBean bean = list.get(position);
+        holder.tvBottleModel.setText(bean.getBottleWeight()+"");
+        holder.tvBottleNumber.setText(bean.getBottleCode());
+        holder.tvBottleStatus.setText(bean.getIsHeavy()==0?"重瓶":"空瓶");
 
     }
 
