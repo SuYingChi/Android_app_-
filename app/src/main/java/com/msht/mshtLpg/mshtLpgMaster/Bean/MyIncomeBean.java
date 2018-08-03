@@ -39,7 +39,7 @@ public class MyIncomeBean implements Serializable{
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * totalIncome : 21.7
          * list : [{"orderId":204,"finishTime":"2018-08-02 09:42:30","deliveryFee":20.7,"year":"2018","month":"08"},{"orderId":205,"finishTime":"2018-08-02 09:43:03","deliveryFee":1,"year":"2018","month":"08"}]

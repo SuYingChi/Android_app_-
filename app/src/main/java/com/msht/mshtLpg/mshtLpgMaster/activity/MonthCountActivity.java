@@ -75,7 +75,9 @@ public class MonthCountActivity extends BaseActivity  {
                         fee += listBean.getDeliveryFee();
                     }
                 }
-                list.add(new MonthCountBean(fee, i + "", ii + ""));
+                if(fee > 0) {
+                    list.add(new MonthCountBean(fee, i + "", ii + ""));
+                }
             }
         }
         return list;

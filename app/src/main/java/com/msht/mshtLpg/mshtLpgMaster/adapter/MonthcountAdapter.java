@@ -37,7 +37,7 @@ public class MonthcountAdapter extends RecyclerView.Adapter<MonthcountAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MonthCountBean bean = list.get(position);
-        holder.tvMonth.setText(bean.getMonth());
+        holder.tvMonth.setText(bean.getYear()+"年"+bean.getMonth()+"月");
         holder.tvIncome.setText(bean.getDeliveryFee()+"");
 
     }
