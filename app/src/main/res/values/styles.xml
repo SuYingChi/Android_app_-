@@ -117,9 +117,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>    <!-- 状态栏 -->
+        <item name="colorPrimary">@color/msb_color</item>    <!-- 状态栏 -->
         <item name="android:overScrollMode">never</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/msb_color</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
     </style>
