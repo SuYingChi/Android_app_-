@@ -47,7 +47,7 @@ public class MonthCountActivity extends BaseActivity  {
         Bundle bundle = getIntent().getExtras();
         bean = (MyIncomeBean)bundle.getSerializable("MyIncomeBean");
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        int month = Calendar.getInstance().get(Calendar.MONTH);
+        int month = Calendar.getInstance().get(Calendar.MONTH)+1;
         List<MonthCountBean> list = filterListByMonth(bean,year,month);
         dataList.addAll(list);
         MonthcountAdapter myAdapter = new MonthcountAdapter(dataList, this);
