@@ -1,10 +1,14 @@
 package com.msht.mshtLpg.mshtLpgMaster.customView;
 
+import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -24,12 +28,14 @@ import java.util.Map;
  */
 public class DeliverFareDialog extends Dialog {
 
+    private  Context context;
     private  Map<String, String> map;
     private TextView tvDimiss;
 
     public DeliverFareDialog(Context context,Map<String,String> map) {
         super(context,R.style.deliver_fare_dialog);
         this.map = map;
+        this.context = context;
 
     }
 
@@ -80,10 +86,14 @@ public class DeliverFareDialog extends Dialog {
                 }
             }
         });
-        WindowManager.LayoutParams attributes = getWindow().getAttributes();
-        attributes.width = DimenUtil.getScreenWidth();
-        getWindow().setAttributes(attributes);
+        WindowManager.LayoutParams attributes = this.getWindow().getAttributes();
+        attributes.width= DimenUtil.getScreenWidth()-DimenUtil.dip2px(context.getResources().getDimension(R.dimen.margin_horizontal)*2);
+        this.getWindow().setAttributes(attributes);
+        //dialog去除底部北京
+        getWindow().setBackgroundDrawable(new BitmapDrawable());
         setCancelable(true);
         setCanceledOnTouchOutside(true);
     }
+
+
 }

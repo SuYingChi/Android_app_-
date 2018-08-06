@@ -443,6 +443,7 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
                 }
                 else if(deliverFareDialog == null) {
                     deliverFareDialog = new DeliverFareDialog(SendBottleOrdersDetailPostActivity.this,map);
+                    deliverFareDialog.show();
                 }else if(!deliverFareDialog.isShowing()){
                     deliverFareDialog.show();
                 }

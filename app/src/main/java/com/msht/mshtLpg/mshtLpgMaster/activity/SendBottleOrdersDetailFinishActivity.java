@@ -224,6 +224,7 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
                 }
                 else if(deliverFareDialog == null) {
                     deliverFareDialog = new DeliverFareDialog(SendBottleOrdersDetailFinishActivity.this,map);
+                    deliverFareDialog.show();
                 }else if(!deliverFareDialog.isShowing()){
                     deliverFareDialog.show();
                 }
