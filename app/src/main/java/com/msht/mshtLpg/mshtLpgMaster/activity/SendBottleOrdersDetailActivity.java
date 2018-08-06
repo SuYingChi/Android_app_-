@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.msht.mshtLpg.mshtLpgMaster.Bean.DeliveryBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
@@ -19,6 +20,7 @@ import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailView;
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.ISimpleOrderDetailView;
 import com.yanzhenjie.permission.Permission;
 
 import java.util.List;
@@ -28,7 +30,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class SendBottleOrdersDetailActivity extends BaseActivity implements IOrderDetailView, PermissionUtils.PermissionRequestFinishListener {
+public class SendBottleOrdersDetailActivity extends BaseActivity implements ISimpleOrderDetailView, PermissionUtils.PermissionRequestFinishListener {
     @BindView(R.id.return_btn)
     ImageView returnBtn;
     @BindView(R.id.location)
@@ -61,11 +63,7 @@ public class SendBottleOrdersDetailActivity extends BaseActivity implements IOrd
     Button handOverSteelBottle;
     @BindView(R.id.tv_orderid)
     TextView tvOrderId;
-    @BindView(R.id.deliver_fee)
-    TextView deliverFee;
     private String orderId;
-    private IOrderDetailPresenter iOrderDetailPresenter;
-    private OrderDetailBean bean;
     private Unbinder unbinder;
 
     @Override
@@ -75,8 +73,8 @@ public class SendBottleOrdersDetailActivity extends BaseActivity implements IOrd
         unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
-        iOrderDetailPresenter = new IOrderDetailPresenter(this);
-        iOrderDetailPresenter.getOrderDetail();
+        IOrderDetailPresenter iOrderDetailPresenter = new IOrderDetailPresenter(this);
+        iOrderDetailPresenter.getSimpleOrderDetail();
     }
 
     @OnClick({R.id.return_btn, R.id.comman_topbar_call_phone_btn, R.id.hand_over_steel_bottle})
@@ -101,8 +99,7 @@ public class SendBottleOrdersDetailActivity extends BaseActivity implements IOrd
 
     @Override
     public void onGetOrdersDetailSuccess(OrderDetailBean bean) {
-        this.bean = bean;
-        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(bean.getData().getFloor()).append(bean.getData().getRoomNum()).toString());
+        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(bean.getData().getFloor()).append("层").append(bean.getData().getRoomNum()).append("房").toString());
         tvElevator.setText(bean.getData().getIsElevator() == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(bean.getData().getBuyer()).append(bean.getData().getSex() == 1 ? "(先生)" : "(女士)").toString());
         tvTelephone.setText(bean.getData().getMobile());
@@ -110,13 +107,13 @@ public class SendBottleOrdersDetailActivity extends BaseActivity implements IOrd
         tvTime.setText(bean.getData().getAppointmentTime());
         tvComment.setText(bean.getData().getRemarks());
         tvOrderId.setText(bean.getData().getOrderId()+"");
-        fiveFee.setText(bean.getData().getFiveBottleCount() +"");
-        fifteenFee.setText(bean.getData().getFifteenBottleCount() +"");
-        fiftyFee.setText(bean.getData().getFiftyBottleCount() +"");
-        //deliverFee.setText(bean.getData().getFiveBottleCount()*bean.getData().getFiveDeliveryFee()+bean.getData().getFifteenBottleCount()*bean.getData().getFifteenDeliveryFee()+bean.getData().getFiftyBottleCount()*bean.getData().getFiftyDeliveryFee()+"");
-        //totalFee.setText(String.valueOf(Integer.valueOf(fiveFee.getText().toString())+Integer.valueOf(fifteenFee.getText().toString())+Integer.valueOf(fiftyFee.getText().toString())));
-        deliverFee.setText("验瓶后产生运费");
-        totalFee.setText(bean.getData().getRealAmount()+"");
+        int fiveCount = bean.getData().getFiveBottleCount();
+        int fifteenCount = bean.getData().getFifteenBottleCount();
+        int fiftyCount = bean.getData().getFiftyBottleCount();
+        fiveFee.setText(fiveCount+"");
+        fifteenFee.setText(fifteenCount +"");
+        fiftyFee.setText(fiftyCount+"");
+        totalFee.setText(fiveCount+fifteenCount+fiftyCount+"");
         dispatchOrdersTime.setText(bean.getData().getCreateDate());
 
     }
@@ -125,6 +122,7 @@ public class SendBottleOrdersDetailActivity extends BaseActivity implements IOrd
     public String getOrderId() {
         return orderId;
     }
+
 
     @Override
     public void onBackFromSettingPage() {

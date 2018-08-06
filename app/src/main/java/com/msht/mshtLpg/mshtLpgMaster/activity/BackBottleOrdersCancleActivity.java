@@ -17,7 +17,7 @@ import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
-import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailView;
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.ISimpleOrderDetailView;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class BackBottleOrdersCancleActivity extends BaseActivity implements IOrderDetailView,PermissionUtils.PermissionRequestFinishListener{
+public class BackBottleOrdersCancleActivity extends BaseActivity implements ISimpleOrderDetailView,PermissionUtils.PermissionRequestFinishListener{
     @BindView(R.id.return_btn)
     ImageView returnBtn;
     @BindView(R.id.location)
@@ -73,12 +73,12 @@ public class BackBottleOrdersCancleActivity extends BaseActivity implements IOrd
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
         iOrderDetailPresenter = new IOrderDetailPresenter(this);
-        iOrderDetailPresenter.getOrderDetail();
+        iOrderDetailPresenter.getSimpleOrderDetail();
     }
 
     @Override
     public void onGetOrdersDetailSuccess(OrderDetailBean bean) {
-        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(bean.getData().getFloor()).append(bean.getData().getRoomNum()).toString());
+        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(bean.getData().getFloor()).append("层").append(bean.getData().getRoomNum()).append("房").toString());
         tvElevator.setText(bean.getData().getIsElevator() == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(bean.getData().getBuyer()).append(bean.getData().getSex() == 1 ? "(先生)" : "(女士)").toString());
         tvTelephone.setText(bean.getData().getMobile());
@@ -101,6 +101,7 @@ public class BackBottleOrdersCancleActivity extends BaseActivity implements IOrd
     public String getOrderId() {
         return orderId;
     }
+
 
     @Override
     public void onBackFromSettingPage() {

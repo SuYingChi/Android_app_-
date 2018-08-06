@@ -58,9 +58,10 @@ public class Constants {
     public static final String REGISTER_EMPLOYER = "";
     //我的收入
     public static final String MY_INCOME =  BASE_URL+"lpgEmpBottle/myInCome";
-    //月份统计列表
+   //获取一个楼层的3种钢瓶的运费
+    public static final String ALL_DELIVER_FARE = BASE_URL+"lpgDeliveryFee/getAllDeliveryFee";
+    //月份收入统计预留接口
     public static final String MONTH_COUNT = "";
-
 
 
     public static final String URL_PARAMS_LOGIN_TOKEN = "loginToken";

@@ -6,4 +6,5 @@ public interface IDeliveryView extends IBaseView{
     void  onGetDeliverySuccess(DeliveryBean bean);
 
     String getFloors();
+
 }

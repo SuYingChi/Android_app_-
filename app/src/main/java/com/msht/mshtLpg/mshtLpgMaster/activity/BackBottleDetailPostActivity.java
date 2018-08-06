@@ -11,14 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.ComfirmOrdersBean;
-import com.msht.mshtLpg.mshtLpgMaster.Bean.GasAndDepositBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
-import com.msht.mshtLpg.mshtLpgMaster.Present.IGasAndDepositPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPostPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
@@ -27,8 +24,7 @@ import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IBackBottleDetailPostView;
-import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailView;
-import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrdesDespositView;
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.ISimpleOrderDetailView;
 import com.yanzhenjie.permission.Permission;
 
 import java.util.List;
@@ -39,7 +35,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
-public class BackBottleDetailPostActivity extends BaseActivity implements IBackBottleDetailPostView ,IOrderDetailView,PermissionUtils.PermissionRequestFinishListener{
+public class BackBottleDetailPostActivity extends BaseActivity implements IBackBottleDetailPostView ,ISimpleOrderDetailView,PermissionUtils.PermissionRequestFinishListener{
     @BindView(R.id.return_btn)
     ImageView returnBtn;
     @BindView(R.id.location)
@@ -78,9 +74,6 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
     private String orderId;
     private Unbinder unbinder;
     private IOrderDetailPresenter iOrderDetailPresenter;
-    private String emptyFive;
-    private String emptyFifteen;
-    private String emptyFifyt;
     private OrderDetailBean detailBean;
     private String orderFive;
     private String orderFifteen;
@@ -89,10 +82,6 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
     private String isElevator;
     private String isDelivery;
     private IOrderDetailPostPresenter iOrderDetailPostPresenter;
-    private String siteId;
-    private double fiveDeposit;
-    private double fifteenDeposit;
-    private double fiftyDeposit;
     private String fiveDeposite;
     private String fifteenDeposite;
     private String fiftyDeposite;
@@ -107,12 +96,9 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
             orderId = bundle.getString(Constants.ORDER_ID);
             backBottleList = (List<VerifyBottleBean>)bundle.getSerializable(Constants.EMPTY_BOTTLE_LIST);
             //此时订单状态还只是待验瓶
-            emptyFive = BottleCaculteUtil.getBottleNum(backBottleList, 5)+"";
-            emptyFifteen = BottleCaculteUtil.getBottleNum(backBottleList, 15)+"";
-            emptyFifyt = BottleCaculteUtil.getBottleNum(backBottleList, 50)+"";
             iOrderDetailPresenter = new IOrderDetailPresenter(this);
             iOrderDetailPostPresenter= new IOrderDetailPostPresenter(this);
-            iOrderDetailPresenter.getOrderDetail();
+            iOrderDetailPresenter.getSimpleOrderDetail();
         }
 
     }
@@ -156,9 +142,8 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
     public void onGetOrdersDetailSuccess(OrderDetailBean bean) {
         this.detailBean = bean;
         isDelivery = bean.getData().getIsDelivery()+"";
-        siteId = bean.getData().getSiteId()+"";
         floor = bean.getData().getFloor()+"";
-        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(floor).append(bean.getData().getRoomNum()).toString());
+        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(floor).append("层").append(bean.getData().getRoomNum()).append("房").toString());
         isElevator = bean.getData().getIsElevator()+"";
         tvElevator.setText(isElevator.equals(1 + "") ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(bean.getData().getBuyer()).append(bean.getData().getSex() == 1 ? "(先生)" : "(女士)").toString());

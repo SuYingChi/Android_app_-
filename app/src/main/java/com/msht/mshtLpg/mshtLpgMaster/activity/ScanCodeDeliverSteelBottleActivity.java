@@ -20,7 +20,7 @@ import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.LogUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
-import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailView;
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.ISimpleOrderDetailView;
 import com.yanzhenjie.permission.Permission;
 
 import java.io.Serializable;
@@ -29,7 +29,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements MyScanDeliverUserBottleFragment.CaptureActivityListener, PermissionUtils.PermissionRequestFinishListener, IOrderDetailView{
+public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements MyScanDeliverUserBottleFragment.CaptureActivityListener, PermissionUtils.PermissionRequestFinishListener, ISimpleOrderDetailView {
 
 
     private MyScanDeliverUserBottleFragment deliverUserBottleFragment;
@@ -156,7 +156,7 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
 
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
-        new IOrderDetailPresenter(this).getOrderDetail();
+        new IOrderDetailPresenter(this).getSimpleOrderDetail();
     }
 
 
@@ -213,6 +213,7 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
     public String getOrderId() {
         return orderId;
     }
+
 
 
     @Override

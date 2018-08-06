@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.msht.mshtLpg.mshtLpgMaster.Bean.DeliveryBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
@@ -24,7 +25,9 @@ import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailView;
 import com.yanzhenjie.permission.Permission;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -83,14 +86,10 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
     LinearLayout llDiscount;
     @BindView(R.id.ll_deposit_fare)
     LinearLayout llDepositFare;
-    @BindView(R.id.floor)
-    TextView tvFloor;
     @BindView(R.id.receipt)
     TextView tvTotal;
     @BindView(R.id.weixin_pay)
     TextView tvpay;
-    @BindView(R.id.room)
-    TextView tvroom;
     @BindView(R.id.comman_topbar_call_phone_btn)
     LinearLayout callBtn;
     @BindView(R.id.id_weichat_layout)
@@ -109,7 +108,10 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
     private Unbinder unbinder;
     private Context mContext;
     private DeliverFareDialog deliverFareDialog;
-
+    private Map<String,String> map = new HashMap<String,String>();
+    private boolean isGetFourDeliverySuccess = false;
+    private boolean isGetSixDeliverySuccess = false;
+    private boolean isGetFirstDeliverySuccess  =false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -122,6 +124,9 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         orderId = intent.getStringExtra(Constants.ORDER_ID);
         IOrderDetailPresenter iOrderDetailPresenter = new IOrderDetailPresenter(this);
         iOrderDetailPresenter.getOrderDetail();
+        iOrderDetailPresenter.getFirstDelivery();
+        iOrderDetailPresenter.getFourDelivery();
+        iOrderDetailPresenter.getSixDelivery();
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,12 +145,11 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
 
     @Override
     public void onGetOrdersDetailSuccess(OrderDetailBean orderDetailBean) {
-        OrderDetailBean bean = orderDetailBean;
-        tvLocation.setText(orderDetailBean.getData().getAddress());
-        int floor = orderDetailBean.getData().getFloor();
-        tvFloor.setText(floor + "层");
+
+        String floor = orderDetailBean.getData().getFloor() + "";
         String room = orderDetailBean.getData().getRoomNum();
-        tvroom.setText(room + "房");
+        String address = orderDetailBean.getData().getAddress();
+        tvLocation.setText(new StringBuilder().append(address).append(floor).append("层").append(room).append("房").toString());
         int isElevator = orderDetailBean.getData().getIsElevator();
         tvElevator.setText(isElevator == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 1 ? "(先生)" : "(女士)").toString());
@@ -213,7 +217,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         tvDiscount.setText(exchange + "");
         totalfare = totalGas + totalDeposite + totalDeliveryfare - exchange;
         //tvTotal.setText(totalfare+"");
-        tvTotal.setText(bean.getData().getRealAmount()+"");
+        tvTotal.setText(orderDetailBean.getData().getRealAmount()+"");
         layoutWeiChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -230,10 +234,12 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         lldeliver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(deliverFareDialog == null) {
-                    deliverFareDialog = new DeliverFareDialog(SendBottleOrdersDetailPayActivity.this);
+                if(!isGetFirstDeliverySuccess||!isGetFourDeliverySuccess||!isGetSixDeliverySuccess){
+                    PopUtil.toastInBottom("正在获取运费信息，请稍后再试");
                 }
-                if(!deliverFareDialog.isShowing()){
+                else if(deliverFareDialog == null) {
+                    deliverFareDialog = new DeliverFareDialog(SendBottleOrdersDetailPayActivity.this,map);
+                }else if(!deliverFareDialog.isShowing()){
                     deliverFareDialog.show();
                 }
             }
@@ -258,6 +264,40 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
     public String getOrderId() {
         return orderId + "";
     }
+
+    @Override
+    public void onGetFourDeliverySuccess(DeliveryBean bean) {
+        String four5 = bean.getData().getDeliveryFee().getFiveDeliveryFee()+"";
+        String four15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee()+"";
+        String four50 = bean.getData().getDeliveryFee().getFiftyDeliveryFee()+"";
+        map.put("four5",four5);
+        map.put("four15",four15);
+        map.put("four50",four50);
+        isGetFourDeliverySuccess = true;
+    }
+
+    @Override
+    public void onGetSixDeliverySuccess(DeliveryBean bean) {
+        String  six5 = bean.getData().getDeliveryFee().getFiveDeliveryFee()+"";
+        String six15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee()+"";
+        String six50 =bean.getData().getDeliveryFee().getFiftyDeliveryFee()+"";
+        map.put("six5",six5);
+        map.put("six15",six15);
+        map.put("six50",six50);
+        isGetSixDeliverySuccess = true;
+    }
+
+    @Override
+    public void onGetFirstDeliverySuccess(DeliveryBean bean) {
+        String first5 = bean.getData().getDeliveryFee().getFiveDeliveryFee()+"";
+        String first15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee()+"";
+        String first50 =bean.getData().getDeliveryFee().getFiftyDeliveryFee()+"";
+        map.put("first5",first5);
+        map.put("first15",first15);
+        map.put("first50",first50);
+        isGetFirstDeliverySuccess = true;
+    }
+
 
     @Override
     public void onBackFromSettingPage() {

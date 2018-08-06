@@ -19,7 +19,7 @@ import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
-import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailView;
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.ISimpleOrderDetailView;
 import com.yanzhenjie.permission.Permission;
 
 import java.util.List;
@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class BackBottleOrdersDetailActivity extends BaseActivity implements IOrderDetailView, PermissionUtils.PermissionRequestFinishListener {
+public class BaclBottleOrdersDetailActivity extends BaseActivity implements ISimpleOrderDetailView, PermissionUtils.PermissionRequestFinishListener {
     @BindView(R.id.return_btn)
     ImageView returnBtn;
     @BindView(R.id.location)
@@ -63,13 +63,7 @@ public class BackBottleOrdersDetailActivity extends BaseActivity implements IOrd
     @BindView(R.id.tv_orderid)
     TextView tvOrderId;
     private String orderId;
-    private IOrderDetailPresenter iOrderDetailPresenter;
-    private OrderDetailBean bean;
     private Unbinder unbinder;
-    private String retriveId;
-    private String fiveDeposite;
-    private String fifteenDeposite;
-    private String fiftyDeposite;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,8 +72,8 @@ public class BackBottleOrdersDetailActivity extends BaseActivity implements IOrd
         unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
-        iOrderDetailPresenter = new IOrderDetailPresenter(this);
-        iOrderDetailPresenter.getOrderDetail();
+        IOrderDetailPresenter iOrderDetailPresenter = new IOrderDetailPresenter(this);
+        iOrderDetailPresenter.getSimpleOrderDetail();
     }
 
     @OnClick({R.id.return_btn, R.id.comman_topbar_call_phone_btn, R.id.hand_over_steel_bottle})
@@ -104,19 +98,18 @@ public class BackBottleOrdersDetailActivity extends BaseActivity implements IOrd
 
     @Override
     public void onGetOrdersDetailSuccess(OrderDetailBean bean) {
-        this.bean = bean;
-        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(bean.getData().getFloor()).append(bean.getData().getRoomNum()).toString());
+        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(bean.getData().getFloor()).append("层").append(bean.getData().getRoomNum()).append("房").toString());
         tvElevator.setText(bean.getData().getIsElevator() == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(bean.getData().getBuyer()).append(bean.getData().getSex() == 1 ? "(先生)" : "(女士)").toString());
         tvTelephone.setText(bean.getData().getMobile());
         tvDay.setText(bean.getData().getCreateDate());
         tvTime.setText(bean.getData().getAppointmentTime());
         tvComment.setText(bean.getData().getRemarks());
-        retriveId =bean.getData().getOrderId()+"";
+        String retriveId = bean.getData().getOrderId() + "";
         tvOrderId.setText(retriveId);
-        fiveDeposite  = BottleCaculteUtil.getDeposite(bean,5);
-        fifteenDeposite  = BottleCaculteUtil.getDeposite(bean,15);
-        fiftyDeposite  = BottleCaculteUtil.getDeposite(bean,50);
+        String fiveDeposite = BottleCaculteUtil.getDeposite(bean, 5);
+        String fifteenDeposite = BottleCaculteUtil.getDeposite(bean, 15);
+        String fiftyDeposite = BottleCaculteUtil.getDeposite(bean, 50);
         fiveFee.setText(fiveDeposite);
         fifteenFee.setText(fifteenDeposite);
         fiftyFee.setText(fiftyDeposite);
@@ -131,6 +124,7 @@ public class BackBottleOrdersDetailActivity extends BaseActivity implements IOrd
     public String getOrderId() {
         return orderId;
     }
+
 
     @Override
     public void onBackFromSettingPage() {

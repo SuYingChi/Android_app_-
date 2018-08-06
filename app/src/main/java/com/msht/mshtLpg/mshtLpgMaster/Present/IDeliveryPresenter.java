@@ -37,7 +37,7 @@ public class IDeliveryPresenter {
         });
     }
 
-    public void getIsElevatorDelivery() {
+    public void getElevatorDelivery() {
         OkHttpUtils.get().url(Constants.GET_Delivery_FEE).addParams("floors", "1")
                 .build().execute(new DataStringCallback(iDeliveryView) {
             @Override

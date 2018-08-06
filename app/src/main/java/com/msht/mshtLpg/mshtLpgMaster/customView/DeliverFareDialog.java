@@ -9,7 +9,11 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.msht.mshtLpg.mshtLpgMaster.R;
+import com.msht.mshtLpg.mshtLpgMaster.activity.SendBottleOrdersDetailPostActivity;
 import com.msht.mshtLpg.mshtLpgMaster.util.DimenUtil;
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IDeliveryView;
+
+import java.util.Map;
 
 /**
  * Demo class
@@ -20,12 +24,16 @@ import com.msht.mshtLpg.mshtLpgMaster.util.DimenUtil;
  */
 public class DeliverFareDialog extends Dialog {
 
+    private  Map<String, String> map;
     private TextView tvDimiss;
 
-    public DeliverFareDialog(Context context) {
+    public DeliverFareDialog(Context context,Map<String,String> map) {
         super(context,R.style.deliver_fare_dialog);
+        this.map = map;
 
     }
+
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode){
@@ -45,6 +53,25 @@ public class DeliverFareDialog extends Dialog {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.deliver_fee_layout);
         tvDimiss= (TextView)findViewById(R.id.dismiss_dialog);
+        TextView first_five = (TextView) findViewById(R.id.first_five);
+        TextView first_fifteen = (TextView) findViewById(R.id.first_fifteen);
+        TextView first_fifty = (TextView) findViewById(R.id.first_fifty);
+        TextView four_five = (TextView) findViewById(R.id.four_five);
+        TextView four_fifteen = (TextView) findViewById(R.id.four_fifteen);
+        TextView four_fifty = (TextView) findViewById(R.id.four_fifty);
+        TextView six_five = (TextView) findViewById(R.id.six_five);
+        TextView six_fifteen = (TextView) findViewById(R.id.six_fifteen);
+        TextView six_fifty = (TextView) findViewById(R.id.six_fifty);
+        first_five.setText(map.get("first5"));
+        first_fifteen.setText(map.get("first15"));
+        first_fifty.setText(map.get("first50"));
+        four_five.setText(map.get("four5"));
+        four_fifteen.setText(map.get("four15"));
+        four_fifty.setText(map.get("four50"));
+        six_five.setText(map.get("six5"));
+        six_fifteen.setText(map.get("six15"));
+        six_fifty.setText(map.get("six50"));
+
         tvDimiss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

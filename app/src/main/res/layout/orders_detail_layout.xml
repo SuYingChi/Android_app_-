@@ -191,7 +191,7 @@
             />
     </LinearLayout>
 
-    <LinearLayout
+<!--    <LinearLayout
         android:id="@+id/deliver_fare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -233,7 +233,7 @@
             android:textSize="@dimen/text_16"
 
             />
-    </LinearLayout>
+    </LinearLayout>-->
 
     <LinearLayout
         android:id="@+id/total_cost"
@@ -241,7 +241,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
         android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
-        android:layout_below="@id/deliver_fare"
+        android:layout_below="@id/orders_detail_fifty_kg"
         android:layout_marginTop="0.5dp"
         android:background="@color/white"
         android:orientation="horizontal"

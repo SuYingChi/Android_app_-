@@ -18,8 +18,8 @@ import com.msht.mshtLpg.mshtLpgMaster.Bean.OrdersListBeanV2;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrdersListPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.activity.BackBottleOrdersCancleActivity;
-import com.msht.mshtLpg.mshtLpgMaster.activity.BackBottleOrdersDetailActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.BackBottleOrdersFinishActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.BaclBottleOrdersDetailActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.SendBottleOrdersDetailActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.SendBottleOrdersDetailFinishActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.SendBottleOrdersDetailPayActivity;
@@ -249,7 +249,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
             intent.putExtra(Constants.ORDER_ID, orderId+"");
             startActivity(intent);
         }else if(orderType==3){
-            Intent intent = new Intent(getActivity(), BackBottleOrdersDetailActivity.class);
+            Intent intent = new Intent(getActivity(), BaclBottleOrdersDetailActivity.class);
             intent.putExtra(Constants.ORDER_ID, orderId+"");
             startActivity(intent);
         }else if(orderType == 4){

@@ -35,7 +35,9 @@ import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailView;
 import com.yanzhenjie.permission.Permission;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -102,10 +104,6 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
     LinearLayout client_info;
     @BindView(R.id.ll_deposit_fare)
     LinearLayout llDepositFare;
-    @BindView(R.id.floor)
-    TextView tvFloor;
-    @BindView(R.id.room)
-    TextView tvRoom;
     @BindView(R.id.comman_topbar_call_phone_btn)
     LinearLayout callBtn;
     @BindView(R.id.ll_deliver_fare)
@@ -153,8 +151,6 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
       private final int TOTAL_EXCHANGE = 104;*/
     private OrderDetailBean orderDetailBean;
     private List<ExchangeRclBean> exchangeList = new ArrayList<ExchangeRclBean>();
-    private DeliveryBean deliveryBean;
-    private String siteId = "";
     private int orderFiveNum;
     private int orderFifteenNum;
     private int orderFiftyNum;
@@ -165,7 +161,11 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
     private String emptyFifyt;
     private Unbinder unbinder;
     private DeliverFareDialog deliverFareDialog;
-
+    private Map<String,String> map= new HashMap<String,String>();
+    private boolean isGetFourDeliverySuccess = false;
+    private boolean isGetSixDeliverySuccess = false;
+    private boolean isGetFirstDeliverySuccess  =false;
+    private String address;
     //更规范的写法是写个handler在子线程执行完后，调度其他子线程的开启，后边再优化
     /*@SuppressLint("HandlerLeak")
     private class MyHandler extends Handler {
@@ -234,6 +234,9 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
             emptyFifyt = BottleCaculteUtil.getBottleNum(emptyBottleList, 50) + "";
 
             iOrderDetailPresenter.getOrderDetail();
+            iOrderDetailPresenter.getFirstDelivery();
+            iOrderDetailPresenter.getFourDelivery();
+            iOrderDetailPresenter.getSixDelivery();
         }
 
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
@@ -266,13 +269,13 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         } else if (requestCode == Constants.EDIT_FLOOR_REQUEST_CODE && resultCode == RESULT_OK) {
             if (data != null) {
                 floor = data.getStringExtra(Constants.FLOOR);
-                tvFloor.setText(floor + "层");
+                tvLocation.setText(new StringBuilder().append(address).append(floor).append("层").append(room).append("房").toString());
                 isElevator = data.getStringExtra(Constants.IS_ELEVATOR);
-                tvElevator.setText(isElevator.equals("1") ? "(有电梯)" : "(无电梯)");
-                if (!isElevator.equals("1")) {
+                tvElevator.setText("1".equals(isElevator) ? "(有电梯)" : "(无电梯)");
+                if (!"1".equals(isElevator)) {
                     iDeliveryPresenter.getDelivery();
                 } else {
-                    iDeliveryPresenter.getIsElevatorDelivery();
+                    iDeliveryPresenter.getElevatorDelivery();
                 }
 
             }
@@ -283,9 +286,9 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
     @Override
     public void onGetOrdersDetailSuccess(OrderDetailBean bean) {
         orderDetailBean = bean;
-        siteId = bean.getData().getSiteId() + "";
         floor = bean.getData().getFloor() + "";
         orderId = bean.getData().getOrderId() + "";
+        address = bean.getData().getAddress();
         room = bean.getData().getRoomNum();
         isElevator = bean.getData().getIsElevator() + "";
         orderFiveNum = bean.getData().getFiveBottleCount();
@@ -331,10 +334,8 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
                 PermissionUtils.requestPermissions(SendBottleOrdersDetailPostActivity.this, SendBottleOrdersDetailPostActivity.this, Permission.CALL_PHONE);
             }
         });
-        tvLocation.setText(orderDetailBean.getData().getAddress());
-        tvFloor.setText(floor + "层");
-        tvRoom.setText(room + "房");
-        tvElevator.setText(isElevator.equals("1") ? "(有电梯)" : "(无电梯)");
+        tvLocation.setText(new StringBuilder().append(address).append(floor).append("层").append(room).append("房").toString());
+        tvElevator.setText("1".equals(isElevator) ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 1 ? "(先生)" : "(女士)").toString());
         tvTel.setText(orderDetailBean.getData().getMobile());
         tvDay.setText(orderDetailBean.getData().getCreateDate());
@@ -436,10 +437,13 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         lldeliver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(deliverFareDialog == null) {
-                    deliverFareDialog = new DeliverFareDialog(SendBottleOrdersDetailPostActivity.this);
+
+                if(!isGetFirstDeliverySuccess||!isGetFourDeliverySuccess||!isGetSixDeliverySuccess){
+                    PopUtil.toastInBottom("正在获取运费信息，请稍后再试");
                 }
-                if(!deliverFareDialog.isShowing()){
+                else if(deliverFareDialog == null) {
+                    deliverFareDialog = new DeliverFareDialog(SendBottleOrdersDetailPostActivity.this,map);
+                }else if(!deliverFareDialog.isShowing()){
                     deliverFareDialog.show();
                 }
             }
@@ -456,6 +460,40 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
     @Override
     public String getOrderId() {
         return orderId;
+    }
+
+
+    @Override
+    public void onGetFourDeliverySuccess(DeliveryBean bean) {
+        String four5 = bean.getData().getDeliveryFee().getFiveDeliveryFee()+"";
+        String four15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee()+"";
+        String four50 = bean.getData().getDeliveryFee().getFiftyDeliveryFee()+"";
+        map.put("four5",four5);
+        map.put("four15",four15);
+        map.put("four50",four50);
+        isGetFourDeliverySuccess = true;
+    }
+
+    @Override
+    public void onGetSixDeliverySuccess(DeliveryBean bean) {
+        String  six5 = bean.getData().getDeliveryFee().getFiveDeliveryFee()+"";
+        String six15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee()+"";
+        String six50 =bean.getData().getDeliveryFee().getFiftyDeliveryFee()+"";
+        map.put("six5",six5);
+        map.put("six15",six15);
+        map.put("six50",six50);
+        isGetSixDeliverySuccess = true;
+    }
+
+    @Override
+    public void onGetFirstDeliverySuccess(DeliveryBean bean) {
+        String first5 = bean.getData().getDeliveryFee().getFiveDeliveryFee()+"";
+        String first15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee()+"";
+        String first50 =bean.getData().getDeliveryFee().getFiftyDeliveryFee()+"";
+        map.put("first5",first5);
+        map.put("first15",first15);
+        map.put("first50",first50);
+        isGetFirstDeliverySuccess = true;
     }
 
     @Override
@@ -652,7 +690,7 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         if (!isElevator.equals("1")) {
             iDeliveryPresenter.getDelivery();
         } else {
-            iDeliveryPresenter.getIsElevatorDelivery();
+            iDeliveryPresenter.getElevatorDelivery();
         }
     }*/
 
