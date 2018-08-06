@@ -14,7 +14,6 @@
         android:background="@color/msb_color"
         app:title_text= "编辑地址"
         />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -39,7 +38,6 @@
                     android:text="姓名"
                     android:textColor="@color/lpg_text_dark_color"
                     android:textSize="@dimen/text_nomal" />
-
                 <EditText
                     android:id="@+id/et_name"
                     android:layout_width="match_parent"
@@ -170,7 +168,6 @@
                     android:text="用户地址"
                     android:textColor="@color/lpg_text_dark_color"
                     android:textSize="@dimen/text_nomal" />
-
                 <TextView
                     android:id="@+id/tv_address"
                     android:layout_width="match_parent"

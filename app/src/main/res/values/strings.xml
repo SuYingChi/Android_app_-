@@ -27,6 +27,7 @@
     <string name="login_account_not_register">账号为注册</string>
     <string name="login_unknown_error">系统错误</string>
     <string name="no_login">未登录</string>
+    <string name="phone_text">手机号码：</string>
     <string name="picture_text">图片说明</string>
     <string name="please_input_password">请输入正确密码</string>
     <string name="please_input_right_mobile_number">请输入正确手机号</string>
