@@ -108,7 +108,19 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int p, long id) {
                     list.get(position).setmSelectBottleModeIndex(p);
-                    onExchangeRclClicklistener.onSpinnerChange( position,((ViewHolder) holder).tvAccount,p, list.get(position).getSelectBottleYearsIndex(), list.get(position).getmSelectBottleLevelIndex(), list.get(position).getBottleNum());
+                    switch (p){
+                        case 0:
+                            PopUtil.toastInBottom("暂不支持置换5KG钢瓶");
+                            break;
+                        case 1:
+                            onExchangeRclClicklistener.onSpinnerChange( position,((ViewHolder) holder).tvAccount,p, list.get(position).getSelectBottleYearsIndex(), list.get(position).getmSelectBottleLevelIndex(), list.get(position).getBottleNum());
+                            break;
+                        case 2:
+                            PopUtil.toastInBottom("暂不支持置换50KG钢瓶");
+                            break;
+                        default:break;
+                    }
+
                 }
 
                 @Override
