@@ -16,7 +16,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="@string/picture_text"
-            android:src="@drawable/steel_bottle"/>
+            android:src="@drawable/five_weight_bottle"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,7 +61,8 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/msb_color"
                 android:textSize="18sp"
-                android:text="@string/default_value0"/>
+                android:text="@string/default_value0"
+                android:visibility="gone"/>
         </RelativeLayout>
         <Button
             android:id="@+id/id_add_btn1"
@@ -111,7 +112,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="@string/picture_text"
-            android:src="@drawable/steel_bottle"/>
+            android:src="@drawable/fifteen_weight_bottle"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -157,7 +158,8 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/msb_color"
                 android:textSize="18sp"
-                android:text="@string/default_value0"/>
+                android:text="@string/default_value0"
+                android:visibility="gone"/>
         </RelativeLayout>
         <Button
             android:id="@+id/id_add_btn2"
@@ -207,7 +209,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="@string/picture_text"
-            android:src="@drawable/steel_bottle"/>
+            android:src="@drawable/fifty_weight_bottle"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -253,7 +255,8 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/msb_color"
                 android:textSize="18sp"
-                android:text="@string/default_value0"/>
+                android:text="@string/default_value0"
+                android:visibility="gone"/>
         </RelativeLayout>
         <Button
             android:id="@+id/id_add_btn3"

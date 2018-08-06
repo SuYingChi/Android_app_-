@@ -1,6 +1,7 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPresenter;
@@ -33,7 +35,6 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
     private int remain15;
     private int remain50;
     private double exchange;
-
     @BindView(R.id.pay_orders_v2_topbar)
     TopBarView topBarView;
     @BindView(R.id.location)
@@ -96,6 +97,10 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
     TextView tvroom;
     @BindView(R.id.comman_topbar_call_phone_btn)
     LinearLayout callBtn;
+    @BindView(R.id.id_weichat_layout)
+    View layoutWeiChat;
+    @BindView(R.id.id_aliPay_layout)
+    View layoutAliPay;
     private int floor;
     private String room;
     private String orderId;
@@ -120,6 +125,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
     private String orderType;
     private String payType;
     private Unbinder unbinder;
+    private Context mContext;
 
 
     @Override
@@ -127,6 +133,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pay_orders);
         unbinder = ButterKnife.bind(this);
+        mContext=this;
         //从首页订单列表跳转过来
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
@@ -224,8 +231,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         totalfare = totalGas+totalDeposite+totalDeliveryfare-exchange;
         //tvTotal.setText(totalfare+"");
         tvTotal.setText(bean.getData().getRealAmount()+"");
-
-        tvpay.setOnClickListener(new View.OnClickListener() {
+        layoutWeiChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 orderType = "1";
@@ -244,9 +250,16 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
                 PermissionUtils.requestPermissions(SendBottleOrdersDetailPayActivity.this, SendBottleOrdersDetailPayActivity.this, Permission.CALL_PHONE);
             }
         });
-
+        layoutAliPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                        onRequestServer();
+            }
+        });
     }
-
+    private void onRequestServer() {
+        Toast.makeText(mContext,"现金支付请求接口,接口未完成", Toast.LENGTH_LONG).show();
+    }
     @Override
     public String getOrderId() {
         return orderId + "";

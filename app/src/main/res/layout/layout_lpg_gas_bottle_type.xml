@@ -42,7 +42,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="@string/picture_text"
-            android:src="@drawable/steel_bottle"/>
+            android:src="@drawable/fifty_weight_bottle"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="@string/picture_text"
-            android:src="@drawable/steel_bottle"/>
+            android:src="@drawable/fifteen_weight_bottle"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -191,7 +191,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="@string/picture_text"
-            android:src="@drawable/steel_bottle"/>
+            android:src="@drawable/fifty_weight_bottle"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

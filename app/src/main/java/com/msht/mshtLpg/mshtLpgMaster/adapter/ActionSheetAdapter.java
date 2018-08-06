@@ -1,4 +1,4 @@
-package com.msht.mshtLpg.mshtLpgMaster.activity;
+package com.msht.mshtLpg.mshtLpgMaster.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
