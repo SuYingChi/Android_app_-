@@ -38,7 +38,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/margin_Modules"
         android:text="请扫描员工二维码"
-        android:textColor="@color/lpg_text_dark_color"
+        android:textColor="@color/white"
         android:textSize="@dimen/text_16" />
 
     <!--<LinearLayout

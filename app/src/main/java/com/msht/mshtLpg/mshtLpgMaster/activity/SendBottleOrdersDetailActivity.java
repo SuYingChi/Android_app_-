@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.DeliveryBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
@@ -136,8 +139,8 @@ public class SendBottleOrdersDetailActivity extends BaseActivity implements ISim
 
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTelephone.getText().toString()));
-        startActivity(intent);
+            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTelephone.getText().toString()));
+            startActivity(intent);
     }
 
     @Override

@@ -315,9 +315,6 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
 
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTel.getText().toString()));
         startActivity(intent);
     }

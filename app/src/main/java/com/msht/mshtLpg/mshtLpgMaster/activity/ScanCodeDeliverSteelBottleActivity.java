@@ -146,7 +146,7 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
     }*/
     @Override
     public void onBackFromSettingPage() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if (!PermissionUtils.cameraIsCanUse()) {
             finish();
         }
     }

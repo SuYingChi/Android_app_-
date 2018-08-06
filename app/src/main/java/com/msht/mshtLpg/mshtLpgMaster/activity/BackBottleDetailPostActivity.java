@@ -185,9 +185,6 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
 
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTelephone.getText().toString()));
         startActivity(intent);
     }

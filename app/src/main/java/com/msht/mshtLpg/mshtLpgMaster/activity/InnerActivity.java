@@ -114,7 +114,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
 
     @Override
     public void onBackFromSettingPage() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if (!PermissionUtils.cameraIsCanUse()) {
             finish();
         }
     }

@@ -61,7 +61,9 @@
         <activity android:name=".activity.SendBottleOrdersDetailFinishActivity" />
         <activity android:name=".activity.ExchangeSteelBottleActivity" />
         <activity android:name=".activity.InnerActivity" />
-        <activity android:name=".activity.RegisterBottleActivity" />
+        <activity android:name=".activity.RegisterBottleActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity android:name=".activity.BackBottleOrdersFinishActivity" />
         <activity android:name=".activity.BaclBottleOrdersDetailActivity" />
         <activity android:name=".activity.BackBottleOrdersCancleActivity" />

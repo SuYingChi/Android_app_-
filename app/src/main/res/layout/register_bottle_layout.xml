@@ -38,7 +38,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/margin_Modules"
         android:text="请扫描要注册钢瓶的二维码"
-        android:textColor="@color/lpg_text_dark_color"
+        android:textColor="@color/white"
         android:textSize="@dimen/text_16" />
 
     <!--<LinearLayout
@@ -149,7 +149,7 @@
         android:layout_above="@id/tv_scan_delive_bottom"
         android:background="@color/white"
         android:orientation="vertical"
-        android:padding="@dimen/margin"
+
         >
         <TextView
             android:id="@+id/bottle_code"
@@ -159,6 +159,7 @@
             android:gravity="center"
             android:textColor="@color/head_text_color"
             android:textSize="@dimen/text_16"
+            android:layout_marginTop="@dimen/margin_Modules"
 
             />
         <RelativeLayout
@@ -167,16 +168,17 @@
             android:layout_marginTop="0.5dp"
             android:background="@color/white"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_Modules"
+            android:paddingLeft="@dimen/margin_Modules"
+            android:paddingRight="@dimen/margin_Modules"
             >
 
             <TextView
+                android:id="@+id/tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="规格"
                 android:textColor="@color/head_text_color"
                 android:textSize="@dimen/text_16"
-
                 />
 
 
@@ -185,7 +187,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:gravity="center"
                 />
         </RelativeLayout>
         <RelativeLayout
@@ -211,7 +212,7 @@
                 android:id="@+id/bottle_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="13dp"
+                android:paddingBottom="@dimen/margin_Modules"
                 android:hint="编辑瓶身钢码"
                 android:gravity="right"
                 android:layout_alignParentRight="true"
@@ -245,7 +246,7 @@
                 android:id="@+id/producer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="13dp"
+                android:paddingBottom="@dimen/margin_Modules"
                 android:hint="编辑生产厂家"
                 android:gravity="right"
                 android:layout_alignParentRight="true"
@@ -278,7 +279,7 @@
                 android:id="@+id/property_unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="13dp"
+                android:paddingBottom="@dimen/margin_Modules"
                 android:layout_alignParentRight="true"
                 android:hint="编辑产权单位"
                 android:gravity="right"
@@ -296,8 +297,8 @@
             android:layout_marginTop="0.5dp"
             android:background="@color/white"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_Modules"
-
+            android:paddingLeft="@dimen/margin_Modules"
+            android:paddingRight="@dimen/margin_Modules"
             >
 
             <TextView

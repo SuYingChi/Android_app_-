@@ -50,7 +50,7 @@ public class RegisterBottleActivity extends BaseActivity implements  PermissionU
 
     @Override
     public void onBackFromSettingPage() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if (!PermissionUtils.cameraIsCanUse()) {
             finish();
         }
     }
