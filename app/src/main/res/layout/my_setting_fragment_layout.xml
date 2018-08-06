@@ -92,7 +92,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone"
+            >
 
             <ImageView
                 android:id="@+id/iv_mobile_open_account"
@@ -207,7 +209,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone"
+            >
 
             <ImageView
                 android:id="@+id/iv_my_setting_check_steel_bottle"
@@ -325,7 +329,9 @@
         android:layout_below="@id/ll_my_setting_my_income"
         android:background="@color/white"
         android:orientation="horizontal"
-        android:padding="15dp">
+        android:padding="15dp"
+        android:visibility="gone"
+        >
 
         <ImageView
             android:layout_width="wrap_content"

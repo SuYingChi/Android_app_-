@@ -41,7 +41,7 @@
     <color name="input_text">#333333</color>
     <color name="textcolor">#333333</color>
     <color name="bg_btn_enable">#ff9aa4</color>
-    <color name="translucent_background">#00000000</color>
+    <color name="transparent_background">#00000000</color>
     <color name="text_commen">#333333</color>
     <color name="warning_red">#ff3f53</color>
     <color name="head_color">#FFFFFF</color>

@@ -34,12 +34,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="13dp"
-            android:background="@null"
+            android:background="@drawable/edit_text_transfluent_background"
             android:hint="请输入手机号"
             android:inputType="number"
             android:maxLength="11"
             android:textColor="@color/textcolor"
-            android:textColorHint="#ffffff "
+            android:textColorHint="@color/textcolor"
             android:textCursorDrawable="@null"
             android:textSize="15sp" />
     </LinearLayout>
@@ -86,7 +86,7 @@
             android:background="@null"
             android:hint="@string/login_passwor"
             android:textColor="@color/textcolor"
-            android:textColorHint="#ffffff"
+            android:textColorHint="@color/textcolor"
             android:textCursorDrawable="@null"
             android:textSize="15sp"
             android:inputType="numberPassword"
@@ -116,7 +116,7 @@
         android:textColor="@color/white_lib"
         android:textSize="17sp" />
 
-    <TextView
+ <!--   <TextView
         android:id="@+id/tv_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,8 +125,8 @@
         android:layout_marginTop="23dp"
         android:text="注册"
         android:textColor="@color/msb_color"
-        android:textSize="@dimen/text_nomal" />
-
+        android:textSize="@dimen/text_nomal" />-->
+<!--
     <TextView
         android:id="@+id/tv_forget_password"
         android:layout_width="wrap_content"
@@ -135,7 +135,7 @@
         android:layout_alignRight="@id/btn_login"
         android:text="忘记密码"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_nomal"
+        android:textSize="@dimen/text_nomal"-->
 
         />
 </RelativeLayout>
