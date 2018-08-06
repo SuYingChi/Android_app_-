@@ -46,12 +46,12 @@
             android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical">
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                >
                 <TextView
                     android:id="@+id/location"
                     android:layout_width="wrap_content"
@@ -59,8 +59,7 @@
                     android:layout_marginTop="@dimen/margin_Modules"
                     android:text="海口市龙华区诚田大厦"
                     android:textColor="@color/lpg_text_dark_color"
-                    android:textSize="15sp" />
-
+                    android:textSize="@dimen/text_16" />
                 <TextView
                     android:id="@+id/floor"
                     android:layout_width="wrap_content"
@@ -68,7 +67,7 @@
                     android:layout_marginTop="@dimen/margin_Modules"
                     android:text="24层"
                     android:textColor="@color/lpg_text_dark_color"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/text_16" />
 
                 <TextView
                     android:id="@+id/room"
@@ -77,9 +76,8 @@
                     android:layout_marginTop="@dimen/margin_Modules"
                     android:text="2房"
                     android:textColor="@color/lpg_text_dark_color"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/text_16" />
             </LinearLayout>
-
 
             <TextView
                 android:id="@+id/elevator"
@@ -104,7 +102,7 @@
                     android:gravity="top"
                     android:text="世贸彭于晏(先生)"
                     android:textColor="@color/lpg_text_light_color"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/text_small" />
 
                 <TextView
                     android:id="@+id/comman_topbar_telephone"
@@ -114,7 +112,7 @@
                     android:gravity="top"
                     android:text="13012345678"
                     android:textColor="@color/lpg_text_light_color"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/text_small" />
 
                 <ImageView
                     android:layout_width="15dp"
@@ -260,7 +258,7 @@
                     android:id="@+id/five_gas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
@@ -298,7 +296,7 @@
                     android:id="@+id/fifteen_gas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
@@ -337,7 +335,7 @@
                     android:id="@+id/fifty_gas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
@@ -376,7 +374,7 @@
                     android:id="@+id/five_deposit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
@@ -415,7 +413,7 @@
                     android:id="@+id/fifteen_deposit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
@@ -452,7 +450,7 @@
                     android:id="@+id/fifty_deposit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
@@ -490,7 +488,7 @@
                     android:id="@+id/gas_fee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
@@ -529,14 +527,14 @@
                     android:id="@+id/deposit_fee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 
                     />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/deliver_fare"
+                android:id="@+id/ll_deliver_fare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0.5dp"
@@ -567,7 +565,7 @@
                     android:id="@+id/deliver_fee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/warning_red"
                     android:textSize="@dimen/text_16"
 

@@ -17,6 +17,7 @@ import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
+import com.msht.mshtLpg.mshtLpgMaster.customView.DeliverFareDialog;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
@@ -30,11 +31,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class SendBottleOrdersDetailPayActivity extends BaseActivity implements IOrderDetailView ,PermissionUtils.PermissionRequestFinishListener{
-    private OrderDetailBean bean;
-    private int remain5;
-    private int remain15;
-    private int remain50;
-    private double exchange;
     @BindView(R.id.pay_orders_v2_topbar)
     TopBarView topBarView;
     @BindView(R.id.location)
@@ -101,31 +97,18 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
     View layoutWeiChat;
     @BindView(R.id.id_aliPay_layout)
     View layoutAliPay;
-    private int floor;
-    private String room;
+    @BindView(R.id.ll_deliver_fare)
+    LinearLayout lldeliver;
     private String orderId;
     private double fiveTotalDeposite;
     private double fifteenteenTotalDeposite;
     private double fiftyTotalDeposite;
-    private double totalDeposite;
-    private double totalFiveDelivery;
-    private double totalFifteenDelivery;
-    private double totalFiftyDelivery;
-    private double totalDeliveryfare;
-    private IOrderDetailPresenter iOrderDetailPresenter;
-    private int isElevator;
-    private double fiveGasFee;
-    private double fifteenGasFee;
-    private double fiftyGasFee;
-    private double totalGas;
     private double totalfare;
-    private double fiveDeliveryFee;
-    private double fifteenDeliveryFee;
-    private double fiftyDeliveryFee;
     private String orderType;
     private String payType;
     private Unbinder unbinder;
     private Context mContext;
+    private DeliverFareDialog deliverFareDialog;
 
 
     @Override
@@ -137,7 +120,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         //从首页订单列表跳转过来
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
-        iOrderDetailPresenter = new IOrderDetailPresenter(this);
+        IOrderDetailPresenter iOrderDetailPresenter = new IOrderDetailPresenter(this);
         iOrderDetailPresenter.getOrderDetail();
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
@@ -157,13 +140,13 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
 
     @Override
     public void onGetOrdersDetailSuccess(OrderDetailBean orderDetailBean) {
-        this.bean = orderDetailBean;
+        OrderDetailBean bean = orderDetailBean;
         tvLocation.setText(orderDetailBean.getData().getAddress());
-        floor = orderDetailBean.getData().getFloor();
+        int floor = orderDetailBean.getData().getFloor();
         tvFloor.setText(floor + "层");
-        room = orderDetailBean.getData().getRoomNum();
+        String room = orderDetailBean.getData().getRoomNum();
         tvroom.setText(room + "房");
-        isElevator = orderDetailBean.getData().getIsElevator();
+        int isElevator = orderDetailBean.getData().getIsElevator();
         tvElevator.setText(isElevator == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 1 ? "(先生)" : "(女士)").toString());
         tvTel.setText(orderDetailBean.getData().getMobile());
@@ -175,17 +158,17 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         tvDispatchOrderTime.setText(orderDetailBean.getData().getCreateDate());
         tvDispatchBottleTime.setText(orderDetailBean.getData().getAppointmentTime());
         //气价
-        fiveGasFee = orderDetailBean.getData().getFiveBottleCount() * orderDetailBean.getData().getFiveGasFee();
+        double fiveGasFee = orderDetailBean.getData().getFiveBottleCount() * orderDetailBean.getData().getFiveGasFee();
         tvFiveGas.setText(fiveGasFee + "");
-        fifteenGasFee = orderDetailBean.getData().getFifteenBottleCount() * orderDetailBean.getData().getFifteenGasFee();
+        double fifteenGasFee = orderDetailBean.getData().getFifteenBottleCount() * orderDetailBean.getData().getFifteenGasFee();
         tvFifteenGas.setText(fifteenGasFee + "");
-        fiftyGasFee = orderDetailBean.getData().getFiftyBottleCount() * orderDetailBean.getData().getFiftyGasFee();
+        double fiftyGasFee = orderDetailBean.getData().getFiftyBottleCount() * orderDetailBean.getData().getFiftyGasFee();
         tvFiftyGas.setText(fiftyGasFee + "");
-        totalGas = fiveGasFee + fifteenGasFee + fiftyGasFee;
+        double totalGas = fiveGasFee + fifteenGasFee + fiftyGasFee;
         tvGasFee.setText(totalGas + "");
 
         //押金
-        remain5 = orderDetailBean.getData().getFiveBottleCount() - orderDetailBean.getData().getReFiveBottleCount();
+        int remain5 = orderDetailBean.getData().getFiveBottleCount() - orderDetailBean.getData().getReFiveBottleCount();
         if (remain5 == 0) {
             llFiveDeposite.setVisibility(View.GONE);
         } else {
@@ -193,7 +176,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
             fiveTotalDeposite = remain5 * orderDetailBean.getData().getFiveDepositFee();
             tvFiveDeposite.setText(fiveTotalDeposite + "");
         }
-        remain15 = orderDetailBean.getData().getFifteenBottleCount() - orderDetailBean.getData().getReFifteenBottleCount();
+        int remain15 = orderDetailBean.getData().getFifteenBottleCount() - orderDetailBean.getData().getReFifteenBottleCount();
         if (remain15 == 0) {
             llFifteenDeposite.setVisibility(View.GONE);
         } else {
@@ -201,7 +184,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
             fifteenteenTotalDeposite = remain15 * orderDetailBean.getData().getFifteenDepositFee();
             tvFifteenDeposite.setText(fifteenteenTotalDeposite + "");
         }
-        remain50 = orderDetailBean.getData().getFiftyBottleCount() - orderDetailBean.getData().getReFiftyBottleCount();
+        int remain50 = orderDetailBean.getData().getFiftyBottleCount() - orderDetailBean.getData().getReFiftyBottleCount();
         if (remain50 == 0) {
             llFiftyDeposite.setVisibility(View.GONE);
         } else {
@@ -209,7 +192,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
             fiftyTotalDeposite = remain50 * orderDetailBean.getData().getFiftyDepositFee();
             tvFiftyDeposite.setText(fiftyTotalDeposite + "");
         }
-        totalDeposite = fiveTotalDeposite + fifteenteenTotalDeposite + fiftyTotalDeposite;
+        double totalDeposite = fiveTotalDeposite + fifteenteenTotalDeposite + fiftyTotalDeposite;
         if (totalDeposite == 0) {
             llDepositFare.setVisibility(View.GONE);
         } else {
@@ -218,17 +201,17 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         }
         //运费
 
-        fiveDeliveryFee = orderDetailBean.getData().getFiveDeliveryFee();
-        fifteenDeliveryFee = orderDetailBean.getData().getFifteenDeliveryFee();
-        fiftyDeliveryFee = orderDetailBean.getData().getFiftyDeliveryFee();
-        totalFiveDelivery = orderDetailBean.getData().getFiveBottleCount() * fiveDeliveryFee;
-        totalFifteenDelivery = orderDetailBean.getData().getFifteenBottleCount() * fifteenDeliveryFee;
-        totalFiftyDelivery = orderDetailBean.getData().getFiftyBottleCount() * fiftyDeliveryFee;
-        totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
+        double fiveDeliveryFee = orderDetailBean.getData().getFiveDeliveryFee();
+        double fifteenDeliveryFee = orderDetailBean.getData().getFifteenDeliveryFee();
+        double fiftyDeliveryFee = orderDetailBean.getData().getFiftyDeliveryFee();
+        double totalFiveDelivery = orderDetailBean.getData().getFiveBottleCount() * fiveDeliveryFee;
+        double totalFifteenDelivery = orderDetailBean.getData().getFifteenBottleCount() * fifteenDeliveryFee;
+        double totalFiftyDelivery = orderDetailBean.getData().getFiftyBottleCount() * fiftyDeliveryFee;
+        double totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
         tvDeliverFee.setText(totalDeliveryfare + "");
-        exchange = orderDetailBean.getData().getRetrieveAmount();
+        double exchange = orderDetailBean.getData().getRetrieveAmount();
         tvDiscount.setText(exchange + "");
-        totalfare = totalGas+totalDeposite+totalDeliveryfare-exchange;
+        totalfare = totalGas + totalDeposite + totalDeliveryfare - exchange;
         //tvTotal.setText(totalfare+"");
         tvTotal.setText(bean.getData().getRealAmount()+"");
         layoutWeiChat.setOnClickListener(new View.OnClickListener() {
@@ -242,6 +225,17 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
                 intent.putExtra(Constants.PAY_AMOUNT,totalfare+"");
                 intent.putExtra(Constants.PAY_TYPE,payType);
                 startActivity(intent);
+            }
+        });
+        lldeliver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(deliverFareDialog == null) {
+                    deliverFareDialog = new DeliverFareDialog(SendBottleOrdersDetailPayActivity.this);
+                }
+                if(!deliverFareDialog.isShowing()){
+                    deliverFareDialog.show();
+                }
             }
         });
         callBtn.setOnClickListener(new View.OnClickListener() {

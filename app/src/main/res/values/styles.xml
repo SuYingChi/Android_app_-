@@ -11,7 +11,11 @@
         <item name="android:backgroundDimEnabled">false</item><!--模糊-->
         <item name="android:backgroundDimAmount">0.6</item>
     </style>
-
+    <style name="deliver_fare_dialog">
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+    </style>
 
     <!-- 适用于开启滑动返回功能的Activity -->
     <style name="AppTheme.Transparent">

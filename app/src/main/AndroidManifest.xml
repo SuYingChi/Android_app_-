@@ -53,7 +53,7 @@
             android:value="3467b1afa91a2c36f7c45cf95b85aa4d" />
         <activity android:name=".activity.SendBottleOrdersDetailActivity" />
         <activity android:name=".activity.ScanCodeDeliverSteelBottleActivity" />
-        <activity android:name=".activity.SendOrdersDetailPostActivity" />
+        <activity android:name=".activity.SendBottleOrdersDetailPostActivity" />
         <activity android:name=".activity.ExchangeReviewActivity" />
         <activity android:name=".activity.SendBottleOrdersDetailPayActivity" />
         <activity android:name=".activity.QRCodeReceiptActivity" />

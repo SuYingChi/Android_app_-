@@ -92,7 +92,7 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
 
 
         }else {
-            Intent intent = new Intent(this,SendOrdersDetailPostActivity.class);
+            Intent intent = new Intent(this,SendBottleOrdersDetailPostActivity.class);
             Bundle bundle=new Bundle();
             bundle.putString(Constants.ORDER_ID,orderId);
             bundle.putSerializable(Constants.HEAVY_BOTTLE_LIST,(Serializable)heavyBottleList);

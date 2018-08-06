@@ -68,7 +68,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/line_margin"
+            android:layout_marginTop="@dimen/line_height"
             android:background="@color/white"
             android:gravity="center"
 
@@ -93,7 +93,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/line_margin"
+            android:layout_marginTop="@dimen/line_height"
             android:background="@color/white"
             android:orientation="horizontal"
             android:padding="@dimen/margin_Modules">
@@ -122,7 +122,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/line_margin"
+            android:layout_marginTop="@dimen/line_height"
             android:background="@color/white"
             android:orientation="horizontal"
             android:padding="@dimen/margin_Modules">
@@ -151,7 +151,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/line_margin"
+            android:layout_marginTop="@dimen/line_height"
             android:background="@color/white"
             android:orientation="horizontal"
             android:padding="@dimen/margin_Modules">
@@ -180,7 +180,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/line_margin"
+            android:layout_marginTop="@dimen/line_height"
             android:background="@color/white"
             android:orientation="horizontal"
             android:padding="@dimen/margin_Modules">
@@ -209,7 +209,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/line_margin"
+            android:layout_marginTop="@dimen/line_height"
             android:background="@color/white"
             android:orientation="horizontal"
             android:padding="@dimen/margin_Modules">

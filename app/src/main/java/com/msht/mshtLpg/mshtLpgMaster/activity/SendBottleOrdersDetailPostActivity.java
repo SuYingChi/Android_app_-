@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,6 +24,7 @@ import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPostPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
+import com.msht.mshtLpg.mshtLpgMaster.customView.DeliverFareDialog;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
@@ -32,7 +32,6 @@ import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IDeliveryView;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailPostView;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailView;
-import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrdesDespositView;
 import com.yanzhenjie.permission.Permission;
 
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class SendOrdersDetailPostActivity extends BaseActivity implements IOrderDetailView, /*IOrdesDespositView,*/ IDeliveryView, IOrderDetailPostView, PermissionUtils.PermissionRequestFinishListener {
+public class SendBottleOrdersDetailPostActivity extends BaseActivity implements IOrderDetailView, /*IOrdesDespositView,*/ IDeliveryView, IOrderDetailPostView, PermissionUtils.PermissionRequestFinishListener {
 
 
     @BindView(R.id.pay_orders_v2_topbar)
@@ -109,7 +108,8 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
     TextView tvRoom;
     @BindView(R.id.comman_topbar_call_phone_btn)
     LinearLayout callBtn;
-
+    @BindView(R.id.ll_deliver_fare)
+    LinearLayout lldeliver;
     private double exchangeFee;
     private String floor;
     private String isElevator;
@@ -164,15 +164,16 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
     private String emptyFifteen;
     private String emptyFifyt;
     private Unbinder unbinder;
+    private DeliverFareDialog deliverFareDialog;
 
     //更规范的写法是写个handler在子线程执行完后，调度其他子线程的开启，后边再优化
     /*@SuppressLint("HandlerLeak")
     private class MyHandler extends Handler {
-        private WeakReference<SendOrdersDetailPostActivity> ref;
+        private WeakReference<SendBottleOrdersDetailPostActivity> ref;
 
-        public MyHandler(SendOrdersDetailPostActivity activity) {
+        public MyHandler(SendBottleOrdersDetailPostActivity activity) {
             if (activity != null) {
-                ref = new WeakReference<SendOrdersDetailPostActivity>(activity);
+                ref = new WeakReference<SendBottleOrdersDetailPostActivity>(activity);
             }
         }
 
@@ -181,7 +182,7 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
             if (ref == null) {
                 return;
             }
-            SendOrdersDetailPostActivity v = ref.get();
+            SendBottleOrdersDetailPostActivity v = ref.get();
             if (v == null) {
                 return;
             }
@@ -301,7 +302,7 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
             @Override
             public void onClick(View v) {
                 if (remain15 > 0) {
-                    Intent intent = new Intent(SendOrdersDetailPostActivity.this, ExchangeSteelBottleActivity.class);
+                    Intent intent = new Intent(SendBottleOrdersDetailPostActivity.this, ExchangeSteelBottleActivity.class);
                     intent.putExtra(Constants.REMAIN_FIVE_NUM, remain5);
                     intent.putExtra(Constants.REMAIN_FIFTEEN_NUM, remain15);
                     intent.putExtra(Constants.REMAIN_FIFTY_NUM, remain50);
@@ -317,7 +318,7 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
             @Override
             public void onClick(View v) {
                 totalfare -= totalDeliveryfare;
-                Intent intent = new Intent(SendOrdersDetailPostActivity.this, EditLocationActivity.class);
+                Intent intent = new Intent(SendBottleOrdersDetailPostActivity.this, EditLocationActivity.class);
                 intent.putExtra(Constants.FLOOR, floor);
                 intent.putExtra(Constants.IS_ELEVATOR, isElevator);
                 startActivityForResult(intent, Constants.EDIT_FLOOR_REQUEST_CODE);
@@ -327,7 +328,7 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PermissionUtils.requestPermissions(SendOrdersDetailPostActivity.this, SendOrdersDetailPostActivity.this, Permission.CALL_PHONE);
+                PermissionUtils.requestPermissions(SendBottleOrdersDetailPostActivity.this, SendBottleOrdersDetailPostActivity.this, Permission.CALL_PHONE);
             }
         });
         tvLocation.setText(orderDetailBean.getData().getAddress());
@@ -430,6 +431,17 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
             @Override
             public void onClick(View v) {
                 iPostPresenter.postOrders();
+            }
+        });
+        lldeliver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(deliverFareDialog == null) {
+                    deliverFareDialog = new DeliverFareDialog(SendBottleOrdersDetailPostActivity.this);
+                }
+                if(!deliverFareDialog.isShowing()){
+                    deliverFareDialog.show();
+                }
             }
         });
     }
