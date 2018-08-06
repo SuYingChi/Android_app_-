@@ -1,8 +1,9 @@
 package com.msht.mshtLpg.mshtLpgMaster.Bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MyIncomeBean {
+public class MyIncomeBean implements Serializable{
 
     /**
      * result : success
@@ -38,7 +39,7 @@ public class MyIncomeBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * totalIncome : 21.7
          * list : [{"orderId":204,"finishTime":"2018-08-02 09:42:30","deliveryFee":20.7,"year":"2018","month":"08"},{"orderId":205,"finishTime":"2018-08-02 09:43:03","deliveryFee":1,"year":"2018","month":"08"}]
@@ -63,7 +64,7 @@ public class MyIncomeBean {
             this.list = list;
         }
 
-        public static class ListBean {
+        public static class ListBean implements Serializable{
             /**
              * orderId : 204
              * finishTime : 2018-08-02 09:42:30
