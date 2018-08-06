@@ -133,6 +133,8 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
     }*/
     private void showFragment(BaseFragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        //transaction.setCustomAnimations(R.anim.forward_enter,R.anim.forward_exit_fragment);
+        //加入动画会导致相机无法启动扫描
         transaction.replace(R.id.fl_my_container,fragment).commit();
     }
   /*  private void removeEmptyFragment() {

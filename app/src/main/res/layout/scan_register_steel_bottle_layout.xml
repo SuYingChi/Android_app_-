@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         app:inner_corner_length="30dp"
         app:inner_corner_width="5dp"
-        app:inner_height="200dp"
+        app:inner_height="@dimen/text_small"
         app:inner_margintop="@dimen/scan_view_margin_top"
         app:inner_scan_iscircle="false"
         app:inner_scan_speed="10"

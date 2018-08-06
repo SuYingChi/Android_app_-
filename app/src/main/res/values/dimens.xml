@@ -39,4 +39,6 @@
     <dimen name="margin_Modules">8dp</dimen>
     <dimen name="click_area">44dp</dimen>
     <dimen name="scan_rcl_height">250dp</dimen>
+    <dimen name="view_finder_height">200dp</dimen>
+    <dimen name="view_finder_width">200dp</dimen>
 </resources>
