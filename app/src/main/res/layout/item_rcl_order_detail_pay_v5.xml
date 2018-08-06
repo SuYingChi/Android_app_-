@@ -5,7 +5,7 @@
     android:layout_marginTop="@dimen/margin_Modules"
     android:background="@color/white"
     android:orientation="horizontal"
-    android:padding="@dimen/margin_horizontal">
+    android:padding="@dimen/margin">
 
     <TextView
         android:layout_width="wrap_content"

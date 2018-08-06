@@ -17,7 +17,9 @@
         <item name="android:windowNoTitle">true</item><!--无标题-->
         <item name="android:windowIsTranslucent">true</item><!--半透明-->
     </style>
-
+    <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
     <!-- 适用于开启滑动返回功能的Activity -->
     <style name="AppTheme.Transparent">
         <item name="android:windowBackground">@android:color/transparent</item>

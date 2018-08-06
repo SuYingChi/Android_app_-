@@ -1,21 +1,16 @@
 package com.msht.mshtLpg.mshtLpgMaster.customView;
 
-import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.activity.SendBottleOrdersDetailPostActivity;
 import com.msht.mshtLpg.mshtLpgMaster.util.DimenUtil;
-import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IDeliveryView;
 
 import java.util.Map;
 
@@ -87,7 +82,7 @@ public class DeliverFareDialog extends Dialog {
             }
         });
         WindowManager.LayoutParams attributes = this.getWindow().getAttributes();
-        attributes.width= DimenUtil.getScreenWidth()-DimenUtil.dip2px(context.getResources().getDimension(R.dimen.margin_horizontal)*2);
+        attributes.width= DimenUtil.getScreenWidth()-DimenUtil.dip2px(context.getResources().getDimension(R.dimen.margin)*2);
         this.getWindow().setAttributes(attributes);
         //dialog去除底部北京
         getWindow().setBackgroundDrawable(new BitmapDrawable());

@@ -73,8 +73,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         android:orientation="vertical"
         android:gravity="center"
         >
@@ -115,14 +115,14 @@
                 android:textColor="@color/lpg_text_light_color"
                 android:text="13012345678"
                 android:gravity="top"
-                android:layout_marginLeft="@dimen/margin_horizontal"
+                android:layout_marginLeft="@dimen/margin"
                 />
             <ImageView
                 android:id="@+id/call_phone_btn"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:src="@drawable/call_phone"
-                android:layout_marginLeft="@dimen/margin_horizontal"
+                android:layout_marginLeft="@dimen/margin"
                 />
         </LinearLayout>
         <View
@@ -151,7 +151,7 @@
                 android:textSize="15sp"
                 android:textColor="@color/lpg_text_light_color"
                 android:text="2018.06.08"
-                android:layout_marginLeft="@dimen/margin_horizontal"
+                android:layout_marginLeft="@dimen/margin"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -159,14 +159,14 @@
                 android:textSize="15sp"
                 android:textColor="@color/lpg_text_light_color"
                 android:text="10:00 - 12:00"
-                android:layout_marginLeft="@dimen/margin_horizontal"
+                android:layout_marginLeft="@dimen/margin"
                 />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_horizontal"
+            android:padding="@dimen/margin"
             android:gravity="center_vertical"
             >
         <TextView
@@ -202,7 +202,7 @@
         android:textSize="14sp"
         android:text="内部备注：客户要求今晚晚饭前送到"
         android:background="@color/white"
-        android:padding="@dimen/margin_horizontal"
+        android:padding="@dimen/margin"
         android:visibility="gone"
         />
 

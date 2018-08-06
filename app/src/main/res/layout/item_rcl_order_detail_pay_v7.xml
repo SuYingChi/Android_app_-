@@ -18,7 +18,7 @@
             android:id="@+id/item_rcl_order_detail_pay_v7_post_order_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:layout_marginLeft="@dimen/margin"
             android:text="2018-06-08 15:20" />
     </LinearLayout>
 
@@ -37,7 +37,7 @@
             android:id="@+id/item_rcl_order_detail_pay_v7_post_bottle_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:layout_marginLeft="@dimen/margin"
             android:text="2018-06-08 15:20" />
     </LinearLayout>
 </LinearLayout>

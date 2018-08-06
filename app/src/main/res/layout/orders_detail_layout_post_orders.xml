@@ -18,11 +18,11 @@
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/margin_Modules"
-        android:paddingLeft="@dimen/margin_horizontal"
-        android:paddingRight="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin"
         android:paddingTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         >
 
         <ImageView
@@ -33,7 +33,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:layout_marginLeft="@dimen/margin"
             android:text="订单号"
             android:textColor="@color/head_text_color"
             android:textSize="@dimen/text_16" />
@@ -42,7 +42,7 @@
             android:id="@+id/tv_orderid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:layout_marginLeft="@dimen/margin"
             android:text="10245045"
             android:textColor="@color/lpg_text_light_color"
             android:textSize="@dimen/text_16" />
@@ -70,11 +70,11 @@
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/margin_Modules"
-        android:paddingLeft="@dimen/margin_horizontal"
-        android:paddingRight="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin"
         android:paddingTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         >
 
         <TextView
@@ -110,11 +110,11 @@
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/margin_Modules"
-        android:paddingLeft="@dimen/margin_horizontal"
-        android:paddingRight="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin"
         android:paddingTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         >
 
         <TextView
@@ -150,11 +150,11 @@
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/margin_Modules"
-        android:paddingLeft="@dimen/margin_horizontal"
-        android:paddingRight="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin"
         android:paddingTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         >
 
         <TextView
@@ -190,11 +190,11 @@
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/margin_Modules"
-        android:paddingLeft="@dimen/margin_horizontal"
-        android:paddingRight="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin"
         android:paddingTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
 
         >
 
@@ -231,11 +231,11 @@
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/margin_Modules"
-        android:paddingLeft="@dimen/margin_horizontal"
-        android:paddingRight="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin"
         android:paddingTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
 
         >
 
@@ -272,11 +272,11 @@
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/margin_Modules"
-        android:paddingLeft="@dimen/margin_horizontal"
-        android:paddingRight="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin"
         android:paddingTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
 
         >
 
@@ -313,11 +313,11 @@
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/margin_Modules"
-        android:paddingLeft="@dimen/margin_horizontal"
-        android:paddingRight="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin"
         android:paddingTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         >
 
         <TextView
@@ -353,11 +353,11 @@
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/margin_Modules"
-        android:paddingLeft="@dimen/margin_horizontal"
-        android:paddingRight="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin"
         android:paddingTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
 
         >
 
@@ -394,11 +394,11 @@
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/margin_Modules"
-        android:paddingLeft="@dimen/margin_horizontal"
-        android:paddingRight="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin"
         android:paddingTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         >
 
         <TextView
@@ -441,8 +441,8 @@
         android:text="下单时间：2010-06-08 15:20"
         android:textColor="@color/lpg_text_light_color"
         android:textSize="14sp"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         />
     <TextView
         android:id="@+id/dispatch_bottle_time"
@@ -454,8 +454,8 @@
         android:text="发货时间：2010-06-08 15:20"
         android:textColor="@color/lpg_text_light_color"
         android:textSize="14sp"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         />
     <LinearLayout
         android:id="@+id/ll_post_orders_bottom"

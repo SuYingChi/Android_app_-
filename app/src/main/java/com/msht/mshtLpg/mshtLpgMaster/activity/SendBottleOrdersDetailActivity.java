@@ -88,7 +88,7 @@ public class SendBottleOrdersDetailActivity extends BaseActivity implements ISim
                 break;
             case R.id.hand_over_steel_bottle:
                 Intent intent = new Intent(this, ScanCodeDeliverSteelBottleActivity.class);
-                intent.putExtra(Constants.ORDER_ID,orderId);
+                intent.putExtra(Constants.ORDER_ID, orderId);
                 startActivity(intent);
                 break;
             default:
@@ -106,14 +106,14 @@ public class SendBottleOrdersDetailActivity extends BaseActivity implements ISim
         tvDay.setText(bean.getData().getCreateDate());
         tvTime.setText(bean.getData().getAppointmentTime());
         tvComment.setText(bean.getData().getRemarks());
-        tvOrderId.setText(bean.getData().getOrderId()+"");
+        tvOrderId.setText(bean.getData().getOrderId() + "");
         int fiveCount = bean.getData().getFiveBottleCount();
         int fifteenCount = bean.getData().getFifteenBottleCount();
         int fiftyCount = bean.getData().getFiftyBottleCount();
-        fiveFee.setText(fiveCount+"");
-        fifteenFee.setText(fifteenCount +"");
-        fiftyFee.setText(fiftyCount+"");
-        totalFee.setText(fiveCount+fifteenCount+fiftyCount+"");
+        fiveFee.setText(fiveCount + "");
+        fifteenFee.setText(fifteenCount + "");
+        fiftyFee.setText(fiftyCount + "");
+        totalFee.setText(fiveCount + fifteenCount + fiftyCount + "");
         dispatchOrdersTime.setText(bean.getData().getCreateDate());
 
     }
@@ -136,12 +136,8 @@ public class SendBottleOrdersDetailActivity extends BaseActivity implements ISim
 
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTelephone.getText().toString()));
         startActivity(intent);
-
     }
 
     @Override

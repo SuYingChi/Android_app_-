@@ -6,8 +6,8 @@
     android:layout_marginTop="@dimen/margin_Modules"
     android:background="@color/white"
     android:orientation="horizontal"
-    android:paddingLeft="@dimen/margin_horizontal"
-    android:paddingRight="@dimen/margin_horizontal"
+    android:paddingLeft="@dimen/margin"
+    android:paddingRight="@dimen/margin"
     android:paddingTop="@dimen/margin_Modules"
     android:paddingBottom="@dimen/margin_Modules"
    >

@@ -8,7 +8,7 @@
        android:layout_width="wrap_content"
        android:layout_height="match_parent"
        android:orientation="horizontal"
-       android:paddingHorizontal="@dimen/margin_horizontal"
+       android:paddingHorizontal="@dimen/margin"
        android:layout_marginTop="@dimen/margin_Modules"
        >
        <ImageView
@@ -20,7 +20,7 @@
            android:id="@+id/item_rcl_home_fragment_order_order_number"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:textSize="@dimen/text_16"
+           android:textSize="@dimen/text_small"
            android:textColor="@color/head_text_color"
            android:text="00011456111"
            android:layout_marginLeft="@dimen/topbar_title_bottom_margin"
@@ -33,7 +33,7 @@
            android:id="@+id/item_rcl_home_fragment_order_statu"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:textSize="@dimen/text_16"
+           android:textSize="@dimen/text_small"
            android:textColor="@color/warning_red"
            android:text="待验瓶"
 
@@ -53,7 +53,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin_horizontal"
+        android:paddingHorizontal="@dimen/margin"
         >
 
 
@@ -77,20 +77,16 @@
                     android:id="@+id/item_rcl_home_fragment_order_user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:lineSpacingExtra="0sp"
                     android:text="世贸吴彦祖 "
                     android:textColor="@color/lpg_text_dark_color"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/text_small" />
                 <TextView
                     android:id="@+id/item_rcl_home_fragment_order_sex"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:lineSpacingExtra="0sp"
                     android:text="（先生）"
                     android:textColor="@color/lpg_text_dark_color"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/text_small" />
                 <TextView
                     android:id="@+id/item_rcl_home_fragment_order_send_type"
                     android:layout_width="wrap_content"
@@ -99,32 +95,28 @@
                     android:lineSpacingExtra="0sp"
                     android:text="(用户自提)"
                     android:textColor="@color/warning_red"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/text_small" />
 
                 <TextView
                     android:id="@+id/item_rcl_home_fragment_order_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:lineSpacingExtra="0sp"
                     android:paddingBottom="3dp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
                     android:paddingTop="3dp"
                     android:text="6月20日 9:30-11:00"
                     android:textColor="@color/msb_color"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/text_small" />
 
             </LinearLayout>
             <TextView
                 android:id="@+id/item_rcl_home_fragment_order_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:lineSpacingExtra="0sp"
-                android:text="地址：海口市龙华区金贸西路诚田大厦24楼 （有电梯）"
+                android:text="地址：海口市龙华区金贸西路诚田大厦24楼(有电梯)"
                 android:textColor="@color/lpg_text_light_color"
-                android:textSize="12sp"
+                android:textSize="@dimen/text_small"
                 android:layout_marginTop="@dimen/margin_Modules"
                 />
 
@@ -154,14 +146,14 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin_horizontal"
+        android:paddingHorizontal="@dimen/margin"
         android:layout_marginTop="@dimen/margin_Modules"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
+            android:textSize="@dimen/text_small"
             android:textColor="@color/head_text_color"
             android:text="5kg气瓶"
 
@@ -174,7 +166,7 @@
             android:id="@+id/tv_item_rcl_home_fragment_order_5_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
+            android:textSize="@dimen/text_small"
             android:textColor="@color/lpg_text_light_color"
             android:text="x1"
 
@@ -184,14 +176,14 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin_horizontal"
+        android:paddingHorizontal="@dimen/margin"
         android:layout_marginTop="@dimen/margin_Modules"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
+            android:textSize="@dimen/text_small"
             android:textColor="@color/head_text_color"
             android:text="15kg气瓶"
 
@@ -204,7 +196,7 @@
             android:id="@+id/tv_item_rcl_home_fragment_order_15_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
+            android:textSize="@dimen/text_small"
             android:textColor="@color/lpg_text_light_color"
             android:text="x1"
 
@@ -214,14 +206,14 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin_horizontal"
+        android:paddingHorizontal="@dimen/margin"
         android:layout_marginTop="@dimen/margin_Modules"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
+            android:textSize="@dimen/text_small"
             android:textColor="@color/head_text_color"
             android:text="50kg气瓶"
 
@@ -234,7 +226,7 @@
             android:id="@+id/tv_item_rcl_home_fragment_order_50_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
+            android:textSize="@dimen/text_small"
             android:textColor="@color/lpg_text_light_color"
             android:text="x1"
 
@@ -252,7 +244,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin_horizontal"
+        android:paddingHorizontal="@dimen/margin"
         android:layout_marginTop="@dimen/margin_Modules"
         >
 
@@ -263,16 +255,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
+            android:textSize="@dimen/text_small"
             android:textColor="@color/lpg_text_light_color"
             android:text="总价"
             />
         <TextView
             android:id="@+id/tv_item_rcl_home_fragment_order_cost"
-            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:layout_marginLeft="@dimen/margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
+            android:textSize="@dimen/text_small"
             android:textColor="@color/msb_color"
             android:text="300.00"
             />
@@ -286,23 +278,23 @@
         android:layout_marginRight="@dimen/margin_Modules"
         />
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin_horizontal"
+        android:paddingHorizontal="@dimen/margin"
         android:padding="@dimen/calendar_day_headers_paddingbottom"
         >
 
         <View
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
         <Button
             android:id="@+id/btn_item_rcl_home_fragment_order_pay"
-            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:layout_marginLeft="@dimen/margin"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:textSize="@dimen/text_16"
+            android:textSize="@dimen/text_small"
             android:textColor="@color/white"
             android:background="@drawable/lpg_btn_corner"
             android:text="付款"
@@ -311,8 +303,9 @@
 </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="@dimen/rcl_margin"
         android:background="@color/line_color_lib"
         android:layout_below="@id/my_setting_fragment_layout_topbar"
+
         />
 </LinearLayout>

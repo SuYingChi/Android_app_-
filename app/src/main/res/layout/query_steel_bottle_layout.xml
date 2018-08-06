@@ -17,8 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/authorized_steel_bottle"
-        android:paddingVertical="@dimen/margin_horizontal"
-        android:paddingHorizontal="@dimen/margin_horizontal"
+        android:paddingVertical="@dimen/margin"
+        android:paddingHorizontal="@dimen/margin"
         android:layout_below="@id/my_setting_fragment_layout_topbar"
 
         >
@@ -37,7 +37,7 @@
            android:layout_toRightOf="@id/steel_bottle"
             android:layout_alignTop="@id/steel_bottle"
             android:layout_marginTop="@dimen/margin_Modules"
-            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:layout_marginLeft="@dimen/margin"
             />
         <TextView
             android:id="@+id/steel_bottle_number"
@@ -49,7 +49,7 @@
             android:layout_toRightOf="@id/steel_bottle"
             android:layout_alignTop="@id/steel_bottle"
             android:layout_marginTop="@dimen/margin_Modules"
-            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:layout_marginLeft="@dimen/margin"
             />
         <TextView
             android:id="@+id/number"
@@ -61,7 +61,7 @@
             android:layout_toRightOf="@id/steel_bottle_number"
             android:layout_alignTop="@id/steel_bottle"
             android:layout_marginTop="@dimen/margin_Modules"
-            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:layout_marginLeft="@dimen/margin"
             />
         <TextView
             android:id="@+id/bottle_number_tv"
@@ -73,7 +73,7 @@
             android:layout_toRightOf="@id/steel_bottle"
             android:layout_alignBottom="@id/steel_bottle"
             android:layout_marginBottom="@dimen/margin_Modules"
-            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:layout_marginLeft="@dimen/margin"
             />
         <TextView
             android:id="@+id/bottle_number"
@@ -84,7 +84,7 @@
             android:textSize="@dimen/text_16"
             android:layout_toRightOf="@id/bottle_number_tv"
             android:layout_alignTop="@id/bottle_number_tv"
-            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:layout_marginLeft="@dimen/margin"
             />
     </RelativeLayout>
     <ImageView
@@ -97,7 +97,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginHorizontal="@dimen/margin"
         android:orientation="vertical"
         android:layout_below="@id/steel_bottle_info"
         android:layout_marginVertical="@dimen/margin_Modules"
@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/margin_horizontal"
+            android:paddingHorizontal="@dimen/margin"
             android:paddingTop="@dimen/margin_Modules"
             >
             <TextView
@@ -127,7 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/margin_horizontal"
+            android:paddingHorizontal="@dimen/margin"
             android:paddingTop="@dimen/margin_Modules"
             >
             <TextView
@@ -147,7 +147,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/margin_horizontal"
+            android:paddingHorizontal="@dimen/margin"
             android:paddingTop="@dimen/margin_Modules"
             >
             <TextView
@@ -167,7 +167,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/margin_horizontal"
+            android:paddingHorizontal="@dimen/margin"
             android:paddingTop="@dimen/margin_Modules"
             >
             <TextView
@@ -187,7 +187,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/margin_horizontal"
+            android:paddingHorizontal="@dimen/margin"
             android:paddingTop="@dimen/margin_Modules"
             >
             <TextView
@@ -207,7 +207,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/margin_horizontal"
+            android:paddingHorizontal="@dimen/margin"
             android:paddingTop="@dimen/margin_Modules"
             android:paddingBottom="@dimen/margin_Modules"
             >

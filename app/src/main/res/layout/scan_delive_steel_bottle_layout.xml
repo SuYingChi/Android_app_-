@@ -36,9 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/scan_delive_topbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_Modules"
+        android:layout_marginTop="@dimen/margin"
         android:text="请扫描要交付用户钢瓶二维码"
-        android:textColor="@color/lpg_text_dark_color"
+        android:textColor="@color/white"
         android:textSize="@dimen/text_16" />
 
     <LinearLayout
@@ -134,7 +134,7 @@
     <RelativeLayout
         android:id="@+id/scan_delive_steel_bottle_rlt"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/scan_rcl_height"
         android:layout_above="@id/tv_scan_delive_bottom"
         android:layout_margin="@dimen/margin_Modules"
         android:background="@color/white"
@@ -158,7 +158,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_Modules"
-        android:layout_marginBottom="@dimen/margin_Modules"
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
         android:layout_above="@id/scan_delive_steel_bottle_rlt"
@@ -175,7 +174,7 @@
             android:textColor="@color/textcolor"
             android:textColorHint="@color/bg_input_border"
             android:textCursorDrawable="@null"
-            android:textSize="15sp"
+            android:textSize="@dimen/text_16"
             />
 
         <TextView
@@ -185,7 +184,7 @@
             android:background="@drawable/btn_right_corner_unselect_bg"
             android:padding="@dimen/margin_Modules"
             android:text="查询"
-            android:textSize="@dimen/text_nomal" />
+            android:textSize="@dimen/text_16" />
     </LinearLayout>
 
 

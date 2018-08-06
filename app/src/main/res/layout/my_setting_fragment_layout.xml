@@ -305,7 +305,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:layout_marginLeft="@dimen/margin"
             android:text="我的收入"
             android:textColor="@color/lpg_text_dark_color"
             android:textSize="@dimen/text_nomal" />
@@ -341,7 +341,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:layout_marginLeft="@dimen/margin"
             android:text="关于我们"
             android:textColor="@color/lpg_text_dark_color"
             android:textSize="@dimen/text_nomal" />
@@ -375,7 +375,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:layout_marginLeft="@dimen/margin"
             android:text="注销登录"
             android:textColor="@color/lpg_text_dark_color"
             android:textSize="@dimen/text_nomal" />

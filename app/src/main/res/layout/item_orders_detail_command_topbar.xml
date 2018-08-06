@@ -13,7 +13,7 @@
         android:id="@+id/return_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
         android:layout_marginTop="@dimen/margin_Modules"
         android:src="@drawable/return_btn" />
 
@@ -33,11 +33,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_comman_topbar_title"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginHorizontal="@dimen/margin"
         android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/margin_horizontal"
+        android:layout_marginTop="@dimen/margin"
         >
 
         <TextView
@@ -77,7 +77,7 @@
                 android:id="@+id/comman_topbar_telephone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_horizontal"
+                android:layout_marginLeft="@dimen/margin"
                 android:gravity="top"
                 android:text="13012345678"
                 android:textColor="@color/lpg_text_light_color"
@@ -85,9 +85,9 @@
 
             <ImageView
                 android:id="@+id/comman_topbar_call_phone_btn"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_marginLeft="@dimen/margin_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/margin"
                 android:src="@drawable/call_phone" />
         </LinearLayout>
 
@@ -113,7 +113,7 @@
                 android:id="@+id/comman_topbar_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_horizontal"
+                android:layout_marginLeft="@dimen/margin"
                 android:text="2018.06.08"
                 android:textColor="@color/lpg_text_light_color"
                 android:textSize="15sp" />
@@ -122,7 +122,7 @@
                 android:id="@+id/comman_topbar_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_horizontal"
+                android:layout_marginLeft="@dimen/margin"
                 android:text="10:00 - 12:00"
                 android:textColor="@color/lpg_text_light_color"
                 android:textSize="15sp" />
@@ -138,7 +138,7 @@
         android:layout_below="@id/ll_orders_detail_command_topbar_client_info"
         android:layout_marginTop="@dimen/margin_Modules"
         android:background="@color/white"
-        android:padding="@dimen/margin_horizontal"
+        android:padding="@dimen/margin"
         android:text="内部备注：客户要求今晚晚饭前送到"
         android:textColor="@color/lpg_text_dark_color"
         android:textSize="14sp" />

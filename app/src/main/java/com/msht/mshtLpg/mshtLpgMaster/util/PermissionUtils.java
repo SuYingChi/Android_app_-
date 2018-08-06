@@ -1,5 +1,6 @@
 package com.msht.mshtLpg.mshtLpgMaster.util;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
@@ -27,7 +28,6 @@ import java.util.List;
 
 
 /**
- *
  * 6.0 运行时权限处理工具类。目前废弃，项目中当前使用Andpermission框架做动态权限处理
  */
 public class PermissionUtils {
@@ -35,48 +35,50 @@ public class PermissionUtils {
     private static int mRequestCode = -1;
 
     public static void requestPermissionsResult(Activity activity, int requestCode
-            , String[] permission, PermissionCallBack callback){
+            , String[] permission, PermissionCallBack callback) {
         requestPermissions(activity, requestCode, permission, callback);
     }
+
     public static void requestPermissionsResult(android.app.Fragment fragment, int requestCode
-            , String[] permission, PermissionCallBack callback){
+            , String[] permission, PermissionCallBack callback) {
         requestPermissions(fragment, requestCode, permission, callback);
     }
 
     public static void requestPermissionsResult(Fragment fragment, int requestCode
-            , String[] permission, PermissionCallBack callback){
+            , String[] permission, PermissionCallBack callback) {
         requestPermissions(fragment, requestCode, permission, callback);
     }
 
     /**
      * 请求权限处理
-     * @param object        activity or fragment
-     * @param requestCode   请求码
-     * @param permissions   需要请求的权限
-     * @param callback      结果回调
+     *
+     * @param object      activity or fragment
+     * @param requestCode 请求码
+     * @param permissions 需要请求的权限
+     * @param callback    结果回调
      */
     @TargetApi(Build.VERSION_CODES.M)
     private static void requestPermissions(Object object, int requestCode
-            , String[] permissions, PermissionCallBack callback){
+            , String[] permissions, PermissionCallBack callback) {
 
         checkCallingContextSuitability(object);
         mPermissionCallBack = callback;
 
-        if(checkPermissions(getContext(object), permissions)){
-            if(mPermissionCallBack != null)
+        if (checkPermissions(getContext(object), permissions)) {
+            if (mPermissionCallBack != null)
                 mPermissionCallBack.onPermissionGranted(requestCode);
-        }else{
+        } else {
             List<String> deniedPermissions = getNeedToGrantedPermissions(getContext(object), permissions);
-            if(deniedPermissions.size() > 0){
+            if (deniedPermissions.size() > 0) {
                 mRequestCode = requestCode;
 
-                if(object instanceof Activity){
+                if (object instanceof Activity) {
                     ((Activity) object).requestPermissions(deniedPermissions
                             .toArray(new String[deniedPermissions.size()]), requestCode);
-                }else if(object instanceof android.app.Fragment){
+                } else if (object instanceof android.app.Fragment) {
                     ((android.app.Fragment) object).requestPermissions(deniedPermissions
                             .toArray(new String[deniedPermissions.size()]), requestCode);
-                }else if(object instanceof android.support.v4.app.Fragment){
+                } else if (object instanceof android.support.v4.app.Fragment) {
                     ((android.support.v4.app.Fragment) object).requestPermissions(deniedPermissions
                             .toArray(new String[deniedPermissions.size()]), requestCode);
                 }
@@ -89,11 +91,11 @@ public class PermissionUtils {
      */
     private static Context getContext(Object object) {
         Context context;
-        if(object instanceof android.app.Fragment){
+        if (object instanceof android.app.Fragment) {
             context = ((android.app.Fragment) object).getActivity();
-        }else if(object instanceof android.support.v4.app.Fragment){
+        } else if (object instanceof android.support.v4.app.Fragment) {
             context = ((android.support.v4.app.Fragment) object).getActivity();
-        }else{
+        } else {
             context = (Activity) object;
         }
         return context;
@@ -103,12 +105,12 @@ public class PermissionUtils {
      * 请求权限结果，对应onRequestPermissionsResult()方法。
      */
     public static void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if(requestCode == mRequestCode){
-            if(verifyPermissions(grantResults)){
-                if(mPermissionCallBack != null)
+        if (requestCode == mRequestCode) {
+            if (verifyPermissions(grantResults)) {
+                if (mPermissionCallBack != null)
                     mPermissionCallBack.onPermissionGranted(requestCode);
-            }else{
-                if(mPermissionCallBack != null)
+            } else {
+                if (mPermissionCallBack != null)
                     mPermissionCallBack.onPermissionDenied(requestCode);
             }
         }
@@ -144,7 +146,7 @@ public class PermissionUtils {
      */
     private static boolean verifyPermissions(int[] grantResults) {
         // 如果请求被取消，则结果数组为空
-        if(grantResults.length <= 0)
+        if (grantResults.length <= 0)
             return false;
 
         // 循环判断每个权限是否被拒绝
@@ -158,14 +160,15 @@ public class PermissionUtils {
 
     /**
      * 获取权限列表中所有需要授权的权限
-     * @param context       上下文
-     * @param permissions   权限列表
+     *
+     * @param context     上下文
+     * @param permissions 权限列表
      * @return
      */
-    private static List<String> getNeedToGrantedPermissions(Context context, String... permissions){
+    private static List<String> getNeedToGrantedPermissions(Context context, String... permissions) {
         List<String> deniedPermissions = new ArrayList<>();
         for (String permission : permissions) {
-            if(ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_DENIED){
+            if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_DENIED) {
                 deniedPermissions.add(permission);
             }
         }
@@ -174,6 +177,7 @@ public class PermissionUtils {
 
     /**
      * 检查所传递对象的正确性
+     *
      * @param object 必须为 activity or fragment
      */
     private static void checkCallingContextSuitability(Object object) {
@@ -185,7 +189,7 @@ public class PermissionUtils {
         boolean isSupportFragment = object instanceof android.support.v4.app.Fragment;
         boolean isAppFragment = object instanceof android.app.Fragment;
 
-        if(!(isActivity || isSupportFragment || isAppFragment)){
+        if (!(isActivity || isSupportFragment || isAppFragment)) {
             throw new IllegalArgumentException(
                     "Caller must be an Activity or a Fragment");
         }
@@ -193,34 +197,36 @@ public class PermissionUtils {
 
     /**
      * 检查所有的权限是否已经被授权
+     *
      * @param permissions 权限列表
      * @return
      */
-    private static boolean checkPermissions(Context context, String... permissions){
-        if(isOverMarshmallow()){
+    private static boolean checkPermissions(Context context, String... permissions) {
+        if (isOverMarshmallow()) {
             for (String permission : permissions) {
-                if(ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_DENIED){
+                if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_DENIED) {
                     return false;
                 }
             }
         }
         return true;
     }
-    private static boolean checkIsSinglePermissionGranted(Context context, String  permission){
-        if(isOverMarshmallow()){
-                if(ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_DENIED){
-                    return false;
-                }
 
+    public static boolean checkIsSinglePermissionGranted(Context context, String permission) {
+        if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_DENIED) {
+            return false;
+        } else {
+            return true;
         }
-        return true;
     }
+
     /**
      * 判断当前手机API版本是否 >= 6.0
      */
-    private static boolean isOverMarshmallow() {
+    public static boolean isOverMarshmallow() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
     }
+
     public static void requestPermissions(Context context, PermissionRequestFinishListener permissionRequestFinishListener, String... permissions) {
         AndPermission.with(context)
                 .runtime()
@@ -229,15 +235,15 @@ public class PermissionUtils {
                 .onGranted(new Action<List<String>>() {
                     @Override
                     public void onAction(List<String> permissions) {
-                        permissionRequestFinishListener.onPermissionRequestSuccess( permissions);
+                        permissionRequestFinishListener.onPermissionRequestSuccess(permissions);
                     }
                 })
                 .onDenied(new Action<List<String>>() {
                     @Override
                     public void onAction(@NonNull List<String> permissions) {
                         if (AndPermission.hasAlwaysDeniedPermission(context, permissions)) {
-                          showSettingDialog(context, permissions,permissionRequestFinishListener);
-                        }else {
+                            showSettingDialog(context, permissions, permissionRequestFinishListener);
+                        } else {
                             permissionRequestFinishListener.onPermissionRequestDenied(permissions);
                         }
 
@@ -260,7 +266,7 @@ public class PermissionUtils {
                 .setPositiveButton(R.string.setting, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        setPermission(context,permissionRequestFinishListener);
+                        setPermission(context, permissionRequestFinishListener);
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -271,6 +277,7 @@ public class PermissionUtils {
                 })
                 .show();
     }
+
     /**
      * Set permissions.
      */
@@ -286,6 +293,7 @@ public class PermissionUtils {
                 })
                 .start();
     }
+
     public interface PermissionRequestFinishListener {
 
         void onBackFromSettingPage();
@@ -297,6 +305,7 @@ public class PermissionUtils {
 
     public interface PermissionCallBack {
         void onPermissionGranted(int requestCode);
+
         void onPermissionDenied(int requestCode);
     }
 

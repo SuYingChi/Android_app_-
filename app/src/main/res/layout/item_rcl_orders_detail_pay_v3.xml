@@ -6,7 +6,7 @@
     android:layout_marginTop="@dimen/margin_Modules"
     android:background="@color/white"
     android:orientation="horizontal"
-    android:padding="@dimen/margin_horizontal">
+    android:padding="@dimen/margin">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -16,7 +16,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
         android:text="订单号"
         android:textColor="@color/head_text_color"
         android:textSize="@dimen/text_16" />
@@ -25,7 +25,7 @@
         android:id="@+id/item_rcl_orders_detail_pay_v3_orders_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
         android:text="10245045"
         android:textColor="@color/lpg_text_light_color"
         android:textSize="@dimen/text_16" />

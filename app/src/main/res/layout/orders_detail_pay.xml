@@ -12,10 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/orders_detail_command_top"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
-        android:paddingLeft="@dimen/margin_horizontal"
-        android:paddingRight="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin"
         android:background="@color/white"
         android:layout_marginTop="@dimen/margin_Modules"
         />
@@ -27,10 +27,10 @@
         android:background="@color/white"
         android:layout_marginTop="@dimen/margin_Modules"
         android:layout_below="@id/rcl_orders_detail"
-        android:paddingLeft="@dimen/margin_horizontal"
-        android:paddingRight="@dimen/margin_horizontal"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         >
       <TextView
           android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/right_angle"
-            android:layout_marginLeft="@dimen/margin_horizontal"
+            android:layout_marginLeft="@dimen/margin"
             android:layout_gravity="center"
             />
     </LinearLayout>
@@ -68,10 +68,10 @@
         android:orientation="vertical"
         android:layout_below="@id/user_change_cost"
         android:layout_marginTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:paddingLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
-        android:paddingRight="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
+        android:paddingLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:paddingRight="@dimen/margin"
         android:background="@color/white"
         >
      <LinearLayout
@@ -89,7 +89,7 @@
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:text="2018-06-08 15:20"
-             android:layout_marginLeft="@dimen/margin_horizontal"
+             android:layout_marginLeft="@dimen/margin"
              />
      </LinearLayout>
         <LinearLayout
@@ -108,7 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2018-06-08 15:20"
-                android:layout_marginLeft="@dimen/margin_horizontal"
+                android:layout_marginLeft="@dimen/margin"
                 />
         </LinearLayout>
     </LinearLayout>
@@ -117,8 +117,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ll_time"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginRight="@dimen/margin_horizontal"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         android:layout_marginTop="@dimen/margin_Modules"
 
         />

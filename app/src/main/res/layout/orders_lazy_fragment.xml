@@ -49,6 +49,8 @@
         android:background="@color/white"
         app:tabGravity="fill"
         app:tabMode="fixed"
+        app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+        app:tabTextColor="@color/lpg_text_dark_color"
         />
 
 
