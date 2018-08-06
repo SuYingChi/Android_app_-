@@ -42,7 +42,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class SendOrdersDetailPostActivity extends BaseActivity implements IOrderDetailView, IOrdesDespositView, IDeliveryView, IOrderDetailPostView,PermissionUtils.PermissionRequestFinishListener {
+public class SendOrdersDetailPostActivity extends BaseActivity implements IOrderDetailView, /*IOrdesDespositView,*/ IDeliveryView, IOrderDetailPostView, PermissionUtils.PermissionRequestFinishListener {
 
 
     @BindView(R.id.pay_orders_v2_topbar)
@@ -146,15 +146,15 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
     private int remain15;
     private int remain50;
     private String room;
-  /*  private Handler handler = new MyHandler(this);
-    private final int TOTAL_GAS = 101;
-    private final int TOTAL_DEPOSITE = 102;
-    private final int TOTAL_DELIVERY = 103;
-    private final int TOTAL_EXCHANGE = 104;*/
+    /*  private Handler handler = new MyHandler(this);
+      private final int TOTAL_GAS = 101;
+      private final int TOTAL_DEPOSITE = 102;
+      private final int TOTAL_DELIVERY = 103;
+      private final int TOTAL_EXCHANGE = 104;*/
     private OrderDetailBean orderDetailBean;
     private List<ExchangeRclBean> exchangeList = new ArrayList<ExchangeRclBean>();
     private DeliveryBean deliveryBean;
-    private String siteId ="";
+    private String siteId = "";
     private int orderFiveNum;
     private int orderFifteenNum;
     private int orderFiftyNum;
@@ -214,7 +214,7 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_orders_v2);
-       unbinder =  ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         //从扫码界面跳转过来
@@ -224,13 +224,13 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
             emptyBottleList = (List<VerifyBottleBean>) bundle.getSerializable(Constants.EMPTY_BOTTLE_LIST);
             //此时订单状态还只是待验瓶
             iOrderDetailPresenter = new IOrderDetailPresenter(this);
-            iGasAndDepositPresenter = new IGasAndDepositPresenter(this);
+           // iGasAndDepositPresenter = new IGasAndDepositPresenter(this);
             iDeliveryPresenter = new IDeliveryPresenter(this);
             iPostPresenter = new IOrderDetailPostPresenter(this);
 
-            emptyFive = BottleCaculteUtil.getBottleNum(emptyBottleList, 5)+"";
-            emptyFifteen = BottleCaculteUtil.getBottleNum(emptyBottleList, 15)+"";
-            emptyFifyt = BottleCaculteUtil.getBottleNum(emptyBottleList, 50)+"";
+            emptyFive = BottleCaculteUtil.getBottleNum(emptyBottleList, 5) + "";
+            emptyFifteen = BottleCaculteUtil.getBottleNum(emptyBottleList, 15) + "";
+            emptyFifyt = BottleCaculteUtil.getBottleNum(emptyBottleList, 50) + "";
 
             iOrderDetailPresenter.getOrderDetail();
         }
@@ -249,12 +249,12 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
         if (requestCode == Constants.EXCHANGE_EMPTY_BOTTLE_REQUEST_CODE && resultCode == RESULT_OK) {
             if (data != null) {
                 exchangeFee = data.getDoubleExtra(Constants.EXCHANGE_FEE, 0);
-                tvDiscount.setText(exchangeFee+"");
+                tvDiscount.setText(exchangeFee + "");
                 tvDiscount.setText(exchangeFee + "");
                 totalfare -= exchangeFee;
-                if(((totalfare + "").length())>6) {
+                if (((totalfare + "").length()) > 6) {
                     tvCost.setText((totalfare + "").substring(0, 5));
-                }else {
+                } else {
                     tvCost.setText((totalfare + ""));
                 }
                 Bundle bundle = data.getExtras();
@@ -262,7 +262,7 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
                     exchangeList = (List<ExchangeRclBean>) bundle.getSerializable("exchangelist");
                 }
             }
-        }else if (requestCode == Constants.EDIT_FLOOR_REQUEST_CODE && resultCode == RESULT_OK) {
+        } else if (requestCode == Constants.EDIT_FLOOR_REQUEST_CODE && resultCode == RESULT_OK) {
             if (data != null) {
                 floor = data.getStringExtra(Constants.FLOOR);
                 tvFloor.setText(floor + "层");
@@ -270,7 +270,7 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
                 tvElevator.setText(isElevator.equals("1") ? "(有电梯)" : "(无电梯)");
                 if (!isElevator.equals("1")) {
                     iDeliveryPresenter.getDelivery();
-                }else {
+                } else {
                     iDeliveryPresenter.getIsElevatorDelivery();
                 }
 
@@ -282,31 +282,31 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
     @Override
     public void onGetOrdersDetailSuccess(OrderDetailBean bean) {
         orderDetailBean = bean;
-        siteId = bean.getData().getSiteId()+"";
-        floor = bean.getData().getFloor()+"";
-        orderId = bean.getData().getOrderId()+"";
+        siteId = bean.getData().getSiteId() + "";
+        floor = bean.getData().getFloor() + "";
+        orderId = bean.getData().getOrderId() + "";
         room = bean.getData().getRoomNum();
-        isElevator = bean.getData().getIsElevator()+"";
-        orderFiveNum= bean.getData().getFiveBottleCount();
-        orderFifteenNum= bean.getData().getFifteenBottleCount();
-        orderFiftyNum= bean.getData().getFiftyBottleCount();
-        isDelivery = bean.getData().getIsDelivery()+"";
-        remain5 = orderFiveNum- BottleCaculteUtil.getBottleNum(emptyBottleList, 5);
-        remain15 = orderFifteenNum- BottleCaculteUtil.getBottleNum(emptyBottleList, 15);
-        remain50 = orderFiftyNum- BottleCaculteUtil.getBottleNum(emptyBottleList, 50);
+        isElevator = bean.getData().getIsElevator() + "";
+        orderFiveNum = bean.getData().getFiveBottleCount();
+        orderFifteenNum = bean.getData().getFifteenBottleCount();
+        orderFiftyNum = bean.getData().getFiftyBottleCount();
+        isDelivery = bean.getData().getIsDelivery() + "";
+        remain5 = orderFiveNum - BottleCaculteUtil.getBottleNum(emptyBottleList, 5);
+        remain15 = orderFifteenNum - BottleCaculteUtil.getBottleNum(emptyBottleList, 15);
+        remain50 = orderFiftyNum - BottleCaculteUtil.getBottleNum(emptyBottleList, 50);
         exchangeFee = 0;
-        tvDiscount.setText(exchangeFee+"");
+        tvDiscount.setText(exchangeFee + "");
         //startActivityforresult 自有产权置换点击事件
         llDiscount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(remain15>0){
+                if (remain15 > 0) {
                     Intent intent = new Intent(SendOrdersDetailPostActivity.this, ExchangeSteelBottleActivity.class);
                     intent.putExtra(Constants.REMAIN_FIVE_NUM, remain5);
                     intent.putExtra(Constants.REMAIN_FIFTEEN_NUM, remain15);
                     intent.putExtra(Constants.REMAIN_FIFTY_NUM, remain50);
                     startActivityForResult(intent, Constants.EXCHANGE_EMPTY_BOTTLE_REQUEST_CODE);
-                }else {
+                } else {
                     PopUtil.toastInBottom("只能置换15KG空瓶，暂不支持置换5KG和50KG空瓶");
                 }
 
@@ -316,7 +316,7 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
         client_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                totalfare-=totalDeliveryfare;
+                totalfare -= totalDeliveryfare;
                 Intent intent = new Intent(SendOrdersDetailPostActivity.this, EditLocationActivity.class);
                 intent.putExtra(Constants.FLOOR, floor);
                 intent.putExtra(Constants.IS_ELEVATOR, isElevator);
@@ -338,16 +338,100 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
         tvTel.setText(orderDetailBean.getData().getMobile());
         tvDay.setText(orderDetailBean.getData().getCreateDate());
         tvTime.setText(orderDetailBean.getData().getAppointmentTime());
-        if(TextUtils.isEmpty(orderDetailBean.getData().getRemarks())){
+        if (TextUtils.isEmpty(orderDetailBean.getData().getRemarks())) {
             tvComment.setVisibility(View.GONE);
-        }else {
+        } else {
             tvComment.setVisibility(View.VISIBLE);
             tvComment.setText(orderDetailBean.getData().getRemarks());
         }
-        tvOrderId.setText(orderId );
+        tvOrderId.setText(orderId);
         tvDispatchOrderTime.setText(orderDetailBean.getData().getCreateDate());
         tvDispatchBottleTime.setText(orderDetailBean.getData().getAppointmentTime());
-        iGasAndDepositPresenter.getGasAndDeposit();
+        //iGasAndDepositPresenter.getGasAndDeposit();
+
+
+        fiveDeposite = bean.getData().getFiveDepositFee();
+        fifteenDeposite = bean.getData().getFifteenDepositFee();
+        fiftyDeposite = bean.getData().getFiftyDepositFee();
+        fiveGas = bean.getData().getFiveGasFee();
+        fifteenGas = bean.getData().getFifteenGasFee();
+        fiftyGas = bean.getData().getFiftyGasFee();
+
+        //气价
+        fiveGasFee = orderFiveNum * fiveGas;
+        tvFiveGas.setText(fiveGasFee + "");
+        fifteenGasFee = orderFifteenNum * fifteenGas;
+        tvFifteenGas.setText(fifteenGasFee + "");
+        fiftyGasFee = orderFiftyNum * fiftyGas;
+        tvFiftyGas.setText(fiftyGasFee + "");
+        totalGas = fiveGasFee + fifteenGasFee + fiftyGasFee;
+
+        totalfare += totalGas;
+        if (((totalfare + "").length()) > 6) {
+            tvCost.setText((totalfare + "").substring(0, 5));
+        } else {
+            tvCost.setText((totalfare + ""));
+        }
+        tvGasFee.setText(totalGas + "");
+
+        //押金
+
+        if (remain5 == 0) {
+            llFiveDeposite.setVisibility(View.GONE);
+        } else {
+            llFiveDeposite.setVisibility(View.VISIBLE);
+            fiveTotalDeposite = remain5 * fiveDeposite;
+            tvFiveDeposite.setText(fiveTotalDeposite + "");
+        }
+        if (remain15 == 0) {
+            llFifteenDeposite.setVisibility(View.GONE);
+        } else {
+            llFifteenDeposite.setVisibility(View.VISIBLE);
+            fifteenteenTotalDeposite = remain15 * fifteenDeposite;
+            tvFifteenDeposite.setText(fifteenteenTotalDeposite + "");
+        }
+        if (remain50 == 0) {
+            llFiftyDeposite.setVisibility(View.GONE);
+        } else {
+            llFiftyDeposite.setVisibility(View.VISIBLE);
+            fiftyTotalDeposite = remain50 * fiftyDeposite;
+            tvFiftyDeposite.setText(fiftyTotalDeposite + "");
+        }
+        totalDeposite = fiveTotalDeposite + fifteenteenTotalDeposite + fiftyTotalDeposite;
+        if (totalDeposite == 0) {
+            llDepositFare.setVisibility(View.GONE);
+        } else {
+            llDepositFare.setVisibility(View.VISIBLE);
+            totalfare += totalDeposite;
+            if (((totalfare + "").length()) > 6) {
+                tvCost.setText((totalfare + "").substring(0, 5));
+            } else {
+                tvCost.setText((totalfare + ""));
+            }
+            tvDepositeFee.setText(totalDeposite + "");
+        }
+        fiveDeliveryFee = bean.getData().getFiveDeliveryFee();
+        fifteenDeliveryFee = bean.getData().getFifteenDeliveryFee();
+        fiftyDeliveryFee = bean.getData().getFiftyDeliveryFee();
+        totalFiveDelivery = orderFiveNum * fiveDeliveryFee;
+        totalFifteenDelivery = orderFifteenNum * fifteenDeliveryFee;
+        totalFiftyDelivery = orderFiftyNum * fiftyDeliveryFee;
+        totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
+
+        totalfare += totalDeliveryfare;
+        if (((totalfare + "").length()) > 6) {
+            tvCost.setText((totalfare + "").substring(0, 5));
+        } else {
+            tvCost.setText((totalfare + ""));
+        }
+        tvDeliverFee.setText(totalDeliveryfare + "");
+
+        tvPostBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iPostPresenter.postOrders();
+            }
+        });
     }
 
     @Override
@@ -359,7 +443,7 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
 
     @Override
     public String getOrderId() {
-        return orderId ;
+        return orderId;
     }
 
     @Override
@@ -384,26 +468,26 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
 
     @Override
     public String getFiveBottleCount() {
-        return orderFiveNum+"";
+        return orderFiveNum + "";
     }
 
     @Override
     public String getFifteenBottleCount() {
-        return orderFifteenNum+"";
+        return orderFifteenNum + "";
     }
 
     @Override
     public String getFiftyBottleCount() {
-        return orderFiftyNum+"";
+        return orderFiftyNum + "";
     }
 
     @Override
     public String getDeliveryBottleIds() {
-         StringBuffer sf = new StringBuffer();
-        for(int i = 0; i< heavyBottleList.size(); i++){
-            if(i==0){
+        StringBuffer sf = new StringBuffer();
+        for (int i = 0; i < heavyBottleList.size(); i++) {
+            if (i == 0) {
                 sf.append(heavyBottleList.get(i).getData().getId());
-            }else {
+            } else {
                 sf.append(",").append(heavyBottleList.get(i).getData().getId());
             }
         }
@@ -412,19 +496,19 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
 
     @Override
     public String getFloor() {
-        if(isElevator.equals("1")){
-            floor ="1";
+        if (isElevator.equals("1")) {
+            floor = "1";
         }
-        return floor+"";
+        return floor + "";
     }
 
     @Override
     public String getRecycleBottleIds() {
         StringBuilder sf = new StringBuilder();
-        for(int i = 0; i< emptyBottleList.size(); i++){
-            if(i==0){
+        for (int i = 0; i < emptyBottleList.size(); i++) {
+            if (i == 0) {
                 sf.append(emptyBottleList.get(i).getData().getId());
-            }else {
+            } else {
                 sf.append(",").append(emptyBottleList.get(i).getData().getId());
             }
         }
@@ -433,12 +517,12 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
 
     @Override
     public String getReplaceBottleStr() {
-        if(exchangeList.size()!=0) {
+        if (exchangeList.size() != 0) {
             StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < exchangeList.size(); i++) {
                 int levelIndex = exchangeList.get(i).getmSelectBottleLevelIndex();
                 int modelIndex = exchangeList.get(i).getSelectBottleModeIndex();
-                int year = exchangeList.get(i).getSelectBottleYearsIndex()+1;
+                int year = exchangeList.get(i).getSelectBottleYearsIndex() + 1;
                 int weight = 0;
                 int num = exchangeList.get(i).getBottleNum();
               /*  switch (modelIndex) {
@@ -479,7 +563,7 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
                 }
             }
             return stringBuilder.toString();
-        }else{
+        } else {
             return "";
         }
 
@@ -487,10 +571,10 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
 
     @Override
     public String getIsElevator() {
-        return isElevator+"";
+        return isElevator + "";
     }
 
-    @Override
+   /* @Override
     public void onGasAndDepositGetSuccess(GasAndDepositBean bean) {
         this.gasAndDepositBean = bean;
         fiveDeposite = bean.getData().getDepositPrice().getFiveDepositPrice();
@@ -499,9 +583,6 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
         fiveGas = bean.getData().getGasPrice().getFivePrice();
         fifteenGas = bean.getData().getGasPrice().getFifteenPrice();
         fiftyGas = bean.getData().getGasPrice().getFiftyPrice();
-        Log.d("suyingchi", "onGasAndDepositGetSuccess: "+fiveGas);
-        Log.d("suyingchi", "onGasAndDepositGetSuccess: "+fifteenGas);
-        Log.d("suyingchi", "onGasAndDepositGetSuccess: "+fiftyGas);
 
         //气价
         fiveGasFee = orderFiveNum * fiveGas;
@@ -513,9 +594,9 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
         totalGas = fiveGasFee + fifteenGasFee + fiftyGasFee;
 
         totalfare += totalGas;
-        if(((totalfare + "").length())>6) {
+        if (((totalfare + "").length()) > 6) {
             tvCost.setText((totalfare + "").substring(0, 5));
-        }else {
+        } else {
             tvCost.setText((totalfare + ""));
         }
         tvGasFee.setText(totalGas + "");
@@ -549,57 +630,49 @@ public class SendOrdersDetailPostActivity extends BaseActivity implements IOrder
         } else {
             llDepositFare.setVisibility(View.VISIBLE);
             totalfare += totalDeposite;
-            if(((totalfare + "").length())>6) {
+            if (((totalfare + "").length()) > 6) {
                 tvCost.setText((totalfare + "").substring(0, 5));
-            }else {
+            } else {
                 tvCost.setText((totalfare + ""));
             }
             tvDepositeFee.setText(totalDeposite + "");
         }
         if (!isElevator.equals("1")) {
             iDeliveryPresenter.getDelivery();
-        }else {
+        } else {
             iDeliveryPresenter.getIsElevatorDelivery();
         }
-    }
+    }*/
 
-    @Override
+   /* @Override
     public String getSiteId() {
         return siteId;
-    }
+    }*/
 
 
     @Override
     public void onGetDeliverySuccess(DeliveryBean bean) {
-            this.deliveryBean = bean;
-            fiveDeliveryFee = bean.getData().getDeliveryFee().getFiveDeliveryFee();
-            fifteenDeliveryFee = bean.getData().getDeliveryFee().getFifteenDeliveryFee();
-            fiftyDeliveryFee = bean.getData().getDeliveryFee().getFiftyDeliveryFee();
-            totalFiveDelivery = orderDetailBean.getData().getFiveBottleCount() * fiveDeliveryFee;
-            totalFifteenDelivery = orderDetailBean.getData().getFifteenBottleCount() * fifteenDeliveryFee;
-            totalFiftyDelivery = orderDetailBean.getData().getFiftyBottleCount() * fiftyDeliveryFee;
-            totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
-
+        totalfare-=totalDeliveryfare;
+        fiveDeliveryFee = bean.getData().getDeliveryFee().getFiveDeliveryFee();
+        fifteenDeliveryFee = bean.getData().getDeliveryFee().getFifteenDeliveryFee();
+        fiftyDeliveryFee = bean.getData().getDeliveryFee().getFiftyDeliveryFee();
+        totalFiveDelivery = orderFiveNum * fiveDeliveryFee;
+        totalFifteenDelivery = orderFifteenNum * fifteenDeliveryFee;
+        totalFiftyDelivery = orderFiftyNum * fiftyDeliveryFee;
+        totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
         totalfare += totalDeliveryfare;
-        if(((totalfare + "").length())>6) {
+        if (((totalfare + "").length()) > 6) {
             tvCost.setText((totalfare + "").substring(0, 5));
-        }else {
+        } else {
             tvCost.setText((totalfare + ""));
         }
         tvDeliverFee.setText(totalDeliveryfare + "");
 
-
-        tvPostBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iPostPresenter.postOrders();
-            }
-        });
     }
 
     @Override
     public String getFloors() {
-        return floor+"";
+        return floor + "";
     }
 
     @Override

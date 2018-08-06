@@ -15,6 +15,7 @@ import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.ExchangeBottleRclAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
+import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IExchangeSteelBottleView;
 
 import java.util.ArrayList;
@@ -110,20 +111,7 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
     @Override
     public void onSpinnerChange(int rclItemPosition, TextView tvAccount,int modelSelectIndex, int yearSelectIndex,int levelSelectIndex,int steelNum) {
      //计算对应Item价格,并刷新总价
-
-       /* switch (modelSelectIndex){
-            case 0:
-                weight = 5;
-                break;
-            case 1:
-                weight = 15;
-                break;
-            case 2:
-                weight = 50;
-                break;
-            default:break;
-        }*/
-       weight =15;
+        weight = 15;
         switch (levelSelectIndex){
             case 0:
                 corrosionType = "A";
