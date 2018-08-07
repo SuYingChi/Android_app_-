@@ -72,11 +72,13 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:gravity="center"
                 android:inputType="number"
                 android:background="@drawable/edit_text_background"
                 android:textColor="@color/lpg_text_light_color"
-                android:textSize="@dimen/text_16" />
+                android:textSize="@dimen/text_16"
+                android:paddingBottom="@dimen/margin_Modules"
+                android:paddingLeft="@dimen/margin_Modules"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -107,9 +109,11 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:background="@drawable/edit_text_background"
-                android:gravity="center"
                 android:inputType="number"
-                android:textColor="@color/lpg_text_light_color" />
+                android:textColor="@color/lpg_text_light_color"
+                android:paddingBottom="@dimen/margin_Modules"
+                android:paddingLeft="@dimen/margin_Modules"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -141,9 +145,11 @@
                 android:textColor="@color/lpg_text_light_color"
                 android:text="0"
                 android:inputType="number"
-                android:gravity="center"
                 android:background="@drawable/edit_text_background"
-                android:textSize="@dimen/text_16" />
+                android:textSize="@dimen/text_16"
+                android:paddingBottom="@dimen/margin_Modules"
+                android:paddingLeft="@dimen/margin_Modules"
+                />
         </LinearLayout>
 
         <LinearLayout
