@@ -48,6 +48,7 @@ public class AppInfoBean {
         private String title;
         private String desc;
         private String url;
+        private String size;
 
         public String getVersion() {
             return version;
@@ -79,6 +80,14 @@ public class AppInfoBean {
 
         public void setUrl(String url) {
             this.url = url;
+        }
+
+        public void setSize(String size) {
+            this.size = size;
+        }
+
+        public String getSize() {
+            return size;
         }
     }
 }

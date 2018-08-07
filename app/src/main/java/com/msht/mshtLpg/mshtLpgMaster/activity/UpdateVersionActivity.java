@@ -1,12 +1,14 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.AppInfoBean;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
+import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IUpdateVersionView;
 
 import butterknife.BindView;
@@ -33,13 +35,40 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_new_version_layout);
         ButterKnife.bind(this);
-        // 获取本版本号，是否更新
          vision = AppUtil.getVersion(this);
+         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 finish();
+             }
+         });
+
 
     }
 
     @Override
     public void onGetNewestAppInfoSuccess(AppInfoBean appInfoBean) {
-
+        tvNewVersion.setText(appInfoBean.getData().getVersion());
+        tvApkSize.setText(appInfoBean.getData().getSize());
+        tvTitle.setText(appInfoBean.getData().getTitle());
+        tvUpdateDetail.setText(appInfoBean.getData().getDesc());
+        if (Integer.valueOf(appInfoBean.getData().getVersion()) > vision) {
+            tvUpdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopUtil.showTipsDialog(UpdateVersionActivity.this, appInfoBean.getData().getTitle(), "当前版本为V" + AppUtil.getVerName(UpdateVersionActivity.this)
+                                    + ",最新版本为V" + appInfoBean.getData().getVersion()
+                                    + ",是否更新到最新版本？",
+                            "取消", "确定更新", null, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    AppUtil.goMarket(UpdateVersionActivity.this);
+                                }
+                            });
+                }
+            });
+        }else {
+            PopUtil.toastInBottom("当前已经是最新版本");
+        }
     }
 }

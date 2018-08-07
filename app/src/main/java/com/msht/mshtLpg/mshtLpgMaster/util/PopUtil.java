@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -13,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.msht.mshtLpg.mshtLpgMaster.R;
@@ -167,5 +170,44 @@ public class PopUtil {
         InputMethodManager inputMethodManager =
                 (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(et.getWindowToken(), 0);
+    }
+    public static void showTipsDialog(Context mContext, String title, String tips, String left, String right,
+                                      final View.OnClickListener onCancel,
+                                      final View.OnClickListener onOK) {
+        LayoutInflater inflaterDl = LayoutInflater.from(mContext);
+        LinearLayout layout = (LinearLayout) inflaterDl.inflate(
+                R.layout.dialog_tips, null);
+        final AlertDialog tel_dialog = new AlertDialog.Builder(mContext).create();
+
+        TextView tvTitle = (TextView) layout.findViewById(R.id.tv_title);
+        tvTitle.setText(title);
+        if (TextUtils.isEmpty(title)) {
+            tvTitle.setVisibility(View.GONE);
+        }
+
+        TextView tvtips = (TextView)layout.findViewById(R.id.tv_delete_tips);
+        tvtips.setText(tips);
+        tel_dialog.show();
+        tel_dialog.getWindow().setContentView(layout);
+        TextView btnCancel = (TextView)layout.findViewById(R.id.dialog_btn_cancel);
+        TextView btnOk = (TextView)layout.findViewById(R.id.dialog_btn_ok);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tel_dialog.dismiss();
+                if (onCancel != null)
+                    onCancel.onClick(v);
+
+            }
+        });
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tel_dialog.dismiss();
+                if (onOK != null)
+                    onOK.onClick(v);
+
+            }
+        });
     }
 }

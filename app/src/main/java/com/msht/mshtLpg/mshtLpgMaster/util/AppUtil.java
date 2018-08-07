@@ -7,13 +7,17 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.activity.LoginActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.UpdateVersionActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.WebActivity;
 import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
@@ -106,4 +110,27 @@ public class AppUtil {
         return 0;
     }
 
+    public static String getVerName(Context context) {
+        String verName = "";
+        try {
+            verName = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+        } catch (Exception e) {
+
+        }
+
+        return verName;
+    }
+
+    public static void goMarket(Context context) {
+        try {
+
+            Uri uri = Uri.parse("market://details?id=" + context.getPackageName());// id为包名
+            Intent it = new Intent(Intent.ACTION_VIEW, uri);
+            context.startActivity(it);
+
+        } catch (Exception e) {
+            PopUtil.toastInBottom( "请打开应用市场，搜索 " + context.getString(R.string.app_name));
+            e.printStackTrace();
+        }
+    }
 }
