@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -16,7 +20,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="电梯房及1.2.3层楼"
+        android:text="电梯房及1层楼"
         android:textColor="@color/lpg_text_dark_color"
         android:padding="@dimen/margin_Modules"
         android:background="@color/line_color_lib"
@@ -99,6 +103,91 @@
             android:background="@drawable/text_view_bg"
             />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2,3层楼"
+        android:textColor="@color/lpg_text_dark_color"
+        android:padding="@dimen/margin_Modules"
+        android:background="@color/line_color_lib"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="5KG"
+            android:gravity="center"
+            android:padding="@dimen/margin_Modules"
+            android:layout_weight="1"
+            android:background="@drawable/text_view_bg"
+            />
+        <TextView
+            android:id="@+id/second_five"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="0元"
+            android:gravity="center"
+            android:padding="@dimen/margin_Modules"
+            android:layout_weight="1"
+            android:background="@drawable/text_view_bg"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="15KG"
+            android:gravity="center"
+            android:padding="@dimen/margin_Modules"
+            android:layout_weight="1"
+            android:background="@drawable/text_view_bg_gray"
+            />
+        <TextView
+            android:id="@+id/second_fifteen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="0元"
+            android:gravity="center"
+            android:padding="@dimen/margin_Modules"
+            android:layout_weight="1"
+            android:background="@drawable/text_view_bg_gray"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="50KG"
+            android:gravity="center"
+            android:padding="@dimen/margin_Modules"
+            android:layout_weight="1"
+            android:background="@drawable/text_view_bg"
+            />
+        <TextView
+            android:id="@+id/second_fifty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="0元"
+            android:gravity="center"
+            android:padding="@dimen/margin_Modules"
+            android:layout_weight="1"
+            android:background="@drawable/text_view_bg"
+            />
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -276,3 +365,4 @@
         android:layout_marginTop="@dimen/margin_Modules"
         />
 </LinearLayout>
+</ScrollView>

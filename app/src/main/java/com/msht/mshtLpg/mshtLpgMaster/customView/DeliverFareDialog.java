@@ -63,6 +63,9 @@ public class DeliverFareDialog extends Dialog {
         TextView six_five = (TextView) findViewById(R.id.six_five);
         TextView six_fifteen = (TextView) findViewById(R.id.six_fifteen);
         TextView six_fifty = (TextView) findViewById(R.id.six_fifty);
+        TextView second_five = (TextView) findViewById(R.id.second_five);
+        TextView second_fifteen = (TextView) findViewById(R.id.second_fifteen);
+        TextView second_fifty = (TextView) findViewById(R.id.second_fifty);
         first_five.setText(map.get("first5"));
         first_fifteen.setText(map.get("first15"));
         first_fifty.setText(map.get("first50"));
@@ -72,6 +75,9 @@ public class DeliverFareDialog extends Dialog {
         six_five.setText(map.get("six5"));
         six_fifteen.setText(map.get("six15"));
         six_fifty.setText(map.get("six50"));
+        second_five.setText(map.get("second5"));
+        second_fifteen.setText(map.get("second15"));
+        second_fifty.setText(map.get("second50"));
 
         tvDimiss.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,8 +89,9 @@ public class DeliverFareDialog extends Dialog {
         });
         WindowManager.LayoutParams attributes = this.getWindow().getAttributes();
         attributes.width= DimenUtil.getScreenWidth()-DimenUtil.dip2px(context.getResources().getDimension(R.dimen.margin)*2);
+        attributes.height= DimenUtil.getScreenHeight()-DimenUtil.dip2px(context.getResources().getDimension(R.dimen.margin)*2);
         this.getWindow().setAttributes(attributes);
-        //dialog去除底部北京
+        //dialog去除底部背景
         getWindow().setBackgroundDrawable(new BitmapDrawable());
         setCancelable(true);
         setCanceledOnTouchOutside(true);

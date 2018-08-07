@@ -118,4 +118,23 @@ public class IOrderDetailPresenter {
 
         });
     }
+    public void getSecondDelivery() {
+        OkHttpUtils.get().url(Constants.ALL_DELIVER_FARE).addParams("floors", "2")
+                .build().execute(new DataStringCallback(iOrderDetailView) {
+            @Override
+            public void onResponse(String s, int i) {
+                //先继承再重写或重写覆盖请求错误的场景
+                super.onResponse(s, i);
+                DeliveryBean bean = GsonUtil.getGson().fromJson(s, DeliveryBean.class);
+                if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
+                    iOrderDetailView.onError(bean.getMsg());
+
+                } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
+
+                    iOrderDetailView.onGetSecondDeliverySuccess(bean);
+                }
+            }
+
+        });
+    }
 }

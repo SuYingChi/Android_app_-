@@ -196,21 +196,28 @@ public class BaseScanFragmengt extends BaseFragment implements SurfaceHolder.Cal
     @Override
     public void onError(String s) {
         super.onError(s);
-        //需要重写
+        //需要重写 再次发送扫码请求
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //重写 暂停preview camera
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        //关闭计时器
         //重写
     }
     @Override
     public Handler getHandler() {
-        //重写
+        //重写 返回扫码结果回调handler给扫码子线程
         return null;
     }
     @Override
     public void drawViewfinder() {
-        //重写
+        //重写 绘制扫码组件
     }
 }

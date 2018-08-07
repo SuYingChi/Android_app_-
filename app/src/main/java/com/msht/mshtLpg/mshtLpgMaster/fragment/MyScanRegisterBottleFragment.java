@@ -40,6 +40,7 @@ import com.msht.mshtLpg.mshtLpgMaster.handler.MyCaptureHandler;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IRegisterBottleView;
 import com.uuzuche.lib_zxing.camera.CameraManager;
+import com.uuzuche.lib_zxing.decoding.DecodeThread;
 import com.uuzuche.lib_zxing.decoding.InactivityTimer;
 import com.uuzuche.lib_zxing.view.ViewfinderView;
 
@@ -52,6 +53,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MyScanRegisterBottleFragment extends BaseFragment implements IRegisterBottleView, SurfaceHolder.Callback {
+    private static final String TAG = MyScanRegisterBottleFragment.class.getSimpleName();
     @BindView(R.id.scan_delive_topbar)
     TopBarView topBarView;
     @BindView(R.id.et_scan_qrcode_steel_bottle_number)
@@ -105,14 +107,14 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CameraManager.init(LPGApplication.getLPGApplicationContext());
+        CameraManager.init(getActivity().getApplication());
         iRegisterBottlePresenter = new IRegisterBottlePresenter(this);
         hasSurface = false;
         isRestart  = false;
         inactivityTimer = new InactivityTimer(this.getActivity());
-        spinnerList.add("5kg        ");
-        spinnerList.add("15kg        ");
-        spinnerList.add("50kg        ");
+        spinnerList.add("    5kg     ");
+        spinnerList.add("   15kg     ");
+        spinnerList.add("   50kg     ");
     }
 
 
@@ -175,7 +177,12 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
     @Override
     public void onPause() {
         super.onPause();
-        Log.d("suyingchi", "onPause: ");
+        Log.d(TAG, "onPause: ");
+        if (handler != null) {
+            handler.quitSynchronously();
+            handler = null;
+        }
+        CameraManager.get().closeDriver();
     }
 
     @Override
@@ -189,13 +196,13 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
     @Override
     public void onStop() {
         super.onStop();
-        Log.d("suyingchi", "onStop: ");
+        Log.d(TAG, "onStop: ");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("suyingchi", "onResume: hasSurface"+hasSurface);
+        Log.d(TAG, "onResume: hasSurface"+hasSurface);
            if (hasSurface) {
                initCamera(surfaceHolder);
            } else {
@@ -264,6 +271,7 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
             callBack.callBack(null);
         }
         if (handler == null) {
+            Log.d(TAG, "initCamera: new MyCaptureHandler");
             handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
         }
     }
@@ -321,11 +329,6 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (handler != null) {
-            handler.quitSynchronously();
-            handler = null;
-        }
-        CameraManager.get().closeDriver();
         inactivityTimer.shutdown();
 
     }
@@ -333,31 +336,35 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        Log.d("suyingchi", "surfaceCreated:    hasSurface"+hasSurface);
+        Log.d(TAG, "surfaceCreated:    hasSurface"+hasSurface);
         if (!hasSurface) {
             hasSurface = true;
+            Log.d(TAG, "surfaceCreated: initCamera(holder);");
             initCamera(holder);
         }
     }
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-        Log.d("suyingchi", "surfaceChanged: ");
+        Log.d(TAG, "surfaceChanged: ");
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        Log.d("suyingchi", "surfaceDestroyed: ");
+        Log.d(TAG, "surfaceDestroyed: ");
         hasSurface = false;
         if (camera != null) {
+            //回调到这里的时候CameraManager.get().isPreviewing()应该返回true，但这里返回了false，导致二次打开扫描界面无法开启摄像头
             if (CameraManager.get().isPreviewing()) {
                 if (!CameraManager.get().isUseOneShotPreviewCallback()) {
                     camera.setPreviewCallback(null);
+                    Log.d(TAG, "surfaceDestroyed:  camera.setPreviewCallback(null);");
                 }
                 camera.stopPreview();
                 CameraManager.get().getPreviewCallback().setHandler(null, 0);
                 CameraManager.get().getAutoFocusCallback().setHandler(null, 0);
                 CameraManager.get().setPreviewing(false);
+                Log.d(TAG, "surfaceDestroyed:  camera.stopPreview();");
             }
         }
     }
@@ -430,7 +437,7 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
         if (handler == null) {
             handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
         }
-            Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
+            Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
             handler.sendMessageDelayed(reDecode, 1000);
 
     }
@@ -485,7 +492,7 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
     @Override
     public void onError(String s) {
         super.onError(s);
-        Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
+        Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
         handler.sendMessageDelayed(reDecode, 1000);
     }
 }

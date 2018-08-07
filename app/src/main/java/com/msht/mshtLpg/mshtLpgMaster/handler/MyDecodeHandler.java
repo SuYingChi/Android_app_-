@@ -29,10 +29,10 @@ import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
+import com.msht.mshtLpg.mshtLpgMaster.thread.MyDecodeThread;
 import com.uuzuche.lib_zxing.R;
 import com.uuzuche.lib_zxing.camera.CameraManager;
 import com.uuzuche.lib_zxing.camera.PlanarYUVLuminanceSource;
-import com.uuzuche.lib_zxing.decoding.DecodeThread;
 
 import java.util.Hashtable;
 
@@ -98,7 +98,7 @@ public final class MyDecodeHandler extends Handler {
             Log.d(TAG, "Found barcode (" + (end - start) + " ms):\n" + rawResult.toString());
             Message message = Message.obtain(fragment.getHandler(), R.id.decode_succeeded, rawResult);
             Bundle bundle = new Bundle();
-            bundle.putParcelable(DecodeThread.BARCODE_BITMAP, source.renderCroppedGreyscaleBitmap());
+            bundle.putParcelable(MyDecodeThread.BARCODE_BITMAP, source.renderCroppedGreyscaleBitmap());
             message.setData(bundle);
             //Log.d(TAG, "Sending decode succeeded message...");
             Log.d(TAG, "decode: decode_succeeded  子线程的DecodeHandler发送decode成功消息给主线程CptureFragment的CaptureActivityHandler");

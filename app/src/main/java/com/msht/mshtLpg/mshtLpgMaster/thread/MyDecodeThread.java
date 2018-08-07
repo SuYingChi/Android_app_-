@@ -26,6 +26,7 @@ import com.google.zxing.ResultPointCallback;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
 import com.uuzuche.lib_zxing.decoding.DecodeFormatManager;
 import com.msht.mshtLpg.mshtLpgMaster.handler.MyDecodeHandler;
+import com.uuzuche.lib_zxing.decoding.DecodeThread;
 
 import java.util.Hashtable;
 import java.util.Vector;
@@ -44,7 +45,6 @@ public final class MyDecodeThread extends Thread {
     private final Hashtable<DecodeHintType, Object> hints;
     private Handler handler;
     private final CountDownLatch handlerInitLatch;
-
     public MyDecodeThread(BaseFragment fragment,
                           Vector<BarcodeFormat> decodeFormats,
                           String characterSet,

@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class RegisterBottleActivity extends BaseActivity implements  PermissionUtils.PermissionRequestFinishListener{
+    private static final String TAG = RegisterBottleActivity.class.getSimpleName();
     @BindView(R.id.fl_my_container)
     FrameLayout framContainer;
 
@@ -69,7 +70,7 @@ public class RegisterBottleActivity extends BaseActivity implements  PermissionU
                 if (e == null) {
 
                 } else {
-                    LogUtils.d("TAG", "callback:    " + e);
+                    LogUtils.d(TAG, "callback:    " + e);
                 }
             }
         });

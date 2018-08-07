@@ -25,6 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class InnerActivity extends BaseActivity implements MyScanInnerFragment.InnnerFetchActivityListener, PermissionUtils.PermissionRequestFinishListener{
+    private static final String TAG = InnerActivity.class.getSimpleName();
     @BindView(R.id.fl_my_container)
     FrameLayout framContainer;
 
@@ -75,7 +76,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
                 if (e == null) {
 
                 } else {
-                    LogUtils.d("TAG", "callback:    " + e);
+                    LogUtils.d(TAG, "callback:    " + e);
                 }
             }
         });
@@ -137,7 +138,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
                     if (e == null) {
 
                     } else {
-                        LogUtils.d("TAG", "callback:    " + e);
+                        LogUtils.d(TAG, "callback:    " + e);
                     }
                 }
             });
@@ -153,7 +154,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
                     if (e == null) {
 
                     } else {
-                        LogUtils.d("TAG", "callback:    " + e);
+                        LogUtils.d(TAG, "callback:    " + e);
                     }
                 }
             });

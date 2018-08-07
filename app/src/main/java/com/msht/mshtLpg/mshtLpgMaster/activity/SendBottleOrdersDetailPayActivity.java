@@ -115,6 +115,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
     private boolean isGetFourDeliverySuccess = false;
     private boolean isGetSixDeliverySuccess = false;
     private boolean isGetFirstDeliverySuccess  =false;
+    private boolean isGetSecondDeliverySuccess = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -237,7 +238,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         lldeliver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!isGetFirstDeliverySuccess||!isGetFourDeliverySuccess||!isGetSixDeliverySuccess){
+                if(!isGetFirstDeliverySuccess||!isGetFourDeliverySuccess||!isGetSixDeliverySuccess||!isGetSecondDeliverySuccess){
                     PopUtil.toastInBottom("正在获取运费信息，请稍后再试");
                 }
                 else if(deliverFareDialog == null) {
@@ -300,6 +301,17 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         map.put("first15",first15);
         map.put("first50",first50);
         isGetFirstDeliverySuccess = true;
+    }
+
+    @Override
+    public void onGetSecondDeliverySuccess(DeliveryBean bean) {
+        String second5 = bean.getData().getDeliveryFee().getFiveDeliveryFee()+"";
+        String second15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee()+"";
+        String second50 =bean.getData().getDeliveryFee().getFiftyDeliveryFee()+"";
+        map.put("second5",second5);
+        map.put("second15",second15);
+        map.put("second50",second50);
+        isGetSecondDeliverySuccess = true;
     }
 
 

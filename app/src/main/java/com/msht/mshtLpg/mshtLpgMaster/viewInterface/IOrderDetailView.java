@@ -12,4 +12,6 @@ public interface IOrderDetailView extends IBaseView{
     void onGetSixDeliverySuccess(DeliveryBean bean);
 
     void onGetFirstDeliverySuccess(DeliveryBean bean);
+
+    void onGetSecondDeliverySuccess(DeliveryBean bean);
 }

@@ -198,13 +198,18 @@ public class MyScanBackBottleFragment extends BaseFragment implements IBackBottl
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onPause() {
+        super.onPause();
         if (handler != null) {
             handler.quitSynchronously();
             handler = null;
         }
         CameraManager.get().closeDriver();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
         inactivityTimer.shutdown();
     }
 
@@ -333,7 +338,7 @@ public class MyScanBackBottleFragment extends BaseFragment implements IBackBottl
         if (handler == null) {
             handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
         }
-            Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
+            Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
             handler.sendMessageDelayed(reDecode, 1000);
 
     }
@@ -380,7 +385,7 @@ public class MyScanBackBottleFragment extends BaseFragment implements IBackBottl
     @Override
     public void onError(String s) {
         super.onError(s);
-        Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
+        Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
         handler.sendMessageDelayed(reDecode, 1000);
     }
 }

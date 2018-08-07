@@ -127,7 +127,7 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
         } else {
             return;
         }
-        CameraManager.init(LPGApplication.getLPGApplicationContext());
+        CameraManager.init(getActivity().getApplication());
         iScanbottleCodePresenter = new IScanbottleCodePresenter(this);
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this.getActivity());
@@ -233,17 +233,16 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
     @Override
     public void onPause() {
         super.onPause();
-
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
         if (handler != null) {
             handler.quitSynchronously();
             handler = null;
         }
         CameraManager.get().closeDriver();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
         inactivityTimer.shutdown();
     }
 
@@ -361,7 +360,7 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
             mediaPlayer.start();
         }
         if (vibrate) {
-            Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+            Vibrator vibrator = (Vibrator) getActivity().getSystemService(getActivity().VIBRATOR_SERVICE);
             vibrator.vibrate(VIBRATE_DURATION);
         }
     }
@@ -427,7 +426,7 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
         if (handler == null) {
             handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
         }
-            Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
+            Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
             handler.sendMessageDelayed(reDecode, 1000);
 
     }
@@ -483,7 +482,7 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
     @Override
     public void onError(String s) {
         super.onError(s);
-        Message reDecode = Message.obtain(handler, com.uuzuche.lib_zxing.R.id.redecode_after_decodeSuccess);
+        Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
         handler.sendMessageDelayed(reDecode, 1000);
     }
 }

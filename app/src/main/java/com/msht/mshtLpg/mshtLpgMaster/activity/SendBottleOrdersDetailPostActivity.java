@@ -166,6 +166,7 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
     private boolean isGetSixDeliverySuccess = false;
     private boolean isGetFirstDeliverySuccess  =false;
     private String address;
+    private boolean isGetSecondDeliverySuccess = false;
     //更规范的写法是写个handler在子线程执行完后，调度其他子线程的开启，后边再优化
     /*@SuppressLint("HandlerLeak")
     private class MyHandler extends Handler {
@@ -438,7 +439,7 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
             @Override
             public void onClick(View v) {
 
-                if(!isGetFirstDeliverySuccess||!isGetFourDeliverySuccess||!isGetSixDeliverySuccess){
+                if(!isGetFirstDeliverySuccess||!isGetFourDeliverySuccess||!isGetSixDeliverySuccess||!isGetSecondDeliverySuccess){
                     PopUtil.toastInBottom("正在获取运费信息，请稍后再试");
                 }
                 else if(deliverFareDialog == null) {
@@ -495,6 +496,17 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         map.put("first15",first15);
         map.put("first50",first50);
         isGetFirstDeliverySuccess = true;
+    }
+
+    @Override
+    public void onGetSecondDeliverySuccess(DeliveryBean bean) {
+        String second5 = bean.getData().getDeliveryFee().getFiveDeliveryFee()+"";
+        String second15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee()+"";
+        String second50 =bean.getData().getDeliveryFee().getFiftyDeliveryFee()+"";
+        map.put("second5",second5);
+        map.put("second15",second15);
+        map.put("second50",second50);
+        isGetSecondDeliverySuccess = true;
     }
 
     @Override

@@ -27,6 +27,7 @@ import butterknife.Unbinder;
  * @author mshtyfb
  */
 public class ScanTransferStorageActivity extends BaseActivity  implements  PermissionUtils.PermissionRequestFinishListener{
+    private static final String TAG = ScanTransferStorageActivity.class.getSimpleName();
     @BindView(R.id.fl_my_container)
     FrameLayout framContainer;
 
@@ -83,7 +84,7 @@ public class ScanTransferStorageActivity extends BaseActivity  implements  Permi
                 if (e == null) {
 
                 } else {
-                    LogUtils.d("TAG", "callback:    " + e);
+                    LogUtils.d(TAG, "callback:    " + e);
                 }
             }
         });

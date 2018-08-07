@@ -32,6 +32,7 @@ import butterknife.Unbinder;
 public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements MyScanDeliverUserBottleFragment.CaptureActivityListener, PermissionUtils.PermissionRequestFinishListener, ISimpleOrderDetailView {
 
 
+    private static final String TAG = ScanCodeDeliverSteelBottleActivity.class.getSimpleName();
     private MyScanDeliverUserBottleFragment deliverUserBottleFragment;
     private MyScanDeliverUserBottleFragment captureEmptybottleFragment;
     private int orderfiveNum = 0;
@@ -82,7 +83,7 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
                             if (e == null) {
 
                             } else {
-                                LogUtils.d("TAG", "callback:    " + e);
+                                LogUtils.d(TAG, "callback:    " + e);
                             }
                         }
                     });
@@ -183,7 +184,7 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
                     if (e == null) {
 
                     } else {
-                        LogUtils.d("TAG", "callback:    " + e);
+                        LogUtils.d(TAG, "callback:    " + e);
                     }
                 }
             });
@@ -203,7 +204,7 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
                     if (e == null) {
 
                     } else {
-                        LogUtils.d("TAG", "callback:    " + e);
+                        LogUtils.d(TAG, "callback:    " + e);
                     }
                 }
             });

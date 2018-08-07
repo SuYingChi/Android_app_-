@@ -59,7 +59,7 @@ dependencies {
     implementation(name: 'okhttputils', ext: 'aar')
     implementation(name: 'mshtbase', ext: 'aar')
     implementation(name: 'tabviewlibrary', ext: 'aar')
-    implementation(name: 'lib_zxing', ext: 'aar')
+    implementation(name: 'lib-zxing', ext: 'aar')
     //implementation project(':lib-zxing')
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.jakewharton:butterknife:8.8.1'
