@@ -62,7 +62,8 @@ public class Constants {
     public static final String ALL_DELIVER_FARE = BASE_URL+"lpgDeliveryFee/getAllDeliveryFee";
     //月份收入统计预留接口
     public static final String MONTH_COUNT = "";
-
+    //获取最新的APP信息
+    public static final String GET_NEWESTAPPINFO = "";
 
     public static final String URL_PARAMS_LOGIN_TOKEN = "loginToken";
     public static final String URL_PARAMS_ORDER_TYPE = "orderType";
@@ -108,5 +109,6 @@ public class Constants {
     public static final String PAY_AMOUNT = "payAmount";
     public static final String PAY_TYPE = "payType";
     public static final String ORDER_TYPE = "orderType";
+
 
 }

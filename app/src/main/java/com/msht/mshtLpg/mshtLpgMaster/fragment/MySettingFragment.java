@@ -18,6 +18,7 @@ import com.msht.mshtLpg.mshtLpgMaster.activity.MyIncomeActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.RegisterEmployerActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.RegisterBottleActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.TransferStorageListActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.UpdateVersionActivity;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -49,6 +50,8 @@ public class MySettingFragment extends BaseLazyFragment{
     RelativeLayout register;
     @BindView(R.id.ll_my_setting_my_income)
     LinearLayout llMyIncome;
+    @BindView(R.id.ll_my_setting_about_me)
+    LinearLayout llAboutme;
     private String name="";
     private String siteName="";
 
@@ -133,6 +136,13 @@ public class MySettingFragment extends BaseLazyFragment{
             @Override
             public void onClick(View v) {
                 Intent intent =  new Intent(getActivity(),MyIncomeActivity.class);
+                startActivity(intent);
+            }
+        });
+        llAboutme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),UpdateVersionActivity.class);
                 startActivity(intent);
             }
         });

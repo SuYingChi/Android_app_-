@@ -43,12 +43,14 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
     private Unbinder unbinder;
     private int orderType;
     private MyScanBackBottleFragment backBottleFragment;
+    private FragmentTransaction transaction;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scan_code_deliver_steel_bottle_activity);
+        transaction = getSupportFragmentManager().beginTransaction();
         unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
@@ -133,8 +135,7 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
         }
     }*/
     private void showFragment(BaseFragment fragment){
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        //transaction.setCustomAnimations(R.anim.forward_enter,R.anim.forward_exit_fragment);
+        transaction.setCustomAnimations(R.anim.forward_enter,R.anim.forward_exit_fragment);
         //加入动画会导致相机无法启动扫描
         transaction.replace(R.id.fl_my_container,fragment).commit();
     }

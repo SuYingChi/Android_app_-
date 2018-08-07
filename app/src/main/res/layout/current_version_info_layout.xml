@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line_color_lib"
+    >
+    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height_normol"
+        android:background="@color/msb_color"
+        app:title_text="关于我们" />
+    <TextView
+        android:id="@+id/check_is_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:gravity="center"
+        android:text="检测更新"
+        android:background="@color/white"
+        android:textColor="@color/lpg_text_dark_color" />
+    <TextView
+        android:id="@+id/current_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/check_is_update"
+        android:layout_marginBottom="@dimen/margin"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:text="液化气移动终端V1.0"
+        android:textColor="@color/lpg_text_dark_color" />
+</RelativeLayout>

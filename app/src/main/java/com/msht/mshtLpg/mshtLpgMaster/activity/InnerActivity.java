@@ -44,6 +44,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scan_code_deliver_steel_bottle_activity);
+        transaction = getSupportFragmentManager().beginTransaction();
         Intent intent = getIntent();
          innerType =intent.getIntExtra("innerType",0);
         if(innerType == 1){
@@ -59,7 +60,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
 
 
     private void showFragment(BaseFragment fragment){
-        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.forward_enter,R.anim.forward_exit_fragment);
         transaction.replace(R.id.fl_my_container,fragment).commit();
     }
     @Override

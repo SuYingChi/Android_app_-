@@ -37,13 +37,14 @@ public class RegisterBottleActivity extends BaseActivity implements  PermissionU
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scan_code_deliver_steel_bottle_activity);
+        transaction = getSupportFragmentManager().beginTransaction();
         unbinder = ButterKnife.bind(this);
         PermissionUtils.requestPermissions(this, this, Permission.CAMERA);
     }
 
 
     private void showFragment(BaseFragment fragment){
-        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.forward_enter,R.anim.forward_exit_fragment);
         transaction.replace(R.id.fl_my_container,fragment).commit();
     }
 

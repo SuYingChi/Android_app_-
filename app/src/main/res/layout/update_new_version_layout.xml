@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line_color_lib">
+
+    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height_normol"
+        android:background="@color/msb_color"
+        app:title_text="关于我们" />
+
+    <TextView
+        android:id="@+id/update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:background="@color/white"
+        android:gravity="center"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:text="立即更新"
+        android:textColor="@color/lpg_text_dark_color" />
+
+    <TextView
+        android:id="@+id/new_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/apk_size"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:text="液化气移动终端V1.0"
+        android:textColor="@color/lpg_text_dark_color" />
+
+    <TextView
+        android:id="@+id/apk_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/update"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:text="安装包大小：15MB"
+        android:textColor="@color/text_enable_attention" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/lpg_text_dark_color"
+        android:layout_below="@id/update"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line"
+        android:layout_alignLeft="@id/line"
+        android:layout_marginTop="@dimen/margin"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:text="更新内容："
+        android:textColor="@color/lpg_text_dark_color" />
+    <TextView
+        android:id="@+id/update_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_alignLeft="@id/line"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginBottom="@dimen/margin"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:text="更新啦更新啦更新啦"
+        android:textColor="@color/lpg_text_dark_color" />
+</RelativeLayout>

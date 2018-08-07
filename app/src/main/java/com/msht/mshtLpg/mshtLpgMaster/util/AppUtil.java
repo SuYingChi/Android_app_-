@@ -91,4 +91,19 @@ public class AppUtil {
         inputMethodManager.hideSoftInputFromWindow(et.getWindowToken(), 0);
 
     }
+    /**
+     * 2 * 获取版本号 3 * @return 当前应用的版本号 4
+     */
+    public static int getVersion(Context context) {
+        try {
+            PackageManager manager = context.getPackageManager();
+            PackageInfo info = manager.getPackageInfo(context.getPackageName(),
+                    0);
+            return info.versionCode;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }
