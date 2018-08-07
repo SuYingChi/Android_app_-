@@ -331,7 +331,6 @@
         android:background="@color/white"
         android:orientation="horizontal"
         android:padding="15dp"
-        android:visibility="gone"
         >
 
         <ImageView
