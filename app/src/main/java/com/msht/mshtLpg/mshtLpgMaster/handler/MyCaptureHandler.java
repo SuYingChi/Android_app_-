@@ -86,7 +86,7 @@ public final class MyCaptureHandler extends Handler {
             // We're decoding as fast as possible, so when one decode fails, start another.
             state = State.PREVIEW;
             Log.d(TAG, "handleMessage: decode_failed ， 失败后主线程的CaptureActivityHandlerzai重新发送消息给子线程DecodeThread 的DecodeHandler执行decode");
-            CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), com.uuzuche.lib_zxing.R.id.decode);
+            CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
         } else if (message.what == R.id.return_scan_result) {
             Log.d(TAG, "Got return scan result message");
             fragment.getActivity().setResult(Activity.RESULT_OK, (Intent) message.obj);
@@ -101,7 +101,7 @@ public final class MyCaptureHandler extends Handler {
         else if(message.what == R.id.redecode_after_decodeSuccess){
             state = State.PREVIEW;
             Log.d(TAG, "handleMessage: decode_failed ， 成功后主线程的CaptureActivityHandler重新发送消息给子线程DecodeThread 的DecodeHandler执行decode");
-            CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), com.uuzuche.lib_zxing.R.id.decode);
+            CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
         }
     }
 
