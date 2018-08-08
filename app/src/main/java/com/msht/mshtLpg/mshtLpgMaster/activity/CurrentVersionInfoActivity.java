@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
+import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,7 +36,8 @@ public class CurrentVersionInfoActivity extends BaseActivity {
         tvCheckUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              startActivity(new Intent(CurrentVersionInfoActivity.this,UpdateVersionActivity.class));
+                PopUtil.toastInBottom("暂无接口");
+              //startActivity(new Intent(CurrentVersionInfoActivity.this,UpdateVersionActivity.class));
             }
         });
 

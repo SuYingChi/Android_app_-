@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.LoginEventBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.ILogoutPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
+import com.msht.mshtLpg.mshtLpgMaster.activity.CurrentVersionInfoActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.MyBottleActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.InnerActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.MyIncomeActivity;
@@ -142,7 +143,7 @@ public class MySettingFragment extends BaseLazyFragment{
         llAboutme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),UpdateVersionActivity.class);
+                Intent intent = new Intent(getActivity(),CurrentVersionInfoActivity.class);
                 startActivity(intent);
             }
         });

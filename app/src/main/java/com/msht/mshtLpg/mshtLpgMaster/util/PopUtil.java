@@ -30,21 +30,6 @@ public class PopUtil {
     private static Toast toast;
     private static Dialog topLoadingDialog;
 
-  /*  public static void showCenterLodaingDialog(Context context) {
-        if(context!=null&&centerLoadingDialog ==null){
-            centerLoadingDialog = new LoadingDialog(context);
-        }else if(context!=null&&!centerLoadingDialog.isShowing()){
-            centerLoadingDialog.show();
-        }
-    }
-
-
-    public static void hideCenterLoadingDialog(Context context){
-        if(centerLoadingDialog !=null&& centerLoadingDialog.isShowing()&&context!=null){
-           centerLoadingDialog.dismiss();
-        }
-    }
-*/
     public static PopupWindow showPopWindow(Context context, View anchorView, boolean bottom) {
 
         if (TextUtils.isEmpty(SharePreferenceUtil.getInstance().getToken())) {
