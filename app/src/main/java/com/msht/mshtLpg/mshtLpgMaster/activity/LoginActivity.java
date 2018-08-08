@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.gyf.barlibrary.BarHide;
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.LoginEventBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.UserLoginBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.ILoginPresenter;
@@ -40,6 +42,7 @@ public class LoginActivity extends BaseActivity implements ILoginView{
 
     private ILoginPresenter iLoginPresenter;
     private Unbinder unbinder;
+    private ImmersionBar mImmersionBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,9 +91,18 @@ public class LoginActivity extends BaseActivity implements ILoginView{
     }*/
 
     @Override
+    protected void initStateBar() {
+         mImmersionBar = ImmersionBar.with(this);
+        ImmersionBar.with(this).transparentStatusBar().fullScreen(true).init();
+
+
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
+        ImmersionBar.with(this).destroy();
         EventBus.getDefault().unregister(this);
     }
 }
