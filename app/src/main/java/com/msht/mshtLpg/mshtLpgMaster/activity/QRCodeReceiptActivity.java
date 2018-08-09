@@ -97,8 +97,6 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
 
     @Override
     public void onGetQRCodeImageURLSuccess(GetPayQRCodeBean bean) {
-        // Log.d("suyingchi", "onGetQRCodeImageURLSuccess: ");
-        PopUtil.toastInBottom("onGetQRCodeImageURLSuccess");
         QRCodeUrl = bean.getData();
         Glide.with(QRCodeReceiptActivity.this).load(QRCodeUrl)
                 .apply(new RequestOptions().centerCrop())
@@ -113,7 +111,6 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
 
     @Override
     public void onGetOrderStatusSuccess(QueryOrderBean bean) {
-        PopUtil.toastInBottom("onGetOrderStatusSuccess");
         String s = "";
         int sta = bean.getData().getOrderStatus();
         switch (sta) {
@@ -135,6 +132,7 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
                 Intent intent = new Intent(this, SendBottleOrdersDetailFinishActivity.class);
                 intent.putExtra(Constants.ORDER_ID, orderId);
                 startActivity(intent);
+                finish();
                 break;
             case 4:
                 s = "已退款";

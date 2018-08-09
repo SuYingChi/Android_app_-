@@ -1,30 +1,27 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.view.Display;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.msht.mshtLpg.mshtLpgMaster.Bean.CashPayBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.DeliveryBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
+import com.msht.mshtLpg.mshtLpgMaster.Present.ICashPayPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.DeliverFareDialog;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
-import com.msht.mshtLpg.mshtLpgMaster.util.DimenUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
+import com.msht.mshtLpg.mshtLpgMaster.viewInterface.ICashPayView;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailView;
 import com.yanzhenjie.permission.Permission;
 
@@ -36,7 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class SendBottleOrdersDetailPayActivity extends BaseActivity implements IOrderDetailView ,PermissionUtils.PermissionRequestFinishListener{
+public class SendBottleOrdersDetailPayActivity extends BaseActivity implements IOrderDetailView ,ICashPayView,PermissionUtils.PermissionRequestFinishListener{
     @BindView(R.id.pay_orders_v2_topbar)
     TopBarView topBarView;
     @BindView(R.id.location)
@@ -116,6 +113,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
     private boolean isGetSixDeliverySuccess = false;
     private boolean isGetFirstDeliverySuccess  =false;
     private boolean isGetSecondDeliverySuccess = false;
+    private ICashPayPresenter iCashPayPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -127,6 +125,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
         IOrderDetailPresenter iOrderDetailPresenter = new IOrderDetailPresenter(this);
+        iCashPayPresenter = new ICashPayPresenter(this);
         iOrderDetailPresenter.getOrderDetail();
         iOrderDetailPresenter.getFirstDelivery();
         iOrderDetailPresenter.getFourDelivery();
@@ -258,16 +257,36 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         layoutAliPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        onRequestServer();
+                PopUtil.showTipsDialog(SendBottleOrdersDetailPayActivity.this, "现金代付", "是否确认现金代付", "", "", null, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        iCashPayPresenter.cashPay();
+                    }
+                });
+
             }
         });
     }
-    private void onRequestServer() {
-        Toast.makeText(mContext,"现金支付请求接口,接口未完成", Toast.LENGTH_LONG).show();
-    }
     @Override
     public String getOrderId() {
-        return orderId + "";
+        return orderId;
+    }
+
+    @Override
+    public String getPayChannel() {
+        return 6+"";
+    }
+
+    @Override
+    public String getMsbUserId() {
+       return 4+"";
+    }
+
+    @Override
+    public void onCashPaySuceess(CashPayBean cashPayBean) {
+       Intent intent = new Intent(this,SendBottleOrdersDetailFinishActivity.class);
+       intent.putExtra(Constants.ORDER_ID,orderId);
+       startActivity(intent);
     }
 
     @Override
@@ -329,6 +348,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
     public void onPermissionRequestSuccess(List<String> permissions) {
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTel.getText().toString()));
         startActivity(intent);
+        finish();
     }
 
     @Override

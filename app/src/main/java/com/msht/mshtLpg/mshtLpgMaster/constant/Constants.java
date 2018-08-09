@@ -64,6 +64,9 @@ public class Constants {
     public static final String MONTH_COUNT = "";
     //获取最新的APP信息
     public static final String GET_NEWESTAPPINFO = "";
+    //现金代付
+    public static final String CASH_PAY=BASE_URL+"lpgEmpOrder/empPay";
+
 
     public static final String URL_PARAMS_LOGIN_TOKEN = "loginToken";
     public static final String URL_PARAMS_ORDER_TYPE = "orderType";
