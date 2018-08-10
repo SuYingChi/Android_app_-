@@ -1,6 +1,7 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -78,7 +79,7 @@ public class BackBottleOrdersCancleActivity extends BaseActivity implements ISim
 
     @Override
     public void onGetOrdersDetailSuccess(OrderDetailBean bean) {
-        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(bean.getData().getFloor()).append("层").append(bean.getData().getRoomNum()).append("房").toString());
+        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(bean.getData().getFloor()).append("层").append(bean.getData().getRoomNum()).append("房").append(bean.getData().getIsDelivery()== 1?"(自提单)":"(配送单)").toString());
         tvElevator.setText(bean.getData().getIsElevator() == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(bean.getData().getBuyer()).append(bean.getData().getSex() == 1 ? "(先生)" : "(女士)").toString());
         tvTelephone.setText(bean.getData().getMobile());
@@ -113,6 +114,7 @@ public class BackBottleOrdersCancleActivity extends BaseActivity implements ISim
         PopUtil.toastInBottom("请允许LPG拨打电话");
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTelephone.getText().toString()));

@@ -1,6 +1,7 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -273,12 +274,13 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
                 tvLocation.setText(new StringBuilder().append(address).append(floor).append("层").append(room).append("房").toString());
                 isElevator = data.getStringExtra(Constants.IS_ELEVATOR);
                 tvElevator.setText("1".equals(isElevator) ? "(有电梯)" : "(无电梯)");
-                if (!"1".equals(isElevator)) {
-                    iDeliveryPresenter.getDelivery();
-                } else {
-                    iDeliveryPresenter.getElevatorDelivery();
+                if(Integer.valueOf(isDelivery) == 0){
+                    if (!"1".equals(isElevator)) {
+                        iDeliveryPresenter.getDelivery();
+                    } else {
+                        iDeliveryPresenter.getElevatorDelivery();
+                    }
                 }
-
             }
         }
 
@@ -335,7 +337,7 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
                 PermissionUtils.requestPermissions(SendBottleOrdersDetailPostActivity.this, SendBottleOrdersDetailPostActivity.this, Permission.CALL_PHONE);
             }
         });
-        tvLocation.setText(new StringBuilder().append(address).append(floor).append("层").append(room).append("房").toString());
+        tvLocation.setText(new StringBuilder().append(address).append(floor).append("层").append(room).append("房").append(bean.getData().getIsDelivery()== 1?"(自提单)":"(配送单)").toString());
         tvElevator.setText("1".equals(isElevator) ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 1 ? "(先生)" : "(女士)").toString());
         tvTel.setText(orderDetailBean.getData().getMobile());
@@ -413,21 +415,22 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
             }
             tvDepositeFee.setText(totalDeposite + "");
         }
-        fiveDeliveryFee = bean.getData().getFiveDeliveryFee();
-        fifteenDeliveryFee = bean.getData().getFifteenDeliveryFee();
-        fiftyDeliveryFee = bean.getData().getFiftyDeliveryFee();
-        totalFiveDelivery = orderFiveNum * fiveDeliveryFee;
-        totalFifteenDelivery = orderFifteenNum * fifteenDeliveryFee;
-        totalFiftyDelivery = orderFiftyNum * fiftyDeliveryFee;
-        totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
 
-        totalfare += totalDeliveryfare;
-        if (((totalfare + "").length()) > 6) {
-            tvCost.setText((totalfare + "").substring(0, 5));
-        } else {
-            tvCost.setText((totalfare + ""));
-        }
-        tvDeliverFee.setText(totalDeliveryfare + "");
+            fiveDeliveryFee = bean.getData().getFiveDeliveryFee();
+            fifteenDeliveryFee = bean.getData().getFifteenDeliveryFee();
+            fiftyDeliveryFee = bean.getData().getFiftyDeliveryFee();
+            totalFiveDelivery = orderFiveNum * fiveDeliveryFee;
+            totalFifteenDelivery = orderFifteenNum * fifteenDeliveryFee;
+            totalFiftyDelivery = orderFiftyNum * fiftyDeliveryFee;
+            totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
+
+            totalfare += totalDeliveryfare;
+            if (((totalfare + "").length()) > 6) {
+                tvCost.setText((totalfare + "").substring(0, 5));
+            } else {
+                tvCost.setText((totalfare + ""));
+            }
+            tvDeliverFee.setText(totalDeliveryfare + "");
 
         tvPostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -748,6 +751,7 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         PopUtil.toastInBottom("请允许LPG拨打电话");
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTel.getText().toString()));

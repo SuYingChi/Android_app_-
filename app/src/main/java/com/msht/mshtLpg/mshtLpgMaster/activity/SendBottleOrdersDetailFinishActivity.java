@@ -1,6 +1,7 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -130,7 +131,7 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
         String floor = orderDetailBean.getData().getFloor() + "";
         String room = orderDetailBean.getData().getRoomNum();
         String address = orderDetailBean.getData().getAddress();
-        tvLocation.setText(new StringBuilder().append(address).append(floor).append("层").append(room).append("房").toString());
+        tvLocation.setText(new StringBuilder().append(address).append(floor).append("层").append(room).append("房").append(orderDetailBean.getData().getIsDelivery()== 1?"(自提单)":"(配送单)").toString());
         int isElevator = orderDetailBean.getData().getIsElevator();
         tvElevator.setText(isElevator == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 1 ? "(先生)" : "(女士)").toString());
@@ -294,6 +295,7 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
         PopUtil.toastInBottom("请允许LPG拨打电话");
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTel.getText().toString()));
