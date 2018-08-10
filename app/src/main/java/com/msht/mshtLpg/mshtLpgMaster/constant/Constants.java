@@ -7,7 +7,7 @@ public class Constants {
 
  //阿里云地址 http://120.76.193.86:7799
     //18599988888
-    public static final String BASE_URL = BuildConfig.DEBUG ? "http://120.76.193.86:7799/msht/": "http://120.76.193.86:7799/msht/";
+    public static final String BASE_URL = BuildConfig.DEBUG ? "http://119.23.31.8:8899/msht": "http://119.23.31.8:8899/msht";
 
     public static final String LOGIN = BASE_URL+"lpgEmpOrder/login";
     //1是送气单 0是退瓶单
@@ -65,7 +65,7 @@ public class Constants {
     //获取最新的APP信息
     public static final String GET_NEWESTAPPINFO = "";
     //现金代付
-    public static final String CASH_PAY=BASE_URL+"lpgEmpOrder/empPay";
+    public static final String CASH_PAY=BASE_URL+"lpgOrder/empPay";
 
 
     public static final String URL_PARAMS_LOGIN_TOKEN = "loginToken";
