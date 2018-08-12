@@ -12,6 +12,7 @@ import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MyScanDeliverUserBottleFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MyScanRegisterBottleFragment;
+import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.LogUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
@@ -43,11 +44,6 @@ public class RegisterBottleActivity extends BaseActivity implements  PermissionU
     }
 
 
-    private void showFragment(BaseFragment fragment){
-        transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fl_my_container,fragment).commit();
-    }
-
 
 
     @Override
@@ -75,7 +71,7 @@ public class RegisterBottleActivity extends BaseActivity implements  PermissionU
                 }
             }
         });
-        showFragment(registerBottleFragment);
+        AppUtil.showFragment(registerBottleFragment,getSupportFragmentManager());
     }
 
     @Override

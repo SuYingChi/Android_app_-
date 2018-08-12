@@ -13,6 +13,7 @@ import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MyScanDeliverUserBottleFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MyScanTransferBottleFragment;
+import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.LogUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
@@ -56,11 +57,6 @@ public class ScanTransferStorageActivity extends BaseActivity  implements  Permi
     }
 
 
-    private void showFragment(BaseFragment fragment){
-        transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fl_my_container,fragment).commit();
-    }
-
 
 
     @Override
@@ -95,7 +91,7 @@ public class ScanTransferStorageActivity extends BaseActivity  implements  Permi
         bundle.putString(Constants.ORDER_FIFTY_NUM, ffityCount);
         bundle.putString("TransferType",transferType);
         scanTransferBottleFragment.setArguments(bundle);
-        showFragment(scanTransferBottleFragment);
+        AppUtil.showFragment(scanTransferBottleFragment,getSupportFragmentManager());
     }
 
     @Override
