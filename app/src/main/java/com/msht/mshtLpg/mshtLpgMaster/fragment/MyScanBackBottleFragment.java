@@ -34,7 +34,7 @@ import com.msht.mshtLpg.mshtLpgMaster.adapter.ScanBottleQRCodeRclAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
-import com.msht.mshtLpg.mshtLpgMaster.handler.MyCaptureHandler;
+import com.msht.mshtLpg.mshtLpgMaster.handler.MyScanHandler;
 import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
@@ -90,7 +90,7 @@ public class MyScanBackBottleFragment extends BaseFragment implements IBackBottl
     private List<VerifyBottleBean> list = new ArrayList<VerifyBottleBean>();
     private ScanBottleQRCodeRclAdapter adapter;
     private Camera camera;
-    private MyCaptureHandler handler;
+    private MyScanHandler handler;
     protected Vector<BarcodeFormat> decodeFormats;
     protected String characterSet;
     private boolean playBeep;
@@ -200,6 +200,7 @@ public class MyScanBackBottleFragment extends BaseFragment implements IBackBottl
     @Override
     public void onPause() {
         super.onPause();
+
         if (handler != null) {
             handler.quitSynchronously();
             handler = null;
@@ -252,7 +253,7 @@ public class MyScanBackBottleFragment extends BaseFragment implements IBackBottl
             callBack.callBack(null);
         }
         if (handler == null) {
-            handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
+            handler = new MyScanHandler(this, decodeFormats, characterSet, viewfinderView);
         }
     }
 
@@ -336,7 +337,7 @@ public class MyScanBackBottleFragment extends BaseFragment implements IBackBottl
             fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50)));
         }
         if (handler == null) {
-            handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
+            handler = new MyScanHandler(this, decodeFormats, characterSet, viewfinderView);
         }
             Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
             handler.sendMessageDelayed(reDecode, 1000);

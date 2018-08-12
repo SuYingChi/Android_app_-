@@ -1,6 +1,5 @@
 package com.msht.mshtLpg.mshtLpgMaster.fragment;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,11 +25,10 @@ import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IPostTransferPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IScanbottleCodePresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.activity.TransferStorageFinishActivty;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.ScanBottleQRCodeRclAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
-import com.msht.mshtLpg.mshtLpgMaster.handler.MyCaptureHandler;
+import com.msht.mshtLpg.mshtLpgMaster.handler.MyScanHandler;
 import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
@@ -79,7 +77,7 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
     private IPostTransferPresenter iPostTransferPresenter;
     private List<VerifyBottleBean> list = new ArrayList<VerifyBottleBean>();
     private String orderId;
-    private MyCaptureHandler handler;
+    private MyScanHandler handler;
     private ScanBottleQRCodeRclAdapter adapter;
     private String transferType;
     private String url;
@@ -185,7 +183,7 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
     protected void initCamera(SurfaceHolder surfaceHolder) {
         super.initCamera(surfaceHolder);
         if (handler == null) {
-            handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
+            handler = new MyScanHandler(this, decodeFormats, characterSet, viewfinderView);
         }
     }
 
@@ -231,7 +229,7 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
             }
         }
         if (handler == null) {
-            handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
+            handler = new MyScanHandler(this, decodeFormats, characterSet, viewfinderView);
         }
         Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
         handler.sendMessageDelayed(reDecode, 1000);
@@ -322,7 +320,7 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
     @Override
     public void onPause() {
         super.onPause();
-        if (handler != null) {
+       if (handler != null) {
             handler.quitSynchronously();
             handler = null;
         }

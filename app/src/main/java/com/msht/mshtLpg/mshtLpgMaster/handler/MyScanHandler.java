@@ -15,15 +15,14 @@ import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
 import com.msht.mshtLpg.mshtLpgMaster.thread.MyDecodeThread;
 import com.uuzuche.lib_zxing.camera.CameraManager;
-import com.uuzuche.lib_zxing.decoding.CaptureActivityHandler;
 import com.uuzuche.lib_zxing.view.ViewfinderResultPointCallback;
 import com.uuzuche.lib_zxing.view.ViewfinderView;
 
 import java.util.Vector;
 
-public final class MyCaptureHandler extends Handler {
+public final class MyScanHandler extends Handler {
 
-    private static final String TAG = MyCaptureHandler.class.getSimpleName();
+    private static final String TAG = MyScanHandler.class.getSimpleName();
 
     private final BaseFragment fragment;
     private final MyDecodeThread decodeThread;
@@ -42,15 +41,15 @@ public final class MyCaptureHandler extends Handler {
         DONE
     }
 
-    public MyCaptureHandler(BaseFragment fragment, Vector<BarcodeFormat> decodeFormats,
-                            String characterSet, ViewfinderView viewfinderView) {
+    public MyScanHandler(BaseFragment fragment, Vector<BarcodeFormat> decodeFormats,
+                         String characterSet, ViewfinderView viewfinderView) {
         this.fragment = fragment;
         decodeThread = new MyDecodeThread(fragment, decodeFormats, characterSet,
                 new ViewfinderResultPointCallback(viewfinderView));
         decodeThread.start();
         state = State.SUCCESS;
         // Start ourselves capturing previews and decoding.
-        Log.d(TAG, "MyCaptureHandler: CameraManager.get().startPreview();");
+        Log.d(TAG, "MyScanHandler: CameraManager.get().startPreview();");
         CameraManager.get().startPreview();
         Log.d(TAG, "创建 CaptureActivityHandler:,开启 MyDecodeThread,执行restartPreviewAndDecode");
         restartPreviewAndDecode();

@@ -116,6 +116,7 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
         iOrderDetailPresenter.getFirstDelivery();
         iOrderDetailPresenter.getFourDelivery();
         iOrderDetailPresenter.getSixDelivery();
+        iOrderDetailPresenter.getSecondDelivery();
 
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
@@ -134,7 +135,7 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
         tvLocation.setText(new StringBuilder().append(address).append(floor).append("层").append(room).append("房").append(orderDetailBean.getData().getIsDelivery()== 1?"(自提单)":"(配送单)").toString());
         int isElevator = orderDetailBean.getData().getIsElevator();
         tvElevator.setText(isElevator == 1 ? "(有电梯)" : "(无电梯)");
-        tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 1 ? "(先生)" : "(女士)").toString());
+        tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTel.setText(orderDetailBean.getData().getMobile());
         tvDay.setText(orderDetailBean.getData().getCreateDate());
         tvTime.setText(orderDetailBean.getData().getAppointmentTime());
@@ -211,7 +212,12 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
         });
         tvDiscount.setText(exchange + "");
         double totalfare = totalGas + totalDeposite + totalDeliveryfare - exchange;
-        tvPayAmount.setText(totalfare +"");
+        if (((totalfare + "").length()) > 6) {
+            tvPayAmount.setText((totalfare + "").substring(0, 5));
+        } else {
+            tvPayAmount.setText((totalfare + ""));
+        }
+       // tvPayAmount.setText(totalfare +"");
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

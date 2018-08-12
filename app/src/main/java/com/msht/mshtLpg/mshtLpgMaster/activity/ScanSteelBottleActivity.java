@@ -1,11 +1,8 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
@@ -13,9 +10,9 @@ import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
-import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MyScanBackBottleFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MyScanDeliverUserBottleFragment;
+import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.LogUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
@@ -29,12 +26,12 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements MyScanDeliverUserBottleFragment.CaptureActivityListener, PermissionUtils.PermissionRequestFinishListener, ISimpleOrderDetailView {
+public class ScanSteelBottleActivity extends BaseActivity implements MyScanDeliverUserBottleFragment.CaptureActivityListener, PermissionUtils.PermissionRequestFinishListener, ISimpleOrderDetailView {
 
 
-    private static final String TAG = ScanCodeDeliverSteelBottleActivity.class.getSimpleName();
-    private MyScanDeliverUserBottleFragment deliverUserBottleFragment;
-    private MyScanDeliverUserBottleFragment captureEmptybottleFragment;
+    private static final String TAG = ScanSteelBottleActivity.class.getSimpleName();
+    private MyScanDeliverUserBottleFragment scanBottleFragment;
+    private MyScanDeliverUserBottleFragment scanEmptybottleFragment;
     private int orderfiveNum = 0;
     private int orderfifteenNum = 0;
     private int orderfiftyNum = 0;
@@ -50,7 +47,6 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scan_code_deliver_steel_bottle_activity);
-        transaction = getSupportFragmentManager().beginTransaction();
         unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
@@ -71,15 +67,15 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
             if(scanedfiveNum !=orderfiveNum|| scanedfifteenNum !=orderfifteenNum|| scanedfiftyNum !=orderfiftyNum){
                 PopUtil.toastInBottom("未达到订单要求钢瓶数和规格"+"请按订单要求扫描验瓶"+"5kg瓶"+orderfiveNum+"15kg瓶"+orderfifteenNum+"50kg瓶"+orderfiftyNum);
             }else {
-                if(captureEmptybottleFragment == null) {
+                if(scanEmptybottleFragment == null) {
                     Bundle bundle = new Bundle();
-                    captureEmptybottleFragment = new MyScanDeliverUserBottleFragment();
+                    scanEmptybottleFragment = new MyScanDeliverUserBottleFragment();
                     bundle.putInt(Constants.ORDER_FIVE_NUM, orderfiveNum);
                     bundle.putInt(Constants.ORDER_FIFTEEN_NUM, orderfifteenNum);
                     bundle.putInt(Constants.ORDER_FIFTY_NUM, orderfiftyNum);
                     bundle.putInt(Constants.SCANFRAGMENT_TYPE, 2);
-                    captureEmptybottleFragment.setArguments(bundle);
-                    captureEmptybottleFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
+                    scanEmptybottleFragment.setArguments(bundle);
+                    scanEmptybottleFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
                         @Override
                         public void callBack(Exception e) {
                             if (e == null) {
@@ -90,7 +86,7 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
                         }
                     });
                 }
-                showFragment(captureEmptybottleFragment);
+                AppUtil.replaceFragment(scanEmptybottleFragment, scanBottleFragment,getSupportFragmentManager());
             }
 
 
@@ -114,38 +110,28 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
         if(fragmentType == 1){
             finish();
         }else if(fragmentType == 2){
-            showFragment(deliverUserBottleFragment);
+            scanBottleFragment = new MyScanDeliverUserBottleFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(Constants.ORDER_FIVE_NUM, orderfiveNum);
+            bundle.putInt(Constants.ORDER_FIFTEEN_NUM, orderfifteenNum);
+            bundle.putInt(Constants.ORDER_FIFTY_NUM, orderfiftyNum);
+            bundle.putInt(Constants.SCANFRAGMENT_TYPE, 1);
+            scanBottleFragment.setArguments(bundle);
+            scanBottleFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
+                @Override
+                public void callBack(Exception e) {
+                    if (e == null) {
+
+                    } else {
+                        LogUtils.d(TAG, "callback:    " + e);
+                    }
+                }
+            });
+            AppUtil.replaceFragment(scanBottleFragment, scanEmptybottleFragment,getSupportFragmentManager());
         }
     }
 
 
-/*    private void showFragment(BaseFragment fragment) {
-        if (currentFragment != fragment) {
-            transaction = getSupportFragmentManager().beginTransaction();
-            if (currentFragment != null && currentFragment.isVisible()) {
-                transaction.hide(currentFragment);
-            }
-            currentFragment = fragment;
-            if (!fragment.isAdded()) {
-                transaction.add(R.id.fl_my_container, fragment).show(fragment);
-            } else {
-                transaction.show(fragment);
-            }
-            transaction.commit();
-        }
-    }*/
-    private void showFragment(BaseFragment fragment){
-        transaction.setCustomAnimations(R.anim.forward_enter,R.anim.forward_exit_fragment);
-        //加入动画会导致相机无法启动扫描
-        transaction.replace(R.id.fl_my_container,fragment).commit();
-    }
-  /*  private void removeEmptyFragment() {
-        if (captureEmptybottleFragment !=null&& captureEmptybottleFragment.isAdded()) {
-            transaction = getSupportFragmentManager().beginTransaction();
-            transaction.remove(captureEmptybottleFragment).commit();
-            captureEmptybottleFragment = null;
-        }
-    }*/
     @Override
     public void onBackFromSettingPage() {
         if (!PermissionUtils.cameraIsCanUse()) {
@@ -172,14 +158,14 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
         orderType = bean.getData().getOrderType();
          //送气单的扫码界面
         if(orderType == 1) {
-            deliverUserBottleFragment = new MyScanDeliverUserBottleFragment();
+            scanBottleFragment = new MyScanDeliverUserBottleFragment();
             Bundle bundle = new Bundle();
             bundle.putInt(Constants.ORDER_FIVE_NUM, orderfiveNum);
             bundle.putInt(Constants.ORDER_FIFTEEN_NUM, orderfifteenNum);
             bundle.putInt(Constants.ORDER_FIFTY_NUM, orderfiftyNum);
             bundle.putInt(Constants.SCANFRAGMENT_TYPE, 1);
-            deliverUserBottleFragment.setArguments(bundle);
-            deliverUserBottleFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
+            scanBottleFragment.setArguments(bundle);
+            scanBottleFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
                 @Override
                 public void callBack(Exception e) {
                     if (e == null) {
@@ -189,7 +175,7 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
                     }
                 }
             });
-            showFragment(deliverUserBottleFragment);
+            AppUtil.showFragment(scanBottleFragment,getSupportFragmentManager());
         }//退瓶单的扫码界面
         else if(orderType == 0){
             backBottleFragment = new MyScanBackBottleFragment();
@@ -209,7 +195,7 @@ public class ScanCodeDeliverSteelBottleActivity extends BaseActivity implements 
                     }
                 }
             });
-            showFragment(backBottleFragment);
+            AppUtil.showFragment(backBottleFragment,getSupportFragmentManager());
         }
     }
 

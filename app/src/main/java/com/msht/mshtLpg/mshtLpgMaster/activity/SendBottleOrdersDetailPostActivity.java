@@ -239,6 +239,7 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
             iOrderDetailPresenter.getFirstDelivery();
             iOrderDetailPresenter.getFourDelivery();
             iOrderDetailPresenter.getSixDelivery();
+            iOrderDetailPresenter.getSecondDelivery();
         }
 
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
@@ -339,7 +340,7 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         });
         tvLocation.setText(new StringBuilder().append(address).append(floor).append("层").append(room).append("房").append(bean.getData().getIsDelivery()== 1?"(自提单)":"(配送单)").toString());
         tvElevator.setText("1".equals(isElevator) ? "(有电梯)" : "(无电梯)");
-        tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 1 ? "(先生)" : "(女士)").toString());
+        tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTel.setText(orderDetailBean.getData().getMobile());
         tvDay.setText(orderDetailBean.getData().getCreateDate());
         tvTime.setText(orderDetailBean.getData().getAppointmentTime());
@@ -371,12 +372,12 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         tvFiftyGas.setText(fiftyGasFee + "");
         totalGas = fiveGasFee + fifteenGasFee + fiftyGasFee;
 
-        totalfare += totalGas;
+       /* totalfare += totalGas;
         if (((totalfare + "").length()) > 6) {
             tvCost.setText((totalfare + "").substring(0, 5));
         } else {
             tvCost.setText((totalfare + ""));
-        }
+        }*/
         tvGasFee.setText(totalGas + "");
 
         //押金
@@ -424,7 +425,7 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
             totalFiftyDelivery = orderFiftyNum * fiftyDeliveryFee;
             totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
 
-            totalfare += totalDeliveryfare;
+            totalfare = totalDeposite+totalGas+totalDeliveryfare;
             if (((totalfare + "").length()) > 6) {
                 tvCost.setText((totalfare + "").substring(0, 5));
             } else {

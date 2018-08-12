@@ -15,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -33,7 +34,7 @@ import com.msht.mshtLpg.mshtLpgMaster.adapter.ScanBottleQRCodeRclAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
-import com.msht.mshtLpg.mshtLpgMaster.handler.MyCaptureHandler;
+import com.msht.mshtLpg.mshtLpgMaster.handler.MyScanHandler;
 import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
@@ -49,6 +50,7 @@ import java.util.Objects;
 import java.util.Vector;
 
 public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView, SurfaceHolder.Callback {
+    private static final String TAG = MyScanInnerFragment.class.getSimpleName();
     private int fragmentType;
     private IInnerFetchPresenter iScanInnerPresenter;
     protected InactivityTimer inactivityTimer;
@@ -67,7 +69,7 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
     private boolean vibrate;
     protected MediaPlayer mediaPlayer;
     private static final float BEEP_VOLUME = 0.10f;
-    private MyCaptureHandler handler;
+    private MyScanHandler handler;
     protected static final long VIBRATE_DURATION = 200L;
     private RecyclerView recyclerView;
     private SurfaceView surfaceView;
@@ -90,6 +92,7 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
         } else {
             return;
         }
+        Log.d(TAG, "onCreate: fragmentType     "+fragmentType);
         CameraManager.init(LPGApplication.getLPGApplicationContext());
         iScanInnerPresenter = new IInnerFetchPresenter(this);
         hasSurface = false;
@@ -135,6 +138,7 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView: fragmentType     "+fragmentType);
         View view = null;
         if (fragmentType == 1) {
             view = inflater.inflate(R.layout.inner_fetch_no_rcl_layout, null);
@@ -180,8 +184,9 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
                         iScanInnerPresenter.innerReturnComfirm();
                     }
                 } else if (fragmentType == 1 && isEmployerQuerySuccess) {
-                    employerId = etInput.getText().toString();
                     innnerFetchActivityListener.onClickNextBtnAndSendEmployerId(employerId);
+                }else if(fragmentType == 1 && !isEmployerQuerySuccess){
+                    PopUtil.toastInBottom("请验证领取钢瓶的员工");
                 }
 
             }
@@ -223,6 +228,7 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
 
     @Override
     public void onAttach(Context context) {
+        Log.d(TAG, "onAttach: fragmentType     "+fragmentType);
         super.onAttach(context);
         this.innnerFetchActivityListener = (InnnerFetchActivityListener) getActivity();
 
@@ -232,6 +238,7 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
     @Override
     public void onResume() {
         super.onResume();
+        Log.d(TAG, "onResume: fragmentType     "+fragmentType);
         String s = fragmentType == 1 ? "扫描员工二维码" : "扫描领瓶二维码";
         PopUtil.toastInBottom(s);
         if (hasSurface) {
@@ -301,7 +308,7 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
             callBack.callBack(null);
         }
         if (handler == null) {
-            handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
+            handler = new MyScanHandler(this, decodeFormats, characterSet, viewfinderView);
         }
     }
 
@@ -363,8 +370,9 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
 
     @Override
     public void onPause() {
+        Log.d(TAG, "onPause: fragmentType     "+fragmentType);
         super.onPause();
-        if (handler != null) {
+       if (handler != null) {
             handler.quitSynchronously();
             handler = null;
         }
@@ -374,6 +382,7 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.d(TAG, "onDestroy: fragmentType     "+fragmentType);
         inactivityTimer.shutdown();
     }
 
@@ -393,7 +402,7 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
             }
         }
         if (handler == null) {
-            handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
+            handler = new MyScanHandler(this, decodeFormats, characterSet, viewfinderView);
         }
         Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
         handler.sendMessageDelayed(reDecode, 1000);
@@ -418,6 +427,7 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+        Log.d(TAG, "surfaceCreated: fragmentType     "+fragmentType);
         if (!hasSurface) {
             hasSurface = true;
             initCamera(holder);
@@ -426,11 +436,12 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
+        Log.d(TAG, "surfaceChanged: fragmentType     "+fragmentType);
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
+        Log.d(TAG, "surfaceDestroyed: fragmentType     "+fragmentType);
         hasSurface = false;
         if (camera != null) {
             if (CameraManager.get().isPreviewing()) {

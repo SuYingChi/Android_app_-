@@ -2,6 +2,7 @@ package com.msht.mshtLpg.mshtLpgMaster.Present;
 
 import android.text.TextUtils;
 
+import com.msht.mshtLpg.mshtLpgMaster.Bean.UserErrorBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.UserLoginBean;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
@@ -27,7 +28,7 @@ public class ILoginPresenter {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
 
-                UserLoginBean bean = GsonUtil.getGson().fromJson(s, UserLoginBean.class);
+                UserErrorBean bean = GsonUtil.getGson().fromJson(s, UserErrorBean.class);
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "failed")) {
                     switch (bean.getData().getErrorCode()) {
                         case "100":
@@ -44,7 +45,8 @@ public class ILoginPresenter {
                     }
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
                        if(TextUtils.equals(bean.getData().getErrorCode(),"200")){
-                           iView.onLoginSuccess(bean);
+                           UserLoginBean userLoginBean = GsonUtil.getGson().fromJson(s, UserLoginBean.class);
+                           iView.onLoginSuccess(userLoginBean);
                        }
                 }
             }

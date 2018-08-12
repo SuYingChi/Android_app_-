@@ -33,14 +33,12 @@ import com.msht.mshtLpg.mshtLpgMaster.Bean.GetBottleInfo;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IRegisterBottlePresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.SpinnerAdapter;
-import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TimeSelecteDialog;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
-import com.msht.mshtLpg.mshtLpgMaster.handler.MyCaptureHandler;
+import com.msht.mshtLpg.mshtLpgMaster.handler.MyScanHandler;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IRegisterBottleView;
 import com.uuzuche.lib_zxing.camera.CameraManager;
-import com.uuzuche.lib_zxing.decoding.DecodeThread;
 import com.uuzuche.lib_zxing.decoding.InactivityTimer;
 import com.uuzuche.lib_zxing.view.ViewfinderView;
 
@@ -91,7 +89,7 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
     private boolean vibrate;
     protected MediaPlayer mediaPlayer;
     private static final float BEEP_VOLUME = 0.10f;
-    private MyCaptureHandler handler;
+    private MyScanHandler handler;
     protected static final long VIBRATE_DURATION = 200L;
     private String bottleWeight;
     private String bottleNum;
@@ -271,8 +269,8 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
             callBack.callBack(null);
         }
         if (handler == null) {
-            Log.d(TAG, "initCamera: new MyCaptureHandler");
-            handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
+            Log.d(TAG, "initCamera: new MyScanHandler");
+            handler = new MyScanHandler(this, decodeFormats, characterSet, viewfinderView);
         }
     }
 
@@ -435,7 +433,7 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
     public void onUpdateBottleInfoSuccess(ErrorBean errorBean) {
         PopUtil.toastInBottom("修改钢瓶注册信息成功");
         if (handler == null) {
-            handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
+            handler = new MyScanHandler(this, decodeFormats, characterSet, viewfinderView);
         }
             Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
             handler.sendMessageDelayed(reDecode, 1000);

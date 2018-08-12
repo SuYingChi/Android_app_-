@@ -138,7 +138,7 @@ public class BaseScanFragmengt extends BaseFragment implements SurfaceHolder.Cal
         }
         //子类需要创建自己的handler
        /* if (handler == null) {
-            handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
+            handler = new MyScanHandler(this, decodeFormats, characterSet, viewfinderView);
         }*/
 
     }

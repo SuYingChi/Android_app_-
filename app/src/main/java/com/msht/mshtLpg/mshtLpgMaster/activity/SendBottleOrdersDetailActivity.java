@@ -1,28 +1,20 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.msht.mshtLpg.mshtLpgMaster.Bean.DeliveryBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
-import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailView;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.ISimpleOrderDetailView;
 import com.yanzhenjie.permission.Permission;
 
@@ -90,7 +82,7 @@ public class SendBottleOrdersDetailActivity extends BaseActivity implements ISim
                 PermissionUtils.requestPermissions(this, this, Permission.CALL_PHONE);
                 break;
             case R.id.hand_over_steel_bottle:
-                Intent intent = new Intent(this, ScanCodeDeliverSteelBottleActivity.class);
+                Intent intent = new Intent(this, ScanSteelBottleActivity.class);
                 intent.putExtra(Constants.ORDER_ID, orderId);
                 startActivity(intent);
                 break;

@@ -199,7 +199,6 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    PopUtil.toastInBottom("GetQRCodeImageTask");
                     getQRcodeImageUrlPresenter.getQRcodeUrl();
                 }
             });
@@ -213,7 +212,6 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    PopUtil.toastInBottom("QueryOrderStatusTask");
                     getOrderStatusPresenter.getOrderStatus();
                 }
             });

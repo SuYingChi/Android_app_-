@@ -30,12 +30,11 @@ import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IScanbottleCodePresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.activity.ScanCodeDeliverSteelBottleActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.ScanSteelBottleActivity;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.ScanBottleQRCodeRclAdapter;
-import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
-import com.msht.mshtLpg.mshtLpgMaster.handler.MyCaptureHandler;
+import com.msht.mshtLpg.mshtLpgMaster.handler.MyScanHandler;
 import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.BottleCaculteUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
@@ -78,7 +77,7 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
     @BindView(R.id.tv_scan_delive_steel_bottle)
     TextView title;
     private static final String TAG = "MyScanDeliverUserBottleFragment";
-    protected MyCaptureHandler handler;
+    protected MyScanHandler handler;
     protected boolean hasSurface;
     protected Vector<BarcodeFormat> decodeFormats;
     protected String characterSet;
@@ -101,7 +100,7 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
     private int orderFiftyNum = 0;
     private OrderDetailBean bean;
     private int fragmentType;
-    private ScanCodeDeliverSteelBottleActivity activity;
+    private ScanSteelBottleActivity activity;
     private String verifyType="";
 
 
@@ -159,7 +158,7 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().length()==8||s.toString().length()==9){
+                if(s.toString().length()==10){
                     AppUtil.hideInput(MyScanDeliverUserBottleFragment.this.getContext(),etInput);
                 }
             }
@@ -272,7 +271,6 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
         try {
             CameraManager.get().openDriver(surfaceHolder);
             camera = CameraManager.get().getCamera();
-            camera.startPreview();
         } catch (Exception e) {
             if (callBack != null) {
                 callBack.callBack(e);
@@ -283,7 +281,7 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
             callBack.callBack(null);
         }
         if (handler == null) {
-            handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
+            handler = new MyScanHandler(this, decodeFormats, characterSet, viewfinderView);
         }
     }
 
@@ -424,7 +422,7 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
             }
         }
         if (handler == null) {
-            handler = new MyCaptureHandler(this, decodeFormats, characterSet, viewfinderView);
+            handler = new MyScanHandler(this, decodeFormats, characterSet, viewfinderView);
         }
             Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
             handler.sendMessageDelayed(reDecode, 1000);

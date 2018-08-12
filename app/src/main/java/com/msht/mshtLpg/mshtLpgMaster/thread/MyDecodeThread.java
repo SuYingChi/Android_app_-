@@ -25,8 +25,7 @@ import com.google.zxing.DecodeHintType;
 import com.google.zxing.ResultPointCallback;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
 import com.uuzuche.lib_zxing.decoding.DecodeFormatManager;
-import com.msht.mshtLpg.mshtLpgMaster.handler.MyDecodeHandler;
-import com.uuzuche.lib_zxing.decoding.DecodeThread;
+import com.msht.mshtLpg.mshtLpgMaster.handler.MyScanDecodeHandler;
 
 import java.util.Hashtable;
 import java.util.Vector;
@@ -85,7 +84,7 @@ public final class MyDecodeThread extends Thread {
     public void run() {
         Looper.prepare();
         Log.d(TAG, "run: ");
-        handler = new MyDecodeHandler(fragment, hints);
+        handler = new MyScanDecodeHandler(fragment, hints);
         handlerInitLatch.countDown();
         Looper.loop();
     }

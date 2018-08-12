@@ -1,6 +1,7 @@
 package com.msht.mshtLpg.mshtLpgMaster.util;
 
 import android.app.Activity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -9,6 +10,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.IBinder;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -16,11 +19,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.msht.mshtLpg.mshtLpgMaster.R;
+import com.msht.mshtLpg.mshtLpgMaster.activity.BaseActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.LoginActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.UpdateVersionActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.WebActivity;
 import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
+import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
@@ -132,5 +137,17 @@ public class AppUtil {
             PopUtil.toastInBottom( "请打开应用市场，搜索 " + context.getString(R.string.app_name));
             e.printStackTrace();
         }
+    }
+
+    public static  void replaceFragment(BaseFragment showfragment, BaseFragment currentFragment,FragmentManager fragmentManager){
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.remove(currentFragment).commit();
+        transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.forward_enter,R.anim.forward_exit_fragment);
+        transaction.replace(R.id.fl_my_container,showfragment).commit();
+    }
+    public static  void showFragment(BaseFragment showfragment,FragmentManager fragmentManager){
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fl_my_container,showfragment).commit();
     }
 }

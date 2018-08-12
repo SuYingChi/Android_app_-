@@ -56,7 +56,7 @@
             android:name="com.amap.api.v2.apikey"
             android:value="3467b1afa91a2c36f7c45cf95b85aa4d" />
         <activity android:name=".activity.SendBottleOrdersDetailActivity" />
-        <activity android:name=".activity.ScanCodeDeliverSteelBottleActivity" />
+        <activity android:name=".activity.ScanSteelBottleActivity" />
         <activity android:name=".activity.SendBottleOrdersDetailPostActivity" />
         <activity android:name=".activity.ExchangeReviewActivity" />
         <activity android:name=".activity.SendBottleOrdersDetailPayActivity" />
@@ -92,6 +92,11 @@
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             tools:replace="android:configChanges" />
+        <activity android:name=".activity.SendOrderScanEmptyActivity" />
+        <activity android:name=".activity.InnerScanEmployerActivity" />
+        <activity android:name=".activity.SendOrderScanBottleActivity" />
+        <activity android:name=".activity.InnerGetActivity" />
+        <activity android:name=".activity.InnerReturnActivity" />
     </application>
 
 </manifest>

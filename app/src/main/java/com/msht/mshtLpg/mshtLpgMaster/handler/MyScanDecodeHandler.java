@@ -36,14 +36,14 @@ import com.uuzuche.lib_zxing.camera.PlanarYUVLuminanceSource;
 
 import java.util.Hashtable;
 
-public final class MyDecodeHandler extends Handler {
+public final class MyScanDecodeHandler extends Handler {
 
-    private static final String TAG = MyDecodeHandler.class.getSimpleName();
+    private static final String TAG = MyScanDecodeHandler.class.getSimpleName();
 
     private final BaseFragment fragment;
     private final MultiFormatReader multiFormatReader;
 
-   public MyDecodeHandler(BaseFragment fragment, Hashtable<DecodeHintType, Object> hints) {
+   public MyScanDecodeHandler(BaseFragment fragment, Hashtable<DecodeHintType, Object> hints) {
         multiFormatReader = new MultiFormatReader();
         multiFormatReader.setHints(hints);
         this.fragment = fragment;

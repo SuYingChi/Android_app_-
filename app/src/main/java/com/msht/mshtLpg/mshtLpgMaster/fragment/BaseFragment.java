@@ -126,16 +126,16 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     public void handleDecode(Result obj, Bitmap barcode) {
     }
 
-    ;
+
 
     public void drawViewfinder() {
     }
 
-    ;
+
 
     public Handler getHandler() {
         return null;
     }
 
-    ;
+
 }

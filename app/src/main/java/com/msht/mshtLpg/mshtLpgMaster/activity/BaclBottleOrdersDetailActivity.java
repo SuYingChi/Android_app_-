@@ -87,7 +87,7 @@ public class BaclBottleOrdersDetailActivity extends BaseActivity implements ISim
                 PermissionUtils.requestPermissions(this, this, Permission.CALL_PHONE);
                 break;
             case R.id.hand_over_steel_bottle:
-                Intent intent = new Intent(this, ScanCodeDeliverSteelBottleActivity.class);
+                Intent intent = new Intent(this, ScanSteelBottleActivity.class);
                 intent.putExtra(Constants.ORDER_ID,orderId);
                 startActivity(intent);
                 break;

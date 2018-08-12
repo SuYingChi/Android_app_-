@@ -44,7 +44,7 @@ public class RegisterBottleActivity extends BaseActivity implements  PermissionU
 
 
     private void showFragment(BaseFragment fragment){
-        transaction.setCustomAnimations(R.anim.forward_enter,R.anim.forward_exit_fragment);
+        transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fl_my_container,fragment).commit();
     }
 
