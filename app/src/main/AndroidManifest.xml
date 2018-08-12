@@ -82,7 +82,7 @@
         <activity android:name=".activity.SendCustomerOrderActivity" />
         <activity android:name=".activity.DeliveryAddressActivity" />
         <activity android:name=".activity.SelectAddressActivity" />
-        <activity android:name=".activity.EditAddressActivity"></activity>
+        <activity android:name=".activity.EditAddressActivity"/>
         <activity android:name=".activity.UpdateVersionActivity" />
         <activity android:name=".activity.CurrentVersionInfoActivity" />
         <!-- Ping++ SDK -->
@@ -92,6 +92,27 @@
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             tools:replace="android:configChanges" />
+
+        <!-- 微信支付 -->
+        <activity-alias
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:targetActivity="com.pingplusplus.android.PaymentActivity" />
+        <!--支付宝支付-->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
+
+
         <activity android:name=".activity.SendOrderScanEmptyActivity" />
         <activity android:name=".activity.InnerScanEmployerActivity" />
         <activity android:name=".activity.SendOrderScanBottleActivity" />

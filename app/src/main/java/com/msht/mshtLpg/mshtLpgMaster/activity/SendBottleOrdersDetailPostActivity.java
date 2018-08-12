@@ -461,6 +461,7 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         Intent intent = new Intent(this, SendBottleOrdersDetailPayActivity.class);
         intent.putExtra(Constants.ORDER_ID, orderId);
         startActivity(intent);
+        finish();
     }
 
     @Override

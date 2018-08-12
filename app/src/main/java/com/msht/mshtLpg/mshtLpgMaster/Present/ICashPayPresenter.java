@@ -3,6 +3,7 @@ package com.msht.mshtLpg.mshtLpgMaster.Present;
 import android.text.TextUtils;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.CashPayBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.EmpPayBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;
 import com.msht.mshtLpg.mshtLpgMaster.callback.DataStringCallback;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
@@ -30,8 +31,8 @@ public class ICashPayPresenter {
                if ((!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail"))) {
                     iCashPayView.onError(bean.getMsg());
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
-                   CashPayBean cashPayBean = GsonUtil.getGson().fromJson(s, CashPayBean.class);
-                    iCashPayView.onCashPaySuceess(cashPayBean);
+                   EmpPayBean empPayBean = GsonUtil.getGson().fromJson(s, EmpPayBean.class);
+                    iCashPayView.onCashPaySuceess(empPayBean);
                 }
             }
         });
