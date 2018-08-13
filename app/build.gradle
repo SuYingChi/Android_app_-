@@ -86,5 +86,5 @@ dependencies {
     // 使用微信支付时添加,具体版本参考微信官方文档
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     // 使用支付宝时添加
-    compile 'com.pingxx:pingpp-alipay:2.1.18'
+    implementation 'com.pingxx:pingpp-alipay:2.1.18'
 }
