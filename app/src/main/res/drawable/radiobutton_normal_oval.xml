@@ -5,7 +5,7 @@
                android:innerRadius="10dp"
                android:thickness="1dp"
                android:useLevel="false">
-            <size android:height="20dp" android:width="25dp"/>
+            <apkSize android:height="20dp" android:width="25dp"/>
             <!--BABABA-->
             <solid android:color="#000000"/>
         </shape>

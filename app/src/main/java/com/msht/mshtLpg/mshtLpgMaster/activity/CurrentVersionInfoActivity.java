@@ -36,8 +36,7 @@ public class CurrentVersionInfoActivity extends BaseActivity {
         tvCheckUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopUtil.toastInBottom("暂无接口");
-              //startActivity(new Intent(CurrentVersionInfoActivity.this,UpdateVersionActivity.class));
+              startActivity(new Intent(CurrentVersionInfoActivity.this,UpdateVersionActivity.class));
             }
         });
 

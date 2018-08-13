@@ -48,7 +48,7 @@ public class AppInfoBean {
         private String title;
         private String desc;
         private String url;
-        private String size;
+        private String apkSize;
 
         public String getVersion() {
             return version;
@@ -82,12 +82,12 @@ public class AppInfoBean {
             this.url = url;
         }
 
-        public void setSize(String size) {
-            this.size = size;
+        public void setApkSize(String apkSize) {
+            this.apkSize = apkSize;
         }
 
-        public String getSize() {
-            return size;
+        public String getApkSize() {
+            return apkSize;
         }
     }
 }

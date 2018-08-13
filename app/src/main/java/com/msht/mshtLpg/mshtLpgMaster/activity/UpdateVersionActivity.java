@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.AppInfoBean;
+import com.msht.mshtLpg.mshtLpgMaster.Present.IGetNewestAppInfoPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
@@ -42,14 +43,14 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
                  finish();
              }
          });
-
+         new IGetNewestAppInfoPresenter(this).getNewestAppInfo();
 
     }
 
     @Override
     public void onGetNewestAppInfoSuccess(AppInfoBean appInfoBean) {
         tvNewVersion.setText(appInfoBean.getData().getVersion());
-        tvApkSize.setText(appInfoBean.getData().getSize());
+        tvApkSize.setText(appInfoBean.getData().getApkSize());
         tvTitle.setText(appInfoBean.getData().getTitle());
         tvUpdateDetail.setText(appInfoBean.getData().getDesc());
         if (Integer.valueOf(appInfoBean.getData().getVersion()) > vision) {
@@ -68,7 +69,12 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
                 }
             });
         }else {
-            PopUtil.toastInBottom("当前已经是最新版本");
+            tvUpdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopUtil.toastInBottom("当前已经是最新版本");
+                }
+            });
         }
     }
 }

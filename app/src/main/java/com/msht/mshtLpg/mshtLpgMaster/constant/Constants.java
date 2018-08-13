@@ -63,7 +63,7 @@ public class Constants {
     //月份收入统计预留接口
     public static final String MONTH_COUNT = "";
     //获取最新的APP信息
-    public static final String GET_NEWESTAPPINFO = "";
+    public static final String GET_NEWESTAPPINFO = BASE_URL+"lpgEmpOrder/getVersion";
     //现金代付
     public static final String CASH_PAY=BASE_URL+"lpgOrder/empPay";
 

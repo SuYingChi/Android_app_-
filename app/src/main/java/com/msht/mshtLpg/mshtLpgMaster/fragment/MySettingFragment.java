@@ -19,7 +19,6 @@ import com.msht.mshtLpg.mshtLpgMaster.activity.MyIncomeActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.RegisterEmployerActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.RegisterBottleActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.TransferStorageListActivity;
-import com.msht.mshtLpg.mshtLpgMaster.activity.UpdateVersionActivity;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
 
 import org.greenrobot.eventbus.EventBus;
