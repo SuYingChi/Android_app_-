@@ -61,7 +61,7 @@ public class IOrderDetailPresenter {
         });
     }
     public void getFourDelivery() {
-        OkHttpUtils.get().url(Constants.ALL_DELIVER_FARE).addParams("floors", "4")
+        OkHttpUtils.get().url(Constants.GET_ALL_Delivery_FEE).addParams("floors", "4")
                 .addParams("isElevator",0+"")
                 .build().execute(new DataStringCallback(iOrderDetailView) {
             @Override
@@ -81,7 +81,7 @@ public class IOrderDetailPresenter {
         });
     }
     public void getSixDelivery() {
-        OkHttpUtils.get().url(Constants.ALL_DELIVER_FARE).addParams("floors", "6")
+        OkHttpUtils.get().url(Constants.GET_ALL_Delivery_FEE).addParams("floors", "6")
                 .addParams("isElevator",0+"")
                 .build().execute(new DataStringCallback(iOrderDetailView) {
             @Override
@@ -102,7 +102,7 @@ public class IOrderDetailPresenter {
     }
 
     public void getFirstDelivery() {
-        OkHttpUtils.get().url(Constants.ALL_DELIVER_FARE).addParams("floors", "1")
+        OkHttpUtils.get().url(Constants.GET_ALL_Delivery_FEE).addParams("floors", "1")
                 .addParams("isElevator",0+"")
                 .build().execute(new DataStringCallback(iOrderDetailView) {
             @Override
@@ -122,7 +122,7 @@ public class IOrderDetailPresenter {
         });
     }
     public void getSecondDelivery() {
-        OkHttpUtils.get().url(Constants.ALL_DELIVER_FARE).addParams("floors", "2")
+        OkHttpUtils.get().url(Constants.GET_ALL_Delivery_FEE).addParams("floors", "2")
                 .addParams("isElevator",0+"")
                 .build().execute(new DataStringCallback(iOrderDetailView) {
             @Override

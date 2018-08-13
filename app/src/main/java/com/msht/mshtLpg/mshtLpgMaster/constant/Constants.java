@@ -17,7 +17,7 @@ public class Constants {
     //扫码后的订单详情需要实时地再去获取最新气价和押金，再计算出气价和押金（siteid = 2有数据）
     public static final String  GET_GAS_AND_DEPOSIT= BASE_URL+"lpgDepositMsg/getGasAndDeposit";
     //扫码后的订单详情需要实时地再去获取最新运费，再计算出气价和押金，只跟无电梯时的楼层有关
-    public static final String  GET_Delivery_FEE = BASE_URL+"lpgDeliveryFee/getAllDeliveryFee";
+    public static final String GET_ALL_Delivery_FEE = BASE_URL+"lpgDeliveryFee/getAllDeliveryFee";
    //提交订单，等待付款 （orderId 111，isDelivery 0 orderType 1 deliveryBottleIds 15），
     public static final String  POST_ORDER= BASE_URL+"lpgEmpOrder/orderMsgComfirm";
     //获取自有产权钢瓶置换价格
@@ -56,8 +56,6 @@ public class Constants {
     public static final String REGISTER_EMPLOYER = "";
     //我的收入
     public static final String MY_INCOME =  BASE_URL+"lpgEmpBottle/myInCome";
-   //获取一个楼层的3种钢瓶的运费
-    public static final String ALL_DELIVER_FARE = BASE_URL+"lpgDeliveryFee/getAllDeliveryFee";
     //月份收入统计预留接口
     public static final String MONTH_COUNT = "";
     //获取最新的APP信息

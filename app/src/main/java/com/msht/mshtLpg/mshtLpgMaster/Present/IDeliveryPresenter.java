@@ -18,7 +18,8 @@ public class IDeliveryPresenter {
     }
 
     public void getDelivery() {
-        OkHttpUtils.get().url(Constants.GET_Delivery_FEE).addParams("floors", iDeliveryView.getFloors())
+        OkHttpUtils.get().url(Constants.GET_ALL_Delivery_FEE).addParams("floors", iDeliveryView.getFloors())
+                .addParams("isElevator",0+"")
                 .build().execute(new DataStringCallback(iDeliveryView) {
             @Override
             public void onResponse(String s, int i) {
@@ -38,7 +39,8 @@ public class IDeliveryPresenter {
     }
 
     public void getElevatorDelivery() {
-        OkHttpUtils.get().url(Constants.GET_Delivery_FEE).addParams("floors", "1")
+        OkHttpUtils.get().url(Constants.GET_ALL_Delivery_FEE).addParams("floors", "1")
+                .addParams("isElevator",0+"")
                 .build().execute(new DataStringCallback(iDeliveryView) {
             @Override
             public void onResponse(String s, int i) {
