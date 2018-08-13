@@ -6,9 +6,7 @@ public class Constants {
     //凡是接口里有replacelist的都去掉，改为增加一个retrieveAmount字段，空瓶置换有单独接口返回数据
 
  //阿里云地址 http://120.76.193.86:7799
-    //18599988888
-    public static final String BASE_URL = BuildConfig.DEBUG ? "http://112.74.33.12:7799/msht/": "http://112.74.33.12:7799/msht/";
-
+    public static final String BASE_URL = BuildConfig.DEBUG ? "http://112.74.33.12:7799/api/msht/": "https://lpg.msbapp.cn/api/msht/";
     public static final String LOGIN = BASE_URL+"lpgEmpOrder/login";
     //1是送气单 0是退瓶单
     public static final String QUERY_ORDERS = BASE_URL+"lpgEmpOrder/getOrderByPage";

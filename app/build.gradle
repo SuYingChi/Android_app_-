@@ -15,9 +15,9 @@ android {
     InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream()
     properties.load(inputStream)
     def signFile = properties.getProperty('signKey.file')
-    def keyFile  =properties.getProperty('key.file')
+    def keyFile = properties.getProperty('key.file')
     signingConfigs {
-        debug{
+        debug {
             storeFile file(keyFile)
         }
         release {
@@ -33,7 +33,7 @@ android {
     }
     buildTypes {
         debug {
-           // signingConfig signingConfigs.debug
+            // signingConfig signingConfigs.debug
             signingConfig signingConfigs.release
         }
         release {
@@ -47,6 +47,7 @@ android {
             dirs 'libs'
         }
     }
+    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/res/assets'] } }
 }
 
 dependencies {

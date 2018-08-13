@@ -62,6 +62,7 @@ public class IOrderDetailPresenter {
     }
     public void getFourDelivery() {
         OkHttpUtils.get().url(Constants.ALL_DELIVER_FARE).addParams("floors", "4")
+                .addParams("isElevator",0+"")
                 .build().execute(new DataStringCallback(iOrderDetailView) {
             @Override
             public void onResponse(String s, int i) {
@@ -81,6 +82,7 @@ public class IOrderDetailPresenter {
     }
     public void getSixDelivery() {
         OkHttpUtils.get().url(Constants.ALL_DELIVER_FARE).addParams("floors", "6")
+                .addParams("isElevator",0+"")
                 .build().execute(new DataStringCallback(iOrderDetailView) {
             @Override
             public void onResponse(String s, int i) {
@@ -101,6 +103,7 @@ public class IOrderDetailPresenter {
 
     public void getFirstDelivery() {
         OkHttpUtils.get().url(Constants.ALL_DELIVER_FARE).addParams("floors", "1")
+                .addParams("isElevator",0+"")
                 .build().execute(new DataStringCallback(iOrderDetailView) {
             @Override
             public void onResponse(String s, int i) {
@@ -120,6 +123,7 @@ public class IOrderDetailPresenter {
     }
     public void getSecondDelivery() {
         OkHttpUtils.get().url(Constants.ALL_DELIVER_FARE).addParams("floors", "2")
+                .addParams("isElevator",0+"")
                 .build().execute(new DataStringCallback(iOrderDetailView) {
             @Override
             public void onResponse(String s, int i) {
