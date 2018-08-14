@@ -11,7 +11,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@color/bg_color">
-            <RelativeLayout
+    <!--        <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -77,14 +77,16 @@
                     android:hint="请您输入客户手机号"
                     android:textColor="@color/lpg_text_light_color"/>
             </RelativeLayout>
-            <include layout="@layout/layout_line_gray"/>
+            <include layout="@layout/layout_line_gray"/>-->
             <RadioGroup
+                android:id="@+id/radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="horizontal"
                 android:minHeight="45dp">
                 <RadioButton
+                    android:id="@+id/rb1"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -92,8 +94,11 @@
                     android:layout_marginLeft="15dp"
                     android:paddingLeft="10dp"
                     android:layout_gravity="center_vertical"
-                    android:text="配送"/>
+                    android:text="配送"
+                    android:checked="true"
+                    />
                 <RadioButton
+                    android:id="@+id/rb2"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

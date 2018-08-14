@@ -15,8 +15,7 @@ import com.msht.mshtLpg.mshtLpgMaster.adapter.BaseLazyFragmentPagerAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.SlidableViewPager;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseLazyFragment;
-import com.msht.mshtLpg.mshtLpgMaster.fragment.DispatchOrdersLazyFragementV2;
-import com.msht.mshtLpg.mshtLpgMaster.fragment.DispatchOrdersLazyFragment;
+import com.msht.mshtLpg.mshtLpgMaster.fragment.DispatchOrdersLazyFragement;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MySettingFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.OrdersListLazyFragment;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
@@ -35,7 +34,7 @@ public class HomeActivity extends BaseActivity {
 
      long exitTime;
      OrdersListLazyFragment f0;
-     DispatchOrdersLazyFragementV2 f1;
+     DispatchOrdersLazyFragement f1;
      MySettingFragment f2;
      List<BaseLazyFragment> list_fragment = new ArrayList<BaseLazyFragment>();
      @BindView(R.id.vp)
@@ -71,7 +70,7 @@ public class HomeActivity extends BaseActivity {
 
     private void initView() {
         f0 = new OrdersListLazyFragment();
-        f1 = new DispatchOrdersLazyFragementV2();
+        f1 = new DispatchOrdersLazyFragement();
         f2 = new MySettingFragment();
         list_fragment.add(f0);
         list_fragment.add(f1);

@@ -33,6 +33,7 @@ import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.PoiAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.PoiSearchAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.customView.ListViewForScrollView;
+import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.mapAddress.ALocationClientFactory;
 import com.msht.mshtLpg.mshtLpgMaster.mapAddress.PoiSearchTask;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
@@ -48,7 +49,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
-public class SelectAddressActivity extends BaseActivity implements  PermissionUtils.PermissionRequestFinishListener, AMapLocationListener, PoiSearch.OnPoiSearchListener {
+public class SelectAddressActivity extends BaseActivity implements PermissionUtils.PermissionRequestFinishListener, AMapLocationListener, PoiSearch.OnPoiSearchListener {
     @BindView(R.id.tv_city)
     TextView tvCity;
     @BindView(R.id.id_cancel)
@@ -67,6 +68,8 @@ public class SelectAddressActivity extends BaseActivity implements  PermissionUt
     View layoutSearch;
     @BindView(R.id.id_edit_layout)
     View layoutEdit;
+    @BindView(R.id.top_bar)
+    TopBarView topBarView;
     private String mCity;
     private String mArea;
     private Unbinder unbinder;
@@ -75,14 +78,20 @@ public class SelectAddressActivity extends BaseActivity implements  PermissionUt
     private PoiSearchAdapter searchAdapter;
     private Context mContext;
     private ArrayList<HashMap<String, String>> mList = new ArrayList<HashMap<String, String>>();
+    private String lat;
+    private String lon;
+    private String addressDescribe;
+    private String addressName;
+    private String addressStr;
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_address);
-        mContext=this;
+        mContext = this;
         unbinder = ButterKnife.bind(this);
-        locationClient = ALocationClientFactory.createLocationClient(this, ALocationClientFactory.createDefaultOption(),this);
+        locationClient = ALocationClientFactory.createLocationClient(this, ALocationClientFactory.createDefaultOption(), this);
         PermissionUtils.requestPermissions(this, this, new String[]{Permission.ACCESS_FINE_LOCATION, Permission.ACCESS_COARSE_LOCATION});
         /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
@@ -94,18 +103,32 @@ public class SelectAddressActivity extends BaseActivity implements  PermissionUt
         }else {
             locationClient.startLocation();
         }*/
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
-        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+        topBarView.setLeftBtnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("addressName", addressName);
+                intent.putExtra("addressDescribe", addressDescribe);
+                intent.putExtra("lat", lat);
+                intent.putExtra("lon", lon);
+                intent.putExtra("mArea", mArea);
+                intent.putExtra("mCity", mCity);
+                setResult(1, intent);
+                finish();
+            }
+        });
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mCurrentRecycleView.setLayoutManager(linearLayoutManager);
         mSearchRecycleView.setLayoutManager(layoutManager);
         poiAdapter = new PoiAdapter(this);
         mCurrentRecycleView.setAdapter(poiAdapter);
-        searchAdapter=new PoiSearchAdapter(mContext,mList);
+        searchAdapter = new PoiSearchAdapter(mContext, mList);
         mSearchRecycleView.setAdapter(searchAdapter);
         tvCancel.setEnabled(false);
-        MyTextWatcher myTextWatcher=new MyTextWatcher();
+        MyTextWatcher myTextWatcher = new MyTextWatcher();
         etSearch.addTextChangedListener(myTextWatcher);
         etSearch.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -120,47 +143,47 @@ public class SelectAddressActivity extends BaseActivity implements  PermissionUt
         searchAdapter.setOnItemClickListener(new PoiSearchAdapter.OnItemSelectClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                mArea=mList.get(position).get("mArea");
-                mCity=mList.get(position).get("mCity");
-                String lat=mList.get(position).get("latitude");
-                String lon=mList.get(position).get("longitude");
-                String addressDescribe=mList.get(position).get("addressDescribe");
-                String addressName=mList.get(position).get("addressName");
-                Intent intent=new Intent();
-                intent.putExtra("addressName",addressName);
-                intent.putExtra("addressDescribe",addressDescribe);
-                intent.putExtra("lat",lat);
-                intent.putExtra("lon",lon);
-                intent.putExtra("mArea",mArea);
-                intent.putExtra("mCity",mCity);
-                setResult(1,intent);
+                mArea = mList.get(position).get("mArea");
+                mCity = mList.get(position).get("mCity");
+                lat = mList.get(position).get("latitude");
+                lon = mList.get(position).get("longitude");
+                addressDescribe = mList.get(position).get("addressDescribe");
+                addressName = mList.get(position).get("addressName");
+                Intent intent = new Intent();
+                intent.putExtra("addressName", addressName);
+                intent.putExtra("addressDescribe", addressDescribe);
+                intent.putExtra("lat", lat);
+                intent.putExtra("lon", lon);
+                intent.putExtra("mArea", mArea);
+                intent.putExtra("mCity", mCity);
+                setResult(1, intent);
                 finish();
-                Toast.makeText(mContext,addressDescribe,Toast.LENGTH_SHORT).show();
             }
         });
         poiAdapter.setOnItemClickListener(new PoiAdapter.OnItemSelectClickListener() {
             @Override
             public void onItemClick(View v, int position) {
                 LocationBean bean = poiAdapter.getBeanList().get(position);
-                mArea=bean.getArea();
-                mCity=bean.getCity();
-                String lat=String.valueOf(bean.getLat());
-                String lon=String.valueOf(bean.getLon());
-                String addressDescribe=bean.getContent();
-                String addressName=bean.getTitle();
-                Intent intent=new Intent();
-                intent.putExtra("addressName",addressName);
-                intent.putExtra("addressDescribe",addressDescribe);
-                intent.putExtra("lat",lat);
-                intent.putExtra("lon",lon);
-                intent.putExtra("mArea",mArea);
-                intent.putExtra("mCity",mCity);
-                setResult(1,intent);
+                mArea = bean.getArea();
+                mCity = bean.getCity();
+                lat = String.valueOf(bean.getLat());
+                lon = String.valueOf(bean.getLon());
+                addressDescribe = bean.getContent();
+                addressName = bean.getTitle();
+                Intent intent = new Intent();
+                intent.putExtra("addressName", addressName);
+                intent.putExtra("addressDescribe", addressDescribe);
+                intent.putExtra("lat", lat);
+                intent.putExtra("lon", lon);
+                intent.putExtra("mArea", mArea);
+                intent.putExtra("mCity", mCity);
+                setResult(1, intent);
                 finish();
             }
         });
     }
-    @OnClick( {R.id.id_cancel,R.id.id_edit_layout})
+
+    @OnClick({R.id.id_cancel, R.id.id_edit_layout,R.id.id_current_address})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.id_cancel:
@@ -174,53 +197,73 @@ public class SelectAddressActivity extends BaseActivity implements  PermissionUt
                 layoutCurrent.setVisibility(View.GONE);
                 layoutSearch.setVisibility(View.VISIBLE);
                 break;
+            case R.id.id_current_address:
+                Intent intent = new Intent();
+                intent.putExtra("addressName", addressName);
+                intent.putExtra("addressDescribe", addressDescribe);
+                intent.putExtra("lat", lat);
+                intent.putExtra("lon", lon);
+                intent.putExtra("mArea", mArea);
+                intent.putExtra("mCity", mCity);
+                setResult(1, intent);
+                finish();
+                break;
             default:
                 break;
+
         }
     }
+
     @Override
     public void onBackFromSettingPage() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED||
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             finish();
-        }else {
+        } else {
             locationClient.startLocation();
         }
     }
+
     @Override
     public void onPermissionRequestDenied(List<String> permissions) {
         finish();
     }
+
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
         locationClient.startLocation();
     }
+
     @Override
     public void onLocationChanged(AMapLocation aMapLocation) {
         if (aMapLocation != null && aMapLocation.getErrorCode() == 0) {
             //获取定位信息
             double latitude = aMapLocation.getLatitude();
+            lat = latitude+"";
             double longitude = aMapLocation.getLongitude();
-            mCity=aMapLocation.getCity();
-            String addressStr =aMapLocation.getProvince()+ aMapLocation.getCity()
+            lon  =longitude+"";
+            mCity = aMapLocation.getCity();
+            addressName = aMapLocation.getAoiName();
+            addressDescribe = aMapLocation.getProvince() + aMapLocation.getCity()
                     + aMapLocation.getDistrict()
-                    +aMapLocation.getStreet()+aMapLocation.getStreetNum();
+                    + aMapLocation.getStreet() + aMapLocation.getStreetNum();
             if (!TextUtils.isEmpty(aMapLocation.getPoiName())) {
-                addressStr += aMapLocation.getAoiName()+ "附近";
-            }else {
-                addressStr = addressStr + aMapLocation.getAoiName() ;
+                addressStr =addressDescribe+ aMapLocation.getAoiName() + "附近";
+            } else {
+                addressStr = addressDescribe + aMapLocation.getAoiName();
             }
             tvCurrent.setText(addressStr);
             tvCity.setText(mCity);
             //这里是定位完成之后开始poi的附近搜索，代码在后面
-            PoiSearchTask.getInstance(this).setAdapter(poiAdapter).onSearch("", "",latitude,longitude);
-        }else {
-            Log.d("aMapLocation=",aMapLocation.getErrorInfo()+"错误码="+aMapLocation.getErrorCode());
+            PoiSearchTask.getInstance(this).setAdapter(poiAdapter).onSearch("", "", latitude, longitude);
+        } else {
+            Log.d("aMapLocation=", aMapLocation.getErrorInfo() + "错误码=" + aMapLocation.getErrorCode());
         }
     }
+
     @Override
     public void onPoiSearched(PoiResult poiResult, int rCode) {
-        if(rCode == 1000) {
+        if (rCode == 1000) {
             if (poiResult != null && poiResult.getQuery() != null) {
                 mList.clear();
                 ArrayList<PoiItem> items = poiResult.getPois();
@@ -229,41 +272,49 @@ public class SelectAddressActivity extends BaseActivity implements  PermissionUt
                     LatLonPoint llp = item.getLatLonPoint();
                     double lon = llp.getLongitude();
                     double lat = llp.getLatitude();
-                    String longitude=Double.toString(lon);
-                    String latitude=Double.toString(lat);
+                    String longitude = Double.toString(lon);
+                    String latitude = Double.toString(lat);
                     String title = item.getTitle();
-                    String city=item.getCityName();
-                    String area=item.getBusinessArea();
-                    String mContent=item.getProvinceName()+item.getCityName()
-                            +item.getAdName()
-                            +item.getSnippet();
+                    String city = item.getCityName();
+                    String area = item.getBusinessArea();
+                    String mContent = item.getProvinceName() + item.getCityName()
+                            + item.getAdName()
+                            + item.getSnippet();
                     HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("longitude",longitude);
-                    map.put("latitude",latitude);
+                    map.put("longitude", longitude);
+                    map.put("latitude", latitude);
                     map.put("addressName", title);
                     map.put("addressDescribe", mContent);
-                    map.put("mCity",city);
-                    map.put("mArea",area);
+                    map.put("mCity", city);
+                    map.put("mArea", area);
                     mList.add(map);
                 }
                 searchAdapter.notifyDataSetChanged();
             }
         }
     }
+
     @Override
-    public void onPoiItemSearched(PoiItem poiItem, int i) {}
+    public void onPoiItemSearched(PoiItem poiItem, int i) {
+    }
+
     private class MyTextWatcher implements TextWatcher {
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (s.length()>0) {
+            if (s.length() > 0) {
                 doSearchQuery(s.toString().trim());
             }
         }
+
         @Override
-        public void afterTextChanged(Editable s) {}
+        public void afterTextChanged(Editable s) {
+        }
     }
+
     private void doSearchQuery(String keyWord) {
         int currentPage = 0;
         /*
@@ -281,6 +332,7 @@ public class SelectAddressActivity extends BaseActivity implements  PermissionUt
         poiSearch.setOnPoiSearchListener(this);
         poiSearch.searchPOIAsyn();
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -15,7 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class DispatchOrdersLazyFragementV2 extends BaseLazyFragment {
+public class DispatchOrdersLazyFragement extends BaseLazyFragment {
 
     @BindView(R.id.return_btn)
     ImageView returnBtn;
@@ -25,7 +25,7 @@ public class DispatchOrdersLazyFragementV2 extends BaseLazyFragment {
     Button btnTab0;
     @BindView(R.id.recede_order)
     Button btnTab1;
-    private DispatchOrdersLazyFragment f0;
+    private DispatchSendOrdersLazyFragment f0;
     private DispatchReturnOrdersFragment f1;
     private List<BaseLazyFragment> list = new ArrayList<BaseLazyFragment>();
     private int ordersType;
@@ -38,7 +38,7 @@ public class DispatchOrdersLazyFragementV2 extends BaseLazyFragment {
     @Override
     protected void initView() {
         super.initView();
-        f0 = new DispatchOrdersLazyFragment();
+        f0 = new DispatchSendOrdersLazyFragment();
         f1 = new DispatchReturnOrdersFragment();
         list.add(f0);
         list.add(f1);

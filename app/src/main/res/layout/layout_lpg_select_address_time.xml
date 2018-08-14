@@ -64,6 +64,16 @@
                 android:textSize="14sp"
                 android:textColor="@color/textcolor"
                 />
+            <TextView
+                android:id="@+id/id_tv_isdeliver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/id_tv_mobile"
+                android:layout_toEndOf="@+id/id_tv_mobile"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:textSize="14sp"
+                android:textColor="@color/textcolor" />
         </RelativeLayout>
         <ImageView
             android:id="@+id/id_forward"

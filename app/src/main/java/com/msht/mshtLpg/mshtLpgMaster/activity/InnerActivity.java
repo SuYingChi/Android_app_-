@@ -36,8 +36,6 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
     private FragmentTransaction transaction;
     private MyScanInnerFragment scanEmpolyerFragment;
     private MyScanInnerFragment myScanBottleFragment;
-
-
     private String innerUrl = "";
     private int innerType=0;
     private String verifyType;
@@ -65,6 +63,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
         Bundle bundle = new Bundle();
         myScanBottleFragment = new MyScanInnerFragment();
         bundle.putInt(Constants.SCANFRAGMENT_TYPE,2);
+        bundle.putInt("innerType",innerType);
         myScanBottleFragment.setArguments(bundle);
         myScanBottleFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
             @Override
@@ -82,12 +81,13 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
 
     @Override
     public void onCaptureFragmenBackBtnClick(int fragmentType) {
-        if(fragmentType == 1){
+        if(innerType == 1&&fragmentType == 1){
             finish();
-        }else if(fragmentType == 2){
+        }else if(innerType == 1&&fragmentType == 2){
             scanEmpolyerFragment = new MyScanInnerFragment();
             Bundle bundle = new Bundle();
             bundle.putInt(Constants.SCANFRAGMENT_TYPE,1);
+            bundle.putInt("innerType",innerType);
             scanEmpolyerFragment.setArguments(bundle);
             scanEmpolyerFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
                 @Override
@@ -100,6 +100,8 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
                 }
             });
             AppUtil.replaceFragment(scanEmpolyerFragment,myScanBottleFragment,getSupportFragmentManager());
+        }else if(innerType  == 2){
+            finish();
         }
     }
 
@@ -141,6 +143,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
             scanEmpolyerFragment = new MyScanInnerFragment();
             Bundle bundle = new Bundle();
             bundle.putInt(Constants.SCANFRAGMENT_TYPE,1);
+            bundle.putInt("innerType",innerType);
             scanEmpolyerFragment.setArguments(bundle);
             scanEmpolyerFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
                 @Override
@@ -157,6 +160,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
             Bundle bundle = new Bundle();
             myScanBottleFragment = new MyScanInnerFragment();
             bundle.putInt(Constants.SCANFRAGMENT_TYPE,2);
+            bundle.putInt("innerType",innerType);
             myScanBottleFragment.setArguments(bundle);
             myScanBottleFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
                 @Override

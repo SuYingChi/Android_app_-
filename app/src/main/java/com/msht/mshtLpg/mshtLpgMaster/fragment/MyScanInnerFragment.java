@@ -81,6 +81,7 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
     private TextView tvEmployer;
     private TextView tvTitle;
     private String verifyType;
+    private int innerType;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,6 +90,7 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
         if (bundle != null) {
             fragmentType = bundle.getInt(Constants.SCANFRAGMENT_TYPE);
             //扫描员工二维码FRAGMENT
+            innerType =  bundle.getInt("innerType");
         } else {
             return;
         }
@@ -102,9 +104,9 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
 
     @Override
     public void onInnerFetchComfirmSuccess(ScanInnerFetchBottleBean bean) {
-        if (innnerFetchActivityListener.getInnerType() == 1) {
+        if (innerType == 1) {
             PopUtil.toastInBottom("内部领瓶成功");
-        } else if (innnerFetchActivityListener.getInnerType() == 2) {
+        } else if (innerType == 2) {
             PopUtil.toastInBottom("内部返瓶成功");
         }
         Objects.requireNonNull(getActivity()).finish();
@@ -168,9 +170,9 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
                 innnerFetchActivityListener.onCaptureFragmenBackBtnClick(fragmentType);
             }
         });
-        if (innnerFetchActivityListener.getInnerType() == 1) {
+        if (innerType == 1) {
             topBarView.setTitle("内部领瓶");
-        } else if (innnerFetchActivityListener.getInnerType() == 2) {
+        } else if (innerType == 2) {
             topBarView.setTitle("内部返瓶");
         }
 
@@ -239,7 +241,12 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume: fragmentType     "+fragmentType);
-        String s = fragmentType == 1 ? "扫描员工二维码" : "扫描领瓶二维码";
+        String s="";
+        if(innerType == 1) {
+            s = fragmentType == 1 ? "扫描员工二维码" : "扫描领瓶二维码";
+        }else if(innerType == 2){
+            s = "扫描返瓶二维码";
+        }
         PopUtil.toastInBottom(s);
         if (hasSurface) {
             initCamera(surfaceHolder);

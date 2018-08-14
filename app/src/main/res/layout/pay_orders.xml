@@ -562,7 +562,15 @@
 
 
                     />
-
+                <ImageView
+                    android:id="@+id/id_transportation_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/picture_text"
+                    android:src="@drawable/attention_icon_xh"/>
                 <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
