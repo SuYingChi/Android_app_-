@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -47,6 +48,7 @@ import butterknife.Unbinder;
 public class SendBottleOrdersDetailPostActivity extends BaseActivity implements IOrderDetailView, /*IOrdesDespositView,*/ IDeliveryView, IOrderDetailPostView, PermissionUtils.PermissionRequestFinishListener {
 
 
+    private static final String TAG = "OrdersDetailPost";
     @BindView(R.id.pay_orders_v2_topbar)
     TopBarView topBarView;
     @BindView(R.id.location)
@@ -420,9 +422,11 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
             fiveDeliveryFee = bean.getData().getFiveDeliveryFee();
             fifteenDeliveryFee = bean.getData().getFifteenDeliveryFee();
             fiftyDeliveryFee = bean.getData().getFiftyDeliveryFee();
+            Log.d(TAG, "onGetOrdersDetailSuccess: fiveDeliveryFee="+fiveDeliveryFee+"fifteenDeliveryFee="+fifteenDeliveryFee+"fiftyDeliveryFee="+fiftyDeliveryFee);
             totalFiveDelivery = orderFiveNum * fiveDeliveryFee;
             totalFifteenDelivery = orderFifteenNum * fifteenDeliveryFee;
             totalFiftyDelivery = orderFiftyNum * fiftyDeliveryFee;
+        Log.d(TAG, "onGetOrdersDetailSuccess: totalFiveDelivery="+totalFiveDelivery+"totalFifteenDelivery="+totalFifteenDelivery+"totalFiftyDelivery="+totalFiftyDelivery);
             totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
 
             totalfare = totalDeposite+totalGas+totalDeliveryfare;

@@ -2,7 +2,6 @@ package com.msht.mshtLpg.mshtLpgMaster.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
@@ -48,7 +47,7 @@ public class DeliveryAddressActivity extends BaseActivity implements View.OnClic
         }
     }
     private void onStartEditLocation() {
-        Intent intent=new Intent(mContext,EditAddressActivity.class);
+        Intent intent=new Intent(mContext,DispatchSendOrdersEditAddressActivity.class);
         startActivityForResult(intent,CREATE_SUCCESS_CODE);
     }
     @Override

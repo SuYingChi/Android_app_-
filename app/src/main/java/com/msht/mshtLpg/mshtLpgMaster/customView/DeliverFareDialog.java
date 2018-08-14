@@ -97,5 +97,4 @@ public class DeliverFareDialog extends Dialog {
         setCanceledOnTouchOutside(true);
     }
 
-
 }

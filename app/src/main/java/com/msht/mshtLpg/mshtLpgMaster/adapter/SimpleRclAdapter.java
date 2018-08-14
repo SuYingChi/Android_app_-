@@ -1,6 +1,7 @@
 package com.msht.mshtLpg.mshtLpgMaster.adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,9 +22,9 @@ public class SimpleRclAdapter extends RecyclerView.Adapter<SimpleRclAdapter.Scan
     private final LayoutInflater inflater;
     private final ItemClickListener itemClickListener;
     private  List<String> list ;
-    private  Activity activity;
+    private  Context activity;
 
-    public SimpleRclAdapter(List<String> list, Activity activity,ItemClickListener itemClickListener) {
+    public SimpleRclAdapter(List<String> list, Context activity, ItemClickListener itemClickListener) {
         this.list = list;
         this.activity = activity;
         this.inflater = LayoutInflater.from(activity);
@@ -46,7 +47,9 @@ public class SimpleRclAdapter extends RecyclerView.Adapter<SimpleRclAdapter.Scan
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    holder.itemView.setBackgroundColor(activity.getResources().getColor(R.color.line_color_lib));
                     itemClickListener.onItemClick(string,position);
+
                 }
             });
     }

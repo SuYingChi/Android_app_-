@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/line_color"
-    tools:context="com.msht.mshtLpg.mshtLpgMaster.activity.EditAddressActivity">
+    tools:context="com.msht.mshtLpg.mshtLpgMaster.activity.DispatchSendOrdersEditAddressActivity">
     <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
         android:id="@+id/top_bar"
         android:layout_width="match_parent"

@@ -98,7 +98,7 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
         }
     }
     private void onStartDeliveryAddress() {
-        Intent intent=new Intent(mContext,EditAddressActivity.class);
+        Intent intent=new Intent(mContext,DispatchSendOrdersEditAddressActivity.class);
         startActivityForResult(intent,SELECT_SUCCESS_CODE);
     }
     @Override

@@ -82,7 +82,7 @@
         <activity android:name=".activity.SendCustomerOrderActivity" />
         <activity android:name=".activity.DeliveryAddressActivity" />
         <activity android:name=".activity.SelectAddressActivity" />
-        <activity android:name=".activity.EditAddressActivity"/>
+        <activity android:name=".activity.DispatchSendOrdersEditAddressActivity"/>
         <activity android:name=".activity.UpdateVersionActivity" />
         <activity android:name=".activity.CurrentVersionInfoActivity" />
         <!-- Ping++ SDK -->

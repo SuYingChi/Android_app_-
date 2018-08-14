@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class EditAddressActivity extends BaseActivity {
+public class DispatchSendOrdersEditAddressActivity extends BaseActivity {
     @BindView(R.id.top_bar)
     TopBarView topBarView;
     @BindView(R.id.save_user_location)
