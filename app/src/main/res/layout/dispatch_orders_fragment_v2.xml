@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/msb_color"
+    android:paddingTop="@dimen/margin_Modules"
+    android:paddingBottom="@dimen/margin_Modules"
+    >
+    <ImageView
+        android:id="@+id/return_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/return_btn"
+        android:layout_centerVertical="true"
+        />
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/top_bar_height_normol"
+        android:layout_centerHorizontal="true"
+        layout="@layout/homefragment_top_tab"/>
+</RelativeLayout>
+    <com.msht.mshtLpg.mshtLpgMaster.customView.SlidableViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff" />
+</LinearLayout>

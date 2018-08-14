@@ -14,7 +14,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:background="@color/white"
                 android:minHeight="45dp">
                 <TextView
@@ -104,35 +103,18 @@
                     android:text="自提"/>
 
             </RadioGroup>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:minHeight="45dp"
-                android:background="@color/white">
-                <TextView
-                    android:id="@+id/id_text1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
-                    android:textColor="@color/textcolor"
-                    android:textSize="16sp"
-                    android:text="@string/select_buy_bottle"/>
-            </RelativeLayout>
-            <include layout="@layout/layout_line_gray"/>
-            <include layout="@layout/layout_lpg_steel_bottle_price_type"/>
         </LinearLayout>
-   <View
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       android:layout_weight="1"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
         <RelativeLayout
             android:layout_weight="0.6"
             android:layout_width="0dp"

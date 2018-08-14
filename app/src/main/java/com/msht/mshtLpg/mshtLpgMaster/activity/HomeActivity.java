@@ -4,27 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.msht.mshtLpg.mshtLpgMaster.Bean.LoginEventBean;
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.adapter.HomeActivityFragmentPagerAdapter;
+import com.msht.mshtLpg.mshtLpgMaster.adapter.BaseLazyFragmentPagerAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.SlidableViewPager;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseLazyFragment;
+import com.msht.mshtLpg.mshtLpgMaster.fragment.DispatchOrdersLazyFragementV2;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.DispatchOrdersLazyFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.MySettingFragment;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.OrdersListLazyFragment;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.SharePreferenceUtil;
-
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +35,7 @@ public class HomeActivity extends BaseActivity {
 
      long exitTime;
      OrdersListLazyFragment f0;
-     DispatchOrdersLazyFragment f1;
+     DispatchOrdersLazyFragementV2 f1;
      MySettingFragment f2;
      List<BaseLazyFragment> list_fragment = new ArrayList<BaseLazyFragment>();
      @BindView(R.id.vp)
@@ -75,14 +71,14 @@ public class HomeActivity extends BaseActivity {
 
     private void initView() {
         f0 = new OrdersListLazyFragment();
-        f1 = new DispatchOrdersLazyFragment();
+        f1 = new DispatchOrdersLazyFragementV2();
         f2 = new MySettingFragment();
         list_fragment.add(f0);
         list_fragment.add(f1);
         list_fragment.add(f2);
 
 
-        vp.setAdapter(new HomeActivityFragmentPagerAdapter(getSupportFragmentManager(), list_fragment));
+        vp.setAdapter(new BaseLazyFragmentPagerAdapter(getSupportFragmentManager(), list_fragment));
         vp.setCurrentItem(SharePreferenceUtil.getLoginSpIntValue(Constants.HOME_ACTIVITY_BOTTOM_TAB_ITEM));
         initBottom(SharePreferenceUtil.getLoginSpIntValue(Constants.HOME_ACTIVITY_BOTTOM_TAB_ITEM));
         vp.setOffscreenPageLimit(3);

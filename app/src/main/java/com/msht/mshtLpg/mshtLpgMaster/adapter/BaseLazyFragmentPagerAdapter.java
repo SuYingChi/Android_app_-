@@ -12,10 +12,10 @@ import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseLazyFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivityFragmentPagerAdapter extends FragmentPagerAdapter {
+public class BaseLazyFragmentPagerAdapter extends FragmentPagerAdapter {
     private  List<BaseLazyFragment> list_fragment;
 
-    public HomeActivityFragmentPagerAdapter(FragmentManager supportFragmentManager, List<BaseLazyFragment> list_fragment) {
+    public BaseLazyFragmentPagerAdapter(FragmentManager supportFragmentManager, List<BaseLazyFragment> list_fragment) {
         super(supportFragmentManager);
         this.list_fragment = list_fragment;
     }
