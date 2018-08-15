@@ -17,15 +17,30 @@
       android:paddingBottom="@dimen/margin_Modules"
       android:paddingTop="@dimen/margin_Modules"
       />
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      >
     <CalendarView
         android:id="@+id/calendarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:focusedMonthDateColor ="@color/text_blue"
         android:selectedDateVerticalBar = "@color/warning_red"
         android:selectedWeekBackgroundColor="@color/white"
         android:unfocusedMonthDateColor="@color/black"
         />
+    <TimePicker
+        android:id="@+id/time_pick"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        >
+
+
+    </TimePicker>
  <!--  &lt;!&ndash; //当月日期显示为蓝色&ndash;&gt;
         android:focusedMonthDateColor="#12c8cf"
    &lt;!&ndash; //选中的日期为红色&ndash;&gt;
@@ -34,5 +49,5 @@
     android:selectedWeekBackgroundColor="#FFFFFF"
    &lt;!&ndash; //不是当月的日期显示为黑色&ndash;&gt;
     android:unfocusedMonthDateColor="#4c4948"  -->
-
+  </LinearLayout>
 </LinearLayout>

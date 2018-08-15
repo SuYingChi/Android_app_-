@@ -9,26 +9,24 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.CalendarView;
+import android.widget.TimePicker;
 
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.activity.SendCustomerOrderActivity;
 import com.msht.mshtLpg.mshtLpgMaster.util.DimenUtil;
-import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
-
-import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public class TimeSelecteDialog extends Dialog {
-    private  Context context;
+    private Context context;
     @BindView(R.id.calendarView)
     CalendarView calendarView;
+    @BindView(R.id.time_pick)
+    TimePicker timePicker;
     ;
     private OnSelectTimeListener onSelectTimeListener;
 
-    public TimeSelecteDialog(Context context,OnSelectTimeListener onSelectTimeListener) {
+    public TimeSelecteDialog(Context context, OnSelectTimeListener onSelectTimeListener) {
         super(context, R.style.BottomAnimDialogStyle);
         this.context = context;
         this.onSelectTimeListener = onSelectTimeListener;
@@ -58,7 +56,7 @@ public class TimeSelecteDialog extends Dialog {
         setCanceledOnTouchOutside(true);
         WindowManager.LayoutParams attributes = this.getWindow().getAttributes();
         attributes.width = WindowManager.LayoutParams.MATCH_PARENT;
-        attributes.height= DimenUtil.getScreenHeight()*2/3;
+        attributes.height = WindowManager.LayoutParams.WRAP_CONTENT;
         attributes.gravity = Gravity.BOTTOM;
         this.getWindow().setAttributes(attributes);
         //dialog去除底部背景
@@ -66,13 +64,22 @@ public class TimeSelecteDialog extends Dialog {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                TimeSelecteDialog.this.onSelectTimeListener.onSelectTime(year,month,dayOfMonth);
+                TimeSelecteDialog.this.onSelectTimeListener.onSelectDate(year, month, dayOfMonth);
             }
         });
+        timePicker.setIs24HourView(true);
+        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+                    @Override
+                    public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                        TimeSelecteDialog.this.onSelectTimeListener.onSelectTime(hourOfDay,minute);
+                    }
+                });
+
     }
 
 
-    public interface OnSelectTimeListener {
-      void onSelectTime(int year,int month,int date);
-    }
+public interface OnSelectTimeListener {
+    void onSelectDate(int year, int month, int date);
+    void onSelectTime(int hourOfDay, int minute);
+}
 }

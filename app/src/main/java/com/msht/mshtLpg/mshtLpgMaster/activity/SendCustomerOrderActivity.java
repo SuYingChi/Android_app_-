@@ -1,7 +1,6 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -24,7 +23,6 @@ import java.text.BreakIterator;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.LinkedBlockingQueue;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -97,6 +95,16 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
     private boolean isGetSecondDeliverySuccess=false;
     private DeliverFareDialog deliverFareDialog;
     private double totalAmount=0;
+    private int systemHour;
+    private int systemMinute;
+    private int sendOrderHour;
+    private int sendOrderMinute;
+    private boolean validateDate =true;
+    private boolean validateTime=true;
+    private String systemDates;
+    private String systemTime;
+    private String sendDates;
+    private String sendTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,14 +116,24 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
         systemYear = Calendar.getInstance().get(Calendar.YEAR);
         systemMonth = Calendar.getInstance().get(Calendar.MONTH)+1;
         systemDate = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        systemHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        systemMinute = Calendar.getInstance().get(Calendar.MINUTE);
+        sendOrderYear = systemYear;
+        sendOrderMonth = systemMonth;
+        sendOrderDate = systemDate;
+        sendOrderHour = systemHour;
+        sendOrderMinute = systemMinute;
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 finish();
             }
         });
-        String dates = systemYear + "-" + ((systemMonth) < 10 ? "0" + (systemMonth) : (systemMonth)) + "-" + (systemDate < 10 ? "0" + systemDate : systemDate);
-        tvChooseTime.setText(dates);
+        systemDates = systemYear + "-" + ((systemMonth) < 10 ? "0" + (systemMonth) : (systemMonth)) + "-" + (systemDate < 10 ? "0" + systemDate : systemDate);
+        systemTime =  systemHour + "-" + ((systemHour) < 10 ? "0" + (systemMinute) : (systemMinute));
+        sendDates = systemDates;
+        sendTime =systemTime;
+        tvChooseTime.setText(systemDates +"  "+ systemTime);
         tvChooseTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -219,18 +237,36 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
     }
 
     @Override
-    public void onSelectTime(int year, int month, int date) {
-        Log.d("SendCustomerOrder", "onSelectTime: systemYear="+year+"systemMonth="+month+"systemDate="+date);
-        if( checkDate(year,month+1,date)) {
+    public void onSelectDate(int year, int month, int date) {
+        Log.d("SendCustomerOrder", "onSelectDate: systemYear="+year+"systemMonth="+month+"systemDate="+date);
+        validateDate = checkDate(year,month+1,date);
+        if( validateDate) {
             SendCustomerOrderActivity.this.sendOrderYear = year;
             SendCustomerOrderActivity.this.sendOrderMonth = month + 1;
             SendCustomerOrderActivity.this.sendOrderDate = date;
-            String dates =  SendCustomerOrderActivity.this.sendOrderYear + "-" + ((SendCustomerOrderActivity.this.sendOrderMonth) < 10 ? "0" + (SendCustomerOrderActivity.this.sendOrderMonth) : (SendCustomerOrderActivity.this.sendOrderMonth)) + "-" + (SendCustomerOrderActivity.this.sendOrderDate < 10 ? "0" + SendCustomerOrderActivity.this.sendOrderDate : SendCustomerOrderActivity.this.sendOrderDate);
-            tvChooseTime.setText(dates);
+            sendDates =  SendCustomerOrderActivity.this.sendOrderYear + "-" + ((SendCustomerOrderActivity.this.sendOrderMonth) < 10 ? "0" + (SendCustomerOrderActivity.this.sendOrderMonth) : (SendCustomerOrderActivity.this.sendOrderMonth)) + "-" + (SendCustomerOrderActivity.this.sendOrderDate < 10 ? "0" + SendCustomerOrderActivity.this.sendOrderDate : SendCustomerOrderActivity.this.sendOrderDate);
+            tvChooseTime.setText(sendDates +" "+ sendTime);
         }else {
-            String dates =  SendCustomerOrderActivity.this.systemYear + "-" + ((SendCustomerOrderActivity.this.systemMonth) < 10 ? "0" + (SendCustomerOrderActivity.this.systemMonth) : (SendCustomerOrderActivity.this.systemMonth)) + "-" + (SendCustomerOrderActivity.this.systemDate < 10 ? "0" + SendCustomerOrderActivity.this.systemDate : SendCustomerOrderActivity.this.systemDate);
-            PopUtil.toastInBottom("不能选择"+dates+"之前的日期");
+            PopUtil.toastInBottom("不能选择"+ systemDates +"之前的日期");
         }
+    }
+
+    @Override
+    public void onSelectTime(int hourOfDay, int minute) {
+        validateTime = checkTime(hourOfDay,minute);
+        if( validateTime) {
+            SendCustomerOrderActivity.this.sendOrderHour = hourOfDay;
+            SendCustomerOrderActivity.this.sendOrderMinute = minute;
+            sendTime =  sendOrderHour + "-" + ((sendOrderHour) < 10 ? "0" + (sendOrderMinute) : (sendOrderMinute));
+            tvChooseTime.setText(sendDates +" "+ sendTime);
+        }else {
+            PopUtil.toastInBottom("不能选择"+systemTime+"之前的日期");
+        }
+    }
+
+    private boolean checkTime(int hourOfDay, int minute) {
+        return validateDate || systemHour <= hourOfDay && (systemHour != hourOfDay || systemMinute <= minute);
+
     }
 
     private boolean checkDate(int year, int month, int date) {
@@ -271,6 +307,29 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
         calculateDeliveryFare();
     }
 
+    @Override
+    public void onGetFirstDeliverySuccess(DeliveryBean bean) {
+        String first5 = bean.getData().getDeliveryFee().getFiveDeliveryFee()+"";
+        String first15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee()+"";
+        String first50 =bean.getData().getDeliveryFee().getFiftyDeliveryFee()+"";
+        map.put("first5",first5);
+        map.put("first15",first15);
+        map.put("first50",first50);
+        isGetFirstDeliverySuccess = true;
+        calculateDeliveryFare();
+    }
+
+    @Override
+    public void onGetSecondDeliverySuccess(DeliveryBean bean) {
+        String second5 = bean.getData().getDeliveryFee().getFiveDeliveryFee()+"";
+        String second15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee()+"";
+        String second50 =bean.getData().getDeliveryFee().getFiftyDeliveryFee()+"";
+        map.put("second5",second5);
+        map.put("second15",second15);
+        map.put("second50",second50);
+        isGetSecondDeliverySuccess = true;
+        calculateDeliveryFare();
+    }
     private void calculateDeliveryFare() {
         if(TextUtils.equals("配送",isDelivery)){
             if(isGetFirstDeliverySuccess&&isGetFourDeliverySuccess&&isGetSixDeliverySuccess&&isGetSecondDeliverySuccess){
@@ -303,29 +362,5 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
                 }
         }
         }
-    }
-
-    @Override
-    public void onGetFirstDeliverySuccess(DeliveryBean bean) {
-        String first5 = bean.getData().getDeliveryFee().getFiveDeliveryFee()+"";
-        String first15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee()+"";
-        String first50 =bean.getData().getDeliveryFee().getFiftyDeliveryFee()+"";
-        map.put("first5",first5);
-        map.put("first15",first15);
-        map.put("first50",first50);
-        isGetFirstDeliverySuccess = true;
-        calculateDeliveryFare();
-    }
-
-    @Override
-    public void onGetSecondDeliverySuccess(DeliveryBean bean) {
-        String second5 = bean.getData().getDeliveryFee().getFiveDeliveryFee()+"";
-        String second15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee()+"";
-        String second50 =bean.getData().getDeliveryFee().getFiftyDeliveryFee()+"";
-        map.put("second5",second5);
-        map.put("second15",second15);
-        map.put("second50",second50);
-        isGetSecondDeliverySuccess = true;
-        calculateDeliveryFare();
     }
 }
