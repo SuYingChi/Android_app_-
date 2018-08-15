@@ -11,6 +11,9 @@
         android:gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin"
+        android:paddingTop="@dimen/margin_Modules"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingLeft="@dimen/margin_Modules"
+        android:paddingRight="@dimen/margin_Modules"
         />
 </LinearLayout>

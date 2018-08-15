@@ -49,6 +49,7 @@ public class SpinnerAdapter extends BaseAdapter {
             view = LayoutInflater.from(activity).inflate(R.layout.spinner_item, null);
             holder = new Holder();
             holder.mTextView = (TextView) view.findViewById(R.id.spinner_text);
+            holder.mTextView.setGravity(android.view.Gravity.CENTER_HORIZONTAL);   //设置居中
             view.setTag(holder);
         } else{
             holder = (Holder) view.getTag();

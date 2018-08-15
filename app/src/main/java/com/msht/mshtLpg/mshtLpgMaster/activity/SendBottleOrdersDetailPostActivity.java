@@ -248,7 +248,12 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                PopUtil.showTipsDialog(SendBottleOrdersDetailPostActivity.this, "放弃订单", "确认放弃提交该订单", "取消", "确认", null, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
             }
         });
     }
@@ -312,6 +317,13 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
             @Override
             public void onClick(View v) {
                 if (remain15 > 0) {
+                    totalfare+=exchangeFee;
+                    exchangeFee=0;
+                    if (((totalfare + "").length()) > 6) {
+                        tvCost.setText((totalfare + "").substring(0, 5));
+                    } else {
+                        tvCost.setText((totalfare + ""));
+                    }
                     Intent intent = new Intent(SendBottleOrdersDetailPostActivity.this, ExchangeSteelBottleActivity.class);
                     intent.putExtra(Constants.REMAIN_FIVE_NUM, remain5);
                     intent.putExtra(Constants.REMAIN_FIFTEEN_NUM, remain15);
