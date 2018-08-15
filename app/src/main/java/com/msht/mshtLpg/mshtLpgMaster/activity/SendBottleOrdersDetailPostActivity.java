@@ -11,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -440,7 +441,12 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         tvPostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iPostPresenter.postOrders();
+                PopUtil.showTipsDialog(SendBottleOrdersDetailPostActivity.this, "提交送气订单", "确认已将钢瓶交付给客户并提交送气订单？", "取消", "确认", null, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        iPostPresenter.postOrders();
+                    }
+                });
             }
         });
         lldeliver.setOnClickListener(new View.OnClickListener() {

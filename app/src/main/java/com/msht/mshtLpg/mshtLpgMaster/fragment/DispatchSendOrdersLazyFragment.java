@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.amap.api.services.interfaces.INearbySearch;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.activity.SendCustomerOrderActivity;
+import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -61,7 +62,7 @@ public class DispatchSendOrdersLazyFragment extends BaseLazyFragment {
                 if(checkedId == R.id.rb1){
                     isDelivery = "配送";
                 }else if(checkedId == R.id.rb2){
-                    isDelivery = "不配送";
+                    isDelivery = "自提";
                 }
             }
         });
@@ -71,13 +72,17 @@ public class DispatchSendOrdersLazyFragment extends BaseLazyFragment {
     public void onViewClicked(View view) {
         switch (view.getId()){
             case R.id.id_btn_next:
-                Intent intent=new Intent(getActivity(), SendCustomerOrderActivity.class);
-                intent.putExtra("fiveCount",fiveWeightCount+"");
-                intent.putExtra("fifteenWeightCount",fifteenWeightCount+"");
-                intent.putExtra("fiftyWeightCount",fiftyWeightCount+"");
-                intent.putExtra("isDelivery",isDelivery+"");
-                intent.putExtra("total",totalCount+"");
-                startActivity(intent);
+                if(totalCount==0){
+                    PopUtil.toastInBottom("请选购钢瓶");
+                }else {
+                    Intent intent = new Intent(getActivity(), SendCustomerOrderActivity.class);
+                    intent.putExtra("fiveCount", fiveWeightCount + "");
+                    intent.putExtra("fifteenWeightCount", fifteenWeightCount + "");
+                    intent.putExtra("fiftyWeightCount", fiftyWeightCount + "");
+                    intent.putExtra("isDelivery", isDelivery + "");
+                    intent.putExtra("total", totalCount + "");
+                    startActivity(intent);
+                }
                 break;
             case R.id.id_add_btn1:
                 fiveWeightCount++;

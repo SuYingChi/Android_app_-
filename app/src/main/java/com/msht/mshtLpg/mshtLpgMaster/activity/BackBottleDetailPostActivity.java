@@ -114,7 +114,12 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
                 PermissionUtils.requestPermissions(this, this, Permission.CALL_PHONE);
                 break;
             case R.id.hand_over_steel_bottle:
-                iOrderDetailPostPresenter.postBackBottleOrders();
+                PopUtil.showTipsDialog(BackBottleDetailPostActivity.this, "提交退瓶订单", "确认已将押金付给客户并提交退瓶订单？", "取消", "确认", null, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        iOrderDetailPostPresenter.postBackBottleOrders();
+                    }
+                });
                 break;
             case R.id.ll_orders_detail_command_topbar_client_info:
                 intent = new Intent(BackBottleDetailPostActivity.this, EditLocationActivity.class);

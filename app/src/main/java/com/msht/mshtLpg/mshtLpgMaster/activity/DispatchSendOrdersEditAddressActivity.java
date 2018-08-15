@@ -14,6 +14,7 @@ import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.MySheetDialog;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
+import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.ShaUtil;
 
 import java.util.ArrayList;
@@ -73,7 +74,13 @@ public class DispatchSendOrdersEditAddressActivity extends BaseActivity {
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                PopUtil.showTipsDialog(DispatchSendOrdersEditAddressActivity.this, "放弃地址编辑", "是否放弃正在编辑的配送地址", "取消", "确定", null, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+
             }
         });
         saveBtn.setOnClickListener(new View.OnClickListener() {

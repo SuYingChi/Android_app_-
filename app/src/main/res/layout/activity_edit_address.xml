@@ -280,7 +280,9 @@
                     android:layout_toRightOf="@+id/id_doorplate_text"
                     android:inputType="textPersonName"
                     android:textColor="@color/lpg_text_light_color"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    android:text="1"
+                    />
                 <TextView
                     android:id="@+id/id_ridgepole_text"
                     android:layout_width="wrap_content"
@@ -308,6 +310,7 @@
                     android:inputType="number"
                     android:textColor="@color/lpg_text_light_color"
                     android:textSize="16sp"
+                    android:text="1"
 
                     />
                 <TextView
@@ -336,6 +339,7 @@
                     android:layout_toRightOf="@+id/id_floor_text"
                     android:textColor="@color/lpg_text_light_color"
                     android:textSize="16sp"
+                    android:text="1"
                     android:inputType="textCapCharacters"
                     />
                 <TextView

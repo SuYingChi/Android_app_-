@@ -175,7 +175,9 @@ public class PopUtil {
         tel_dialog.show();
         tel_dialog.getWindow().setContentView(layout);
         TextView btnCancel = (TextView)layout.findViewById(R.id.dialog_btn_cancel);
+        btnCancel.setText(left);
         TextView btnOk = (TextView)layout.findViewById(R.id.dialog_btn_ok);
+        btnOk.setText(right);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
