@@ -27,8 +27,6 @@ import butterknife.Unbinder;
 public class DispatchSendOrdersEditAddressActivity extends BaseActivity {
     @BindView(R.id.top_bar)
     TopBarView topBarView;
-    @BindView(R.id.save_user_location)
-    Button btn;
     @BindView(R.id.id_sex_layout)
     View layoutSex;
     @BindView(R.id.id_elevator_layout)
@@ -52,6 +50,8 @@ public class DispatchSendOrdersEditAddressActivity extends BaseActivity {
     @BindView(R.id.id_et_room)
     EditText etRoom;
     List<String> list = new ArrayList<String>();
+    @BindView(R.id.save_user_location)
+    Button saveBtn;
     private Unbinder unbinder;
     private String floor;
     private String isElevator = "1";
@@ -71,6 +71,12 @@ public class DispatchSendOrdersEditAddressActivity extends BaseActivity {
         setContentView(R.layout.activity_edit_address);
         unbinder = ButterKnife.bind(this);
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();

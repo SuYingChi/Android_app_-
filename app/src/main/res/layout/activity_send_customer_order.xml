@@ -48,6 +48,7 @@
             <include layout="@layout/layout_lpg_gas_bottle_type" />
             <include layout="@layout/layout_line_interval"/>
             <RelativeLayout
+                android:id="@+id/rlt_delivery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="45dp"
