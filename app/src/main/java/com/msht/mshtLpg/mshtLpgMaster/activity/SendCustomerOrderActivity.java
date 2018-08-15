@@ -1,21 +1,26 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.msht.mshtLpg.mshtLpgMaster.R;
+import com.msht.mshtLpg.mshtLpgMaster.customView.TimeSelecteDialog;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
+import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 
 import java.text.BreakIterator;
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class SendCustomerOrderActivity extends BaseActivity implements View.OnClickListener {
+public class SendCustomerOrderActivity extends BaseActivity implements View.OnClickListener, TimeSelecteDialog.OnSelectTimeListener {
     @BindView(R.id.scan_delive_topbar)
     TopBarView topBarView;
     @BindView(R.id.id_select_address_layout)
@@ -38,6 +43,8 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
     TextView tvTotal;
     @BindView(R.id.id_tv_isdeliver)
     TextView tvIsDeliver;
+    @BindView(R.id.id_delivery_time)
+    TextView tvChooseTime;
     private static final int SELECT_SUCCESS_CODE=1;
     private Context mContext;
     private Unbinder unbinder;
@@ -61,6 +68,13 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
     private String floor;
     private String room;
     private String total;
+    private TimeSelecteDialog timeSelecteDialog;
+    private int systemYear;
+    private int systemMonth;
+    private int systemDate;
+    private int sendOrderYear;
+    private int sendOrderMonth;
+    private int sendOrderDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +83,21 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
         unbinder = ButterKnife.bind(this);
         mContext=this;
         layoutSelectAddress.setOnClickListener(this);
+        systemYear = Calendar.getInstance().get(Calendar.YEAR);
+        systemMonth = Calendar.getInstance().get(Calendar.MONTH)+1;
+        systemDate = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 finish();
+            }
+        });
+        String dates = systemYear + "-" + ((systemMonth) < 10 ? "0" + (systemMonth) : (systemMonth)) + "-" + (systemDate < 10 ? "0" + systemDate : systemDate);
+        tvChooseTime.setText(dates);
+        tvChooseTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             showTimeSelectDialog();
             }
         });
         Intent intent=getIntent();
@@ -135,5 +160,39 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
                 break;
         }
 
+    }
+    private void showTimeSelectDialog() {
+        if (!isFinishing() && timeSelecteDialog == null) {
+            timeSelecteDialog = new TimeSelecteDialog(this,SendCustomerOrderActivity.this);
+            timeSelecteDialog.show();
+        } else if ( !isFinishing() && !timeSelecteDialog.isShowing()) {
+            timeSelecteDialog.show();
+        }
+    }
+
+
+    private void hideTimeSelectDialog() {
+        if (timeSelecteDialog != null && timeSelecteDialog.isShowing() && !isFinishing()) {
+            timeSelecteDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onSelectTime(int year, int month, int date) {
+        Log.d("SendCustomerOrder", "onSelectTime: systemYear="+year+"systemMonth="+month+"systemDate="+date);
+        if( checkDate(year,month+1,date)) {
+            SendCustomerOrderActivity.this.sendOrderYear = year;
+            SendCustomerOrderActivity.this.sendOrderMonth = month + 1;
+            SendCustomerOrderActivity.this.sendOrderDate = date;
+            String dates =  SendCustomerOrderActivity.this.sendOrderYear + "-" + ((SendCustomerOrderActivity.this.sendOrderMonth) < 10 ? "0" + (SendCustomerOrderActivity.this.sendOrderMonth) : (SendCustomerOrderActivity.this.sendOrderMonth)) + "-" + (SendCustomerOrderActivity.this.sendOrderDate < 10 ? "0" + SendCustomerOrderActivity.this.sendOrderDate : SendCustomerOrderActivity.this.sendOrderDate);
+            tvChooseTime.setText(dates);
+        }else {
+            String dates =  SendCustomerOrderActivity.this.systemYear + "-" + ((SendCustomerOrderActivity.this.systemMonth) < 10 ? "0" + (SendCustomerOrderActivity.this.systemMonth) : (SendCustomerOrderActivity.this.systemMonth)) + "-" + (SendCustomerOrderActivity.this.systemDate < 10 ? "0" + SendCustomerOrderActivity.this.systemDate : SendCustomerOrderActivity.this.systemDate);
+            PopUtil.toastInBottom("不能选择"+dates+"之前的日期");
+        }
+    }
+
+    private boolean checkDate(int year, int month, int date) {
+        return SendCustomerOrderActivity.this.systemYear <= year && (SendCustomerOrderActivity.this.systemYear != year || SendCustomerOrderActivity.this.systemMonth <= month && (SendCustomerOrderActivity.this.systemMonth != month || SendCustomerOrderActivity.this.systemDate <= date));
     }
 }

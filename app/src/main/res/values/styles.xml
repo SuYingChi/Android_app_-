@@ -16,6 +16,7 @@
         <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
         <item name="android:windowNoTitle">true</item><!--无标题-->
         <item name="android:windowIsTranslucent">true</item><!--半透明-->
+        <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item><!--动画-->
     </style>
     <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textSize">@dimen/text_small</item>
@@ -156,7 +157,7 @@
        -- <item name="android:button">@drawable/checkbox_style</item>
     </style>
 
-    <style name="BottomAnimDialogStyle" parent="@android:style/Theme.Dialog">
+    <style name="BottomAnimDialogStyle">
         <item name="android:windowFrame">@null</item><!--边框-->
         <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
         <item name="android:windowNoTitle">true</item><!--无标题-->

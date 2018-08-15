@@ -54,6 +54,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     protected void showCenterLodaingDialog() {
         if (!this.getActivity().isFinishing() && centerLoadingDialog == null) {
             centerLoadingDialog = new LoadingDialog(this.getContext());
+            centerLoadingDialog.show();
         } else if (!this.getActivity().isFinishing() && !centerLoadingDialog.isShowing()) {
             centerLoadingDialog.show();
         }

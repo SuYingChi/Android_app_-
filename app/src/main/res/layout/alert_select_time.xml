@@ -2,7 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@drawable/deliever_dialog_custom_bg"
+    >
   <TextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -14,24 +17,22 @@
       android:paddingBottom="@dimen/margin_Modules"
       android:paddingTop="@dimen/margin_Modules"
       />
-    <LinearLayout
+    <CalendarView
+        android:id="@+id/calendarView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:orientation="horizontal"
-        >
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcl_select_year"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/white"
-            />
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcl_select_month"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/white"
-            />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:focusedMonthDateColor ="@color/text_blue"
+        android:selectedDateVerticalBar = "@color/warning_red"
+        android:selectedWeekBackgroundColor="@color/white"
+        android:unfocusedMonthDateColor="@color/black"
+        />
+ <!--  &lt;!&ndash; //当月日期显示为蓝色&ndash;&gt;
+        android:focusedMonthDateColor="#12c8cf"
+   &lt;!&ndash; //选中的日期为红色&ndash;&gt;
+    android:selectedDateVerticalBar="@color/red_price"
+   &lt;!&ndash; //选中一周的背景色为白色&ndash;&gt;
+    android:selectedWeekBackgroundColor="#FFFFFF"
+   &lt;!&ndash; //不是当月的日期显示为黑色&ndash;&gt;
+    android:unfocusedMonthDateColor="#4c4948"  -->
+
 </LinearLayout>

@@ -111,6 +111,7 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
     protected void showCenterLodaingDialog() {
         if (!isFinishing() && centerLoadingDialog == null) {
             centerLoadingDialog = new LoadingDialog(this);
+            centerLoadingDialog.show();
         } else if ( !isFinishing() && !centerLoadingDialog.isShowing()) {
             centerLoadingDialog.show();
         }
