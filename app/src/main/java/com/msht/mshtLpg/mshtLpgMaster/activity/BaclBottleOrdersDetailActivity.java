@@ -84,7 +84,12 @@ public class BaclBottleOrdersDetailActivity extends BaseActivity implements ISim
                 finish();
                 break;
             case R.id.comman_topbar_call_phone_btn:
-                PermissionUtils.requestPermissions(this, this, Permission.CALL_PHONE);
+                PopUtil.showTipsDialog(this, "拨打电话", "请确认是否要拨打电话" + tvTelephone.getText().toString(), "取消", "确认", null, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        PermissionUtils.requestPermissions(BaclBottleOrdersDetailActivity.this,BaclBottleOrdersDetailActivity.this, Permission.CALL_PHONE);
+                    }
+                });
                 break;
             case R.id.hand_over_steel_bottle:
                 Intent intent = new Intent(this, ScanSteelBottleActivity.class);
@@ -129,9 +134,7 @@ public class BaclBottleOrdersDetailActivity extends BaseActivity implements ISim
 
     @Override
     public void onBackFromSettingPage() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             PopUtil.toastInBottom("请允许LPG拨打电话");
-        }
     }
 
     @Override

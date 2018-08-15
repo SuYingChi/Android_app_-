@@ -267,7 +267,13 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PermissionUtils.requestPermissions(SendBottleOrdersDetailPayActivity.this, SendBottleOrdersDetailPayActivity.this, Permission.CALL_PHONE);
+                PopUtil.showTipsDialog(SendBottleOrdersDetailPayActivity.this, "拨打电话", "请确认是否要拨打电话" + tvTel.getText().toString(), "取消", "确认", null, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        PermissionUtils.requestPermissions(SendBottleOrdersDetailPayActivity.this,SendBottleOrdersDetailPayActivity.this, Permission.CALL_PHONE);
+                    }
+                });
+
             }
         });
         layoutAliPay.setOnClickListener(new View.OnClickListener() {

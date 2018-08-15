@@ -221,7 +221,13 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PermissionUtils.requestPermissions(SendBottleOrdersDetailFinishActivity.this, SendBottleOrdersDetailFinishActivity.this, Permission.CALL_PHONE);
+                PopUtil.showTipsDialog(SendBottleOrdersDetailFinishActivity.this, "拨打电话", "请确认是否要拨打电话" + orderDetailBean.getData().getMobile(), "取消", "确认", null, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        PermissionUtils.requestPermissions(SendBottleOrdersDetailFinishActivity.this, SendBottleOrdersDetailFinishActivity.this, Permission.CALL_PHONE);
+                    }
+                });
+
             }
         });
         lldeliver.setOnClickListener(new View.OnClickListener() {

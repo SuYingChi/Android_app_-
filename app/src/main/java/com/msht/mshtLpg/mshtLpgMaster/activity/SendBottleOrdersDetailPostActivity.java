@@ -338,7 +338,13 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PermissionUtils.requestPermissions(SendBottleOrdersDetailPostActivity.this, SendBottleOrdersDetailPostActivity.this, Permission.CALL_PHONE);
+                PopUtil.showTipsDialog(SendBottleOrdersDetailPostActivity.this, "拨打电话", "请确认是否要拨打电话" + tvTel.getText().toString(), "取消", "确认", null, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        PermissionUtils.requestPermissions(SendBottleOrdersDetailPostActivity.this,SendBottleOrdersDetailPostActivity.this, Permission.CALL_PHONE);
+                    }
+                });
+
             }
         });
         tvLocation.setText(new StringBuilder().append(address).append(floor).append("层").append(room).append("房").append(bean.getData().getIsDelivery()== 1?"(自提单)":"(配送单)").toString());

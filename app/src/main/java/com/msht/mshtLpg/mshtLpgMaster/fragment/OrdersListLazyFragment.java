@@ -229,7 +229,12 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     @Override
     public void onClickCallButton(String mobile) {
         this.mobile = mobile;
-        PermissionUtils.requestPermissions(getContext(), this, Permission.CALL_PHONE);
+        PopUtil.showTipsDialog(getContext(), "拨打电话", "请确认是否要拨打电话" + mobile, "取消", "确认", null, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PermissionUtils.requestPermissions(getContext(),OrdersListLazyFragment.this, Permission.CALL_PHONE);
+            }
+        });
     }
 
 
@@ -271,9 +276,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
 
     @Override
     public void onBackFromSettingPage() {
-        if (ActivityCompat.checkSelfPermission(LPGApplication.getLPGApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            getActivity().finish();
-        }
+
     }
 
     @Override

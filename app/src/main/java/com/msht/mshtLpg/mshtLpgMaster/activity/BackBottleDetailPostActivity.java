@@ -111,7 +111,12 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
                 finish();
                 break;
             case R.id.comman_topbar_call_phone_btn:
-                PermissionUtils.requestPermissions(this, this, Permission.CALL_PHONE);
+                PopUtil.showTipsDialog(this, "拨打电话", "请确认是否要拨打电话" + tvTelephone.getText().toString(), "取消", "确认", null, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        PermissionUtils.requestPermissions(BackBottleDetailPostActivity.this,BackBottleDetailPostActivity.this, Permission.CALL_PHONE);
+                    }
+                });
                 break;
             case R.id.hand_over_steel_bottle:
                 PopUtil.showTipsDialog(BackBottleDetailPostActivity.this, "提交退瓶订单", "确认已将押金付给客户并提交退瓶订单？", "取消", "确认", null, new View.OnClickListener() {
