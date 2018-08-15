@@ -30,6 +30,8 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class SendCustomerOrderActivity extends BaseActivity implements View.OnClickListener, TimeSelecteDialog.OnSelectTimeListener,IOrderDetailView {
+    private static final int RETURN_BOTTLE = 2;
+    private static final int SEND_BOTTLE = 1;
     @BindView(R.id.scan_delive_topbar)
     TopBarView topBarView;
     @BindView(R.id.id_select_address_layout)
@@ -108,12 +110,18 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
     private String systemTime;
     private String sendDates;
     private String sendTime;
+    private int dispatchOrdersType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_customer_order);
         unbinder = ButterKnife.bind(this);
+        if(TextUtils.equals(getIntent().getStringExtra("dispatchOrdersType"),"2")){
+            dispatchOrdersType = RETURN_BOTTLE;
+        }else {
+            dispatchOrdersType = SEND_BOTTLE;
+        }
         mContext=this;
         layoutSelectAddress.setOnClickListener(this);
         systemYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -135,15 +143,28 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(addressDescribe)||TextUtils.isEmpty(locationName)||TextUtils.isEmpty(name)||TextUtils.isEmpty(sex)||TextUtils.isEmpty(isElevator)||TextUtils.isEmpty(ridgepole)||TextUtils.isEmpty(floor)||TextUtils.isEmpty(room)){
-                    PopUtil.toastInBottom("请完善订单信息");
+                if (dispatchOrdersType == SEND_BOTTLE) {
+                    if (TextUtils.isEmpty(addressDescribe) || TextUtils.isEmpty(locationName) || TextUtils.isEmpty(name) || TextUtils.isEmpty(sex) || TextUtils.isEmpty(isElevator) || TextUtils.isEmpty(ridgepole) || TextUtils.isEmpty(floor) || TextUtils.isEmpty(room)) {
+                        PopUtil.toastInBottom("请完善订单信息");
+                    } else {
+                        PopUtil.showTipsDialog(SendCustomerOrderActivity.this, "提交代客下单的送气订单", "确认提交代客下单的送气订单？", "取消", "确认", null, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                PopUtil.toastInBottom("代客下单的送气订单后端接口未完成");
+                            }
+                        });
+                    }
                 }else {
-                    PopUtil.showTipsDialog(SendCustomerOrderActivity.this, "提交代客下单的订单", "确认提交代客下单的订单？", "取消", "确认", null, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            PopUtil.toastInBottom("后端接口未完成");
-                        }
-                    });
+                    if (TextUtils.isEmpty(addressDescribe) || TextUtils.isEmpty(locationName) || TextUtils.isEmpty(name) || TextUtils.isEmpty(sex) || TextUtils.isEmpty(isElevator) || TextUtils.isEmpty(ridgepole) || TextUtils.isEmpty(floor) || TextUtils.isEmpty(room)) {
+                        PopUtil.toastInBottom("请完善订单信息");
+                    } else {
+                        PopUtil.showTipsDialog(SendCustomerOrderActivity.this, "提交代客下的退瓶订单", "确认交代客下的退瓶订单？", "取消", "确认", null, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                PopUtil.toastInBottom("代客下的退瓶订单后端接口未完成");
+                            }
+                        });
+                    }
                 }
             }
         });
@@ -158,22 +179,25 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
              showTimeSelectDialog();
             }
         });
-        relativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(TextUtils.isEmpty(floor)) {
-                    PopUtil.toastInBottom("请编辑配送地址的楼层");
-                }else if(!isGetFirstDeliverySuccess||!isGetFourDeliverySuccess||!isGetSixDeliverySuccess||!isGetSecondDeliverySuccess){
-                    PopUtil.toastInBottom("正在获取运费信息，请稍后再试");
+        if(dispatchOrdersType==SEND_BOTTLE) {
+            relativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (TextUtils.isEmpty(floor)) {
+                        PopUtil.toastInBottom("请编辑配送地址的楼层");
+                    } else if (!isGetFirstDeliverySuccess || !isGetFourDeliverySuccess || !isGetSixDeliverySuccess || !isGetSecondDeliverySuccess) {
+                        PopUtil.toastInBottom("正在获取运费信息，请稍后再试");
+                    } else if (deliverFareDialog == null) {
+                        deliverFareDialog = new DeliverFareDialog(SendCustomerOrderActivity.this, map);
+                        deliverFareDialog.show();
+                    } else if (!deliverFareDialog.isShowing()) {
+                        deliverFareDialog.show();
+                    }
                 }
-                else if(deliverFareDialog == null) {
-                    deliverFareDialog = new DeliverFareDialog(SendCustomerOrderActivity.this,map);
-                    deliverFareDialog.show();
-                }else if(!deliverFareDialog.isShowing()){
-                    deliverFareDialog.show();
-                }
-            }
-        });
+            });
+        }else {
+            relativeLayout.setVisibility(View.GONE);
+        }
         Intent intent=getIntent();
         fiveWeightCount =  intent.getStringExtra("fiveCount");
         fifteenWeightCount =  intent.getStringExtra("fifteenWeightCount");
@@ -229,10 +253,12 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
                     floor = data.getStringExtra("Floor");
                     room = data.getStringExtra("Room");
                     textView.setText(addressDescribe+ridgepole+"栋"+floor+"楼"+room+"房");
-                    iOrderDetailPresenter.getFirstDelivery();
-                    iOrderDetailPresenter.getSecondDelivery();
-                    iOrderDetailPresenter.getFourDelivery();
-                    iOrderDetailPresenter.getSixDelivery();
+                    if(dispatchOrdersType==SEND_BOTTLE) {
+                        iOrderDetailPresenter.getFirstDelivery();
+                        iOrderDetailPresenter.getSecondDelivery();
+                        iOrderDetailPresenter.getFourDelivery();
+                        iOrderDetailPresenter.getSixDelivery();
+                    }
                 }
                 break;
             default:

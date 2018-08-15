@@ -76,6 +76,7 @@ public class DispatchSendOrdersLazyFragment extends BaseLazyFragment {
                     PopUtil.toastInBottom("请选购钢瓶");
                 }else {
                     Intent intent = new Intent(getActivity(), SendCustomerOrderActivity.class);
+                    intent.putExtra("dispatchOrdersType","1");
                     intent.putExtra("fiveCount", fiveWeightCount + "");
                     intent.putExtra("fifteenWeightCount", fifteenWeightCount + "");
                     intent.putExtra("fiftyWeightCount", fiftyWeightCount + "");
