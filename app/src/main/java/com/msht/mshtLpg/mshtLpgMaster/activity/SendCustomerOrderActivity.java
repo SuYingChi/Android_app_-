@@ -147,23 +147,13 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
                     if (TextUtils.isEmpty(addressDescribe) || TextUtils.isEmpty(locationName) || TextUtils.isEmpty(name) || TextUtils.isEmpty(sex) || TextUtils.isEmpty(isElevator) || TextUtils.isEmpty(ridgepole) || TextUtils.isEmpty(floor) || TextUtils.isEmpty(room)) {
                         PopUtil.toastInBottom("请完善订单信息");
                     } else {
-                        PopUtil.showTipsDialog(SendCustomerOrderActivity.this, "提交代客下单的送气订单", "确认提交代客下单的送气订单？", "取消", "确认", null, new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                PopUtil.toastInBottom("代客下单的送气订单后端接口未完成");
-                            }
-                        });
+                        PopUtil.showTipsDialog(SendCustomerOrderActivity.this, "提示", "下版本增加代客下退瓶订单功能，感谢新老用户的支持", "", "", null, null);
                     }
                 }else {
                     if (TextUtils.isEmpty(addressDescribe) || TextUtils.isEmpty(locationName) || TextUtils.isEmpty(name) || TextUtils.isEmpty(sex) || TextUtils.isEmpty(isElevator) || TextUtils.isEmpty(ridgepole) || TextUtils.isEmpty(floor) || TextUtils.isEmpty(room)) {
                         PopUtil.toastInBottom("请完善订单信息");
                     } else {
-                        PopUtil.showTipsDialog(SendCustomerOrderActivity.this, "提交代客下的退瓶订单", "确认交代客下的退瓶订单？", "取消", "确认", null, new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                PopUtil.toastInBottom("代客下的退瓶订单后端接口未完成");
-                            }
-                        });
+                        PopUtil.showTipsDialog(SendCustomerOrderActivity.this, "提示", "下版本增加代客下退瓶订单功能，感谢新老用户的支持", "", "", null, null);
                     }
                 }
             }
