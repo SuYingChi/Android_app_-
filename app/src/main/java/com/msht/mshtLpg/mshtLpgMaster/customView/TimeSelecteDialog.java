@@ -2,6 +2,7 @@ package com.msht.mshtLpg.mshtLpgMaster.customView;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,15 +10,23 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.CalendarView;
+import android.widget.NumberPicker;
 import android.widget.TimePicker;
 
 import com.msht.mshtLpg.mshtLpgMaster.R;
+import com.msht.mshtLpg.mshtLpgMaster.activity.DispatchCustomerOrderActivity;
+import com.msht.mshtLpg.mshtLpgMaster.util.DateUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.DimenUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TimeSelecteDialog extends Dialog {
+    private final int systemYear;
+    private final int systemMonth;
+    private final int systemDate;
+    private final int systemHour;
+    private final int systemMinute;
     private Context context;
     @BindView(R.id.calendarView)
     CalendarView calendarView;
@@ -26,11 +35,17 @@ public class TimeSelecteDialog extends Dialog {
     ;
     private OnSelectTimeListener onSelectTimeListener;
 
-    public TimeSelecteDialog(Context context, OnSelectTimeListener onSelectTimeListener) {
+    public TimeSelecteDialog(Context context, int systemYear, int systemMonth, int systemDate,int systemHour,int systemMinute,OnSelectTimeListener onSelectTimeListener) {
         super(context, R.style.BottomAnimDialogStyle);
         this.context = context;
         this.onSelectTimeListener = onSelectTimeListener;
+        this.systemYear  =systemYear;
+        this.systemMonth = systemMonth;
+        this.systemDate = systemDate;
+        this.systemHour =systemHour;
+        this.systemMinute = systemMinute;
     }
+
 
 
     @Override
@@ -67,13 +82,28 @@ public class TimeSelecteDialog extends Dialog {
                 TimeSelecteDialog.this.onSelectTimeListener.onSelectDate(year, month, dayOfMonth);
             }
         });
+        calendarView.setMinDate(DateUtils.getStringToDate(systemYear+"-"+systemMonth+"-"+systemDate+"-","yyyy-MM-dd"));
         timePicker.setIs24HourView(true);
+/*        *//*接下来就是一些需要用到反射的方法了，比如更改分割线的样式，设置起始截止时间等：
+        首先我们要通过反射获取TimePicker源码里hour和minute的id：*//*
+        Resources systemResources = Resources.getSystem();
+        int hourNumberPickerId = systemResources.getIdentifier("hour", "id", "android");
+        int minuteNumberPickerId = systemResources.getIdentifier("minute", "id", "android");
+        //然后用我们定义的TimePicker来获取这个id并转换成hour和minute对应的NumberPicker:
+        NumberPicker hourNumberPicker = (NumberPicker) timePicker.findViewById(hourNumberPickerId);
+        NumberPicker minuteNumberPicker = (NumberPicker) timePicker.findViewById(minuteNumberPickerId);
+        //通过获取到的hourNumberPicker和minuteNumberPicker我们可以先进行TimePicker的时间限制：
+        //设置最小hour
+        hourNumberPicker.setMinValue(systemHour);
+        //设置最小minute
+        minuteNumberPicker.setMinValue(systemMinute);*/
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
                     @Override
                     public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
                         TimeSelecteDialog.this.onSelectTimeListener.onSelectTime(hourOfDay,minute);
                     }
                 });
+
 
     }
 

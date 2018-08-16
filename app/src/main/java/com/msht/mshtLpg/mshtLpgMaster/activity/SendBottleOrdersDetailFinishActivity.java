@@ -103,6 +103,13 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
     private boolean isGetSixDeliverySuccess = false;
     private boolean isGetFirstDeliverySuccess  =false;
     private boolean isGetSecondDeliverySuccess = false;
+    private double fiveDeliveryFee;
+    private double fifteenDeliveryFee;
+    private double fiftyDeliveryFee;
+    private double totalFiveDelivery;
+    private double totalFifteenDelivery;
+    private double totalFiftyDelivery;
+    private double totalDeliveryfare;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -187,14 +194,23 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
             tvDepositeFee.setText(totalDeposite + "");
         }
         //运费
-
-        double fiveDeliveryFee = orderDetailBean.getData().getFiveDeliveryFee();
-        double fifteenDeliveryFee = orderDetailBean.getData().getFifteenDeliveryFee();
-        double fiftyDeliveryFee = orderDetailBean.getData().getFiftyDeliveryFee();
-        double totalFiveDelivery = orderDetailBean.getData().getFiveBottleCount() * fiveDeliveryFee;
-        double totalFifteenDelivery = orderDetailBean.getData().getFifteenBottleCount() * fifteenDeliveryFee;
-        double totalFiftyDelivery = orderDetailBean.getData().getFiftyBottleCount() * fiftyDeliveryFee;
-        double totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
+        if(orderDetailBean.getData().getIsDelivery()==1) {
+            fiveDeliveryFee = 0;
+            fifteenDeliveryFee = 0;
+            fiftyDeliveryFee = 0;
+            totalFiveDelivery = 0;
+            totalFifteenDelivery = 0;
+            totalFiftyDelivery =0;
+            totalDeliveryfare = 0;
+        }else {
+             fiveDeliveryFee = orderDetailBean.getData().getFiveDeliveryFee();
+             fifteenDeliveryFee = orderDetailBean.getData().getFifteenDeliveryFee();
+             fiftyDeliveryFee = orderDetailBean.getData().getFiftyDeliveryFee();
+            totalFiveDelivery = orderDetailBean.getData().getFiveBottleCount() * fiveDeliveryFee;
+            totalFifteenDelivery = orderDetailBean.getData().getFifteenBottleCount() * fifteenDeliveryFee;
+            totalFiftyDelivery = orderDetailBean.getData().getFiftyBottleCount() * fiftyDeliveryFee;
+             totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
+        }
         tvDeliverFee.setText(totalDeliveryfare + "");
         double exchange = orderDetailBean.getData().getRetrieveAmount();
         if(exchange ==0){

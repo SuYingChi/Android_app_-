@@ -125,6 +125,13 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
     private boolean isGetSecondDeliverySuccess = false;
     private ICashPayPresenter iCashPayPresenter;
     private String channel = 1 + "";
+    private double fiveDeliveryFee;
+    private double fifteenDeliveryFee;
+    private double fiftyDeliveryFee;
+    private double totalFiveDelivery;
+    private double totalFifteenDelivery;
+    private double totalFiftyDelivery;
+    private double totalDeliveryfare;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -219,25 +226,32 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
             tvDepositeFee.setText(totalDeposite + "");
         }
         //运费
-
-        double fiveDeliveryFee = orderDetailBean.getData().getFiveDeliveryFee();
-        double fifteenDeliveryFee = orderDetailBean.getData().getFifteenDeliveryFee();
-        double fiftyDeliveryFee = orderDetailBean.getData().getFiftyDeliveryFee();
-        double totalFiveDelivery = orderDetailBean.getData().getFiveBottleCount() * fiveDeliveryFee;
-        double totalFifteenDelivery = orderDetailBean.getData().getFifteenBottleCount() * fifteenDeliveryFee;
-        double totalFiftyDelivery = orderDetailBean.getData().getFiftyBottleCount() * fiftyDeliveryFee;
-        double totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
-        tvDeliverFee.setText(totalDeliveryfare + "");
-        double exchange = orderDetailBean.getData().getRetrieveAmount();
-        tvDiscount.setText(exchange + "");
-        totalfare = totalGas + totalDeposite + totalDeliveryfare - exchange;
-        //tvTotal.setText(totalfare+"");
-        if (((totalfare + "").length()) > 6) {
-            tvTotal.setText((totalfare + "").substring(0, 5));
-        } else {
-            tvTotal.setText((totalfare + ""));
+        if(orderDetailBean.getData().getIsDelivery()==1) {
+            fiveDeliveryFee = 0;
+            fifteenDeliveryFee = 0;
+            fiftyDeliveryFee = 0;
+            totalFiveDelivery = 0;
+            totalFifteenDelivery = 0;
+            totalFiftyDelivery =0;
+            totalDeliveryfare = 0;
+        }else {
+            fiveDeliveryFee = orderDetailBean.getData().getFiveDeliveryFee();
+            fifteenDeliveryFee = orderDetailBean.getData().getFifteenDeliveryFee();
+            fiftyDeliveryFee = orderDetailBean.getData().getFiftyDeliveryFee();
+            totalFiveDelivery = orderDetailBean.getData().getFiveBottleCount() * fiveDeliveryFee;
+            totalFifteenDelivery = orderDetailBean.getData().getFifteenBottleCount() * fifteenDeliveryFee;
+            totalFiftyDelivery = orderDetailBean.getData().getFiftyBottleCount() * fiftyDeliveryFee;
+            totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
         }
-        // tvTotal.setText(orderDetailBean.getData().getRealAmount()+"");
+            tvDeliverFee.setText(totalDeliveryfare + "");
+            double exchange = orderDetailBean.getData().getRetrieveAmount();
+            tvDiscount.setText(exchange + "");
+            totalfare = totalGas + totalDeposite + totalDeliveryfare - exchange;
+            if (((totalfare + "").length()) > 6) {
+                tvTotal.setText((totalfare + "").substring(0, 5));
+            } else {
+                tvTotal.setText((totalfare + ""));
+            }
         layoutWeiChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

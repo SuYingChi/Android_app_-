@@ -7,7 +7,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.activity.SendCustomerOrderActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.DispatchCustomerOrderActivity;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 
 import butterknife.BindView;
@@ -70,7 +70,7 @@ public class DispatchReturnOrdersFragment extends BaseLazyFragment {
                 if(totalCount==0){
                     PopUtil.toastInBottom("请选择要退的钢瓶");
                 }else {
-                    Intent intent = new Intent(getActivity(), SendCustomerOrderActivity.class);
+                    Intent intent = new Intent(getActivity(), DispatchCustomerOrderActivity.class);
                     intent.putExtra("dispatchOrdersType","2");
                     intent.putExtra("fiveCount", fiveWeightCount + "");
                     intent.putExtra("fifteenWeightCount", fifteenWeightCount + "");

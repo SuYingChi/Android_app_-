@@ -39,16 +39,6 @@
         android:layout_weight="1"
         android:timePickerMode = "spinner"
         >
-
-
     </TimePicker>
- <!--  &lt;!&ndash; //当月日期显示为蓝色&ndash;&gt;
-        android:focusedMonthDateColor="#12c8cf"
-   &lt;!&ndash; //选中的日期为红色&ndash;&gt;
-    android:selectedDateVerticalBar="@color/red_price"
-   &lt;!&ndash; //选中一周的背景色为白色&ndash;&gt;
-    android:selectedWeekBackgroundColor="#FFFFFF"
-   &lt;!&ndash; //不是当月的日期显示为黑色&ndash;&gt;
-    android:unfocusedMonthDateColor="#4c4948"  -->
   </LinearLayout>
 </LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.msht.mshtLpg.mshtLpgMaster.activity.SendCustomerOrderActivity">
+    tools:context="com.msht.mshtLpg.mshtLpgMaster.activity.DispatchCustomerOrderActivity">
     <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
         android:id="@+id/scan_delive_topbar"
         android:layout_width="match_parent"

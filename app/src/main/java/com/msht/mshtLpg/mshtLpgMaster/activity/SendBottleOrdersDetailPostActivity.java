@@ -437,24 +437,32 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
             }
             tvDepositeFee.setText(totalDeposite + "");
         }
-
-            fiveDeliveryFee = bean.getData().getFiveDeliveryFee();
-            fifteenDeliveryFee = bean.getData().getFifteenDeliveryFee();
-            fiftyDeliveryFee = bean.getData().getFiftyDeliveryFee();
-            Log.d(TAG, "onGetOrdersDetailSuccess: fiveDeliveryFee="+fiveDeliveryFee+"fifteenDeliveryFee="+fifteenDeliveryFee+"fiftyDeliveryFee="+fiftyDeliveryFee);
-            totalFiveDelivery = orderFiveNum * fiveDeliveryFee;
-            totalFifteenDelivery = orderFifteenNum * fifteenDeliveryFee;
-            totalFiftyDelivery = orderFiftyNum * fiftyDeliveryFee;
-        Log.d(TAG, "onGetOrdersDetailSuccess: totalFiveDelivery="+totalFiveDelivery+"totalFifteenDelivery="+totalFifteenDelivery+"totalFiftyDelivery="+totalFiftyDelivery);
-            totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
-
-            totalfare = totalDeposite+totalGas+totalDeliveryfare;
-            if (((totalfare + "").length()) > 6) {
-                tvCost.setText((totalfare + "").substring(0, 5));
-            } else {
-                tvCost.setText((totalfare + ""));
-            }
-            tvDeliverFee.setText(totalDeliveryfare + "");
+           if(TextUtils.equals(isDelivery,1+"")) {
+               fiveDeliveryFee = 0;
+               fifteenDeliveryFee = 0;
+               fiftyDeliveryFee = 0;
+               totalFiveDelivery = 0;
+               totalFifteenDelivery = 0;
+               totalFiftyDelivery =0;
+               totalDeliveryfare = 0;
+           }else {
+               fiveDeliveryFee = bean.getData().getFiveDeliveryFee();
+               fifteenDeliveryFee = bean.getData().getFifteenDeliveryFee();
+               fiftyDeliveryFee = bean.getData().getFiftyDeliveryFee();
+               Log.d(TAG, "onGetOrdersDetailSuccess: fiveDeliveryFee=" + fiveDeliveryFee + "fifteenDeliveryFee=" + fifteenDeliveryFee + "fiftyDeliveryFee=" + fiftyDeliveryFee);
+               totalFiveDelivery = orderFiveNum * fiveDeliveryFee;
+               totalFifteenDelivery = orderFifteenNum * fifteenDeliveryFee;
+               totalFiftyDelivery = orderFiftyNum * fiftyDeliveryFee;
+               Log.d(TAG, "onGetOrdersDetailSuccess: totalFiveDelivery=" + totalFiveDelivery + "totalFifteenDelivery=" + totalFifteenDelivery + "totalFiftyDelivery=" + totalFiftyDelivery);
+               totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
+           }
+        tvDeliverFee.setText(totalDeliveryfare + "");
+               totalfare = totalDeposite + totalGas + totalDeliveryfare;
+               if (((totalfare + "").length()) > 6) {
+                   tvCost.setText((totalfare + "").substring(0, 5));
+               } else {
+                   tvCost.setText((totalfare + ""));
+               }
 
         tvPostBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -29,7 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class SendCustomerOrderActivity extends BaseActivity implements View.OnClickListener, TimeSelecteDialog.OnSelectTimeListener,IOrderDetailView {
+public class DispatchCustomerOrderActivity extends BaseActivity implements View.OnClickListener, TimeSelecteDialog.OnSelectTimeListener,IOrderDetailView {
     private static final int RETURN_BOTTLE = 2;
     private static final int SEND_BOTTLE = 1;
     @BindView(R.id.scan_delive_topbar)
@@ -147,19 +147,19 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
                     if (TextUtils.isEmpty(addressDescribe) || TextUtils.isEmpty(locationName) || TextUtils.isEmpty(name) || TextUtils.isEmpty(sex) || TextUtils.isEmpty(isElevator) || TextUtils.isEmpty(ridgepole) || TextUtils.isEmpty(floor) || TextUtils.isEmpty(room)) {
                         PopUtil.toastInBottom("请完善订单信息");
                     } else {
-                        PopUtil.showTipsDialog(SendCustomerOrderActivity.this, "提示", "下版本增加代客下退瓶订单功能，感谢新老用户的支持", "", "", null, null);
+                        PopUtil.showTipsDialog(DispatchCustomerOrderActivity.this, "提示", "下版本增加代客下退瓶订单功能，感谢新老用户的支持", "", "", null, null);
                     }
                 }else {
                     if (TextUtils.isEmpty(addressDescribe) || TextUtils.isEmpty(locationName) || TextUtils.isEmpty(name) || TextUtils.isEmpty(sex) || TextUtils.isEmpty(isElevator) || TextUtils.isEmpty(ridgepole) || TextUtils.isEmpty(floor) || TextUtils.isEmpty(room)) {
                         PopUtil.toastInBottom("请完善订单信息");
                     } else {
-                        PopUtil.showTipsDialog(SendCustomerOrderActivity.this, "提示", "下版本增加代客下退瓶订单功能，感谢新老用户的支持", "", "", null, null);
+                        PopUtil.showTipsDialog(DispatchCustomerOrderActivity.this, "提示", "下版本增加代客下退瓶订单功能，感谢新老用户的支持", "", "", null, null);
                     }
                 }
             }
         });
         systemDates = systemYear + "-" + ((systemMonth) < 10 ? "0" + (systemMonth) : (systemMonth)) + "-" + (systemDate < 10 ? "0" + systemDate : systemDate);
-        systemTime =  systemHour + "-" + ((systemHour) < 10 ? "0" + (systemMinute) : (systemMinute));
+        systemTime =  systemHour + "-" + ((systemMinute) < 10 ? "0" + (systemMinute) : (systemMinute));
         sendDates = systemDates;
         sendTime =systemTime;
         tvChooseTime.setText(systemDates +"  "+ systemTime);
@@ -178,7 +178,7 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
                     } else if (!isGetFirstDeliverySuccess || !isGetFourDeliverySuccess || !isGetSixDeliverySuccess || !isGetSecondDeliverySuccess) {
                         PopUtil.toastInBottom("正在获取运费信息，请稍后再试");
                     } else if (deliverFareDialog == null) {
-                        deliverFareDialog = new DeliverFareDialog(SendCustomerOrderActivity.this, map);
+                        deliverFareDialog = new DeliverFareDialog(DispatchCustomerOrderActivity.this, map);
                         deliverFareDialog.show();
                     } else if (!deliverFareDialog.isShowing()) {
                         deliverFareDialog.show();
@@ -258,7 +258,7 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
     }
     private void showTimeSelectDialog() {
         if (!isFinishing() && timeSelecteDialog == null) {
-            timeSelecteDialog = new TimeSelecteDialog(this,SendCustomerOrderActivity.this);
+            timeSelecteDialog = new TimeSelecteDialog(this,systemYear,systemMonth,systemDate,systemHour,systemMinute,DispatchCustomerOrderActivity.this);
             timeSelecteDialog.show();
         } else if ( !isFinishing() && !timeSelecteDialog.isShowing()) {
             timeSelecteDialog.show();
@@ -277,10 +277,10 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
         Log.d("SendCustomerOrder", "onSelectDate: systemYear="+year+"systemMonth="+month+"systemDate="+date);
         validateDate = checkDate(year,month+1,date);
         if( validateDate) {
-            SendCustomerOrderActivity.this.sendOrderYear = year;
-            SendCustomerOrderActivity.this.sendOrderMonth = month + 1;
-            SendCustomerOrderActivity.this.sendOrderDate = date;
-            sendDates =  SendCustomerOrderActivity.this.sendOrderYear + "-" + ((SendCustomerOrderActivity.this.sendOrderMonth) < 10 ? "0" + (SendCustomerOrderActivity.this.sendOrderMonth) : (SendCustomerOrderActivity.this.sendOrderMonth)) + "-" + (SendCustomerOrderActivity.this.sendOrderDate < 10 ? "0" + SendCustomerOrderActivity.this.sendOrderDate : SendCustomerOrderActivity.this.sendOrderDate);
+            DispatchCustomerOrderActivity.this.sendOrderYear = year;
+            DispatchCustomerOrderActivity.this.sendOrderMonth = month + 1;
+            DispatchCustomerOrderActivity.this.sendOrderDate = date;
+            sendDates =  DispatchCustomerOrderActivity.this.sendOrderYear + "-" + ((DispatchCustomerOrderActivity.this.sendOrderMonth) < 10 ? "0" + (DispatchCustomerOrderActivity.this.sendOrderMonth) : (DispatchCustomerOrderActivity.this.sendOrderMonth)) + "-" + (DispatchCustomerOrderActivity.this.sendOrderDate < 10 ? "0" + DispatchCustomerOrderActivity.this.sendOrderDate : DispatchCustomerOrderActivity.this.sendOrderDate);
             tvChooseTime.setText(sendDates +" "+ sendTime);
         }else {
             PopUtil.toastInBottom("不能选择"+ systemDates +"之前的日期");
@@ -291,9 +291,9 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
     public void onSelectTime(int hourOfDay, int minute) {
         validateTime = checkTime(hourOfDay,minute);
         if( validateTime) {
-            SendCustomerOrderActivity.this.sendOrderHour = hourOfDay;
-            SendCustomerOrderActivity.this.sendOrderMinute = minute;
-            sendTime =  sendOrderHour + "-" + ((sendOrderHour) < 10 ? "0" + (sendOrderMinute) : (sendOrderMinute));
+            DispatchCustomerOrderActivity.this.sendOrderHour = hourOfDay;
+            DispatchCustomerOrderActivity.this.sendOrderMinute = minute;
+            sendTime =  sendOrderHour + "-" + ((sendOrderMinute) < 10 ? "0" + (sendOrderMinute) : (sendOrderMinute));
             tvChooseTime.setText(sendDates +" "+ sendTime);
         }else {
             PopUtil.toastInBottom("不能选择"+systemTime+"之前的日期");
@@ -301,12 +301,15 @@ public class SendCustomerOrderActivity extends BaseActivity implements View.OnCl
     }
 
     private boolean checkTime(int hourOfDay, int minute) {
-        return validateDate || systemHour <= hourOfDay && (systemHour != hourOfDay || systemMinute <= minute);
-
+        if(!validateDate){
+            return false;
+        }else if(systemHour <= hourOfDay && (systemHour != hourOfDay || systemMinute <= minute)) {
+            return true;
+        }else return false;
     }
 
     private boolean checkDate(int year, int month, int date) {
-        return SendCustomerOrderActivity.this.systemYear <= year && (SendCustomerOrderActivity.this.systemYear != year || SendCustomerOrderActivity.this.systemMonth <= month && (SendCustomerOrderActivity.this.systemMonth != month || SendCustomerOrderActivity.this.systemDate <= date));
+        return DispatchCustomerOrderActivity.this.systemYear <= year && (DispatchCustomerOrderActivity.this.systemYear != year || DispatchCustomerOrderActivity.this.systemMonth <= month && (DispatchCustomerOrderActivity.this.systemMonth != month || DispatchCustomerOrderActivity.this.systemDate <= date));
     }
 
     @Override

@@ -79,7 +79,7 @@
         <activity android:name=".activity.RegisterEmployerActivity" />
         <activity android:name=".activity.MonthCountActivity" />
         <activity android:name=".activity.MyIncomeActivity" />
-        <activity android:name=".activity.SendCustomerOrderActivity" />
+        <activity android:name=".activity.DispatchCustomerOrderActivity" />
         <activity android:name=".activity.DeliveryAddressActivity" />
         <activity android:name=".activity.SelectAddressActivity" />
         <activity android:name=".activity.DispatchSendOrdersEditAddressActivity"/>

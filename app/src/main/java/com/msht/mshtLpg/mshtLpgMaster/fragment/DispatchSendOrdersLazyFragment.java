@@ -1,18 +1,12 @@
 package com.msht.mshtLpg.mshtLpgMaster.fragment;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.amap.api.services.interfaces.INearbySearch;
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.activity.SendCustomerOrderActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.DispatchCustomerOrderActivity;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 
 import butterknife.BindView;
@@ -75,7 +69,7 @@ public class DispatchSendOrdersLazyFragment extends BaseLazyFragment {
                 if(totalCount==0){
                     PopUtil.toastInBottom("请选购钢瓶");
                 }else {
-                    Intent intent = new Intent(getActivity(), SendCustomerOrderActivity.class);
+                    Intent intent = new Intent(getActivity(), DispatchCustomerOrderActivity.class);
                     intent.putExtra("dispatchOrdersType","1");
                     intent.putExtra("fiveCount", fiveWeightCount + "");
                     intent.putExtra("fifteenWeightCount", fifteenWeightCount + "");

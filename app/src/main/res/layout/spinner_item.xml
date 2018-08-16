@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:layout_width="wrap_content"
+              android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:background="@color/white">
     <TextView
@@ -9,11 +9,11 @@
         android:textColor="#000000"
         android:id="@+id/spinner_text"
         android:gravity="center_horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/margin_Modules"
-        android:paddingBottom="@dimen/margin_Modules"
-        android:paddingLeft="@dimen/margin_Modules"
-        android:paddingRight="@dimen/margin_Modules"
+        android:paddingTop="@dimen/rcl_margin"
+        android:paddingBottom="@dimen/rcl_margin"
+        android:paddingLeft="@dimen/rcl_margin"
+        android:paddingRight="@dimen/rcl_margin"
         />
 </LinearLayout>
