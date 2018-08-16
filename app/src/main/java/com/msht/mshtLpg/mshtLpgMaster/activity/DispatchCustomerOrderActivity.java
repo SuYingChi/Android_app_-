@@ -257,10 +257,21 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
 
     }
     private void showTimeSelectDialog() {
+        systemYear = Calendar.getInstance().get(Calendar.YEAR);
+        systemMonth = Calendar.getInstance().get(Calendar.MONTH)+1;
+        systemDate = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        systemHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        systemMinute = Calendar.getInstance().get(Calendar.MINUTE);
+        sendOrderYear = systemYear;
+        sendOrderMonth = systemMonth;
+        sendOrderDate = systemDate;
+        sendOrderHour = systemHour;
+        sendOrderMinute = systemMinute;
         if (!isFinishing() && timeSelecteDialog == null) {
             timeSelecteDialog = new TimeSelecteDialog(this,systemYear,systemMonth,systemDate,systemHour,systemMinute,DispatchCustomerOrderActivity.this);
             timeSelecteDialog.show();
         } else if ( !isFinishing() && !timeSelecteDialog.isShowing()) {
+            timeSelecteDialog.setSystemTime(systemYear,systemMonth,systemDate,systemHour,systemMinute);
             timeSelecteDialog.show();
         }
     }
@@ -301,11 +312,7 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
     }
 
     private boolean checkTime(int hourOfDay, int minute) {
-        if(!validateDate){
-            return false;
-        }else if(systemHour <= hourOfDay && (systemHour != hourOfDay || systemMinute <= minute)) {
-            return true;
-        }else return false;
+        return validateDate && (systemYear != sendOrderYear || systemMonth != sendOrderMonth || systemDate != sendOrderDate || systemHour <= hourOfDay && (systemHour != hourOfDay || systemMinute <= minute));
     }
 
     private boolean checkDate(int year, int month, int date) {

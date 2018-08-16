@@ -22,11 +22,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TimeSelecteDialog extends Dialog {
-    private final int systemYear;
-    private final int systemMonth;
-    private final int systemDate;
-    private final int systemHour;
-    private final int systemMinute;
+    private int systemYear;
+    private int systemMonth;
+    private int systemDate;
+    private int systemHour;
+    private int systemMinute;
     private Context context;
     @BindView(R.id.calendarView)
     CalendarView calendarView;
@@ -107,8 +107,16 @@ public class TimeSelecteDialog extends Dialog {
 
     }
 
+    public void setSystemTime(int systemYear, int systemMonth, int systemDate, int systemHour, int systemMinute) {
+        this.systemYear = systemYear;
+        this.systemMonth = systemMonth;
+        this.systemDate = systemDate;
+        this.systemHour = systemHour;
+        this.systemMinute = systemMinute;
+    }
 
-public interface OnSelectTimeListener {
+
+    public interface OnSelectTimeListener {
     void onSelectDate(int year, int month, int date);
     void onSelectTime(int hourOfDay, int minute);
 }
