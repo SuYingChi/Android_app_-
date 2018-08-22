@@ -112,8 +112,8 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
             btnTab0.setBackgroundResource(R.drawable.btn_left_corner_bg);
             btnTab1.setBackgroundResource(R.drawable.btn_right_corner_unselect_bg);
 
-            btnTab0.setTextColor(ContextCompat.getColor(getContext(), R.color.bot_gray));
-            btnTab1.setTextColor(ContextCompat.getColor(getContext(), R.color.text_enable_gray));
+            btnTab0.setTextColor(ContextCompat.getColor(getContext(), R.color.msb_color));
+            btnTab1.setTextColor(ContextCompat.getColor(getContext(), R.color.btn_right_corner_unselect_bg));
 
             for (String title : tabTitles) {
                 tabLayout.addTab(tabLayout.newTab().setText(title));
@@ -124,8 +124,8 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
             btnTab0.setBackgroundResource(R.drawable.btn_left_corner_unselect_bg);
             btnTab1.setBackgroundResource(R.drawable.btn_right_corner_bg);
 
-            btnTab0.setTextColor(ContextCompat.getColor(getContext(), R.color.text_enable_gray));
-            btnTab1.setTextColor(ContextCompat.getColor(getContext(), R.color.bot_gray));
+            btnTab0.setTextColor(ContextCompat.getColor(getContext(), R.color.btn_right_corner_unselect_bg));
+            btnTab1.setTextColor(ContextCompat.getColor(getContext(), R.color.msb_color));
             for (String title : tabTitlesReturnBottle) {
                 tabLayout.addTab(tabLayout.newTab().setText(title));
             }

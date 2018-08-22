@@ -94,20 +94,14 @@
         android:layout_height="wrap_content"
         android:minHeight="45dp">
         <TextView
-            android:id="@+id/id_delivery_time"
-            android:layout_width="match_parent"
+            android:id="@+id/time_tips"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:layout_centerInParent="true"
-            android:layout_toStartOf="@+id/id_forward_time"
-            android:layout_toLeftOf="@+id/id_forward_time"
-            android:layout_marginRight="5dp"
-            android:layout_marginEnd="5dp"
-            android:textSize="16sp"
-            android:textColor="@color/textcolor"
-            android:text="@string/quick_delivery"/>
+            android:text="选择配送时间"
+            android:textSize="@dimen/text_16"
+            android:textColor="@color/lpg_text_dark_color"
+            android:layout_centerVertical="true"
+            />
         <ImageView
             android:id="@+id/id_forward_time"
             android:layout_width="wrap_content"
@@ -119,5 +113,22 @@
             android:layout_marginEnd="10dp"
             android:contentDescription="@string/default_text"
             android:src="@drawable/right_angle"/>
+        <TextView
+            android:id="@+id/id_delivery_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_toStartOf="@+id/id_forward_time"
+            android:layout_toLeftOf="@+id/id_forward_time"
+            android:layout_toRightOf="@id/time_tips"
+            android:layout_toEndOf="@id/time_tips"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
+            android:textSize="16sp"
+            android:textColor="@color/textcolor"
+            android:text="@string/quick_delivery"/>
     </RelativeLayout>
 </LinearLayout>

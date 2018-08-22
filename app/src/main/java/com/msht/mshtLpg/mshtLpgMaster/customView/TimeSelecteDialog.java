@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.Gravity;
@@ -113,6 +114,13 @@ public class TimeSelecteDialog extends Dialog {
         this.systemDate = systemDate;
         this.systemHour = systemHour;
         this.systemMinute = systemMinute;
+    }
+
+    public void reverseTime(int systemHour, int systemMinute) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            timePicker.setHour(systemHour);
+            timePicker.setMinute(systemMinute);
+        }
     }
 
 

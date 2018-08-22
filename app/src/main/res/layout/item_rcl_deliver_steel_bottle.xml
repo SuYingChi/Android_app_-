@@ -14,6 +14,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:paddingTop="@dimen/rcl_margin"
     >
 
     <TextView
@@ -23,7 +24,9 @@
         android:layout_weight="1"
         android:gravity="center"
         android:textColor="@color/black"
-        android:text="编号" />
+        android:text="编号"
+        android:textSize="@dimen/text_16"
+        />
 
     <TextView
         android:id="@+id/bottle_model"
@@ -32,7 +35,9 @@
         android:layout_weight="1"
         android:gravity="center"
         android:textColor="@color/black"
-        android:text="规格" />
+        android:text="规格"
+        android:textSize="@dimen/text_16"
+        />
 
     <TextView
         android:id="@+id/bottle_status"
@@ -41,6 +46,8 @@
         android:layout_weight="1"
         android:gravity="center"
         android:textColor="@color/black"
-        android:text="状态" />
+        android:text="状态"
+        android:textSize="@dimen/text_16"
+        />
 </LinearLayout>
 </LinearLayout>

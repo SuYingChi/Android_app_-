@@ -75,4 +75,5 @@
     <color name="gray_dcdcdc">#ffdcdcdc</color>
     <color name="line_gray">#ffd8d8d8</color>
     <color name="touch_backgroud">#FFEAEAEA</color>
+    <color name="btn_right_corner_unselect_bg">#525252</color>
 </resources>

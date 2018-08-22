@@ -179,7 +179,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_background"
-            android:hint="手动输入钢瓶编号"
+            android:hint="手动输入员工编号"
             android:padding="@dimen/margin_Modules"
             android:inputType="number"
             android:textColor="@color/textcolor"

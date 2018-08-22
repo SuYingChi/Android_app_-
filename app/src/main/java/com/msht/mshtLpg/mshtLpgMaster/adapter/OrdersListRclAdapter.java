@@ -253,9 +253,9 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter{
             ((OrdersHolder) holder).location.setText(bean.getAddress()+bean.getFloor()+"楼"+bean.getRoomNum()+ "号"+(bean.getIsElevator()==1?"（有电梯）":"（无电梯）")+(bean.getIsDelivery()==1?"（自提单）":"（配送单）"));
             ((OrdersHolder) holder).sex.setText(bean.getSex()==0?" (男)":" (女)");
             ((OrdersHolder) holder).order_cost.setText(bean.getRealAmount()+"");
-            ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getReFiveBottleCount()+"");
-            ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getReFifteenBottleCount()+"");
-            ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getReFiftyBottleCount()+"");
+            ((OrdersHolder) holder).fiveBottleNumber.setText(bean.getFiveBottleCount()+"");
+            ((OrdersHolder) holder).fifteenBottleNumber.setText(bean.getFifteenBottleCount()+"");
+            ((OrdersHolder) holder).fiftyBottleNumber.setText(bean.getFiftyBottleCount()+"");
             ((OrdersHolder) holder).sendBottleTime.setText(bean.getAppointmentTime());
             ((OrdersHolder) holder).orderBtn.setText("其他");
             ((OrdersHolder) holder).orderBtn.setOnClickListener(new View.OnClickListener() {

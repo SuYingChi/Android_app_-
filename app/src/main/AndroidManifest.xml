@@ -118,6 +118,7 @@
         <activity android:name=".activity.SendOrderScanBottleActivity" />
         <activity android:name=".activity.InnerGetActivity" />
         <activity android:name=".activity.InnerReturnActivity" />
+        <activity android:name=".activity.WebActivity" />
     </application>
 
 </manifest>

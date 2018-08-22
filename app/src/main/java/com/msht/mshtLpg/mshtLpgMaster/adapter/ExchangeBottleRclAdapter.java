@@ -63,9 +63,9 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ViewHolder) {
-            int index = list.get(position).getSelectBottleModeIndex();
-            int index2 = list.get(position).getSelectBottleYearsIndex();
-            int index3 = list.get(position).getmSelectBottleLevelIndex();
+            int index = list.get(holder.getAdapterPosition()).getSelectBottleModeIndex();
+            int index2 = list.get(holder.getAdapterPosition()).getSelectBottleYearsIndex();
+            int index3 = list.get(holder.getAdapterPosition()).getmSelectBottleLevelIndex();
             ((ViewHolder) holder).mModelSpinnerAdapter.setData(list.get(position).getmBottleModelList());
             ((ViewHolder) holder).mModelSpinnerAdapter.notifyDataSetChanged();
             ((ViewHolder) holder).mYearSpinnerAdapter.setData(list.get(position).getmBottleYearsList());
@@ -75,31 +75,31 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
             ((ViewHolder) holder).mModelSpinner.setSelection(index);
             ((ViewHolder) holder).mYearsSpinner.setSelection(index2);
             ((ViewHolder) holder).levelSpinner.setSelection(index3);
-            ((ViewHolder) holder).tvSteelNum.setText(list.get(position).getBottleNum() + "");
-            ((ViewHolder) holder).tvAccount.setText(list.get(position).getDiscount() + "");
+            ((ViewHolder) holder).tvSteelNum.setText(list.get(holder.getAdapterPosition()).getBottleNum() + "");
+            ((ViewHolder) holder).tvAccount.setText(list.get(holder.getAdapterPosition()).getDiscount() + "");
             ((ViewHolder) holder).tvReduce.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (list.get(position).getBottleNum() > 0) {
-                        onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()-1);
+                    if (list.get(holder.getAdapterPosition()).getBottleNum() > 0) {
+                        onExchangeRclClicklistener.onBottleNumChange(holder.getAdapterPosition(), ((ViewHolder) holder).tvAccount, ((ViewHolder) holder).tvSteelNum, list.get(holder.getAdapterPosition()).getBottleNum() - 1);
                     }
                 }
             });
             ((ViewHolder) holder).tvPlus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int selectBottleModeIndex = list.get(position).getSelectBottleModeIndex();
-                    int bottleNum = list.get(position).getBottleNum();
+                    int selectBottleModeIndex = list.get(holder.getAdapterPosition()).getSelectBottleModeIndex();
+                    int bottleNum = list.get(holder.getAdapterPosition()).getBottleNum();
 
                     if (selectBottleModeIndex == 0 && bottleNum < remainFive) {
                         PopUtil.toastInBottom("只能置换15kg");
-                       // onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()+1);
+                        // onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()+1);
                     } else if (selectBottleModeIndex == 1 && bottleNum < remainFifteen) {
-                        onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()+1);
+                        onExchangeRclClicklistener.onBottleNumChange(position, ((ViewHolder) holder).tvAccount, ((ViewHolder) holder).tvSteelNum, list.get(position).getBottleNum() + 1);
                     } else if (selectBottleModeIndex == 2 && bottleNum < remainFifty) {
                         PopUtil.toastInBottom("只能置换15kg");
-                       // onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()+1);
-                    }else {
+                        // onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()+1);
+                    } else {
                         PopUtil.toastInBottom("无法再增加置换空瓶数，同重量钢瓶的置换空瓶数与扫码回收的空瓶数只能小于等于交付用户钢瓶数，");
                     }
                 }
@@ -108,17 +108,18 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int p, long id) {
                     list.get(position).setmSelectBottleModeIndex(p);
-                    switch (p){
+                    switch (p) {
                         case 0:
                             PopUtil.toastInBottom("暂不支持置换5KG钢瓶");
                             break;
                         case 1:
-                            onExchangeRclClicklistener.onSpinnerChange( position,((ViewHolder) holder).tvAccount,p, list.get(position).getSelectBottleYearsIndex(), list.get(position).getmSelectBottleLevelIndex(), list.get(position).getBottleNum());
+                            onExchangeRclClicklistener.onSpinnerChange(position, ((ViewHolder) holder).tvAccount, p, list.get(position).getSelectBottleYearsIndex(), list.get(position).getmSelectBottleLevelIndex(), list.get(position).getBottleNum());
                             break;
                         case 2:
                             PopUtil.toastInBottom("暂不支持置换50KG钢瓶");
                             break;
-                        default:break;
+                        default:
+                            break;
                     }
 
                 }
@@ -132,7 +133,7 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int p, long id) {
                     list.get(position).setmSelectBottleYearsIndex(p);
-                    onExchangeRclClicklistener.onSpinnerChange(position,((ViewHolder) holder).tvAccount,list.get(position).getSelectBottleModeIndex(), p, list.get(position).getmSelectBottleLevelIndex(), list.get(position).getBottleNum());
+                    onExchangeRclClicklistener.onSpinnerChange(holder.getAdapterPosition(), ((ViewHolder) holder).tvAccount, list.get(holder.getAdapterPosition()).getSelectBottleModeIndex(), p, list.get(holder.getAdapterPosition()).getmSelectBottleLevelIndex(), list.get(holder.getAdapterPosition()).getBottleNum());
                 }
 
                 @Override
@@ -144,7 +145,7 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int p, long id) {
                     list.get(position).setSelectBottleLevelIndex(p);
-                    onExchangeRclClicklistener.onSpinnerChange(position,((ViewHolder) holder).tvAccount,list.get(position).getSelectBottleModeIndex(), list.get(position).getSelectBottleYearsIndex(), p, list.get(position).getBottleNum());
+                    onExchangeRclClicklistener.onSpinnerChange(holder.getAdapterPosition(), ((ViewHolder) holder).tvAccount, list.get(holder.getAdapterPosition()).getSelectBottleModeIndex(), list.get(holder.getAdapterPosition()).getSelectBottleYearsIndex(), p, list.get(holder.getAdapterPosition()).getBottleNum());
                 }
 
                 @Override
@@ -155,14 +156,14 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //日后补上dialog
-                    if(System.currentTimeMillis()-mClickTime<800) {
-                        PopUtil.toastInBottom("移除该条空瓶置换");
-                        list.remove(position);
-                        notifyDataSetChanged();
-                    }else {
-                        mClickTime=System.currentTimeMillis();
-                    }
+                    PopUtil.showTipsDialog(activity, "移除该项空瓶置换", "确认移除该项空瓶置换", "取消", "确认", null, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            list.remove(holder.getAdapterPosition());
+                            notifyDataSetChanged();
+                        }
+                    });
+
                 }
             });
 
@@ -207,15 +208,17 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         return list.size() + 1;
     }
+
     @Override
     public int getItemViewType(int position) {
-        return position == list.size()?100:1;
+        return position == list.size() ? 100 : 1;
     }
+
     public interface OnExchangeRclClicklistener {
 
-        void onBottleNumChange( int rclItemPosition,TextView tvAccount,TextView tvBottleNum ,int steelNum);
+        void onBottleNumChange(int rclItemPosition, TextView tvAccount, TextView tvBottleNum, int steelNum);
 
-        void onSpinnerChange(int rclItemPosition ,TextView tvAccount,int modelSelectIndex, int yearSelectIndex,int levelSelectIndex,int steelNum);
+        void onSpinnerChange(int rclItemPosition, TextView tvAccount, int modelSelectIndex, int yearSelectIndex, int levelSelectIndex, int steelNum);
 
     }
 

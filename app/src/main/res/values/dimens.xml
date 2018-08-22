@@ -32,7 +32,7 @@
     <dimen name="top_bar_height_remain">100dp</dimen>
     <dimen name="topbar_title_bottom_margin">8dp</dimen>
     <dimen name="line_height">2dp</dimen>
-    <dimen name="lin_width">1dp</dimen>
+    <dimen name="lin_width">0.5dp</dimen>
     <dimen name="rcl_margin">5dp</dimen>
     <dimen name="scan_view_margin_top">110dp</dimen>
     <dimen name="margin">15dp</dimen>

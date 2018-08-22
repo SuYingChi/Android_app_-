@@ -239,12 +239,17 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
     }
 
     @Override
-    public void onClckModifyBtn(int position, String five, String fifteen, String fifty, String orderId) {
-        id = orderId;
-        fiveTemp = five;
-        fifteenTemp = fifteen;
-        fiftyTemp = fifty;
-        iTransferToStoragePresenter.updateTransfer();
+    public void onClckModifyBtn(final int position, final String five, final String fifteen, final String fifty, final String orderId) {
+        PopUtil.showTipsDialog(this, "修改调拨单", "确认提交修改调拨单钢瓶数量", "取消", "确认", null, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                id = orderId;
+                fiveTemp = five;
+                fifteenTemp = fifteen;
+                fiftyTemp = fifty;
+                iTransferToStoragePresenter.updateTransfer();
+            }
+        });
     }
 
     @Override

@@ -61,10 +61,10 @@ public class LoginActivity extends BaseActivity implements ILoginView{
                     PopUtil.toastInBottom( getString(R.string.please_input_right_mobile_number));
                     return;
                 }
-                if (loginPassword.getText().length() != 6) {
+             /*   if (loginPassword.getText().length() != 6) {
                     PopUtil.toastInBottom(getString(R.string.please_input_password));
                     return;
-                }
+                }*/
                 iLoginPresenter.login(mobileNumber.getText().toString(), loginPassword.getText().toString());
                 break;
               default:

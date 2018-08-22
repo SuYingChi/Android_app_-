@@ -243,6 +243,6 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
     public interface onTransferToStorageRclAdapterClickListener {
         void onClickScanCodeBtn(int itemPosition, String orderId);
 
-        void onClckModifyBtn(int position, String five, String fifteen, String itemPosition, String orderId);
+        void onClckModifyBtn(final int position, final String five, final String fifteen, final String itemPosition, final String orderId);
     }
 }
