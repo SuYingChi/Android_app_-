@@ -178,10 +178,10 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         tvTel.setText(orderDetailBean.getData().getMobile());
         tvDay.setText(orderDetailBean.getData().getCreateDate());
         tvTime.setText(orderDetailBean.getData().getAppointmentTime());
-        tvComment.setText(orderDetailBean.getData().getRemarks());
+        tvComment.setText(new StringBuilder().append("内部备注：").append(orderDetailBean.getData().getRemarks()).toString());
         orderId = orderDetailBean.getData().getOrderId() + "";
         tvOrderId.setText(orderId);
-        tvDispatchOrderTime.setText(orderDetailBean.getData().getCreateDate());
+        tvDispatchOrderTime.setText(new StringBuilder().append("下单时间：").append(orderDetailBean.getData().getCreateDate()).toString());
         tvDispatchBottleTime.setText(orderDetailBean.getData().getAppointmentTime());
         //气价
         double fiveGasFee = orderDetailBean.getData().getFiveBottleCount() * orderDetailBean.getData().getFiveGasFee();

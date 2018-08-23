@@ -20,7 +20,7 @@ public class TopBarView extends RelativeLayout {
         LayoutInflater.from(context).inflate(R.layout.comman_topbar, this, true);
         titleBarLeftBtn = (ImageView) findViewById(R.id.return_btn);
         titleBarTitle = (TextView) findViewById(R.id.tv_comman_topbar_title);
-
+        titleBarTitle.setTextSize(getResources().getDimension(R.dimen.text_16));
         TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.topBar);
         if (attributes != null) {
                 //如果不是图片标题 则获取文字标题

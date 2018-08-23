@@ -12,14 +12,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="下单时间" />
+            android:text="下单时间"
+            android:textSize="@dimen/text_16"
+            />
 
         <TextView
             android:id="@+id/item_rcl_order_detail_pay_v7_post_order_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin"
-            android:text="2018-06-08 15:20" />
+            android:text="2018-06-08 15:20"
+            android:textSize="@dimen/text_16"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -31,13 +35,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="发货时间" />
+            android:text="发货时间"
+            android:textSize="@dimen/text_16"
+            />
 
         <TextView
             android:id="@+id/item_rcl_order_detail_pay_v7_post_bottle_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin"
-            android:text="2018-06-08 15:20" />
+            android:text="2018-06-08 15:20"
+            android:textSize="@dimen/text_16"
+            />
     </LinearLayout>
 </LinearLayout>

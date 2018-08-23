@@ -304,10 +304,10 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
             tvComment.setVisibility(View.GONE);
         } else {
             tvComment.setVisibility(View.VISIBLE);
-            tvComment.setText(orderDetailBean.getData().getRemarks());
+            tvComment.setText(new StringBuilder().append("内部备注：").append(orderDetailBean.getData().getRemarks()).toString());
         }
         tvOrderId.setText(orderId);
-        tvDispatchOrderTime.setText(orderDetailBean.getData().getCreateDate());
+        tvDispatchOrderTime.setText(new StringBuilder().append("下单时间：").append(orderDetailBean.getData().getCreateDate()).toString());
         tvDispatchBottleTime.setText(orderDetailBean.getData().getAppointmentTime());
         //iGasAndDepositPresenter.getGasAndDeposit();
 

@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="自有产权瓶置换"
         android:textColor="@color/lpg_text_dark_color"
-        android:textSize="@dimen/text_nomal" />
+        android:textSize="@dimen/text_16" />
 
     <View
         android:layout_width="0dp"
@@ -30,5 +30,5 @@
         android:layout_height="match_parent"
         android:text=""
         android:textColor="@color/green"
-        android:textSize="@dimen/text_nomal" />
+        android:textSize="@dimen/text_16" />
 </LinearLayout>

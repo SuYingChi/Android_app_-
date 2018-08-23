@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#030303"
-        android:textSize="17sp"
+        android:textSize="@dimen/text_16"
         android:textStyle="bold"
         tools:text="提示" />
 
@@ -24,7 +24,7 @@
         android:layout_marginTop="15dp"
         android:gravity="center|left"
         android:textColor="#030303"
-        android:textSize="17sp"
+        android:textSize="@dimen/text_16"
         tools:text="该功能需开启定位权限才可以使用哦点击去开启" />
 
 
@@ -43,7 +43,7 @@
             android:background="@color/white"
             android:text="取消"
             android:textColor="#0076ff"
-            android:textSize="17sp" />
+            android:textSize="@dimen/text_16" />
 
 
         <TextView
@@ -53,7 +53,7 @@
             android:background="@color/white"
             android:text="确定"
             android:textColor="#0076ff"
-            android:textSize="17sp"
+            android:textSize="@dimen/text_16"
             android:textStyle="bold" />
     </LinearLayout>
 

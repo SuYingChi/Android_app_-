@@ -85,7 +85,7 @@ public class BackBottleOrdersFinishActivity extends BaseActivity implements ISim
         tvTelephone.setText(bean.getData().getMobile());
         tvDay.setText(bean.getData().getCreateDate());
         tvTime.setText(bean.getData().getAppointmentTime());
-        tvComment.setText(bean.getData().getRemarks());
+        tvComment.setText(new StringBuilder().append("内部备注：").append(bean.getData().getRemarks()).toString());
         tvOrderId.setText(bean.getData().getOrderId()+"");
         fiveDeposite  = BottleCaculteUtil.getDeposite(bean,5);
         fifteenDeposite  = BottleCaculteUtil.getDeposite(bean,15);
@@ -95,7 +95,7 @@ public class BackBottleOrdersFinishActivity extends BaseActivity implements ISim
         fiftyFee.setText(fiftyDeposite);
         totalFee.setText(bean.getData().getRealAmount()+"");
 
-        dispatchOrdersTime.setText(bean.getData().getCreateDate());
+        dispatchOrdersTime.setText(new StringBuilder().append("下单时间：").append(bean.getData().getCreateDate()).toString());
     }
 
     @Override

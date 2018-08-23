@@ -138,6 +138,7 @@
         android:background="@color/msb_color"
         android:gravity="center"
         android:padding="@dimen/margin"
+        android:layout_marginTop="@dimen/rcl_margin"
         android:text="保存"
         android:textColor="@color/white"
         android:layout_alignParentBottom="true"

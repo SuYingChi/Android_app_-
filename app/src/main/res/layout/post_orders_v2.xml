@@ -36,6 +36,7 @@
             android:gravity="center_vertical"
             android:text="共计"
             android:textColor="@color/lpg_text_dark_color"
+            android:layout_marginRight="@dimen/margin_Modules"
             />
         <TextView
             android:id="@+id/post_orders_v2_cost"
@@ -45,6 +46,10 @@
             android:textSize="@dimen/text_top_title"
             android:textColor="@color/msb_color"
             android:layout_marginLeft="@dimen/margin_Modules"
+            android:layout_marginStart="@dimen/margin_Modules"
+            android:paddingTop="@dimen/rcl_margin"
+            android:paddingBottom="@dimen/rcl_margin"
+            android:layout_marginRight="@dimen/margin_Modules"
             />
         <TextView
             android:id="@+id/post_orders_v2_btn"
@@ -58,7 +63,7 @@
             android:paddingRight="30dp"
             />
     </LinearLayout>
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/pay_orders_v2_topbar"
@@ -66,10 +71,6 @@
         android:background="@color/line_color_lib"
         android:layout_marginLeft="@dimen/margin_Modules"
         android:layout_marginRight="@dimen/margin_Modules"
-        >
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -657,5 +658,4 @@
         </LinearLayout>
 </RelativeLayout>
     </ScrollView>
-    </LinearLayout>
 </RelativeLayout>

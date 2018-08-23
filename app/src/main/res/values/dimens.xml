@@ -20,13 +20,13 @@
     <dimen name="folder_cover_size">72dp</dimen>
     <!--Map-->
     <dimen name="nomal_corners">5dp</dimen>
-    <dimen name="text_nomal">15sp</dimen>
-    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_nomal">17sp</dimen>
+    <dimen name="text_small">14sp</dimen>
     <dimen name="text_top_title">30sp</dimen>
     <dimen name="text_top_title_big">50sp</dimen>
     <dimen name="dialog_text_size">17sp</dimen>
     <dimen name="space">25dp</dimen>
-    <dimen name="text_16">16sp</dimen>
+    <dimen name="text_16">18sp</dimen>
     <dimen name="top_bar_height">150dp</dimen>
     <dimen name="top_bar_height_normol">50dp</dimen>
     <dimen name="top_bar_height_remain">100dp</dimen>
@@ -35,8 +35,8 @@
     <dimen name="lin_width">0.5dp</dimen>
     <dimen name="rcl_margin">5dp</dimen>
     <dimen name="scan_view_margin_top">110dp</dimen>
-    <dimen name="margin">15dp</dimen>
-    <dimen name="margin_Modules">8dp</dimen>
+    <dimen name="margin">17dp</dimen>
+    <dimen name="margin_Modules">10dp</dimen>
     <dimen name="click_area">44dp</dimen>
     <dimen name="scan_rcl_height">250dp</dimen>
     <dimen name="view_finder_height">200dp</dimen>

@@ -24,9 +24,10 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingBottom="@dimen/margin_Modules"
-            android:paddingTop="@dimen/margin_Modules"
+            android:paddingBottom="@dimen/margin"
+            android:paddingTop="@dimen/margin"
             android:text="合计:"
+            android:textSize="@dimen/text_16"
             android:textColor="@color/lpg_text_dark_color" />
 
         <TextView
@@ -36,9 +37,10 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingBottom="@dimen/margin_Modules"
-            android:paddingTop="@dimen/margin_Modules"
+            android:paddingBottom="@dimen/margin"
+            android:paddingTop="@dimen/margin"
             android:text=""
+            android:textSize="@dimen/text_16"
             android:textColor="@color/lpg_text_dark_color" />
         <TextView
             android:layout_width="0dp"
@@ -46,9 +48,10 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingBottom="@dimen/margin_Modules"
-            android:paddingTop="@dimen/margin_Modules"
+            android:paddingBottom="@dimen/margin"
+            android:paddingTop="@dimen/margin"
             android:text="5kg:"
+            android:textSize="@dimen/text_16"
             android:textColor="@color/lpg_text_dark_color" />
 
         <TextView
@@ -58,9 +61,10 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingBottom="@dimen/margin_Modules"
-            android:paddingTop="@dimen/margin_Modules"
+            android:paddingBottom="@dimen/margin"
+            android:paddingTop="@dimen/margin"
             android:text=""
+            android:textSize="@dimen/text_16"
             android:textColor="@color/lpg_text_dark_color" />
 
         <TextView
@@ -69,9 +73,10 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingBottom="@dimen/margin_Modules"
-            android:paddingTop="@dimen/margin_Modules"
+            android:paddingBottom="@dimen/margin"
+            android:paddingTop="@dimen/margin"
             android:text="15kg:"
+            android:textSize="@dimen/text_16"
             android:textColor="@color/lpg_text_dark_color" />
 
         <TextView
@@ -81,9 +86,10 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingBottom="@dimen/margin_Modules"
-            android:paddingTop="@dimen/margin_Modules"
+            android:paddingBottom="@dimen/margin"
+            android:paddingTop="@dimen/margin"
             android:text=""
+            android:textSize="@dimen/text_16"
             android:textColor="@color/lpg_text_dark_color" />
 
         <TextView
@@ -92,9 +98,10 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingBottom="@dimen/margin_Modules"
-            android:paddingTop="@dimen/margin_Modules"
+            android:paddingBottom="@dimen/margin"
+            android:paddingTop="@dimen/margin"
             android:text="50kg:"
+            android:textSize="@dimen/text_16"
             android:textColor="@color/lpg_text_dark_color" />
 
         <TextView
@@ -104,9 +111,10 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingBottom="@dimen/margin_Modules"
-            android:paddingTop="@dimen/margin_Modules"
+            android:paddingBottom="@dimen/margin"
+            android:paddingTop="@dimen/margin"
             android:text=""
+            android:textSize="@dimen/text_16"
             android:textColor="@color/lpg_text_dark_color" />
 
     </LinearLayout>

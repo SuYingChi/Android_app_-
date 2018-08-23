@@ -162,7 +162,7 @@
             android:layout_height="wrap_content"
             android:text="电梯房"
             android:textColor="@color/lpg_text_dark_color"
-            android:textSize="@dimen/text_nomal" />
+            android:textSize="@dimen/text_16" />
 
         <Spinner
             android:id="@+id/spinner_elevator"
@@ -170,7 +170,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_weight="1"
-            android:textSize="15sp" />
+            android:textSize="@dimen/text_16" />
 
         <ImageView
             android:id="@+id/iv_elevator"
@@ -194,7 +194,7 @@
             android:layout_height="wrap_content"
             android:text="楼层"
             android:textColor="@color/lpg_text_dark_color"
-            android:textSize="@dimen/text_nomal" />
+            android:textSize="@dimen/text_16" />
 
         <!--<EditText
             android:id="@+id/et_building"
@@ -228,7 +228,7 @@
             android:textColorHint="@color/text_hint"
             android:textCursorDrawable="@null"
             android:inputType="number"
-            android:textSize="15sp" />
+            android:textSize="@dimen/text_16" />
 
         <TextView
             android:id="@+id/tv_floor"
@@ -236,7 +236,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="楼"
-            android:textSize="15sp" />
+            android:textSize="@dimen/text_16" />
 
  <!--       <EditText
             android:id="@+id/et_room"
@@ -277,5 +277,7 @@
         android:layout_marginTop="@dimen/margin_Modules"
         android:background="@drawable/btn_normal"
         android:text="保存"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_16"
+        />
 </LinearLayout>

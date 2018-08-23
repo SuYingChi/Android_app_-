@@ -15,6 +15,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/margin_Modules"
+    android:textSize="@dimen/text_16"
     android:text="内部备注：客户要求今晚晚饭前必须送到"
     />
     <View

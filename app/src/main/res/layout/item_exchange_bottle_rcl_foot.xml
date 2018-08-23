@@ -13,5 +13,7 @@
     android:text="+ 添加钢瓶"
     android:textSize="@dimen/text_16"
     android:gravity="center"
+    android:paddingTop="@dimen/margin_Modules"
+    android:paddingBottom="@dimen/margin_Modules"
     />
 </LinearLayout>

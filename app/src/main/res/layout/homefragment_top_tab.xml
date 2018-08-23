@@ -13,7 +13,7 @@
         android:background="@drawable/btn_left_corner_bg"
         android:text="送气订单"
         android:textColor="@color/msb_color"
-        android:textSize="@dimen/text_small" />
+        android:textSize="@dimen/text_16" />
 
 
     <Button
@@ -23,6 +23,6 @@
         android:background="@drawable/btn_right_corner_unselect_bg"
         android:text="退瓶订单"
         android:textColor="#525252"
-        android:textSize="@dimen/text_small" />
+        android:textSize="@dimen/text_16" />
 
 </LinearLayout>

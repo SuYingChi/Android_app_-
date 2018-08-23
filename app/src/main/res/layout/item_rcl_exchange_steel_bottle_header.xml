@@ -12,7 +12,11 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="钢瓶规格" />
+        android:textSize="@dimen/text_16"
+        android:text="钢瓶规格"
+        android:paddingBottom="@dimen/rcl_margin"
+        android:paddingTop="@dimen/rcl_margin"
+        />
 
     <TextView
         android:id="@+id/year"
@@ -20,7 +24,11 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="出厂年份" />
+        android:textSize="@dimen/text_16"
+        android:text="出厂年份"
+        android:paddingBottom="@dimen/rcl_margin"
+        android:paddingTop="@dimen/rcl_margin"
+        />
 
     <TextView
         android:id="@+id/level"
@@ -28,19 +36,31 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="腐蚀等级" />
+        android:textSize="@dimen/text_16"
+        android:text="腐蚀等级"
+        android:paddingBottom="@dimen/rcl_margin"
+        android:paddingTop="@dimen/rcl_margin"
+        />
     <TextView
         android:id="@+id/num"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="数量" />
+        android:textSize="@dimen/text_16"
+        android:text="数量"
+        android:paddingBottom="@dimen/rcl_margin"
+        android:paddingTop="@dimen/rcl_margin"
+        />
     <TextView
         android:id="@+id/discount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="折价" />
+        android:textSize="@dimen/text_16"
+        android:text="折价"
+        android:paddingBottom="@dimen/rcl_margin"
+        android:paddingTop="@dimen/rcl_margin"
+        />
 </LinearLayout>

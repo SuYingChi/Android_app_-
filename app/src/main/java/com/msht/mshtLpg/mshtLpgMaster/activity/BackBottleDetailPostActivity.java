@@ -161,7 +161,7 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
         tvTelephone.setText(bean.getData().getMobile());
         tvDay.setText(bean.getData().getCreateDate());
         tvTime.setText(bean.getData().getAppointmentTime());
-        tvComment.setText(bean.getData().getRemarks());
+        tvComment.setText(new StringBuilder().append("内部备注：").append(bean.getData().getRemarks()).toString());
         tvOrderId.setText(orderId);
         orderFive = bean.getData().getReFiveBottleCount() +"";
         orderFifteen  = bean.getData().getReFifteenBottleCount() +"";
@@ -175,7 +175,7 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
         fiftyFee.setText(fiftyDeposite);
         totalFee.setText(bean.getData().getRealAmount()+"");
 
-        dispatchOrdersTime.setText(bean.getData().getCreateDate());
+        dispatchOrdersTime.setText(new StringBuilder().append("下单时间：").append(bean.getData().getCreateDate()).toString());
 
     }
 

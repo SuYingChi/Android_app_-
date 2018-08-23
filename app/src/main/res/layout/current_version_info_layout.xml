@@ -23,6 +23,7 @@
         android:layout_marginRight="@dimen/margin"
         android:gravity="center"
         android:text="检测更新"
+        android:textSize="@dimen/text_16"
         android:background="@color/white"
         android:textColor="@color/lpg_text_dark_color" />
     <TextView
@@ -35,5 +36,6 @@
         android:paddingBottom="@dimen/margin_Modules"
         android:paddingTop="@dimen/margin_Modules"
         android:text="液化气移动终端V1.0"
+        android:textSize="@dimen/text_16"
         android:textColor="@color/lpg_text_dark_color" />
 </RelativeLayout>

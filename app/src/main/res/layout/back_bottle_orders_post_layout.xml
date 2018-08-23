@@ -260,7 +260,7 @@
         android:background="@color/msb_color"
         android:text="提交订单"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_16"
         android:layout_marginLeft="@dimen/margin"
         android:layout_marginRight="@dimen/margin"
         />

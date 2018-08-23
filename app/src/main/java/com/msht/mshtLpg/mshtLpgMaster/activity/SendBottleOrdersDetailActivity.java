@@ -1,9 +1,12 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -94,13 +97,13 @@ public class SendBottleOrdersDetailActivity extends BaseActivity implements ISim
 
     @Override
     public void onGetOrdersDetailSuccess(OrderDetailBean bean) {
-        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(bean.getData().getFloor()).append("层").append(bean.getData().getRoomNum()).append("房").append(bean.getData().getIsDelivery()== 1?"(自提单)":"(配送单)").toString());
+        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(bean.getData().getFloor()).append("层").append(bean.getData().getRoomNum()).append("房").append(bean.getData().getIsDelivery() == 1 ? "(自提单)" : "(配送单)").toString());
         tvElevator.setText(bean.getData().getIsElevator() == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(bean.getData().getBuyer()).append(bean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTelephone.setText(bean.getData().getMobile());
         tvDay.setText(bean.getData().getCreateDate());
         tvTime.setText(bean.getData().getAppointmentTime());
-        tvComment.setText(bean.getData().getRemarks());
+        tvComment.setText(new StringBuilder().append("内部备注：").append(bean.getData().getRemarks()).toString());
         tvOrderId.setText(bean.getData().getOrderId() + "");
         int fiveCount = bean.getData().getFiveBottleCount();
         int fifteenCount = bean.getData().getFifteenBottleCount();
@@ -109,7 +112,7 @@ public class SendBottleOrdersDetailActivity extends BaseActivity implements ISim
         fifteenFee.setText(fifteenCount + "");
         fiftyFee.setText(fiftyCount + "");
         totalFee.setText(fiveCount + fifteenCount + fiftyCount + "");
-        dispatchOrdersTime.setText(bean.getData().getCreateDate());
+        dispatchOrdersTime.setText(new StringBuilder().append("下单时间：").append(bean.getData().getCreateDate()).toString());
 
     }
 
@@ -131,8 +134,11 @@ public class SendBottleOrdersDetailActivity extends BaseActivity implements ISim
 
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
-            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTelephone.getText().toString()));
-            startActivity(intent);
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTelephone.getText().toString()));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        startActivity(intent);
     }
 
     @Override

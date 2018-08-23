@@ -140,8 +140,10 @@
         android:paddingBottom="@dimen/margin_Modules"
         android:paddingTop="@dimen/margin_Modules"
         android:text="下一步"
+        android:textSize="@dimen/text_16"
         android:textColor="@color/white"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/rcl_margin"
         />
     <RelativeLayout
         android:id="@+id/scan_delive_steel_bottle_rlt"

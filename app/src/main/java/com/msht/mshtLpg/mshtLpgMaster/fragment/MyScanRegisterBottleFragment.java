@@ -33,6 +33,7 @@ import com.msht.mshtLpg.mshtLpgMaster.Bean.GetBottleInfo;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IRegisterBottlePresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.SpinnerAdapter;
+import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TimeSelecteDialog;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.handler.MyScanHandler;
@@ -105,7 +106,7 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CameraManager.init(getActivity().getApplication());
+        CameraManager.init(LPGApplication.getLPGApplicationContext());
         iRegisterBottlePresenter = new IRegisterBottlePresenter(this);
         hasSurface = false;
         isRestart  = false;
@@ -222,9 +223,6 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
 
     protected void initBeepSound() {
         if (playBeep && mediaPlayer == null) {
-            // The volume on STREAM_SYSTEM is not adjustable, and users found it
-            // too loud,
-            // so we now play on the music stream.
             getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -412,21 +410,6 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
 
        }
    });
-    /*    tvCreatTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(timeSelecteDialog==null) {
-                    timeSelecteDialog = new TimeSelecteDialog(MyScanRegisterBottleFragment.this.getContext());
-                    timeSelecteDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialog) {
-
-                        }
-                    });
-                }
-                PopUtil.showDialog(MyScanRegisterBottleFragment.this.getContext(),timeSelecteDialog);
-            }
-        });*/
     }
 
     @Override

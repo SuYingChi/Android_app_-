@@ -110,7 +110,7 @@ public class BaclBottleOrdersDetailActivity extends BaseActivity implements ISim
         tvTelephone.setText(bean.getData().getMobile());
         tvDay.setText(bean.getData().getCreateDate());
         tvTime.setText(bean.getData().getAppointmentTime());
-        tvComment.setText(bean.getData().getRemarks());
+        tvComment.setText(new StringBuilder().append("内部备注：").append(bean.getData().getRemarks()).toString());
         String retriveId = bean.getData().getOrderId() + "";
         tvOrderId.setText(retriveId);
         String fiveDeposite = BottleCaculteUtil.getDeposite(bean, 5);
@@ -120,7 +120,7 @@ public class BaclBottleOrdersDetailActivity extends BaseActivity implements ISim
         fifteenFee.setText(fifteenDeposite);
         fiftyFee.setText(fiftyDeposite);
         totalFee.setText(bean.getData().getRealAmount()+"");
-        dispatchOrdersTime.setText(bean.getData().getCreateDate());
+        dispatchOrdersTime.setText(new StringBuilder().append("下单时间：").append(bean.getData().getCreateDate()).toString());
 
     }
 

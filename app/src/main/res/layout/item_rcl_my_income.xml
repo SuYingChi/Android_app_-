@@ -29,7 +29,7 @@
         android:layout_below="@+id/tv_item_rcl_my_income_orders"
         android:layout_marginTop="@dimen/margin_Modules"
         android:text="2018-10-09 16:16"
-        android:textSize="@dimen/text_nomal" />
+        android:textSize="@dimen/text_16" />
 
     <TextView
         android:id="@+id/tv_item_rcl_my_income_orders_income"

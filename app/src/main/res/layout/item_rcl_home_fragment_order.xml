@@ -20,7 +20,7 @@
            android:id="@+id/item_rcl_home_fragment_order_order_number"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:textSize="@dimen/text_small"
+           android:textSize="@dimen/text_16"
            android:textColor="@color/head_text_color"
            android:text="00011456111"
            android:layout_marginLeft="@dimen/topbar_title_bottom_margin"
@@ -33,7 +33,7 @@
            android:id="@+id/item_rcl_home_fragment_order_statu"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:textSize="@dimen/text_small"
+           android:textSize="@dimen/text_16"
            android:textColor="@color/warning_red"
            android:text="待验瓶"
 
@@ -86,12 +86,11 @@
                     android:layout_height="wrap_content"
                     android:text="（先生）"
                     android:textColor="@color/lpg_text_dark_color"
-                    android:textSize="@dimen/text_small" />
+                    android:textSize="@dimen/text_nomal" />
                 <TextView
                     android:id="@+id/item_rcl_home_fragment_order_send_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:lineSpacingExtra="0sp"
                     android:text="(用户自提)"
                     android:textColor="@color/warning_red"
@@ -116,7 +115,7 @@
                 android:lineSpacingExtra="0sp"
                 android:text="地址：海口市龙华区金贸西路诚田大厦24楼(有电梯)"
                 android:textColor="@color/lpg_text_light_color"
-                android:textSize="@dimen/text_small"
+                android:textSize="@dimen/text_16"
                 android:layout_marginTop="@dimen/margin_Modules"
                 />
 
@@ -153,7 +152,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_small"
+            android:textSize="@dimen/text_16"
             android:textColor="@color/head_text_color"
             android:text="5kg气瓶"
 
@@ -166,7 +165,7 @@
             android:id="@+id/tv_item_rcl_home_fragment_order_5_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_small"
+            android:textSize="@dimen/text_16"
             android:textColor="@color/lpg_text_light_color"
             android:text="x1"
 
@@ -183,7 +182,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_small"
+            android:textSize="@dimen/text_16"
             android:textColor="@color/head_text_color"
             android:text="15kg气瓶"
 
@@ -196,7 +195,7 @@
             android:id="@+id/tv_item_rcl_home_fragment_order_15_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_small"
+            android:textSize="@dimen/text_16"
             android:textColor="@color/lpg_text_light_color"
             android:text="x1"
 
@@ -213,7 +212,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_small"
+            android:textSize="@dimen/text_16"
             android:textColor="@color/head_text_color"
             android:text="50kg气瓶"
 
@@ -226,7 +225,7 @@
             android:id="@+id/tv_item_rcl_home_fragment_order_50_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_small"
+            android:textSize="@dimen/text_16"
             android:textColor="@color/lpg_text_light_color"
             android:text="x1"
 
@@ -255,7 +254,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_small"
+            android:textSize="@dimen/text_16"
             android:textColor="@color/lpg_text_light_color"
             android:text="总价"
             />
@@ -264,7 +263,7 @@
             android:layout_marginLeft="@dimen/margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_small"
+            android:textSize="@dimen/text_16"
             android:textColor="@color/msb_color"
             android:text="300.00"
             />
@@ -294,7 +293,7 @@
             android:layout_marginLeft="@dimen/margin"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:textSize="@dimen/text_small"
+            android:textSize="@dimen/text_16"
             android:textColor="@color/white"
             android:background="@drawable/lpg_btn_corner"
             android:text="付款"
