@@ -39,7 +39,7 @@ public class IRegisterBottlePresenter {
     }
     public void update_bottle_info(){
         OkHttpUtils.get().url(Constants.UPDATE_BOTTLE_INFO).addParams(Constants.URL_PARAMS_BOTTLE_CODE, iRegisterBottleView.getBottleCode())
-               .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iRegisterBottleView.getBottleNum()).
+               .addParams("bottleNum", iRegisterBottleView.getBottleNum()).
                 addParams("bottleWeight",iRegisterBottleView.getBottleWeight())
                 .addParams("producer",iRegisterBottleView.getProducer())
                 .addParams("propertyUnit",iRegisterBottleView.getPropertyUnit())

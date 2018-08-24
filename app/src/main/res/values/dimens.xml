@@ -26,6 +26,7 @@
     <dimen name="text_top_title_big">50sp</dimen>
     <dimen name="dialog_text_size">17sp</dimen>
     <dimen name="space">25dp</dimen>
+    <dimen name="register_bottle_et_space">50dp</dimen>
     <dimen name="text_16">18sp</dimen>
     <dimen name="top_bar_height">150dp</dimen>
     <dimen name="top_bar_height_normol">50dp</dimen>

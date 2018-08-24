@@ -182,6 +182,7 @@
             android:textColorHint="@color/bg_input_border"
             android:textCursorDrawable="@null"
             android:textSize="@dimen/text_16"
+            android:maxLines="1"
             />
 
         <TextView

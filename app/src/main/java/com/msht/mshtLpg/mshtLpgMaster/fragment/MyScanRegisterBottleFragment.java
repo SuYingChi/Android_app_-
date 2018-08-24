@@ -383,7 +383,11 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
       tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iRegisterBottlePresenter.update_bottle_info();
+                if(bottleNum.length()==9){
+                    iRegisterBottlePresenter.update_bottle_info();
+                }else{
+                    PopUtil.toastInBottom("必须是9位数的瓶身钢码");
+                }
             }
         });
       spWeight.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

@@ -41,7 +41,9 @@
             android:textColor="@color/textcolor"
             android:textColorHint="@color/lpg_text_dark_color"
             android:textCursorDrawable="@null"
-            android:textSize="@dimen/text_16" />
+            android:textSize="@dimen/text_16"
+            android:maxLines="1"
+            />
     </LinearLayout>
 
     <TextView
@@ -81,6 +83,7 @@
             android:textCursorDrawable="@null"
             android:textSize="@dimen/text_16"
             android:inputType="numberPassword"
+            android:maxLines="1"
             />
 
     </LinearLayout>

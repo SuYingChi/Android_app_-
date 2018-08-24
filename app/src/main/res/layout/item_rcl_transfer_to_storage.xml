@@ -81,6 +81,7 @@
                 android:textSize="@dimen/text_16"
                 android:paddingBottom="@dimen/margin_Modules"
                 android:paddingLeft="@dimen/margin_Modules"
+                android:maxLines="1"
                 />
         </LinearLayout>
 
@@ -117,6 +118,7 @@
                 android:paddingBottom="@dimen/margin_Modules"
                 android:paddingLeft="@dimen/margin_Modules"
                 android:textSize="@dimen/text_16"
+                android:maxLines="1"
                 />
         </LinearLayout>
 
@@ -153,6 +155,7 @@
                 android:textSize="@dimen/text_16"
                 android:paddingBottom="@dimen/margin_Modules"
                 android:paddingLeft="@dimen/margin_Modules"
+                android:maxLines="1"
 
                 />
         </LinearLayout>
