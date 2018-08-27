@@ -195,14 +195,6 @@
                     android:textColor="@color/lpg_text_light_color"
                     android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/comman_topbar_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin"
-                    android:text="10:00 - 12:00"
-                    android:textColor="@color/lpg_text_light_color"
-                    android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
         <TextView
@@ -241,7 +233,7 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:src="@drawable/orders" />
 
                 <TextView
@@ -648,13 +640,12 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:paddingBottom="@dimen/margin_Modules"
+                android:paddingLeft="@dimen/margin"
+                android:paddingRight="@dimen/margin"
                 android:paddingTop="@dimen/margin_Modules"
                 android:text="发货时间：2010-06-08 15:20"
                 android:textColor="@color/lpg_text_light_color"
-                android:textSize="14sp"
-                android:paddingLeft="@dimen/margin"
-                android:paddingRight="@dimen/margin"
-                />
+                android:textSize="14sp" />
         </LinearLayout>
 </RelativeLayout>
     </ScrollView>

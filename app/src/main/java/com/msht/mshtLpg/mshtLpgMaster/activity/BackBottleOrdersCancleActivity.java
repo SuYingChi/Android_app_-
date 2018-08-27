@@ -41,8 +41,6 @@ public class BackBottleOrdersCancleActivity extends BaseActivity implements ISim
     ImageView callBtn;
     @BindView(R.id.comman_topbar_day)
     TextView tvDay;
-    @BindView(R.id.comman_topbar_time)
-    TextView tvTime;
     @BindView(R.id.comman_topbar_comment)
     TextView tvComment;
     @BindView(R.id.five_gas)
@@ -57,8 +55,10 @@ public class BackBottleOrdersCancleActivity extends BaseActivity implements ISim
     TextView dispatchOrdersTime;
     @BindView(R.id.tv_orderid)
     TextView tvOrderId;
-
-
+    @BindView(R.id.dispatch_bottle_time)
+    TextView tvDispatchBottleTime;
+    @BindView(R.id.pay_time)
+    TextView tvPayTime;
     private Unbinder unbinder;
     private String orderId;
     private IOrderDetailPresenter iOrderDetailPresenter;
@@ -83,8 +83,7 @@ public class BackBottleOrdersCancleActivity extends BaseActivity implements ISim
         tvElevator.setText(bean.getData().getIsElevator() == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(bean.getData().getBuyer()).append(bean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTelephone.setText(bean.getData().getMobile());
-        tvDay.setText(bean.getData().getCreateDate());
-        tvTime.setText(bean.getData().getAppointmentTime());
+        tvDay.setText(new StringBuilder().append("预约时间：").append(bean.getData().getAppointmentTime()));
         tvComment.setText(new StringBuilder().append("内部备注：").append(bean.getData().getRemarks()).toString());
         tvOrderId.setText(bean.getData().getOrderId()+"");
         fiveDeposite  = BottleCaculteUtil.getDeposite(bean,5);
@@ -94,8 +93,9 @@ public class BackBottleOrdersCancleActivity extends BaseActivity implements ISim
         fifteenFee.setText(fifteenDeposite);
         fiftyFee.setText(fiftyDeposite);
         totalFee.setText(bean.getData().getRealAmount()+"");
-
+        tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(bean.getData().getAppointmentTime()));
         dispatchOrdersTime.setText(new StringBuilder().append("下单时间：").append(bean.getData().getCreateDate()).toString());
+        tvPayTime.setText(new StringBuilder().append("付款时间：").append(""));
     }
 
     @Override

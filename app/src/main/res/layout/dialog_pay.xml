@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin"
+        android:orientation="vertical"
         >
         <View
             android:layout_width="match_parent"
@@ -57,8 +58,8 @@
             android:id="@+id/id_radio_wechat"
             android:layout_width="match_parent"
             android:layout_height="56dip"
-            android:background="@drawable/bg_imagetext_button"
             android:button="@null"
+            android:background="@drawable/bg_imagetext_button"
             android:drawableLeft="@drawable/wechat_pay_h"
             android:drawablePadding="20dp"
             android:drawableRight="@drawable/selector_my_radiobutton"

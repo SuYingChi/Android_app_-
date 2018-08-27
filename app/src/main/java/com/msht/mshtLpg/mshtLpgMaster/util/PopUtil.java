@@ -197,4 +197,19 @@ public class PopUtil {
             }
         });
     }
+    public static void showExchangeBottleTipsDialog(Context mContext) {
+        LayoutInflater inflaterDl = LayoutInflater.from(mContext);
+        LinearLayout layout = (LinearLayout) inflaterDl.inflate(
+                R.layout.exchange_tips, null);
+        final AlertDialog tel_dialog = new AlertDialog.Builder(mContext).create();
+        tel_dialog.show();
+        tel_dialog.getWindow().setContentView(layout);
+        TextView btnOk = (TextView)layout.findViewById(R.id.dialog_btn_ok);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tel_dialog.dismiss();
+            }
+        });
+    }
 }

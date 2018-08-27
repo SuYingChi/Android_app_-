@@ -386,7 +386,7 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
 
     @Override
     public void onGetBottleInfoSuccess(VerifyBottleBean verifyBottleBean) {
-        if (isContainBottle(list,verifyBottleBean.getData().getBottleCode())) {
+        if (isContainBottle(list, verifyBottleBean.getData().getBottleCode())) {
             PopUtil.toastInBottom("钢瓶已添加");
         }else if(fragmentType == 1) {
              if (verifyBottleBean.getData().getBottleWeight() == 5&&BottleCaculteUtil.getBottleNum(list,5) >= orderFiveNum ) {
@@ -429,7 +429,7 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
 
     }
 
-    protected boolean isContainBottle(List<VerifyBottleBean> list,String bottleCode) {
+    protected boolean isContainBottle(List<VerifyBottleBean> list, String bottleCode) {
         for (VerifyBottleBean bean : list) {
             if (bean.getData().getBottleCode().equals(bottleCode)) {
                 return true;

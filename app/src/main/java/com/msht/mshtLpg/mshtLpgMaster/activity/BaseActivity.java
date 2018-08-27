@@ -137,7 +137,6 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
             PopUtil.toastInBottom(s);
             switch (s) {
                 case "未登录":
-                case "登出返回结果为空":
                     AppUtil.logout();
                     Intent goLogin = new Intent(this, LoginActivity.class);
                     startActivity(goLogin);

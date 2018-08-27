@@ -155,14 +155,6 @@
                     android:textColor="@color/lpg_text_light_color"
                     android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/comman_topbar_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin"
-                    android:text="10:00 - 12:00"
-                    android:textColor="@color/lpg_text_light_color"
-                    android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
         <TextView
@@ -201,7 +193,7 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:src="@drawable/orders" />
 
                 <TextView

@@ -22,7 +22,7 @@ public class ScanBottleQRCodeRclAdapter extends RecyclerView.Adapter<ScanBottleQ
     private  List<VerifyBottleBean> list ;
     private  Activity activity;
 
-    public ScanBottleQRCodeRclAdapter( List<VerifyBottleBean> list,Activity activity) {
+    public ScanBottleQRCodeRclAdapter(List<VerifyBottleBean> list, Activity activity) {
         this.list = list;
         this.activity = activity;
         this.inflater = LayoutInflater.from(activity);

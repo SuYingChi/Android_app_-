@@ -206,19 +206,19 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
             } else if (verifyBottleBean.getData().getBottleWeight() == 50 && BottleCaculteUtil.getBottleNum(list, 50) >= Integer.valueOf(fiftyCount)) {
                 PopUtil.toastInBottom("50kg钢瓶已达到订单数");
                 //空瓶调拨出库单
-            } else if (TextUtils.equals(transferType,"0")&&verifyBottleBean.getData().getIsHeavy() == 1) {
+            } else if (TextUtils.equals(transferType,"0")&& verifyBottleBean.getData().getIsHeavy() == 1) {
                 list.add(verifyBottleBean);
                 adapter.notifyDataSetChanged();
                 fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5)));
                 fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15)));
                 fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50)));
 
-            } else if(TextUtils.equals(transferType,"0")&&verifyBottleBean.getData().getIsHeavy() == 0){
+            } else if(TextUtils.equals(transferType,"0")&& verifyBottleBean.getData().getIsHeavy() == 0){
                 PopUtil.toastInBottom("只能调拨空瓶出库");
-            }else if(TextUtils.equals(transferType,"1")&&verifyBottleBean.getData().getIsHeavy() == 1){
+            }else if(TextUtils.equals(transferType,"1")&& verifyBottleBean.getData().getIsHeavy() == 1){
                 PopUtil.toastInBottom("只能调拨重瓶入库");
             }  //重瓶调拨入库单
-            else if(TextUtils.equals(transferType,"1")&&verifyBottleBean.getData().getIsHeavy() == 0){
+            else if(TextUtils.equals(transferType,"1")&& verifyBottleBean.getData().getIsHeavy() == 0){
                 list.add(verifyBottleBean);
                 adapter.notifyDataSetChanged();
                 fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5)));

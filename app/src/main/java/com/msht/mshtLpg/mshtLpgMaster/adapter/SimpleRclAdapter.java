@@ -1,16 +1,13 @@
 package com.msht.mshtLpg.mshtLpgMaster.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 
 import java.util.List;

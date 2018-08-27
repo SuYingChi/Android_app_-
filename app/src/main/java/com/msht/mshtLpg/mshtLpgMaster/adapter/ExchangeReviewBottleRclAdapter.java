@@ -41,7 +41,7 @@ public class ExchangeReviewBottleRclAdapter extends RecyclerView.Adapter {
             ((ExhcnageHolder) holder).level.setText(list.get(position).getCorrosionType());
             ((ExhcnageHolder) holder).num.setText(list.get(position).getBottleCount()+"");
             ((ExhcnageHolder) holder).weight.setText(list.get(position).getBottleWeight()+"");
-            ((ExhcnageHolder) holder).year.setText(list.get(position).getBottleYear());
+            ((ExhcnageHolder) holder).year.setText(list.get(position).getYears()+"");
        }
     }
 

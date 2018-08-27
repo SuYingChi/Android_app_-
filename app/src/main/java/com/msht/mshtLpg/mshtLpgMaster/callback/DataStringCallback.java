@@ -1,9 +1,7 @@
 package com.msht.mshtLpg.mshtLpgMaster.callback;
 
 import android.text.TextUtils;
-import android.widget.Toast;
 
-import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IBaseView;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -12,8 +10,9 @@ import okhttp3.Request;
 public class DataStringCallback extends StringCallback {
 
     private  IBaseView iView;
+    protected boolean isResponseEmpty;
 
-   public DataStringCallback(IBaseView iView){
+    public DataStringCallback(IBaseView iView){
      this.iView = iView;
     }
 
@@ -33,6 +32,9 @@ public class DataStringCallback extends StringCallback {
 
     @Override
     public void onResponse(String s, int i) {
-       iView.dismissLoading();
+        iView.dismissLoading();
+       if(TextUtils.isEmpty(s)||TextUtils.equals("\"\"",s)){
+           isResponseEmpty = true;
+       }
     }
 }

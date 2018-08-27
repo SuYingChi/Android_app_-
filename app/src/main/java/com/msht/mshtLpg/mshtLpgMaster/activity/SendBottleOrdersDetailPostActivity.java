@@ -1,6 +1,5 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
@@ -32,7 +31,6 @@ import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailPostView;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailView;
 import com.yanzhenjie.permission.Permission;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,8 +52,6 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
     TextView tvElevator;
     @BindView(R.id.comman_topbar_user)
     TextView tvUser;
-    @BindView(R.id.comman_topbar_time)
-    TextView tvTime;
     @BindView(R.id.comman_topbar_day)
     TextView tvDay;
     @BindView(R.id.comman_topbar_telephone)
@@ -92,8 +88,6 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
     TextView tvDiscount;
     @BindView(R.id.dispatch_orders_time)
     TextView tvDispatchOrderTime;
-    @BindView(R.id.dispatch_bottle_time)
-    TextView tvDispatchBottleTime;
     @BindView(R.id.post_orders_v2_cost)
     TextView tvCost;
     @BindView(R.id.post_orders_v2_btn)
@@ -108,6 +102,8 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
     LinearLayout callBtn;
     @BindView(R.id.ll_deliver_fare)
     LinearLayout lldeliver;
+    @BindView(R.id.dispatch_bottle_time)
+    TextView tvDispatchBottleTime;
     private double exchangeFee;
     private String floor;
     private String isElevator;
@@ -298,19 +294,17 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         tvElevator.setText("1".equals(isElevator) ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTel.setText(orderDetailBean.getData().getMobile());
-        tvDay.setText(orderDetailBean.getData().getCreateDate());
-        tvTime.setText(orderDetailBean.getData().getAppointmentTime());
+        tvDay.setText(new StringBuilder().append("预约时间：").append(orderDetailBean.getData().getAppointmentTime()));
         if (TextUtils.isEmpty(orderDetailBean.getData().getRemarks())) {
-            tvComment.setVisibility(View.GONE);
+            tvComment.setVisibility(View.INVISIBLE);
         } else {
             tvComment.setVisibility(View.VISIBLE);
             tvComment.setText(new StringBuilder().append("内部备注：").append(orderDetailBean.getData().getRemarks()).toString());
         }
         tvOrderId.setText(orderId);
         tvDispatchOrderTime.setText(new StringBuilder().append("下单时间：").append(orderDetailBean.getData().getCreateDate()).toString());
-        tvDispatchBottleTime.setText(orderDetailBean.getData().getAppointmentTime());
         //iGasAndDepositPresenter.getGasAndDeposit();
-
+        tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(bean.getData().getAppointmentTime()));
 
         double fiveDeposite = bean.getData().getFiveDepositFee();
         double fifteenDeposite = bean.getData().getFifteenDepositFee();
@@ -332,21 +326,21 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         //押金
 
         if (remain5 == 0) {
-            llFiveDeposite.setVisibility(View.GONE);
+            llFiveDeposite.setVisibility(View.INVISIBLE);
         } else {
             llFiveDeposite.setVisibility(View.VISIBLE);
             fiveTotalDeposite = remain5 * fiveDeposite;
             tvFiveDeposite.setText(fiveTotalDeposite + "");
         }
         if (remain15 == 0) {
-            llFifteenDeposite.setVisibility(View.GONE);
+            llFifteenDeposite.setVisibility(View.INVISIBLE);
         } else {
             llFifteenDeposite.setVisibility(View.VISIBLE);
             fifteenteenTotalDeposite = remain15 * fifteenDeposite;
             tvFifteenDeposite.setText(fifteenteenTotalDeposite + "");
         }
         if (remain50 == 0) {
-            llFiftyDeposite.setVisibility(View.GONE);
+            llFiftyDeposite.setVisibility(View.INVISIBLE);
         } else {
             llFiftyDeposite.setVisibility(View.VISIBLE);
             fiftyTotalDeposite = remain50 * fiftyDeposite;
@@ -354,7 +348,7 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         }
         double totalDeposite = fiveTotalDeposite + fifteenteenTotalDeposite + fiftyTotalDeposite;
         if (totalDeposite == 0) {
-            llDepositFare.setVisibility(View.GONE);
+            llDepositFare.setVisibility(View.INVISIBLE);
         } else {
             llDepositFare.setVisibility(View.VISIBLE);
             totalfare += totalDeposite;

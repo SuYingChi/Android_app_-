@@ -16,6 +16,7 @@
         android:text="钢瓶规格"
         android:paddingBottom="@dimen/rcl_margin"
         android:paddingTop="@dimen/rcl_margin"
+
         />
 
     <TextView

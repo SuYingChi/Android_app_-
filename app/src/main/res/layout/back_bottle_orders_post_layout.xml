@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/line_color_lib"
     android:fitsSystemWindows="true"
     >
@@ -26,7 +29,7 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:src="@drawable/orders" />
 
         <TextView
@@ -247,8 +250,23 @@
     android:textColor="@color/lpg_text_light_color"
     android:textSize="14sp"
     android:layout_marginLeft="@dimen/margin"
-    android:layout_marginRight="@dimen/margin"
-    />
+    android:layout_marginRight="@dimen/margin"/>
+    <TextView
+        android:id="@+id/dispatch_bottle_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin"
+        android:paddingTop="@dimen/margin_Modules"
+        android:text="发货时间：2010-06-08 15:20"
+        android:textColor="@color/lpg_text_light_color"
+        android:textSize="14sp"
+        android:layout_below="@id/dispatch_orders_time"
+        />
     <Button
         android:id="@+id/hand_over_steel_bottle"
         android:layout_width="match_parent"
@@ -265,3 +283,4 @@
         android:layout_marginRight="@dimen/margin"
         />
 </RelativeLayout>
+</ScrollView>

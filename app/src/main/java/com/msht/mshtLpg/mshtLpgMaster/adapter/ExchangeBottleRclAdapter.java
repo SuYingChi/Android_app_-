@@ -192,7 +192,7 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
                     data.setmBottleModelList(modelList);
                     data.setmBottleYearsList(yearList);
                     data.setmBottleLevelList(levelList);
-                    data.setmSelectBottleModeIndex(0);
+                    data.setmSelectBottleModeIndex(1);
                     data.setmSelectBottleYearsIndex(0);
                     data.setSelectBottleLevelIndex(0);
                     data.setBottleNum(0);

@@ -29,6 +29,10 @@ public class ITransferToStorageListPresenter {
            public void onResponse(String s, int i) {
                //先继承再重写或重写覆盖请求错误的场景
                super.onResponse(s, i);
+               if(isResponseEmpty){
+                   iTransferToStorageView.onError("接口返回空字符串:");
+                   return;
+               }
                ErrorBean bean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
                if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
                    iTransferToStorageView.onError(bean.getMsg());
@@ -52,6 +56,10 @@ public class ITransferToStorageListPresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
+                if(isResponseEmpty){
+                    iTransferToStorageView.onError("接口返回空字符串:");
+                    return;
+                }
                 ErrorBean bean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
                     iTransferToStorageView.onError(bean.getMsg());

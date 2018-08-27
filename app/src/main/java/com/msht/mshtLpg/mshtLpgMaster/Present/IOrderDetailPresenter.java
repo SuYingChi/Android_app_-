@@ -29,6 +29,10 @@ public class IOrderDetailPresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
+                if(isResponseEmpty){
+                    iOrderDetailView.onError("接口返回空字符串:");
+                    return;
+                }
                 ErrorBean bean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
                     iOrderDetailView.onError(bean.getMsg());
@@ -48,6 +52,10 @@ public class IOrderDetailPresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
+                if(isResponseEmpty){
+                    iOrderDetailView.onError("接口返回空字符串:");
+                    return;
+                }
                 ErrorBean bean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
                     iSimpleOrderDetailView.onError(bean.getMsg());
@@ -68,13 +76,17 @@ public class IOrderDetailPresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                DeliveryBean bean = GsonUtil.getGson().fromJson(s, DeliveryBean.class);
+                if(isResponseEmpty){
+                    iOrderDetailView.onError("接口返回空字符串:");
+                    return;
+                }
+                ErrorBean bean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
                     iOrderDetailView.onError(bean.getMsg());
 
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
-
-                    iOrderDetailView.onGetFourDeliverySuccess(bean);
+                    DeliveryBean bean2 = GsonUtil.getGson().fromJson(s, DeliveryBean.class);
+                    iOrderDetailView.onGetFourDeliverySuccess(bean2);
                 }
             }
 
@@ -88,13 +100,17 @@ public class IOrderDetailPresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                DeliveryBean bean = GsonUtil.getGson().fromJson(s, DeliveryBean.class);
+                if(isResponseEmpty){
+                    iOrderDetailView.onError("接口返回空字符串:");
+                    return;
+                }
+                ErrorBean bean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
                     iOrderDetailView.onError(bean.getMsg());
 
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
-
-                    iOrderDetailView.onGetSixDeliverySuccess(bean);
+                    DeliveryBean bean2 = GsonUtil.getGson().fromJson(s, DeliveryBean.class);
+                    iOrderDetailView.onGetSixDeliverySuccess(bean2);
                 }
             }
 
@@ -109,13 +125,17 @@ public class IOrderDetailPresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                DeliveryBean bean = GsonUtil.getGson().fromJson(s, DeliveryBean.class);
+                if(isResponseEmpty){
+                    iOrderDetailView.onError("接口返回空字符串:");
+                    return;
+                }
+                ErrorBean bean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
                     iOrderDetailView.onError(bean.getMsg());
 
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
-
-                    iOrderDetailView.onGetFirstDeliverySuccess(bean);
+                    DeliveryBean bean2 = GsonUtil.getGson().fromJson(s, DeliveryBean.class);
+                    iOrderDetailView.onGetFirstDeliverySuccess(bean2);
                 }
             }
 
@@ -129,13 +149,17 @@ public class IOrderDetailPresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                DeliveryBean bean = GsonUtil.getGson().fromJson(s, DeliveryBean.class);
+                if(isResponseEmpty){
+                    iOrderDetailView.onError("接口返回空字符串:");
+                    return;
+                }
+                ErrorBean bean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
                     iOrderDetailView.onError(bean.getMsg());
 
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
-
-                    iOrderDetailView.onGetSecondDeliverySuccess(bean);
+                    DeliveryBean bean2 = GsonUtil.getGson().fromJson(s, DeliveryBean.class);
+                    iOrderDetailView.onGetSecondDeliverySuccess(bean2);
                 }
             }
 

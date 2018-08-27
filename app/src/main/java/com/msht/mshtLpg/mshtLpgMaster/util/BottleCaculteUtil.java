@@ -77,7 +77,7 @@ public class BottleCaculteUtil {
         return sf.toString();
     }
 
-    public static boolean checkBottleListbyOrderNum(List<VerifyBottleBean> list,int orderFiveNum,int orderFifteenNum,int orderFiftyNum) {
+    public static boolean checkBottleListbyOrderNum(List<VerifyBottleBean> list, int orderFiveNum, int orderFifteenNum, int orderFiftyNum) {
         if (BottleCaculteUtil.getBottleNum(list, 5) < orderFiveNum) {
             PopUtil.toastInBottom("5kg钢瓶未达到订单数");
             return false;

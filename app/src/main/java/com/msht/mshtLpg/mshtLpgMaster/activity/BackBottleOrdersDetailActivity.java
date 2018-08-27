@@ -1,13 +1,10 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,7 +27,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class BaclBottleOrdersDetailActivity extends BaseActivity implements ISimpleOrderDetailView, PermissionUtils.PermissionRequestFinishListener {
+public class BackBottleOrdersDetailActivity extends BaseActivity implements ISimpleOrderDetailView, PermissionUtils.PermissionRequestFinishListener {
     @BindView(R.id.return_btn)
     ImageView returnBtn;
     @BindView(R.id.location)
@@ -45,8 +42,6 @@ public class BaclBottleOrdersDetailActivity extends BaseActivity implements ISim
     ImageView callBtn;
     @BindView(R.id.comman_topbar_day)
     TextView tvDay;
-    @BindView(R.id.comman_topbar_time)
-    TextView tvTime;
     @BindView(R.id.comman_topbar_comment)
     TextView tvComment;
     @BindView(R.id.five_gas)
@@ -63,6 +58,8 @@ public class BaclBottleOrdersDetailActivity extends BaseActivity implements ISim
     Button handOverSteelBottle;
     @BindView(R.id.tv_orderid)
     TextView tvOrderId;
+    @BindView(R.id.dispatch_bottle_time)
+    TextView tvDispatchBottleTime;
     private String orderId;
     private Unbinder unbinder;
 
@@ -87,7 +84,7 @@ public class BaclBottleOrdersDetailActivity extends BaseActivity implements ISim
                 PopUtil.showTipsDialog(this, "拨打电话", "请确认是否要拨打电话" + tvTelephone.getText().toString(), "取消", "确认", null, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        PermissionUtils.requestPermissions(BaclBottleOrdersDetailActivity.this,BaclBottleOrdersDetailActivity.this, Permission.CALL_PHONE);
+                        PermissionUtils.requestPermissions(BackBottleOrdersDetailActivity.this,BackBottleOrdersDetailActivity.this, Permission.CALL_PHONE);
                     }
                 });
                 break;
@@ -108,8 +105,8 @@ public class BaclBottleOrdersDetailActivity extends BaseActivity implements ISim
         tvElevator.setText(bean.getData().getIsElevator() == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(bean.getData().getBuyer()).append(bean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTelephone.setText(bean.getData().getMobile());
-        tvDay.setText(bean.getData().getCreateDate());
-        tvTime.setText(bean.getData().getAppointmentTime());
+        tvDay.setText(new StringBuilder().append("预约时间：").append(bean.getData().getAppointmentTime()));
+        tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(bean.getData().getAppointmentTime()));
         tvComment.setText(new StringBuilder().append("内部备注：").append(bean.getData().getRemarks()).toString());
         String retriveId = bean.getData().getOrderId() + "";
         tvOrderId.setText(retriveId);

@@ -42,8 +42,6 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
     TextView tvElevator;
     @BindView(R.id.comman_topbar_user)
     TextView tvUser;
-    @BindView(R.id.comman_topbar_time)
-    TextView tvTime;
     @BindView(R.id.comman_topbar_day)
     TextView tvDay;
     @BindView(R.id.comman_topbar_telephone)
@@ -92,6 +90,8 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
     LinearLayout callBtn;
     @BindView(R.id.ll_deliver_fare)
     LinearLayout lldeliver;
+    @BindView(R.id.pay_time)
+    TextView tvPayTime;
     private String orderId;
     private double fiveTotalDeposite;
     private double fifteenteenTotalDeposite;
@@ -103,13 +103,6 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
     private boolean isGetSixDeliverySuccess = false;
     private boolean isGetFirstDeliverySuccess  =false;
     private boolean isGetSecondDeliverySuccess = false;
-    private double fiveDeliveryFee;
-    private double fifteenDeliveryFee;
-    private double fiftyDeliveryFee;
-    private double totalFiveDelivery;
-    private double totalFifteenDelivery;
-    private double totalFiftyDelivery;
-    private double totalDeliveryfare;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -144,13 +137,13 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
         tvElevator.setText(isElevator == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTel.setText(orderDetailBean.getData().getMobile());
-        tvDay.setText(orderDetailBean.getData().getCreateDate());
-        tvTime.setText(orderDetailBean.getData().getAppointmentTime());
+        tvDay.setText(new StringBuilder().append("预约时间：").append(orderDetailBean.getData().getAppointmentTime()));
         tvComment.setText(new StringBuilder().append("内部备注：").append(orderDetailBean.getData().getRemarks()).toString());
         orderId = orderDetailBean.getData().getOrderId()+"";
         tvOrderId.setText(orderId + "");
         tvDispatchOrderTime.setText(new StringBuilder().append("下单时间：").append(orderDetailBean.getData().getCreateDate()).toString());
-        tvDispatchBottleTime.setText(orderDetailBean.getData().getAppointmentTime());
+        tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(orderDetailBean.getData().getAppointmentTime()));
+        tvPayTime.setText(new StringBuilder().append("付款时间：").append(""));
         //气价
         double fiveGasFee = orderDetailBean.getData().getFiveBottleCount() * orderDetailBean.getData().getFiveGasFee();
         tvFiveGas.setText(fiveGasFee + "");
@@ -164,7 +157,7 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
         //押金
         int remain5 = orderDetailBean.getData().getFiveBottleCount() - orderDetailBean.getData().getReFiveBottleCount();
         if (remain5 == 0) {
-            llFiveDeposite.setVisibility(View.GONE);
+            llFiveDeposite.setVisibility(View.INVISIBLE);
         } else {
             llFiveDeposite.setVisibility(View.VISIBLE);
             fiveTotalDeposite = remain5 * orderDetailBean.getData().getFiveDepositFee();
@@ -172,7 +165,7 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
         }
         int remain15 = orderDetailBean.getData().getFifteenBottleCount() - orderDetailBean.getData().getReFifteenBottleCount();
         if (remain15 == 0) {
-            llFifteenDeposite.setVisibility(View.GONE);
+            llFifteenDeposite.setVisibility(View.INVISIBLE);
         } else {
             llFifteenDeposite.setVisibility(View.VISIBLE);
             fifteenteenTotalDeposite = remain15 * orderDetailBean.getData().getFifteenDepositFee();
@@ -180,7 +173,7 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
         }
         int remain50 = orderDetailBean.getData().getFiftyBottleCount() - orderDetailBean.getData().getReFiftyBottleCount();
         if (remain50 == 0) {
-            llFiftyDeposite.setVisibility(View.GONE);
+            llFiftyDeposite.setVisibility(View.INVISIBLE);
         } else {
             llFiftyDeposite.setVisibility(View.VISIBLE);
             fiftyTotalDeposite = remain50 * orderDetailBean.getData().getFiftyDepositFee();
@@ -188,19 +181,20 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
         }
         double totalDeposite = fiveTotalDeposite + fifteenteenTotalDeposite + fiftyTotalDeposite;
         if (totalDeposite == 0) {
-            llDepositFare.setVisibility(View.GONE);
+            llDepositFare.setVisibility(View.INVISIBLE);
         } else {
             llDepositFare.setVisibility(View.VISIBLE);
             tvDepositeFee.setText(totalDeposite + "");
         }
         //运费
+        double fiveDeliveryFee;
+        double fifteenDeliveryFee;
+        double fiftyDeliveryFee;
+        double totalFiveDelivery;
+        double totalFifteenDelivery;
+        double totalFiftyDelivery;
+        double totalDeliveryfare;
         if(orderDetailBean.getData().getIsDelivery()==1) {
-            fiveDeliveryFee = 0;
-            fifteenDeliveryFee = 0;
-            fiftyDeliveryFee = 0;
-            totalFiveDelivery = 0;
-            totalFifteenDelivery = 0;
-            totalFiftyDelivery =0;
             totalDeliveryfare = 0;
         }else {
              fiveDeliveryFee = orderDetailBean.getData().getFiveDeliveryFee();
@@ -214,7 +208,7 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
         tvDeliverFee.setText(totalDeliveryfare + "");
         double exchange = orderDetailBean.getData().getRetrieveAmount();
         if(exchange ==0){
-            llDiscount.setVisibility(View.GONE);
+            llDiscount.setVisibility(View.INVISIBLE);
         }else {
             tvDiscount.setText(exchange +"");
         }

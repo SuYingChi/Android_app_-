@@ -33,6 +33,10 @@ public class IPostTransferPresenter {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
                 ErrorBean errorBean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
+                if(isResponseEmpty){
+                    iPostTransferView.onError("接口返回空字符串:");
+                    return;
+                }
                 if (!TextUtils.isEmpty(errorBean.getResult()) && TextUtils.equals(errorBean.getResult(), "fail")) {
                     iPostTransferView.onError(errorBean.getMsg());
 

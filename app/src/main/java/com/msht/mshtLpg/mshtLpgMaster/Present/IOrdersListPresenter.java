@@ -31,6 +31,10 @@ public class IOrdersListPresenter {
             public void onResponse(String s, int i) {
                 //先继承,diss对话框，再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
+                if(isResponseEmpty){
+                    iOrderView.onError("接口返回空字符串:");
+                    return;
+                }
                 ErrorBean errorBean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
                 if (errorBean !=null&&!TextUtils.isEmpty(errorBean.getResult()) && TextUtils.equals(errorBean.getResult(), "fail")) {
                     iOrderView.onError(errorBean.getMsg());

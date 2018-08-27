@@ -33,10 +33,12 @@ public class ILogoutPresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
+                if(isResponseEmpty){
+                    iView.onError("接口返回空字符串:");
+                    return;
+                }
                 ErrorBean bean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
-                if(bean==null){
-                    iView.onError("登出返回结果为空");
-                } else  if ((!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail"))) {
+                 if ((!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail"))) {
                     iView.onError(bean.getMsg());
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
                       iView.onLogout();

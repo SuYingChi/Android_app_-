@@ -23,7 +23,11 @@ public class GetQRcodeImageUrlPresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                if (s.contains("success")) {
+                if(isResponseEmpty){
+                    iGetPayQRcodeView.onError("接口返回空字符串:");
+                    return;
+                }
+                 if (s.contains("success")) {
                     GetPayQRCodeBean bean = GsonUtil.getGson().fromJson(s, GetPayQRCodeBean.class);
                   iGetPayQRcodeView.getHandler().post(new Runnable() {
                         @Override

@@ -52,8 +52,6 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
     TextView tvElevator;
     @BindView(R.id.comman_topbar_user)
     TextView tvUser;
-    @BindView(R.id.comman_topbar_time)
-    TextView tvTime;
     @BindView(R.id.comman_topbar_day)
     TextView tvDay;
     @BindView(R.id.comman_topbar_telephone)
@@ -116,7 +114,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
     private String orderType;
     private String payType;
     private Unbinder unbinder;
-    private Context mContext;
+
     private DeliverFareDialog deliverFareDialog;
     private Map<String, String> map = new HashMap<String, String>();
     private boolean isGetFourDeliverySuccess = false;
@@ -125,20 +123,12 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
     private boolean isGetSecondDeliverySuccess = false;
     private ICashPayPresenter iCashPayPresenter;
     private String channel = 1 + "";
-    private double fiveDeliveryFee;
-    private double fifteenDeliveryFee;
-    private double fiftyDeliveryFee;
-    private double totalFiveDelivery;
-    private double totalFifteenDelivery;
-    private double totalFiftyDelivery;
-    private double totalDeliveryfare;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pay_orders);
         unbinder = ButterKnife.bind(this);
-        mContext = this;
         //从首页订单列表跳转过来
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
@@ -176,13 +166,12 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         tvElevator.setText(isElevator == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTel.setText(orderDetailBean.getData().getMobile());
-        tvDay.setText(orderDetailBean.getData().getCreateDate());
-        tvTime.setText(orderDetailBean.getData().getAppointmentTime());
+        tvDay.setText(new StringBuilder().append("预约时间：").append(orderDetailBean.getData().getAppointmentTime()).toString());
         tvComment.setText(new StringBuilder().append("内部备注：").append(orderDetailBean.getData().getRemarks()).toString());
         orderId = orderDetailBean.getData().getOrderId() + "";
         tvOrderId.setText(orderId);
         tvDispatchOrderTime.setText(new StringBuilder().append("下单时间：").append(orderDetailBean.getData().getCreateDate()).toString());
-        tvDispatchBottleTime.setText(orderDetailBean.getData().getAppointmentTime());
+        tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(orderDetailBean.getData().getAppointmentTime()));
         //气价
         double fiveGasFee = orderDetailBean.getData().getFiveBottleCount() * orderDetailBean.getData().getFiveGasFee();
         tvFiveGas.setText(fiveGasFee + "");
@@ -196,7 +185,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         //押金
         int remain5 = orderDetailBean.getData().getFiveBottleCount() - orderDetailBean.getData().getReFiveBottleCount();
         if (remain5 == 0) {
-            llFiveDeposite.setVisibility(View.GONE);
+            llFiveDeposite.setVisibility(View.INVISIBLE);
         } else {
             llFiveDeposite.setVisibility(View.VISIBLE);
             fiveTotalDeposite = remain5 * orderDetailBean.getData().getFiveDepositFee();
@@ -204,7 +193,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         }
         int remain15 = orderDetailBean.getData().getFifteenBottleCount() - orderDetailBean.getData().getReFifteenBottleCount();
         if (remain15 == 0) {
-            llFifteenDeposite.setVisibility(View.GONE);
+            llFifteenDeposite.setVisibility(View.INVISIBLE);
         } else {
             llFifteenDeposite.setVisibility(View.VISIBLE);
             fifteenteenTotalDeposite = remain15 * orderDetailBean.getData().getFifteenDepositFee();
@@ -212,7 +201,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         }
         int remain50 = orderDetailBean.getData().getFiftyBottleCount() - orderDetailBean.getData().getReFiftyBottleCount();
         if (remain50 == 0) {
-            llFiftyDeposite.setVisibility(View.GONE);
+            llFiftyDeposite.setVisibility(View.INVISIBLE);
         } else {
             llFiftyDeposite.setVisibility(View.VISIBLE);
             fiftyTotalDeposite = remain50 * orderDetailBean.getData().getFiftyDepositFee();
@@ -220,19 +209,20 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         }
         double totalDeposite = fiveTotalDeposite + fifteenteenTotalDeposite + fiftyTotalDeposite;
         if (totalDeposite == 0) {
-            llDepositFare.setVisibility(View.GONE);
+            llDepositFare.setVisibility(View.INVISIBLE);
         } else {
             llDepositFare.setVisibility(View.VISIBLE);
             tvDepositeFee.setText(totalDeposite + "");
         }
         //运费
+        double fiveDeliveryFee;
+        double fifteenDeliveryFee;
+        double fiftyDeliveryFee;
+        double totalFiveDelivery;
+        double totalFifteenDelivery;
+        double totalFiftyDelivery;
+        double totalDeliveryfare;
         if(orderDetailBean.getData().getIsDelivery()==1) {
-            fiveDeliveryFee = 0;
-            fifteenDeliveryFee = 0;
-            fiftyDeliveryFee = 0;
-            totalFiveDelivery = 0;
-            totalFifteenDelivery = 0;
-            totalFiftyDelivery =0;
             totalDeliveryfare = 0;
         }else {
             fiveDeliveryFee = orderDetailBean.getData().getFiveDeliveryFee();
@@ -443,7 +433,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         TextView tvTitle = (TextView) layout.findViewById(R.id.tv_title);
         tvTitle.setText(title);
         if (TextUtils.isEmpty(title)) {
-            tvTitle.setVisibility(View.GONE);
+            tvTitle.setVisibility(View.INVISIBLE);
         }
         tel_dialog.show();
         tel_dialog.getWindow().setContentView(layout);

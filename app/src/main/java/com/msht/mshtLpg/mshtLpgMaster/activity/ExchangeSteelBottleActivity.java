@@ -34,6 +34,8 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
     TextView saveBtn;
     @BindView(R.id.discount_cost)
     TextView tvTotalDiscount;
+    @BindView(R.id.level)
+    TextView tvLevel;
     private ArrayList<ExchangeRclBean> dataList;
     private IExchangeSteelBottlePresenter iExchangeSteelBottlePresenter;
     private double bottlePrice = 0;
@@ -105,6 +107,12 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
                         finish();
                     }
                 });
+            }
+        });
+        tvLevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopUtil.showExchangeBottleTipsDialog(ExchangeSteelBottleActivity.this);
             }
         });
     }

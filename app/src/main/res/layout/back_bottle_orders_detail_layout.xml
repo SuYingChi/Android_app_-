@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/line_color_lib"
-    android:fitsSystemWindows="true"
-    >
+    android:fitsSystemWindows="true">
 
     <include layout="@layout/item_orders_detail_command_topbar" />
 
@@ -13,20 +15,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/orders_detail_command_top_id"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         android:layout_marginTop="@dimen/margin_Modules"
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/margin_Modules"
         android:paddingLeft="@dimen/margin"
         android:paddingRight="@dimen/margin"
-        android:paddingTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin"
-        android:layout_marginRight="@dimen/margin"
-        >
+        android:paddingTop="@dimen/margin_Modules">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:src="@drawable/orders" />
 
         <TextView
@@ -69,16 +70,15 @@
         android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
         android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
         android:layout_below="@id/orders_status"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         android:layout_marginTop="0.5dp"
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/margin_Modules"
         android:paddingLeft="@dimen/margin"
         android:paddingRight="@dimen/margin"
-        android:paddingTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin"
-        android:layout_marginRight="@dimen/margin"
-        >
+        android:paddingTop="@dimen/margin_Modules">
 
         <TextView
             android:layout_width="wrap_content"
@@ -112,16 +112,15 @@
         android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
         android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
         android:layout_below="@id/orders_detail_five_kg"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         android:layout_marginTop="0.5dp"
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/margin_Modules"
         android:paddingLeft="@dimen/margin"
         android:paddingRight="@dimen/margin"
-        android:paddingTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin"
-        android:layout_marginRight="@dimen/margin"
-        >
+        android:paddingTop="@dimen/margin_Modules">
 
         <TextView
             android:layout_width="wrap_content"
@@ -155,16 +154,15 @@
         android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
         android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
         android:layout_below="@id/orders_detail_fifteen"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         android:layout_marginTop="0.5dp"
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/margin_Modules"
         android:paddingLeft="@dimen/margin"
         android:paddingRight="@dimen/margin"
-        android:paddingTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin"
-        android:layout_marginRight="@dimen/margin"
-        >
+        android:paddingTop="@dimen/margin_Modules">
 
         <TextView
             android:layout_width="wrap_content"
@@ -199,16 +197,15 @@
         android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
         android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
         android:layout_below="@id/orders_detail_fifty_kg"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         android:layout_marginTop="0.5dp"
         android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/margin_Modules"
         android:paddingLeft="@dimen/margin"
         android:paddingRight="@dimen/margin"
-        android:paddingTop="@dimen/margin_Modules"
-        android:layout_marginLeft="@dimen/margin"
-        android:layout_marginRight="@dimen/margin"
-        >
+        android:paddingTop="@dimen/margin_Modules">
 
         <View
             android:layout_width="match_parent"
@@ -233,22 +230,36 @@
     </LinearLayout>
 
     <TextView
-    android:id="@+id/dispatch_orders_time"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
-    android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
-    android:layout_below="@id/total_cost"
-    android:layout_marginTop="@dimen/margin_Modules"
-    android:background="@color/white"
-    android:paddingBottom="@dimen/margin_Modules"
-    android:paddingTop="@dimen/margin_Modules"
-    android:text="下单时间：2010-06-08 15:20"
-    android:textColor="@color/lpg_text_light_color"
-        android:textSize="@dimen/text_16"
-    android:layout_marginLeft="@dimen/margin"
-    android:layout_marginRight="@dimen/margin"
-    />
+        android:id="@+id/dispatch_orders_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_below="@id/total_cost"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:layout_marginTop="@dimen/margin_Modules"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:text="下单时间：2010-06-08 15:20"
+        android:textColor="@color/lpg_text_light_color"
+        android:textSize="@dimen/text_16" />
+    <TextView
+        android:id="@+id/dispatch_bottle_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
+        android:layout_below="@id/dispatch_orders_time"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/margin_Modules"
+        android:paddingTop="@dimen/margin_Modules"
+        android:text="发货时间：2010-06-08 15:20"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:textColor="@color/lpg_text_light_color"
+        android:textSize="@dimen/text_16" />
     <Button
         android:id="@+id/hand_over_steel_bottle"
         android:layout_width="match_parent"
@@ -256,12 +267,12 @@
         android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
         android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
         android:layout_below="@id/dispatch_orders_time"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
         android:layout_marginTop="@dimen/margin_Modules"
         android:background="@color/msb_color"
         android:text="退还钢瓶"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_16"
-        android:layout_marginLeft="@dimen/margin"
-        android:layout_marginRight="@dimen/margin"
-        />
+        android:textSize="@dimen/text_16" />
 </RelativeLayout>
+    </ScrollView>

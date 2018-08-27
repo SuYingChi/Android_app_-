@@ -2,7 +2,6 @@ package com.msht.mshtLpg.mshtLpgMaster.Present;
 
 import android.text.TextUtils;
 
-import com.msht.mshtLpg.mshtLpgMaster.Bean.InnerFetchVerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.ScanInnerFetchBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.VerifyBottleBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.ErrorBean;

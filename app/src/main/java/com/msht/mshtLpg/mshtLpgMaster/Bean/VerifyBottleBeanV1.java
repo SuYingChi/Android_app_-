@@ -2,11 +2,12 @@ package com.msht.mshtLpg.mshtLpgMaster.Bean;
 
 import java.io.Serializable;
 
-public class VerifyBottleBean implements Serializable {
+public class VerifyBottleBeanV1 implements Serializable{
+
     /**
      * result : success
      * msg : 钢瓶验证成功
-     * data : {"id":1,"ids":"","isScrap":1,"isHeavy":0,"siteId":"","bottleCode":"8880000001","bottleNum":"mmmm0","bottleWeight":15,"producer":"浙江tt瓶厂","propertyUnit":"海南民生液化气有限公司","createTime":"2018-08","checkTime":"","lastCheckTime":"","nextCheckTime":"2022-08","checkStatus":0,"discardTime":"","status":1,"stationId":"","trackId":"","employeeId":"","employeeName":"","userId":"","orderId":"","deliveryBottleIds":"","recycleBottleIds":"","builder":"系统","bottleDownloadUrl":"","useDays":"","fillsite":"","filltime":"","fillweight":"","startDate":"","endDate":""}
+     * data : {"id":210,"ids":"","isScrap":1,"isHeavy":0,"siteId":2,"bottleCode":"88889052","bottleNum":"","bottleWeight":50,"producer":"厂家13","propertyUnit":"","createTime":"2018-07-30","checkTime":"","lastCheckTime":"","nextCheckTime":"","checkStatus":0,"discardTime":"","status":3,"stationId":"","trackId":"","employeeId":"","employeeName":"","userId":"","orderId":"","deliveryBottleIds":"","recycleBottleIds":"","builder":"客服系统-超级管理员","bottleDownloadUrl":"http://lpg-code.oss-cn-shenzhen.aliyuncs.com/barcode/88889052_label.png","useDays":""}
      */
 
     private String result;
@@ -39,23 +40,23 @@ public class VerifyBottleBean implements Serializable {
 
     public static class DataBean implements Serializable{
         /**
-         * id : 1
+         * id : 210
          * ids :
          * isScrap : 1
          * isHeavy : 0
-         * siteId :
-         * bottleCode : 8880000001
-         * bottleNum : mmmm0
-         * bottleWeight : 15
-         * producer : 浙江tt瓶厂
-         * propertyUnit : 海南民生液化气有限公司
-         * createTime : 2018-08
+         * siteId : 2
+         * bottleCode : 88889052
+         * bottleNum :
+         * bottleWeight : 50
+         * producer : 厂家13
+         * propertyUnit :
+         * createTime : 2018-07-30
          * checkTime :
          * lastCheckTime :
-         * nextCheckTime : 2022-08
+         * nextCheckTime :
          * checkStatus : 0
          * discardTime :
-         * status : 1
+         * status : 3
          * stationId :
          * trackId :
          * employeeId :
@@ -64,14 +65,9 @@ public class VerifyBottleBean implements Serializable {
          * orderId :
          * deliveryBottleIds :
          * recycleBottleIds :
-         * builder : 系统
-         * bottleDownloadUrl :
+         * builder : 客服系统-超级管理员
+         * bottleDownloadUrl : http://lpg-code.oss-cn-shenzhen.aliyuncs.com/barcode/88889052_label.png
          * useDays :
-         * fillsite :
-         * filltime :
-         * fillweight :
-         * startDate :
-         * endDate :
          */
 
         private int id;
@@ -102,11 +98,6 @@ public class VerifyBottleBean implements Serializable {
         private String builder;
         private String bottleDownloadUrl;
         private String useDays;
-        private String fillsite;
-        private String filltime;
-        private String fillweight;
-        private String startDate;
-        private String endDate;
 
         public int getId() {
             return id;
@@ -331,45 +322,6 @@ public class VerifyBottleBean implements Serializable {
         public void setUseDays(String useDays) {
             this.useDays = useDays;
         }
-
-        public String getFillsite() {
-            return fillsite;
-        }
-
-        public void setFillsite(String fillsite) {
-            this.fillsite = fillsite;
-        }
-
-        public String getFilltime() {
-            return filltime;
-        }
-
-        public void setFilltime(String filltime) {
-            this.filltime = filltime;
-        }
-
-        public String getFillweight() {
-            return fillweight;
-        }
-
-        public void setFillweight(String fillweight) {
-            this.fillweight = fillweight;
-        }
-
-        public String getStartDate() {
-            return startDate;
-        }
-
-        public void setStartDate(String startDate) {
-            this.startDate = startDate;
-        }
-
-        public String getEndDate() {
-            return endDate;
-        }
-
-        public void setEndDate(String endDate) {
-            this.endDate = endDate;
-        }
     }
+
 }

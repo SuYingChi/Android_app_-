@@ -2,19 +2,19 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="ring"
-               android:innerRadius="10dp"
-               android:thickness="1dp"
-               android:useLevel="false">
-            <apkSize android:height="20dp" android:width="25dp"/>
+            android:innerRadius="10dp"
+            android:thickness="1dp"
+            android:useLevel="false">
+            <size android:height="20dp" android:width="25dp"/>
             <solid android:color="@color/colorPrimary"/>
         </shape>
     </item>
     <item>
         <shape android:shape="ring"
-               android:innerRadius="0dp"
-               android:thickness="8dp"
-               android:useLevel="false">
-            <apkSize android:height="10dp" android:width="10dp"/>
+            android:innerRadius="0dp"
+            android:thickness="8dp"
+            android:useLevel="false">
+            <size android:height="10dp" android:width="10dp"/>
             <solid android:color="@color/colorPrimary"/>
         </shape>
     </item>

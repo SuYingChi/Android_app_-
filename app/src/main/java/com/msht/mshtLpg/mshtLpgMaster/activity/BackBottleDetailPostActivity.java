@@ -1,13 +1,10 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -51,8 +48,6 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
     ImageView callBtn;
     @BindView(R.id.comman_topbar_day)
     TextView tvDay;
-    @BindView(R.id.comman_topbar_time)
-    TextView tvTime;
     @BindView(R.id.comman_topbar_comment)
     TextView tvComment;
     @BindView(R.id.five_gas)
@@ -71,6 +66,8 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
     LinearLayout clientInfo;
     @BindView(R.id.hand_over_steel_bottle)
     Button btnSava;
+    @BindView(R.id.dispatch_bottle_time)
+    TextView tvDispatchBottleTime;
     private List<VerifyBottleBean> backBottleList;
     private String orderId;
     private Unbinder unbinder;
@@ -108,7 +105,12 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
         Intent intent;
         switch (view.getId()) {
             case R.id.return_btn:
-                finish();
+                PopUtil.showTipsDialog(BackBottleDetailPostActivity.this, "放弃订单", "确认放弃提交该订单", "取消", "确认", null, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
                 break;
             case R.id.comman_topbar_call_phone_btn:
                 PopUtil.showTipsDialog(this, "拨打电话", "请确认是否要拨打电话" + tvTelephone.getText().toString(), "取消", "确认", null, new View.OnClickListener() {
@@ -159,8 +161,7 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
         tvElevator.setText(isElevator.equals(1 + "") ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(bean.getData().getBuyer()).append(bean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTelephone.setText(bean.getData().getMobile());
-        tvDay.setText(bean.getData().getCreateDate());
-        tvTime.setText(bean.getData().getAppointmentTime());
+        tvDay.setText(new StringBuilder().append("预约时间：").append(bean.getData().getAppointmentTime()));
         tvComment.setText(new StringBuilder().append("内部备注：").append(bean.getData().getRemarks()).toString());
         tvOrderId.setText(orderId);
         orderFive = bean.getData().getReFiveBottleCount() +"";
@@ -174,9 +175,8 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
         fifteenFee.setText(fifteenDeposite);
         fiftyFee.setText(fiftyDeposite);
         totalFee.setText(bean.getData().getRealAmount()+"");
-
         dispatchOrdersTime.setText(new StringBuilder().append("下单时间：").append(bean.getData().getCreateDate()).toString());
-
+        tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(bean.getData().getAppointmentTime()));
     }
 
     @Override
