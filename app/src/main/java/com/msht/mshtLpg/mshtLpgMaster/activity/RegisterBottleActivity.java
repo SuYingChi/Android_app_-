@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class RegisterBottleActivity extends BaseActivity implements  PermissionUtils.PermissionRequestFinishListener{
+public class RegisterBottleActivity extends BaseActivity implements PermissionUtils.PermissionRequestFinishListener {
     private static final String TAG = RegisterBottleActivity.class.getSimpleName();
     @BindView(R.id.fl_my_container)
     FrameLayout framContainer;
@@ -31,7 +31,6 @@ public class RegisterBottleActivity extends BaseActivity implements  PermissionU
     private Unbinder unbinder;
     private FragmentTransaction transaction;
     private MyScanRegisterBottleFragment registerBottleFragment;
-
 
 
     @Override
@@ -42,8 +41,6 @@ public class RegisterBottleActivity extends BaseActivity implements  PermissionU
         unbinder = ButterKnife.bind(this);
         PermissionUtils.requestPermissions(this, this, Permission.CAMERA);
     }
-
-
 
 
     @Override
@@ -71,7 +68,7 @@ public class RegisterBottleActivity extends BaseActivity implements  PermissionU
                 }
             }
         });
-        AppUtil.showFragment(registerBottleFragment,getSupportFragmentManager());
+        AppUtil.showFragment(registerBottleFragment, getSupportFragmentManager());
     }
 
     @Override

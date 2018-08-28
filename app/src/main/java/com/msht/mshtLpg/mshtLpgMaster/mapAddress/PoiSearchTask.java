@@ -10,26 +10,30 @@ import com.msht.mshtLpg.mshtLpgMaster.Bean.LocationBean;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.PoiAdapter;
 
 import java.util.ArrayList;
+
 /**
  * Demo class
  * 〈一句话功能简述〉
  * 〈功能详细描述〉
+ *
  * @author hong
  * @date 2018/7/31  
  */
-public class PoiSearchTask implements PoiSearch.OnPoiSearchListener{
+public class PoiSearchTask implements PoiSearch.OnPoiSearchListener {
 
     private static PoiSearchTask mInstance;
     private PoiAdapter mAdapter;
     private PoiSearch mSearch;
     private Context mContext;
-    private PoiSearchTask(Context context){
+
+    private PoiSearchTask(Context context) {
         this.mContext = context;
     }
-    public static PoiSearchTask getInstance(Context context){
-        if(mInstance == null){
+
+    public static PoiSearchTask getInstance(Context context) {
+        if (mInstance == null) {
             synchronized (PoiSearchTask.class) {
-                if(mInstance == null){
+                if (mInstance == null) {
                     mInstance = new PoiSearchTask(context);
                 }
             }
@@ -37,12 +41,12 @@ public class PoiSearchTask implements PoiSearch.OnPoiSearchListener{
         return mInstance;
     }
 
-    public PoiSearchTask setAdapter(PoiAdapter adapter){
+    public PoiSearchTask setAdapter(PoiAdapter adapter) {
         this.mAdapter = adapter;
         return this;
     }
 
-    public void onSearch(String key, String city,double lat,double lng){
+    public void onSearch(String key, String city, double lat, double lng) {
         // 第一个参数表示搜索字符串，第二个参数表示poi搜索类型，第三个参数表示poi搜索区域（空字符串代表全国）
         PoiSearch.Query query = new PoiSearch.Query(key, "", city);
         mSearch = new PoiSearch(mContext, query);
@@ -53,9 +57,10 @@ public class PoiSearchTask implements PoiSearch.OnPoiSearchListener{
         //查询POI异步接口
         mSearch.searchPOIAsyn();
     }
+
     @Override
     public void onPoiSearched(PoiResult poiResult, int rCode) {
-        if(rCode == 1000) {
+        if (rCode == 1000) {
             if (poiResult != null && poiResult.getQuery() != null) {
                 ArrayList<LocationBean> datas = new ArrayList<>();
                 ArrayList<PoiItem> items = poiResult.getPois();
@@ -66,20 +71,21 @@ public class PoiSearchTask implements PoiSearch.OnPoiSearchListener{
                     double lat = llp.getLatitude();
                     //获取标题
                     String title = item.getTitle();
-                    String mCity=item.getCityName();
-                    String mArea=item.getBusinessArea();
+                    String mCity = item.getCityName();
+                    String mArea = item.getBusinessArea();
                     //获取内容
-                    String mContent=item.getProvinceName()+item.getCityName()
-                            +item.getAdName()
-                            +item.getSnippet();
+                    String mContent = item.getProvinceName() + item.getCityName()
+                            + item.getAdName()
+                            + item.getSnippet();
                     String text = item.getSnippet();
-                    datas.add(new LocationBean(lon, lat, title, mContent,mCity,mArea));
+                    datas.add(new LocationBean(lon, lat, title, mContent, mCity, mArea));
                 }
                 mAdapter.setData(datas);
                 mAdapter.notifyDataSetChanged();
             }
         }
     }
+
     @Override
     public void onPoiItemSearched(PoiItem poiItem, int i) {
 

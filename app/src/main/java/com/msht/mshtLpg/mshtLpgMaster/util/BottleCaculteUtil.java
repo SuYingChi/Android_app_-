@@ -21,6 +21,7 @@ public class BottleCaculteUtil {
         }
         return num;
     }
+
     public static int getMyBottleNum(List<MyBottleListBean.DataBean.ListBean> list, int weight) {
         int num = 0;
         for (MyBottleListBean.DataBean.ListBean bean : list) {
@@ -30,6 +31,7 @@ public class BottleCaculteUtil {
         }
         return num;
     }
+
     public static boolean isContainBottle(List<VerifyBottleBean> list, String bottleCode) {
         for (VerifyBottleBean bean : list) {
             if (bean.getData().getBottleCode().equals(bottleCode)) {
@@ -52,11 +54,11 @@ public class BottleCaculteUtil {
 
         for (OrderDetailBean.DataBean.DepositListBean depositListBean : list) {
             if (depositListBean.getBottleWeight() == weight) {
-                if(weight == 5){
+                if (weight == 5) {
                     deposite += depositListBean.getReFiveAmount();
-                }else if(weight == 15){
+                } else if (weight == 15) {
                     deposite += depositListBean.getReFifteenAmount();
-                }else if(weight == 50){
+                } else if (weight == 50) {
                     deposite += depositListBean.getReFiftyAmount();
                 }
             }
@@ -65,12 +67,12 @@ public class BottleCaculteUtil {
         return deposite + "";
     }
 
-    public static String getBottleIds(List<VerifyBottleBean> list){
+    public static String getBottleIds(List<VerifyBottleBean> list) {
         StringBuilder sf = new StringBuilder();
-        for(int i = 0; i< list.size(); i++){
-            if(i==0){
+        for (int i = 0; i < list.size(); i++) {
+            if (i == 0) {
                 sf.append(list.get(i).getData().getId());
-            }else {
+            } else {
                 sf.append(",").append(list.get(i).getData().getId());
             }
         }
@@ -87,7 +89,7 @@ public class BottleCaculteUtil {
         } else if (BottleCaculteUtil.getBottleNum(list, 50) < orderFiftyNum) {
             PopUtil.toastInBottom("50kg钢瓶未达到订单数");
             return false;
-        }else {
+        } else {
             return true;
         }
     }

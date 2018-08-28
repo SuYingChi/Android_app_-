@@ -11,25 +11,29 @@ import java.util.Date;
 public class DateUtils {
     /**
      * 获取系统时间戳
+     *
      * @return
      */
-    public static long getCurTimeLong(){
-        Date date=new Date(System.currentTimeMillis());
-        long time= System.currentTimeMillis();
+    public static long getCurTimeLong() {
+        Date date = new Date(System.currentTimeMillis());
+        long time = System.currentTimeMillis();
         return time;
     }
+
     /**
      * 获取当前时间
+     *
      * @param pattern
      * @return
      */
-    public static String getCurDate(String pattern){
+    public static String getCurDate(String pattern) {
         SimpleDateFormat sDateFormat = new SimpleDateFormat(pattern);
         return sDateFormat.format(new java.util.Date());
     }
 
     /**
      * 时间戳转换成字符窜
+     *
      * @param milSecond
      * @param pattern
      * @return
@@ -42,6 +46,7 @@ public class DateUtils {
 
     /**
      * 将字符串转为时间戳
+     *
      * @param dateString
      * @param pattern
      * @return
@@ -49,9 +54,9 @@ public class DateUtils {
     public static long getStringToDate(String dateString, String pattern) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
         Date date = new Date();
-        try{
+        try {
             date = dateFormat.parse(dateString);
-        } catch(ParseException e) {
+        } catch (ParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

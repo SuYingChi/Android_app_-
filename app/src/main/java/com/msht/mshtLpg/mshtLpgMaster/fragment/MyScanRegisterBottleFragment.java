@@ -109,7 +109,7 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
         CameraManager.init(LPGApplication.getLPGApplicationContext());
         iRegisterBottlePresenter = new IRegisterBottlePresenter(this);
         hasSurface = false;
-        isRestart  = false;
+        isRestart = false;
         inactivityTimer = new InactivityTimer(this.getActivity());
         spinnerList.add("    5kg     ");
         spinnerList.add("   15kg     ");
@@ -159,9 +159,9 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
 
             @Override
             public void afterTextChanged(Editable s) {
-              if(s.toString().length()==10){
-                  hideInput(MyScanRegisterBottleFragment.this.getContext(),etInput);
-              }
+                if (s.toString().length() == 10) {
+                    hideInput(MyScanRegisterBottleFragment.this.getContext(), etInput);
+                }
             }
         });
 
@@ -201,23 +201,23 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume: hasSurface"+hasSurface);
-           if (hasSurface) {
-               initCamera(surfaceHolder);
-           } else {
-               surfaceHolder.addCallback(this);
-               surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-           }
-           decodeFormats = null;
-           characterSet = null;
+        Log.d(TAG, "onResume: hasSurface" + hasSurface);
+        if (hasSurface) {
+            initCamera(surfaceHolder);
+        } else {
+            surfaceHolder.addCallback(this);
+            surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        }
+        decodeFormats = null;
+        characterSet = null;
 
-           playBeep = true;
-           AudioManager audioService = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
-           if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
-               playBeep = false;
-           }
-           initBeepSound();
-           vibrate = true;
+        playBeep = true;
+        AudioManager audioService = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+        if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
+            playBeep = false;
+        }
+        initBeepSound();
+        vibrate = true;
 
     }
 
@@ -293,9 +293,9 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
         String bottleUrl = result.getText();
-        if(bottleUrl.length()==10||bottleUrl.length()== 8 ||bottleUrl.length() ==9){
+        if (bottleUrl.length() == 10 || bottleUrl.length() == 8 || bottleUrl.length() == 9) {
             bottleCode = bottleUrl;
-        }else if(bottleUrl.contains("id=")){
+        } else if (bottleUrl.contains("id=")) {
             int index = bottleUrl.indexOf("id=");
             bottleCode = bottleUrl.substring(index + 3).trim();
         }
@@ -332,7 +332,7 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        Log.d(TAG, "surfaceCreated:    hasSurface"+hasSurface);
+        Log.d(TAG, "surfaceCreated:    hasSurface" + hasSurface);
         if (!hasSurface) {
             hasSurface = true;
             Log.d(TAG, "surfaceCreated: initCamera(holder);");
@@ -367,53 +367,53 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
 
     @Override
     public void onGetBottleInfoSuccess(GetBottleInfo getBottleInfoBean) {
-      bottleCode = getBottleInfoBean.getData().getBottleCode();
-      bottleWeight= getBottleInfoBean.getData().getBottleWeight()+"";
-      bottleNum = getBottleInfoBean.getData().getBottleNum();
-      producer = getBottleInfoBean.getData().getProducer();
-      propertyUnit=  getBottleInfoBean.getData().getPropertyUnit();
-      createTime =getBottleInfoBean.getData().getCreateTime();
-      nextCheckTime = getBottleInfoBean.getData().getNextCheckTime();
-      etProducer.setText(producer);
-      etBottleNumber.setText(bottleNum);
-      tvCreatTime.setText(createTime);
-      etProduceUnit.setText(propertyUnit);
-      tvBottleCode.setText(bottleCode);
-      hideInput(MyScanRegisterBottleFragment.this.getContext(),etInput);
-      tvNext.setOnClickListener(new View.OnClickListener() {
+        bottleCode = getBottleInfoBean.getData().getBottleCode();
+        bottleWeight = getBottleInfoBean.getData().getBottleWeight() + "";
+        bottleNum = getBottleInfoBean.getData().getBottleNum();
+        producer = getBottleInfoBean.getData().getProducer();
+        propertyUnit = getBottleInfoBean.getData().getPropertyUnit();
+        createTime = getBottleInfoBean.getData().getCreateTime();
+        nextCheckTime = getBottleInfoBean.getData().getNextCheckTime();
+        etProducer.setText(producer);
+        etBottleNumber.setText(bottleNum);
+        tvCreatTime.setText(createTime);
+        etProduceUnit.setText(propertyUnit);
+        tvBottleCode.setText(bottleCode);
+        hideInput(MyScanRegisterBottleFragment.this.getContext(), etInput);
+        tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(etBottleNumber.getText().toString().length()==9){
+                if (etBottleNumber.getText().toString().length() == 9) {
                     iRegisterBottlePresenter.update_bottle_info();
-                }else{
+                } else {
                     PopUtil.toastInBottom("必须是9位数的瓶身钢码");
                 }
             }
         });
-      spWeight.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spWeight.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-       @Override
-       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-           switch (position){
-               case 0:
-                   bottleWeight = 5+"";
-                   break;
-               case 1:
-                   bottleWeight = 15+"";
-                   break;
-               case 2:
-                   bottleWeight = 50+"";
-                   break;
-                   default:
-                       break;
-           }
-       }
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        bottleWeight = 5 + "";
+                        break;
+                    case 1:
+                        bottleWeight = 15 + "";
+                        break;
+                    case 2:
+                        bottleWeight = 50 + "";
+                        break;
+                    default:
+                        break;
+                }
+            }
 
-       @Override
-       public void onNothingSelected(AdapterView<?> parent) {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-       }
-   });
+            }
+        });
     }
 
     @Override
@@ -422,17 +422,18 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
         if (handler == null) {
             handler = new MyScanHandler(this, decodeFormats, characterSet, viewfinderView);
         }
-            Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
-            handler.sendMessageDelayed(reDecode, 1000);
+        Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
+        handler.sendMessageDelayed(reDecode, 1000);
 
     }
 
-    private void hideInput(Context context, EditText et){
+    private void hideInput(Context context, EditText et) {
         InputMethodManager inputMethodManager =
-                (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(et.getWindowToken(), 0);
 
     }
+
     @Override
     public String getBottleCode() {
         return bottleCode;
@@ -440,7 +441,7 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
 
     @Override
     public String getBottleNum() {
-        bottleNum =  etBottleNumber.getText().toString();
+        bottleNum = etBottleNumber.getText().toString();
         return bottleNum;
     }
 
@@ -452,19 +453,19 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
 
     @Override
     public String getProducer() {
-        producer =  etProducer.getText().toString();
+        producer = etProducer.getText().toString();
         return producer;
     }
 
     @Override
     public String getPropertyUnit() {
-        propertyUnit =  etProduceUnit.getText().toString();
+        propertyUnit = etProduceUnit.getText().toString();
         return propertyUnit;
     }
 
     @Override
     public String getCreateTime() {
-        createTime =  tvCreatTime.getText().toString();
+        createTime = tvCreatTime.getText().toString();
         return createTime;
     }
 

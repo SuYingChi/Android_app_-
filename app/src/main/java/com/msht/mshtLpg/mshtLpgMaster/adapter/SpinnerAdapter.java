@@ -22,7 +22,7 @@ public class SpinnerAdapter extends BaseAdapter {
         this.activity = activity;
     }
 
-    public void setData(List<String> list){
+    public void setData(List<String> list) {
         datas = list;
     }
 
@@ -45,19 +45,20 @@ public class SpinnerAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
         Holder holder;
-        if(view == null){
+        if (view == null) {
             view = LayoutInflater.from(activity).inflate(R.layout.spinner_item, null);
             holder = new Holder();
             holder.mTextView = (TextView) view.findViewById(R.id.spinner_text);
             holder.mTextView.setGravity(android.view.Gravity.CENTER_HORIZONTAL);   //设置居中
             view.setTag(holder);
-        } else{
+        } else {
             holder = (Holder) view.getTag();
         }
         holder.mTextView.setText(datas.get(position));
         return view;
     }
-   public class Holder{
+
+    public class Holder {
         private TextView mTextView;
     }
 }

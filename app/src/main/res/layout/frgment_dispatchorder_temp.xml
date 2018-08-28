@@ -1,182 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="@color/bg_color"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:orientation="vertical">
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_color"
+        android:orientation="vertical">
+        <!--        <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:minHeight="45dp">
+                    <TextView
+                        android:id="@+id/id_username_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/text_16"
+                        android:textColor="@color/textcolor"
+                        android:text="用户姓名："/>
+                    <EditText
+                        android:id="@+id/id_et_username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/id_username_text"
+                        android:layout_toRightOf="@+id/id_username_text"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:inputType="textPersonName"
+                        android:textSize="@dimen/text_16"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:hint="请您输入用户姓名"
+                        android:textColor="@color/lpg_text_light_color"/>
+                </RelativeLayout>
+                <include layout="@layout/layout_line_gray"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:minHeight="45dp">
+                    <TextView
+                        android:id="@+id/id_phone_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/text_16"
+                        android:textColor="@color/textcolor"
+                        android:text="@string/phone_text"/>
+                    <EditText
+                        android:id="@id/id_et_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/id_phone_text"
+                        android:layout_toRightOf="@+id/id_phone_text"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:inputType="phone"
+                        android:textSize="@dimen/text_16"
+                        android:hint="请您输入客户手机号"
+                        android:textColor="@color/lpg_text_light_color"/>
+                </RelativeLayout>
+                <include layout="@layout/layout_line_gray"/>-->
+        <RadioGroup
+            android:id="@+id/radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/bg_color">
-    <!--        <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@color/white"
-                android:minHeight="45dp">
-                <TextView
-                    android:id="@+id/id_username_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/text_16"
-                    android:textColor="@color/textcolor"
-                    android:text="用户姓名："/>
-                <EditText
-                    android:id="@+id/id_et_username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/id_username_text"
-                    android:layout_toRightOf="@+id/id_username_text"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
-                    android:inputType="textPersonName"
-                    android:textSize="@dimen/text_16"
-                    android:layout_centerVertical="true"
-                    android:background="@null"
-                    android:hint="请您输入用户姓名"
-                    android:textColor="@color/lpg_text_light_color"/>
-            </RelativeLayout>
-            <include layout="@layout/layout_line_gray"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:minHeight="45dp">
-                <TextView
-                    android:id="@+id/id_phone_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/text_16"
-                    android:textColor="@color/textcolor"
-                    android:text="@string/phone_text"/>
-                <EditText
-                    android:id="@id/id_et_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/id_phone_text"
-                    android:layout_toRightOf="@+id/id_phone_text"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
-                    android:background="@null"
-                    android:inputType="phone"
-                    android:textSize="@dimen/text_16"
-                    android:hint="请您输入客户手机号"
-                    android:textColor="@color/lpg_text_light_color"/>
-            </RelativeLayout>
-            <include layout="@layout/layout_line_gray"/>-->
-            <RadioGroup
-                android:id="@+id/radio_group"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="horizontal"
-                android:minHeight="45dp">
-                <RadioButton
-                    android:id="@+id/rb1"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:paddingLeft="10dp"
-                    android:layout_gravity="center_vertical"
-                    android:text="配送"
-                    android:checked="true"
-                    />
-                <RadioButton
-                    android:id="@+id/rb2"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:paddingLeft="10dp"
-                    android:text="自提"/>
+            android:background="@color/white"
+            android:minHeight="45dp"
+            android:orientation="horizontal">
 
-            </RadioGroup>
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <RadioButton
+                android:id="@+id/rb1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:minHeight="45dp"
-                android:background="@color/white">
-                <TextView
-                    android:id="@+id/id_text1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
-                    android:textColor="@color/textcolor"
-                    android:textSize="16sp"
-                    android:text="@string/select_buy_bottle"/>
-            </RelativeLayout>
-            <include layout="@layout/layout_line_gray"/>
-            <include layout="@layout/layout_lpg_steel_bottle_price_type"/>
-        </LinearLayout>
-   <View
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       android:layout_weight="1"/>
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_weight="1"
+                android:checked="true"
+                android:paddingLeft="10dp"
+                android:text="配送" />
+
+            <RadioButton
+                android:id="@+id/rb2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:text="自提" />
+
+        </RadioGroup>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@color/white"
+            android:minHeight="45dp">
+
+            <TextView
+                android:id="@+id/id_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:text="@string/select_buy_bottle"
+                android:textColor="@color/textcolor"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <include layout="@layout/layout_line_gray" />
+
+        <include layout="@layout/layout_lpg_steel_bottle_price_type" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="horizontal">
+
         <RelativeLayout
-            android:layout_weight="0.6"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:minHeight="45dp"
-            android:background="@color/white">
+            android:layout_weight="0.6"
+            android:background="@color/white"
+            android:minHeight="45dp">
+
             <TextView
                 android:id="@+id/id_total_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginRight="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:text="@string/default_value0"
                 android:textColor="@color/msb_color"
-                android:textSize="16sp"
-                android:text="@string/default_value0"/>
+                android:textSize="16sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5sp"
+                android:layout_marginRight="5sp"
                 android:layout_toLeftOf="@+id/id_total_amount"
                 android:layout_toStartOf="@+id/id_total_amount"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="5sp"
-                android:layout_marginEnd="5sp"
-                android:textSize="16sp"
+                android:text="@string/total_count"
                 android:textColor="@color/textcolor"
-                android:text="@string/total_count"/>
+                android:textSize="16sp" />
         </RelativeLayout>
+
         <Button
             android:id="@+id/id_btn_next"
-            android:layout_weight="0.4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minHeight="45dp"
-            android:gravity="center"
+            android:layout_weight="0.4"
             android:background="@color/msb_color"
-            android:textColor="@color/white"
-            android:text="@string/next_step" />
+            android:gravity="center"
+            android:minHeight="45dp"
+            android:text="@string/next_step"
+            android:textColor="@color/white" />
     </LinearLayout>
 </LinearLayout>

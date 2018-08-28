@@ -16,18 +16,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class UpdateVersionActivity extends BaseActivity implements IUpdateVersionView {
-   @BindView(R.id.topbar)
+    @BindView(R.id.topbar)
     TopBarView topBarView;
-   @BindView(R.id.update)
+    @BindView(R.id.update)
     TextView tvUpdate;
-   @BindView(R.id.new_version)
-   TextView tvNewVersion;
-   @BindView(R.id.apk_size)
-   TextView tvApkSize;
-   @BindView(R.id.update_detail)
-   TextView tvUpdateDetail;
-   @BindView(R.id.title)
-   TextView tvTitle;
+    @BindView(R.id.new_version)
+    TextView tvNewVersion;
+    @BindView(R.id.apk_size)
+    TextView tvApkSize;
+    @BindView(R.id.update_detail)
+    TextView tvUpdateDetail;
+    @BindView(R.id.title)
+    TextView tvTitle;
 
     private int vision;
 
@@ -36,14 +36,14 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_new_version_layout);
         ButterKnife.bind(this);
-         vision = AppUtil.getVersion(this);
-         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 finish();
-             }
-         });
-         new IGetNewestAppInfoPresenter(this).getNewestAppInfo();
+        vision = AppUtil.getVersion(this);
+        topBarView.setLeftBtnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        new IGetNewestAppInfoPresenter(this).getNewestAppInfo();
 
     }
 
@@ -57,7 +57,7 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
             tvUpdate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PopUtil.showTipsDialog(UpdateVersionActivity.this, appInfoBean.getData().getTitle(), "当前版本为V" + AppUtil.getVerName(UpdateVersionActivity.this)
+                    PopUtil.showComfirmDialog(UpdateVersionActivity.this, appInfoBean.getData().getTitle(), "当前版本为V" + AppUtil.getVerName(UpdateVersionActivity.this)
                                     + ",最新版本为V" + appInfoBean.getData().getVersion()
                                     + ",是否更新到最新版本？",
                             "取消", "确定更新", null, new View.OnClickListener() {
@@ -65,10 +65,10 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
                                 public void onClick(View v) {
                                     AppUtil.goMarket(UpdateVersionActivity.this);
                                 }
-                            });
+                            }, true);
                 }
             });
-        }else {
+        } else {
             tvUpdate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

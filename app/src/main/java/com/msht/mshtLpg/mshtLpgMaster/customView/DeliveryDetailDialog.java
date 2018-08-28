@@ -17,15 +17,17 @@ public class DeliveryDetailDialog extends Dialog {
 
     @BindView(R.id.dismiss_dialog)
     TextView tvDismiss;
+
     public DeliveryDetailDialog(Context context) {
         super(context, R.style.Loading_dialog);
 
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode){
+        switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
-                if(DeliveryDetailDialog.this.isShowing()) {
+                if (DeliveryDetailDialog.this.isShowing()) {
                     DeliveryDetailDialog.this.dismiss();
                 }
                 break;
@@ -41,14 +43,14 @@ public class DeliveryDetailDialog extends Dialog {
         setContentView(R.layout.deliver_fee_layout);
         ButterKnife.bind(this);
         WindowManager.LayoutParams attributes = getWindow().getAttributes();
-        attributes.alpha=0.9f;
+        attributes.alpha = 0.9f;
         getWindow().setAttributes(attributes);
         setCancelable(false);
         setCanceledOnTouchOutside(false);
         tvDismiss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(DeliveryDetailDialog.this.isShowing()) {
+                if (DeliveryDetailDialog.this.isShowing()) {
                     DeliveryDetailDialog.this.dismiss();
                 }
             }

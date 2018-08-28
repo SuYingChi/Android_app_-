@@ -32,31 +32,31 @@ import butterknife.Unbinder;
 public class HomeActivity extends BaseActivity {
 
 
-     long exitTime;
-     OrdersListLazyFragment f0;
-     DispatchOrdersLazyFragement f1;
-     MySettingFragment f2;
-     List<BaseLazyFragment> list_fragment = new ArrayList<BaseLazyFragment>();
-     @BindView(R.id.vp)
-     SlidableViewPager vp;
+    long exitTime;
+    OrdersListLazyFragment f0;
+    DispatchOrdersLazyFragement f1;
+    MySettingFragment f2;
+    List<BaseLazyFragment> list_fragment = new ArrayList<BaseLazyFragment>();
+    @BindView(R.id.vp)
+    SlidableViewPager vp;
     @BindView(R.id.iv_tab0)
-     ImageView ivTab0;
+    ImageView ivTab0;
     @BindView(R.id.iv_tab1)
-     ImageView ivTab1;
+    ImageView ivTab1;
     @BindView(R.id.iv_tab2)
-     ImageView ivTab2;
+    ImageView ivTab2;
     @BindView(R.id.tv_tab0)
-     TextView tvTab0;
+    TextView tvTab0;
     @BindView(R.id.tv_tab1)
-     TextView tvTab1;
+    TextView tvTab1;
     @BindView(R.id.tv_tab2)
-     TextView tvTab2;
+    TextView tvTab2;
     @BindView(R.id.ll_tab0)
-     LinearLayout llTab0;
+    LinearLayout llTab0;
     @BindView(R.id.ll_tab1)
-     LinearLayout llTab1;
+    LinearLayout llTab1;
     @BindView(R.id.ll_tab2)
-     LinearLayout llTab2;
+    LinearLayout llTab2;
     private Unbinder unbinder;
 
     @Override
@@ -122,6 +122,7 @@ public class HomeActivity extends BaseActivity {
         }
 
     }
+
     @OnClick({R.id.ll_tab0, R.id.ll_tab1, R.id.ll_tab2})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -146,15 +147,16 @@ public class HomeActivity extends BaseActivity {
                     SharePreferenceUtil.setLoginSpIntValue(Constants.HOME_ACTIVITY_BOTTOM_TAB_ITEM, 2);
                 }
                 break;
-           default:
-               break;
+            default:
+                break;
         }
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
             if ((System.currentTimeMillis() - exitTime) > 2000) {
-               PopUtil.toastInBottom(R.string.exit_App);
+                PopUtil.toastInBottom(R.string.exit_App);
                 exitTime = System.currentTimeMillis();
             } else {
                 finish();
@@ -173,6 +175,7 @@ public class HomeActivity extends BaseActivity {
         f2 = null;
         unbinder.unbind();
     }
+
     @Override
     public boolean isSupportSwipeBack() {
         return false;

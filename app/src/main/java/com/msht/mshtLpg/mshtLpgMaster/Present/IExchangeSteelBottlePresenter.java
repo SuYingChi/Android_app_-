@@ -14,22 +14,23 @@ import com.zhy.http.okhttp.OkHttpUtils;
 public class IExchangeSteelBottlePresenter {
 
     IExchangeSteelBottleView iExchangeSteelBottleView;
-    public IExchangeSteelBottlePresenter(IExchangeSteelBottleView iExchangeSteelBottleView){
+
+    public IExchangeSteelBottlePresenter(IExchangeSteelBottleView iExchangeSteelBottleView) {
         this.iExchangeSteelBottleView = iExchangeSteelBottleView;
     }
 
-    public void getBottleReplacePrice(){
+    public void getBottleReplacePrice() {
         OkHttpUtils.get().url(Constants.QUERY_REPLACE_PRICE)
                 .addParams("token", iExchangeSteelBottleView.getToken()).
-                addParams("bottleWeight",iExchangeSteelBottleView.getBottleWeight()).
-                addParams("corrosionType",iExchangeSteelBottleView.getCorrosionType()).
-                addParams("years",iExchangeSteelBottleView.getYear()).
+                addParams("bottleWeight", iExchangeSteelBottleView.getBottleWeight()).
+                addParams("corrosionType", iExchangeSteelBottleView.getCorrosionType()).
+                addParams("years", iExchangeSteelBottleView.getYear()).
                 build().execute(new DataStringCallback(iExchangeSteelBottleView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                if(isResponseEmpty){
+                if (isResponseEmpty) {
                     iExchangeSteelBottleView.onError("接口返回空字符串:");
                     return;
                 }
@@ -45,18 +46,19 @@ public class IExchangeSteelBottlePresenter {
 
         });
     }
-    public void getinitBottleReplacePrice(){
+
+    public void getinitBottleReplacePrice() {
         OkHttpUtils.get().url(Constants.QUERY_REPLACE_PRICE)
                 .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iExchangeSteelBottleView.getToken()).
-                addParams("bottleWeight","5").
-                addParams("bottleProduceDate","1").
-                addParams("corrosionType","A").
+                addParams("bottleWeight", "5").
+                addParams("bottleProduceDate", "1").
+                addParams("corrosionType", "A").
                 build().execute(new DataStringCallback(iExchangeSteelBottleView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                if(isResponseEmpty){
+                if (isResponseEmpty) {
                     iExchangeSteelBottleView.onError("接口返回空字符串:");
                     return;
                 }

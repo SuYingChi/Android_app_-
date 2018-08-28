@@ -11,7 +11,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 /**
- *  OkHttp 用 证书管理类
+ * OkHttp 用 证书管理类
  */
 
 public class SSLSocketClient {

@@ -2,12 +2,13 @@ package com.msht.mshtLpg.mshtLpgMaster.util;
 
 import android.util.Log;
 
-public class LogUtils{
+public class LogUtils {
 
 
     public static void d(String tag, String msg) {
         Log.e(tag, msg);
     }
+
     public void e(String tag, String msg) {  //信息太长,分段打印
         //因为String的length是字符数量不是字节数量所以为了防止中文字符过多，
         //  把4*1024的MAX字节打印长度改为2001字符数
@@ -20,4 +21,4 @@ public class LogUtils{
         //剩余部分
         Log.e(tag, msg);
     }
- }
+}

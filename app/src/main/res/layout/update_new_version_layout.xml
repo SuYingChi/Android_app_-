@@ -54,32 +54,32 @@
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_height"
-        android:background="@color/lpg_text_dark_color"
         android:layout_below="@id/update"
-        android:layout_marginTop="@dimen/margin"
         android:layout_marginLeft="@dimen/margin"
         android:layout_marginRight="@dimen/margin"
-        />
+        android:layout_marginTop="@dimen/margin"
+        android:background="@color/lpg_text_dark_color" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/line"
         android:layout_alignLeft="@id/line"
+        android:layout_below="@id/line"
         android:layout_marginTop="@dimen/margin"
         android:paddingBottom="@dimen/margin_Modules"
         android:paddingTop="@dimen/margin_Modules"
         android:text="更新内容："
         android:textColor="@color/lpg_text_dark_color" />
+
     <TextView
         android:id="@+id/update_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
         android:layout_alignLeft="@id/line"
-        android:layout_marginLeft="@dimen/margin"
+        android:layout_below="@id/title"
         android:layout_marginBottom="@dimen/margin"
+        android:layout_marginLeft="@dimen/margin"
         android:paddingBottom="@dimen/margin_Modules"
         android:paddingTop="@dimen/margin_Modules"
         android:text="更新啦更新啦更新啦"

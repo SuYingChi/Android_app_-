@@ -9,8 +9,8 @@ import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 public class SharePreferenceUtil {
 
     private static SharePreferenceUtil sharePreferenceUtil;
-    private   SharedPreferences loginSp;
-    private   SharedPreferences.Editor loginEditor;
+    private SharedPreferences loginSp;
+    private SharedPreferences.Editor loginEditor;
     private String orderType;
 
 
@@ -35,44 +35,50 @@ public class SharePreferenceUtil {
         return LPGApplication.getLPGApplicationContext().getSharedPreferences(sharePreferencefileName, Context.MODE_PRIVATE);
     }
 
-    public  void setToken(String token) {
+    public void setToken(String token) {
         loginEditor.putString(Constants.TOKEN, token);
         loginEditor.commit();
     }
 
-    public  String getToken() {
+    public String getToken() {
         return getSPStringValue(Constants.LOGIN_SP_FILE_NAME, Constants.TOKEN);
     }
 
     public static String getSPStringValue(String fileName, String key) {
         SharedPreferences sharePreferenceFile = getSharePreferenceFile(fileName);
-        return sharePreferenceFile.getString(key,"");
+        return sharePreferenceFile.getString(key, "");
     }
-    public static String  getLoginSpStringValue(String key) {
+
+    public static String getLoginSpStringValue(String key) {
         SharedPreferences sharePreferenceFile = getSharePreferenceFile(Constants.LOGIN_SP_FILE_NAME);
-        return sharePreferenceFile.getString(key,"");
+        return sharePreferenceFile.getString(key, "");
     }
-    public static int  getLoginSpIntValue(String key) {
+
+    public static int getLoginSpIntValue(String key) {
         SharedPreferences sharePreferenceFile = getSharePreferenceFile(Constants.LOGIN_SP_FILE_NAME);
-        return sharePreferenceFile.getInt(key,0);
+        return sharePreferenceFile.getInt(key, 0);
     }
+
     public static void setSPStringValue(String fileName, String key, String value) {
         SharedPreferences sharePreferenceFile = getSharePreferenceFile(fileName);
-        sharePreferenceFile.edit().putString(key,value).apply();
+        sharePreferenceFile.edit().putString(key, value).apply();
     }
+
     public static void setLoginSpStringValue(String key, String value) {
         SharedPreferences sharePreferenceFile = getSharePreferenceFile(Constants.LOGIN_SP_FILE_NAME);
-        sharePreferenceFile.edit().putString(key,value).apply();
+        sharePreferenceFile.edit().putString(key, value).apply();
     }
+
     public static void setLoginSpIntValue(String key, int value) {
         SharedPreferences sharePreferenceFile = getSharePreferenceFile(Constants.LOGIN_SP_FILE_NAME);
-        sharePreferenceFile.edit().putInt(key,value).apply();
+        sharePreferenceFile.edit().putInt(key, value).apply();
     }
 
     public String getOrderType() {
         return getSPStringValue(Constants.LOGIN_SP_FILE_NAME, Constants.ORDER_TYPE);
     }
-    public void setOrderType(String orderType){
+
+    public void setOrderType(String orderType) {
         loginEditor.putString(Constants.ORDER_TYPE, orderType);
         loginEditor.commit();
     }

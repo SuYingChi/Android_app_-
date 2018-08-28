@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@color/white">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
     <TextView
-        android:textSize="@dimen/text_small"
-        android:textColor="#000000"
         android:id="@+id/spinner_text"
-        android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/rcl_margin"
+        android:gravity="center_horizontal"
         android:paddingBottom="@dimen/rcl_margin"
         android:paddingLeft="@dimen/rcl_margin"
         android:paddingRight="@dimen/rcl_margin"
-        />
+        android:paddingTop="@dimen/rcl_margin"
+        android:textColor="#000000"
+        android:textSize="@dimen/text_small" />
 </LinearLayout>

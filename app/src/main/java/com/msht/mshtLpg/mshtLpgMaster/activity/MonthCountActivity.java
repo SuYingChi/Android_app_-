@@ -21,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class MonthCountActivity extends BaseActivity  {
+public class MonthCountActivity extends BaseActivity {
     @BindView(R.id.month_count_layout_topbar)
     TopBarView topBarView;
     @BindView(R.id.rcl_month_count)
@@ -45,10 +45,10 @@ public class MonthCountActivity extends BaseActivity  {
             }
         });
         Bundle bundle = getIntent().getExtras();
-        bean = (MyIncomeBean)bundle.getSerializable("MyIncomeBean");
+        bean = (MyIncomeBean) bundle.getSerializable("MyIncomeBean");
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        int month = Calendar.getInstance().get(Calendar.MONTH)+1;
-        List<MonthCountBean> list = filterListByMonth(bean,year,month);
+        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+        List<MonthCountBean> list = filterListByMonth(bean, year, month);
         dataList.addAll(list);
         MonthcountAdapter myAdapter = new MonthcountAdapter(dataList, this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -60,22 +60,22 @@ public class MonthCountActivity extends BaseActivity  {
 
     private List<MonthCountBean> filterListByMonth(MyIncomeBean bean, int year, int month) {
         int ii;
-        List<MonthCountBean> list= new ArrayList<MonthCountBean>();
+        List<MonthCountBean> list = new ArrayList<MonthCountBean>();
         List<MyIncomeBean.DataBean.ListBean> listBeans = bean.getData().getList();
-        for(int i=year;i>year-2;--i) {
-            if(i==year){
+        for (int i = year; i > year - 2; --i) {
+            if (i == year) {
                 ii = month;
-            }else {
+            } else {
                 ii = 12;
             }
-            for (;ii>0;ii--) {
-                double fee=0;
+            for (; ii > 0; ii--) {
+                double fee = 0;
                 for (MyIncomeBean.DataBean.ListBean listBean : listBeans) {
                     if (Integer.valueOf(listBean.getYear()) == i && Integer.valueOf(listBean.getMonth()) == ii) {
                         fee += listBean.getDeliveryFee();
                     }
                 }
-                if(fee > 0) {
+                if (fee > 0) {
                     list.add(new MonthCountBean(fee, i + "", ii + ""));
                 }
             }

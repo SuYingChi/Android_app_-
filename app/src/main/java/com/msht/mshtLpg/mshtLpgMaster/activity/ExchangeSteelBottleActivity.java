@@ -19,7 +19,6 @@ import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IExchangeSteelBottleView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -77,7 +76,7 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopUtil.showTipsDialog(ExchangeSteelBottleActivity.this, "放弃空瓶折价", "放弃自有产权钢瓶折价", "取消", "确认", null, new View.OnClickListener() {
+                PopUtil.showComfirmDialog(ExchangeSteelBottleActivity.this, "放弃空瓶折价", "放弃自有产权钢瓶折价", "取消", "确认", null, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent();
@@ -88,13 +87,13 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
                         setResult(RESULT_OK, intent);
                         finish();
                     }
-                });
+                }, true);
             }
         });
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopUtil.showTipsDialog(ExchangeSteelBottleActivity.this, "保存折价", "保存自有产权钢瓶折价信息", "取消", "确认", null, new View.OnClickListener() {
+                PopUtil.showComfirmDialog(ExchangeSteelBottleActivity.this, "保存折价", "保存自有产权钢瓶折价信息", "取消", "确认", null, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         //回传自有产权折价价格给详情页
@@ -106,13 +105,13 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
                         setResult(RESULT_OK, intent);
                         finish();
                     }
-                });
+                }, true);
             }
         });
         tvLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              PopUtil.showWebViewDialog(ExchangeSteelBottleActivity.this,Constants.HUI_SHOU_ZHE_JIA);
+                PopUtil.showWebViewDialog(ExchangeSteelBottleActivity.this, Constants.HUI_SHOU_ZHE_JIA);
             }
         });
     }

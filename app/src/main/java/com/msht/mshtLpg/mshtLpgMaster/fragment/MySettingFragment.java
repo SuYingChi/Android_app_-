@@ -27,7 +27,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 
-public class MySettingFragment extends BaseLazyFragment{
+public class MySettingFragment extends BaseLazyFragment {
     @BindView(R.id.my_setting_username)
     TextView tvName;
     @BindView(R.id.my_setting_user_location)
@@ -52,8 +52,8 @@ public class MySettingFragment extends BaseLazyFragment{
     LinearLayout llMyIncome;
     @BindView(R.id.ll_my_setting_about_me)
     LinearLayout llAboutme;
-    private String name="";
-    private String siteName="";
+    private String name = "";
+    private String siteName = "";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,80 +76,80 @@ public class MySettingFragment extends BaseLazyFragment{
         tvInnerDistribute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             Intent intent =    new Intent(getActivity(),InnerActivity.class);
-             intent.putExtra("innerType",1);
-             startActivity(intent);
+                Intent intent = new Intent(getActivity(), InnerActivity.class);
+                intent.putExtra("innerType", 1);
+                startActivity(intent);
             }
         });
         ivInnerReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =    new Intent(getActivity(),InnerActivity.class);
-                intent.putExtra("innerType",2);
+                Intent intent = new Intent(getActivity(), InnerActivity.class);
+                intent.putExtra("innerType", 2);
                 startActivity(intent);
             }
         });
         ivRegisterBottle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =    new Intent(getActivity(),RegisterBottleActivity.class);
+                Intent intent = new Intent(getActivity(), RegisterBottleActivity.class);
                 startActivity(intent);
             }
         });
         llUnregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             new ILogoutPresenter(MySettingFragment.this).logout();
+                new ILogoutPresenter(MySettingFragment.this).logout();
             }
         });
         out_transfer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =  new Intent(getActivity(),TransferStorageListActivity.class);
-                intent.putExtra("TransferType","0");
+                Intent intent = new Intent(getActivity(), TransferStorageListActivity.class);
+                intent.putExtra("TransferType", "0");
                 startActivity(intent);
             }
         });
         in_transfer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =  new Intent(getActivity(),TransferStorageListActivity.class);
-                intent.putExtra("TransferType","1");
+                Intent intent = new Intent(getActivity(), TransferStorageListActivity.class);
+                intent.putExtra("TransferType", "1");
                 startActivity(intent);
             }
         });
         myBottle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =  new Intent(getActivity(),MyBottleActivity.class);
+                Intent intent = new Intent(getActivity(), MyBottleActivity.class);
                 startActivity(intent);
             }
         });
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =  new Intent(getActivity(),RegisterEmployerActivity.class);
+                Intent intent = new Intent(getActivity(), RegisterEmployerActivity.class);
                 startActivity(intent);
             }
         });
         llMyIncome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =  new Intent(getActivity(),MyIncomeActivity.class);
+                Intent intent = new Intent(getActivity(), MyIncomeActivity.class);
                 startActivity(intent);
             }
         });
         llAboutme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),CurrentVersionInfoActivity.class);
+                Intent intent = new Intent(getActivity(), CurrentVersionInfoActivity.class);
                 startActivity(intent);
             }
         });
 
     }
 
-    @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onMessageEvent(LoginEventBean event) {
         name = event.getUserLoginBean().getData().getEmployeeName();
         siteName = event.getUserLoginBean().getData().getSiteName();

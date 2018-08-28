@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
         android:id="@+id/topbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_normol"
         android:background="@color/msb_color"
         app:title_text="我的钢瓶" />
+
     <LinearLayout
         android:id="@+id/tv_scan_delive_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
 
         >
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -27,8 +30,8 @@
             android:paddingBottom="@dimen/margin"
             android:paddingTop="@dimen/margin"
             android:text="合计:"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_dark_color" />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
 
         <TextView
             android:id="@+id/total_bottle"
@@ -40,8 +43,9 @@
             android:paddingBottom="@dimen/margin"
             android:paddingTop="@dimen/margin"
             android:text=""
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_dark_color" />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -51,8 +55,8 @@
             android:paddingBottom="@dimen/margin"
             android:paddingTop="@dimen/margin"
             android:text="5kg:"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_dark_color" />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
 
         <TextView
             android:id="@+id/scan_qrcode_delive_five_steel_bottle_number"
@@ -64,8 +68,8 @@
             android:paddingBottom="@dimen/margin"
             android:paddingTop="@dimen/margin"
             android:text=""
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_dark_color" />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
 
         <TextView
             android:layout_width="0dp"
@@ -76,8 +80,8 @@
             android:paddingBottom="@dimen/margin"
             android:paddingTop="@dimen/margin"
             android:text="15kg:"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_dark_color" />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
 
         <TextView
             android:id="@+id/scan_qrcode_delive_fifteen_steel_bottle_number"
@@ -89,8 +93,8 @@
             android:paddingBottom="@dimen/margin"
             android:paddingTop="@dimen/margin"
             android:text=""
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_dark_color" />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
 
         <TextView
             android:layout_width="0dp"
@@ -101,8 +105,8 @@
             android:paddingBottom="@dimen/margin"
             android:paddingTop="@dimen/margin"
             android:text="50kg:"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_dark_color" />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
 
         <TextView
             android:id="@+id/scan_qrcode_delive_fifty_steel_bottle_number"
@@ -114,31 +118,32 @@
             android:paddingBottom="@dimen/margin"
             android:paddingTop="@dimen/margin"
             android:text=""
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_dark_color" />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
 
     </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/scan_delive_steel_bottle_rlt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/topbar"
         android:layout_above="@id/tv_scan_delive_bottom"
+        android:layout_below="@id/topbar"
         android:layout_margin="@dimen/margin_Modules"
-        android:background="@color/white"
-        >
+        android:background="@color/white">
+
         <include
             android:id="@+id/header"
+            layout="@layout/item_rcl_deliver_steel_bottle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            layout="@layout/item_rcl_deliver_steel_bottle"/>
+            android:layout_height="wrap_content" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/scan_rcl_deliver_steel_bottle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/header"
             android:layout_marginLeft="@dimen/margin_Modules"
-            android:layout_marginRight="@dimen/margin_Modules"
-            />
+            android:layout_marginRight="@dimen/margin_Modules" />
     </RelativeLayout>
 </RelativeLayout>

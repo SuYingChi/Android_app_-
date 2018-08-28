@@ -11,7 +11,7 @@ import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IMyBottleView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 public class IMyBottlePresenter {
-    private  IMyBottleView iMyBottleView;
+    private IMyBottleView iMyBottleView;
 
     public IMyBottlePresenter(IMyBottleView iMyBottleView) {
         this.iMyBottleView = iMyBottleView;
@@ -19,13 +19,13 @@ public class IMyBottlePresenter {
 
     public void getMyBottleList() {
         OkHttpUtils.get().url(Constants.MY_BOTTLE_LIST)
-                .addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iMyBottleView.getToken()).
+                .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iMyBottleView.getToken()).
                 build().execute(new DataStringCallback(iMyBottleView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                if(isResponseEmpty){
+                if (isResponseEmpty) {
                     iMyBottleView.onError("接口返回空字符串:");
                     return;
                 }

@@ -4,25 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/line_color_lib"
-    android:fitsSystemWindows="true"
-    >
+    android:fitsSystemWindows="true">
+
     <SurfaceView
         android:id="@+id/scan_delive_steel_bottle_preview_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
+
     <com.uuzuche.lib_zxing.view.ViewfinderView
         android:id="@+id/scan_delive_steel_bottle_qrcode_viewfinder_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:inner_width="@dimen/view_finder_height"
-        app:inner_height="@dimen/view_finder_width"
-        app:inner_margintop="@dimen/scan_view_margin_top"
         app:inner_corner_length="30dp"
         app:inner_corner_width="5dp"
-        app:inner_scan_speed="10"
+        app:inner_height="@dimen/view_finder_width"
+        app:inner_margintop="@dimen/scan_view_margin_top"
         app:inner_scan_iscircle="false"
-        />
+        app:inner_scan_speed="10"
+        app:inner_width="@dimen/view_finder_height" />
+
     <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
         android:id="@+id/scan_delive_topbar"
         android:layout_width="match_parent"
@@ -30,6 +30,7 @@
         android:background="@color/msb_color"
         android:padding="@dimen/margin_Modules"
         app:title_text="钢瓶注册" />
+
     <TextView
         android:id="@+id/tv_scan_delive_steel_bottle"
         android:layout_width="wrap_content"
@@ -135,14 +136,14 @@
         android:id="@+id/tv_scan_delive_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/rcl_margin"
         android:background="@color/msb_color"
         android:gravity="center"
         android:padding="@dimen/margin"
-        android:layout_marginTop="@dimen/rcl_margin"
         android:text="保存"
-        android:textColor="@color/white"
-        android:layout_alignParentBottom="true"
-        />
+        android:textColor="@color/white" />
+
     <LinearLayout
         android:id="@+id/scan_delive_steel_bottle_rlt"
         android:layout_width="match_parent"
@@ -152,17 +153,19 @@
         android:orientation="vertical"
 
         >
+
         <TextView
             android:id="@+id/bottle_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="钢瓶二维码"
+            android:layout_marginTop="@dimen/margin_Modules"
             android:gravity="center"
+            android:text="钢瓶二维码"
             android:textColor="@color/head_text_color"
             android:textSize="@dimen/text_16"
-            android:layout_marginTop="@dimen/margin_Modules"
 
             />
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -170,8 +173,7 @@
             android:background="@color/white"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/margin_Modules"
-            android:paddingRight="@dimen/margin_Modules"
-            >
+            android:paddingRight="@dimen/margin_Modules">
 
             <TextView
                 android:id="@+id/tv"
@@ -179,17 +181,16 @@
                 android:layout_height="wrap_content"
                 android:text="规格"
                 android:textColor="@color/head_text_color"
-                android:textSize="@dimen/text_16"
-                />
+                android:textSize="@dimen/text_16" />
 
 
             <Spinner
                 android:id="@+id/weight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                />
+                android:layout_alignParentRight="true" />
         </RelativeLayout>
+
         <RelativeLayout
 
             android:layout_width="match_parent"
@@ -197,8 +198,7 @@
             android:layout_marginTop="0.5dp"
             android:background="@color/white"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_Modules"
-            >
+            android:padding="@dimen/margin_Modules">
 
             <TextView
                 android:id="@+id/tv1"
@@ -206,28 +206,27 @@
                 android:layout_height="wrap_content"
                 android:text="瓶身钢码"
                 android:textColor="@color/head_text_color"
-                android:textSize="@dimen/text_16"
-                />
+                android:textSize="@dimen/text_16" />
 
             <EditText
                 android:id="@+id/bottle_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/margin_Modules"
-                android:hint="编辑瓶身钢码"
+                android:layout_marginLeft="@dimen/register_bottle_et_space"
+                android:layout_toEndOf="@id/tv1"
+                android:layout_toRightOf="@id/tv1"
                 android:background="@drawable/edit_text_background"
-                android:textColor="@color/textcolor"
-                android:textColorHint="@color/line_color_lib"
-                android:textCursorDrawable="@null"
-                android:textSize="@dimen/text_16"
+                android:hint="编辑瓶身钢码"
                 android:inputType="number"
                 android:maxLength="9"
                 android:maxLines="1"
-                android:layout_toRightOf="@id/tv1"
-                android:layout_toEndOf="@id/tv1"
-                android:layout_marginLeft="@dimen/register_bottle_et_space"
-                />
+                android:paddingBottom="@dimen/margin_Modules"
+                android:textColor="@color/textcolor"
+                android:textColorHint="@color/line_color_lib"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/text_16" />
         </RelativeLayout>
+
         <RelativeLayout
 
             android:layout_width="match_parent"
@@ -235,8 +234,7 @@
             android:layout_marginTop="0.5dp"
             android:background="@color/white"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_Modules"
-            >
+            android:padding="@dimen/margin_Modules">
 
             <TextView
                 android:id="@+id/tv2"
@@ -253,28 +251,27 @@
                 android:id="@+id/producer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/margin_Modules"
+                android:layout_marginLeft="@dimen/register_bottle_et_space"
+                android:layout_toEndOf="@id/tv2"
+                android:layout_toRightOf="@id/tv2"
+                android:background="@drawable/edit_text_background"
                 android:hint="编辑生产厂家"
                 android:inputType="text"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_Modules"
                 android:textColor="@color/textcolor"
                 android:textColorHint="@color/line_color_lib"
                 android:textCursorDrawable="@null"
-                android:background="@drawable/edit_text_background"
-                android:textSize="@dimen/text_16"
-                android:maxLines="1"
-                android:layout_toRightOf="@id/tv2"
-                android:layout_toEndOf="@id/tv2"
-                android:layout_marginLeft="@dimen/register_bottle_et_space"
-                />
+                android:textSize="@dimen/text_16" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0.5dp"
             android:background="@color/white"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_Modules"
-            >
+            android:padding="@dimen/margin_Modules">
 
             <TextView
                 android:id="@+id/tv3"
@@ -290,21 +287,22 @@
                 android:id="@+id/property_unit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/margin_Modules"
-                android:hint="编辑产权单位"
-                android:layout_toRightOf="@id/tv3"
-                android:layout_toEndOf="@id/tv3"
                 android:layout_marginLeft="@dimen/register_bottle_et_space"
-                android:inputType="text"
+                android:layout_toEndOf="@id/tv3"
+                android:layout_toRightOf="@id/tv3"
                 android:background="@drawable/edit_text_background"
+                android:hint="编辑产权单位"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_Modules"
                 android:textColor="@color/textcolor"
                 android:textColorHint="@color/line_color_lib"
                 android:textCursorDrawable="@null"
                 android:textSize="@dimen/text_16"
-                android:maxLines="1"
 
                 />
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/orders_detail_five_kg"
             android:layout_width="match_parent"
@@ -313,8 +311,7 @@
             android:background="@color/white"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/margin_Modules"
-            android:paddingRight="@dimen/margin_Modules"
-            >
+            android:paddingRight="@dimen/margin_Modules">
 
             <TextView
                 android:id="@+id/tv4"
@@ -331,9 +328,9 @@
                 android:id="@+id/creat_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/tv4"
-                android:layout_toEndOf="@id/tv4"
                 android:layout_marginLeft="@dimen/register_bottle_et_space"
+                android:layout_toEndOf="@id/tv4"
+                android:layout_toRightOf="@id/tv4"
                 android:text=""
                 android:textColor="@color/textcolor"
                 android:textSize="@dimen/text_16" />
@@ -344,12 +341,11 @@
         android:id="@+id/ll_scan_delive_steel_bottle_query"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_Modules"
-        android:layout_marginBottom="@dimen/margin_Modules"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
         android:layout_above="@id/scan_delive_steel_bottle_rlt"
-        >
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_Modules"
+        android:layout_marginTop="@dimen/margin_Modules"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_scan_qrcode_steel_bottle_number"
@@ -357,15 +353,14 @@
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_background"
             android:hint="手动输入钢瓶编号"
-            android:padding="@dimen/margin_Modules"
             android:inputType="number"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:padding="@dimen/margin_Modules"
             android:textColor="@color/textcolor"
             android:textColorHint="@color/bg_input_border"
             android:textCursorDrawable="@null"
-            android:textSize="@dimen/text_16"
-            android:maxLength="10"
-            android:maxLines="1"
-            />
+            android:textSize="@dimen/text_16" />
 
         <TextView
             android:id="@+id/btn_scan_qrcode_query_steel_bottle"

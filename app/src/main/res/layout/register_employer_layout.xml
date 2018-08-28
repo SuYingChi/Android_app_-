@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/line_color"
     android:orientation="vertical">
 
@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_normol"
         android:background="@color/msb_color"
-        app:title_text= "移动开户"
-        />
+        app:title_text="移动开户" />
 
     <LinearLayout
         android:id="@+id/ll_location_edit_name"
@@ -37,12 +36,11 @@
             android:hint="世贸吴彦祖"
             android:inputType="number"
             android:maxLength="11"
+            android:maxLines="1"
             android:textColor="#ffffff"
             android:textColorHint="@color/text_hint"
             android:textCursorDrawable="@null"
-            android:textSize="15sp"
-            android:maxLines="1"
-            />
+            android:textSize="15sp" />
 
     </LinearLayout>
 
@@ -94,9 +92,8 @@
             android:layout_marginLeft="30dp"
             android:layout_weight="1"
             android:background="@drawable/edit_text_background"
-            android:textSize="15sp"
             android:maxLines="1"
-            />
+            android:textSize="15sp" />
 
 
     </LinearLayout>
@@ -198,15 +195,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_Modules"
             android:background="@drawable/edit_text_background"
-            android:maxLength="2"
             android:gravity="center"
+            android:inputType="number"
+            android:maxLength="2"
+            android:maxLines="1"
             android:textColor="@color/textcolor"
             android:textColorHint="@color/text_hint"
             android:textCursorDrawable="@null"
-            android:inputType="number"
-            android:textSize="15sp"
-            android:maxLines="1"
-            />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/tv_floor"
@@ -224,12 +220,11 @@
             android:background="@drawable/edit_text_background"
             android:gravity="center"
             android:maxLength="2"
+            android:maxLines="1"
             android:textColor="#ffffff"
             android:textColorHint="@color/text_hint"
             android:textCursorDrawable="@null"
-            android:textSize="15sp"
-            android:maxLines="1"
-            />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/tv_room"

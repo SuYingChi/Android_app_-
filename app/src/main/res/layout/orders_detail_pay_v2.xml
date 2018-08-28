@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-<com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
-    android:id="@+id/orders_detail_pay_topbar_v2"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/top_bar_height_normol"
-    android:background="@color/msb_color"
-    app:title_text="订单详情"
-    />
+    android:layout_height="match_parent">
+
+    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
+        android:id="@+id/orders_detail_pay_topbar_v2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height_normol"
+        android:background="@color/msb_color"
+        app:title_text="订单详情" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_remain"
         android:layout_below="@id/orders_detail_pay_topbar_v2"
-        android:background="@color/msb_color"
-        />
+        android:background="@color/msb_color" />
+
     <include
         layout="@layout/pay_bottom_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        />
+        android:layout_alignParentBottom="true" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,14 +30,13 @@
         android:layout_below="@id/orders_detail_pay_topbar_v2"
         android:layout_marginLeft="@dimen/margin_Modules"
         android:layout_marginRight="@dimen/margin_Modules"
-        android:background="@color/line_color_lib"
-        >
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/orders_detail_pay_v2_rcl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        />
-</RelativeLayout>
+        android:background="@color/line_color_lib">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/orders_detail_pay_v2_rcl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white" />
+    </RelativeLayout>
 
 </RelativeLayout>

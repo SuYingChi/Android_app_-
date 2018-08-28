@@ -1,396 +1,394 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/deliever_dialog_custom_bg"
-    >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="运费说明"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/margin_Modules"
-        android:textSize="@dimen/text_16"
-        android:padding="@dimen/margin_Modules"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="电梯房及1层楼"
-        android:textColor="@color/lpg_text_dark_color"
-        android:padding="@dimen/margin_Modules"
-        android:textSize="@dimen/text_16"
-        android:background="@color/line_color_lib"
-        />
+    android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:background="@drawable/deliever_dialog_custom_bg"
+        android:orientation="vertical">
+
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5KG"
-            android:textSize="@dimen/text_16"
-            android:gravity="center"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg"
+            android:layout_marginTop="@dimen/margin_Modules"
             android:padding="@dimen/margin_Modules"
-            />
-        <TextView
-            android:id="@+id/first_five"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="0元"
-            android:gravity="center"
-            android:textSize="@dimen/text_16"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg"
-            android:padding="@dimen/margin_Modules"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="15KG"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"
-            android:padding="@dimen/margin_Modules"
-            android:textSize="@dimen/text_16"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg_gray"
-            />
-        <TextView
-            android:id="@+id/first_fifteen"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="0元"
-            android:textSize="@dimen/text_16"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg_gray"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="50KG"
-            android:textSize="@dimen/text_16"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg"
-            />
-        <TextView
-            android:id="@+id/first_fifty"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="0元"
-            android:textSize="@dimen/text_16"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg"
-            />
-    </LinearLayout>
+            android:text="运费说明"
+            android:textSize="@dimen/text_16" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="2,3层楼"
-        android:textColor="@color/lpg_text_dark_color"
-        android:padding="@dimen/margin_Modules"
-        android:textSize="@dimen/text_16"
-        android:background="@color/line_color_lib"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="5KG"
-            android:gravity="center"
+            android:background="@color/line_color_lib"
             android:padding="@dimen/margin_Modules"
-            android:textSize="@dimen/text_16"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg"
-            />
-        <TextView
-            android:id="@+id/second_five"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="0元"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="15KG"
-            android:textSize="@dimen/text_16"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg_gray"
-            />
-        <TextView
-            android:id="@+id/second_fifteen"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="0元"
-            android:textSize="@dimen/text_16"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg_gray"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="50KG"
-            android:textSize="@dimen/text_16"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg"
-            />
-        <TextView
-            android:id="@+id/second_fifty"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="0元"
-            android:textSize="@dimen/text_16"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg"
-            />
-    </LinearLayout>
+            android:text="电梯房及1层楼"
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="4,5层楼"
-        android:textSize="@dimen/text_16"
-        android:textColor="@color/lpg_text_dark_color"
-        android:padding="@dimen/margin_Modules"
-        android:background="@color/line_color_lib"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="5KG"
-            android:textSize="@dimen/text_16"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg"
-            />
-        <TextView
-            android:id="@+id/four_five"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="0元"
-            android:textSize="@dimen/text_16"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="15KG"
-            android:textSize="@dimen/text_16"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg_gray"
-            />
-        <TextView
-            android:id="@+id/four_fifteen"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="0元"
-            android:textSize="@dimen/text_16"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg_gray"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="50KG" android:textSize="@dimen/text_16"
+            android:orientation="horizontal">
 
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg"
-            />
-        <TextView
-            android:id="@+id/four_fifty"
-            android:layout_width="0dp"
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="5KG"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/first_five"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="0元"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="0元"
-            android:gravity="center"
-            android:textSize="@dimen/text_16"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg_gray"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="15KG"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/first_fifteen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg_gray"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="0元"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="50KG"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/first_fifty"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="0元"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/line_color_lib"
             android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg"
-            />
+            android:text="2,3层楼"
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="5KG"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/second_five"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="0元" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg_gray"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="15KG"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/second_fifteen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg_gray"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="0元"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="50KG"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/second_fifty"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="0元"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/line_color_lib"
+            android:padding="@dimen/margin_Modules"
+            android:text="4,5层楼"
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="5KG"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/four_five"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="0元"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg_gray"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="15KG"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/four_fifteen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg_gray"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="0元"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg"
+
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="50KG"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/four_fifty"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="0元"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/line_color_lib"
+            android:padding="@dimen/margin_Modules"
+            android:text="5层以上"
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="5KG"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/six_five"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="0元"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg_gray"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="15KG"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/six_fifteen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg_gray"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="0元"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="50KG"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/six_fifty"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_view_bg"
+                android:gravity="center"
+                android:padding="@dimen/margin_Modules"
+                android:text="0元"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/dismiss_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_Modules"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/margin_Modules"
+            android:text="我知道了"
+            android:textColor="@color/warning_red"
+            android:textSize="@dimen/text_16" />
     </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="5层以上"
-        android:textSize="@dimen/text_16"
-        android:textColor="@color/lpg_text_dark_color"
-        android:padding="@dimen/margin_Modules"
-        android:background="@color/line_color_lib"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="5KG"
-            android:gravity="center"
-            android:textSize="@dimen/text_16"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg"
-            />
-        <TextView
-            android:id="@+id/six_five"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="0元"
-            android:textSize="@dimen/text_16"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="15KG"
-            android:textSize="@dimen/text_16"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg_gray"
-            />
-        <TextView
-            android:id="@+id/six_fifteen"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="0元"
-            android:textSize="@dimen/text_16"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg_gray"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="50KG"
-            android:textSize="@dimen/text_16"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_bg"
-            />
-        <TextView
-            android:id="@+id/six_fifty"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="0元"
-            android:gravity="center"
-            android:padding="@dimen/margin_Modules"
-            android:layout_weight="1"
-            android:textSize="@dimen/text_16"
-            android:background="@drawable/text_view_bg"
-            />
-    </LinearLayout>
-    <TextView
-        android:id="@+id/dismiss_dialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="我知道了"
-        android:textSize="@dimen/text_16"
-        android:textColor="@color/warning_red"
-        android:padding="@dimen/margin_Modules"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="@dimen/margin_Modules"
-        />
-</LinearLayout>
 </ScrollView>

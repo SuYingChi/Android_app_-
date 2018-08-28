@@ -17,7 +17,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.DeliveryBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.EmpPayBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
@@ -27,7 +26,6 @@ import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.DeliverFareDialog;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
-import com.msht.mshtLpg.mshtLpgMaster.gsonInstance.GsonUtil;
 import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.ICashPayView;
@@ -222,9 +220,9 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         double totalFifteenDelivery;
         double totalFiftyDelivery;
         double totalDeliveryfare;
-        if(orderDetailBean.getData().getIsDelivery()==1) {
+        if (orderDetailBean.getData().getIsDelivery() == 1) {
             totalDeliveryfare = 0;
-        }else {
+        } else {
             fiveDeliveryFee = orderDetailBean.getData().getFiveDeliveryFee();
             fifteenDeliveryFee = orderDetailBean.getData().getFifteenDeliveryFee();
             fiftyDeliveryFee = orderDetailBean.getData().getFiftyDeliveryFee();
@@ -233,15 +231,15 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
             totalFiftyDelivery = orderDetailBean.getData().getFiftyBottleCount() * fiftyDeliveryFee;
             totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
         }
-            tvDeliverFee.setText(totalDeliveryfare + "");
-            double exchange = orderDetailBean.getData().getRetrieveAmount();
-            tvDiscount.setText(exchange + "");
-            totalfare = totalGas + totalDeposite + totalDeliveryfare - exchange;
-            if (((totalfare + "").length()) > 6) {
-                tvTotal.setText((totalfare + "").substring(0, 5));
-            } else {
-                tvTotal.setText((totalfare + ""));
-            }
+        tvDeliverFee.setText(totalDeliveryfare + "");
+        double exchange = orderDetailBean.getData().getRetrieveAmount();
+        tvDiscount.setText(exchange + "");
+        totalfare = totalGas + totalDeposite + totalDeliveryfare - exchange;
+        if (((totalfare + "").length()) > 6) {
+            tvTotal.setText((totalfare + "").substring(0, 5));
+        } else {
+            tvTotal.setText((totalfare + ""));
+        }
         layoutWeiChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -271,19 +269,19 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopUtil.showTipsDialog(SendBottleOrdersDetailPayActivity.this, "拨打电话", "请确认是否要拨打电话" + tvTel.getText().toString(), "取消", "确认", null, new View.OnClickListener() {
+                PopUtil.showComfirmDialog(SendBottleOrdersDetailPayActivity.this, "拨打电话", "请确认是否要拨打电话" + tvTel.getText().toString(), "取消", "确认", null, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        PermissionUtils.requestPermissions(SendBottleOrdersDetailPayActivity.this,SendBottleOrdersDetailPayActivity.this, Permission.CALL_PHONE);
+                        PermissionUtils.requestPermissions(SendBottleOrdersDetailPayActivity.this, SendBottleOrdersDetailPayActivity.this, Permission.CALL_PHONE);
                     }
-                });
+                }, true);
 
             }
         });
         layoutAliPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-          /*      PopUtil.showTipsDialog(SendBottleOrdersDetailPayActivity.this, "现金代付", "是否确认现金代付", "", "", null, new View.OnClickListener() {
+          /*      PopUtil.showComfirmDialog(SendBottleOrdersDetailPayActivity.this, "现金代付", "是否确认现金代付", "", "", null, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         iCashPayPresenter.cashPay();

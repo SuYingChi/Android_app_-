@@ -36,17 +36,16 @@ public class TimeSelecteDialog extends Dialog {
     ;
     private OnSelectTimeListener onSelectTimeListener;
 
-    public TimeSelecteDialog(Context context, int systemYear, int systemMonth, int systemDate,int systemHour,int systemMinute,OnSelectTimeListener onSelectTimeListener) {
+    public TimeSelecteDialog(Context context, int systemYear, int systemMonth, int systemDate, int systemHour, int systemMinute, OnSelectTimeListener onSelectTimeListener) {
         super(context, R.style.BottomAnimDialogStyle);
         this.context = context;
         this.onSelectTimeListener = onSelectTimeListener;
-        this.systemYear  =systemYear;
+        this.systemYear = systemYear;
         this.systemMonth = systemMonth;
         this.systemDate = systemDate;
-        this.systemHour =systemHour;
+        this.systemHour = systemHour;
         this.systemMinute = systemMinute;
     }
-
 
 
     @Override
@@ -83,9 +82,9 @@ public class TimeSelecteDialog extends Dialog {
                 TimeSelecteDialog.this.onSelectTimeListener.onSelectDate(year, month, dayOfMonth);
             }
         });
-        calendarView.setMinDate(DateUtils.getStringToDate(systemYear+"-"+systemMonth+"-"+systemDate+"-","yyyy-MM-dd"));
+        calendarView.setMinDate(DateUtils.getStringToDate(systemYear + "-" + systemMonth + "-" + systemDate + "-", "yyyy-MM-dd"));
         timePicker.setIs24HourView(true);
-/*        *//*接下来就是一些需要用到反射的方法了，比如更改分割线的样式，设置起始截止时间等：
+        /*        *//*接下来就是一些需要用到反射的方法了，比如更改分割线的样式，设置起始截止时间等：
         首先我们要通过反射获取TimePicker源码里hour和minute的id：*//*
         Resources systemResources = Resources.getSystem();
         int hourNumberPickerId = systemResources.getIdentifier("hour", "id", "android");
@@ -99,11 +98,11 @@ public class TimeSelecteDialog extends Dialog {
         //设置最小minute
         minuteNumberPicker.setMinValue(systemMinute);*/
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-                    @Override
-                    public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                        TimeSelecteDialog.this.onSelectTimeListener.onSelectTime(hourOfDay,minute);
-                    }
-                });
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                TimeSelecteDialog.this.onSelectTimeListener.onSelectTime(hourOfDay, minute);
+            }
+        });
 
 
     }
@@ -125,7 +124,8 @@ public class TimeSelecteDialog extends Dialog {
 
 
     public interface OnSelectTimeListener {
-    void onSelectDate(int year, int month, int date);
-    void onSelectTime(int hourOfDay, int minute);
-}
+        void onSelectDate(int year, int month, int date);
+
+        void onSelectTime(int hourOfDay, int minute);
+    }
 }

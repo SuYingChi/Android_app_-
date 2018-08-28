@@ -90,11 +90,11 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
         if (bundle != null) {
             fragmentType = bundle.getInt(Constants.SCANFRAGMENT_TYPE);
             //扫描员工二维码FRAGMENT
-            innerType =  bundle.getInt("innerType");
+            innerType = bundle.getInt("innerType");
         } else {
             return;
         }
-        Log.d(TAG, "onCreate: fragmentType     "+fragmentType);
+        Log.d(TAG, "onCreate: fragmentType     " + fragmentType);
         CameraManager.init(LPGApplication.getLPGApplicationContext());
         iScanInnerPresenter = new IInnerFetchPresenter(this);
         hasSurface = false;
@@ -115,9 +115,9 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
 
     @Override
     public String getEmployeeCode() {
-        if(fragmentType == 1){
+        if (fragmentType == 1) {
             return employerId;
-        }else {
+        } else {
             return innnerFetchActivityListener.getEmpolyerId();
         }
     }
@@ -140,29 +140,29 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: fragmentType     "+fragmentType);
+        Log.d(TAG, "onCreateView: fragmentType     " + fragmentType);
         View view = null;
         if (fragmentType == 1) {
             view = inflater.inflate(R.layout.inner_fetch_no_rcl_layout, null);
-            tvEmployer = (TextView)view.findViewById(R.id.tv_employer);
-            tvTitle = (TextView)view.findViewById(R.id.tv_scan_delive_steel_bottle);
+            tvEmployer = (TextView) view.findViewById(R.id.tv_employer);
+            tvTitle = (TextView) view.findViewById(R.id.tv_scan_delive_steel_bottle);
             tvTitle.setText("请扫描员工二维码");
         } else if (fragmentType == 2) {
             view = inflater.inflate(R.layout.inner_fetch_layout, null);
-            recyclerView= (RecyclerView)view.findViewById(R.id.scan_rcl_deliver_steel_bottle);
+            recyclerView = (RecyclerView) view.findViewById(R.id.scan_rcl_deliver_steel_bottle);
             adapter = new ScanBottleQRCodeRclAdapter(list, getActivity());
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerView.setAdapter(adapter);
-            tvTitle = (TextView)view.findViewById(R.id.tv_scan_delive_steel_bottle);
+            tvTitle = (TextView) view.findViewById(R.id.tv_scan_delive_steel_bottle);
             tvTitle.setText("请扫描钢瓶二维码");
         }
-        surfaceView = (SurfaceView)view.findViewById(R.id.scan_delive_steel_bottle_preview_view);
+        surfaceView = (SurfaceView) view.findViewById(R.id.scan_delive_steel_bottle_preview_view);
         surfaceHolder = surfaceView.getHolder();
-        topBarView = (TopBarView)view.findViewById(R.id.scan_delive_topbar);
-        tvNext = (TextView)view.findViewById(R.id.tv_scan_delive_bottom);
-        tvQuery = (TextView)view.findViewById(R.id.btn_scan_qrcode_query_steel_bottle);
-        etInput = (EditText)view.findViewById(R.id.et_scan_qrcode_steel_bottle_number);
-        viewfinderView = (ViewfinderView)view.findViewById(R.id.scan_delive_steel_bottle_qrcode_viewfinder_view);
+        topBarView = (TopBarView) view.findViewById(R.id.scan_delive_topbar);
+        tvNext = (TextView) view.findViewById(R.id.tv_scan_delive_bottom);
+        tvQuery = (TextView) view.findViewById(R.id.btn_scan_qrcode_query_steel_bottle);
+        etInput = (EditText) view.findViewById(R.id.et_scan_qrcode_steel_bottle_number);
+        viewfinderView = (ViewfinderView) view.findViewById(R.id.scan_delive_steel_bottle_qrcode_viewfinder_view);
 
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
@@ -187,7 +187,7 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
                     }
                 } else if (fragmentType == 1 && isEmployerQuerySuccess) {
                     innnerFetchActivityListener.onClickNextBtnAndSendEmployerId(employerId);
-                }else if(fragmentType == 1 && !isEmployerQuerySuccess){
+                } else if (fragmentType == 1 && !isEmployerQuerySuccess) {
                     PopUtil.toastInBottom("请验证领取钢瓶的员工");
                 }
 
@@ -200,10 +200,9 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
                 if (fragmentType == 1) {
                     employerId = etInput.getText().toString();
                     iScanInnerPresenter.innerFetchQueryEmpolyer();
-                }
-             else if(fragmentType ==2) {
-                        bottleCode = etInput.getText().toString();
-                        iScanInnerPresenter.innerFetchQueryBottle();
+                } else if (fragmentType == 2) {
+                    bottleCode = etInput.getText().toString();
+                    iScanInnerPresenter.innerFetchQueryBottle();
                 }
             }
         });
@@ -220,8 +219,8 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().length()==10){
-                    AppUtil.hideInput(MyScanInnerFragment.this.getContext(),etInput);
+                if (s.toString().length() == 10) {
+                    AppUtil.hideInput(MyScanInnerFragment.this.getContext(), etInput);
                 }
             }
         });
@@ -230,7 +229,7 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
 
     @Override
     public void onAttach(Context context) {
-        Log.d(TAG, "onAttach: fragmentType     "+fragmentType);
+        Log.d(TAG, "onAttach: fragmentType     " + fragmentType);
         super.onAttach(context);
         this.innnerFetchActivityListener = (InnnerFetchActivityListener) getActivity();
 
@@ -240,11 +239,11 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume: fragmentType     "+fragmentType);
-        String s="";
-        if(innerType == 1) {
+        Log.d(TAG, "onResume: fragmentType     " + fragmentType);
+        String s = "";
+        if (innerType == 1) {
             s = fragmentType == 1 ? "扫描员工二维码" : "扫描领瓶二维码";
-        }else if(innerType == 2){
+        } else if (innerType == 2) {
             s = "扫描返瓶二维码";
         }
         PopUtil.toastInBottom(s);
@@ -345,9 +344,9 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
             tvEmployer.setText(employerId);
             iScanInnerPresenter.innerFetchQueryEmpolyer();
         } else if (fragmentType == 2) {
-            if(bottleUrl.length()==10||bottleUrl.length()==8||bottleUrl.length()==9){
+            if (bottleUrl.length() == 10 || bottleUrl.length() == 8 || bottleUrl.length() == 9) {
                 bottleCode = bottleUrl;
-            }else if(bottleUrl.contains("id=")){
+            } else if (bottleUrl.contains("id=")) {
                 int index = bottleUrl.indexOf("id=");
                 bottleCode = bottleUrl.substring(index + 3).trim();
             }
@@ -377,9 +376,9 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
 
     @Override
     public void onPause() {
-        Log.d(TAG, "onPause: fragmentType     "+fragmentType);
+        Log.d(TAG, "onPause: fragmentType     " + fragmentType);
         super.onPause();
-       if (handler != null) {
+        if (handler != null) {
             handler.quitSynchronously();
             handler = null;
         }
@@ -389,7 +388,7 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestroy: fragmentType     "+fragmentType);
+        Log.d(TAG, "onDestroy: fragmentType     " + fragmentType);
         inactivityTimer.shutdown();
     }
 
@@ -398,12 +397,12 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
         if (isContainBottle(list, verifyBottleBean.getData().getBottleCode())) {
             PopUtil.toastInBottom("钢瓶已添加");
         } else if (fragmentType == 2) {
-            if (getInnerType() ==1 && verifyBottleBean.getData().getIsHeavy() == 0) {
+            if (getInnerType() == 1 && verifyBottleBean.getData().getIsHeavy() == 0) {
                 list.add(verifyBottleBean);
                 adapter.notifyDataSetChanged();
-            } else if(getInnerType() ==1 && verifyBottleBean.getData().getIsHeavy() == 1){
+            } else if (getInnerType() == 1 && verifyBottleBean.getData().getIsHeavy() == 1) {
                 PopUtil.toastInBottom("不能领空瓶");
-            }else if(getInnerType() ==2 ){
+            } else if (getInnerType() == 2) {
                 list.add(verifyBottleBean);
                 adapter.notifyDataSetChanged();
             }
@@ -434,7 +433,7 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        Log.d(TAG, "surfaceCreated: fragmentType     "+fragmentType);
+        Log.d(TAG, "surfaceCreated: fragmentType     " + fragmentType);
         if (!hasSurface) {
             hasSurface = true;
             initCamera(holder);
@@ -443,12 +442,12 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-        Log.d(TAG, "surfaceChanged: fragmentType     "+fragmentType);
+        Log.d(TAG, "surfaceChanged: fragmentType     " + fragmentType);
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        Log.d(TAG, "surfaceDestroyed: fragmentType     "+fragmentType);
+        Log.d(TAG, "surfaceDestroyed: fragmentType     " + fragmentType);
         hasSurface = false;
         if (camera != null) {
             if (CameraManager.get().isPreviewing()) {
@@ -500,7 +499,7 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
 
     @Override
     public String getSiteId() {
-        return  SharePreferenceUtil.getLoginSpStringValue("siteId");
+        return SharePreferenceUtil.getLoginSpStringValue("siteId");
     }
 
     @Override

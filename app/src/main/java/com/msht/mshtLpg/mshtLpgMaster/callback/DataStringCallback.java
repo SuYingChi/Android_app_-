@@ -9,11 +9,11 @@ import okhttp3.Request;
 
 public class DataStringCallback extends StringCallback {
 
-    private  IBaseView iView;
+    private IBaseView iView;
     protected boolean isResponseEmpty;
 
-    public DataStringCallback(IBaseView iView){
-     this.iView = iView;
+    public DataStringCallback(IBaseView iView) {
+        this.iView = iView;
     }
 
     @Override
@@ -33,8 +33,8 @@ public class DataStringCallback extends StringCallback {
     @Override
     public void onResponse(String s, int i) {
         iView.dismissLoading();
-       if(TextUtils.isEmpty(s)||TextUtils.equals("\"\"",s)){
-           isResponseEmpty = true;
-       }
+        if (TextUtils.isEmpty(s) || TextUtils.equals("\"\"", s)) {
+            isResponseEmpty = true;
+        }
     }
 }

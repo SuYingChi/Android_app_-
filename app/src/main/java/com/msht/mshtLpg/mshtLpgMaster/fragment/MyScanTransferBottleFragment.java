@@ -139,9 +139,9 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              if(BottleCaculteUtil.checkBottleListbyOrderNum(list,Integer.valueOf(fiveCount),Integer.valueOf(fifteenCount),Integer.valueOf(fiftyCount))){
-                  iPostTransferPresenter.postTransferOrders();
-              }
+                if (BottleCaculteUtil.checkBottleListbyOrderNum(list, Integer.valueOf(fiveCount), Integer.valueOf(fifteenCount), Integer.valueOf(fiftyCount))) {
+                    iPostTransferPresenter.postTransferOrders();
+                }
             }
         });
         etInput.addTextChangedListener(new TextWatcher() {
@@ -157,8 +157,8 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().length()==10){
-                    AppUtil.hideInput(MyScanTransferBottleFragment.this.getContext(),etInput);
+                if (s.toString().length() == 10) {
+                    AppUtil.hideInput(MyScanTransferBottleFragment.this.getContext(), etInput);
                 }
             }
         });
@@ -206,25 +206,25 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
             } else if (verifyBottleBean.getData().getBottleWeight() == 50 && BottleCaculteUtil.getBottleNum(list, 50) >= Integer.valueOf(fiftyCount)) {
                 PopUtil.toastInBottom("50kg钢瓶已达到订单数");
                 //空瓶调拨出库单
-            } else if (TextUtils.equals(transferType,"0")&& verifyBottleBean.getData().getIsHeavy() == 1) {
+            } else if (TextUtils.equals(transferType, "0") && verifyBottleBean.getData().getIsHeavy() == 1) {
                 list.add(verifyBottleBean);
                 adapter.notifyDataSetChanged();
                 fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5)));
                 fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15)));
                 fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50)));
 
-            } else if(TextUtils.equals(transferType,"0")&& verifyBottleBean.getData().getIsHeavy() == 0){
+            } else if (TextUtils.equals(transferType, "0") && verifyBottleBean.getData().getIsHeavy() == 0) {
                 PopUtil.toastInBottom("只能调拨空瓶出库");
-            }else if(TextUtils.equals(transferType,"1")&& verifyBottleBean.getData().getIsHeavy() == 1){
+            } else if (TextUtils.equals(transferType, "1") && verifyBottleBean.getData().getIsHeavy() == 1) {
                 PopUtil.toastInBottom("只能调拨重瓶入库");
             }  //重瓶调拨入库单
-            else if(TextUtils.equals(transferType,"1")&& verifyBottleBean.getData().getIsHeavy() == 0){
+            else if (TextUtils.equals(transferType, "1") && verifyBottleBean.getData().getIsHeavy() == 0) {
                 list.add(verifyBottleBean);
                 adapter.notifyDataSetChanged();
                 fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5)));
                 fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15)));
                 fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50)));
-            }else {
+            } else {
                 PopUtil.toastInBottom("不能扫描钢瓶");
             }
         }
@@ -291,9 +291,8 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
 
     @Override
     public String getTransferType() {
-        return 1+"";
+        return 1 + "";
     }
-
 
 
     @Override
@@ -309,9 +308,9 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
 
     @Override
     public void onPostTransfersuccess(PostTransferBean bean) {
-        if(TextUtils.equals(transferType,"0")){
+        if (TextUtils.equals(transferType, "0")) {
             PopUtil.toastInBottom("调拨单出库单已完成");
-        }else if(TextUtils.equals(transferType,"1")){
+        } else if (TextUtils.equals(transferType, "1")) {
             PopUtil.toastInBottom("调拨单入库单已完成");
         }
         getActivity().finish();
@@ -320,7 +319,7 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
     @Override
     public void onPause() {
         super.onPause();
-       if (handler != null) {
+        if (handler != null) {
             handler.quitSynchronously();
             handler = null;
         }

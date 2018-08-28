@@ -5,76 +5,78 @@
     android:id="@+id/orders_detail_pay_v2_bottom_tab"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:background="@color/white"
-    >
+    android:orientation="horizontal">
+
     <RelativeLayout
-        android:layout_weight="0.5"
         android:layout_width="0dp"
-        android:gravity="center_horizontal"
         android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:gravity="center_horizontal"
         android:minHeight="45dp">
+
         <TextView
             android:id="@+id/id_receipt_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:text="应收款"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/textcolor"
             android:layout_marginLeft="@dimen/margin_Modules"
             android:layout_marginStart="@dimen/margin_Modules"
-            />
+            android:layout_marginTop="10dp"
+            android:text="应收款"
+            android:textColor="@color/textcolor"
+            android:textSize="@dimen/text_16" />
+
         <TextView
             android:id="@+id/receipt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
-            android:layout_toRightOf="@+id/id_receipt_text"
-            android:layout_toEndOf="@+id/id_receipt_text"
             android:layout_centerVertical="true"
-            android:textColor="@color/warning_red"
-            android:textSize="@dimen/text_16"
             android:layout_marginLeft="@dimen/margin_Modules"
             android:layout_marginStart="@dimen/margin_Modules"
-            />
+            android:layout_toEndOf="@+id/id_receipt_text"
+            android:layout_toRightOf="@+id/id_receipt_text"
+            android:text="0"
+            android:textColor="@color/warning_red"
+            android:textSize="@dimen/text_16" />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/id_weichat_layout"
-        android:layout_weight="0.25"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_weight="0.25"
         android:background="@color/yellow_deep"
         android:minHeight="45dp">
+
         <TextView
             android:id="@+id/weixin_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
             android:text="微信支付"
-            />
+            android:textColor="@color/white" />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/id_aliPay_layout"
-        android:layout_weight="0.25"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_weight="0.25"
         android:background="@color/msb_color"
         android:minHeight="45dp">
+
         <TextView
             android:id="@+id/cash_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
             android:text="现金代付"
-            />
+            android:textColor="@color/white" />
     </RelativeLayout>
 </LinearLayout>

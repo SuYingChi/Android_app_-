@@ -4,23 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/line_color_lib">
+
     <SurfaceView
         android:id="@+id/scan_empty_steel_bottle_preview_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
+
     <com.uuzuche.lib_zxing.view.ViewfinderView
         android:id="@+id/scan_empty_steel_bottle_qrcode_viewfinder_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:inner_width="200dp"
-        app:inner_height="200dp"
-        app:inner_margintop="@dimen/scan_view_margin_top"
         app:inner_corner_length="30dp"
         app:inner_corner_width="5dp"
-        app:inner_scan_speed="10"
+        app:inner_height="200dp"
+        app:inner_margintop="@dimen/scan_view_margin_top"
         app:inner_scan_iscircle="false"
-        />
+        app:inner_scan_speed="10"
+        app:inner_width="200dp" />
+
     <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
         android:id="@+id/scan_empty_topbar"
         android:layout_width="match_parent"
@@ -28,6 +29,7 @@
         android:background="@color/msb_color"
         android:padding="@dimen/margin_Modules"
         app:title_text="回收空瓶" />
+
     <TextView
         android:id="@+id/tv_scan_empty_steel_bottle"
         android:layout_width="wrap_content"
@@ -43,9 +45,8 @@
         android:id="@+id/scan_empty_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
@@ -56,8 +57,8 @@
             android:paddingBottom="@dimen/margin_Modules"
             android:paddingTop="@dimen/margin_Modules"
             android:text="5kg:"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_dark_color" />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
 
         <TextView
             android:id="@+id/scan_qrcode_empty_five_steel_bottle_number"
@@ -69,8 +70,8 @@
             android:paddingBottom="@dimen/margin_Modules"
             android:paddingTop="@dimen/margin_Modules"
             android:text=""
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_dark_color" />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
 
         <TextView
             android:layout_width="0dp"
@@ -81,8 +82,8 @@
             android:paddingBottom="@dimen/margin_Modules"
             android:paddingTop="@dimen/margin_Modules"
             android:text="15kg:"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_dark_color" />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
 
         <TextView
             android:id="@+id/scan_qrcode_empty_fifteen_steel_bottle_number"
@@ -94,8 +95,8 @@
             android:paddingBottom="@dimen/margin_Modules"
             android:paddingTop="@dimen/margin_Modules"
             android:text=""
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_dark_color" />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
 
         <TextView
             android:layout_width="0dp"
@@ -106,8 +107,8 @@
             android:paddingBottom="@dimen/margin_Modules"
             android:paddingTop="@dimen/margin_Modules"
             android:text="50kg:"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_dark_color" />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
 
         <TextView
             android:id="@+id/scan_qrcode_empty_fifty_steel_bottle_number"
@@ -119,8 +120,8 @@
             android:paddingBottom="@dimen/margin_Modules"
             android:paddingTop="@dimen/margin_Modules"
             android:text=""
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_dark_color" />
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
 
         <TextView
             android:id="@+id/tv_save_btn"
@@ -133,21 +134,23 @@
             android:paddingBottom="@dimen/margin_Modules"
             android:paddingTop="@dimen/margin_Modules"
             android:text="保存"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_16" />
     </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/scan_empty_steel_bottle_rlt"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_above="@id/scan_empty_bottom"
-        android:layout_margin="@dimen/margin_Modules"
-        >
+        android:layout_margin="@dimen/margin_Modules">
+
         <include
             android:id="@+id/header"
+            layout="@layout/item_rcl_deliver_steel_bottle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            layout="@layout/item_rcl_deliver_steel_bottle"/>
+            android:layout_height="wrap_content" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/scan_rcl_empty_steel_bottle"
             android:layout_width="match_parent"
@@ -155,16 +158,16 @@
             android:layout_below="@+id/header"
             android:background="@color/white" />
     </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/ll_scan_empty_steel_bottle_query"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_Modules"
-        android:layout_marginBottom="@dimen/margin_Modules"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
         android:layout_above="@id/scan_empty_steel_bottle_rlt"
-        >
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_Modules"
+        android:layout_marginTop="@dimen/margin_Modules"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_scan_qrcode_steel_bottle_number"
@@ -172,14 +175,13 @@
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_background"
             android:hint="手动输入钢瓶编号"
-            android:padding="@dimen/margin_Modules"
             android:inputType="number"
+            android:maxLines="1"
+            android:padding="@dimen/margin_Modules"
             android:textColor="#ffffff"
             android:textColorHint="@color/textcolor"
             android:textCursorDrawable="@null"
-            android:textSize="15sp"
-            android:maxLines="1"
-            />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/btn_scan_qrcode_query_steel_bottle"

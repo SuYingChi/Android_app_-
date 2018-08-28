@@ -19,6 +19,7 @@ public class DimenUtil {
 
         return dm.widthPixels;
     }
+
     /**
      * 获取屏幕高度(px)
      */

@@ -244,5 +244,6 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
         void onClickScanCodeBtn(int itemPosition, String orderId);
 
         void onClckModifyBtn(final int position, final String five, final String fifteen, final String itemPosition, final String orderId);
+
     }
 }

@@ -27,6 +27,7 @@ public class WebActivity extends BaseActivity {
     WebView webView;
     @BindView(R.id.topbar)
     TopBarView topBarView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

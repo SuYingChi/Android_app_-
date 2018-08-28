@@ -48,7 +48,7 @@ public class EditLocationActivity extends BaseActivity {
         setContentView(R.layout.edit_location_layout);
         unbinder = ButterKnife.bind(this);
         Bundle bundle = getIntent().getExtras();
-        if(bundle==null){
+        if (bundle == null) {
             return;
         }
         floor = bundle.getString(Constants.FLOOR);
@@ -64,7 +64,7 @@ public class EditLocationActivity extends BaseActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                isElevator  = position+"";
+                isElevator = position + "";
             }
 
             @Override
@@ -74,10 +74,10 @@ public class EditLocationActivity extends BaseActivity {
         });
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra(Constants.IS_ELEVATOR,isElevator );
-                intent.putExtra(Constants.FLOOR,Integer.valueOf(editText.getText().toString()));
+                intent.putExtra(Constants.IS_ELEVATOR, isElevator);
+                intent.putExtra(Constants.FLOOR, Integer.valueOf(editText.getText().toString()));
                 setResult(RESULT_OK, intent);
                 finish();
             }
@@ -86,11 +86,11 @@ public class EditLocationActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra(Constants.IS_ELEVATOR,isElevator );
-                if(TextUtils.isEmpty(editText.getText().toString())){
+                intent.putExtra(Constants.IS_ELEVATOR, isElevator);
+                if (TextUtils.isEmpty(editText.getText().toString())) {
                     PopUtil.toastInBottom("楼层不能为空");
-                }else {
-                    intent.putExtra(Constants.FLOOR,editText.getText().toString());
+                } else {
+                    intent.putExtra(Constants.FLOOR, editText.getText().toString());
                     setResult(RESULT_OK, intent);
                     finish();
                 }

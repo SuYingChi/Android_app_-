@@ -12,51 +12,52 @@ import com.msht.mshtLpg.mshtLpgMaster.viewInterface.ITransferToStorageView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 public class ITransferToStorageListPresenter {
-    private  ITransferToStorageView iTransferToStorageView;
+    private ITransferToStorageView iTransferToStorageView;
 
     public ITransferToStorageListPresenter(ITransferToStorageView iTransferToStorageView) {
         this.iTransferToStorageView = iTransferToStorageView;
     }
 
-   public void getTransferOrdersList(){
-       OkHttpUtils.get().url(Constants.GET_TAANSFER_LIST).addParams("siteId", iTransferToStorageView.getSiteId())
-               .addParams("state",iTransferToStorageView.getState())
-               .addParams("pageNum",iTransferToStorageView.getPageNum())
-               .addParams("pageSize",iTransferToStorageView.getPageSize())
-               .addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iTransferToStorageView.getToken())
-               .build().execute(new DataStringCallback(iTransferToStorageView) {
-           @Override
-           public void onResponse(String s, int i) {
-               //先继承再重写或重写覆盖请求错误的场景
-               super.onResponse(s, i);
-               if(isResponseEmpty){
-                   iTransferToStorageView.onError("接口返回空字符串:");
-                   return;
-               }
-               ErrorBean bean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
-               if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
-                   iTransferToStorageView.onError(bean.getMsg());
-
-               } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
-                   TransferStorageListBean transferStorageListBean = GsonUtil.getGson().fromJson(s, TransferStorageListBean.class);
-                   iTransferToStorageView.onGetListSuccess(transferStorageListBean);
-               }
-           }
-
-       });
-    }
-    public void updateTransfer(){
-        OkHttpUtils.get().url(Constants.UPDATE_TRANSFER).addParams("id", iTransferToStorageView.getId())
-                .addParams("fiveCount",iTransferToStorageView.getFiveCount())
-                .addParams("fifteenCount",iTransferToStorageView.getFifteenCount())
-                .addParams("fifthCount",iTransferToStorageView.getFifthCount())
-                .addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iTransferToStorageView.getToken())
+    public void getTransferOrdersList() {
+        OkHttpUtils.get().url(Constants.GET_TAANSFER_LIST).addParams("siteId", iTransferToStorageView.getSiteId())
+                .addParams("state", iTransferToStorageView.getState())
+                .addParams("pageNum", iTransferToStorageView.getPageNum())
+                .addParams("pageSize", iTransferToStorageView.getPageSize())
+                .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iTransferToStorageView.getToken())
                 .build().execute(new DataStringCallback(iTransferToStorageView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                if(isResponseEmpty){
+                if (isResponseEmpty) {
+                    iTransferToStorageView.onError("接口返回空字符串:");
+                    return;
+                }
+                ErrorBean bean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
+                if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
+                    iTransferToStorageView.onError(bean.getMsg());
+
+                } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
+                    TransferStorageListBean transferStorageListBean = GsonUtil.getGson().fromJson(s, TransferStorageListBean.class);
+                    iTransferToStorageView.onGetListSuccess(transferStorageListBean);
+                }
+            }
+
+        });
+    }
+
+    public void updateTransfer() {
+        OkHttpUtils.get().url(Constants.UPDATE_TRANSFER).addParams("id", iTransferToStorageView.getId())
+                .addParams("fiveCount", iTransferToStorageView.getFiveCount())
+                .addParams("fifteenCount", iTransferToStorageView.getFifteenCount())
+                .addParams("fifthCount", iTransferToStorageView.getFifthCount())
+                .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iTransferToStorageView.getToken())
+                .build().execute(new DataStringCallback(iTransferToStorageView) {
+            @Override
+            public void onResponse(String s, int i) {
+                //先继承再重写或重写覆盖请求错误的场景
+                super.onResponse(s, i);
+                if (isResponseEmpty) {
                     iTransferToStorageView.onError("接口返回空字符串:");
                     return;
                 }

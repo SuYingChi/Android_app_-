@@ -64,7 +64,7 @@ public class MLoggerInterceptor implements Interceptor {
 
             Log.e(this.tag, "========response\'log=======end");
         } catch (Exception var7) {
-           var7.printStackTrace();
+            var7.printStackTrace();
         }
 
         return response;
@@ -101,7 +101,7 @@ public class MLoggerInterceptor implements Interceptor {
                 }
             }
         } catch (Exception var6) {
-           var6.printStackTrace();
+            var6.printStackTrace();
         }
 
     }

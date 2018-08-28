@@ -43,7 +43,7 @@ public final class MyScanDecodeHandler extends Handler {
     private final BaseFragment fragment;
     private final MultiFormatReader multiFormatReader;
 
-   public MyScanDecodeHandler(BaseFragment fragment, Hashtable<DecodeHintType, Object> hints) {
+    public MyScanDecodeHandler(BaseFragment fragment, Hashtable<DecodeHintType, Object> hints) {
         multiFormatReader = new MultiFormatReader();
         multiFormatReader.setHints(hints);
         this.fragment = fragment;

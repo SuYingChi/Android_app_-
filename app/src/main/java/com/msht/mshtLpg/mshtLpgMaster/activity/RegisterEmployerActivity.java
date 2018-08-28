@@ -79,7 +79,7 @@ public class RegisterEmployerActivity extends BaseActivity implements IRegisterE
 
     @Override
     public String getName() {
-        return   name = etName.getText().toString();
+        return name = etName.getText().toString();
     }
 
     @Override
@@ -89,7 +89,7 @@ public class RegisterEmployerActivity extends BaseActivity implements IRegisterE
 
     @Override
     public String getMobile() {
-        return mobileNum =etMobile.getText().toString() ;
+        return mobileNum = etMobile.getText().toString();
     }
 
     @Override
@@ -99,7 +99,7 @@ public class RegisterEmployerActivity extends BaseActivity implements IRegisterE
 
     @Override
     public String getLatitude() {
-        return  latitude;
+        return latitude;
     }
 
     @Override

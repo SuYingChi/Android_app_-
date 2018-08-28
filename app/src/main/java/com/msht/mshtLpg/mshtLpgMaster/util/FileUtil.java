@@ -15,6 +15,7 @@ public class FileUtil {
 
     /**
      * 文件或者目录是否存在
+     *
      * @param path 路径
      * @return true-存在 false-不存在
      */
@@ -25,6 +26,7 @@ public class FileUtil {
 
     /**
      * 获取挂载根目录
+     *
      * @return ROOT_DIR
      */
     public static String getRootDir() {
@@ -33,12 +35,13 @@ public class FileUtil {
 
     /**
      * 判断目录是否存在 不存在则mkdir
+     *
      * @param path 路径
      * @return file
      */
     public static File makeDir(String path) {
         File file = new File(Environment.getExternalStorageDirectory() + path);
-        if(!file.exists()) {
+        if (!file.exists()) {
             file.mkdirs();
         }
 
@@ -47,6 +50,7 @@ public class FileUtil {
 
     /**
      * 复制单个文件
+     *
      * @param oldPath String 原文件路径 如：c:/fqf.txt
      * @param newPath String 复制后路径 如：f:/fqf.txt
      * @return boolean
@@ -61,15 +65,14 @@ public class FileUtil {
                 FileOutputStream fs = new FileOutputStream(newPath);
                 byte[] buffer = new byte[1444];
                 int length;
-                while ( (byteread = inStream.read(buffer)) != -1) {
+                while ((byteread = inStream.read(buffer)) != -1) {
                     bytesum += byteread; //字节数 文件大小
                     System.out.println(bytesum);
                     fs.write(buffer, 0, byteread);
                 }
                 inStream.close();
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("复制单个文件操作出错");
             e.printStackTrace();
 
@@ -79,25 +82,26 @@ public class FileUtil {
 
     /**
      * 递归删除文件或子文件夹
+     *
      * @param path 路径
      */
     public static void deleteFile(String path) {
         File file = new File(path);
-        if(!file.exists()) {
+        if (!file.exists()) {
             return;
         }
 
-        if(file.isFile()) {
+        if (file.isFile()) {
             file.delete();
             return;
         }
 
-        if(file.isDirectory()) {
-            for(File f : file.listFiles()) {
+        if (file.isDirectory()) {
+            for (File f : file.listFiles()) {
                 deleteFile(f.getAbsolutePath());
             }
             file.delete();
-        } else{
+        } else {
             file.delete();
         }
     }

@@ -2,11 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/line_color_lib"
-    >
-<include
-    android:id="@+id/orders_detail_command_top"
-    layout="@layout/item_orders_detail_command_topbar"/>
+    android:background="@color/line_color_lib">
+
+    <include
+        android:id="@+id/orders_detail_command_top"
+        layout="@layout/item_orders_detail_command_topbar" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rcl_orders_detail"
         android:layout_width="match_parent"
@@ -14,104 +15,104 @@
         android:layout_below="@id/orders_detail_command_top"
         android:layout_marginLeft="@dimen/margin"
         android:layout_marginRight="@dimen/margin"
-        android:paddingLeft="@dimen/margin"
-        android:paddingRight="@dimen/margin"
-        android:background="@color/white"
         android:layout_marginTop="@dimen/margin_Modules"
-        />
+        android:background="@color/white"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin" />
+
     <LinearLayout
         android:id="@+id/user_change_cost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        android:layout_marginTop="@dimen/margin_Modules"
         android:layout_below="@id/rcl_orders_detail"
-        android:paddingLeft="@dimen/margin"
-        android:paddingRight="@dimen/margin"
         android:layout_marginLeft="@dimen/margin"
         android:layout_marginRight="@dimen/margin"
-        >
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="@color/lpg_text_dark_color"
-          android:textSize="@dimen/text_nomal"
-          android:text="自有产权瓶置换"
-          />
+        android:layout_marginTop="@dimen/margin_Modules"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自有产权瓶置换"
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_nomal" />
+
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1" />
+
         <TextView
             android:id="@+id/item_rcl_order_detail_pay_discount"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="-170"
-            android:textSize="@dimen/text_nomal"
             android:textColor="@color/green"
-            />
+            android:textSize="@dimen/text_nomal" />
+
         <ImageView
             android:id="@+id/right_angle_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/right_angle"
-            android:layout_marginLeft="@dimen/margin"
             android:layout_gravity="center"
-            />
+            android:layout_marginLeft="@dimen/margin"
+            android:src="@drawable/right_angle" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ll_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_below="@id/user_change_cost"
-        android:layout_marginTop="@dimen/margin_Modules"
         android:layout_marginLeft="@dimen/margin"
-        android:paddingLeft="@dimen/margin"
         android:layout_marginRight="@dimen/margin"
-        android:paddingRight="@dimen/margin"
+        android:layout_marginTop="@dimen/margin_Modules"
         android:background="@color/white"
-        >
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:orientation="horizontal"
-         >
-         <TextView
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="下单时间"
-             />
-         <TextView
-             android:id="@+id/get_time"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="2018-06-08 15:20"
-             android:layout_marginLeft="@dimen/margin"
-             />
-     </LinearLayout>
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/margin_Modules"
-            >
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="发货时间"
-                />
+                android:text="下单时间" />
+
+            <TextView
+                android:id="@+id/get_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin"
+                android:text="2018-06-08 15:20" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_Modules"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发货时间" />
+
             <TextView
                 android:id="@+id/send_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2018-06-08 15:20"
                 android:layout_marginLeft="@dimen/margin"
-                />
+                android:text="2018-06-08 15:20" />
         </LinearLayout>
     </LinearLayout>
+
     <include
         layout="@layout/pay_bottom_tab"
         android:layout_width="match_parent"

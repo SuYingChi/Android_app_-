@@ -5,10 +5,12 @@ import android.content.Context;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+
 /**
  * Demo class
  * 〈一句话功能简述〉
  * 〈功能详细描述〉
+ *
  * @author hong
  * @date 2017/3/6.  
  */

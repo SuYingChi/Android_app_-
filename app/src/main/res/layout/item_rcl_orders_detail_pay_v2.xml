@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/rcl_margin"
-        android:background="@color/line_color_lib"
-        />
-<TextView
-    android:id="@+id/item_rcl_orders_detail_pay_v2_comment"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/margin_Modules"
-    android:textSize="@dimen/text_16"
-    android:text="内部备注：客户要求今晚晚饭前必须送到"
-    />
+        android:background="@color/line_color_lib" />
+
+    <TextView
+        android:id="@+id/item_rcl_orders_detail_pay_v2_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_Modules"
+        android:text="内部备注：客户要求今晚晚饭前必须送到"
+        android:textSize="@dimen/text_16" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/rcl_margin"
-        android:background="@color/line_color_lib"
-        />
+        android:background="@color/line_color_lib" />
 </LinearLayout>

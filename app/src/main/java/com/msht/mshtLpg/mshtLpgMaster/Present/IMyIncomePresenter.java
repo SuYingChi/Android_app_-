@@ -13,21 +13,21 @@ import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IMyIncomeView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 public class IMyIncomePresenter {
-    private  IMyIncomeView iMyIncomeView;
+    private IMyIncomeView iMyIncomeView;
 
     public IMyIncomePresenter(IMyIncomeView iMyIncomeView) {
         this.iMyIncomeView = iMyIncomeView;
     }
 
-    public void getMyIncome(){
+    public void getMyIncome() {
         OkHttpUtils.get().url(Constants.MY_INCOME)
-                .addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iMyIncomeView.getToken()).
-            build().execute(new DataStringCallback(iMyIncomeView) {
+                .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iMyIncomeView.getToken()).
+                build().execute(new DataStringCallback(iMyIncomeView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                if(isResponseEmpty){
+                if (isResponseEmpty) {
                     iMyIncomeView.onError("接口返回空字符串:");
                     return;
                 }

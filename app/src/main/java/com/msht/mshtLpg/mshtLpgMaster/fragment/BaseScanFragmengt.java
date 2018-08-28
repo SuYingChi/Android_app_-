@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 //子类自己实现Iview 和创建对应的presenter，用来在扫码后发起网络请求做相应的操作
-public class BaseScanFragmengt extends BaseFragment implements SurfaceHolder.Callback{
+public class BaseScanFragmengt extends BaseFragment implements SurfaceHolder.Callback {
 
     protected boolean hasSurface;
     protected boolean isRestart;
@@ -40,14 +40,15 @@ public class BaseScanFragmengt extends BaseFragment implements SurfaceHolder.Cal
     protected String bottleCode;
     protected Vector<BarcodeFormat> decodeFormats;
     protected String characterSet;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CameraManager.init(LPGApplication.getLPGApplicationContext());
         hasSurface = false;
-        isRestart  = false;
+        isRestart = false;
         inactivityTimer = new InactivityTimer(this.getActivity());
-       //子类添加自己的presen
+        //子类添加自己的presen
     }
 
     @Nullable
@@ -74,7 +75,7 @@ public class BaseScanFragmengt extends BaseFragment implements SurfaceHolder.Cal
         }
         initBeepSound();
         vibrate = true;
-     //这部分留给子类添加
+        //这部分留给子类添加
        /* if (hasSurface) {
             initCamera(surfaceHolder);
         } else {
@@ -104,6 +105,7 @@ public class BaseScanFragmengt extends BaseFragment implements SurfaceHolder.Cal
             }
         }
     }
+
     /**
      * When the beep has finished playing, rewind to queue up another one.
      */
@@ -122,6 +124,7 @@ public class BaseScanFragmengt extends BaseFragment implements SurfaceHolder.Cal
     public void setCameraInitCallBack(MyScanDeliverUserBottleFragment.CameraInitCallBack callBack) {
         this.callBack = callBack;
     }
+
     protected void initCamera(SurfaceHolder surfaceHolder) {
         try {
             CameraManager.get().openDriver(surfaceHolder);
@@ -142,6 +145,7 @@ public class BaseScanFragmengt extends BaseFragment implements SurfaceHolder.Cal
         }*/
 
     }
+
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         if (!hasSurface) {
@@ -170,19 +174,21 @@ public class BaseScanFragmengt extends BaseFragment implements SurfaceHolder.Cal
             }
         }
     }
+
     @Override
     public void handleDecode(Result result, Bitmap barcode) {
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
         String bottleUrl = result.getText();
-        if(bottleUrl.length()==10||bottleUrl.length()==8||bottleUrl.length()==9){
+        if (bottleUrl.length() == 10 || bottleUrl.length() == 8 || bottleUrl.length() == 9) {
             bottleCode = bottleUrl;
-        }else if(bottleUrl.contains("id=")){
+        } else if (bottleUrl.contains("id=")) {
             int index = bottleUrl.indexOf("id=");
             bottleCode = bottleUrl.substring(index + 3).trim();
         }
         //子类有需要再增加扫码后的处理逻辑
     }
+
     protected void playBeepSoundAndVibrate() {
         if (playBeep && mediaPlayer != null) {
             mediaPlayer.start();
@@ -211,11 +217,13 @@ public class BaseScanFragmengt extends BaseFragment implements SurfaceHolder.Cal
         //关闭计时器
         //重写
     }
+
     @Override
     public Handler getHandler() {
         //重写 返回扫码结果回调handler给扫码子线程
         return null;
     }
+
     @Override
     public void drawViewfinder() {
         //重写 绘制扫码组件

@@ -15,17 +15,17 @@ public class IRegisterBottlePresenter {
     private IRegisterBottleView iRegisterBottleView;
 
 
-    public IRegisterBottlePresenter(IRegisterBottleView iRegisterBottleView){
+    public IRegisterBottlePresenter(IRegisterBottleView iRegisterBottleView) {
         this.iRegisterBottleView = iRegisterBottleView;
     }
 
-    public void getBottleInfo(){
+    public void getBottleInfo() {
         OkHttpUtils.get().url(Constants.GET_BOOTLEINFO_BY_ID).addParams(Constants.URL_PARAMS_BOTTLE_CODE, iRegisterBottleView.getBottleCode()).build().execute(new DataStringCallback(iRegisterBottleView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                if(isResponseEmpty){
+                if (isResponseEmpty) {
                     iRegisterBottleView.onError("接口返回空字符串:");
                     return;
                 }
@@ -41,21 +41,22 @@ public class IRegisterBottlePresenter {
 
         });
     }
-    public void update_bottle_info(){
+
+    public void update_bottle_info() {
         OkHttpUtils.get().url(Constants.UPDATE_BOTTLE_INFO).addParams(Constants.URL_PARAMS_BOTTLE_CODE, iRegisterBottleView.getBottleCode())
-               .addParams("bottleNum", iRegisterBottleView.getBottleNum()).
-                addParams("bottleWeight",iRegisterBottleView.getBottleWeight())
-                .addParams("producer",iRegisterBottleView.getProducer())
-                .addParams("propertyUnit",iRegisterBottleView.getPropertyUnit())
-                .addParams("createTime",iRegisterBottleView.getCreateTime())
-                .addParams("nextCheckTime",iRegisterBottleView.getNextCheckTime()).
+                .addParams("bottleNum", iRegisterBottleView.getBottleNum()).
+                addParams("bottleWeight", iRegisterBottleView.getBottleWeight())
+                .addParams("producer", iRegisterBottleView.getProducer())
+                .addParams("propertyUnit", iRegisterBottleView.getPropertyUnit())
+                .addParams("createTime", iRegisterBottleView.getCreateTime())
+                .addParams("nextCheckTime", iRegisterBottleView.getNextCheckTime()).
                 build().execute(new DataStringCallback(iRegisterBottleView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                String result=s;
-                if(isResponseEmpty){
+                String result = s;
+                if (isResponseEmpty) {
                     iRegisterBottleView.onError("接口返回空字符串:");
                     return;
                 }

@@ -26,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class InnerActivity extends BaseActivity implements MyScanInnerFragment.InnnerFetchActivityListener, PermissionUtils.PermissionRequestFinishListener{
+public class InnerActivity extends BaseActivity implements MyScanInnerFragment.InnnerFetchActivityListener, PermissionUtils.PermissionRequestFinishListener {
     private static final String TAG = InnerActivity.class.getSimpleName();
     @BindView(R.id.fl_my_container)
     FrameLayout framContainer;
@@ -37,7 +37,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
     private MyScanInnerFragment scanEmpolyerFragment;
     private MyScanInnerFragment myScanBottleFragment;
     private String innerUrl = "";
-    private int innerType=0;
+    private int innerType = 0;
     private String verifyType;
 
     @Override
@@ -45,11 +45,11 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scan_code_deliver_steel_bottle_activity);
         Intent intent = getIntent();
-         innerType =intent.getIntExtra("innerType",0);
-        if(innerType == 1){
+        innerType = intent.getIntExtra("innerType", 0);
+        if (innerType == 1) {
             innerUrl = Constants.INNER_FETCH;
             verifyType = "7";
-        }else if(innerType  == 2){
+        } else if (innerType == 2) {
             innerUrl = Constants.INNER_RETURN;
             verifyType = "6";
         }
@@ -58,12 +58,12 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
     }
 
     @Override
-    public void onClickNextBtnAndSendEmployerId( String employerId) {
+    public void onClickNextBtnAndSendEmployerId(String employerId) {
         this.employerId = employerId;
         Bundle bundle = new Bundle();
         myScanBottleFragment = new MyScanInnerFragment();
-        bundle.putInt(Constants.SCANFRAGMENT_TYPE,2);
-        bundle.putInt("innerType",innerType);
+        bundle.putInt(Constants.SCANFRAGMENT_TYPE, 2);
+        bundle.putInt("innerType", innerType);
         myScanBottleFragment.setArguments(bundle);
         myScanBottleFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
             @Override
@@ -75,19 +75,19 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
                 }
             }
         });
-       AppUtil.replaceFragment(myScanBottleFragment,scanEmpolyerFragment,getSupportFragmentManager());
+        AppUtil.replaceFragment(myScanBottleFragment, scanEmpolyerFragment, getSupportFragmentManager());
 
     }
 
     @Override
     public void onCaptureFragmenBackBtnClick(int fragmentType) {
-        if(innerType == 1&&fragmentType == 1){
+        if (innerType == 1 && fragmentType == 1) {
             finish();
-        }else if(innerType == 1&&fragmentType == 2){
+        } else if (innerType == 1 && fragmentType == 2) {
             scanEmpolyerFragment = new MyScanInnerFragment();
             Bundle bundle = new Bundle();
-            bundle.putInt(Constants.SCANFRAGMENT_TYPE,1);
-            bundle.putInt("innerType",innerType);
+            bundle.putInt(Constants.SCANFRAGMENT_TYPE, 1);
+            bundle.putInt("innerType", innerType);
             scanEmpolyerFragment.setArguments(bundle);
             scanEmpolyerFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
                 @Override
@@ -99,8 +99,8 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
                     }
                 }
             });
-            AppUtil.replaceFragment(scanEmpolyerFragment,myScanBottleFragment,getSupportFragmentManager());
-        }else if(innerType  == 2){
+            AppUtil.replaceFragment(scanEmpolyerFragment, myScanBottleFragment, getSupportFragmentManager());
+        } else if (innerType == 2) {
             finish();
         }
     }
@@ -139,11 +139,11 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
 
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
-        if(innerType == 1){
+        if (innerType == 1) {
             scanEmpolyerFragment = new MyScanInnerFragment();
             Bundle bundle = new Bundle();
-            bundle.putInt(Constants.SCANFRAGMENT_TYPE,1);
-            bundle.putInt("innerType",innerType);
+            bundle.putInt(Constants.SCANFRAGMENT_TYPE, 1);
+            bundle.putInt("innerType", innerType);
             scanEmpolyerFragment.setArguments(bundle);
             scanEmpolyerFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
                 @Override
@@ -155,12 +155,12 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
                     }
                 }
             });
-            AppUtil.showFragment(scanEmpolyerFragment,getSupportFragmentManager());
-        }else if(innerType == 2){
+            AppUtil.showFragment(scanEmpolyerFragment, getSupportFragmentManager());
+        } else if (innerType == 2) {
             Bundle bundle = new Bundle();
             myScanBottleFragment = new MyScanInnerFragment();
-            bundle.putInt(Constants.SCANFRAGMENT_TYPE,2);
-            bundle.putInt("innerType",innerType);
+            bundle.putInt(Constants.SCANFRAGMENT_TYPE, 2);
+            bundle.putInt("innerType", innerType);
             myScanBottleFragment.setArguments(bundle);
             myScanBottleFragment.setCameraInitCallBack(new MyScanDeliverUserBottleFragment.CameraInitCallBack() {
                 @Override
@@ -172,7 +172,7 @@ public class InnerActivity extends BaseActivity implements MyScanInnerFragment.I
                     }
                 }
             });
-            AppUtil.showFragment(myScanBottleFragment,getSupportFragmentManager());
+            AppUtil.showFragment(myScanBottleFragment, getSupportFragmentManager());
         }
 
     }

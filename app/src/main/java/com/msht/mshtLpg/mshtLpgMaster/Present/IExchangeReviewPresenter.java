@@ -11,21 +11,21 @@ import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IExchangeReviewView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 public class IExchangeReviewPresenter {
-    private  IExchangeReviewView iExchangeReviewView;
+    private IExchangeReviewView iExchangeReviewView;
 
     public IExchangeReviewPresenter(IExchangeReviewView iExchangeReviewView) {
         this.iExchangeReviewView = iExchangeReviewView;
     }
 
-    public void getExchangeReview(){
+    public void getExchangeReview() {
         OkHttpUtils.get().url(Constants.REPLACE_BOTTLE_LIST)
-                .addParams(Constants.ORDER_ID,iExchangeReviewView.getOrderId() ).
+                .addParams(Constants.ORDER_ID, iExchangeReviewView.getOrderId()).
                 build().execute(new DataStringCallback(iExchangeReviewView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                if(isResponseEmpty){
+                if (isResponseEmpty) {
                     iExchangeReviewView.onError("接口返回空字符串:");
                     return;
                 }

@@ -1,13 +1,10 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,13 +24,12 @@ import com.yanzhenjie.permission.Permission;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.LinkedBlockingQueue;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implements IOrderDetailView,PermissionUtils.PermissionRequestFinishListener{
+public class SendBottleOrdersDetailFinishActivity extends BaseActivity implements IOrderDetailView, PermissionUtils.PermissionRequestFinishListener {
     @BindView(R.id.pay_orders_v2_topbar)
     TopBarView topBarView;
     @BindView(R.id.location)
@@ -98,17 +94,17 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
     private double fiftyTotalDeposite;
     private Unbinder unbinder;
     private DeliverFareDialog deliverFareDialog;
-    private Map<String,String> map = new HashMap<String,String>();
+    private Map<String, String> map = new HashMap<String, String>();
     private boolean isGetFourDeliverySuccess = false;
     private boolean isGetSixDeliverySuccess = false;
-    private boolean isGetFirstDeliverySuccess  =false;
+    private boolean isGetFirstDeliverySuccess = false;
     private boolean isGetSecondDeliverySuccess = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.orders_finish);
-       unbinder = ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
         IOrderDetailPresenter iOrderDetailPresenter = new IOrderDetailPresenter(this);
@@ -132,14 +128,14 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
         String floor = orderDetailBean.getData().getFloor() + "";
         String room = orderDetailBean.getData().getRoomNum();
         String address = orderDetailBean.getData().getAddress();
-        tvLocation.setText(new StringBuilder().append(address).append(floor).append("层").append(room).append("房").append(orderDetailBean.getData().getIsDelivery()== 1?"(自提单)":"(配送单)").toString());
+        tvLocation.setText(new StringBuilder().append(address).append(floor).append("层").append(room).append("房").append(orderDetailBean.getData().getIsDelivery() == 1 ? "(自提单)" : "(配送单)").toString());
         int isElevator = orderDetailBean.getData().getIsElevator();
         tvElevator.setText(isElevator == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTel.setText(orderDetailBean.getData().getMobile());
         tvDay.setText(new StringBuilder().append("预约时间：").append(orderDetailBean.getData().getAppointmentTime()));
         tvComment.setText(new StringBuilder().append("内部备注：").append(orderDetailBean.getData().getRemarks()).toString());
-        orderId = orderDetailBean.getData().getOrderId()+"";
+        orderId = orderDetailBean.getData().getOrderId() + "";
         tvOrderId.setText(orderId + "");
         tvDispatchOrderTime.setText(new StringBuilder().append("下单时间：").append(orderDetailBean.getData().getCreateDate()).toString());
         tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(orderDetailBean.getData().getAppointmentTime()));
@@ -194,29 +190,29 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
         double totalFifteenDelivery;
         double totalFiftyDelivery;
         double totalDeliveryfare;
-        if(orderDetailBean.getData().getIsDelivery()==1) {
+        if (orderDetailBean.getData().getIsDelivery() == 1) {
             totalDeliveryfare = 0;
-        }else {
-             fiveDeliveryFee = orderDetailBean.getData().getFiveDeliveryFee();
-             fifteenDeliveryFee = orderDetailBean.getData().getFifteenDeliveryFee();
-             fiftyDeliveryFee = orderDetailBean.getData().getFiftyDeliveryFee();
+        } else {
+            fiveDeliveryFee = orderDetailBean.getData().getFiveDeliveryFee();
+            fifteenDeliveryFee = orderDetailBean.getData().getFifteenDeliveryFee();
+            fiftyDeliveryFee = orderDetailBean.getData().getFiftyDeliveryFee();
             totalFiveDelivery = orderDetailBean.getData().getFiveBottleCount() * fiveDeliveryFee;
             totalFifteenDelivery = orderDetailBean.getData().getFifteenBottleCount() * fifteenDeliveryFee;
             totalFiftyDelivery = orderDetailBean.getData().getFiftyBottleCount() * fiftyDeliveryFee;
-             totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
+            totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
         }
         tvDeliverFee.setText(totalDeliveryfare + "");
         double exchange = orderDetailBean.getData().getRetrieveAmount();
-        if(exchange ==0){
+        if (exchange == 0) {
             llDiscount.setVisibility(View.INVISIBLE);
-        }else {
-            tvDiscount.setText(exchange +"");
+        } else {
+            tvDiscount.setText(exchange + "");
         }
         llDiscount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =  new Intent(SendBottleOrdersDetailFinishActivity.this,ExchangeReviewActivity.class);
-                intent.putExtra(Constants.ORDER_ID,orderId);
+                Intent intent = new Intent(SendBottleOrdersDetailFinishActivity.this, ExchangeReviewActivity.class);
+                intent.putExtra(Constants.ORDER_ID, orderId);
                 startActivity(intent);
             }
         });
@@ -227,29 +223,28 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
         } else {
             tvPayAmount.setText((totalfare + ""));
         }
-       // tvPayAmount.setText(totalfare +"");
+        // tvPayAmount.setText(totalfare +"");
         callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopUtil.showTipsDialog(SendBottleOrdersDetailFinishActivity.this, "拨打电话", "请确认是否要拨打电话" + orderDetailBean.getData().getMobile(), "取消", "确认", null, new View.OnClickListener() {
+                PopUtil.showComfirmDialog(SendBottleOrdersDetailFinishActivity.this, "拨打电话", "请确认是否要拨打电话" + orderDetailBean.getData().getMobile(), "取消", "确认", null, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         PermissionUtils.requestPermissions(SendBottleOrdersDetailFinishActivity.this, SendBottleOrdersDetailFinishActivity.this, Permission.CALL_PHONE);
                     }
-                });
+                }, true);
 
             }
         });
         lldeliver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!isGetFirstDeliverySuccess||!isGetFourDeliverySuccess||!isGetSixDeliverySuccess||!isGetSecondDeliverySuccess){
+                if (!isGetFirstDeliverySuccess || !isGetFourDeliverySuccess || !isGetSixDeliverySuccess || !isGetSecondDeliverySuccess) {
                     PopUtil.toastInBottom("正在获取运费信息，请稍后再试");
-                }
-                else if(deliverFareDialog == null) {
-                    deliverFareDialog = new DeliverFareDialog(SendBottleOrdersDetailFinishActivity.this,map);
+                } else if (deliverFareDialog == null) {
+                    deliverFareDialog = new DeliverFareDialog(SendBottleOrdersDetailFinishActivity.this, map);
                     deliverFareDialog.show();
-                }else if(!deliverFareDialog.isShowing()){
+                } else if (!deliverFareDialog.isShowing()) {
                     deliverFareDialog.show();
                 }
             }
@@ -264,45 +259,45 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity  implemen
 
     @Override
     public void onGetFourDeliverySuccess(DeliveryBean bean) {
-        String four5 = bean.getData().getDeliveryFee().getFiveDeliveryFee()+"";
-        String four15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee()+"";
-        String four50 = bean.getData().getDeliveryFee().getFiftyDeliveryFee()+"";
-        map.put("four5",four5);
-        map.put("four15",four15);
-        map.put("four50",four50);
+        String four5 = bean.getData().getDeliveryFee().getFiveDeliveryFee() + "";
+        String four15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee() + "";
+        String four50 = bean.getData().getDeliveryFee().getFiftyDeliveryFee() + "";
+        map.put("four5", four5);
+        map.put("four15", four15);
+        map.put("four50", four50);
         isGetFourDeliverySuccess = true;
     }
 
     @Override
     public void onGetSixDeliverySuccess(DeliveryBean bean) {
-        String  six5 = bean.getData().getDeliveryFee().getFiveDeliveryFee()+"";
-        String six15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee()+"";
-        String six50 =bean.getData().getDeliveryFee().getFiftyDeliveryFee()+"";
-        map.put("six5",six5);
-        map.put("six15",six15);
-        map.put("six50",six50);
+        String six5 = bean.getData().getDeliveryFee().getFiveDeliveryFee() + "";
+        String six15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee() + "";
+        String six50 = bean.getData().getDeliveryFee().getFiftyDeliveryFee() + "";
+        map.put("six5", six5);
+        map.put("six15", six15);
+        map.put("six50", six50);
         isGetSixDeliverySuccess = true;
     }
 
     @Override
     public void onGetFirstDeliverySuccess(DeliveryBean bean) {
-        String first5 = bean.getData().getDeliveryFee().getFiveDeliveryFee()+"";
-        String first15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee()+"";
-        String first50 =bean.getData().getDeliveryFee().getFiftyDeliveryFee()+"";
-        map.put("first5",first5);
-        map.put("first15",first15);
-        map.put("first50",first50);
+        String first5 = bean.getData().getDeliveryFee().getFiveDeliveryFee() + "";
+        String first15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee() + "";
+        String first50 = bean.getData().getDeliveryFee().getFiftyDeliveryFee() + "";
+        map.put("first5", first5);
+        map.put("first15", first15);
+        map.put("first50", first50);
         isGetFirstDeliverySuccess = true;
     }
 
     @Override
     public void onGetSecondDeliverySuccess(DeliveryBean bean) {
-        String second5 = bean.getData().getDeliveryFee().getFiveDeliveryFee()+"";
-        String second15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee()+"";
-        String second50 =bean.getData().getDeliveryFee().getFiftyDeliveryFee()+"";
-        map.put("second5",second5);
-        map.put("second15",second15);
-        map.put("second50",second50);
+        String second5 = bean.getData().getDeliveryFee().getFiveDeliveryFee() + "";
+        String second15 = bean.getData().getDeliveryFee().getFifteenDeliveryFee() + "";
+        String second50 = bean.getData().getDeliveryFee().getFiftyDeliveryFee() + "";
+        map.put("second5", second5);
+        map.put("second15", second15);
+        map.put("second50", second50);
         isGetSecondDeliverySuccess = true;
     }
 

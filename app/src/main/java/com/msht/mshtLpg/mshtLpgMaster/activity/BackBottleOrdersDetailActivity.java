@@ -81,16 +81,16 @@ public class BackBottleOrdersDetailActivity extends BaseActivity implements ISim
                 finish();
                 break;
             case R.id.comman_topbar_call_phone_btn:
-                PopUtil.showTipsDialog(this, "拨打电话", "请确认是否要拨打电话" + tvTelephone.getText().toString(), "取消", "确认", null, new View.OnClickListener() {
+                PopUtil.showComfirmDialog(this, "拨打电话", "请确认是否要拨打电话" + tvTelephone.getText().toString(), "取消", "确认", null, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        PermissionUtils.requestPermissions(BackBottleOrdersDetailActivity.this,BackBottleOrdersDetailActivity.this, Permission.CALL_PHONE);
+                        PermissionUtils.requestPermissions(BackBottleOrdersDetailActivity.this, BackBottleOrdersDetailActivity.this, Permission.CALL_PHONE);
                     }
-                });
+                }, true);
                 break;
             case R.id.hand_over_steel_bottle:
                 Intent intent = new Intent(this, ScanSteelBottleActivity.class);
-                intent.putExtra(Constants.ORDER_ID,orderId);
+                intent.putExtra(Constants.ORDER_ID, orderId);
                 startActivity(intent);
                 break;
             default:
@@ -101,7 +101,7 @@ public class BackBottleOrdersDetailActivity extends BaseActivity implements ISim
 
     @Override
     public void onGetOrdersDetailSuccess(OrderDetailBean bean) {
-        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(bean.getData().getFloor()).append("层").append(bean.getData().getRoomNum()).append("房").append(bean.getData().getIsDelivery()== 1?"(自提单)":"(配送单)").toString());
+        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(bean.getData().getFloor()).append("层").append(bean.getData().getRoomNum()).append("房").append(bean.getData().getIsDelivery() == 1 ? "(自提单)" : "(配送单)").toString());
         tvElevator.setText(bean.getData().getIsElevator() == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(bean.getData().getBuyer()).append(bean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTelephone.setText(bean.getData().getMobile());
@@ -116,11 +116,10 @@ public class BackBottleOrdersDetailActivity extends BaseActivity implements ISim
         fiveFee.setText(fiveDeposite);
         fifteenFee.setText(fifteenDeposite);
         fiftyFee.setText(fiftyDeposite);
-        totalFee.setText(bean.getData().getRealAmount()+"");
+        totalFee.setText(bean.getData().getRealAmount() + "");
         dispatchOrdersTime.setText(new StringBuilder().append("下单时间：").append(bean.getData().getCreateDate()).toString());
 
     }
-
 
 
     @Override
@@ -131,7 +130,7 @@ public class BackBottleOrdersDetailActivity extends BaseActivity implements ISim
 
     @Override
     public void onBackFromSettingPage() {
-            PopUtil.toastInBottom("请允许LPG拨打电话");
+        PopUtil.toastInBottom("请允许LPG拨打电话");
     }
 
     @Override
@@ -142,8 +141,8 @@ public class BackBottleOrdersDetailActivity extends BaseActivity implements ISim
     @SuppressLint("MissingPermission")
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
-            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTelephone.getText().toString()));
-            startActivity(intent);
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTelephone.getText().toString()));
+        startActivity(intent);
     }
 
     @Override

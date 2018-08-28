@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/line_color_lib"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
-    >
+    android:orientation="vertical">
 
     <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
         android:id="@+id/exchange_topbar"
@@ -18,10 +17,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="@color/white"
-        >
-
+        android:orientation="horizontal">
 
 
         <TextView
@@ -30,51 +27,50 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="@dimen/text_16"
-            android:text="出厂年份"
             android:paddingBottom="@dimen/rcl_margin"
             android:paddingTop="@dimen/rcl_margin"
-            />
+            android:text="出厂年份"
+            android:textSize="@dimen/text_16" />
 
         <TextView
             android:id="@+id/level"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableRight="@drawable/attention_icon_xh"
             android:gravity="center"
-            android:textSize="@dimen/text_16"
-            android:text="腐蚀等级"
             android:paddingBottom="@dimen/rcl_margin"
             android:paddingTop="@dimen/rcl_margin"
-            android:drawableRight="@drawable/attention_icon_xh"
-            />
+            android:text="腐蚀等级"
+            android:textSize="@dimen/text_16" />
+
         <TextView
             android:id="@+id/num"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="@dimen/text_16"
-            android:text="数量"
             android:paddingBottom="@dimen/rcl_margin"
             android:paddingTop="@dimen/rcl_margin"
-            />
+            android:text="数量"
+            android:textSize="@dimen/text_16" />
+
         <TextView
             android:id="@+id/discount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="@dimen/text_16"
-            android:text="折价"
             android:paddingBottom="@dimen/rcl_margin"
             android:paddingTop="@dimen/rcl_margin"
-            />
+            android:text="折价"
+            android:textSize="@dimen/text_16" />
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:id="@+id/ll_pay_orders_v2_bottom"
             android:layout_width="match_parent"
@@ -95,18 +91,18 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="共计"
-                android:textSize="@dimen/text_16"
-                android:textColor="@color/lpg_text_dark_color" />
+                android:textColor="@color/lpg_text_dark_color"
+                android:textSize="@dimen/text_16" />
 
             <TextView
                 android:id="@+id/discount_cost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_Modules"
+                android:paddingBottom="@dimen/rcl_margin"
+                android:paddingTop="@dimen/rcl_margin"
                 android:text="92.00"
                 android:textColor="@color/msb_color"
-                android:paddingTop="@dimen/rcl_margin"
-                android:paddingBottom="@dimen/rcl_margin"
                 android:textSize="@dimen/text_top_title" />
 
             <TextView
@@ -118,15 +114,14 @@
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="保存"
-                android:textSize="@dimen/text_16"
                 android:textColor="@color/white"
-                />
+                android:textSize="@dimen/text_16" />
         </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/ll_pay_orders_v2_bottom"
-            >
+            android:layout_above="@id/ll_pay_orders_v2_bottom">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rcl_exchange_steel_bottle"

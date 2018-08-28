@@ -4,15 +4,13 @@
     xmlns:tl="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/line_color_lib"
-    >
+    android:background="@color/line_color_lib">
 
     <View
         android:id="@+id/my_orders_fragment_layout_topbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/msb_color"
-        />
+        android:background="@color/msb_color" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -20,27 +18,28 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:orientation="vertical">
+
         <include layout="@layout/homefragment_top_tab" />
     </LinearLayout>
 
-   <!-- <com.flyco.tablayout.SlidingTabLayout
-        android:id="@+id/tablayout_home_orders_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/my_orders_fragment_layout_topbar"
-        android:background="@color/white"
-        android:layout_marginTop="@dimen/margin_Modules"
-        tl:tl_indicator_color="@color/text_blue"
-        tl:tl_indicator_height="3dp"
-        tl:tl_indicator_width="20dp"
-        tl:tl_indicator_width_equal_title="false"
-        tl:tl_tab_padding="12dp"
-        tl:tl_textBold="SELECT"
-        tl:tl_textSelectColor="#333333"
-        tl:tl_textUnselectColor="#666666"
-        tl:tl_textsize="18sp"
-        tl:tl_underline_color="#e5e5e5"
-        tl:tl_underline_height="0.5dp" />-->
+    <!-- <com.flyco.tablayout.SlidingTabLayout
+         android:id="@+id/tablayout_home_orders_fragment"
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:layout_below="@id/my_orders_fragment_layout_topbar"
+         android:background="@color/white"
+         android:layout_marginTop="@dimen/margin_Modules"
+         tl:tl_indicator_color="@color/text_blue"
+         tl:tl_indicator_height="3dp"
+         tl:tl_indicator_width="20dp"
+         tl:tl_indicator_width_equal_title="false"
+         tl:tl_tab_padding="12dp"
+         tl:tl_textBold="SELECT"
+         tl:tl_textSelectColor="#333333"
+         tl:tl_textUnselectColor="#666666"
+         tl:tl_textsize="18sp"
+         tl:tl_underline_color="#e5e5e5"
+         tl:tl_underline_height="0.5dp" />-->
     <android.support.design.widget.TabLayout
         android:id="@+id/tablayout_home_orders_fragment"
         android:layout_width="match_parent"
@@ -50,8 +49,7 @@
         app:tabGravity="fill"
         app:tabMode="fixed"
         app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
-        app:tabTextColor="@color/lpg_text_dark_color"
-        />
+        app:tabTextColor="@color/lpg_text_dark_color" />
 
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -59,24 +57,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tablayout_home_orders_fragment"
-        app:srlEnableHeaderTranslationContent="true"
-        app:srlEnableOverScrollBounce="false"
         android:layout_marginTop="@dimen/margin_Modules"
-        >
+        app:srlEnableHeaderTranslationContent="true"
+        app:srlEnableOverScrollBounce="false">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcl_home_orders_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fadingEdge="none"
-            android:overScrollMode="always"
-            android:requiresFadingEdge="none"
-            android:scrollbarStyle="insideOverlay"
-            android:scrollbars="vertical"
-            android:background="@color/white"
-            />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcl_home_orders_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:fadingEdge="none"
+                android:overScrollMode="always"
+                android:requiresFadingEdge="none"
+                android:scrollbarStyle="insideOverlay"
+                android:scrollbars="vertical" />
         </RelativeLayout>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 

@@ -17,7 +17,7 @@ public class DeliveryAddressActivity extends BaseActivity implements View.OnClic
     View layoutSelectAddress;
     @BindView(R.id.scan_delive_topbar)
     TopBarView topBarView;
-    private static final int CREATE_SUCCESS_CODE=1;
+    private static final int CREATE_SUCCESS_CODE = 1;
     private Context mContext;
     private Unbinder unbinder;
 
@@ -26,7 +26,7 @@ public class DeliveryAddressActivity extends BaseActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery_address);
-        mContext=this;
+        mContext = this;
         unbinder = ButterKnife.bind(this);
         layoutSelectAddress.setOnClickListener(this);
         topBarView.setOnClickListener(this);
@@ -35,21 +35,23 @@ public class DeliveryAddressActivity extends BaseActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.id_re_new_address:
                 onStartEditLocation();
                 break;
             case R.id.scan_delive_topbar:
                 finish();
                 break;
-                default:
-                    break;
+            default:
+                break;
         }
     }
+
     private void onStartEditLocation() {
-        Intent intent=new Intent(mContext,DispatchSendOrdersEditAddressActivity.class);
-        startActivityForResult(intent,CREATE_SUCCESS_CODE);
+        Intent intent = new Intent(mContext, DispatchSendOrdersEditAddressActivity.class);
+        startActivityForResult(intent, CREATE_SUCCESS_CODE);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

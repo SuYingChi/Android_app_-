@@ -1,6 +1,5 @@
 package com.msht.mshtLpg.mshtLpgMaster.util;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -31,13 +30,10 @@ import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.activity.BaseActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.LoginActivity;
 import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
-import com.msht.mshtLpg.mshtLpgMaster.customView.LoadingDialog;
 
 public class PopUtil {
 
-    private static LoadingDialog centerLoadingDialog;
     private static Toast toast;
-    private static Dialog topLoadingDialog;
 
     public static PopupWindow showPopWindow(Context context, View anchorView, boolean bottom) {
 
@@ -83,16 +79,18 @@ public class PopUtil {
         }
         return window;
     }
+
     public static void toastInBottom(int stringResourceId) {
 
-            if (toast == null) {
-                toast = Toast.makeText(LPGApplication.getLPGApplicationContext(), LPGApplication.getLPGApplicationContext().getString(stringResourceId), Toast.LENGTH_LONG);
-            } else {
-                toast.setText(LPGApplication.getLPGApplicationContext().getString(stringResourceId));
-            }
-            toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 300);
-            toast.show();
+        if (toast == null) {
+            toast = Toast.makeText(LPGApplication.getLPGApplicationContext(), LPGApplication.getLPGApplicationContext().getString(stringResourceId), Toast.LENGTH_LONG);
+        } else {
+            toast.setText(LPGApplication.getLPGApplicationContext().getString(stringResourceId));
         }
+        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 300);
+        toast.show();
+    }
+
     public static void toastInBottom(String string) {
 
         if (toast == null) {
@@ -103,12 +101,14 @@ public class PopUtil {
         toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 300);
         toast.show();
     }
+
     /**
      * 计算出来的位置，y方向就在anchorView的上面和下面对齐显示，x方向就是与屏幕右边对齐显示
      * 如果anchorView的位置有变化，就可以适当自己额外加入偏移来修正
+     *
      * @param anchorView  呼出window的view
-     * @param contentView   window的内容布局
-     * @return popwindow显示的左上角的xOff,yOff坐标
+     * @param contentView window的内容布局
+     * @return popwindow显示的左上角的xOff, yOff坐标
      */
     public static int[] calculatePopWindowPos(final View anchorView, final View contentView) {
         final int windowPos[] = new int[2];
@@ -134,44 +134,20 @@ public class PopUtil {
         }
         return windowPos;
     }
-    public static void showTopLoadingDialog(Context context) {
-        if(topLoadingDialog==null){
-            topLoadingDialog = new Dialog(context, R.style.Dialog_Fullscreen);
-            topLoadingDialog.setContentView(R.layout.empty_loading_top);
-        }else if(context!=null&&!centerLoadingDialog.isShowing()){
-            topLoadingDialog.show();
-        }
-    }
 
-    public static void hideTopLoadingDialog(Context context) {
-        if(topLoadingDialog !=null&& topLoadingDialog.isShowing()&&context!=null){
-            topLoadingDialog.dismiss();
-        }
-    }
-
-    public static void showDialog(Context context,Dialog dialog){
-       if(context!=null&&dialog!=null&&!dialog.isShowing()){
-            topLoadingDialog.show();
-        }
-    }
-
-    public static void hideDialog(Context context,Dialog dialog){
-        if(dialog !=null&& dialog.isShowing()&&context!=null){
-            dialog.dismiss();
-        }
-    }
-    public static  void hideInput(Context context, EditText et) {
+    public static void hideInput(Context context, EditText et) {
         InputMethodManager inputMethodManager =
                 (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(et.getWindowToken(), 0);
     }
-    public static void showTipsDialog(Context mContext, String title, String tips, String left, String right,
-                                      final View.OnClickListener onCancel,
-                                      final View.OnClickListener onOK) {
+
+    public static void showComfirmDialog(Context mContext, String title, String tips, String left, String right,
+                                         final View.OnClickListener onCancel,
+                                         final View.OnClickListener onOK, boolean canceledOnTouchOutside) {
         LayoutInflater inflaterDl = LayoutInflater.from(mContext);
         LinearLayout layout = (LinearLayout) inflaterDl.inflate(
                 R.layout.dialog_tips, null);
-        final AlertDialog tel_dialog = new AlertDialog.Builder(mContext).create();
+        final AlertDialog dialog = new AlertDialog.Builder(mContext).create();
 
         TextView tvTitle = (TextView) layout.findViewById(R.id.tv_title);
         tvTitle.setText(title);
@@ -179,18 +155,20 @@ public class PopUtil {
             tvTitle.setVisibility(View.GONE);
         }
 
-        TextView tvtips = (TextView)layout.findViewById(R.id.tv_delete_tips);
+        TextView tvtips = (TextView) layout.findViewById(R.id.tv_delete_tips);
         tvtips.setText(tips);
-        tel_dialog.show();
-        tel_dialog.getWindow().setContentView(layout);
-        TextView btnCancel = (TextView)layout.findViewById(R.id.dialog_btn_cancel);
+        dialog.setCancelable(canceledOnTouchOutside);
+        dialog.setCanceledOnTouchOutside(canceledOnTouchOutside);
+        dialog.show();
+        dialog.getWindow().setContentView(layout);
+        TextView btnCancel = (TextView) layout.findViewById(R.id.dialog_btn_cancel);
         btnCancel.setText(left);
-        TextView btnOk = (TextView)layout.findViewById(R.id.dialog_btn_ok);
+        TextView btnOk = (TextView) layout.findViewById(R.id.dialog_btn_ok);
         btnOk.setText(right);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tel_dialog.dismiss();
+                dialog.dismiss();
                 if (onCancel != null)
                     onCancel.onClick(v);
 
@@ -199,13 +177,14 @@ public class PopUtil {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tel_dialog.dismiss();
+                dialog.dismiss();
                 if (onOK != null)
                     onOK.onClick(v);
 
             }
         });
     }
+
     public static void showExchangeBottleTipsDialog(Context mContext) {
         LayoutInflater inflaterDl = LayoutInflater.from(mContext);
         LinearLayout layout = (LinearLayout) inflaterDl.inflate(
@@ -213,7 +192,7 @@ public class PopUtil {
         final AlertDialog tel_dialog = new AlertDialog.Builder(mContext).create();
         tel_dialog.show();
         tel_dialog.getWindow().setContentView(layout);
-        TextView btnOk = (TextView)layout.findViewById(R.id.dialog_btn_ok);
+        TextView btnOk = (TextView) layout.findViewById(R.id.dialog_btn_ok);
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -221,6 +200,7 @@ public class PopUtil {
             }
         });
     }
+
     public static void showWebViewDialog(BaseActivity activity, String url) {
         LayoutInflater inflaterDl = LayoutInflater.from(activity);
         RelativeLayout layout = (RelativeLayout) inflaterDl.inflate(
@@ -229,13 +209,13 @@ public class PopUtil {
         tel_dialog.show();
         tel_dialog.getWindow().setContentView(layout);
         WindowManager.LayoutParams attributes = tel_dialog.getWindow().getAttributes();
-        attributes.width= DimenUtil.getScreenWidth()-DimenUtil.dip2px(activity.getResources().getDimension(R.dimen.margin_Modules)*2);
-        attributes.height= DimenUtil.getScreenHeight()-DimenUtil.dip2px(activity.getResources().getDimension(R.dimen.margin_Modules)*2);
+        attributes.width = DimenUtil.getScreenWidth() - DimenUtil.dip2px(activity.getResources().getDimension(R.dimen.margin_Modules) * 2);
+        attributes.height = DimenUtil.getScreenHeight() - DimenUtil.dip2px(activity.getResources().getDimension(R.dimen.margin_Modules) * 2);
         attributes.gravity = Gravity.CENTER;
         tel_dialog.getWindow().setAttributes(attributes);
         tel_dialog.getWindow().setBackgroundDrawable(new BitmapDrawable());
-        WebView webView = (WebView)layout.findViewById(R.id.web_view);
-        TextView btnOk = (TextView)layout.findViewById(R.id.dialog_btn_ok);
+        WebView webView = (WebView) layout.findViewById(R.id.web_view);
+        TextView btnOk = (TextView) layout.findViewById(R.id.dialog_btn_ok);
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

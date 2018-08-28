@@ -4,9 +4,11 @@
     android:layout_height="wrap_content"
     android:background="@color/line_color_lib"
     android:orientation="vertical">
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/rcl_margin" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,8 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5kg气瓶"
-                android:textColor="@color/head_text_color"
-                />
+                android:textColor="@color/head_text_color" />
 
             <View
                 android:layout_width="0dp"

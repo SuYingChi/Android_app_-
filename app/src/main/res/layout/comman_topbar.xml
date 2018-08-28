@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
     <ImageView
         android:id="@+id/return_btn"
-        android:padding="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/return_btn"
         android:layout_centerVertical="true"
-        />
+        android:padding="5dp"
+        android:src="@drawable/return_btn" />
+
     <TextView
         android:id="@+id/tv_comman_topbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="@color/white"
-        android:textSize="@dimen/common_text_size_middle_2"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        />
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="@dimen/common_text_size_middle_2" />
 
 </merge>

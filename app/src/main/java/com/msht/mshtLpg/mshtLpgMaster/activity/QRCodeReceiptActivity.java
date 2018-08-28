@@ -77,7 +77,7 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
                 5000,
                 5000,
                 TimeUnit.MILLISECONDS);
-        executor.schedule( new FinishPayTask(),8, TimeUnit.MINUTES);
+        executor.schedule(new FinishPayTask(), 8, TimeUnit.MINUTES);
 
     }
 

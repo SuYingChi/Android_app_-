@@ -70,7 +70,7 @@ public class MyIncomeActivity extends BaseActivity implements IMyIncomeView {
 
     @Override
     public void onGetMyIncomeSuccess(MyIncomeBean myIncomeBean) {
-        tvTotalIncome.setText(myIncomeBean.getData().getTotalIncome()+"");
+        tvTotalIncome.setText(myIncomeBean.getData().getTotalIncome() + "");
         dataList.addAll(myIncomeBean.getData().getList());
         myAdapter.notifyDataSetChanged();
         tvMonthCount.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +78,7 @@ public class MyIncomeActivity extends BaseActivity implements IMyIncomeView {
             public void onClick(View v) {
                 Intent intent = new Intent(MyIncomeActivity.this, MonthCountActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("MyIncomeBean",myIncomeBean);
+                bundle.putSerializable("MyIncomeBean", myIncomeBean);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

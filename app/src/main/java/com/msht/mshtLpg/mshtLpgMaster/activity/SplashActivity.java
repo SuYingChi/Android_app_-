@@ -25,7 +25,7 @@ public class SplashActivity extends BaseActivity implements PermissionUtils.Perm
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         time = new Timer();
-         PermissionUtils.requestPermissions(SplashActivity.this,SplashActivity.this,Permission.ACCESS_COARSE_LOCATION,Permission.ACCESS_FINE_LOCATION,Permission.CAMERA,Permission.CALL_PHONE,Permission.WRITE_EXTERNAL_STORAGE);
+        PermissionUtils.requestPermissions(SplashActivity.this, SplashActivity.this, Permission.ACCESS_COARSE_LOCATION, Permission.ACCESS_FINE_LOCATION, Permission.CAMERA, Permission.CALL_PHONE, Permission.WRITE_EXTERNAL_STORAGE);
 
     }
 
@@ -36,7 +36,7 @@ public class SplashActivity extends BaseActivity implements PermissionUtils.Perm
 
     }
 
-    private void waitGo(){
+    private void waitGo() {
         tk = new TimerTask() {
             @Override
             public void run() {
@@ -56,7 +56,7 @@ public class SplashActivity extends BaseActivity implements PermissionUtils.Perm
         if (SharePreferenceUtil.getInstance().getToken().equals("")) {
             Intent goLogin = new Intent(this, LoginActivity.class);
             startActivity(goLogin);
-        }else {
+        } else {
             Intent goMain = new Intent(this, HomeActivity.class);
             startActivity(goMain);
         }

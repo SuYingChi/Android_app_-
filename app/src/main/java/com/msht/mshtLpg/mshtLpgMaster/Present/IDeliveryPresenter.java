@@ -11,21 +11,21 @@ import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IDeliveryView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 public class IDeliveryPresenter {
-    private  IDeliveryView iDeliveryView;
+    private IDeliveryView iDeliveryView;
 
     public IDeliveryPresenter(IDeliveryView iDeliveryView) {
-     this.iDeliveryView = iDeliveryView;
+        this.iDeliveryView = iDeliveryView;
     }
 
     public void getDelivery() {
         OkHttpUtils.get().url(Constants.GET_ALL_Delivery_FEE).addParams("floors", iDeliveryView.getFloors())
-                .addParams("isElevator",0+"")
+                .addParams("isElevator", 0 + "")
                 .build().execute(new DataStringCallback(iDeliveryView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                if(isResponseEmpty){
+                if (isResponseEmpty) {
                     iDeliveryView.onError("接口返回空字符串:");
                     return;
                 }
@@ -44,13 +44,13 @@ public class IDeliveryPresenter {
 
     public void getElevatorDelivery() {
         OkHttpUtils.get().url(Constants.GET_ALL_Delivery_FEE).addParams("floors", "1")
-                .addParams("isElevator",0+"")
+                .addParams("isElevator", 0 + "")
                 .build().execute(new DataStringCallback(iDeliveryView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                if(isResponseEmpty){
+                if (isResponseEmpty) {
                     iDeliveryView.onError("接口返回空字符串:");
                     return;
                 }

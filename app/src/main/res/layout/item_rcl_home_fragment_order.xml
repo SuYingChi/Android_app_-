@@ -4,58 +4,59 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical">
-   <LinearLayout
-       android:layout_width="wrap_content"
-       android:layout_height="match_parent"
-       android:orientation="horizontal"
-       android:paddingHorizontal="@dimen/margin"
-       android:layout_marginTop="@dimen/margin_Modules"
-       >
-       <ImageView
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:src="@drawable/orders"
-           />
-       <TextView
-           android:id="@+id/item_rcl_home_fragment_order_order_number"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:textSize="@dimen/text_16"
-           android:textColor="@color/head_text_color"
-           android:text="00011456111"
-           android:layout_marginLeft="@dimen/topbar_title_bottom_margin"
-           />
-       <View
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:layout_weight="1"/>
-       <TextView
-           android:id="@+id/item_rcl_home_fragment_order_statu"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:textSize="@dimen/text_16"
-           android:textColor="@color/warning_red"
-           android:text="待验瓶"
 
-           />
-   </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_Modules"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/margin">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/orders" />
+
+        <TextView
+            android:id="@+id/item_rcl_home_fragment_order_order_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/topbar_title_bottom_margin"
+            android:text="00011456111"
+            android:textColor="@color/head_text_color"
+            android:textSize="@dimen/text_16" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/item_rcl_home_fragment_order_statu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="待验瓶"
+            android:textColor="@color/warning_red"
+            android:textSize="@dimen/text_16"
+
+            />
+    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="@dimen/margin_Modules"
-        android:background="@color/_1b1b1b"
         android:layout_marginLeft="@dimen/margin_Modules"
         android:layout_marginRight="@dimen/margin_Modules"
-        />
+        android:layout_marginTop="@dimen/margin_Modules"
+        android:background="@color/_1b1b1b" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin"
-        >
-
+        android:paddingHorizontal="@dimen/margin">
 
 
         <LinearLayout
@@ -80,6 +81,7 @@
                     android:text="世贸吴彦祖 "
                     android:textColor="@color/lpg_text_dark_color"
                     android:textSize="@dimen/text_16" />
+
                 <TextView
                     android:id="@+id/item_rcl_home_fragment_order_sex"
                     android:layout_width="wrap_content"
@@ -87,6 +89,7 @@
                     android:text="（先生）"
                     android:textColor="@color/lpg_text_dark_color"
                     android:textSize="@dimen/text_16" />
+
                 <TextView
                     android:id="@+id/item_rcl_home_fragment_order_send_type"
                     android:layout_width="wrap_content"
@@ -97,6 +100,7 @@
                     android:textSize="@dimen/text_16" />
 
             </LinearLayout>
+
             <TextView
                 android:id="@+id/item_rcl_home_fragment_order_time"
                 android:layout_width="wrap_content"
@@ -107,203 +111,208 @@
                 android:text="6月20日 9:30-11:00"
                 android:textColor="@color/msb_color"
                 android:textSize="@dimen/text_16" />
+
             <TextView
                 android:id="@+id/item_rcl_home_fragment_order_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_Modules"
                 android:lineSpacingExtra="0sp"
                 android:text="地址：海口市龙华区金贸西路诚田大厦24楼(有电梯)"
                 android:textColor="@color/lpg_text_light_color"
-                android:textSize="@dimen/text_16"
-                android:layout_marginTop="@dimen/margin_Modules"
-                />
-
+                android:textSize="@dimen/text_16" />
 
 
         </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/item_rcl_home_fragment_order_call_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/call_phone"
-                    android:layout_gravity="center"
-                    />
+        <ImageView
+            android:id="@+id/item_rcl_home_fragment_order_call_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/call_phone" />
 
 
-        </LinearLayout>
+    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="18dp"
-        android:background="@color/_1b1b1b"
         android:layout_marginLeft="@dimen/margin_Modules"
         android:layout_marginRight="@dimen/margin_Modules"
-        />
+        android:layout_marginTop="18dp"
+        android:background="@color/_1b1b1b" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin"
         android:layout_marginTop="@dimen/margin_Modules"
-        >
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/margin">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/head_text_color"
             android:text="5kg气瓶"
+            android:textColor="@color/head_text_color"
+            android:textSize="@dimen/text_16"
 
             />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
+
         <TextView
             android:id="@+id/tv_item_rcl_home_fragment_order_5_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_light_color"
             android:text="x1"
+            android:textColor="@color/lpg_text_light_color"
+            android:textSize="@dimen/text_16"
 
             />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin"
         android:layout_marginTop="@dimen/margin_Modules"
-        >
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/margin">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/head_text_color"
             android:text="15kg气瓶"
+            android:textColor="@color/head_text_color"
+            android:textSize="@dimen/text_16"
 
             />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
+
         <TextView
             android:id="@+id/tv_item_rcl_home_fragment_order_15_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_light_color"
             android:text="x1"
+            android:textColor="@color/lpg_text_light_color"
+            android:textSize="@dimen/text_16"
 
             />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin"
         android:layout_marginTop="@dimen/margin_Modules"
-        >
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/margin">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/head_text_color"
             android:text="50kg气瓶"
+            android:textColor="@color/head_text_color"
+            android:textSize="@dimen/text_16"
 
             />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
+
         <TextView
             android:id="@+id/tv_item_rcl_home_fragment_order_50_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_light_color"
             android:text="x1"
+            android:textColor="@color/lpg_text_light_color"
+            android:textSize="@dimen/text_16"
 
             />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="18dp"
-        android:background="@color/_1b1b1b"
-        android:layout_marginRight="@dimen/margin_Modules"
         android:layout_marginLeft="@dimen/margin_Modules"
-        />
+        android:layout_marginRight="@dimen/margin_Modules"
+        android:layout_marginTop="18dp"
+        android:background="@color/_1b1b1b" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin"
         android:layout_marginTop="@dimen/margin_Modules"
-        >
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/margin">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/lpg_text_light_color"
             android:text="总价"
-            />
+            android:textColor="@color/lpg_text_light_color"
+            android:textSize="@dimen/text_16" />
+
         <TextView
             android:id="@+id/tv_item_rcl_home_fragment_order_cost"
-            android:layout_marginLeft="@dimen/margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/msb_color"
+            android:layout_marginLeft="@dimen/margin"
             android:text="300.00"
-            />
+            android:textColor="@color/msb_color"
+            android:textSize="@dimen/text_16" />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="18dp"
-        android:background="@color/_1b1b1b"
         android:layout_marginLeft="@dimen/margin_Modules"
         android:layout_marginRight="@dimen/margin_Modules"
-        />
+        android:layout_marginTop="18dp"
+        android:background="@color/_1b1b1b" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/margin"
         android:padding="@dimen/calendar_day_headers_paddingbottom"
-        >
+        android:paddingHorizontal="@dimen/margin">
 
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
+
         <Button
             android:id="@+id/btn_item_rcl_home_fragment_order_pay"
-            android:layout_marginLeft="@dimen/margin"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:textSize="@dimen/text_16"
-            android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/margin"
             android:background="@drawable/lpg_btn_corner"
             android:text="付款"
-            />
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_16" />
 
-</LinearLayout>
+    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/rcl_margin"
-        android:background="@color/line_color_lib"
         android:layout_below="@id/my_setting_fragment_layout_topbar"
+        android:background="@color/line_color_lib"
 
         />
 </LinearLayout>

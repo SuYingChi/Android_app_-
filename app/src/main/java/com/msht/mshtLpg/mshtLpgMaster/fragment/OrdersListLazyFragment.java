@@ -63,7 +63,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     //private AutoLoadMoreAdapter autoLoadMoreAdapter;
     private int page;
     private final String[] tabTitles = {"全部", "待验瓶", "待付款", "已完成"};
-    private final String[] tabTitlesReturnBottle = {"全部","待验瓶","已完成","已取消"};
+    private final String[] tabTitlesReturnBottle = {"全部", "待验瓶", "已完成", "已取消"};
     private String mobile;
 
 
@@ -108,7 +108,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
 
     private void initTopTab(int item) {
         if (item == 0) {
-            ordersType =1;
+            ordersType = 1;
             btnTab0.setBackgroundResource(R.drawable.btn_left_corner_bg);
             btnTab1.setBackgroundResource(R.drawable.btn_right_corner_unselect_bg);
 
@@ -120,7 +120,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
             }
         }
         if (item == 1) {
-            ordersType =0;
+            ordersType = 0;
             btnTab0.setBackgroundResource(R.drawable.btn_left_corner_unselect_bg);
             btnTab1.setBackgroundResource(R.drawable.btn_right_corner_bg);
 
@@ -131,7 +131,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
             }
 
         }
-        SharePreferenceUtil.getInstance().setOrderType(ordersType+"");
+        SharePreferenceUtil.getInstance().setOrderType(ordersType + "");
 
     }
 
@@ -229,41 +229,40 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     @Override
     public void onClickCallButton(String mobile) {
         this.mobile = mobile;
-        PopUtil.showTipsDialog(getContext(), "拨打电话", "请确认是否要拨打电话" + mobile, "取消", "确认", null, new View.OnClickListener() {
+        PopUtil.showComfirmDialog(getContext(), "拨打电话", "请确认是否要拨打电话" + mobile, "取消", "确认", null, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PermissionUtils.requestPermissions(getContext(),OrdersListLazyFragment.this, Permission.CALL_PHONE);
+                PermissionUtils.requestPermissions(getContext(), OrdersListLazyFragment.this, Permission.CALL_PHONE);
             }
-        });
+        }, true);
     }
 
 
-
     @Override
-    public void onClckOrderButton(int orderId,int orderType) {
-        if(orderType==0){
+    public void onClckOrderButton(int orderId, int orderType) {
+        if (orderType == 0) {
             Intent intent = new Intent(getActivity(), SendBottleOrdersDetailActivity.class);
-            intent.putExtra(Constants.ORDER_ID, orderId+"");
+            intent.putExtra(Constants.ORDER_ID, orderId + "");
             startActivity(intent);
-        }else if(orderType==1){
+        } else if (orderType == 1) {
             Intent intent = new Intent(getActivity(), SendBottleOrdersDetailPayActivity.class);
-            intent.putExtra(Constants.ORDER_ID, orderId+"");
+            intent.putExtra(Constants.ORDER_ID, orderId + "");
             startActivity(intent);
-        }else if(orderType==2){
+        } else if (orderType == 2) {
             Intent intent = new Intent(getActivity(), SendBottleOrdersDetailFinishActivity.class);
-            intent.putExtra(Constants.ORDER_ID, orderId+"");
+            intent.putExtra(Constants.ORDER_ID, orderId + "");
             startActivity(intent);
-        }else if(orderType==3){
+        } else if (orderType == 3) {
             Intent intent = new Intent(getActivity(), BackBottleOrdersDetailActivity.class);
-            intent.putExtra(Constants.ORDER_ID, orderId+"");
+            intent.putExtra(Constants.ORDER_ID, orderId + "");
             startActivity(intent);
-        }else if(orderType == 4){
+        } else if (orderType == 4) {
             Intent intent = new Intent(getActivity(), BackBottleOrdersFinishActivity.class);
-            intent.putExtra(Constants.ORDER_ID, orderId+"");
+            intent.putExtra(Constants.ORDER_ID, orderId + "");
             startActivity(intent);
-        }else if(orderType == 5){
+        } else if (orderType == 5) {
             Intent intent = new Intent(getActivity(), BackBottleOrdersCancleActivity.class);
-            intent.putExtra(Constants.ORDER_ID, orderId+"");
+            intent.putExtra(Constants.ORDER_ID, orderId + "");
             startActivity(intent);
         }
     }
@@ -298,7 +297,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         page++;
-        Log.d("suyingchi", "onLoadMore: page = "+page);
+        Log.d("suyingchi", "onLoadMore: page = " + page);
         iOrdersListPresenter.getOrders();
     }
 }

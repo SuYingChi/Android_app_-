@@ -6,15 +6,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.msht.mshtLpg.mshtLpgMaster.activity.SelectAddressActivity">
+
     <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_normol"
         android:background="@color/msb_color"
-        app:title_text= "填写地址"
-        />
-    <include layout="@layout/layout_select_address_header"/>
-    <include layout="@layout/layout_current_location_address" android:id="@+id/id_current_layout"/>
-    <include layout="@layout/layout_search_location_address" android:id="@+id/id_search_layout"
-        android:visibility="gone"/>
+        app:title_text="填写地址" />
+
+    <include layout="@layout/layout_select_address_header" />
+
+    <include
+        android:id="@+id/id_current_layout"
+        layout="@layout/layout_current_location_address" />
+
+    <include
+        android:id="@+id/id_search_layout"
+        layout="@layout/layout_search_location_address"
+        android:visibility="gone" />
 </LinearLayout>

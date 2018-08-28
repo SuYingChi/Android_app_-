@@ -3,26 +3,23 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
-    >
+    android:orientation="vertical">
 
 
     <include
         android:id="@+id/bottom"
-        android:layout_alignParentBottom="true"
         layout="@layout/homeactivity_bottom_tab"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"/>
+        android:layout_alignParentBottom="true" />
+
     <com.msht.mshtLpg.mshtLpgMaster.customView.SlidableViewPager
         android:id="@+id/vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom"
         android:background="#ffffff" />
-
-
-
 
 
 </RelativeLayout>

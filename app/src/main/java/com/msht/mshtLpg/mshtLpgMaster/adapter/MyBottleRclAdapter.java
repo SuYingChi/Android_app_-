@@ -17,9 +17,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MyBottleRclAdapter extends RecyclerView.Adapter<MyBottleRclAdapter.ViewHolder> {
-    private  LayoutInflater inflater;
+    private LayoutInflater inflater;
     private List<MyBottleListBean.DataBean.ListBean> list;
-    private  Activity activity;
+    private Activity activity;
 
     public MyBottleRclAdapter(List<MyBottleListBean.DataBean.ListBean> list, Activity activity) {
         this.list = list;
@@ -30,22 +30,23 @@ public class MyBottleRclAdapter extends RecyclerView.Adapter<MyBottleRclAdapter.
     @NonNull
     @Override
     public MyBottleRclAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(inflater.inflate(R.layout.item_rcl_deliver_steel_bottle,parent,false));
+        return new ViewHolder(inflater.inflate(R.layout.item_rcl_deliver_steel_bottle, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyBottleRclAdapter.ViewHolder holder, int position) {
         MyBottleListBean.DataBean.ListBean bean = list.get(position);
-        holder.tvBottleModel.setText(bean.getBottleWeight()+"");
+        holder.tvBottleModel.setText(bean.getBottleWeight() + "");
         holder.tvBottleNumber.setText(bean.getBottleCode());
-        holder.tvBottleStatus.setText(bean.getIsHeavy()==0?"重瓶":"空瓶");
+        holder.tvBottleStatus.setText(bean.getIsHeavy() == 0 ? "重瓶" : "空瓶");
 
     }
 
     @Override
     public int getItemCount() {
-          return list.size();
+        return list.size();
     }
+
     class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.bottle_number)
         TextView tvBottleNumber;
@@ -53,6 +54,7 @@ public class MyBottleRclAdapter extends RecyclerView.Adapter<MyBottleRclAdapter.
         TextView tvBottleModel;
         @BindView(R.id.bottle_status)
         TextView tvBottleStatus;
+
         public ViewHolder(View inflate) {
             super(inflate);
             ButterKnife.bind(this, inflate);

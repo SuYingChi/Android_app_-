@@ -34,11 +34,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_comman_topbar_title"
         android:layout_marginHorizontal="@dimen/margin"
+        android:layout_marginTop="@dimen/margin"
         android:background="@color/white"
         android:gravity="center"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/margin"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/location"
@@ -71,7 +70,7 @@
                 android:gravity="top"
                 android:text="世贸彭于晏(先生)"
                 android:textColor="@color/lpg_text_light_color"
-                android:textSize="@dimen/text_16"/>
+                android:textSize="@dimen/text_16" />
 
             <TextView
                 android:id="@+id/comman_topbar_telephone"

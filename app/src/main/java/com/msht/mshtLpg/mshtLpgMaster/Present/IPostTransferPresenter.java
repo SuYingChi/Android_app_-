@@ -11,29 +11,29 @@ import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IPostTransferView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 public class IPostTransferPresenter {
-    private  IPostTransferView iPostTransferView;
+    private IPostTransferView iPostTransferView;
 
     public IPostTransferPresenter(IPostTransferView iPostTransferView) {
         this.iPostTransferView = iPostTransferView;
     }
 
-    public void postTransferOrders(){
-        OkHttpUtils.get().url(iPostTransferView.getUrl()).addParams("fiveCount",iPostTransferView.getFiveCount()).
-                addParams("fifteenCount",iPostTransferView.getFifteenCount())
-                .addParams("fifthCount",iPostTransferView.getFiftyCount())
-                .addParams("trackNumber",iPostTransferView.carNum())
-                .addParams("transferType",iPostTransferView.getTransferType())
-                .addParams("siteId",iPostTransferView.getSiteId())
-                .addParams("bottleIds",iPostTransferView.getBottleIds())
-                .addParams("transferId",iPostTransferView.getTransferId())
-                .addParams("stationId",iPostTransferView.getStationId())
-                .addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iPostTransferView.getToken()).build().execute(new DataStringCallback(iPostTransferView) {
+    public void postTransferOrders() {
+        OkHttpUtils.get().url(iPostTransferView.getUrl()).addParams("fiveCount", iPostTransferView.getFiveCount()).
+                addParams("fifteenCount", iPostTransferView.getFifteenCount())
+                .addParams("fifthCount", iPostTransferView.getFiftyCount())
+                .addParams("trackNumber", iPostTransferView.carNum())
+                .addParams("transferType", iPostTransferView.getTransferType())
+                .addParams("siteId", iPostTransferView.getSiteId())
+                .addParams("bottleIds", iPostTransferView.getBottleIds())
+                .addParams("transferId", iPostTransferView.getTransferId())
+                .addParams("stationId", iPostTransferView.getStationId())
+                .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iPostTransferView.getToken()).build().execute(new DataStringCallback(iPostTransferView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
                 ErrorBean errorBean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
-                if(isResponseEmpty){
+                if (isResponseEmpty) {
                     iPostTransferView.onError("接口返回空字符串:");
                     return;
                 }

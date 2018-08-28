@@ -27,7 +27,7 @@ import butterknife.Unbinder;
 /**
  * @author mshtyfb
  */
-public class ScanTransferStorageActivity extends BaseActivity  implements  PermissionUtils.PermissionRequestFinishListener{
+public class ScanTransferStorageActivity extends BaseActivity implements PermissionUtils.PermissionRequestFinishListener {
     private static final String TAG = ScanTransferStorageActivity.class.getSimpleName();
     @BindView(R.id.fl_my_container)
     FrameLayout framContainer;
@@ -57,8 +57,6 @@ public class ScanTransferStorageActivity extends BaseActivity  implements  Permi
     }
 
 
-
-
     @Override
     public void onBackFromSettingPage() {
         if (!PermissionUtils.cameraIsCanUse()) {
@@ -85,13 +83,13 @@ public class ScanTransferStorageActivity extends BaseActivity  implements  Permi
             }
         });
         Bundle bundle = new Bundle();
-        bundle.putString(Constants.ORDER_ID,orderId);
-        bundle.putString(Constants.ORDER_FIVE_NUM,fiveCount);
+        bundle.putString(Constants.ORDER_ID, orderId);
+        bundle.putString(Constants.ORDER_FIVE_NUM, fiveCount);
         bundle.putString(Constants.ORDER_FIFTEEN_NUM, fifteenCount);
         bundle.putString(Constants.ORDER_FIFTY_NUM, ffityCount);
-        bundle.putString("TransferType",transferType);
+        bundle.putString("TransferType", transferType);
         scanTransferBottleFragment.setArguments(bundle);
-        AppUtil.showFragment(scanTransferBottleFragment,getSupportFragmentManager());
+        AppUtil.showFragment(scanTransferBottleFragment, getSupportFragmentManager());
     }
 
     @Override

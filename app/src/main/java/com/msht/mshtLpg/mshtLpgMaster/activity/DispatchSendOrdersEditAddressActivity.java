@@ -2,20 +2,16 @@ package com.msht.mshtLpg.mshtLpgMaster.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.msht.mshtLpg.mshtLpgMaster.R;
-import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.MySheetDialog;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
-import com.msht.mshtLpg.mshtLpgMaster.util.ShaUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,12 +70,12 @@ public class DispatchSendOrdersEditAddressActivity extends BaseActivity {
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopUtil.showTipsDialog(DispatchSendOrdersEditAddressActivity.this, "放弃地址编辑", "是否放弃正在编辑的配送地址", "取消", "确定", null, new View.OnClickListener() {
+                PopUtil.showComfirmDialog(DispatchSendOrdersEditAddressActivity.this, "放弃地址编辑", "是否放弃正在编辑的配送地址", "取消", "确定", null, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         finish();
                     }
-                });
+                }, true);
 
             }
         });
@@ -93,13 +89,13 @@ public class DispatchSendOrdersEditAddressActivity extends BaseActivity {
                 intent.putExtra("lon", longitude);
                 intent.putExtra("mArea", mArea);
                 intent.putExtra("mCity", mCity);
-                intent.putExtra("name",etName.getText().toString());
-                intent.putExtra("sex",tvSex.getText());
-                intent.putExtra("phone",etPhone.getText().toString());
-                intent.putExtra("isElevator",tvElevator.getText());
-                intent.putExtra("Ridgepole",etRidgepole.getText().toString());
-                intent.putExtra("Floor",etFloor.getText().toString());
-                intent.putExtra("Room",etRoom.getText().toString());
+                intent.putExtra("name", etName.getText().toString());
+                intent.putExtra("sex", tvSex.getText());
+                intent.putExtra("phone", etPhone.getText().toString());
+                intent.putExtra("isElevator", tvElevator.getText());
+                intent.putExtra("Ridgepole", etRidgepole.getText().toString());
+                intent.putExtra("Floor", etFloor.getText().toString());
+                intent.putExtra("Room", etRoom.getText().toString());
                 setResult(1, intent);
                 finish();
             }

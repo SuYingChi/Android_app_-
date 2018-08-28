@@ -27,7 +27,7 @@ public class ILoginPresenter {
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                if(isResponseEmpty){
+                if (isResponseEmpty) {
                     iView.onError("接口返回空字符串:");
                     return;
                 }
@@ -47,10 +47,10 @@ public class ILoginPresenter {
                             break;
                     }
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
-                       if(TextUtils.equals(bean.getData().getErrorCode(),"200")){
-                           UserLoginBean userLoginBean = GsonUtil.getGson().fromJson(s, UserLoginBean.class);
-                           iView.onLoginSuccess(userLoginBean);
-                       }
+                    if (TextUtils.equals(bean.getData().getErrorCode(), "200")) {
+                        UserLoginBean userLoginBean = GsonUtil.getGson().fromJson(s, UserLoginBean.class);
+                        iView.onLoginSuccess(userLoginBean);
+                    }
                 }
             }
         });

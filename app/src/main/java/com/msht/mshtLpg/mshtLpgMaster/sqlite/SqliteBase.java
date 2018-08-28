@@ -326,4 +326,5 @@ public class SqliteBase {
     }
 }
 */
-public class SqliteBase{}
+public class SqliteBase {
+}

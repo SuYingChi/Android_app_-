@@ -22,14 +22,14 @@ public class TopBarView extends RelativeLayout {
         titleBarTitle = (TextView) findViewById(R.id.tv_comman_topbar_title);
         TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.topBar);
         if (attributes != null) {
-                //如果不是图片标题 则获取文字标题
-                String titleText = attributes.getString(R.styleable.topBar_title_text);
-                if (!TextUtils.isEmpty(titleText)) {
-                    titleBarTitle.setText(titleText);
-                }
-            attributes.recycle();
+            //如果不是图片标题 则获取文字标题
+            String titleText = attributes.getString(R.styleable.topBar_title_text);
+            if (!TextUtils.isEmpty(titleText)) {
+                titleBarTitle.setText(titleText);
             }
+            attributes.recycle();
         }
+    }
 
 
     public void setLeftBtnClickListener(OnClickListener onClickListener) {
@@ -37,9 +37,11 @@ public class TopBarView extends RelativeLayout {
             titleBarLeftBtn.setOnClickListener(onClickListener);
         }
     }
-    public void setTitle(String title){
+
+    public void setTitle(String title) {
         titleBarTitle.setText(title);
     }
+
     public ImageView getTitleBarLeftBtn() {
         return titleBarLeftBtn;
     }

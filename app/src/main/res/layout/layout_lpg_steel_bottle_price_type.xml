@@ -1,296 +1,328 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/transparent">
+
         <ImageView
             android:id="@+id/id_bottle_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:contentDescription="@string/picture_text"
-            android:src="@drawable/five_weight_bottle"/>
+            android:src="@drawable/five_weight_bottle" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/id_bottle_image"
-            android:layout_toEndOf="@+id/id_bottle_image">
+            android:layout_toEndOf="@+id/id_bottle_image"
+            android:layout_toRightOf="@+id/id_bottle_image">
+
             <TextView
                 android:id="@+id/id_bottle_type1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:text="@string/steel_bottle_type1"
                 android:textColor="@color/textcolor"
-                android:textStyle="bold"
-                android:text="@string/steel_bottle_type1"/>
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/id_pledge_text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_bottle_type1"
                 android:layout_marginTop="6dp"
+                android:text="@string/pledge_text"
                 android:textColor="@color/textcolor"
-                android:textSize="14sp"
-                android:text="@string/pledge_text"/>
+                android:textSize="14sp" />
+
             <TextView
                 android:id="@+id/id_tv_pledge1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_bottle_type1"
-                android:layout_marginTop="6dp"
-                android:layout_toRightOf="@+id/id_pledge_text1"
-                android:layout_toEndOf="@+id/id_pledge_text1"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_toEndOf="@+id/id_pledge_text1"
+                android:layout_toRightOf="@+id/id_pledge_text1"
+                android:text="@string/default_text"
                 android:textColor="@color/text_hint"
-                android:textSize="14sp"
-                android:text="@string/default_text"/>
+                android:textSize="14sp" />
+
             <TextView
                 android:id="@+id/id_tv_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_pledge_text1"
                 android:layout_marginTop="10dp"
+                android:text="@string/default_value0"
                 android:textColor="@color/msb_color"
                 android:textSize="18sp"
-                android:text="@string/default_value0"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </RelativeLayout>
+
         <Button
             android:id="@+id/id_add_btn1"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
             android:background="@color/background_gray"
-            android:text="@string/add_symbol"/>
+            android:text="@string/add_symbol" />
+
         <Button
             android:id="@+id/id_tv_num1"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/id_add_btn1"
             android:layout_toStartOf="@+id/id_add_btn1"
-            android:layout_marginRight="5dp"
-            android:layout_marginEnd="10dp"
             android:background="@color/background_gray"
-            android:text="@string/zero_value"/>
+            android:text="@string/zero_value" />
+
         <Button
             android:id="@+id/id_subtract_btn1"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/id_tv_num1"
             android:layout_toStartOf="@+id/id_tv_num1"
-            android:layout_marginRight="5dp"
-            android:layout_marginEnd="5dp"
             android:background="@color/background_gray"
-            android:textSize="16sp"
-            android:text="@string/subtract_symbol"/>
+            android:text="@string/subtract_symbol"
+            android:textSize="16sp" />
     </RelativeLayout>
-    <include layout="@layout/layout_line_gray"/>
+
+    <include layout="@layout/layout_line_gray" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/transparent">
+
         <ImageView
             android:id="@+id/id_bottle_image2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:contentDescription="@string/picture_text"
-            android:src="@drawable/fifteen_weight_bottle"/>
+            android:src="@drawable/fifteen_weight_bottle" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@color/transparent"
+            android:layout_toEndOf="@+id/id_bottle_image2"
             android:layout_toRightOf="@+id/id_bottle_image2"
-            android:layout_toEndOf="@+id/id_bottle_image2">
+            android:background="@color/transparent">
+
             <TextView
                 android:id="@+id/id_bottle_type2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:text="@string/steel_bottle_type2"
                 android:textColor="@color/textcolor"
-                android:textStyle="bold"
-                android:text="@string/steel_bottle_type2"/>
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/id_pledge_text2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_bottle_type2"
                 android:layout_marginTop="6dp"
+                android:text="@string/pledge_text"
                 android:textColor="@color/text_hint"
-                android:textSize="14sp"
-                android:text="@string/pledge_text"/>
+                android:textSize="14sp" />
+
             <TextView
                 android:id="@+id/id_tv_pledge2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_bottle_type2"
-                android:layout_marginTop="6dp"
-                android:layout_toRightOf="@+id/id_pledge_text2"
-                android:layout_toEndOf="@+id/id_pledge_text2"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_toEndOf="@+id/id_pledge_text2"
+                android:layout_toRightOf="@+id/id_pledge_text2"
+                android:text="@string/default_text"
                 android:textColor="@color/lpg_text_light_color"
-                android:textSize="14sp"
-                android:text="@string/default_text"/>
+                android:textSize="14sp" />
+
             <TextView
                 android:id="@+id/id_tv_amount2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_pledge_text2"
                 android:layout_marginTop="10dp"
+                android:text="@string/default_value0"
                 android:textColor="@color/msb_color"
                 android:textSize="18sp"
-                android:text="@string/default_value0"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </RelativeLayout>
+
         <Button
             android:id="@+id/id_add_btn2"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
             android:background="@color/background_gray"
-            android:text="@string/add_symbol"/>
+            android:text="@string/add_symbol" />
+
         <Button
             android:id="@+id/id_tv_num2"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/id_add_btn2"
             android:layout_toStartOf="@+id/id_add_btn2"
-            android:layout_marginRight="5dp"
-            android:layout_marginEnd="10dp"
             android:background="@color/background_gray"
-            android:text="@string/zero_value"/>
+            android:text="@string/zero_value" />
+
         <Button
             android:id="@+id/id_subtract_btn2"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/id_tv_num2"
             android:layout_toStartOf="@+id/id_tv_num2"
-            android:layout_marginRight="5dp"
-            android:layout_marginEnd="5dp"
             android:background="@color/background_gray"
-            android:textSize="16sp"
-            android:text="@string/subtract_symbol"/>
+            android:text="@string/subtract_symbol"
+            android:textSize="16sp" />
     </RelativeLayout>
-    <include layout="@layout/layout_line_gray"/>
+
+    <include layout="@layout/layout_line_gray" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white">
+
         <ImageView
             android:id="@+id/id_bottle_image3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:contentDescription="@string/picture_text"
-            android:src="@drawable/fifty_weight_bottle"/>
+            android:src="@drawable/fifty_weight_bottle" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@color/transparent"
+            android:layout_toEndOf="@+id/id_bottle_image3"
             android:layout_toRightOf="@+id/id_bottle_image3"
-            android:layout_toEndOf="@+id/id_bottle_image3">
+            android:background="@color/transparent">
+
             <TextView
                 android:id="@+id/id_bottle_type3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:text="@string/steel_bottle_type3"
                 android:textColor="@color/textcolor"
-                android:textStyle="bold"
-                android:text="@string/steel_bottle_type3"/>
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/id_pledge_text3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_bottle_type3"
                 android:layout_marginTop="6dp"
+                android:text="@string/pledge_text"
                 android:textColor="@color/lpg_text_light_color"
-                android:textSize="14sp"
-                android:text="@string/pledge_text"/>
+                android:textSize="14sp" />
+
             <TextView
                 android:id="@+id/id_tv_pledge3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_bottle_type3"
-                android:layout_marginTop="6dp"
-                android:layout_toRightOf="@+id/id_pledge_text3"
-                android:layout_toEndOf="@+id/id_pledge_text3"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_toEndOf="@+id/id_pledge_text3"
+                android:layout_toRightOf="@+id/id_pledge_text3"
+                android:text="@string/default_text"
                 android:textColor="@color/lpg_text_light_color"
-                android:textSize="14sp"
-                android:text="@string/default_text"/>
+                android:textSize="14sp" />
+
             <TextView
                 android:id="@+id/id_tv_amount3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_pledge_text3"
                 android:layout_marginTop="10dp"
+                android:text="@string/default_value0"
                 android:textColor="@color/msb_color"
                 android:textSize="18sp"
-                android:text="@string/default_value0"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </RelativeLayout>
+
         <Button
             android:id="@+id/id_add_btn3"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
             android:background="@color/background_gray"
-            android:text="@string/add_symbol"/>
+            android:text="@string/add_symbol" />
+
         <Button
             android:id="@+id/id_tv_num3"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/id_add_btn3"
             android:layout_toStartOf="@+id/id_add_btn3"
-            android:layout_marginRight="5dp"
-            android:layout_marginEnd="10dp"
             android:background="@color/background_gray"
-            android:text="@string/zero_value"/>
+            android:text="@string/zero_value" />
+
         <Button
             android:id="@+id/id_subtract_btn3"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/id_tv_num3"
             android:layout_toStartOf="@+id/id_tv_num3"
-            android:layout_marginRight="5dp"
-            android:layout_marginEnd="5dp"
             android:background="@color/background_gray"
-            android:textSize="16sp"
-            android:text="@string/subtract_symbol"/>
+            android:text="@string/subtract_symbol"
+            android:textSize="16sp" />
     </RelativeLayout>
 </LinearLayout>

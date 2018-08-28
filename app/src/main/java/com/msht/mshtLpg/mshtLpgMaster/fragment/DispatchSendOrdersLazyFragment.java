@@ -1,4 +1,5 @@
 package com.msht.mshtLpg.mshtLpgMaster.fragment;
+
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
@@ -47,30 +48,32 @@ public class DispatchSendOrdersLazyFragment extends BaseLazyFragment {
     protected int setLayoutId() {
         return R.layout.frgment_dispatchorder_temp;
     }
+
     @Override
     protected void initView() {
         super.initView();
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == R.id.rb1){
+                if (checkedId == R.id.rb1) {
                     isDelivery = "配送";
-                }else if(checkedId == R.id.rb2){
+                } else if (checkedId == R.id.rb2) {
                     isDelivery = "自提";
                 }
             }
         });
 
     }
-    @OnClick({R.id.id_btn_next, R.id.id_add_btn1, R.id.id_add_btn2,R.id.id_add_btn3,R.id.id_subtract_btn1,R.id.id_subtract_btn2,R.id.id_subtract_btn3,R.id.id_tv_num1,R.id.id_tv_num2,R.id.id_tv_num3})
+
+    @OnClick({R.id.id_btn_next, R.id.id_add_btn1, R.id.id_add_btn2, R.id.id_add_btn3, R.id.id_subtract_btn1, R.id.id_subtract_btn2, R.id.id_subtract_btn3, R.id.id_tv_num1, R.id.id_tv_num2, R.id.id_tv_num3})
     public void onViewClicked(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.id_btn_next:
-                if(totalCount==0){
+                if (totalCount == 0) {
                     PopUtil.toastInBottom("请选购钢瓶");
-                }else {
+                } else {
                     Intent intent = new Intent(getActivity(), DispatchCustomerOrderActivity.class);
-                    intent.putExtra("dispatchOrdersType","1");
+                    intent.putExtra("dispatchOrdersType", "1");
                     intent.putExtra("fiveCount", fiveWeightCount + "");
                     intent.putExtra("fifteenWeightCount", fifteenWeightCount + "");
                     intent.putExtra("fiftyWeightCount", fiftyWeightCount + "");
@@ -82,38 +85,38 @@ public class DispatchSendOrdersLazyFragment extends BaseLazyFragment {
             case R.id.id_add_btn1:
                 fiveWeightCount++;
                 totalCount++;
-                tvTotal.setText(totalCount+"");
-                tvFiveWeightCount.setText(fiveWeightCount+"");
+                tvTotal.setText(totalCount + "");
+                tvFiveWeightCount.setText(fiveWeightCount + "");
                 break;
             case R.id.id_add_btn2:
                 fifteenWeightCount++;
                 totalCount++;
-                tvTotal.setText(totalCount+"");
-                tvFifteenWeightCount.setText(fifteenWeightCount+"");
+                tvTotal.setText(totalCount + "");
+                tvFifteenWeightCount.setText(fifteenWeightCount + "");
                 break;
             case R.id.id_add_btn3:
                 fiftyWeightCount++;
                 totalCount++;
-                tvTotal.setText(totalCount+"");
-                tvFiftyWeightCount.setText(fiftyWeightCount+"");
+                tvTotal.setText(totalCount + "");
+                tvFiftyWeightCount.setText(fiftyWeightCount + "");
                 break;
             case R.id.id_subtract_btn1:
                 fiveWeightCount--;
                 totalCount--;
-                tvTotal.setText(totalCount+"");
-                tvFiveWeightCount.setText(fiveWeightCount+"");
+                tvTotal.setText(totalCount + "");
+                tvFiveWeightCount.setText(fiveWeightCount + "");
                 break;
             case R.id.id_subtract_btn2:
                 fifteenWeightCount--;
                 totalCount--;
-                tvTotal.setText(totalCount+"");
-                tvFifteenWeightCount.setText(fifteenWeightCount+"");
+                tvTotal.setText(totalCount + "");
+                tvFifteenWeightCount.setText(fifteenWeightCount + "");
                 break;
             case R.id.id_subtract_btn3:
                 fiftyWeightCount--;
                 totalCount--;
-                tvTotal.setText(totalCount+"");
-                tvFiftyWeightCount.setText(fiftyWeightCount+"");
+                tvTotal.setText(totalCount + "");
+                tvFiftyWeightCount.setText(fiftyWeightCount + "");
                 break;
             default:
                 break;

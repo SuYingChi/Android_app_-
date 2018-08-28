@@ -32,14 +32,15 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 public class AppUtil {
     private static final String TAG = "AppUtil";
     private static PackageInfo packageInfo;
-    public static boolean isLPGInstalled( String packageName) {
+
+    public static boolean isLPGInstalled(String packageName) {
         PackageManager pm = LPGApplication.getLPGApplicationContext().getPackageManager();
         boolean installed;
         try {
-            packageInfo= pm.getPackageInfo(packageName, 0);
-            if(packageInfo!=null){
+            packageInfo = pm.getPackageInfo(packageName, 0);
+            if (packageInfo != null) {
                 installed = true;
-            }else {
+            } else {
                 installed = false;
             }
         } catch (PackageManager.NameNotFoundException e) {
@@ -47,13 +48,14 @@ public class AppUtil {
         }
         return installed;
     }
+
     public static void hideSoftInput(Activity mActivity) {
         try {
             IBinder mIBinder = mActivity.getCurrentFocus().getWindowToken();
-                if (mIBinder != null&&(mActivity.getSystemService(INPUT_METHOD_SERVICE)) != null) {
-                    ((InputMethodManager) mActivity.getSystemService(INPUT_METHOD_SERVICE))
-                            .hideSoftInputFromWindow(mIBinder, InputMethodManager.HIDE_NOT_ALWAYS);
-                }
+            if (mIBinder != null && (mActivity.getSystemService(INPUT_METHOD_SERVICE)) != null) {
+                ((InputMethodManager) mActivity.getSystemService(INPUT_METHOD_SERVICE))
+                        .hideSoftInputFromWindow(mIBinder, InputMethodManager.HIDE_NOT_ALWAYS);
+            }
 
         } catch (Exception e) {
             Log.e(TAG, e.toString());
@@ -74,11 +76,12 @@ public class AppUtil {
         }
         return true;
     }
-    public  static void logout() {
+
+    public static void logout() {
         SharePreferenceUtil.getInstance().setToken("");
-        SharePreferenceUtil.setLoginSpStringValue(Constants.EMPLOYERID,"");
-        SharePreferenceUtil.setLoginSpStringValue("employeeName","");
-        SharePreferenceUtil.setLoginSpStringValue("siteName","");
+        SharePreferenceUtil.setLoginSpStringValue(Constants.EMPLOYERID, "");
+        SharePreferenceUtil.setLoginSpStringValue("employeeName", "");
+        SharePreferenceUtil.setLoginSpStringValue("siteName", "");
     }
 
     public static void goWeb(Context mContext, String url) {
@@ -94,12 +97,13 @@ public class AppUtil {
         mContext.startActivity(go);
     }
 
-    public static void hideInput(Context context, EditText et){
+    public static void hideInput(Context context, EditText et) {
         InputMethodManager inputMethodManager =
-                (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(et.getWindowToken(), 0);
 
     }
+
     /**
      * 2 * 获取版本号 3 * @return 当前应用的版本号 4
      */
@@ -134,20 +138,21 @@ public class AppUtil {
             context.startActivity(it);
 
         } catch (Exception e) {
-            PopUtil.toastInBottom( "请打开应用市场，搜索 " + context.getString(R.string.app_name));
+            PopUtil.toastInBottom("请打开应用市场，搜索 " + context.getString(R.string.app_name));
             e.printStackTrace();
         }
     }
 
-    public static  void replaceFragment(BaseFragment showfragment, BaseFragment currentFragment,FragmentManager fragmentManager){
+    public static void replaceFragment(BaseFragment showfragment, BaseFragment currentFragment, FragmentManager fragmentManager) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.remove(currentFragment).commit();
         transaction = fragmentManager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.forward_enter,R.anim.forward_exit_fragment);
-        transaction.replace(R.id.fl_my_container,showfragment).commit();
+        transaction.setCustomAnimations(R.anim.forward_enter, R.anim.forward_exit_fragment);
+        transaction.replace(R.id.fl_my_container, showfragment).commit();
     }
-    public static  void showFragment(BaseFragment showfragment,FragmentManager fragmentManager){
+
+    public static void showFragment(BaseFragment showfragment, FragmentManager fragmentManager) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fl_my_container,showfragment).commit();
+        transaction.replace(R.id.fl_my_container, showfragment).commit();
     }
 }

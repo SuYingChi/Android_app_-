@@ -81,7 +81,7 @@ public final class MyScanHandler extends Handler {
 
             fragment.handleDecode((Result) message.obj, barcode);//���ؽ��
             /***********************************************************************/
-        } else if (message.what ==R.id.decode_failed) {
+        } else if (message.what == R.id.decode_failed) {
             // We're decoding as fast as possible, so when one decode fails, start another.
             state = State.PREVIEW;
             Log.d(TAG, "handleMessage: decode_failed ， 失败后主线程的CaptureActivityHandlerzai重新发送消息给子线程DecodeThread 的DecodeHandler执行decode");
@@ -96,8 +96,7 @@ public final class MyScanHandler extends Handler {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
             fragment.getActivity().startActivity(intent);
-        }
-        else if(message.what == R.id.redecode_after_decodeSuccess){
+        } else if (message.what == R.id.redecode_after_decodeSuccess) {
             state = State.PREVIEW;
             Log.d(TAG, "handleMessage: decode_failed ， 成功后主线程的CaptureActivityHandler重新发送消息给子线程DecodeThread 的DecodeHandler执行decode");
             CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
@@ -105,7 +104,7 @@ public final class MyScanHandler extends Handler {
     }
 
     public void quitSynchronously() {
-        state =State.DONE;
+        state = State.DONE;
         CameraManager.get().stopPreview();
         Log.d(TAG, "quitSynchronously: 发送quit消息给DecodeHandler,终止decode循环操作");
         Message quit = Message.obtain(decodeThread.getHandler(), R.id.quit);

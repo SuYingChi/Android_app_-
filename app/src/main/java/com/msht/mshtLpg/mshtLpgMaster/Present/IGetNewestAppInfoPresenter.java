@@ -12,20 +12,20 @@ import com.zhy.http.okhttp.OkHttpUtils;
 
 public class IGetNewestAppInfoPresenter {
 
-    private  IUpdateVersionView iUpdateVersionView;
+    private IUpdateVersionView iUpdateVersionView;
 
-    public IGetNewestAppInfoPresenter(IUpdateVersionView iUpdateVersionView){
+    public IGetNewestAppInfoPresenter(IUpdateVersionView iUpdateVersionView) {
         this.iUpdateVersionView = iUpdateVersionView;
 
     }
 
-    public void getNewestAppInfo(){
+    public void getNewestAppInfo() {
         OkHttpUtils.get().url(Constants.GET_NEWESTAPPINFO).build().execute(new DataStringCallback(iUpdateVersionView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                if(isResponseEmpty){
+                if (isResponseEmpty) {
                     iUpdateVersionView.onError("接口返回空字符串:");
                     return;
                 }

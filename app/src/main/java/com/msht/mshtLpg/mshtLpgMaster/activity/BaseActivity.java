@@ -33,7 +33,7 @@ import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 /**
  * @author mshtyfb
  */
-public  class BaseActivity extends AppCompatActivity implements IBaseView , BGASwipeBackHelper.Delegate {
+public class BaseActivity extends AppCompatActivity implements IBaseView, BGASwipeBackHelper.Delegate {
 
     private BGASwipeBackHelper mSwipeBackHelper;
     private ImmersionBar mImmersionBar;
@@ -113,11 +113,12 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
     public void dismissLoading() {
         hideCenterLoadingDialog();
     }
+
     protected void showCenterLodaingDialog() {
         if (!isFinishing() && centerLoadingDialog == null) {
             centerLoadingDialog = new LoadingDialog(this);
             centerLoadingDialog.show();
-        } else if ( !isFinishing() && !centerLoadingDialog.isShowing()) {
+        } else if (!isFinishing() && !centerLoadingDialog.isShowing()) {
             centerLoadingDialog.show();
         }
     }
@@ -128,10 +129,11 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
             centerLoadingDialog.dismiss();
         }
     }
+
     @Override
     public void onError(String s) {
         if (!AppUtil.isNetworkAvailable()) {
-           PopUtil.toastInBottom(R.string.net_no_available);
+            PopUtil.toastInBottom(R.string.net_no_available);
             onNetError();
         } else {
             PopUtil.toastInBottom(s);
@@ -155,7 +157,7 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
 
     @Override
     public String getEmployerId() {
-        return  SharePreferenceUtil.getLoginSpStringValue(Constants.EMPLOYERID);
+        return SharePreferenceUtil.getLoginSpStringValue(Constants.EMPLOYERID);
     }
 
     /**
@@ -167,6 +169,7 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
     public boolean isSupportSwipeBack() {
         return true;
     }
+
     /**
      * 正在滑动返回
      *
@@ -176,6 +179,7 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
     public void onSwipeBackLayoutSlide(float slideOffset) {
 
     }
+
     /**
      * 没达到滑动返回的阈值，取消滑动返回动作，回到默认状态
      */
@@ -183,6 +187,7 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
     public void onSwipeBackLayoutCancel() {
 
     }
+
     /**
      * 滑动返回执行完毕，销毁当前 Activity
      */
@@ -219,8 +224,9 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
 
     @Override
     public String getOrderType() {
-        return  SharePreferenceUtil.getInstance().getOrderType();
+        return SharePreferenceUtil.getInstance().getOrderType();
     }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
@@ -240,9 +246,10 @@ public  class BaseActivity extends AppCompatActivity implements IBaseView , BGAS
         }
         return onTouchEvent(ev);
     }
-    public  boolean isShouldHideInput(View v, MotionEvent event) {
+
+    public boolean isShouldHideInput(View v, MotionEvent event) {
         if (v != null && (v instanceof EditText)) {
-            int[] leftTop = { 0, 0 };
+            int[] leftTop = {0, 0};
             //获取输入框当前的location位置
             v.getLocationInWindow(leftTop);
             int left = leftTop[0];

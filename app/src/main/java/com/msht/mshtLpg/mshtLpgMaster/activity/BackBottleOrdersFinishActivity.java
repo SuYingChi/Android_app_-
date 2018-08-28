@@ -26,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class BackBottleOrdersFinishActivity extends BaseActivity implements ISimpleOrderDetailView,PermissionUtils.PermissionRequestFinishListener{
+public class BackBottleOrdersFinishActivity extends BaseActivity implements ISimpleOrderDetailView, PermissionUtils.PermissionRequestFinishListener {
     @BindView(R.id.return_btn)
     ImageView returnBtn;
     @BindView(R.id.location)
@@ -75,20 +75,20 @@ public class BackBottleOrdersFinishActivity extends BaseActivity implements ISim
 
     @Override
     public void onGetOrdersDetailSuccess(OrderDetailBean bean) {
-        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(bean.getData().getFloor()).append("层").append(bean.getData().getRoomNum()).append("房").append(bean.getData().getIsDelivery()== 1?"(自提单)":"(配送单)").toString());
+        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(bean.getData().getFloor()).append("层").append(bean.getData().getRoomNum()).append("房").append(bean.getData().getIsDelivery() == 1 ? "(自提单)" : "(配送单)").toString());
         tvElevator.setText(bean.getData().getIsElevator() == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(bean.getData().getBuyer()).append(bean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTelephone.setText(bean.getData().getMobile());
         tvDay.setText(new StringBuilder().append("预约时间：").append(bean.getData().getAppointmentTime()));
         tvComment.setText(new StringBuilder().append("内部备注：").append(bean.getData().getRemarks()).toString());
-        tvOrderId.setText(bean.getData().getOrderId()+"");
+        tvOrderId.setText(bean.getData().getOrderId() + "");
         String fiveDeposite = BottleCaculteUtil.getDeposite(bean, 5);
         String fifteenDeposite = BottleCaculteUtil.getDeposite(bean, 15);
         String fiftyDeposite = BottleCaculteUtil.getDeposite(bean, 50);
         fiveFee.setText(fiveDeposite);
         fifteenFee.setText(fifteenDeposite);
         fiftyFee.setText(fiftyDeposite);
-        totalFee.setText(bean.getData().getRealAmount()+"");
+        totalFee.setText(bean.getData().getRealAmount() + "");
 
         dispatchOrdersTime.setText(new StringBuilder().append("下单时间：").append(bean.getData().getCreateDate()).toString());
         tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(bean.getData().getAppointmentTime()));
@@ -116,6 +116,7 @@ public class BackBottleOrdersFinishActivity extends BaseActivity implements ISim
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvTelephone.getText().toString()));
         startActivity(intent);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

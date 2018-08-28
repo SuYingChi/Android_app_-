@@ -11,7 +11,7 @@ import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IRegisterEmployerView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 public class IRegisterEmployerPresenter {
-    private  IRegisterEmployerView iRegisterEmployerView;
+    private IRegisterEmployerView iRegisterEmployerView;
 
     public IRegisterEmployerPresenter(IRegisterEmployerView iRegisterEmployerView) {
         this.iRegisterEmployerView = iRegisterEmployerView;
@@ -19,22 +19,22 @@ public class IRegisterEmployerPresenter {
 
     public void postRegisterEmployer() {
         OkHttpUtils.get().url(Constants.REGISTER_EMPLOYER)
-                .addParams(Constants.URL_PARAMS_LOGIN_TOKEN,iRegisterEmployerView.getToken()).
-                addParams("",iRegisterEmployerView.getName())
-                .addParams("",iRegisterEmployerView.getSex())
-                .addParams("",iRegisterEmployerView.getMobile())
-                .addParams("",iRegisterEmployerView.getFloor())
-                .addParams("",iRegisterEmployerView.getIsElevator())
-                .addParams("",iRegisterEmployerView.getRoom())
-                .addParams("",iRegisterEmployerView.getLocation())
-                .addParams("",iRegisterEmployerView.getLatitude())
-                .addParams("",iRegisterEmployerView.getLongitude())
+                .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iRegisterEmployerView.getToken()).
+                addParams("", iRegisterEmployerView.getName())
+                .addParams("", iRegisterEmployerView.getSex())
+                .addParams("", iRegisterEmployerView.getMobile())
+                .addParams("", iRegisterEmployerView.getFloor())
+                .addParams("", iRegisterEmployerView.getIsElevator())
+                .addParams("", iRegisterEmployerView.getRoom())
+                .addParams("", iRegisterEmployerView.getLocation())
+                .addParams("", iRegisterEmployerView.getLatitude())
+                .addParams("", iRegisterEmployerView.getLongitude())
                 .build().execute(new DataStringCallback(iRegisterEmployerView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                if(isResponseEmpty){
+                if (isResponseEmpty) {
                     iRegisterEmployerView.onError("接口返回空字符串:");
                     return;
                 }

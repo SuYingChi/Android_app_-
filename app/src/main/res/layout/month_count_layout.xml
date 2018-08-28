@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
-    android:id="@+id/month_count_layout_topbar"
-    android:background="@color/msb_color"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/top_bar_height_normol"
-    android:padding="@dimen/margin_Modules"
-    app:title_text = "月份统计"
-    />
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
+        android:id="@+id/month_count_layout_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height_normol"
+        android:background="@color/msb_color"
+        android:padding="@dimen/margin_Modules"
+        app:title_text="月份统计" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/line_color_lib"
-        >
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcl_month_count"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:layout_marginLeft="@dimen/margin_Modules"
-        android:layout_marginRight="@dimen/margin_Modules"
-        />
+        android:background="@color/line_color_lib">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcl_month_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_Modules"
+            android:layout_marginRight="@dimen/margin_Modules"
+            android:background="@color/white" />
     </RelativeLayout>
 </LinearLayout>

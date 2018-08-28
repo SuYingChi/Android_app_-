@@ -23,24 +23,24 @@ public class IOrdersListPresenter {
         OkHttpUtils.get().url(Constants.QUERY_ORDERS)
                 .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iOrderView.getToken()).
                 addParams(Constants.URL_PARAMS_ORDER_STATUS, iOrderView.getOrdersStatus() + "")
-                .addParams(Constants.URL_PARAMS_ORDER_TYPE,  iOrderView.getOrderType())
+                .addParams(Constants.URL_PARAMS_ORDER_TYPE, iOrderView.getOrderType())
                 .addParams(Constants.URL_PARAMS_PAGE_NUM, iOrderView.getPage() + "")
-                .addParams("pageSize","2")
+                .addParams("pageSize", "2")
                 .build().execute(new DataStringCallback(iOrderView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承,diss对话框，再重写或重写覆盖请求错误的场景
                 super.onResponse(s, i);
-                if(isResponseEmpty){
+                if (isResponseEmpty) {
                     iOrderView.onError("接口返回空字符串:");
                     return;
                 }
                 ErrorBean errorBean = GsonUtil.getGson().fromJson(s, ErrorBean.class);
-                if (errorBean !=null&&!TextUtils.isEmpty(errorBean.getResult()) && TextUtils.equals(errorBean.getResult(), "fail")) {
+                if (errorBean != null && !TextUtils.isEmpty(errorBean.getResult()) && TextUtils.equals(errorBean.getResult(), "fail")) {
                     iOrderView.onError(errorBean.getMsg());
-                } else if (errorBean !=null&&!TextUtils.isEmpty(errorBean.getResult()) && TextUtils.equals(errorBean.getResult(), "success")) {
-                    OrdersListBeanV2 ordersBean = GsonUtil.getGson().fromJson(s,OrdersListBeanV2.class);
-                   iOrderView.onGetOrdersSuccess(ordersBean);
+                } else if (errorBean != null && !TextUtils.isEmpty(errorBean.getResult()) && TextUtils.equals(errorBean.getResult(), "success")) {
+                    OrdersListBeanV2 ordersBean = GsonUtil.getGson().fromJson(s, OrdersListBeanV2.class);
+                    iOrderView.onGetOrdersSuccess(ordersBean);
                 }
             }
         });

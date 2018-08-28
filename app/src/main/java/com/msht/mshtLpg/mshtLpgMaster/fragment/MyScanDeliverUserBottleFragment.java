@@ -101,7 +101,7 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
     private OrderDetailBean bean;
     private int fragmentType;
     private ScanSteelBottleActivity activity;
-    private String verifyType="";
+    private String verifyType = "";
 
 
     @Override
@@ -158,8 +158,8 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().length()==10){
-                    AppUtil.hideInput(MyScanDeliverUserBottleFragment.this.getContext(),etInput);
+                if (s.toString().length() == 10) {
+                    AppUtil.hideInput(MyScanDeliverUserBottleFragment.this.getContext(), etInput);
                 }
             }
         });
@@ -257,9 +257,9 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
         String bottleUrl = result.getText();
-        if(bottleUrl.length()==10||bottleUrl.length()==8||bottleUrl.length()==9){
+        if (bottleUrl.length() == 10 || bottleUrl.length() == 8 || bottleUrl.length() == 9) {
             bottleCode = bottleUrl;
-        }else if(bottleUrl.contains("id=")){
+        } else if (bottleUrl.contains("id=")) {
             int index = bottleUrl.indexOf("id=");
             bottleCode = bottleUrl.substring(index + 3).trim();
         }
@@ -304,7 +304,7 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
     public void surfaceDestroyed(SurfaceHolder holder) {
         hasSurface = false;
         if (camera != null) {
-            if ( CameraManager.get().isPreviewing()) {
+            if (CameraManager.get().isPreviewing()) {
                 if (!CameraManager.get().isUseOneShotPreviewCallback()) {
                     camera.setPreviewCallback(null);
                 }
@@ -375,7 +375,7 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
 
 
     @Nullable
-   protected CameraInitCallBack callBack;
+    protected CameraInitCallBack callBack;
 
     /**
      * Set callback for Camera check whether Camera init success or not.
@@ -388,44 +388,44 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
     public void onGetBottleInfoSuccess(VerifyBottleBean verifyBottleBean) {
         if (isContainBottle(list, verifyBottleBean.getData().getBottleCode())) {
             PopUtil.toastInBottom("钢瓶已添加");
-        }else if(fragmentType == 1) {
-             if (verifyBottleBean.getData().getBottleWeight() == 5&&BottleCaculteUtil.getBottleNum(list,5) >= orderFiveNum ) {
+        } else if (fragmentType == 1) {
+            if (verifyBottleBean.getData().getBottleWeight() == 5 && BottleCaculteUtil.getBottleNum(list, 5) >= orderFiveNum) {
                 PopUtil.toastInBottom("5kg钢瓶已达到订单数");
-            } else if (verifyBottleBean.getData().getBottleWeight() == 15&&BottleCaculteUtil.getBottleNum(list,15) >= orderFifteenNum) {
+            } else if (verifyBottleBean.getData().getBottleWeight() == 15 && BottleCaculteUtil.getBottleNum(list, 15) >= orderFifteenNum) {
                 PopUtil.toastInBottom("15kg钢瓶已达到订单数");
-            } else if (verifyBottleBean.getData().getBottleWeight() == 50&&BottleCaculteUtil.getBottleNum(list,50) >= orderFiftyNum) {
+            } else if (verifyBottleBean.getData().getBottleWeight() == 50 && BottleCaculteUtil.getBottleNum(list, 50) >= orderFiftyNum) {
                 PopUtil.toastInBottom("50kg钢瓶已达到订单数");
-            } else if(verifyBottleBean.getData().getIsHeavy()== 0){
+            } else if (verifyBottleBean.getData().getIsHeavy() == 0) {
                 list.add(verifyBottleBean);
                 adapter.notifyDataSetChanged();
-                fiveBottleNumber.setText(String.format("%d",BottleCaculteUtil.getBottleNum(list,5)));
-                fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list,15)));
-                fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list,50)));
-            }else {
-                 PopUtil.toastInBottom("不能交付空瓶");
-             }
-        }else if(fragmentType == 2){
-            if (verifyBottleBean.getData().getBottleWeight() == 5&&BottleCaculteUtil.getBottleNum(empList,5) >= orderFiveNum ) {
+                fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5)));
+                fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15)));
+                fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50)));
+            } else {
+                PopUtil.toastInBottom("不能交付空瓶");
+            }
+        } else if (fragmentType == 2) {
+            if (verifyBottleBean.getData().getBottleWeight() == 5 && BottleCaculteUtil.getBottleNum(empList, 5) >= orderFiveNum) {
                 PopUtil.toastInBottom("5kg钢瓶已达到订单数");
-            } else if (verifyBottleBean.getData().getBottleWeight() == 15&&BottleCaculteUtil.getBottleNum(empList,15) >= orderFifteenNum) {
+            } else if (verifyBottleBean.getData().getBottleWeight() == 15 && BottleCaculteUtil.getBottleNum(empList, 15) >= orderFifteenNum) {
                 PopUtil.toastInBottom("15kg钢瓶已达到订单数");
-            } else if (verifyBottleBean.getData().getBottleWeight() == 50&&BottleCaculteUtil.getBottleNum(empList,50) >= orderFiftyNum) {
+            } else if (verifyBottleBean.getData().getBottleWeight() == 50 && BottleCaculteUtil.getBottleNum(empList, 50) >= orderFiftyNum) {
                 PopUtil.toastInBottom("50kg钢瓶已达到订单数");
-            } else if(verifyBottleBean.getData().getIsHeavy()== 1){
+            } else if (verifyBottleBean.getData().getIsHeavy() == 1) {
                 empList.add(verifyBottleBean);
                 adapter.notifyDataSetChanged();
-                fiveBottleNumber.setText(String.format("%d",BottleCaculteUtil.getBottleNum(empList,5)));
-                fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(empList,15)));
-                fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(empList,50)));
-            }else {
+                fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(empList, 5)));
+                fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(empList, 15)));
+                fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(empList, 50)));
+            } else {
                 PopUtil.toastInBottom("不能回收重瓶");
             }
         }
         if (handler == null) {
             handler = new MyScanHandler(this, decodeFormats, characterSet, viewfinderView);
         }
-            Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
-            handler.sendMessageDelayed(reDecode, 1000);
+        Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
+        handler.sendMessageDelayed(reDecode, 1000);
 
     }
 

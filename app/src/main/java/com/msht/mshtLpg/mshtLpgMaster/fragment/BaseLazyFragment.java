@@ -21,7 +21,7 @@ import butterknife.Unbinder;
 /**
  * 当使用viewpager加载Fragment，沉浸式的使用，原理懒加载
  */
-public abstract class BaseLazyFragment extends BaseFragment{
+public abstract class BaseLazyFragment extends BaseFragment {
 
     protected Activity mActivity;
     protected View mRootView;
@@ -153,11 +153,11 @@ public abstract class BaseLazyFragment extends BaseFragment{
 
     /**
      * 初始化沉浸式
-     *
+     * <p>
      * 默认白色 有特殊需求  重写此方法
      */
     protected void initImmersionBar() {
-       // ImmersionBar.with(this).statusBarColor(R.color.msb_color).statusBarDarkFont(true, 0.2f).fitsSystemWindows(true).init();
+        // ImmersionBar.with(this).statusBarColor(R.color.msb_color).statusBarDarkFont(true, 0.2f).fitsSystemWindows(true).init();
     }
 
     /**
@@ -192,7 +192,6 @@ public abstract class BaseLazyFragment extends BaseFragment{
     protected <T extends View> T findActivityViewById(@IdRes int id) {
         return (T) mActivity.findViewById(id);
     }
-
 
 
 }

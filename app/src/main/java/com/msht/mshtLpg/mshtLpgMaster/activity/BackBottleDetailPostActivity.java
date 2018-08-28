@@ -33,7 +33,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
-public class BackBottleDetailPostActivity extends BaseActivity implements IBackBottleDetailPostView ,ISimpleOrderDetailView,PermissionUtils.PermissionRequestFinishListener{
+public class BackBottleDetailPostActivity extends BaseActivity implements IBackBottleDetailPostView, ISimpleOrderDetailView, PermissionUtils.PermissionRequestFinishListener {
     @BindView(R.id.return_btn)
     ImageView returnBtn;
     @BindView(R.id.location)
@@ -88,45 +88,46 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.back_bottle_orders_post_layout);
-        unbinder =  ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             orderId = bundle.getString(Constants.ORDER_ID);
-            backBottleList = (List<VerifyBottleBean>)bundle.getSerializable(Constants.EMPTY_BOTTLE_LIST);
+            backBottleList = (List<VerifyBottleBean>) bundle.getSerializable(Constants.EMPTY_BOTTLE_LIST);
             //此时订单状态还只是待验瓶
             iOrderDetailPresenter = new IOrderDetailPresenter(this);
-            iOrderDetailPostPresenter= new IOrderDetailPostPresenter(this);
+            iOrderDetailPostPresenter = new IOrderDetailPostPresenter(this);
             iOrderDetailPresenter.getSimpleOrderDetail();
         }
 
     }
-    @OnClick({R.id.return_btn, R.id.comman_topbar_call_phone_btn, R.id.hand_over_steel_bottle,R.id.ll_orders_detail_command_topbar_client_info})
+
+    @OnClick({R.id.return_btn, R.id.comman_topbar_call_phone_btn, R.id.hand_over_steel_bottle, R.id.ll_orders_detail_command_topbar_client_info})
     public void onViewClicked(View view) {
         Intent intent;
         switch (view.getId()) {
             case R.id.return_btn:
-                PopUtil.showTipsDialog(BackBottleDetailPostActivity.this, "放弃订单", "确认放弃提交该订单", "取消", "确认", null, new View.OnClickListener() {
+                PopUtil.showComfirmDialog(BackBottleDetailPostActivity.this, "放弃订单", "确认放弃提交该订单", "取消", "确认", null, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         finish();
                     }
-                });
+                }, true);
                 break;
             case R.id.comman_topbar_call_phone_btn:
-                PopUtil.showTipsDialog(this, "拨打电话", "请确认是否要拨打电话" + tvTelephone.getText().toString(), "取消", "确认", null, new View.OnClickListener() {
+                PopUtil.showComfirmDialog(this, "拨打电话", "请确认是否要拨打电话" + tvTelephone.getText().toString(), "取消", "确认", null, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        PermissionUtils.requestPermissions(BackBottleDetailPostActivity.this,BackBottleDetailPostActivity.this, Permission.CALL_PHONE);
+                        PermissionUtils.requestPermissions(BackBottleDetailPostActivity.this, BackBottleDetailPostActivity.this, Permission.CALL_PHONE);
                     }
-                });
+                }, true);
                 break;
             case R.id.hand_over_steel_bottle:
-                PopUtil.showTipsDialog(BackBottleDetailPostActivity.this, "提交退瓶订单", "确认已将押金付给客户并提交退瓶订单？", "取消", "确认", null, new View.OnClickListener() {
+                PopUtil.showComfirmDialog(BackBottleDetailPostActivity.this, "提交退瓶订单", "确认已将押金付给客户并提交退瓶订单？", "取消", "确认", null, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         iOrderDetailPostPresenter.postBackBottleOrders();
                     }
-                });
+                }, true);
                 break;
             case R.id.ll_orders_detail_command_topbar_client_info:
                 intent = new Intent(BackBottleDetailPostActivity.this, EditLocationActivity.class);
@@ -151,30 +152,31 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
         }
 
     }
+
     @Override
     public void onGetOrdersDetailSuccess(OrderDetailBean bean) {
         this.detailBean = bean;
-        isDelivery = bean.getData().getIsDelivery()+"";
-        floor = bean.getData().getFloor()+"";
-        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(floor).append("层").append(bean.getData().getRoomNum()).append("房").append(bean.getData().getIsDelivery()== 1?"(自提单)":"(配送单)").toString());
-        isElevator = bean.getData().getIsElevator()+"";
+        isDelivery = bean.getData().getIsDelivery() + "";
+        floor = bean.getData().getFloor() + "";
+        tvLocation.setText(new StringBuilder().append(bean.getData().getAddress()).append(floor).append("层").append(bean.getData().getRoomNum()).append("房").append(bean.getData().getIsDelivery() == 1 ? "(自提单)" : "(配送单)").toString());
+        isElevator = bean.getData().getIsElevator() + "";
         tvElevator.setText(isElevator.equals(1 + "") ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(bean.getData().getBuyer()).append(bean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTelephone.setText(bean.getData().getMobile());
         tvDay.setText(new StringBuilder().append("预约时间：").append(bean.getData().getAppointmentTime()));
         tvComment.setText(new StringBuilder().append("内部备注：").append(bean.getData().getRemarks()).toString());
         tvOrderId.setText(orderId);
-        orderFive = bean.getData().getReFiveBottleCount() +"";
-        orderFifteen  = bean.getData().getReFifteenBottleCount() +"";
-        orderFifty = bean.getData().getReFiftyBottleCount() +"";
+        orderFive = bean.getData().getReFiveBottleCount() + "";
+        orderFifteen = bean.getData().getReFifteenBottleCount() + "";
+        orderFifty = bean.getData().getReFiftyBottleCount() + "";
 
-        fiveDeposite  = BottleCaculteUtil.getDeposite(bean,5);
-        fifteenDeposite  = BottleCaculteUtil.getDeposite(bean,15);
-        fiftyDeposite  = BottleCaculteUtil.getDeposite(bean,50);
+        fiveDeposite = BottleCaculteUtil.getDeposite(bean, 5);
+        fifteenDeposite = BottleCaculteUtil.getDeposite(bean, 15);
+        fiftyDeposite = BottleCaculteUtil.getDeposite(bean, 50);
         fiveFee.setText(fiveDeposite);
         fifteenFee.setText(fifteenDeposite);
         fiftyFee.setText(fiftyDeposite);
-        totalFee.setText(bean.getData().getRealAmount()+"");
+        totalFee.setText(bean.getData().getRealAmount() + "");
         dispatchOrdersTime.setText(new StringBuilder().append("下单时间：").append(bean.getData().getCreateDate()).toString());
         tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(bean.getData().getAppointmentTime()));
     }
@@ -224,10 +226,10 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
     @Override
     public String getRecycleBottleIds() {
         StringBuilder sf = new StringBuilder();
-        for(int i = 0; i< backBottleList.size(); i++){
-            if(i==0){
+        for (int i = 0; i < backBottleList.size(); i++) {
+            if (i == 0) {
                 sf.append(backBottleList.get(i).getData().getId());
-            }else {
+            } else {
                 sf.append(",").append(backBottleList.get(i).getData().getId());
             }
         }

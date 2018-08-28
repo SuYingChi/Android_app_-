@@ -3,37 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_height"
-        android:background="@color/line_color_lib"
-        />
+        android:background="@color/line_color_lib" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_Modules"
-        >
-    <TextView
-        android:id="@+id/item_rcl_month_count_month"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2018年8月"
-        android:textColor="@color/lpg_text_dark_color"
-        android:textSize="@dimen/text_16" />
+        android:padding="@dimen/margin_Modules">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+        <TextView
+            android:id="@+id/item_rcl_month_count_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2018年8月"
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
 
-    <TextView
-        android:id="@+id/item_rcl_month_count"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="+170"
-        android:textColor="@color/green"
-        android:textSize="@dimen/text_16" />
-</LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/item_rcl_month_count"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="+170"
+            android:textColor="@color/green"
+            android:textSize="@dimen/text_16" />
+    </LinearLayout>
 </LinearLayout>

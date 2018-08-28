@@ -57,17 +57,17 @@ public class ScanSteelBottleActivity extends BaseActivity implements MyScanDeliv
 
     @Override
     public void onClickNextBtnAndSendVerifyBottleList(int fragmentType, List<VerifyBottleBean> list) {
-        if(fragmentType == 1) {
+        if (fragmentType == 1) {
             this.heavyBottleList = list;
             int scanedfiveNum = BottleCaculteUtil.getBottleNum(list, 5);
             int scanedfifteenNum = BottleCaculteUtil.getBottleNum(list, 15);
             ;
             int scanedfiftyNum = BottleCaculteUtil.getBottleNum(list, 50);
             ;
-            if(scanedfiveNum !=orderfiveNum|| scanedfifteenNum !=orderfifteenNum|| scanedfiftyNum !=orderfiftyNum){
-                PopUtil.toastInBottom("未达到订单要求钢瓶数和规格"+"请按订单要求扫描验瓶"+"5kg瓶"+orderfiveNum+"15kg瓶"+orderfifteenNum+"50kg瓶"+orderfiftyNum);
-            }else {
-                if(scanEmptybottleFragment == null) {
+            if (scanedfiveNum != orderfiveNum || scanedfifteenNum != orderfifteenNum || scanedfiftyNum != orderfiftyNum) {
+                PopUtil.toastInBottom("未达到订单要求钢瓶数和规格" + "请按订单要求扫描验瓶" + "5kg瓶" + orderfiveNum + "15kg瓶" + orderfifteenNum + "50kg瓶" + orderfiftyNum);
+            } else {
+                if (scanEmptybottleFragment == null) {
                     Bundle bundle = new Bundle();
                     scanEmptybottleFragment = new MyScanDeliverUserBottleFragment();
                     bundle.putInt(Constants.ORDER_FIVE_NUM, orderfiveNum);
@@ -86,17 +86,17 @@ public class ScanSteelBottleActivity extends BaseActivity implements MyScanDeliv
                         }
                     });
                 }
-                AppUtil.replaceFragment(scanEmptybottleFragment, scanBottleFragment,getSupportFragmentManager());
+                AppUtil.replaceFragment(scanEmptybottleFragment, scanBottleFragment, getSupportFragmentManager());
             }
 
 
-        }else {
-            Intent intent = new Intent(this,SendBottleOrdersDetailPostActivity.class);
-            Bundle bundle=new Bundle();
-            bundle.putString(Constants.ORDER_ID,orderId);
-            bundle.putSerializable(Constants.HEAVY_BOTTLE_LIST,(Serializable)heavyBottleList);
-            bundle.putSerializable(Constants.EMPTY_BOTTLE_LIST,(Serializable) list);
-            bundle.putInt("starttype",1);
+        } else {
+            Intent intent = new Intent(this, SendBottleOrdersDetailPostActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString(Constants.ORDER_ID, orderId);
+            bundle.putSerializable(Constants.HEAVY_BOTTLE_LIST, (Serializable) heavyBottleList);
+            bundle.putSerializable(Constants.EMPTY_BOTTLE_LIST, (Serializable) list);
+            bundle.putInt("starttype", 1);
             intent.putExtras(bundle);
             startActivity(intent);
 
@@ -107,9 +107,9 @@ public class ScanSteelBottleActivity extends BaseActivity implements MyScanDeliv
 
     @Override
     public void onCaptureFragmenBackBtnClick(int fragmentType) {
-        if(fragmentType == 1){
+        if (fragmentType == 1) {
             finish();
-        }else if(fragmentType == 2){
+        } else if (fragmentType == 2) {
             scanBottleFragment = new MyScanDeliverUserBottleFragment();
             Bundle bundle = new Bundle();
             bundle.putInt(Constants.ORDER_FIVE_NUM, orderfiveNum);
@@ -127,7 +127,7 @@ public class ScanSteelBottleActivity extends BaseActivity implements MyScanDeliv
                     }
                 }
             });
-            AppUtil.replaceFragment(scanBottleFragment, scanEmptybottleFragment,getSupportFragmentManager());
+            AppUtil.replaceFragment(scanBottleFragment, scanEmptybottleFragment, getSupportFragmentManager());
         }
     }
 
@@ -156,8 +156,8 @@ public class ScanSteelBottleActivity extends BaseActivity implements MyScanDeliv
         orderfifteenNum = bean.getData().getFifteenBottleCount();
         orderfiftyNum = bean.getData().getFiftyBottleCount();
         orderType = bean.getData().getOrderType();
-         //送气单的扫码界面
-        if(orderType == 1) {
+        //送气单的扫码界面
+        if (orderType == 1) {
             scanBottleFragment = new MyScanDeliverUserBottleFragment();
             Bundle bundle = new Bundle();
             bundle.putInt(Constants.ORDER_FIVE_NUM, orderfiveNum);
@@ -175,15 +175,15 @@ public class ScanSteelBottleActivity extends BaseActivity implements MyScanDeliv
                     }
                 }
             });
-            AppUtil.showFragment(scanBottleFragment,getSupportFragmentManager());
+            AppUtil.showFragment(scanBottleFragment, getSupportFragmentManager());
         }//退瓶单的扫码界面
-        else if(orderType == 0){
+        else if (orderType == 0) {
             backBottleFragment = new MyScanBackBottleFragment();
             Bundle bundle = new Bundle();
             bundle.putInt(Constants.ORDER_FIVE_NUM, bean.getData().getReFiveBottleCount());
             bundle.putInt(Constants.ORDER_FIFTEEN_NUM, bean.getData().getReFifteenBottleCount());
             bundle.putInt(Constants.ORDER_FIFTY_NUM, bean.getData().getReFiftyBottleCount());
-            bundle.putString(Constants.ORDER_ID,orderId);
+            bundle.putString(Constants.ORDER_ID, orderId);
             backBottleFragment.setArguments(bundle);
             backBottleFragment.setCameraInitCallBack(new MyScanBackBottleFragment.CameraInitCallBack() {
                 @Override
@@ -195,7 +195,7 @@ public class ScanSteelBottleActivity extends BaseActivity implements MyScanDeliv
                     }
                 }
             });
-            AppUtil.showFragment(backBottleFragment,getSupportFragmentManager());
+            AppUtil.showFragment(backBottleFragment, getSupportFragmentManager());
         }
     }
 
@@ -203,7 +203,6 @@ public class ScanSteelBottleActivity extends BaseActivity implements MyScanDeliv
     public String getOrderId() {
         return orderId;
     }
-
 
 
     @Override

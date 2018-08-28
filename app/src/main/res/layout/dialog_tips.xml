@@ -36,10 +36,10 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_marginRight="35dp"
             android:id="@+id/dialog_btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="35dp"
             android:background="@color/white"
             android:text="取消"
             android:textColor="#0076ff"

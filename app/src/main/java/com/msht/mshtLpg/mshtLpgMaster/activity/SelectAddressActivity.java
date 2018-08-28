@@ -183,7 +183,7 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
         });
     }
 
-    @OnClick({R.id.id_cancel, R.id.id_edit_layout,R.id.id_current_address})
+    @OnClick({R.id.id_cancel, R.id.id_edit_layout, R.id.id_current_address})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.id_cancel:
@@ -239,16 +239,16 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
         if (aMapLocation != null && aMapLocation.getErrorCode() == 0) {
             //获取定位信息
             double latitude = aMapLocation.getLatitude();
-            lat = latitude+"";
+            lat = latitude + "";
             double longitude = aMapLocation.getLongitude();
-            lon  =longitude+"";
+            lon = longitude + "";
             mCity = aMapLocation.getCity();
             addressName = aMapLocation.getAoiName();
             addressDescribe = aMapLocation.getProvince() + aMapLocation.getCity()
                     + aMapLocation.getDistrict()
                     + aMapLocation.getStreet() + aMapLocation.getStreetNum();
             if (!TextUtils.isEmpty(aMapLocation.getPoiName())) {
-                addressStr =addressDescribe+ aMapLocation.getAoiName() + "附近";
+                addressStr = addressDescribe + aMapLocation.getAoiName() + "附近";
             } else {
                 addressStr = addressDescribe + aMapLocation.getAoiName();
             }

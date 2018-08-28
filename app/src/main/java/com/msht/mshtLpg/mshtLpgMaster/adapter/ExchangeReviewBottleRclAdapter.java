@@ -18,9 +18,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ExchangeReviewBottleRclAdapter extends RecyclerView.Adapter {
-    private  List<ExchangeReviewBean.DataBean> list;
-    private  LayoutInflater inflater;
-    private  Activity activity;
+    private List<ExchangeReviewBean.DataBean> list;
+    private LayoutInflater inflater;
+    private Activity activity;
 
     public ExchangeReviewBottleRclAdapter(List<ExchangeReviewBean.DataBean> dataList, Activity activity) {
         this.list = dataList;
@@ -36,19 +36,20 @@ public class ExchangeReviewBottleRclAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-       if(holder instanceof ExhcnageHolder){
-           ((ExhcnageHolder) holder).discount.setText(list.get(position).getReplacePrice()+"");
+        if (holder instanceof ExhcnageHolder) {
+            ((ExhcnageHolder) holder).discount.setText(list.get(position).getReplacePrice() + "");
             ((ExhcnageHolder) holder).level.setText(list.get(position).getCorrosionType());
-            ((ExhcnageHolder) holder).num.setText(list.get(position).getBottleCount()+"");
-            ((ExhcnageHolder) holder).weight.setText(list.get(position).getBottleWeight()+"");
-            ((ExhcnageHolder) holder).year.setText(list.get(position).getYears()+"");
-       }
+            ((ExhcnageHolder) holder).num.setText(list.get(position).getBottleCount() + "");
+            ((ExhcnageHolder) holder).weight.setText(list.get(position).getBottleWeight() + "");
+            ((ExhcnageHolder) holder).year.setText(list.get(position).getYears() + "");
+        }
     }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
+
     class ExhcnageHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.weight)
         TextView weight;

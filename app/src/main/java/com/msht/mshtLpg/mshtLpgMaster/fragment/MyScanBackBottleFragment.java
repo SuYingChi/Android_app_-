@@ -140,7 +140,7 @@ public class MyScanBackBottleFragment extends BaseFragment implements IBackBottl
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (BottleCaculteUtil.checkBottleListbyOrderNum(list,orderFiveNum,orderFifteenNum,orderFiftyNum)) {
+                if (BottleCaculteUtil.checkBottleListbyOrderNum(list, orderFiveNum, orderFifteenNum, orderFiftyNum)) {
                     Intent intent = new Intent(getActivity(), BackBottleDetailPostActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString(Constants.ORDER_ID, orderId);
@@ -163,8 +163,8 @@ public class MyScanBackBottleFragment extends BaseFragment implements IBackBottl
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().length()==10){
-                    AppUtil.hideInput(MyScanBackBottleFragment.this.getContext(),etInput);
+                if (s.toString().length() == 10) {
+                    AppUtil.hideInput(MyScanBackBottleFragment.this.getContext(), etInput);
                 }
             }
         });
@@ -219,7 +219,7 @@ public class MyScanBackBottleFragment extends BaseFragment implements IBackBottl
         inactivityTimer.onActivity();
         playBeepSoundAndVibrate();
         String bottleUrl = result.getText();
-        if (bottleUrl.length() == 10||bottleUrl.length() == 8) {
+        if (bottleUrl.length() == 10 || bottleUrl.length() == 8) {
             bottleCode = bottleUrl;
         } else if (bottleUrl.contains("id=")) {
             int index = bottleUrl.indexOf("id=");
@@ -339,8 +339,8 @@ public class MyScanBackBottleFragment extends BaseFragment implements IBackBottl
         if (handler == null) {
             handler = new MyScanHandler(this, decodeFormats, characterSet, viewfinderView);
         }
-            Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
-            handler.sendMessageDelayed(reDecode, 1000);
+        Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
+        handler.sendMessageDelayed(reDecode, 1000);
 
     }
 

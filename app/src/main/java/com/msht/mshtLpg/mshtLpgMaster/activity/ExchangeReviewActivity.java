@@ -43,7 +43,7 @@ public class ExchangeReviewActivity extends BaseActivity implements IExchangeRev
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exchange_review);
-       unbinder =  ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
         iExchangeReviewPresenter = new IExchangeReviewPresenter(this);
@@ -66,7 +66,7 @@ public class ExchangeReviewActivity extends BaseActivity implements IExchangeRev
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopUtil.showWebViewDialog(ExchangeReviewActivity.this,Constants.HUI_SHOU_ZHE_JIA);
+                PopUtil.showWebViewDialog(ExchangeReviewActivity.this, Constants.HUI_SHOU_ZHE_JIA);
             }
         });
     }

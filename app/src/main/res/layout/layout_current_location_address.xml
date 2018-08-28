@@ -1,69 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:background="@color/bg_color"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:background="@color/transparent">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="当前位置"
             android:textColor="@color/lpg_text_light_color"
-            android:textSize="@dimen/text_16"
-            android:text="当前位置"/>
+            android:textSize="@dimen/text_16" />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:minHeight="50dp">
+
         <ImageView
             android:id="@+id/id_address_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:layout_centerVertical="true"
             android:contentDescription="@string/picture_text"
-            android:src="@drawable/store_address_xh"/>
+            android:src="@drawable/store_address_xh" />
+
         <TextView
             android:id="@+id/id_current_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/id_address_img"
-            android:layout_toRightOf="@+id/id_address_img"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:textSize="18sp"
+            android:layout_toEndOf="@+id/id_address_img"
+            android:layout_toRightOf="@+id/id_address_img"
+            android:text="@string/default_text"
             android:textColor="@color/textcolor"
-            android:text="@string/default_text"/>
+            android:textSize="18sp" />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/transparent">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:text="附近位置"
             android:textColor="@color/lpg_text_light_color"
-            android:textSize="@dimen/text_16"
-            android:text="附近位置"/>
+            android:textSize="@dimen/text_16" />
     </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/id_current_recycleView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 </LinearLayout>

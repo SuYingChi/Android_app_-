@@ -25,8 +25,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_Modules"
-            android:textSize="@dimen/text_16"
-            android:text="001241242" />
+            android:text="001241242"
+            android:textSize="@dimen/text_16" />
 
         <View
             android:layout_width="0dp"
@@ -37,15 +37,14 @@
             android:id="@+id/item_rcl_transfer_to_storage_orders_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_16"
-            android:text="待验瓶" />
+            android:text="待验瓶"
+            android:textSize="@dimen/text_16" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/ll_item_rcl_transfer_to_storage_orders_five_kg"
@@ -54,16 +53,14 @@
             android:layout_marginTop="0.5dp"
             android:background="@color/white"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_Modules"
-            >
+            android:padding="@dimen/margin_Modules">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5kg气瓶"
-                android:textSize="@dimen/text_16"
                 android:textColor="@color/head_text_color"
-                />
+                android:textSize="@dimen/text_16" />
 
             <View
                 android:layout_width="0dp"
@@ -74,15 +71,14 @@
                 android:id="@+id/item_rcl_transfer_to_storage_orders_five_kg_number"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:inputType="number"
                 android:background="@drawable/edit_text_background"
-                android:textColor="@color/lpg_text_light_color"
-                android:textSize="@dimen/text_16"
+                android:inputType="number"
+                android:maxLines="1"
                 android:paddingBottom="@dimen/margin_Modules"
                 android:paddingLeft="@dimen/margin_Modules"
-                android:maxLines="1"
-                />
+                android:text="0"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="@dimen/text_16" />
         </LinearLayout>
 
         <LinearLayout
@@ -96,9 +92,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_16"
                 android:text="15kg气瓶"
                 android:textColor="@color/head_text_color"
+                android:textSize="@dimen/text_16"
 
                 />
 
@@ -111,15 +107,14 @@
                 android:id="@+id/item_rcl_transfer_to_storage_orders_fifteen_kg_number"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="0"
                 android:background="@drawable/edit_text_background"
                 android:inputType="number"
-                android:textColor="@color/lpg_text_light_color"
+                android:maxLines="1"
                 android:paddingBottom="@dimen/margin_Modules"
                 android:paddingLeft="@dimen/margin_Modules"
-                android:textSize="@dimen/text_16"
-                android:maxLines="1"
-                />
+                android:text="0"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="@dimen/text_16" />
         </LinearLayout>
 
         <LinearLayout
@@ -133,9 +128,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_16"
                 android:text="50kg气瓶"
                 android:textColor="@color/head_text_color"
+                android:textSize="@dimen/text_16"
 
                 />
 
@@ -148,14 +143,14 @@
                 android:id="@+id/item_rcl_transfer_to_storage_orders_fifty_kg_number"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/lpg_text_light_color"
-                android:text="0"
-                android:inputType="number"
                 android:background="@drawable/edit_text_background"
-                android:textSize="@dimen/text_16"
+                android:inputType="number"
+                android:maxLines="1"
                 android:paddingBottom="@dimen/margin_Modules"
                 android:paddingLeft="@dimen/margin_Modules"
-                android:maxLines="1"
+                android:text="0"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="@dimen/text_16"
 
                 />
         </LinearLayout>
@@ -178,8 +173,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_Modules"
                 android:text="重新入库共计"
-                android:textSize="@dimen/text_16"
-                android:textColor="@color/head_text_color" />
+                android:textColor="@color/head_text_color"
+                android:textSize="@dimen/text_16" />
 
             <TextView
                 android:id="@+id/item_rcl_transfer_to_storage_orders_total_number"
@@ -215,8 +210,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_Modules"
                 android:text="扫描入库"
-                android:textSize="@dimen/text_16"
-                android:textColor="@color/head_text_color" />
+                android:textColor="@color/head_text_color"
+                android:textSize="@dimen/text_16" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -227,8 +222,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="修改"
-                android:textSize="@dimen/text_16"
-                android:textColor="@color/lpg_text_light_color" />
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="@dimen/text_16" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

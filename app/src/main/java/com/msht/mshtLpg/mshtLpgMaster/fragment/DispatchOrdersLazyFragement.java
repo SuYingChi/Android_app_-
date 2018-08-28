@@ -49,9 +49,10 @@ public class DispatchOrdersLazyFragement extends BaseLazyFragment {
         vp.setScanScroll(false);
         vp.setPageTransformer(true, null);
     }
+
     private void initTopTab(int item) {
         if (item == 0) {
-            ordersType =1;
+            ordersType = 1;
             btnTab0.setBackgroundResource(R.drawable.btn_left_corner_bg);
             btnTab1.setBackgroundResource(R.drawable.btn_right_corner_unselect_bg);
 
@@ -60,7 +61,7 @@ public class DispatchOrdersLazyFragement extends BaseLazyFragment {
 
         }
         if (item == 1) {
-            ordersType =0;
+            ordersType = 0;
             btnTab0.setBackgroundResource(R.drawable.btn_left_corner_unselect_bg);
             btnTab1.setBackgroundResource(R.drawable.btn_right_corner_bg);
 

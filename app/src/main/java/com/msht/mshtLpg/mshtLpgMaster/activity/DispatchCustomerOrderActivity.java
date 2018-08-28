@@ -171,13 +171,13 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
                     if (TextUtils.isEmpty(addressDescribe) || TextUtils.isEmpty(locationName) || TextUtils.isEmpty(name) || TextUtils.isEmpty(sex) || TextUtils.isEmpty(isElevator) || TextUtils.isEmpty(ridgepole) || TextUtils.isEmpty(floor) || TextUtils.isEmpty(room)) {
                         PopUtil.toastInBottom("请完善订单信息");
                     } else {
-                        PopUtil.showTipsDialog(DispatchCustomerOrderActivity.this, "提示", "下版本增加代客下退瓶订单功能，感谢新老用户的支持", "", "", null, null);
+                        PopUtil.showComfirmDialog(DispatchCustomerOrderActivity.this, "提示", "下版本增加代客下退瓶订单功能，感谢新老用户的支持", "", "", null, null, true);
                     }
                 } else {
                     if (TextUtils.isEmpty(addressDescribe) || TextUtils.isEmpty(locationName) || TextUtils.isEmpty(name) || TextUtils.isEmpty(sex) || TextUtils.isEmpty(isElevator) || TextUtils.isEmpty(ridgepole) || TextUtils.isEmpty(floor) || TextUtils.isEmpty(room)) {
                         PopUtil.toastInBottom("请完善订单信息");
                     } else {
-                        PopUtil.showTipsDialog(DispatchCustomerOrderActivity.this, "提示", "下版本增加代客下退瓶订单功能，感谢新老用户的支持", "", "", null, null);
+                        PopUtil.showComfirmDialog(DispatchCustomerOrderActivity.this, "提示", "下版本增加代客下退瓶订单功能，感谢新老用户的支持", "", "", null, null, true);
                     }
                 }
             }

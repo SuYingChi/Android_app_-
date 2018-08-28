@@ -44,6 +44,7 @@ public final class MyDecodeThread extends Thread {
     private final Hashtable<DecodeHintType, Object> hints;
     private Handler handler;
     private final CountDownLatch handlerInitLatch;
+
     public MyDecodeThread(BaseFragment fragment,
                           Vector<BarcodeFormat> decodeFormats,
                           String characterSet,

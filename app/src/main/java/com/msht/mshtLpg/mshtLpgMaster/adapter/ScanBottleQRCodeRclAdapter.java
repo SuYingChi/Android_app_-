@@ -17,10 +17,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ScanBottleQRCodeRclAdapter extends RecyclerView.Adapter<ScanBottleQRCodeRclAdapter.ScanHolder>{
+public class ScanBottleQRCodeRclAdapter extends RecyclerView.Adapter<ScanBottleQRCodeRclAdapter.ScanHolder> {
     private final LayoutInflater inflater;
-    private  List<VerifyBottleBean> list ;
-    private  Activity activity;
+    private List<VerifyBottleBean> list;
+    private Activity activity;
 
     public ScanBottleQRCodeRclAdapter(List<VerifyBottleBean> list, Activity activity) {
         this.list = list;
@@ -31,21 +31,21 @@ public class ScanBottleQRCodeRclAdapter extends RecyclerView.Adapter<ScanBottleQ
     @NonNull
     @Override
     public ScanHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ScanHolder(inflater.inflate(R.layout.item_rcl_deliver_steel_bottle,parent,false));
+        return new ScanHolder(inflater.inflate(R.layout.item_rcl_deliver_steel_bottle, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ScanHolder holder, int position) {
         VerifyBottleBean bean = list.get(position);
-            holder.tvBottleModel.setText(bean.getData().getBottleWeight()+"");
-            holder.tvBottleNumber.setText(bean.getData().getBottleCode());
-            holder.tvBottleStatus.setText(bean.getData().getIsHeavy()==0?"重瓶":"空瓶");
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    reduceItem(position);
-                }
-            });
+        holder.tvBottleModel.setText(bean.getData().getBottleWeight() + "");
+        holder.tvBottleNumber.setText(bean.getData().getBottleCode());
+        holder.tvBottleStatus.setText(bean.getData().getIsHeavy() == 0 ? "重瓶" : "空瓶");
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reduceItem(position);
+            }
+        });
     }
 
     private void reduceItem(int position) {
@@ -55,7 +55,7 @@ public class ScanBottleQRCodeRclAdapter extends RecyclerView.Adapter<ScanBottleQ
 
     @Override
     public int getItemCount() {
-        Log.d("suyingchi", "getItemCount: "+list.size());
+        Log.d("suyingchi", "getItemCount: " + list.size());
         return list.size();
     }
 
@@ -66,6 +66,7 @@ public class ScanBottleQRCodeRclAdapter extends RecyclerView.Adapter<ScanBottleQ
         TextView tvBottleModel;
         @BindView(R.id.bottle_status)
         TextView tvBottleStatus;
+
         public ScanHolder(View inflate) {
             super(inflate);
             ButterKnife.bind(this, inflate);

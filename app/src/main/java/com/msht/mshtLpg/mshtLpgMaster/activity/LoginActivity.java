@@ -30,15 +30,14 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class LoginActivity extends BaseActivity implements ILoginView{
-
+public class LoginActivity extends BaseActivity implements ILoginView {
 
 
     @BindView(R.id.et_login_mobile_number)
     EditText mobileNumber;
     @BindView(R.id.login_login_password)
     EditText loginPassword;
-   @BindView(R.id.btn_login)
+    @BindView(R.id.btn_login)
     Button btnOk;
 
     private ILoginPresenter iLoginPresenter;
@@ -49,22 +48,22 @@ public class LoginActivity extends BaseActivity implements ILoginView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         unbinder = ButterKnife.bind(this);
-        iLoginPresenter= new ILoginPresenter(this);
+        iLoginPresenter = new ILoginPresenter(this);
     }
 
-    @OnClick( R.id.btn_login)
+    @OnClick(R.id.btn_login)
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
             case R.id.btn_login:
                 if (mobileNumber.getText().length() != 11) {
-                    PopUtil.toastInBottom( getString(R.string.please_input_right_mobile_number));
+                    PopUtil.toastInBottom(getString(R.string.please_input_right_mobile_number));
                     return;
                 }
                 iLoginPresenter.login(mobileNumber.getText().toString(), loginPassword.getText().toString());
 
                 break;
-              default:
+            default:
                 break;
 
         }
@@ -72,12 +71,12 @@ public class LoginActivity extends BaseActivity implements ILoginView{
 
     @Override
     public void onLoginSuccess(UserLoginBean s) {
-        SharePreferenceUtil.getInstance().setToken( s.getData().getLoginToken());
-        SharePreferenceUtil.setLoginSpStringValue(Constants.EMPLOYERID,s.getData().getEmployeeId()+"");
-        SharePreferenceUtil.setLoginSpStringValue("employeeName",s.getData().getEmployeeName());
-        SharePreferenceUtil.setLoginSpStringValue("siteName",s.getData().getSiteName());
-        SharePreferenceUtil.setLoginSpStringValue("siteId",s.getData().getSiteId()+"");
-        startActivity( new Intent(this, HomeActivity.class));
+        SharePreferenceUtil.getInstance().setToken(s.getData().getLoginToken());
+        SharePreferenceUtil.setLoginSpStringValue(Constants.EMPLOYERID, s.getData().getEmployeeId() + "");
+        SharePreferenceUtil.setLoginSpStringValue("employeeName", s.getData().getEmployeeName());
+        SharePreferenceUtil.setLoginSpStringValue("siteName", s.getData().getSiteName());
+        SharePreferenceUtil.setLoginSpStringValue("siteId", s.getData().getSiteId() + "");
+        startActivity(new Intent(this, HomeActivity.class));
         EventBus.getDefault().postSticky(new LoginEventBean(s));
 
     }

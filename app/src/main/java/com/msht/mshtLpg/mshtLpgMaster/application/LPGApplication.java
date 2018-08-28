@@ -45,6 +45,7 @@ public class LPGApplication extends Application {
 
     private static LPGApplication instance;
     private SharePreferenceUtil spu;
+
     static {
 
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
@@ -74,28 +75,27 @@ public class LPGApplication extends Application {
     }
 
 
-
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
         ZXingLibrary.initDisplayOpinion(this);
         BGASwipeBackHelper.init(this, null);
-         OkHttpClient okHttpClient;
-        if(BuildConfig.DEBUG) {
-         okHttpClient = new OkHttpClient.Builder()
+        OkHttpClient okHttpClient;
+        if (BuildConfig.DEBUG) {
+            okHttpClient = new OkHttpClient.Builder()
                     .addInterceptor(new MLoggerInterceptor("http", true))
                     .connectTimeout(30000L, TimeUnit.MILLISECONDS)
                     .readTimeout(30000L, TimeUnit.MILLISECONDS)
                     .build();
-        }else {
+        } else {
             okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(new MLoggerInterceptor("https", true))
-                .connectTimeout(30000L, TimeUnit.MILLISECONDS)
-                .readTimeout(30000L, TimeUnit.MILLISECONDS)
-                .sslSocketFactory(SSLSocketClient.getSSLSocketFactory())
-                .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
-                .build();
+                    .addInterceptor(new MLoggerInterceptor("https", true))
+                    .connectTimeout(30000L, TimeUnit.MILLISECONDS)
+                    .readTimeout(30000L, TimeUnit.MILLISECONDS)
+                    .sslSocketFactory(SSLSocketClient.getSSLSocketFactory())
+                    .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
+                    .build();
         }
         OkHttpUtils.initClient(okHttpClient);
         spu = SharePreferenceUtil.getInstance();
@@ -107,11 +107,12 @@ public class LPGApplication extends Application {
         return instance.getApplicationContext();
 
     }
+
     public static SSLSocketFactory getCertificates(InputStream... certificates) {
         try {
             CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
             KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            keyStore.load(null,null);
+            keyStore.load(null, null);
             int index = 0;
             for (InputStream certificate : certificates) {
                 String certificateAlias = Integer.toString(index++);
@@ -147,6 +148,7 @@ public class LPGApplication extends Application {
 
     /**
      * 跳过证书信任
+     *
      * @throws Exception
      */
     public SSLSocketFactory trustAllCertificate() {
@@ -161,6 +163,7 @@ public class LPGApplication extends Application {
         }
         return null;
     }
+
     /**
      * 信任所有主机 对于任何证书都不做SSL检测
      * 安全验证机制，而Android采用的是X509验证
@@ -169,7 +172,7 @@ public class LPGApplication extends Application {
 
         @Override
         public X509Certificate[] getAcceptedIssuers() {
-           return new X509Certificate[0];
+            return new X509Certificate[0];
         }
 
         @Override

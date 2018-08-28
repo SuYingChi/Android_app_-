@@ -18,13 +18,13 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 
 public class LPGRefreshHeader extends LinearLayout implements RefreshHeader {
 
-    private  View mHeadView;
-    private  ImageView mHeaderImageRe;
-    private  Animation rotate;
+    private View mHeadView;
+    private ImageView mHeaderImageRe;
+    private Animation rotate;
 
     public LPGRefreshHeader(Context context) {
         super(context);
-        mHeadView = LayoutInflater.from(context).inflate(R.layout.item_refresh_header, this,true);
+        mHeadView = LayoutInflater.from(context).inflate(R.layout.item_refresh_header, this, true);
         mHeaderImageRe = mHeadView.findViewById(R.id.iv_header_re);
         rotate = AnimationUtils.loadAnimation(context, R.anim.anim_referesh_rotate);
     }

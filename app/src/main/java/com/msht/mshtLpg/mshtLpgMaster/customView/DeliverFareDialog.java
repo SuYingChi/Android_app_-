@@ -18,17 +18,18 @@ import java.util.Map;
  * Demo class
  * 〈一句话功能简述〉
  * 〈功能详细描述〉
+ *
  * @author yingchi
  * @date 2018/7/2  
  */
 public class DeliverFareDialog extends Dialog {
 
-    private  Context context;
-    private  Map<String, String> map;
+    private Context context;
+    private Map<String, String> map;
     private TextView tvDimiss;
 
-    public DeliverFareDialog(Context context,Map<String,String> map) {
-        super(context,R.style.deliver_fare_dialog);
+    public DeliverFareDialog(Context context, Map<String, String> map) {
+        super(context, R.style.deliver_fare_dialog);
         this.map = map;
         this.context = context;
 
@@ -37,14 +38,14 @@ public class DeliverFareDialog extends Dialog {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode){
+        switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
-                if(DeliverFareDialog.this.isShowing()) {
+                if (DeliverFareDialog.this.isShowing()) {
                     DeliverFareDialog.this.dismiss();
                 }
                 break;
-                default:
-                    break;
+            default:
+                break;
         }
         return true;
     }
@@ -53,7 +54,7 @@ public class DeliverFareDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.deliver_fee_layout);
-        tvDimiss= (TextView)findViewById(R.id.dismiss_dialog);
+        tvDimiss = (TextView) findViewById(R.id.dismiss_dialog);
         TextView first_five = (TextView) findViewById(R.id.first_five);
         TextView first_fifteen = (TextView) findViewById(R.id.first_fifteen);
         TextView first_fifty = (TextView) findViewById(R.id.first_fifty);
@@ -82,14 +83,14 @@ public class DeliverFareDialog extends Dialog {
         tvDimiss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(DeliverFareDialog.this.isShowing()) {
+                if (DeliverFareDialog.this.isShowing()) {
                     DeliverFareDialog.this.dismiss();
                 }
             }
         });
         WindowManager.LayoutParams attributes = this.getWindow().getAttributes();
-        attributes.width= DimenUtil.getScreenWidth()-DimenUtil.dip2px(context.getResources().getDimension(R.dimen.margin)*2);
-        attributes.height= DimenUtil.getScreenHeight()-DimenUtil.dip2px(context.getResources().getDimension(R.dimen.margin)*2);
+        attributes.width = DimenUtil.getScreenWidth() - DimenUtil.dip2px(context.getResources().getDimension(R.dimen.margin) * 2);
+        attributes.height = DimenUtil.getScreenHeight() - DimenUtil.dip2px(context.getResources().getDimension(R.dimen.margin) * 2);
         this.getWindow().setAttributes(attributes);
         //dialog去除底部背景
         getWindow().setBackgroundDrawable(new BitmapDrawable());

@@ -1,245 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/line_color_lib">
+
     <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
         android:id="@+id/my_setting_fragment_layout_topbar"
-        android:background="@color/msb_color"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_normol"
+        android:background="@color/msb_color"
         android:padding="@dimen/margin_Modules"
-        app:title_text = "钢瓶查询"
-        />
+        app:title_text="钢瓶查询" />
+
     <RelativeLayout
         android:id="@+id/steel_bottle_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/authorized_steel_bottle"
-        android:paddingVertical="@dimen/margin"
-        android:paddingHorizontal="@dimen/margin"
         android:layout_below="@id/my_setting_fragment_layout_topbar"
+        android:background="@drawable/authorized_steel_bottle"
+        android:paddingHorizontal="@dimen/margin"
+        android:paddingVertical="@dimen/margin"
 
         >
+
         <ImageView
             android:id="@+id/steel_bottle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/steel_bottle"
-            />
+            android:src="@drawable/steel_bottle" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@id/steel_bottle"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginTop="@dimen/margin_Modules"
+            android:layout_toRightOf="@id/steel_bottle"
             android:text="钢瓶编号："
             android:textColor="@color/lpg_text_dark_color"
-            android:textSize="@dimen/text_16"
-           android:layout_toRightOf="@id/steel_bottle"
-            android:layout_alignTop="@id/steel_bottle"
-            android:layout_marginTop="@dimen/margin_Modules"
-            android:layout_marginLeft="@dimen/margin"
-            />
+            android:textSize="@dimen/text_16" />
+
         <TextView
             android:id="@+id/steel_bottle_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@id/steel_bottle"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginTop="@dimen/margin_Modules"
+            android:layout_toRightOf="@id/steel_bottle"
             android:text="钢瓶编号："
             android:textColor="@color/lpg_text_dark_color"
-            android:textSize="@dimen/text_16"
-            android:layout_toRightOf="@id/steel_bottle"
-            android:layout_alignTop="@id/steel_bottle"
-            android:layout_marginTop="@dimen/margin_Modules"
-            android:layout_marginLeft="@dimen/margin"
-            />
+            android:textSize="@dimen/text_16" />
+
         <TextView
             android:id="@+id/number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@id/steel_bottle"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginTop="@dimen/margin_Modules"
+            android:layout_toRightOf="@id/steel_bottle_number"
             android:text="123456"
             android:textColor="@color/lpg_text_dark_color"
-            android:textSize="@dimen/text_16"
-            android:layout_toRightOf="@id/steel_bottle_number"
-            android:layout_alignTop="@id/steel_bottle"
-            android:layout_marginTop="@dimen/margin_Modules"
-            android:layout_marginLeft="@dimen/margin"
-            />
+            android:textSize="@dimen/text_16" />
+
         <TextView
             android:id="@+id/bottle_number_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="瓶身刚码："
-            android:textColor="@color/lpg_text_dark_color"
-            android:textSize="@dimen/text_16"
-            android:layout_toRightOf="@id/steel_bottle"
             android:layout_alignBottom="@id/steel_bottle"
             android:layout_marginBottom="@dimen/margin_Modules"
             android:layout_marginLeft="@dimen/margin"
-            />
+            android:layout_toRightOf="@id/steel_bottle"
+            android:text="瓶身刚码："
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
+
         <TextView
             android:id="@+id/bottle_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1234567ads45"
-            android:textColor="@color/lpg_text_dark_color"
-            android:textSize="@dimen/text_16"
-            android:layout_toRightOf="@id/bottle_number_tv"
             android:layout_alignTop="@id/bottle_number_tv"
             android:layout_marginLeft="@dimen/margin"
-            />
+            android:layout_toRightOf="@id/bottle_number_tv"
+            android:text="1234567ads45"
+            android:textColor="@color/lpg_text_dark_color"
+            android:textSize="@dimen/text_16" />
     </RelativeLayout>
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        />
+        android:layout_alignParentRight="true" />
+
     <LinearLayout
         android:id="@+id/steel_bottle_produce_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:layout_marginHorizontal="@dimen/margin"
-        android:orientation="vertical"
         android:layout_below="@id/steel_bottle_info"
+        android:layout_marginHorizontal="@dimen/margin"
         android:layout_marginVertical="@dimen/margin_Modules"
+        android:background="@color/white"
+        android:orientation="vertical"
 
         >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/margin"
-            android:paddingTop="@dimen/margin_Modules"
-            >
+            android:paddingTop="@dimen/margin_Modules">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="产权单位："
-                />
+                android:text="产权单位：" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/lpg_text_dark_color"
-                android:textSize="@dimen/text_16"
                 android:text="民生液化气有限公司"
-                />
+                android:textColor="@color/lpg_text_dark_color"
+                android:textSize="@dimen/text_16" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/margin"
-            android:paddingTop="@dimen/margin_Modules"
-            >
+            android:paddingTop="@dimen/margin_Modules">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="生产厂家："
-                />
+                android:text="生产厂家：" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/lpg_text_dark_color"
-                android:textSize="@dimen/text_16"
                 android:text="佛山百福有限公司"
-                />
+                android:textColor="@color/lpg_text_dark_color"
+                android:textSize="@dimen/text_16" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/margin"
-            android:paddingTop="@dimen/margin_Modules"
-            >
+            android:paddingTop="@dimen/margin_Modules">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="钢瓶规格："
-                />
+                android:text="钢瓶规格：" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/lpg_text_dark_color"
-                android:textSize="@dimen/text_16"
                 android:text="YSP-16.5(15KG液化气)"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/margin"
-            android:paddingTop="@dimen/margin_Modules"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="生产日期："
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:textColor="@color/lpg_text_dark_color"
-                android:textSize="@dimen/text_16"
-                android:text="2017年12月8日"
-                />
+                android:textSize="@dimen/text_16" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/margin"
-            android:paddingTop="@dimen/margin_Modules"
-            >
+            android:paddingTop="@dimen/margin_Modules">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="上次检验："
-                />
+                android:text="生产日期：" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="2017年12月8日"
                 android:textColor="@color/lpg_text_dark_color"
-                android:textSize="@dimen/text_16"
-                android:text="2017年12月8日"
-                />
+                android:textSize="@dimen/text_16" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/margin"
-            android:paddingTop="@dimen/margin_Modules"
+            android:paddingTop="@dimen/margin_Modules">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="上次检验：" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2017年12月8日"
+                android:textColor="@color/lpg_text_dark_color"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:paddingBottom="@dimen/margin_Modules"
-            >
+            android:paddingHorizontal="@dimen/margin"
+            android:paddingTop="@dimen/margin_Modules">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="报废日期："
-                />
+                android:text="报废日期：" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/lpg_text_dark_color"
-                android:textSize="@dimen/text_16"
                 android:text="2015年12月8日"
-                />
+                android:textColor="@color/lpg_text_dark_color"
+                android:textSize="@dimen/text_16" />
         </LinearLayout>
 
     </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/steel_bottle_produce_info"
         android:layout_alignLeft="@id/steel_bottle_produce_info"
         android:layout_alignRight="@id/steel_bottle_produce_info"
-        >
+        android:layout_below="@id/steel_bottle_produce_info">
+
         <android.support.v7.widget.RecyclerView
 
             android:id="@+id/steel_bottle_track"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            >
+            android:background="@color/white">
 
         </android.support.v7.widget.RecyclerView>
     </RelativeLayout>

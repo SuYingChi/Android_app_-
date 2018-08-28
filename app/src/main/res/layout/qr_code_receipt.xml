@@ -1,73 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/line_color_lib"
-    >
-<com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
-    android:id="@+id/my_setting_fragment_layout_topbar"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/top_bar_height_normol"
-    android:background="@color/msb_color"
-    app:title_text="二维码收款"
-    />
+    android:orientation="vertical">
+
+    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
+        android:id="@+id/my_setting_fragment_layout_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height_normol"
+        android:background="@color/msb_color"
+        app:title_text="二维码收款" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="center"
-        >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="订单号:"
-        android:textColor="@color/lpg_text_dark_color"
-    />
-    <TextView
-        android:id="@+id/orders_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="01212402"
-        android:layout_marginLeft="@dimen/margin_Modules"
-        android:textColor="@color/lpg_text_dark_color"
-        />
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单号:"
+            android:textColor="@color/lpg_text_dark_color" />
+
+        <TextView
+            android:id="@+id/orders_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_Modules"
+            android:text="01212402"
+            android:textColor="@color/lpg_text_dark_color" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:layout_marginLeft="@dimen/margin_Modules"
         android:layout_marginRight="@dimen/margin_Modules"
-        android:orientation="vertical"
-        android:gravity="center"
         android:layout_marginTop="@dimen/margin_Modules"
-        >
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="120.00"
             android:layout_marginTop="@dimen/margin_Modules"
-            />
+            android:text="120.00" />
+
         <ImageView
             android:id="@+id/qr_code_iv"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginTop="@dimen/margin_Modules"
-            />
+            android:layout_marginTop="@dimen/margin_Modules" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="请用微信扫码付款"
             android:layout_marginTop="@dimen/margin_Modules"
-            />
+            android:text="请用微信扫码付款" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="二维码有效期三分钟，超时自动更新"
             android:layout_marginTop="@dimen/margin_Modules"
-            />
+            android:text="二维码有效期三分钟，超时自动更新" />
     </LinearLayout>
 </LinearLayout>
