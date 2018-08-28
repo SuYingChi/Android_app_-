@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.ExchangeReviewBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IExchangeReviewPresenter;
@@ -13,6 +14,7 @@ import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.ExchangeReviewBottleRclAdapter;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
+import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IExchangeReviewView;
 
 import java.util.ArrayList;
@@ -27,7 +29,9 @@ public class ExchangeReviewActivity extends BaseActivity implements IExchangeRev
     @BindView(R.id.exchange_topbar)
     TopBarView topBarView;
     @BindView(R.id.rcl_exchange_steel_bottle)
-    RecyclerView recyclerView;;
+    RecyclerView recyclerView;
+    @BindView(R.id.level)
+    TextView textView;
     private IExchangeReviewPresenter iExchangeReviewPresenter;
     private String orderId;
     private List<ExchangeReviewBean.DataBean> dataList = new ArrayList<ExchangeReviewBean.DataBean>();
@@ -59,6 +63,12 @@ public class ExchangeReviewActivity extends BaseActivity implements IExchangeRev
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(myAdapter);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopUtil.showWebViewDialog(ExchangeReviewActivity.this,Constants.HUI_SHOU_ZHE_JIA);
+            }
+        });
     }
 
     @Override

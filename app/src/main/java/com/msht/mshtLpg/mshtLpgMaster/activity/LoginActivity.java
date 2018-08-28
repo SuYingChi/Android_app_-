@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -42,7 +43,6 @@ public class LoginActivity extends BaseActivity implements ILoginView{
 
     private ILoginPresenter iLoginPresenter;
     private Unbinder unbinder;
-    private ImmersionBar mImmersionBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,11 +61,8 @@ public class LoginActivity extends BaseActivity implements ILoginView{
                     PopUtil.toastInBottom( getString(R.string.please_input_right_mobile_number));
                     return;
                 }
-             /*   if (loginPassword.getText().length() != 6) {
-                    PopUtil.toastInBottom(getString(R.string.please_input_password));
-                    return;
-                }*/
                 iLoginPresenter.login(mobileNumber.getText().toString(), loginPassword.getText().toString());
+
                 break;
               default:
                 break;
@@ -85,14 +82,9 @@ public class LoginActivity extends BaseActivity implements ILoginView{
 
     }
 
-   /* @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(LoginEventBean event) {
-        finish();
-    }*/
 
     @Override
     protected void initStateBar() {
-         mImmersionBar = ImmersionBar.with(this);
         ImmersionBar.with(this).transparentStatusBar().fullScreen(true).init();
 
 

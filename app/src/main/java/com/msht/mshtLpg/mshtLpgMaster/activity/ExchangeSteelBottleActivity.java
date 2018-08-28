@@ -112,7 +112,7 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
         tvLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopUtil.showExchangeBottleTipsDialog(ExchangeSteelBottleActivity.this);
+              PopUtil.showWebViewDialog(ExchangeSteelBottleActivity.this,Constants.HUI_SHOU_ZHE_JIA);
             }
         });
     }

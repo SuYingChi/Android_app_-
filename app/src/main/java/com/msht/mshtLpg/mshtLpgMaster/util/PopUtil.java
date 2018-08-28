@@ -3,7 +3,9 @@ package com.msht.mshtLpg.mshtLpgMaster.util;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
@@ -12,14 +14,21 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.msht.mshtLpg.mshtLpgMaster.R;
+import com.msht.mshtLpg.mshtLpgMaster.activity.BaseActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.LoginActivity;
 import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
 import com.msht.mshtLpg.mshtLpgMaster.customView.LoadingDialog;
@@ -211,5 +220,55 @@ public class PopUtil {
                 tel_dialog.dismiss();
             }
         });
+    }
+    public static void showWebViewDialog(BaseActivity activity, String url) {
+        LayoutInflater inflaterDl = LayoutInflater.from(activity);
+        RelativeLayout layout = (RelativeLayout) inflaterDl.inflate(
+                R.layout.h5_tips, null);
+        final AlertDialog tel_dialog = new AlertDialog.Builder(activity).create();
+        tel_dialog.show();
+        tel_dialog.getWindow().setContentView(layout);
+        WindowManager.LayoutParams attributes = tel_dialog.getWindow().getAttributes();
+        attributes.width= DimenUtil.getScreenWidth()-DimenUtil.dip2px(activity.getResources().getDimension(R.dimen.margin_Modules)*2);
+        attributes.height= DimenUtil.getScreenHeight()-DimenUtil.dip2px(activity.getResources().getDimension(R.dimen.margin_Modules)*2);
+        attributes.gravity = Gravity.CENTER;
+        tel_dialog.getWindow().setAttributes(attributes);
+        tel_dialog.getWindow().setBackgroundDrawable(new BitmapDrawable());
+        WebView webView = (WebView)layout.findViewById(R.id.web_view);
+        TextView btnOk = (TextView)layout.findViewById(R.id.dialog_btn_ok);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tel_dialog.dismiss();
+            }
+        });
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                activity.showLoading();
+
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                activity.dismissLoading();
+
+            }
+
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                super.onReceivedError(view, request, error);
+                activity.onError("网页加载错误，请稍后重试");
+
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return true;
+            }
+        });
+        webView.loadUrl(url);
     }
 }

@@ -15,7 +15,67 @@
         android:background="@color/msb_color"
         app:title_text="钢瓶置换" />
 
-    <include layout="@layout/item_rcl_exchange_steel_bottle_header" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        >
+
+        <TextView
+            android:id="@+id/weight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="@dimen/text_16"
+            android:text="钢瓶规格"
+            android:paddingBottom="@dimen/rcl_margin"
+            android:paddingTop="@dimen/rcl_margin"
+
+            />
+
+        <TextView
+            android:id="@+id/year"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="@dimen/text_16"
+            android:text="出厂年份"
+            android:paddingBottom="@dimen/rcl_margin"
+            android:paddingTop="@dimen/rcl_margin"
+            />
+
+        <TextView
+            android:id="@+id/level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/text_16"
+            android:text="腐蚀等级"
+            android:padding="@dimen/rcl_margin"
+            android:drawableRight="@drawable/attention_icon_xh"
+            />
+        <TextView
+            android:id="@+id/num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/text_16"
+            android:text="数量"
+          android:padding="@dimen/rcl_margin"
+            />
+        <TextView
+            android:id="@+id/discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/text_16"
+            android:text="折价"
+            android:padding="@dimen/rcl_margin"
+            />
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

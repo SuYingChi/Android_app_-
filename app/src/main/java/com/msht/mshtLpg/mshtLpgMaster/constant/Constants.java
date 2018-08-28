@@ -110,5 +110,7 @@ public class Constants {
     public static final String PAY_TYPE = "payType";
     public static final String ORDER_TYPE = "orderType";
 
-
+   //h5
+    public static final String HUI_SHOU_ZHE_JIA = "http://msbapp.cn/lpg_h5/huishouzhejia.html";
+    public static final String PEI_SONG_SHUO_MING = "http://msbapp.cn/lpg_h5/peisongshuoming.html";
 }
