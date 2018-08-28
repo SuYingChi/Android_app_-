@@ -92,6 +92,7 @@ public class BackBottleOrdersDetailActivity extends BaseActivity implements ISim
                 Intent intent = new Intent(this, ScanSteelBottleActivity.class);
                 intent.putExtra(Constants.ORDER_ID, orderId);
                 startActivity(intent);
+                finish();
                 break;
             default:
                 break;

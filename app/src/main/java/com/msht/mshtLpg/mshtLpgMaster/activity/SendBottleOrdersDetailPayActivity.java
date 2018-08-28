@@ -19,7 +19,9 @@ import android.widget.TextView;
 
 import com.msht.mshtLpg.mshtLpgMaster.Bean.DeliveryBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.EmpPayBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.LoginEventBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.PayFinishBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.ICashPayPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
@@ -32,6 +34,10 @@ import com.msht.mshtLpg.mshtLpgMaster.viewInterface.ICashPayView;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IOrderDetailView;
 import com.pingplusplus.android.Pingpp;
 import com.yanzhenjie.permission.Permission;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.List;
@@ -151,6 +157,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
                 startActivity(intent);
             }
         });
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -251,6 +258,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
                 intent.putExtra(Constants.PAY_AMOUNT, totalfare + "");
                 intent.putExtra(Constants.PAY_TYPE, payType);
                 startActivity(intent);
+                finish();
             }
         });
         lldeliver.setOnClickListener(new View.OnClickListener() {
@@ -418,8 +426,12 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
     protected void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
+        EventBus.getDefault().unregister(this);
     }
-
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(PayFinishBean event) {
+       finish();
+    }
     private void payDialog(Context mContext, String title,
                            final View.OnClickListener onCancel,
                            final View.OnClickListener onOK) {

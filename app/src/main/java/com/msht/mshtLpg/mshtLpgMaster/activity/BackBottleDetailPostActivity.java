@@ -80,9 +80,6 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
     private String isElevator;
     private String isDelivery;
     private IOrderDetailPostPresenter iOrderDetailPostPresenter;
-    private String fiveDeposite;
-    private String fifteenDeposite;
-    private String fiftyDeposite;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -145,7 +142,7 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
         if (requestCode == Constants.EDIT_FLOOR_REQUEST_CODE && resultCode == RESULT_OK) {
             if (data != null) {
                 floor = data.getStringExtra(Constants.FLOOR);
-                tvLocation.setText(detailBean.getData().getAddress() + floor + detailBean.getData().getRoomNum());
+                tvLocation.setText(new StringBuilder().append(detailBean.getData().getAddress()).append(floor).append(detailBean.getData().getRoomNum()).toString());
                 isElevator = data.getStringExtra(Constants.IS_ELEVATOR);
                 tvElevator.setText(isElevator.equals(1 + "") ? "(有电梯)" : "(无电梯)");
             }
@@ -170,13 +167,13 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
         orderFifteen = bean.getData().getReFifteenBottleCount() + "";
         orderFifty = bean.getData().getReFiftyBottleCount() + "";
 
-        fiveDeposite = BottleCaculteUtil.getDeposite(bean, 5);
-        fifteenDeposite = BottleCaculteUtil.getDeposite(bean, 15);
-        fiftyDeposite = BottleCaculteUtil.getDeposite(bean, 50);
+        String fiveDeposite = BottleCaculteUtil.getDeposite(bean, 5);
+        String fifteenDeposite = BottleCaculteUtil.getDeposite(bean, 15);
+        String fiftyDeposite = BottleCaculteUtil.getDeposite(bean, 50);
         fiveFee.setText(fiveDeposite);
         fifteenFee.setText(fifteenDeposite);
         fiftyFee.setText(fiftyDeposite);
-        totalFee.setText(bean.getData().getRealAmount() + "");
+        totalFee.setText(new StringBuilder().append(bean.getData().getRealAmount()).append("").toString());
         dispatchOrdersTime.setText(new StringBuilder().append("下单时间：").append(bean.getData().getCreateDate()).toString());
         tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(bean.getData().getAppointmentTime()));
     }
@@ -251,6 +248,7 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
         Intent intent = new Intent(this, BackBottleOrdersFinishActivity.class);
         intent.putExtra(Constants.ORDER_ID, orderId);
         startActivity(intent);
+        finish();
     }
 
     @Override

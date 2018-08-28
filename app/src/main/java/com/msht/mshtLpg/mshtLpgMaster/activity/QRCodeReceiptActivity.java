@@ -11,6 +11,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.GetPayQRCodeBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.GetPayQRErrorBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.LoginEventBean;
+import com.msht.mshtLpg.mshtLpgMaster.Bean.PayFinishBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.QueryOrderBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.GetOrderStatusPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.Present.GetQRcodeImageUrlPresenter;
@@ -18,6 +20,8 @@ import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IGetPayQRcodeView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -119,7 +123,9 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
                 Intent intent = new Intent(this, SendBottleOrdersDetailFinishActivity.class);
                 intent.putExtra(Constants.ORDER_ID, orderId);
                 startActivity(intent);
+                EventBus.getDefault().postSticky(new PayFinishBean());
                 finish();
+
                 break;
             case 4:
                 s = "已退款";

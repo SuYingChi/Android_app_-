@@ -269,8 +269,32 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
 
 
     @Override
-    public void onClickItem() {
-
+    public void onClickItem(int orderId, int orderType) {
+        if (orderType == 0) {
+            Intent intent = new Intent(getActivity(), SendBottleOrdersDetailActivity.class);
+            intent.putExtra(Constants.ORDER_ID, orderId + "");
+            startActivity(intent);
+        } else if (orderType == 1) {
+            Intent intent = new Intent(getActivity(), SendBottleOrdersDetailPayActivity.class);
+            intent.putExtra(Constants.ORDER_ID, orderId + "");
+            startActivity(intent);
+        } else if (orderType == 2) {
+            Intent intent = new Intent(getActivity(), SendBottleOrdersDetailFinishActivity.class);
+            intent.putExtra(Constants.ORDER_ID, orderId + "");
+            startActivity(intent);
+        } else if (orderType == 3) {
+            Intent intent = new Intent(getActivity(), BackBottleOrdersDetailActivity.class);
+            intent.putExtra(Constants.ORDER_ID, orderId + "");
+            startActivity(intent);
+        } else if (orderType == 4) {
+            Intent intent = new Intent(getActivity(), BackBottleOrdersFinishActivity.class);
+            intent.putExtra(Constants.ORDER_ID, orderId + "");
+            startActivity(intent);
+        } else if (orderType == 5) {
+            Intent intent = new Intent(getActivity(), BackBottleOrdersCancleActivity.class);
+            intent.putExtra(Constants.ORDER_ID, orderId + "");
+            startActivity(intent);
+        }
     }
 
     @Override

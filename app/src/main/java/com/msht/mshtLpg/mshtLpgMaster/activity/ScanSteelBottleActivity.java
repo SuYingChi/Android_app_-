@@ -99,7 +99,7 @@ public class ScanSteelBottleActivity extends BaseActivity implements MyScanDeliv
             bundle.putInt("starttype", 1);
             intent.putExtras(bundle);
             startActivity(intent);
-
+            finish();
         }
 
     }
