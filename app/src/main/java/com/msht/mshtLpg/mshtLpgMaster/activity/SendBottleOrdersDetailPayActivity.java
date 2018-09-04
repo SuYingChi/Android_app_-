@@ -171,53 +171,53 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         tvElevator.setText(isElevator == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTel.setText(orderDetailBean.getData().getMobile());
-        tvDay.setText(new StringBuilder().append("预约时间：").append(orderDetailBean.getData().getAppointmentTime()).toString());
+        tvDay.setText(new StringBuilder().append(orderDetailBean.getData().getAppointmentTime()).toString());
         tvComment.setText(new StringBuilder().append("内部备注：").append(orderDetailBean.getData().getRemarks()).toString());
         orderId = orderDetailBean.getData().getOrderId() + "";
         tvOrderId.setText(orderId);
         tvDispatchOrderTime.setText(new StringBuilder().append("下单时间：").append(orderDetailBean.getData().getCreateDate()).toString());
-        tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(orderDetailBean.getData().getAppointmentTime()));
+        tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(orderDetailBean.getData().getSendTime()));
         //气价
         double fiveGasFee = orderDetailBean.getData().getFiveBottleCount() * orderDetailBean.getData().getFiveGasFee();
-        tvFiveGas.setText(fiveGasFee + "");
+        tvFiveGas.setText(String.valueOf(fiveGasFee));
         double fifteenGasFee = orderDetailBean.getData().getFifteenBottleCount() * orderDetailBean.getData().getFifteenGasFee();
-        tvFifteenGas.setText(fifteenGasFee + "");
+        tvFifteenGas.setText(String.valueOf(fifteenGasFee));
         double fiftyGasFee = orderDetailBean.getData().getFiftyBottleCount() * orderDetailBean.getData().getFiftyGasFee();
-        tvFiftyGas.setText(fiftyGasFee + "");
+        tvFiftyGas.setText(String.valueOf(fiftyGasFee));
         double totalGas = fiveGasFee + fifteenGasFee + fiftyGasFee;
-        tvGasFee.setText(totalGas + "");
+        tvGasFee.setText(String.valueOf(totalGas));
 
         //押金
         int remain5 = orderDetailBean.getData().getFiveBottleCount() - orderDetailBean.getData().getReFiveBottleCount();
         if (remain5 == 0) {
-            llFiveDeposite.setVisibility(View.INVISIBLE);
+            llFiveDeposite.setVisibility(View.GONE);
         } else {
             llFiveDeposite.setVisibility(View.VISIBLE);
             fiveTotalDeposite = remain5 * orderDetailBean.getData().getFiveDepositFee();
-            tvFiveDeposite.setText(fiveTotalDeposite + "");
+            tvFiveDeposite.setText(String.valueOf(fiveTotalDeposite));
         }
         int remain15 = orderDetailBean.getData().getFifteenBottleCount() - orderDetailBean.getData().getReFifteenBottleCount();
         if (remain15 == 0) {
-            llFifteenDeposite.setVisibility(View.INVISIBLE);
+            llFifteenDeposite.setVisibility(View.GONE);
         } else {
             llFifteenDeposite.setVisibility(View.VISIBLE);
             fifteenteenTotalDeposite = remain15 * orderDetailBean.getData().getFifteenDepositFee();
-            tvFifteenDeposite.setText(fifteenteenTotalDeposite + "");
+            tvFifteenDeposite.setText(String.valueOf(fifteenteenTotalDeposite));
         }
         int remain50 = orderDetailBean.getData().getFiftyBottleCount() - orderDetailBean.getData().getReFiftyBottleCount();
         if (remain50 == 0) {
-            llFiftyDeposite.setVisibility(View.INVISIBLE);
+            llFiftyDeposite.setVisibility(View.GONE);
         } else {
             llFiftyDeposite.setVisibility(View.VISIBLE);
             fiftyTotalDeposite = remain50 * orderDetailBean.getData().getFiftyDepositFee();
-            tvFiftyDeposite.setText(fiftyTotalDeposite + "");
+            tvFiftyDeposite.setText(String.valueOf(fiftyTotalDeposite));
         }
         double totalDeposite = fiveTotalDeposite + fifteenteenTotalDeposite + fiftyTotalDeposite;
         if (totalDeposite == 0) {
-            llDepositFare.setVisibility(View.INVISIBLE);
+            llDepositFare.setVisibility(View.GONE);
         } else {
             llDepositFare.setVisibility(View.VISIBLE);
-            tvDepositeFee.setText(totalDeposite + "");
+            tvDepositeFee.setText(String.valueOf(totalDeposite));
         }
         //运费
         double fiveDeliveryFee;
@@ -238,9 +238,9 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
             totalFiftyDelivery = orderDetailBean.getData().getFiftyBottleCount() * fiftyDeliveryFee;
             totalDeliveryfare = totalFiveDelivery + totalFifteenDelivery + totalFiftyDelivery;
         }
-        tvDeliverFee.setText(totalDeliveryfare + "");
+        tvDeliverFee.setText(String.valueOf(totalDeliveryfare));
         double exchange = orderDetailBean.getData().getRetrieveAmount();
-        tvDiscount.setText(exchange + "");
+        tvDiscount.setText(String.valueOf(exchange));
         totalfare = totalGas + totalDeposite + totalDeliveryfare - exchange;
         if (((totalfare + "").length()) > 6) {
             tvTotal.setText((totalfare + "").substring(0, 5));
@@ -266,11 +266,13 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
             public void onClick(View v) {
                 if (!isGetFirstDeliverySuccess || !isGetFourDeliverySuccess || !isGetSixDeliverySuccess || !isGetSecondDeliverySuccess) {
                     PopUtil.toastInBottom("正在获取运费信息，请稍后再试");
-                } else if (deliverFareDialog == null) {
+                } /*else if (deliverFareDialog == null) {
                     deliverFareDialog = new DeliverFareDialog(SendBottleOrdersDetailPayActivity.this, map);
                     deliverFareDialog.show();
                 } else if (!deliverFareDialog.isShowing()) {
                     deliverFareDialog.show();
+                }*/else {
+                    PopUtil.showWebViewDialog(SendBottleOrdersDetailPayActivity.this, Constants.PEI_SONG_SHUO_MING);
                 }
             }
         });

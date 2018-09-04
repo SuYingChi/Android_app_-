@@ -89,6 +89,25 @@ public class OrderDetailBean  {
         private int isDelivery;
         private String appointmentTime;
         private String createDate;
+
+        public String getPayTime() {
+            return payTime;
+        }
+
+        public void setPayTime(String payTime) {
+            this.payTime = payTime;
+        }
+
+        public String getSendTime() {
+            return sendTime;
+        }
+
+        public void setSendTime(String sendTime) {
+            this.sendTime = sendTime;
+        }
+
+        private String payTime;
+        private String sendTime;
         private String remarks;
         private String buyer;
         private int sex;

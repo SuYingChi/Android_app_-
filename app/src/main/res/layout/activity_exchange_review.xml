@@ -72,15 +72,16 @@
             android:text="折价"
             android:textSize="@dimen/text_16" />
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<View
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/line_height"
+    android:background="@color/line_color_lib"
+    />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/ll_pay_orders_v2_bottom">
+                    >
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rcl_exchange_steel_bottle"
@@ -89,6 +90,4 @@
                 android:background="@color/white" />
         </RelativeLayout>
 
-
-    </RelativeLayout>
 </LinearLayout>

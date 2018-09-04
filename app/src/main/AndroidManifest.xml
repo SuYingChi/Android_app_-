@@ -52,6 +52,8 @@
             android:launchMode="singleTask" />
         <!-- 高德地图 key设置 -->
         <service android:name="com.amap.api.location.APSService" />
+        <service android:name=".services.DownLoadApkService" />
+
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="3467b1afa91a2c36f7c45cf95b85aa4d" />
@@ -117,6 +119,7 @@
         <activity android:name=".activity.InnerScanEmployerActivity" />
         <activity android:name=".activity.SendOrderScanBottleActivity" />
         <activity android:name=".activity.WebActivity" />
+        <activity android:name=".activity.SendBottleOrdersDetailCancleActivity" />
     </application>
 
 </manifest>

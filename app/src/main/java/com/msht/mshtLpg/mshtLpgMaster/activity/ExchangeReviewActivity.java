@@ -3,6 +3,7 @@ package com.msht.mshtLpg.mshtLpgMaster.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -63,6 +64,7 @@ public class ExchangeReviewActivity extends BaseActivity implements IExchangeRev
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(myAdapter);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

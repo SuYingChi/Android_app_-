@@ -21,6 +21,7 @@ import com.msht.mshtLpg.mshtLpgMaster.activity.BackBottleOrdersCancleActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.BackBottleOrdersDetailActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.BackBottleOrdersFinishActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.SendBottleOrdersDetailActivity;
+import com.msht.mshtLpg.mshtLpgMaster.activity.SendBottleOrdersDetailCancleActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.SendBottleOrdersDetailFinishActivity;
 import com.msht.mshtLpg.mshtLpgMaster.activity.SendBottleOrdersDetailPayActivity;
 import com.msht.mshtLpg.mshtLpgMaster.adapter.OrdersListRclAdapter;
@@ -264,6 +265,10 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
             Intent intent = new Intent(getActivity(), BackBottleOrdersCancleActivity.class);
             intent.putExtra(Constants.ORDER_ID, orderId + "");
             startActivity(intent);
+        }else if (orderType == 6) {
+            Intent intent = new Intent(getActivity(), SendBottleOrdersDetailCancleActivity.class);
+            intent.putExtra(Constants.ORDER_ID, orderId + "");
+            startActivity(intent);
         }
     }
 
@@ -292,6 +297,10 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
             startActivity(intent);
         } else if (orderType == 5) {
             Intent intent = new Intent(getActivity(), BackBottleOrdersCancleActivity.class);
+            intent.putExtra(Constants.ORDER_ID, orderId + "");
+            startActivity(intent);
+        } else if (orderType == 6) {
+            Intent intent = new Intent(getActivity(), SendBottleOrdersDetailCancleActivity.class);
             intent.putExtra(Constants.ORDER_ID, orderId + "");
             startActivity(intent);
         }

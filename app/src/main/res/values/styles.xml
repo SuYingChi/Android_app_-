@@ -172,16 +172,10 @@
         <item name="android:windowFrame">@null</item><!--边框-->
         <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
         <item name="android:windowNoTitle">true</item><!--无标题-->
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:windowIsTranslucent">false</item>
-        <item name="android:windowBackground">@color/lucency</item><!--背景透明-->
-        <item name="android:background">@color/lucency</item>
-        <item name="android:backgroundDimAmount">0.5</item>
+        <item name="android:windowIsTranslucent">true</item><!--半透明-->
         <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item><!--动画-->
         <item name="android:gravity">bottom</item>
     </style>
-
     <style name="ActionSheetDialogAnimation" parent="@android:style/Animation.Dialog">
         <item name="android:windowEnterAnimation">@anim/bottom_anim_dialog_in</item>
         <item name="android:windowExitAnimation">@anim/bottom_anim_dialog_out</item>

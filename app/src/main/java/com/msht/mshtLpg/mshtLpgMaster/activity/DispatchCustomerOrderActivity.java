@@ -14,6 +14,7 @@ import com.msht.mshtLpg.mshtLpgMaster.Bean.DeliveryBean;
 import com.msht.mshtLpg.mshtLpgMaster.Bean.OrderDetailBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IOrderDetailPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
+import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.customView.DeliverFareDialog;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TimeSelecteDialog;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
@@ -193,14 +194,16 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
                 @Override
                 public void onClick(View v) {
                     if (TextUtils.isEmpty(floor)) {
-                        PopUtil.toastInBottom("请编辑配送地址的楼层");
+                        PopUtil.toastInBottom("请编辑配送地址是否有电梯以及楼层");
                     } else if (!isGetFirstDeliverySuccess || !isGetFourDeliverySuccess || !isGetSixDeliverySuccess || !isGetSecondDeliverySuccess) {
                         PopUtil.toastInBottom("正在获取运费信息，请稍后再试");
-                    } else if (deliverFareDialog == null) {
+                    } /*else if (deliverFareDialog == null) {
                         deliverFareDialog = new DeliverFareDialog(DispatchCustomerOrderActivity.this, map);
                         deliverFareDialog.show();
                     } else if (!deliverFareDialog.isShowing()) {
                         deliverFareDialog.show();
+                    }*/else {
+                        PopUtil.showWebViewDialog(DispatchCustomerOrderActivity.this, Constants.PEI_SONG_SHUO_MING);
                     }
                 }
             });

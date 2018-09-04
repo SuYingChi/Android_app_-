@@ -47,7 +47,6 @@ public class BaseActivity extends AppCompatActivity implements IBaseView, BGASwi
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setSoftInPutMode();
         initStateBar();
-        EventBus.getDefault().register(this);
 
     }
 
@@ -62,7 +61,6 @@ public class BaseActivity extends AppCompatActivity implements IBaseView, BGASwi
         if (mImmersionBar != null)
             mImmersionBar.destroy();  //在BaseActivity里销毁
         MobclickAgent.onPause(this);
-        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
 

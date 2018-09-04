@@ -208,7 +208,8 @@
                 android:padding="@dimen/margin"
                 android:text="内部备注：客户要求今晚晚饭前送到"
                 android:textColor="@color/lpg_text_dark_color"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"

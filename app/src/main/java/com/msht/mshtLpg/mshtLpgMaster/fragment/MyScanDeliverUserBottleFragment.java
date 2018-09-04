@@ -186,9 +186,9 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
             adapter = new ScanBottleQRCodeRclAdapter(list, getActivity());
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerView.setAdapter(adapter);
-            fiveBottleNumber.setText(BottleCaculteUtil.getBottleNum(list, 5) + "");
-            fifteenBottleNumber.setText(BottleCaculteUtil.getBottleNum(list, 15) + "");
-            fiftyBottleNumber.setText(BottleCaculteUtil.getBottleNum(list, 50) + "");
+            fiveBottleNumber.setText(String.valueOf(BottleCaculteUtil.getBottleNum(list, 5)));
+            fifteenBottleNumber.setText(String.valueOf(BottleCaculteUtil.getBottleNum(list, 15)));
+            fiftyBottleNumber.setText(String.valueOf(BottleCaculteUtil.getBottleNum(list, 50)));
             title.setText("请扫描要交付用户钢瓶");
 
 
@@ -196,9 +196,9 @@ public class MyScanDeliverUserBottleFragment extends BaseFragment implements Sur
             adapter = new ScanBottleQRCodeRclAdapter(empList, getActivity());
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerView.setAdapter(adapter);
-            fiveBottleNumber.setText(BottleCaculteUtil.getBottleNum(list, 5) + "");
-            fifteenBottleNumber.setText(BottleCaculteUtil.getBottleNum(list, 15) + "");
-            fiftyBottleNumber.setText(BottleCaculteUtil.getBottleNum(list, 50) + "");
+            fiveBottleNumber.setText(String.valueOf(BottleCaculteUtil.getBottleNum(list, 5)));
+            fifteenBottleNumber.setText(String.valueOf(BottleCaculteUtil.getBottleNum(list, 15)));
+            fiftyBottleNumber.setText(String.valueOf(BottleCaculteUtil.getBottleNum(list, 50)));
             title.setText("请扫描并回收用户钢瓶");
         }
 

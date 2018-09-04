@@ -14,4 +14,6 @@
     <item type="id" name="search_book_contents_failed"/>
     <item type="id" name="search_book_contents_succeeded"/>
     <item type="id" name="redecode_after_decodeSuccess"/>
+    <item type="id" name="send_save_file_progress"/>
+    <item type="id" name="finish_save_file_progress"/>
 </resources>

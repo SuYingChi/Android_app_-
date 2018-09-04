@@ -299,7 +299,7 @@
         <Button
             android:id="@+id/btn_item_rcl_home_fragment_order_pay"
             android:layout_width="wrap_content"
-            android:layout_height="25dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin"
             android:background="@drawable/lpg_btn_corner"
             android:text="付款"

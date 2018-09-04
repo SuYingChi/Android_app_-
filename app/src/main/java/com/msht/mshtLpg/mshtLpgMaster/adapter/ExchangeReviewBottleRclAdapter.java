@@ -38,8 +38,8 @@ public class ExchangeReviewBottleRclAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ExhcnageHolder) {
             ((ExhcnageHolder) holder).discount.setText(list.get(position).getReplacePrice() + "");
-            ((ExhcnageHolder) holder).level.setText(list.get(position).getCorrosionType());
-            ((ExhcnageHolder) holder).num.setText(list.get(position).getBottleCount() + "");
+            ((ExhcnageHolder) holder).level.setText(list.get(position).getCorrosionType()+"  ");
+            ((ExhcnageHolder) holder).num.setText(list.get(position).getBottleCount() + "   ");
             ((ExhcnageHolder) holder).weight.setText(list.get(position).getBottleWeight() + "");
             ((ExhcnageHolder) holder).year.setText(list.get(position).getYears() + "");
         }

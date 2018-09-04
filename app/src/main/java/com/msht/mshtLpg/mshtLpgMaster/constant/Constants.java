@@ -112,4 +112,28 @@ public class Constants {
     //h5
     public static final String HUI_SHOU_ZHE_JIA = "http://msbapp.cn/lpg_h5/huishouzhejia.html";
     public static final String PEI_SONG_SHUO_MING = "http://msbapp.cn/lpg_h5/peisongshuoming.html";
+
+
+    //手机厂商
+    public static final String SYSTEM_XIAOMI="XIAOMI";
+    public static final String SYSTEM_SAMSUNG="SAMSUNG";
+    public static final String SYSTEM_HUAWEI_HONOR="HONOR";
+    public static final String SYSTEM_HUAWEI="HUAWEI";
+    public static final String SYSTEM_NOVA="NOVA";
+    public static final String SYSTEM_SONY="SONY";
+    public static final String SYSTEM_VIVO="VIVO";
+    public static final String SYSTEM_OPPO="OPPO";
+    public static final String SYSTEM_LG="LG";
+    public static final String SYSTEM_ZUK="ZUK";
+    public static final String SYSTEM_HTC="HTC";
+    public static final String SYSTEM_LETV = "LETV";
+
+    //应用商店包名
+    public static final String  YING_YONG_BAO= "com.tencent.android.qqdownloader";
+    public static final String  SHOU_JI_ZHU_SHOU =  "com.qihoo.appstore";
+    public static final String WAN_DOU_JIA = "com.wandoujia.phoenix2";
+    public static final String XIAO_MI_YIONG_YONG_SHANG_DIAN= "com.xiaomi.market";
+    public static final String MEIZU_YING_YONG_SHANG_DIAN = "com.meizu.mstore";
+
+    public static final int SAVE_FILE_PROGRESS = 10000;
 }

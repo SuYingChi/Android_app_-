@@ -15,6 +15,7 @@ import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
 import com.msht.mshtLpg.mshtLpgMaster.thread.MyDecodeThread;
 import com.uuzuche.lib_zxing.camera.CameraManager;
+import com.uuzuche.lib_zxing.decoding.CaptureActivityHandler;
 import com.uuzuche.lib_zxing.view.ViewfinderResultPointCallback;
 import com.uuzuche.lib_zxing.view.ViewfinderView;
 
@@ -57,6 +58,7 @@ public final class MyScanHandler extends Handler {
 
     @Override
     public void handleMessage(Message message) {
+
         if (message.what == R.id.auto_focus) {
             Log.d(TAG, "handleMessage: auto_focus");
             //Log.d(TAG, "Got auto-focus message");

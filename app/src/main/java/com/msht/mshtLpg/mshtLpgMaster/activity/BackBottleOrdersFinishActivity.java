@@ -79,7 +79,7 @@ public class BackBottleOrdersFinishActivity extends BaseActivity implements ISim
         tvElevator.setText(bean.getData().getIsElevator() == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(bean.getData().getBuyer()).append(bean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTelephone.setText(bean.getData().getMobile());
-        tvDay.setText(new StringBuilder().append("预约时间：").append(bean.getData().getAppointmentTime()));
+        tvDay.setText(new StringBuilder().append(bean.getData().getAppointmentTime()));
         tvComment.setText(new StringBuilder().append("内部备注：").append(bean.getData().getRemarks()).toString());
         tvOrderId.setText(bean.getData().getOrderId() + "");
         String fiveDeposite = BottleCaculteUtil.getDeposite(bean, 5);
@@ -91,8 +91,8 @@ public class BackBottleOrdersFinishActivity extends BaseActivity implements ISim
         totalFee.setText(bean.getData().getRealAmount() + "");
 
         dispatchOrdersTime.setText(new StringBuilder().append("下单时间：").append(bean.getData().getCreateDate()).toString());
-        tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(bean.getData().getAppointmentTime()));
-        tvPayTime.setText(new StringBuilder().append("付款时间：").append(""));
+        tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(bean.getData().getSendTime()));
+        tvPayTime.setText(new StringBuilder().append("付款时间：").append(bean.getData().getPayTime()));
     }
 
     @Override

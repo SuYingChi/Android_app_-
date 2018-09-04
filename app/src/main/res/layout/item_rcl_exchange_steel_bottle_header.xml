@@ -38,27 +38,24 @@
         android:paddingBottom="@dimen/rcl_margin"
         android:paddingTop="@dimen/rcl_margin"
         android:text="腐蚀等级"
-        android:textSize="@dimen/text_16" />
+        android:textSize="@dimen/text_16"
+        />
 
     <TextView
         android:id="@+id/num"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:gravity="center"
-        android:paddingBottom="@dimen/rcl_margin"
-        android:paddingTop="@dimen/rcl_margin"
         android:text="数量"
+        android:padding="@dimen/rcl_margin"
         android:textSize="@dimen/text_16" />
 
     <TextView
         android:id="@+id/discount"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:gravity="center"
-        android:paddingBottom="@dimen/rcl_margin"
-        android:paddingTop="@dimen/rcl_margin"
         android:text="折价"
+        android:padding="@dimen/rcl_margin"
         android:textSize="@dimen/text_16" />
 </LinearLayout>

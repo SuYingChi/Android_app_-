@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class SendBottleOrdersDetailActivity extends BaseActivity implements ISimpleOrderDetailView, PermissionUtils.PermissionRequestFinishListener {
+public class SendBottleOrdersDetailCancleActivity extends BaseActivity implements ISimpleOrderDetailView, PermissionUtils.PermissionRequestFinishListener {
     @BindView(R.id.return_btn)
     ImageView returnBtn;
     @BindView(R.id.location)
@@ -61,6 +61,8 @@ public class SendBottleOrdersDetailActivity extends BaseActivity implements ISim
     TextView tvOrderId;
     @BindView(R.id.dispatch_bottle_time)
     TextView tvDispatchBottleTime;
+    @BindView(R.id.tv_orders_status)
+    TextView tvOrdersStatus;
     private String orderId;
     private Unbinder unbinder;
 
@@ -85,9 +87,6 @@ public class SendBottleOrdersDetailActivity extends BaseActivity implements ISim
                 PermissionUtils.requestPermissions(this, this, Permission.CALL_PHONE);
                 break;
             case R.id.hand_over_steel_bottle:
-                Intent intent = new Intent(this, ScanSteelBottleActivity.class);
-                intent.putExtra(Constants.ORDER_ID, orderId);
-                startActivity(intent);
                 finish();
                 break;
             default:
@@ -114,6 +113,8 @@ public class SendBottleOrdersDetailActivity extends BaseActivity implements ISim
         fiftyFee.setText(String.valueOf(fiftyCount));
         totalFee.setText(String.valueOf(fiveCount + fifteenCount + fiftyCount));
         dispatchOrdersTime.setText(new StringBuilder().append("下单时间：").append(bean.getData().getCreateDate()).toString());
+        tvOrdersStatus.setText("已取消");
+        handOverSteelBottle.setText("退出详情");
 
     }
 

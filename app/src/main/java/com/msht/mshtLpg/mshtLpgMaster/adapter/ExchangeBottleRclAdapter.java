@@ -34,6 +34,35 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
 
     public ExchangeBottleRclAdapter(List<ExchangeRclBean> list, Activity activity, OnExchangeRclClicklistener onExchangeRclClicklistener, int remainFive, int remainFifteen, int remainFifty) {
         this.list = list;
+        if(list.size()==0){
+            ExchangeRclBean data = new ExchangeRclBean();
+            List<String> modelList = new ArrayList<>();
+            modelList.add(" 5kg ");
+            modelList.add("15kg ");
+            modelList.add("50kg ");
+            List<String> yearList = new ArrayList<>();
+            yearList.add(" 1 ");
+            yearList.add(" 2 ");
+            yearList.add(" 3 ");
+            yearList.add(" 4 ");
+            yearList.add(" 5 ");
+            yearList.add(" 6 ");
+            yearList.add("7年以上 ");
+            List<String> levelList = new ArrayList<>();
+            levelList.add(" A ");
+            levelList.add(" B ");
+            levelList.add(" C ");
+            levelList.add(" D ");
+            data.setmBottleModelList(modelList);
+            data.setmBottleYearsList(yearList);
+            data.setmBottleLevelList(levelList);
+            data.setmSelectBottleModeIndex(1);
+            data.setmSelectBottleYearsIndex(0);
+            data.setSelectBottleLevelIndex(0);
+            data.setBottleNum(0);
+            data.setDiscount(0);
+            list.add(data);
+        }
         this.inflater = LayoutInflater.from(activity);
         this.activity = activity;
         this.onExchangeRclClicklistener = onExchangeRclClicklistener;
@@ -94,7 +123,7 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
                     if (selectBottleModeIndex == 0 && bottleNum < remainFive) {
                         PopUtil.toastInBottom("只能置换15kg");
                         // onExchangeRclClicklistener.onBottleNumChange(position,((ViewHolder) holder).tvAccount,((ViewHolder) holder).tvSteelNum,list.get(position).getBottleNum()+1);
-                    } else if (selectBottleModeIndex == 1 && bottleNum < remainFifteen) {
+                    } else if (selectBottleModeIndex == 1 && bottleNum+totalExchangeBottleNum(1) < remainFifteen) {
                         onExchangeRclClicklistener.onBottleNumChange(position, ((ViewHolder) holder).tvAccount, ((ViewHolder) holder).tvSteelNum, list.get(position).getBottleNum() + 1);
                     } else if (selectBottleModeIndex == 2 && bottleNum < remainFifty) {
                         PopUtil.toastInBottom("只能置换15kg");
@@ -171,34 +200,38 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ExchangeRclBean data = new ExchangeRclBean();
-                    List<String> modelList = new ArrayList<>();
-                    modelList.add(" 5kg ");
-                    modelList.add("15kg ");
-                    modelList.add("50kg ");
-                    List<String> yearList = new ArrayList<>();
-                    yearList.add(" 1 ");
-                    yearList.add(" 2 ");
-                    yearList.add(" 3 ");
-                    yearList.add(" 4 ");
-                    yearList.add(" 5 ");
-                    yearList.add(" 6 ");
-                    yearList.add("7年以上 ");
-                    List<String> levelList = new ArrayList<>();
-                    levelList.add(" A ");
-                    levelList.add(" B ");
-                    levelList.add(" C ");
-                    levelList.add(" D ");
-                    data.setmBottleModelList(modelList);
-                    data.setmBottleYearsList(yearList);
-                    data.setmBottleLevelList(levelList);
-                    data.setmSelectBottleModeIndex(1);
-                    data.setmSelectBottleYearsIndex(0);
-                    data.setSelectBottleLevelIndex(0);
-                    data.setBottleNum(0);
-                    data.setDiscount(0);
-                    list.add(data);
-                    notifyDataSetChanged();
+                    if (totalExchangeBottleNum(1)<remainFifteen) {
+                        ExchangeRclBean data = new ExchangeRclBean();
+                        List<String> modelList = new ArrayList<>();
+                        modelList.add(" 5kg ");
+                        modelList.add("15kg ");
+                        modelList.add("50kg ");
+                        List<String> yearList = new ArrayList<>();
+                        yearList.add(" 1 ");
+                        yearList.add(" 2 ");
+                        yearList.add(" 3 ");
+                        yearList.add(" 4 ");
+                        yearList.add(" 5 ");
+                        yearList.add(" 6 ");
+                        yearList.add("7年以上 ");
+                        List<String> levelList = new ArrayList<>();
+                        levelList.add(" A ");
+                        levelList.add(" B ");
+                        levelList.add(" C ");
+                        levelList.add(" D ");
+                        data.setmBottleModelList(modelList);
+                        data.setmBottleYearsList(yearList);
+                        data.setmBottleLevelList(levelList);
+                        data.setmSelectBottleModeIndex(1);
+                        data.setmSelectBottleYearsIndex(0);
+                        data.setSelectBottleLevelIndex(0);
+                        data.setBottleNum(0);
+                        data.setDiscount(0);
+                        list.add(data);
+                        notifyDataSetChanged();
+                    }else {
+                        PopUtil.toastInBottom("无法再增加置换空瓶数，同重量钢瓶的置换空瓶数与扫码回收的空瓶数只能小于等于交付用户钢瓶数，");
+                    }
                 }
             });
         }
@@ -273,4 +306,14 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
         return totalDiscount;
     }
 
+
+    private int totalExchangeBottleNum(int modelIndex) {
+        int totalBottleNum = 0 ;
+        for(ExchangeRclBean bean :list){
+            if(bean.getSelectBottleModeIndex() == modelIndex) {
+                totalBottleNum += bean.getBottleNum();
+            }
+        }
+        return totalBottleNum;
+    }
 }

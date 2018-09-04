@@ -66,7 +66,11 @@
             android:text="折价"
             android:textSize="@dimen/text_16" />
     </LinearLayout>
-
+<View
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/lin_width"
+    android:background="@color/line_color_lib"
+    />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -15,7 +15,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/margin_Modules"
             android:padding="@dimen/margin_Modules"
-            android:text="运费说明"
+            android:text="配送费说明"
             android:textSize="@dimen/text_16" />
 
         <TextView

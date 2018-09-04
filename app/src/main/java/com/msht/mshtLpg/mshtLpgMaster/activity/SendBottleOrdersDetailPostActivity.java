@@ -295,9 +295,9 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         tvElevator.setText("1".equals(isElevator) ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTel.setText(orderDetailBean.getData().getMobile());
-        tvDay.setText(new StringBuilder().append("预约时间：").append(orderDetailBean.getData().getAppointmentTime()));
+        tvDay.setText(new StringBuilder().append(orderDetailBean.getData().getAppointmentTime()));
         if (TextUtils.isEmpty(orderDetailBean.getData().getRemarks())) {
-            tvComment.setVisibility(View.INVISIBLE);
+            tvComment.setVisibility(View.GONE);
         } else {
             tvComment.setVisibility(View.VISIBLE);
             tvComment.setText(new StringBuilder().append("内部备注：").append(orderDetailBean.getData().getRemarks()).toString());
@@ -305,7 +305,7 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         tvOrderId.setText(orderId);
         tvDispatchOrderTime.setText(new StringBuilder().append("下单时间：").append(orderDetailBean.getData().getCreateDate()).toString());
         //iGasAndDepositPresenter.getGasAndDeposit();
-        tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(bean.getData().getAppointmentTime()));
+        tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(bean.getData().getSendTime()));
 
         double fiveDeposite = bean.getData().getFiveDepositFee();
         double fifteenDeposite = bean.getData().getFifteenDepositFee();
@@ -327,21 +327,21 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         //押金
 
         if (remain5 == 0) {
-            llFiveDeposite.setVisibility(View.INVISIBLE);
+            llFiveDeposite.setVisibility(View.GONE);
         } else {
             llFiveDeposite.setVisibility(View.VISIBLE);
             fiveTotalDeposite = remain5 * fiveDeposite;
             tvFiveDeposite.setText(fiveTotalDeposite + "");
         }
         if (remain15 == 0) {
-            llFifteenDeposite.setVisibility(View.INVISIBLE);
+            llFifteenDeposite.setVisibility(View.GONE);
         } else {
             llFifteenDeposite.setVisibility(View.VISIBLE);
             fifteenteenTotalDeposite = remain15 * fifteenDeposite;
             tvFifteenDeposite.setText(fifteenteenTotalDeposite + "");
         }
         if (remain50 == 0) {
-            llFiftyDeposite.setVisibility(View.INVISIBLE);
+            llFiftyDeposite.setVisibility(View.GONE);
         } else {
             llFiftyDeposite.setVisibility(View.VISIBLE);
             fiftyTotalDeposite = remain50 * fiftyDeposite;
@@ -349,7 +349,7 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         }
         double totalDeposite = fiveTotalDeposite + fifteenteenTotalDeposite + fiftyTotalDeposite;
         if (totalDeposite == 0) {
-            llDepositFare.setVisibility(View.INVISIBLE);
+            llDepositFare.setVisibility(View.GONE);
         } else {
             llDepositFare.setVisibility(View.VISIBLE);
             totalfare += totalDeposite;
@@ -404,11 +404,14 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
 
                 if (!isGetFirstDeliverySuccess || !isGetFourDeliverySuccess || !isGetSixDeliverySuccess || !isGetSecondDeliverySuccess) {
                     PopUtil.toastInBottom("正在获取运费信息，请稍后再试");
-                } else if (deliverFareDialog == null) {
+                }/* else if (deliverFareDialog == null) {
                     deliverFareDialog = new DeliverFareDialog(SendBottleOrdersDetailPostActivity.this, map);
                     deliverFareDialog.show();
                 } else if (!deliverFareDialog.isShowing()) {
                     deliverFareDialog.show();
+                }*/
+                else {
+                    PopUtil.showWebViewDialog(SendBottleOrdersDetailPostActivity.this, Constants.PEI_SONG_SHUO_MING);
                 }
             }
         });
@@ -546,11 +549,13 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         if (exchangeList.size() != 0) {
             StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < exchangeList.size(); i++) {
-                int levelIndex = exchangeList.get(i).getmSelectBottleLevelIndex();
-                int modelIndex = exchangeList.get(i).getSelectBottleModeIndex();
-                int year = exchangeList.get(i).getSelectBottleYearsIndex() + 1;
-                int weight = 0;
                 int num = exchangeList.get(i).getBottleNum();
+                if (num != 0) {
+                    int levelIndex = exchangeList.get(i).getmSelectBottleLevelIndex();
+                    int modelIndex = exchangeList.get(i).getSelectBottleModeIndex();
+                    int year = exchangeList.get(i).getSelectBottleYearsIndex() + 1;
+                    int weight = 0;
+
               /*  switch (modelIndex) {
                     case 0:
                         weight = 5;
@@ -564,36 +569,37 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
                     default:
                         break;
                 }*/
-                weight = 15;
-                String level = "";
-                switch (levelIndex) {
-                    case 0:
-                        level = "A";
-                        break;
-                    case 1:
-                        level = "B";
-                        break;
-                    case 2:
-                        level = "C";
-                        break;
-                    case 3:
-                        level = "D";
-                        break;
-                    default:
-                        break;
-                }
-                if (i == 0) {
-                    stringBuilder.append(weight).append(",").append(year).append(",").append(num).append(",").append(level);
-                } else {
-                    stringBuilder.append("|").append(weight).append(",").append(year).append(",").append(num).append(",").append(level);
+                    weight = 15;
+                    String level = "";
+                    switch (levelIndex) {
+                        case 0:
+                            level = "A";
+                            break;
+                        case 1:
+                            level = "B";
+                            break;
+                        case 2:
+                            level = "C";
+                            break;
+                        case 3:
+                            level = "D";
+                            break;
+                        default:
+                            break;
+                    }
+                    if (i == 0) {
+                        stringBuilder.append(weight).append(",").append(year).append(",").append(num).append(",").append(level);
+                    } else {
+                        stringBuilder.append("|").append(weight).append(",").append(year).append(",").append(num).append(",").append(level);
+                    }
                 }
             }
-            return stringBuilder.toString();
-        } else {
-            return "";
+                return stringBuilder.toString();
+            } else{
+                return "";
+            }
         }
 
-    }
 
     @Override
     public String getIsElevator() {

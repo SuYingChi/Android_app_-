@@ -8,9 +8,6 @@ import java.util.List;
 
 public class BottleCaculteUtil {
 
-    private static int remian5;
-    private static int remian15;
-    private static int remian50;
 
     public static int getBottleNum(List<VerifyBottleBean> list, int weight) {
         int num = 0;

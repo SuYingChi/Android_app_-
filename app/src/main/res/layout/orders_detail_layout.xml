@@ -54,6 +54,7 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/tv_orders_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="待发货"
@@ -312,13 +313,14 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/ll_orders_detail_command_topbar_client_info"
             android:layout_alignRight="@id/ll_orders_detail_command_topbar_client_info"
-            android:layout_below="@id/dispatch_orders_time"
+            android:layout_below="@id/dispatch_bottle_time"
             android:layout_marginLeft="@dimen/margin"
             android:layout_marginRight="@dimen/margin"
             android:layout_marginTop="@dimen/margin_Modules"
             android:background="@color/msb_color"
             android:text="交付钢瓶"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            />
     </RelativeLayout>
 </ScrollView>

@@ -1,80 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:paddingTop="@dimen/margin"
     android:paddingBottom="@dimen/margin"
-    android:paddingTop="@dimen/margin">
-
-    <TextView
-        android:id="@+id/exchange_steel_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:gravity="center"
-        android:paddingLeft="@dimen/margin_Modules"
-        android:paddingRight="@dimen/margin_Modules"
-        android:text="5.00"
-        android:textSize="@dimen/text_16" />
-
-    <LinearLayout
-        android:id="@+id/hh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/exchange_steel_account"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/exchange_reduce"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/rcl_margin"
-            android:background="@color/line_color_lib"
-            android:paddingLeft="@dimen/rcl_margin"
-            android:paddingRight="@dimen/rcl_margin"
-            android:text="-"
-            android:textSize="@dimen/text_16" />
-
-        <TextView
-            android:id="@+id/exchange_steel_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/rcl_margin"
-            android:background="@color/line_color_lib"
-            android:paddingLeft="@dimen/rcl_margin"
-            android:paddingRight="@dimen/rcl_margin"
-            android:text="1"
-            android:textSize="@dimen/text_16"
-
-            />
-
-        <TextView
-            android:id="@+id/exchange_steel_plus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/line_color_lib"
-            android:paddingLeft="@dimen/rcl_margin"
-            android:paddingRight="@dimen/rcl_margin"
-            android:text="+"
-            android:textSize="@dimen/text_16" />
-    </LinearLayout>
+    >
 
     <LinearLayout
         android:id="@+id/sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="match_parent"
         android:layout_marginEnd="@dimen/margin_Modules"
         android:layout_marginRight="@dimen/margin_Modules"
         android:layout_toLeftOf="@id/hh"
         android:orientation="horizontal"
-
         >
 
         <Spinner
             android:id="@+id/exchange_steel_weight_spinner"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_weight="1.2"
             android:gravity="center"
             android:visibility="gone" />
 
@@ -92,4 +40,61 @@
             android:layout_weight="1"
             android:gravity="center" />
     </LinearLayout>
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/hh"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/exchange_reduce"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@color/line_color_lib"
+            android:gravity="center"
+            android:text="-"
+            android:textSize="@dimen/text_16"
+            android:padding="@dimen/rcl_margin"
+            />
+
+        <TextView
+            android:id="@+id/exchange_steel_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/line_color_lib"
+            android:gravity="center"
+            android:text="1"
+            android:textSize="@dimen/text_16"
+            android:layout_marginLeft="@dimen/rcl_margin"
+            android:layout_marginRight="@dimen/rcl_margin"
+            android:paddingTop="@dimen/rcl_margin"
+            android:paddingBottom="@dimen/rcl_margin"
+            />
+
+        <TextView
+            android:id="@+id/exchange_steel_plus"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@color/line_color_lib"
+            android:text="+"
+            android:gravity="center"
+            android:textSize="@dimen/text_16"
+            android:padding="@dimen/rcl_margin"
+            />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/exchange_steel_account"
+        android:layout_width="0dp"
+        android:layout_weight="0.7"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:gravity="center"
+        android:paddingLeft="@dimen/margin_Modules"
+        android:paddingRight="@dimen/margin_Modules"
+        android:text="5.00"
+        android:textSize="@dimen/text_16" />
+</LinearLayout>

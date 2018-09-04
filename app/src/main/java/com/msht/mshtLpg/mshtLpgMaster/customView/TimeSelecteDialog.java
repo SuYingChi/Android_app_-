@@ -74,8 +74,6 @@ public class TimeSelecteDialog extends Dialog {
         attributes.height = WindowManager.LayoutParams.WRAP_CONTENT;
         attributes.gravity = Gravity.BOTTOM;
         this.getWindow().setAttributes(attributes);
-        //dialog去除底部背景
-        getWindow().setBackgroundDrawable(new BitmapDrawable());
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {

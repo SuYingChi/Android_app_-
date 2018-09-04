@@ -2,6 +2,7 @@ package com.msht.mshtLpg.mshtLpgMaster.util;
 
 import android.app.Activity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -26,6 +27,8 @@ import com.msht.mshtLpg.mshtLpgMaster.activity.WebActivity;
 import com.msht.mshtLpg.mshtLpgMaster.application.LPGApplication;
 import com.msht.mshtLpg.mshtLpgMaster.constant.Constants;
 import com.msht.mshtLpg.mshtLpgMaster.fragment.BaseFragment;
+
+import java.util.Locale;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
@@ -129,7 +132,7 @@ public class AppUtil {
 
         return verName;
     }
-
+    //未指定应用商店，让用户选择去哪个应用商店
     public static void goMarket(Context context) {
         try {
 
@@ -142,7 +145,71 @@ public class AppUtil {
             e.printStackTrace();
         }
     }
-
+    /**
+     * 跳转应用商店.
+     *
+     * @param context   {@link Context}
+     * @param marketPkg 应用商店包名
+     * @return {@code true} 跳转成功 <br> {@code false} 跳转失败
+     */
+    public static void toMarket(Context context,  String marketPkg) {
+        Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        if (marketPkg != null) {// 如果没给市场的包名，则系统会弹出市场的列表让你进行选择。
+            intent.setPackage(marketPkg);
+        }
+        try {
+            context.startActivity(intent);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    //三星应用市场
+    public static void goToSamsungappsMarket(Context context) {
+        Uri uri = Uri.parse("http://www.samsungapps.com/appquery/appDetail.as?appId=" + context.getPackageName());
+        Intent goToMarket = new Intent();
+        goToMarket.setClassName("com.sec.android.app.samsungapps", "com.sec.android.app.samsungapps.Main");
+        goToMarket.setData(uri);
+        try {
+            context.startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            PopUtil.toastInBottom("请打开应用市场，搜索 " + context.getString(R.string.app_name));
+            e.printStackTrace();
+        }
+    }
+    //乐视手机应用市场
+    public static void goToLeTVStoreDetail(Context context) {
+        Intent intent = new Intent();
+        intent.setClassName("com.letv.app.appstore", "com.letv.app.appstore.appmodule.details.DetailsActivity");
+        intent.setAction("com.letv.app.appstore.appdetailactivity");
+        intent.putExtra("packageName", context.getPackageName());
+        try {
+            context.startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            PopUtil.toastInBottom("请打开应用市场，搜索 " + context.getString(R.string.app_name));
+            e.printStackTrace();
+        }
+    }
+    /**
+     * 跳转索尼精选
+     * @param context {@link Context}
+     * @param appId 索尼精选中分配得appId
+     * @return {@code true} 跳转成功 <br> {@code false} 跳转失败
+     */
+    public static void goToSonyMarket(Context context, String appId) {
+        Uri uri = Uri.parse("http://m.sonyselect.cn/" + appId);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//        Intent intent = new Intent();
+//        intent.setAction("com.sonymobile.playnowchina.android.action.NOTIFICATION_APP_DETAIL_PAGE");
+//        intent.setAction("com.sonymobile.playnowchina.android.action.APP_DETAIL_PAGE");
+//        intent.putExtra("app_id", 9115);
+        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        try {
+            context.startActivity(intent);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
     public static void replaceFragment(BaseFragment showfragment, BaseFragment currentFragment, FragmentManager fragmentManager) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.remove(currentFragment).commit();
@@ -155,4 +222,63 @@ public class AppUtil {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fl_my_container, showfragment).commit();
     }
+
+        /**
+         * 获取当前手机系统语言。
+         *
+         * @return 返回当前系统语言。例如：当前设置的是“中文-中国”，则返回“zh-CN”
+         */
+        public static String getSystemLanguage() {
+            return Locale.getDefault().getLanguage();
+        }
+
+        /**
+         * 获取当前系统上的语言列表(Locale列表)
+         *
+         * @return  语言列表
+         */
+        public static Locale[] getSystemLanguageList() {
+            return Locale.getAvailableLocales();
+        }
+
+        /**
+         * 获取当前手机系统版本号
+         *
+         * @return  系统版本号
+         */
+        public static String getSystemVersion() {
+            return android.os.Build.VERSION.RELEASE;
+        }
+
+        /**
+         * 获取手机型号
+         *
+         * @return  手机型号
+         */
+        public static String getSystemModel() {
+            return android.os.Build.MODEL;
+        }
+
+        /**
+         * 获取手机厂商
+         *
+         * @return  手机厂商
+         */
+        public static String getDeviceBrand() {
+            return android.os.Build.BRAND.trim().toUpperCase();
+        }
+
+    /*    *//**
+         * 获取手机IMEI(需要“android.permission.READ_PHONE_STATE”权限)
+         *
+         * @return  手机IMEI
+         *//*
+        public static String getIMEI(Context ctx) {
+            TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Activity.TELEPHONY_SERVICE);
+            if (tm != null) {
+                return tm.getDeviceId();
+            }
+            return null;
+        }*/
+
 }

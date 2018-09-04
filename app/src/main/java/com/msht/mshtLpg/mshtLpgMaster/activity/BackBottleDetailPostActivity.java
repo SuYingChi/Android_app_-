@@ -160,7 +160,7 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
         tvElevator.setText(isElevator.equals(1 + "") ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(bean.getData().getBuyer()).append(bean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTelephone.setText(bean.getData().getMobile());
-        tvDay.setText(new StringBuilder().append("预约时间：").append(bean.getData().getAppointmentTime()));
+        tvDay.setText(new StringBuilder().append(bean.getData().getAppointmentTime()));
         tvComment.setText(new StringBuilder().append("内部备注：").append(bean.getData().getRemarks()).toString());
         tvOrderId.setText(orderId);
         orderFive = bean.getData().getReFiveBottleCount() + "";
@@ -175,7 +175,7 @@ public class BackBottleDetailPostActivity extends BaseActivity implements IBackB
         fiftyFee.setText(fiftyDeposite);
         totalFee.setText(new StringBuilder().append(bean.getData().getRealAmount()).append("").toString());
         dispatchOrdersTime.setText(new StringBuilder().append("下单时间：").append(bean.getData().getCreateDate()).toString());
-        tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(bean.getData().getAppointmentTime()));
+        tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(bean.getData().getSendTime()));
     }
 
     @Override

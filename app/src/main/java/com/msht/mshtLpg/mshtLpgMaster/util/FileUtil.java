@@ -1,17 +1,27 @@
 package com.msht.mshtLpg.mshtLpgMaster.util;
 
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
+
+import com.msht.mshtLpg.mshtLpgMaster.Bean.SaveFileBean;
+import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+
+import okhttp3.Response;
 
 /**
  * File工具类
  * Created by tsy on 16/9/5.
  */
 public class FileUtil {
+
 
     /**
      * 文件或者目录是否存在
@@ -105,4 +115,5 @@ public class FileUtil {
             file.delete();
         }
     }
+
 }

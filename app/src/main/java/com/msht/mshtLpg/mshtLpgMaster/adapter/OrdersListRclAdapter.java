@@ -248,7 +248,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter {
                 });
             } else if (holder.getItemViewType() == 6) {
                 ((OrdersHolder) holder).order_number.setText(String.valueOf(bean.getOrderId()));
-                ((OrdersHolder) holder).order_statu.setText("其他");
+                ((OrdersHolder) holder).order_statu.setText("已取消");
                 ((OrdersHolder) holder).user.setText(bean.getBuyer());
                 ((OrdersHolder) holder).location.setText(new StringBuilder().append(bean.getAddress()).append(bean.getFloor()).append("楼").append(bean.getRoomNum()).append("号").append(bean.getIsElevator() == 1 ? "(有电梯)" : "(无电梯)").append(bean.getIsDelivery() == 1 ? "(自提单)" : "(配送单)").toString());
                 ((OrdersHolder) holder).sex.setText(bean.getSex() == 0 ? " (先生)" : " (女士)");
@@ -257,7 +257,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter {
                 ((OrdersHolder) holder).fifteenBottleNumber.setText(String.valueOf(bean.getFifteenBottleCount()));
                 ((OrdersHolder) holder).fiftyBottleNumber.setText(String.valueOf(bean.getFiftyBottleCount()));
                 ((OrdersHolder) holder).sendBottleTime.setText(bean.getAppointmentTime());
-                ((OrdersHolder) holder).orderBtn.setText("其他");
+                ((OrdersHolder) holder).orderBtn.setText("已取消");
                 ((OrdersHolder) holder).orderBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -279,7 +279,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter {
                 });
             } else if (holder.getItemViewType() == 7) {
                 ((OrdersHolder) holder).order_number.setText(String.valueOf(bean.getOrderId()));
-                ((OrdersHolder) holder).order_statu.setText("其他");
+                ((OrdersHolder) holder).order_statu.setText("已取消");
                 ((OrdersHolder) holder).user.setText(bean.getBuyer());
                 ((OrdersHolder) holder).location.setText(new StringBuilder().append(bean.getAddress()).append(bean.getFloor()).append("楼").append(bean.getRoomNum()).append("号").append(bean.getIsElevator() == 1 ? "（有电梯）" : "（无电梯）").append(bean.getIsDelivery() == 1 ? "（自提单）" : "（配送单）").toString());
                 ((OrdersHolder) holder).sex.setText(bean.getSex() == 0 ? " (先生)" : " (女士)");
@@ -288,7 +288,7 @@ public class OrdersListRclAdapter extends RecyclerView.Adapter {
                 ((OrdersHolder) holder).fifteenBottleNumber.setText(String.valueOf(bean.getReFifteenBottleCount()));
                 ((OrdersHolder) holder).fiftyBottleNumber.setText(String.valueOf(bean.getReFiftyBottleCount()));
                 ((OrdersHolder) holder).sendBottleTime.setText(String.valueOf(bean.getAppointmentTime()));
-                ((OrdersHolder) holder).orderBtn.setText("其他");
+                ((OrdersHolder) holder).orderBtn.setText("已取消");
                 ((OrdersHolder) holder).orderBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

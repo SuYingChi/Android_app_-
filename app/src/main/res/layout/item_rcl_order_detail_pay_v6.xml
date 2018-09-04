@@ -29,5 +29,7 @@
         android:layout_height="match_parent"
         android:text=""
         android:textColor="@color/green"
-        android:textSize="@dimen/text_16" />
+        android:textSize="@dimen/text_16"
+        android:drawableRight="@drawable/right_angle"
+        />
 </LinearLayout>

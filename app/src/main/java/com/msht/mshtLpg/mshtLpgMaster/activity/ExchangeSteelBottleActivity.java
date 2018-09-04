@@ -3,6 +3,7 @@ package com.msht.mshtLpg.mshtLpgMaster.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -73,6 +74,7 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(myAdapter);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,6 +101,11 @@ public class ExchangeSteelBottleActivity extends BaseActivity implements Exchang
                         //回传自有产权折价价格给详情页
                         Intent intent = new Intent();
                         Bundle bundle = new Bundle();
+                        for(ExchangeRclBean bean:dataList){
+                            if(bean.getBottleNum()==0){
+                                dataList.remove(bean);
+                            }
+                        }
                         bundle.putSerializable("exchangelist", dataList);
                         intent.putExtras(bundle);
                         intent.putExtra(Constants.EXCHANGE_FEE, myAdapter.getTotalDiscount());

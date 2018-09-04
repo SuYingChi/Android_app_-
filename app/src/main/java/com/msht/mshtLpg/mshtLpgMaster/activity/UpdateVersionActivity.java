@@ -1,5 +1,7 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
+import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -8,14 +10,18 @@ import com.msht.mshtLpg.mshtLpgMaster.Bean.AppInfoBean;
 import com.msht.mshtLpg.mshtLpgMaster.Present.IGetNewestAppInfoPresenter;
 import com.msht.mshtLpg.mshtLpgMaster.R;
 import com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView;
+import com.msht.mshtLpg.mshtLpgMaster.services.DownLoadApkService;
 import com.msht.mshtLpg.mshtLpgMaster.util.AppUtil;
+import com.msht.mshtLpg.mshtLpgMaster.util.PermissionUtils;
 import com.msht.mshtLpg.mshtLpgMaster.util.PopUtil;
 import com.msht.mshtLpg.mshtLpgMaster.viewInterface.IUpdateVersionView;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class UpdateVersionActivity extends BaseActivity implements IUpdateVersionView {
+public class UpdateVersionActivity extends BaseActivity implements IUpdateVersionView ,PermissionUtils.PermissionRequestFinishListener{
     @BindView(R.id.topbar)
     TopBarView topBarView;
     @BindView(R.id.update)
@@ -30,6 +36,7 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
     TextView tvTitle;
 
     private int vision;
+    private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +60,7 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
         tvApkSize.setText(appInfoBean.getData().getApkSize());
         tvTitle.setText(appInfoBean.getData().getTitle());
         tvUpdateDetail.setText(appInfoBean.getData().getDesc());
+        url = appInfoBean.getData().getUrl();
         if (Integer.valueOf(appInfoBean.getData().getVersion()) > vision) {
             tvUpdate.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -63,7 +71,8 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
                             "取消", "确定更新", null, new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    AppUtil.goMarket(UpdateVersionActivity.this);
+                                        //AppUtil.goMarket(UpdateVersionActivity.this);
+                                    PermissionUtils.requestPermissions(UpdateVersionActivity.this,UpdateVersionActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
                                 }
                             }, true);
                 }
@@ -76,5 +85,22 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
                 }
             });
         }
+    }
+
+    @Override
+    public void onBackFromSettingPage() {
+
+    }
+
+    @Override
+    public void onPermissionRequestDenied(List<String> permissions) {
+        PopUtil.toastInBottom("请允许LPG写入SD卡");
+    }
+
+    @Override
+    public void onPermissionRequestSuccess(List<String> permissions) {
+        Intent intent = new Intent(UpdateVersionActivity.this,DownLoadApkService.class);
+        intent.putExtra("url", url);
+        startService(intent);
     }
 }

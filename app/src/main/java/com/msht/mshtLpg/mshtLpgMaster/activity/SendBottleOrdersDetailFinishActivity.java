@@ -1,5 +1,6 @@
 package com.msht.mshtLpg.mshtLpgMaster.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
@@ -133,13 +134,13 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity implement
         tvElevator.setText(isElevator == 1 ? "(有电梯)" : "(无电梯)");
         tvUser.setText(new StringBuilder().append(orderDetailBean.getData().getBuyer()).append(orderDetailBean.getData().getSex() == 0 ? "(先生)" : "(女士)").toString());
         tvTel.setText(orderDetailBean.getData().getMobile());
-        tvDay.setText(new StringBuilder().append("预约时间：").append(orderDetailBean.getData().getAppointmentTime()));
+        tvDay.setText(new StringBuilder().append(orderDetailBean.getData().getAppointmentTime()));
         tvComment.setText(new StringBuilder().append("内部备注：").append(orderDetailBean.getData().getRemarks()).toString());
         orderId = orderDetailBean.getData().getOrderId() + "";
         tvOrderId.setText(orderId + "");
         tvDispatchOrderTime.setText(new StringBuilder().append("下单时间：").append(orderDetailBean.getData().getCreateDate()).toString());
-        tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(orderDetailBean.getData().getAppointmentTime()));
-        tvPayTime.setText(new StringBuilder().append("付款时间：").append(""));
+        tvDispatchBottleTime.setText(new StringBuilder().append("发货时间：").append(orderDetailBean.getData().getSendTime()));
+        tvPayTime.setText(new StringBuilder().append("付款时间：").append(orderDetailBean.getData().getPayTime()));
         //气价
         double fiveGasFee = orderDetailBean.getData().getFiveBottleCount() * orderDetailBean.getData().getFiveGasFee();
         tvFiveGas.setText(fiveGasFee + "");
@@ -153,7 +154,7 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity implement
         //押金
         int remain5 = orderDetailBean.getData().getFiveBottleCount() - orderDetailBean.getData().getReFiveBottleCount();
         if (remain5 == 0) {
-            llFiveDeposite.setVisibility(View.INVISIBLE);
+            llFiveDeposite.setVisibility(View.GONE);
         } else {
             llFiveDeposite.setVisibility(View.VISIBLE);
             fiveTotalDeposite = remain5 * orderDetailBean.getData().getFiveDepositFee();
@@ -161,7 +162,7 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity implement
         }
         int remain15 = orderDetailBean.getData().getFifteenBottleCount() - orderDetailBean.getData().getReFifteenBottleCount();
         if (remain15 == 0) {
-            llFifteenDeposite.setVisibility(View.INVISIBLE);
+            llFifteenDeposite.setVisibility(View.GONE);
         } else {
             llFifteenDeposite.setVisibility(View.VISIBLE);
             fifteenteenTotalDeposite = remain15 * orderDetailBean.getData().getFifteenDepositFee();
@@ -169,7 +170,7 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity implement
         }
         int remain50 = orderDetailBean.getData().getFiftyBottleCount() - orderDetailBean.getData().getReFiftyBottleCount();
         if (remain50 == 0) {
-            llFiftyDeposite.setVisibility(View.INVISIBLE);
+            llFiftyDeposite.setVisibility(View.GONE);
         } else {
             llFiftyDeposite.setVisibility(View.VISIBLE);
             fiftyTotalDeposite = remain50 * orderDetailBean.getData().getFiftyDepositFee();
@@ -177,7 +178,7 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity implement
         }
         double totalDeposite = fiveTotalDeposite + fifteenteenTotalDeposite + fiftyTotalDeposite;
         if (totalDeposite == 0) {
-            llDepositFare.setVisibility(View.INVISIBLE);
+            llDepositFare.setVisibility(View.GONE);
         } else {
             llDepositFare.setVisibility(View.VISIBLE);
             tvDepositeFee.setText(totalDeposite + "");
@@ -230,7 +231,7 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity implement
                 PopUtil.showComfirmDialog(SendBottleOrdersDetailFinishActivity.this, "拨打电话", "请确认是否要拨打电话" + orderDetailBean.getData().getMobile(), "取消", "确认", null, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        PermissionUtils.requestPermissions(SendBottleOrdersDetailFinishActivity.this, SendBottleOrdersDetailFinishActivity.this, Permission.CALL_PHONE);
+                        PermissionUtils.requestPermissions(SendBottleOrdersDetailFinishActivity.this, SendBottleOrdersDetailFinishActivity.this, Permission.CALL_PHONE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
                     }
                 }, true);
 
@@ -241,11 +242,14 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity implement
             public void onClick(View v) {
                 if (!isGetFirstDeliverySuccess || !isGetFourDeliverySuccess || !isGetSixDeliverySuccess || !isGetSecondDeliverySuccess) {
                     PopUtil.toastInBottom("正在获取运费信息，请稍后再试");
-                } else if (deliverFareDialog == null) {
+                } /*else if (deliverFareDialog == null) {
                     deliverFareDialog = new DeliverFareDialog(SendBottleOrdersDetailFinishActivity.this, map);
                     deliverFareDialog.show();
                 } else if (!deliverFareDialog.isShowing()) {
                     deliverFareDialog.show();
+                }*/
+                else {
+                    PopUtil.showWebViewDialog(SendBottleOrdersDetailFinishActivity.this, Constants.PEI_SONG_SHUO_MING);
                 }
             }
         });
