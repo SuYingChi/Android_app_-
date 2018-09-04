@@ -52,7 +52,10 @@
             android:launchMode="singleTask" />
         <!-- 高德地图 key设置 -->
         <service android:name="com.amap.api.location.APSService" />
-        <service android:name=".services.DownLoadApkService" />
+        <service android:name=".services.DownLoadApkService"
+            android:enabled="true"
+            android:process="system"
+            />
 
         <meta-data
             android:name="com.amap.api.v2.apikey"

@@ -101,6 +101,7 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
     public void onPermissionRequestSuccess(List<String> permissions) {
         Intent intent = new Intent(UpdateVersionActivity.this,DownLoadApkService.class);
         intent.putExtra("url", url);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startService(intent);
     }
 }
