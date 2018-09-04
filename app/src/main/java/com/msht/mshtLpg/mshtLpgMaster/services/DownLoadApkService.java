@@ -63,13 +63,17 @@ public class DownLoadApkService extends Service{
                     }
 
                     @Override
+                    public void inProgress(float progress, long total, int id) {
+                        notifyNotification((long)progress/total,total);
+                    }
+                    @Override
                     public void onError(Call call, Exception e, int i) {
                           PopUtil.toastInBottom(e.getMessage());
                     }
 
                     @Override
                     public void onResponse(File file, int i) {
-                          notifyNotification(contentView,builder,notificationManager);
+                          notifyNotification(100,100);
                           PopUtil.toastInBottom("安装包下载完成");
                           installApk(DownLoadApkService.this,file);
                     }
@@ -98,9 +102,9 @@ public class DownLoadApkService extends Service{
         }
         stopSelf();
     }
-    private void notifyNotification(RemoteViews contentView,NotificationCompat.Builder builder,NotificationManager notificationManager){
-        contentView.setTextViewText(R.id.tv_progress, (100+"%"));
-        contentView.setProgressBar(R.id.progress, (int)100,(int)100, false);
+    private void notifyNotification(long percent,long length){
+        contentView.setTextViewText(R.id.tv_progress, percent+"%");
+        contentView.setProgressBar(R.id.progress, (int)length,(int)percent, false);
         contentView.setTextViewText(R.id.id_tv_download,"安装包下载完成");
         builder.setContent(contentView);
         notificationManager.notify(R.layout.item_notification, builder.build());
