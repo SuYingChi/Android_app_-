@@ -99,9 +99,10 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
 
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
-        Intent intent = new Intent(UpdateVersionActivity.this,DownLoadApkService.class);
+        PopUtil.toastInBottom("还无法从服务器下载apk，等待后端部署完毕");
+       /* Intent intent = new Intent(UpdateVersionActivity.this,DownLoadApkService.class);
         intent.putExtra("url", url);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startService(intent);
+        startService(intent);*/
     }
 }
