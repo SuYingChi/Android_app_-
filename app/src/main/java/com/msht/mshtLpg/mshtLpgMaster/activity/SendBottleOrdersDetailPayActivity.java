@@ -349,8 +349,9 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
                  * "cancel"  - user canceld
                  * "invalid" - payment plugin not installed
                  */
-                String errorMsg = data.getExtras().getString("error_msg"); // 错误信息
+                String errorMsg = data.getStringExtra("error_msg"); // 错误信息
                 String extraMsg = data.getExtras().getString("extra_msg"); // 错误信息
+                    PopUtil.toastInBottom("error_msg=="+errorMsg+"extra_msg=="+extraMsg);
                 if (TextUtils.equals(result, "success")) {
                     Intent intent = new Intent(this, SendBottleOrdersDetailFinishActivity.class);
                     intent.putExtra(Constants.ORDER_ID, orderId);

@@ -92,7 +92,10 @@ public class PopUtil {
     }
 
     public static void toastInBottom(String string) {
-
+        if(TextUtils.isEmpty(string))
+        {
+            return;
+        }
         if (toast == null) {
             toast = Toast.makeText(LPGApplication.getLPGApplicationContext(), string, Toast.LENGTH_LONG);
         } else {
