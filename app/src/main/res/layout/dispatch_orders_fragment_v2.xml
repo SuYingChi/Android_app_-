@@ -25,7 +25,7 @@
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
-    <com.msht.mshtLpg.mshtLpgMaster.customView.SlidableViewPager
+    <com.msht.mshtlpgmaster.customView.SlidableViewPager
         android:id="@+id/vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

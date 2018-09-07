@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/line_color"
     android:orientation="vertical"
-    tools:context="com.msht.mshtLpg.mshtLpgMaster.activity.DispatchSendOrdersEditAddressActivity">
+    tools:context="com.msht.mshtlpgmaster.activity.DispatchSendOrdersEditAddressActivity">
 
-    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
+    <com.msht.mshtlpgmaster.customView.TopBarView
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_normol"

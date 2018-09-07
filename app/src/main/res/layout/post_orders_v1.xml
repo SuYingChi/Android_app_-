@@ -11,7 +11,7 @@
         android:layout_height="@dimen/top_bar_height"
         android:background="@color/msb_color" />
 
-    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
+    <com.msht.mshtlpgmaster.customView.TopBarView
         android:id="@+id/my_setting_fragment_layout_topbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_normol"

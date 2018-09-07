@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
+    <com.msht.mshtlpgmaster.customView.TopBarView
         android:id="@+id/my_setting_fragment_layout_topbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_normol"

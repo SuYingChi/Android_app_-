@@ -16,10 +16,10 @@
             android:layout_marginTop="10dp"
             android:orientation="vertical">
 
-            <com.msht.mshtLpg.mshtLpgMaster.customView.ListViewForScrollView
+            <com.msht.mshtlpgmaster.customView.ListViewForScrollView
                 android:id="@+id/id_search_recycleView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></com.msht.mshtLpg.mshtLpgMaster.customView.ListViewForScrollView>
+                android:layout_height="wrap_content"></com.msht.mshtlpgmaster.customView.ListViewForScrollView>
 
             <RelativeLayout
                 android:layout_width="match_parent"

@@ -23,7 +23,7 @@
         app:inner_scan_speed="10"
         app:inner_width="@dimen/view_finder_height" />
 
-    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
+    <com.msht.mshtlpgmaster.customView.TopBarView
         android:id="@+id/scan_delive_topbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_normol"

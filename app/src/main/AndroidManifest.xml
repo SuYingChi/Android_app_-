@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.msht.mshtLpg.mshtLpgMaster">
+    package="com.msht.mshtlpgmaster">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -27,14 +27,14 @@
 
 
     <application
-        android:name=".application.LPGApplication"
+        android:name="com.msht.mshtlpgmaster.application.LPGApplication"
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SplashActivity"
+        <activity android:name="com.msht.mshtlpgmaster.activity.SplashActivity"
             android:theme="@style/AppThemeTransparentStatusbar"
             >
             <intent-filter>
@@ -43,16 +43,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity"
+        <activity android:name="com.msht.mshtlpgmaster.activity.LoginActivity"
             android:theme="@style/AppThemeTransparentStatusbar"
             android:launchMode="singleTask"
             />
         <activity
-            android:name=".activity.HomeActivity"
+            android:name="com.msht.mshtlpgmaster.activity.HomeActivity"
             android:launchMode="singleTask" />
         <!-- 高德地图 key设置 -->
         <service android:name="com.amap.api.location.APSService" />
-        <service android:name=".services.DownLoadApkService"
+        <service android:name="com.msht.mshtlpgmaster.services.DownLoadApkService"
             android:enabled="true"
             android:process="system"
             />
@@ -60,36 +60,36 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="3467b1afa91a2c36f7c45cf95b85aa4d" />
-        <activity android:name=".activity.SendBottleOrdersDetailActivity" />
-        <activity android:name=".activity.ScanSteelBottleActivity" />
-        <activity android:name=".activity.SendBottleOrdersDetailPostActivity" />
-        <activity android:name=".activity.ExchangeReviewActivity" />
-        <activity android:name=".activity.SendBottleOrdersDetailPayActivity" />
-        <activity android:name=".activity.QRCodeReceiptActivity" />
-        <activity android:name=".activity.EditLocationActivity" />
-        <activity android:name=".activity.SendBottleOrdersDetailFinishActivity" />
-        <activity android:name=".activity.ExchangeSteelBottleActivity" />
-        <activity android:name=".activity.InnerActivity" />
-        <activity android:name=".activity.RegisterBottleActivity"
+        <activity android:name="com.msht.mshtlpgmaster.activity.SendBottleOrdersDetailActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.ScanSteelBottleActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.SendBottleOrdersDetailPostActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.ExchangeReviewActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.SendBottleOrdersDetailPayActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.QRCodeReceiptActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.EditLocationActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.SendBottleOrdersDetailFinishActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.ExchangeSteelBottleActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.InnerActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.RegisterBottleActivity"
             android:windowSoftInputMode="adjustPan"
             />
-        <activity android:name=".activity.BackBottleOrdersFinishActivity" />
-        <activity android:name=".activity.BackBottleOrdersDetailActivity" />
-        <activity android:name=".activity.BackBottleOrdersCancleActivity" />
-        <activity android:name=".activity.BackBottleDetailPostActivity" />
-        <activity android:name=".activity.TransferStorageListActivity" />
-        <activity android:name=".activity.ScanTransferStorageActivity" />
-        <activity android:name=".activity.TransferStorageFinishActivty" />
-        <activity android:name=".activity.MyBottleActivity" />
-        <activity android:name=".activity.RegisterEmployerActivity" />
-        <activity android:name=".activity.MonthCountActivity" />
-        <activity android:name=".activity.MyIncomeActivity" />
-        <activity android:name=".activity.DispatchCustomerOrderActivity" />
-        <activity android:name=".activity.DeliveryAddressActivity" />
-        <activity android:name=".activity.SelectAddressActivity" />
-        <activity android:name=".activity.DispatchSendOrdersEditAddressActivity"/>
-        <activity android:name=".activity.UpdateVersionActivity" />
-        <activity android:name=".activity.CurrentVersionInfoActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.BackBottleOrdersFinishActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.BackBottleOrdersDetailActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.BackBottleOrdersCancleActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.BackBottleDetailPostActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.TransferStorageListActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.ScanTransferStorageActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.TransferStorageFinishActivty" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.MyBottleActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.RegisterEmployerActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.MonthCountActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.MyIncomeActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.DispatchCustomerOrderActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.DeliveryAddressActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.SelectAddressActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.DispatchSendOrdersEditAddressActivity"/>
+        <activity android:name="com.msht.mshtlpgmaster.activity.UpdateVersionActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.CurrentVersionInfoActivity" />
         <!-- Ping++ SDK -->
         <activity
             android:name="com.pingplusplus.android.PaymentActivity"
@@ -118,11 +118,11 @@
         </activity>
 
 
-        <activity android:name=".activity.SendOrderScanEmptyActivity" />
-        <activity android:name=".activity.InnerScanEmployerActivity" />
-        <activity android:name=".activity.SendOrderScanBottleActivity" />
-        <activity android:name=".activity.WebActivity" />
-        <activity android:name=".activity.SendBottleOrdersDetailCancleActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.SendOrderScanEmptyActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.InnerScanEmployerActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.SendOrderScanBottleActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.WebActivity" />
+        <activity android:name="com.msht.mshtlpgmaster.activity.SendBottleOrdersDetailCancleActivity" />
     </application>
 
 </manifest>

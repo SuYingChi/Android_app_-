@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.msht.mshtLpg.mshtLpgMaster.customView.TopBarView
+    <com.msht.mshtlpgmaster.customView.TopBarView
         android:id="@+id/my_income_layout_topbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height_normol"

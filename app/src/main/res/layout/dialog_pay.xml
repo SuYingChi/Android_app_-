@@ -31,7 +31,7 @@
             android:layout_marginRight="10dp"
             android:background="@color/line_gray" />
 
-        <com.msht.mshtLpg.mshtLpgMaster.customView.MyRadioButton
+        <com.msht.mshtlpgmaster.customView.MyRadioButton
             android:id="@+id/id_radio_alipay"
             android:layout_width="match_parent"
             android:layout_height="56dip"
@@ -54,7 +54,7 @@
             android:layout_marginRight="10dp"
             android:background="@color/line_gray" />
 
-        <com.msht.mshtLpg.mshtLpgMaster.customView.MyRadioButton
+        <com.msht.mshtlpgmaster.customView.MyRadioButton
             android:id="@+id/id_radio_wechat"
             android:layout_width="match_parent"
             android:layout_height="56dip"
