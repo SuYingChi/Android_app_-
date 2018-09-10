@@ -1,7 +1,9 @@
 package com.msht.mshtlpgmaster.util;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.msht.mshtlpgmaster.Bean.BaseData;
+import com.msht.mshtlpgmaster.Bean.UserErrorBean;
 
 
 import org.json.JSONArray;
@@ -10,6 +12,8 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by qyf on 2016/3/1.
@@ -187,4 +191,14 @@ public class JsonUtil {
         ItemPopupAd itemPopupAd = JsonUtil.toBean(json, ItemPopupAd.class);
         return itemPopupAd;
     }*/
+    public static <T> ArrayList<T> getGoodsLiteData(String json) {
+        ArrayList< T> itemGoodsLite = JsonUtil.toBean(json, new TypeToken<List< T>>() {
+        }.getType());
+        return itemGoodsLite;
+    }
+
+    public static <T> T getPopupAdData(String json,Class<T> clazz) {
+        T itemPopupAd = JsonUtil.toBean(json, clazz);
+        return itemPopupAd;
+    }
 }
