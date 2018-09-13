@@ -1,7 +1,9 @@
 package com.msht.mshtlpgmaster.activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -9,7 +11,9 @@ import com.msht.mshtlpgmaster.Bean.AppInfoBean;
 import com.msht.mshtlpgmaster.Present.IGetNewestAppInfoPresenter;
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.customView.TopBarView;
+import com.msht.mshtlpgmaster.services.DownLoadApkService;
 import com.msht.mshtlpgmaster.util.AppUtil;
+import com.msht.mshtlpgmaster.util.LogUtils;
 import com.msht.mshtlpgmaster.util.PermissionUtils;
 import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.viewInterface.IUpdateVersionView;
@@ -54,27 +58,43 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
 
     @Override
     public void onGetNewestAppInfoSuccess(AppInfoBean appInfoBean) {
-        tvNewVersion.setText(appInfoBean.getData().getVersion());
-        tvApkSize.setText(appInfoBean.getData().getApkSize());
+        tvNewVersion.setText(String.format("液化气移动终端V%s", appInfoBean.getData().getVersion()));
+        tvApkSize.setText(String.format("安装包大小：%.2fMB", Float.valueOf(appInfoBean.getData().getApkSize()) / 1000));
         tvTitle.setText(appInfoBean.getData().getTitle());
-        tvUpdateDetail.setText(appInfoBean.getData().getDesc());
+        tvUpdateDetail.setText(appInfoBean.getData().getRemarks());
         url = appInfoBean.getData().getUrl();
         if (Integer.valueOf(appInfoBean.getData().getVersion()) > vision) {
             tvUpdate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PopUtil.showComfirmDialog(UpdateVersionActivity.this, appInfoBean.getData().getTitle(), "当前版本为V" + AppUtil.getVerName(UpdateVersionActivity.this)
-                                    + ",最新版本为V" + appInfoBean.getData().getVersion()
-                                    + ",是否更新到最新版本？",
-                            "取消", "确定更新", null, new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                        //AppUtil.goMarket(UpdateVersionActivity.this);
-                                    PermissionUtils.requestPermissions(UpdateVersionActivity.this,UpdateVersionActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                                }
-                            }, true);
+                    if(!AppUtil.isWifiConnect()){
+                        if(AppUtil.isNetworkAvailable()) {
+                            PopUtil.showComfirmDialog(UpdateVersionActivity.this, "下载提示",   "当前版本为V" + AppUtil.getVerName(UpdateVersionActivity.this)
+                                            + ",最新版本为V" + appInfoBean.getData().getVersion()
+                                            + ",是否更新到最新版本？"+String.format("当前不在WiFi环境，安装包大小：%.2fMB,请确认是否使用流量下载", Float.valueOf(appInfoBean.getData().getApkSize()) / 1000),
+                                    "取消", "确定更新", null, new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            PermissionUtils.requestPermissions(UpdateVersionActivity.this, UpdateVersionActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                                        }
+                                    }, true);
+                        }else {
+                            PopUtil.toastInBottom("无可用网络下载安装包");
+                        }
+                    }else {
+                        PopUtil.showComfirmDialog(UpdateVersionActivity.this, appInfoBean.getData().getTitle(), "当前版本为V" + AppUtil.getVerName(UpdateVersionActivity.this)
+                                        + ",最新版本为V" + appInfoBean.getData().getVersion()
+                                        + ",是否更新到最新版本？",
+                                "取消", "确定更新", null, new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        PermissionUtils.requestPermissions(UpdateVersionActivity.this, UpdateVersionActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                                    }
+                                }, true);
+                    }
                 }
             });
+
         } else {
             tvUpdate.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -97,10 +117,10 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
 
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
-        PopUtil.toastInBottom("还无法从服务器下载apk，等待后端部署完毕");
-       /* Intent intent = new Intent(UpdateVersionActivity.this,DownLoadApkService.class);
+        Intent intent = new Intent(UpdateVersionActivity.this,DownLoadApkService.class);
         intent.putExtra("url", url);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startService(intent);*/
+        LogUtils.d("DownLoadApk", "onPermissionRequestSuccess: ");
+        startService(intent);
     }
 }

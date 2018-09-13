@@ -25,6 +25,8 @@ import com.msht.mshtlpgmaster.application.LPGApplication;
 import com.msht.mshtlpgmaster.constant.Constants;
 import com.msht.mshtlpgmaster.fragment.BaseFragment;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Locale;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
@@ -63,8 +65,7 @@ public class AppUtil {
     }
 
     public static boolean isNetworkAvailable() {
-        ConnectivityManager manager = (ConnectivityManager) LPGApplication.getLPGApplicationContext()
-                .getApplicationContext().getSystemService(
+        ConnectivityManager manager = (ConnectivityManager) LPGApplication.getLPGApplicationContext().getSystemService(
                         Context.CONNECTIVITY_SERVICE);
 
         if (manager == null) {
@@ -75,6 +76,16 @@ public class AppUtil {
             return false;
         }
         return true;
+    }
+    /**
+     * 检查wifi是否处开连接状态
+     *
+     * @return
+     */
+    public static boolean isWifiConnect() {
+        ConnectivityManager connManager = (ConnectivityManager) LPGApplication.getLPGApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mWifiInfo = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        return mWifiInfo.isConnected();
     }
 
     public static void logout() {
@@ -123,6 +134,16 @@ public class AppUtil {
         String verName = "";
         try {
             verName = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+        } catch (Exception e) {
+
+        }
+
+        return verName;
+    }
+    public static String getPackageName(Context context) {
+        String verName = "";
+        try {
+            verName = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).packageName;
         } catch (Exception e) {
 
         }
@@ -277,5 +298,21 @@ public class AppUtil {
             }
             return null;
         }*/
+    public static String formattedOutputDecimal(double decimal)
+    {
+        DecimalFormat df=new DecimalFormat("######0.00");
+        String result=df.format(decimal);
+        return result;
+    }
+
+    public static String formattedDecimalToPercentage(double decimal)
+    {
+        //获取格式化对象
+        NumberFormat nt = NumberFormat.getPercentInstance();
+        //设置百分数精确度2即保留两位小数
+        nt.setMinimumFractionDigits(2);
+        return nt.format(decimal);
+    }
+
 
 }

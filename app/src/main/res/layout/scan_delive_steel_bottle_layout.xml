@@ -50,77 +50,83 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingBottom="@dimen/margin_Modules"
             android:paddingTop="@dimen/margin_Modules"
+            android:paddingBottom="@dimen/margin_Modules"
+            android:paddingLeft="@dimen/rcl_margin"
+            android:paddingRight="@dimen/rcl_margin"
             android:text="5kg:"
             android:textColor="@color/lpg_text_dark_color"
             android:textSize="@dimen/text_16" />
 
         <TextView
             android:id="@+id/scan_qrcode_delive_five_steel_bottle_number"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingBottom="@dimen/margin_Modules"
             android:paddingTop="@dimen/margin_Modules"
-            android:text=""
+            android:paddingBottom="@dimen/margin_Modules"
+            android:paddingLeft="@dimen/rcl_margin"
+            android:paddingRight="@dimen/rcl_margin"
+            android:text="10"
             android:textColor="@color/lpg_text_dark_color"
             android:textSize="@dimen/text_16" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingBottom="@dimen/margin_Modules"
             android:paddingTop="@dimen/margin_Modules"
+            android:paddingBottom="@dimen/margin_Modules"
+            android:paddingLeft="@dimen/rcl_margin"
+            android:paddingRight="@dimen/rcl_margin"
             android:text="15kg:"
             android:textColor="@color/lpg_text_dark_color"
             android:textSize="@dimen/text_16" />
 
         <TextView
             android:id="@+id/scan_qrcode_delive_fifteen_steel_bottle_number"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingBottom="@dimen/margin_Modules"
             android:paddingTop="@dimen/margin_Modules"
-            android:text=""
+            android:paddingBottom="@dimen/margin_Modules"
+            android:paddingLeft="@dimen/rcl_margin"
+            android:paddingRight="@dimen/rcl_margin"
+            android:text="10"
             android:textColor="@color/lpg_text_dark_color"
             android:textSize="@dimen/text_16" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingBottom="@dimen/margin_Modules"
             android:paddingTop="@dimen/margin_Modules"
+            android:paddingBottom="@dimen/margin_Modules"
+            android:paddingLeft="@dimen/rcl_margin"
+            android:paddingRight="@dimen/rcl_margin"
             android:text="50kg:"
             android:textColor="@color/lpg_text_dark_color"
             android:textSize="@dimen/text_16" />
 
         <TextView
             android:id="@+id/scan_qrcode_delive_fifty_steel_bottle_number"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingBottom="@dimen/margin_Modules"
             android:paddingTop="@dimen/margin_Modules"
-            android:text=""
+            android:paddingBottom="@dimen/margin_Modules"
+            android:paddingLeft="@dimen/rcl_margin"
+            android:paddingRight="@dimen/rcl_margin"
+            android:text="15"
             android:textColor="@color/lpg_text_dark_color"
             android:textSize="@dimen/text_16" />
 

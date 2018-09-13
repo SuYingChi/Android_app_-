@@ -452,6 +452,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         TextView btnCancel = (TextView) layout.findViewById(R.id.dialog_btn_cancel);
         TextView btnOk = (TextView) layout.findViewById(R.id.dialog_btn_ok);
         RadioGroup radioGroup = (RadioGroup) layout.findViewById(R.id.radio_group);
+        channel = 1 + "";
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

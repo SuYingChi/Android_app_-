@@ -99,10 +99,24 @@
             tools:replace="android:configChanges" />
 
         <!-- 微信支付 -->
-        <activity-alias
+       <activity-alias
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:targetActivity="com.pingplusplus.android.PaymentActivity" />
+
+       <!-- <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="wxdc762b13d1eb9ad5"/>
+            </intent-filter>
+
+        </activity>-->
+
         <!--支付宝支付-->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
@@ -123,6 +137,19 @@
         <activity android:name="com.msht.mshtlpgmaster.activity.SendOrderScanBottleActivity" />
         <activity android:name="com.msht.mshtlpgmaster.activity.WebActivity" />
         <activity android:name="com.msht.mshtlpgmaster.activity.SendBottleOrdersDetailCancleActivity" />
+
+        <!--apk安装-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.msht.mshtlpgmaster.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"
+                />
+        </provider>
     </application>
 
 </manifest>

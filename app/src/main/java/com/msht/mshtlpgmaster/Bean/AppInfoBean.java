@@ -5,7 +5,7 @@ public class AppInfoBean {
     /**
      * result : success
      * error : null
-     * data : {"version":"100","title":"有新版本啦","desc":"有新版本了\\n有新版本了\\n有新版本了","url":"http:////msbapp.cn/do/download/d/minshengbao.apk"}
+     * data : {"version":"100","title":"有新版本啦","remarks":"有新版本了\\n有新版本了\\n有新版本了","url":"http:////msbapp.cn/do/download/d/minshengbao.apk"}
      */
 
     private String result;
@@ -40,15 +40,16 @@ public class AppInfoBean {
         /**
          * version : 100
          * title : 有新版本啦
-         * desc : 有新版本了\n有新版本了\n有新版本了
+         * remarks : 有新版本了\n有新版本了\n有新版本了
          * url : http:////msbapp.cn/do/download/d/minshengbao.apk
          */
 
         private String version;
         private String title;
-        private String desc;
+        private String remarks;
         private String url;
         private String apkSize;
+        private String apkName;
 
         public String getVersion() {
             return version;
@@ -66,12 +67,12 @@ public class AppInfoBean {
             this.title = title;
         }
 
-        public String getDesc() {
-            return desc;
+        public String getRemarks() {
+            return remarks;
         }
 
-        public void setDesc(String desc) {
-            this.desc = desc;
+        public void setRemarks(String remarks) {
+            this.remarks = remarks;
         }
 
         public String getUrl() {
@@ -88,6 +89,14 @@ public class AppInfoBean {
 
         public String getApkSize() {
             return apkSize;
+        }
+
+        public String getApkName() {
+            return apkName;
+        }
+
+        public void setApkName(String apkName) {
+            this.apkName = apkName;
         }
     }
 }

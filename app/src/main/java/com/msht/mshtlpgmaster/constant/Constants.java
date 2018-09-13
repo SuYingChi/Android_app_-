@@ -6,7 +6,7 @@ public class Constants {
     //凡是接口里有replacelist的都去掉，改为增加一个retrieveAmount字段，空瓶置换有单独接口返回数据
 
     //阿里云地址 http://120.76.193.86:7799
-    public static final String BASE_URL = BuildConfig.DEBUG ? "http://112.74.33.12:7799/api/msht/" : "https://lpg.msbapp.cn/api/msht/";
+    public static final String BASE_URL = BuildConfig.DEBUG ? /*http://112.74.33.12:7799/api/msht/*/"https://lpg.msbapp.cn/api/msht/" : "https://lpg.msbapp.cn/api/msht/";
 
     public static final String LOGIN = BASE_URL + "lpgEmpOrder/login";
     //1是送气单 0是退瓶单
@@ -60,7 +60,7 @@ public class Constants {
     //月份收入统计预留接口
     public static final String MONTH_COUNT = "";
     //获取最新的APP信息
-    public static final String GET_NEWESTAPPINFO = BASE_URL + "lpgEmpOrder/getVersion";
+    public static final String GET_NEWESTAPPINFO = BASE_URL + "lpgApkManager/getVersion";
     //现金代付
     public static final String CASH_PAY = BASE_URL + "lpgOrder/empPay";
 
