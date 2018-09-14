@@ -1,6 +1,7 @@
 package com.msht.mshtlpgmaster.services;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -12,7 +13,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.IBinder;
-import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.FileProvider;
@@ -20,7 +20,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import com.msht.mshtlpgmaster.BuildConfig;
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.callback.FileCallBack;
 import com.msht.mshtlpgmaster.util.AppUtil;
@@ -37,21 +36,25 @@ public class DownLoadApkService extends Service {
     private String url;
     private String fileName;
     private RemoteViews contentView;
-    private NotificationCompat.Builder builder;
+    private Notification.Builder builder;
+    private NotificationCompat.Builder builder25;
     private NotificationManager notificationManager;
     private String TAG = "DownLoadApk";
     public static final String ONCLICK = "com.app.onclick";
     public File file;
+    public static final String channelId = "channel_1";
+    public static final String channelName = "channel_name_1";
     private BroadcastReceiver receiver_onclick = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(ONCLICK)) {
-                Log.e(TAG, "onReceive: 点击通知收到广播" );
-                notificationManager.cancel(R.layout.item_notification);
+                Log.e(TAG, "onReceive: 点击通知收到广播");
+                getNotificationManager().cancel(R.layout.item_notification);
                 installApk();
             }
         }
     };
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -62,27 +65,25 @@ public class DownLoadApkService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null) {
             url = intent.getStringExtra("url");
+           long apksize = intent.getLongExtra("apksize",0);
             if (!TextUtils.isEmpty(url)) {
                 fileName = this.url.substring(this.url.lastIndexOf("/") + 1, this.url.length());
                 OkHttpUtils.get().url(url).build().execute(new FileCallBack(Environment.getExternalStorageDirectory().getAbsolutePath() + "/LpgDownloads/", fileName) {
-                    public long total = 0;
                     public float prepercent = 0;
+
                     @Override
                     public void onBefore(Request request, int id) {
                         super.onBefore(request, id);
                         FileUtil.deleteFile(Environment.getExternalStorageDirectory().getAbsolutePath() + "/LpgDownloads/");
-                        creatNotification(0, total,"安装包正在下载...");
+                        creatNotification(apksize,"安装包正在下载...");
                     }
 
                     @Override
                     public void inProgress(float progress, long total, int id) {
-                        if (this.total == 0) {
-                            this.total = total;
-                        }
-                        Log.e(TAG, "安装包正在下载... inProgress: progress/ " + AppUtil.formattedDecimalToPercentage((double) (progress / total)) + "   progress   " + progress + "     total=  " + total);
-                        float currentPercent = progress / total;
-                        if(currentPercent - prepercent>=0.01) {
-                            notifyNotification(progress, total, "安装包正在下载...");
+                        Log.e(TAG, "安装包正在下载... inProgress: progress/ " + AppUtil.formattedDecimalToPercentage((double) (progress / apksize)) + "   progress   " + progress + "     total=  " + apksize);
+                        float currentPercent = progress / apksize;
+                        if (currentPercent - prepercent >= 0.1) {
+                            notifyNotification(progress, apksize, "安装包正在下载...");
                             prepercent = currentPercent;
                         }
 
@@ -95,19 +96,10 @@ public class DownLoadApkService extends Service {
 
                     @Override
                     public void onResponse(File file, int i) {
-                        DownLoadApkService.this.file=file;
+                        DownLoadApkService.this.file = file;
                         PopUtil.toastInBottom("安装包下载完成");
                         Log.e(TAG, "onResponse: 安装包下载完成");
-                        IntentFilter filter_click = new IntentFilter();
-                        filter_click.addAction(ONCLICK);
-                        //注册广播
-                        registerReceiver(receiver_onclick, filter_click);
-                        Intent Intent_pre = new Intent(ONCLICK);
-                        //得到PendingIntent
-                        PendingIntent pendIntent_click = PendingIntent.getBroadcast(DownLoadApkService.this, 0, Intent_pre, PendingIntent.FLAG_UPDATE_CURRENT);
-                        //设置监听
-                        contentView.setOnClickPendingIntent(R.id.rlt_notification,pendIntent_click);
-                        notifyNotification(100, 100,"安装包下载完成");
+                        notifyNotificationOnDownLoadFinish(apksize);
                     }
                 });
             } else {
@@ -134,29 +126,71 @@ public class DownLoadApkService extends Service {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         startActivity(intent);
-        stopSelf();
     }
 
     private void notifyNotification(float progress, long total, String text) {
         contentView.setTextViewText(R.id.tv_progress, AppUtil.formattedDecimalToPercentage((double) (progress / total)));
         contentView.setProgressBar(R.id.progress, (int) total, (int) progress, false);
         contentView.setTextViewText(R.id.id_tv_download, text);
-        builder.setContent(contentView);
-        notificationManager.notify(R.layout.item_notification, builder.build());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getNotificationManager().notify(R.layout.item_notification, builder.build());
+        }else {
+            getNotificationManager().notify(R.layout.item_notification,builder25.build());
+        }
     }
 
-    private void creatNotification(float progress, long total,String s) {
-        builder = new NotificationCompat.Builder(DownLoadApkService.this);
-        builder.setSmallIcon(R.mipmap.logo);
-        builder.setContentTitle("下载");
-        builder.setContentText(s);
+    private void creatNotification( long total, String s) {
         //*** 自定义  Notification 的显示****//
         contentView = new RemoteViews(getPackageName(), R.layout.item_notification);
-        contentView.setProgressBar(R.id.progress, (int) total, (int) progress, false);
-        contentView.setTextViewText(R.id.tv_progress, AppUtil.formattedDecimalToPercentage((double) (progress / total)));
+        contentView.setProgressBar(R.id.progress, (int) total, 0, false);
+        contentView.setTextViewText(R.id.tv_progress, AppUtil.formattedDecimalToPercentage(0));
         contentView.setTextViewText(R.id.id_tv_download, "安装包正在下载...");
-        builder.setContent(contentView);
-        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(R.layout.item_notification, builder.build());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
+            getNotificationManager().createNotificationChannel(channel);
+            builder = new Notification.Builder(DownLoadApkService.this,channelId);
+            builder.setSmallIcon(R.mipmap.logo);
+            builder.setContentTitle("下载");
+            builder.setContentText(s);
+            builder .setAutoCancel(true);
+            builder.setCustomContentView(contentView);
+
+        }else {
+            builder25 = new NotificationCompat.Builder(getApplicationContext())
+                    .setContentTitle("下载")
+                    .setContentText(s)
+                    .setSmallIcon(R.mipmap.logo)
+                    .setAutoCancel(true);
+            builder25.setCustomContentView(contentView);
+
+        }
+
+
+    }
+    private NotificationManager getNotificationManager() {
+        if (notificationManager == null) {
+            notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        }
+        return notificationManager;
+    }
+
+    private void notifyNotificationOnDownLoadFinish(long total){
+        IntentFilter filterClick = new IntentFilter();
+        filterClick.addAction(ONCLICK);
+        //注册广播
+        registerReceiver(receiver_onclick, filterClick);
+        Intent intentPre = new Intent(ONCLICK);
+        //得到PendingIntent
+        PendingIntent pendIntentClick = PendingIntent.getBroadcast(DownLoadApkService.this, 0, intentPre, PendingIntent.FLAG_UPDATE_CURRENT);
+        //设置监听
+        contentView.setOnClickPendingIntent(R.id.rlt_notification, pendIntentClick);
+        contentView.setTextViewText(R.id.tv_progress, AppUtil.formattedDecimalToPercentage((double) (1)));
+        contentView.setProgressBar(R.id.progress, (int) total, (int) total, false);
+        contentView.setTextViewText(R.id.id_tv_download, "下载完成");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getNotificationManager().notify(R.layout.item_notification, builder.build());
+        }else {
+            getNotificationManager().notify(R.layout.item_notification,builder25.build());
+        }
     }
 }

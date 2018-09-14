@@ -39,6 +39,7 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
 
     private int vision;
     private String url;
+    private long apksize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,8 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
     @Override
     public void onGetNewestAppInfoSuccess(AppInfoBean appInfoBean) {
         tvNewVersion.setText(String.format("液化气移动终端V%s", appInfoBean.getData().getVersion()));
-        tvApkSize.setText(String.format("安装包大小：%.2fMB", Float.valueOf(appInfoBean.getData().getApkSize()) / 1000));
+        tvApkSize.setText(String.format("安装包大小：%.2fMB", Float.valueOf(appInfoBean.getData().getApkSize())/1000));
+        apksize =  (long)(Float.valueOf(appInfoBean.getData().getApkSize())*1000);
         tvTitle.setText(appInfoBean.getData().getTitle());
         tvUpdateDetail.setText(appInfoBean.getData().getRemarks());
         url = appInfoBean.getData().getUrl();
@@ -119,6 +121,7 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
     public void onPermissionRequestSuccess(List<String> permissions) {
         Intent intent = new Intent(UpdateVersionActivity.this,DownLoadApkService.class);
         intent.putExtra("url", url);
+        intent.putExtra("apksize",apksize);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         LogUtils.d("DownLoadApk", "onPermissionRequestSuccess: ");
         startService(intent);
