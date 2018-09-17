@@ -82,6 +82,7 @@ public class DownLoadApkService extends Service {
                     public void inProgress(float progress, long total, int id) {
                         Log.e(TAG, "安装包正在下载... inProgress: progress/ " + AppUtil.formattedDecimalToPercentage((double) (progress / apksize)) + "   progress   " + progress + "     total=  " + apksize);
                         float currentPercent = progress / apksize;
+                        //notify频率降低些，不然会出现notify不生效的bug
                         if (currentPercent - prepercent >= 0.1) {
                             notifyNotification(progress, apksize, "安装包正在下载...");
                             prepercent = currentPercent;

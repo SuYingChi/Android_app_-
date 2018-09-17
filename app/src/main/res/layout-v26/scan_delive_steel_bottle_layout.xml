@@ -168,7 +168,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/scan_delive_steel_bottle_rlt"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_Modules"
+        android:layout_marginTop="@dimen/rcl_margin"
         android:orientation="horizontal">
 
         <EditText

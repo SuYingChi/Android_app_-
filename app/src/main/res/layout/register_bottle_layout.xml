@@ -15,6 +15,7 @@
         android:id="@+id/scan_delive_steel_bottle_qrcode_viewfinder_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/scan_view_margin_top"
         app:inner_corner_length="30dp"
         app:inner_corner_width="5dp"
         app:inner_height="@dimen/view_finder_width"
@@ -198,7 +199,11 @@
             android:layout_marginTop="0.5dp"
             android:background="@color/white"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_Modules">
+            android:paddingLeft="@dimen/margin_Modules"
+            android:paddingRight="@dimen/margin_Modules"
+            android:paddingTop="@dimen/line_height"
+            android:paddingBottom="@dimen/line_height"
+          >
 
             <TextView
                 android:id="@+id/tv1"
@@ -234,7 +239,11 @@
             android:layout_marginTop="0.5dp"
             android:background="@color/white"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_Modules">
+            android:paddingLeft="@dimen/margin_Modules"
+            android:paddingRight="@dimen/margin_Modules"
+            android:paddingTop="@dimen/line_height"
+            android:paddingBottom="@dimen/line_height"
+            >
 
             <TextView
                 android:id="@+id/tv2"
@@ -271,7 +280,11 @@
             android:layout_marginTop="0.5dp"
             android:background="@color/white"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_Modules">
+            android:paddingLeft="@dimen/margin_Modules"
+            android:paddingRight="@dimen/margin_Modules"
+            android:paddingTop="@dimen/line_height"
+            android:paddingBottom="@dimen/line_height"
+          >
 
             <TextView
                 android:id="@+id/tv3"
@@ -343,8 +356,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/scan_delive_steel_bottle_rlt"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/margin_Modules"
-        android:layout_marginTop="@dimen/margin_Modules"
+        android:layout_marginBottom="@dimen/rcl_margin"
+        android:layout_marginTop="@dimen/rcl_margin"
         android:orientation="horizontal">
 
         <EditText
