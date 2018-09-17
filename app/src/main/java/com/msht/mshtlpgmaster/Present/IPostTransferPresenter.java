@@ -2,11 +2,13 @@ package com.msht.mshtlpgmaster.Present;
 
 import android.text.TextUtils;
 
+import com.google.gson.JsonSyntaxException;
 import com.msht.mshtlpgmaster.Bean.ErrorBean;
 import com.msht.mshtlpgmaster.Bean.PostTransferBean;
 import com.msht.mshtlpgmaster.callback.DataStringCallback;
 import com.msht.mshtlpgmaster.constant.Constants;
 import com.msht.mshtlpgmaster.gsonInstance.GsonUtil;
+import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.viewInterface.IPostTransferView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -41,8 +43,12 @@ public class IPostTransferPresenter {
                     iPostTransferView.onError(errorBean.getMsg());
 
                 } else if (!TextUtils.isEmpty(errorBean.getResult()) && TextUtils.equals(errorBean.getResult(), "success")) {
+                    try{
                     PostTransferBean bean = GsonUtil.getGson().fromJson(s, PostTransferBean.class);
                     iPostTransferView.onPostTransfersuccess(bean);
+                }catch (JsonSyntaxException e){
+                    PopUtil.toastInBottom("GSON转换异常");
+                }
                 }
             }
 

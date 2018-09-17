@@ -2,12 +2,14 @@ package com.msht.mshtlpgmaster.Present;
 
 import android.text.TextUtils;
 
+import com.google.gson.JsonSyntaxException;
 import com.msht.mshtlpgmaster.Bean.ErrorBean;
 import com.msht.mshtlpgmaster.Bean.TransferStorageListBean;
 import com.msht.mshtlpgmaster.Bean.UpdateTransferBean;
 import com.msht.mshtlpgmaster.callback.DataStringCallback;
 import com.msht.mshtlpgmaster.constant.Constants;
 import com.msht.mshtlpgmaster.gsonInstance.GsonUtil;
+import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.viewInterface.ITransferToStorageView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -38,8 +40,12 @@ public class ITransferToStorageListPresenter {
                     iTransferToStorageView.onError(bean.getMsg());
 
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
+                    try{
                     TransferStorageListBean transferStorageListBean = GsonUtil.getGson().fromJson(s, TransferStorageListBean.class);
                     iTransferToStorageView.onGetListSuccess(transferStorageListBean);
+                }catch (JsonSyntaxException e){
+                    PopUtil.toastInBottom("GSON转换异常");
+                }
                 }
             }
 
@@ -66,8 +72,12 @@ public class ITransferToStorageListPresenter {
                     iTransferToStorageView.onError(bean.getMsg());
 
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
+                    try{
                     UpdateTransferBean updateTransferBean = GsonUtil.getGson().fromJson(s, UpdateTransferBean.class);
                     iTransferToStorageView.onUpdateTransferSuccess(updateTransferBean);
+                }catch (JsonSyntaxException e){
+                    PopUtil.toastInBottom("GSON转换异常");
+                }
                 }
             }
 

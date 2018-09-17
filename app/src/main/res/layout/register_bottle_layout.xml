@@ -15,7 +15,6 @@
         android:id="@+id/scan_delive_steel_bottle_qrcode_viewfinder_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/scan_view_margin_top"
         app:inner_corner_length="30dp"
         app:inner_corner_width="5dp"
         app:inner_height="@dimen/view_finder_width"

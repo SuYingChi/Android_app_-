@@ -1,5 +1,6 @@
 package com.msht.mshtlpgmaster.Present;
 
+import com.google.gson.JsonSyntaxException;
 import com.msht.mshtlpgmaster.Bean.GetPayQRCodeBean;
 import com.msht.mshtlpgmaster.Bean.GetPayQRErrorBean;
 import com.msht.mshtlpgmaster.Bean.WxcodePayErroBean;
@@ -7,6 +8,7 @@ import com.msht.mshtlpgmaster.callback.DataStringCallback;
 import com.msht.mshtlpgmaster.constant.Constants;
 import com.msht.mshtlpgmaster.gsonInstance.GsonUtil;
 import com.msht.mshtlpgmaster.util.JsonUtil;
+import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.viewInterface.IGetPayQRcodeView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -30,6 +32,7 @@ public class GetQRcodeImageUrlPresenter {
                     return;
                 }
                 if (JsonUtil.isJsonHasKey(s,"msg")) {
+                    try{
                     GetPayQRCodeBean bean = GsonUtil.getGson().fromJson(s, GetPayQRCodeBean.class);
                     iGetPayQRcodeView.getHandler().post(new Runnable() {
                         @Override
@@ -37,8 +40,13 @@ public class GetQRcodeImageUrlPresenter {
                             iGetPayQRcodeView.onGetQRCodeImageURLSuccess(bean);
                         }
                     });
+                }catch (JsonSyntaxException e){
+                    PopUtil.toastInBottom("GSON转换异常");
+                }
 
-                } else if (JsonUtil.isJsonHasKey(s,"error")) {
+
+            } else if (JsonUtil.isJsonHasKey(s,"error")) {
+                    try{
                     WxcodePayErroBean bean = GsonUtil.getGson().fromJson(s, WxcodePayErroBean.class);
                     iGetPayQRcodeView.getHandler().post(new Runnable() {
                         @Override
@@ -46,7 +54,11 @@ public class GetQRcodeImageUrlPresenter {
                     iGetPayQRcodeView.onGetQRCodeImageURLError(bean);
                        }
                     });
+                }catch (JsonSyntaxException e){
+                    PopUtil.toastInBottom("GSON转换异常");
                 }
+
+            }
             }
 
         });

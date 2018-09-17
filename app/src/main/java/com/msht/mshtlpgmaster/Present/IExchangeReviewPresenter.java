@@ -2,11 +2,13 @@ package com.msht.mshtlpgmaster.Present;
 
 import android.text.TextUtils;
 
+import com.google.gson.JsonSyntaxException;
 import com.msht.mshtlpgmaster.Bean.ExchangeReviewBean;
 import com.msht.mshtlpgmaster.Bean.ErrorBean;
 import com.msht.mshtlpgmaster.callback.DataStringCallback;
 import com.msht.mshtlpgmaster.constant.Constants;
 import com.msht.mshtlpgmaster.gsonInstance.GsonUtil;
+import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.viewInterface.IExchangeReviewView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -34,9 +36,14 @@ public class IExchangeReviewPresenter {
                     iExchangeReviewView.onError(bean.getMsg());
 
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
+                    try{
                     ExchangeReviewBean exchangeReviewBean = GsonUtil.getGson().fromJson(s, ExchangeReviewBean.class);
                     iExchangeReviewView.onGetExchangeReviewSuccess(exchangeReviewBean);
+                }catch (JsonSyntaxException e){
+                    PopUtil.toastInBottom("GSON转换异常");
                 }
+
+            }
             }
 
         });

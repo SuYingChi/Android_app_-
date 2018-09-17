@@ -208,6 +208,9 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         } else if (requestCode == Constants.EDIT_FLOOR_REQUEST_CODE && resultCode == RESULT_OK) {
             if (data != null) {
                 floor = data.getStringExtra(Constants.FLOOR);
+                if(TextUtils.isEmpty(floor)){
+                    floor = "1";
+                }
                 tvLocation.setText(new StringBuilder().append(address).append(floor).append("层").append(room).append("房").toString());
                 isElevator = data.getStringExtra(Constants.IS_ELEVATOR);
                 tvElevator.setText("1".equals(isElevator) ? "(有电梯)" : "(无电梯)");
@@ -528,7 +531,7 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
         if (isElevator.equals("1")) {
             floor = "1";
         }
-        return floor + "";
+        return floor;
     }
 
     @Override

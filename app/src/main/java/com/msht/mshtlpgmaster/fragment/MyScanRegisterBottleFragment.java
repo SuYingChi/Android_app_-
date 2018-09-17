@@ -379,6 +379,18 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
         tvCreatTime.setText(createTime);
         etProduceUnit.setText(propertyUnit);
         tvBottleCode.setText(bottleCode);
+        switch (bottleWeight){
+            case "5":
+                spWeight.setSelection(0);
+                break;
+            case "15":
+                spWeight.setSelection(1);
+                break;
+            case "50":
+                spWeight.setSelection(2);
+                break;
+                    default:break;
+        }
         hideInput(MyScanRegisterBottleFragment.this.getContext(), etInput);
         tvNext.setOnClickListener(new View.OnClickListener() {
             @Override

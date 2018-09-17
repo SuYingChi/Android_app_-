@@ -2,11 +2,13 @@ package com.msht.mshtlpgmaster.Present;
 
 import android.text.TextUtils;
 
+import com.google.gson.JsonSyntaxException;
 import com.msht.mshtlpgmaster.Bean.OrdersListBeanV2;
 import com.msht.mshtlpgmaster.Bean.ErrorBean;
 import com.msht.mshtlpgmaster.callback.DataStringCallback;
 import com.msht.mshtlpgmaster.constant.Constants;
 import com.msht.mshtlpgmaster.gsonInstance.GsonUtil;
+import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.viewInterface.IOrderView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -39,8 +41,12 @@ public class IOrdersListPresenter {
                 if (errorBean != null && !TextUtils.isEmpty(errorBean.getResult()) && TextUtils.equals(errorBean.getResult(), "fail")) {
                     iOrderView.onError(errorBean.getMsg());
                 } else if (errorBean != null && !TextUtils.isEmpty(errorBean.getResult()) && TextUtils.equals(errorBean.getResult(), "success")) {
+                    try{
                     OrdersListBeanV2 ordersBean = GsonUtil.getGson().fromJson(s, OrdersListBeanV2.class);
                     iOrderView.onGetOrdersSuccess(ordersBean);
+                }catch (JsonSyntaxException e){
+                    PopUtil.toastInBottom("GSON转换异常");
+                }
                 }
             }
         });

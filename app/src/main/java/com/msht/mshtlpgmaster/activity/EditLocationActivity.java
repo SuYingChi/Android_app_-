@@ -74,7 +74,7 @@ public class EditLocationActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.putExtra(Constants.IS_ELEVATOR, isElevator);
-                intent.putExtra(Constants.FLOOR, Integer.valueOf(editText.getText().toString()));
+                intent.putExtra(Constants.FLOOR, editText.getText().toString());
                 setResult(RESULT_OK, intent);
                 finish();
             }

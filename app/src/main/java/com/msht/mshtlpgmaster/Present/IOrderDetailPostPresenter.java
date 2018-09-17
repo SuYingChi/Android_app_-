@@ -3,11 +3,13 @@ package com.msht.mshtlpgmaster.Present;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.gson.JsonSyntaxException;
 import com.msht.mshtlpgmaster.Bean.ComfirmOrdersBean;
 import com.msht.mshtlpgmaster.Bean.ErrorBean;
 import com.msht.mshtlpgmaster.callback.DataStringCallback;
 import com.msht.mshtlpgmaster.constant.Constants;
 import com.msht.mshtlpgmaster.gsonInstance.GsonUtil;
+import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.viewInterface.IBackBottleDetailPostView;
 import com.msht.mshtlpgmaster.viewInterface.IOrderDetailPostView;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -57,8 +59,12 @@ public class IOrderDetailPostPresenter {
                     iOrderDetailPostView.onError(bean.getMsg());
 
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
+                    try{
                     ComfirmOrdersBean comfirmOrdersBean = GsonUtil.getGson().fromJson(s, ComfirmOrdersBean.class);
                     iOrderDetailPostView.onPostOrdersSuccess(comfirmOrdersBean);
+                }catch (JsonSyntaxException e){
+                    PopUtil.toastInBottom("GSON转换异常");
+                }
                 }
             }
 

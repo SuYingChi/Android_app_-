@@ -2,6 +2,7 @@ package com.msht.mshtlpgmaster.Present;
 
 import android.text.TextUtils;
 
+import com.google.gson.JsonSyntaxException;
 import com.msht.mshtlpgmaster.Bean.ErrorBean;
 import com.msht.mshtlpgmaster.callback.DataStringCallback;
 import com.msht.mshtlpgmaster.constant.Constants;
@@ -36,8 +37,13 @@ public class ILogoutPresenter {
                 if ((!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail"))) {
                     iView.onError(bean.getMsg());
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
+                    try{
                     iView.onLogout();
+                }catch (JsonSyntaxException e){
+                    PopUtil.toastInBottom("GSON转换异常");
                 }
+
+            }
             }
         });
     }
