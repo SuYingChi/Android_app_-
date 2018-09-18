@@ -186,13 +186,13 @@ public class HomeActivity extends BaseActivity {
         return false;
     }
 
-    //打开别的页面后再跳回主页时回调
+    //在别的页面再次开启首页时回调
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         Log.e("HomeActivity", "onNewIntent: " );
     }
-
+    //打开别的页面后再跳回主页时回调
     @Override
     protected void onRestart() {
         super.onRestart();
