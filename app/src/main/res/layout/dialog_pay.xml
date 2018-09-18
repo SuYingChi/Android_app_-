@@ -68,7 +68,20 @@
             android:text="微信支付"
             android:textColor="#444444"
             android:textSize="20sp" />
-
+        <com.msht.mshtlpgmaster.customView.MyRadioButton
+            android:id="@+id/id_radio_wechat_scan_code"
+            android:layout_width="match_parent"
+            android:layout_height="56dip"
+            android:background="@drawable/bg_imagetext_button"
+            android:button="@null"
+            android:drawableLeft="@drawable/wechat_pay_h"
+            android:drawablePadding="20dp"
+            android:drawableRight="@drawable/selector_my_radiobutton"
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp"
+            android:text="微信扫码支付"
+            android:textColor="#444444"
+            android:textSize="20sp" />
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"

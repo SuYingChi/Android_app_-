@@ -90,7 +90,6 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     @Override
     protected void initView() {
         Log.e(TAG, "initView: " );
-        iOrdersListPresenter = new IOrdersListPresenter(OrdersListLazyFragment.this);
         refreshLayout.setEnableAutoLoadMore(true);
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
@@ -187,10 +186,9 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     @Override
     protected void initData() {
         Log.e(TAG, "initData: ");
-        if (iOrdersListPresenter != null) {
-            page = 1;
-            iOrdersListPresenter.getOrders();
-        }
+        iOrdersListPresenter = new IOrdersListPresenter(OrdersListLazyFragment.this);
+        page = 1;
+        iOrdersListPresenter.getOrders();
         EventBus.getDefault().register(this);
     }
 
@@ -371,6 +369,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     }
 
     public void refreshOrdersList() {
+        Log.e(TAG, "refreshOrdersList:" );
         page = 1;
         iOrdersListPresenter.getOrders();
     }

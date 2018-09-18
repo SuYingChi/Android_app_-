@@ -198,6 +198,8 @@ public class HomeActivity extends BaseActivity {
         super.onRestart();
         Log.e("HomeActivity", "onRestart: " );
         //EventBus.getDefault().postSticky(new RefreshOrdersListBean());
-        f0.refreshOrdersList();
+        if(vp.getCurrentItem()==0) {
+            f0.refreshOrdersList();
+        }
     }
 }

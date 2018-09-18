@@ -48,7 +48,9 @@
         android:layout_height="match_parent"
         android:layout_weight="0.25"
         android:background="@color/yellow_deep"
-        android:minHeight="45dp">
+        android:minHeight="45dp"
+        android:visibility="gone"
+        >
 
         <TextView
             android:id="@+id/weixin_pay"
@@ -76,7 +78,8 @@
             android:layout_centerInParent="true"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:text="现金代付"
+            android:text="订单付款"
+            android:textSize="@dimen/text_16"
             android:textColor="@color/white" />
     </RelativeLayout>
 </LinearLayout>

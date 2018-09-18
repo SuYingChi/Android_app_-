@@ -126,6 +126,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
     private boolean isGetSecondDeliverySuccess = false;
     private ICashPayPresenter iCashPayPresenter;
     private String channel = 1 + "";
+    private boolean isScanCodePay = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -299,7 +300,19 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
                 payDialog(SendBottleOrdersDetailPayActivity.this, "选择支付方式", null, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        iCashPayPresenter.cashPay();
+                        if(isScanCodePay){
+                            orderType = "1";
+                            payType = "12";
+                            Intent intent = new Intent(SendBottleOrdersDetailPayActivity.this, QRCodeReceiptActivity.class);
+                            intent.putExtra(Constants.ORDER_ID, orderId);
+                            intent.putExtra(Constants.URL_PARAMS_ORDER_TYPE, orderType);
+                            intent.putExtra(Constants.PAY_AMOUNT, totalfare + "");
+                            intent.putExtra(Constants.PAY_TYPE, payType);
+                            startActivity(intent);
+                            finish();
+                        }else {
+                            iCashPayPresenter.cashPay();
+                        }
                     }
                 });
             }
@@ -353,10 +366,14 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
                     intent.putExtra(Constants.ORDER_ID, orderId);
                     startActivity(intent);
                     finish();
-                }else {
+                }else if(TextUtils.equals(result, "fail")){
                     String errorMsg = data.getStringExtra("error_msg"); // 错误信息
                     String extraMsg = data.getExtras().getString("extra_msg"); // 错误信息
                     PopUtil.toastInBottom("result=="+result+"  error_msg=="+errorMsg+"   extra_msg=="+extraMsg);
+                }else if(TextUtils.equals(result, "cancel")){
+                    PopUtil.toastInBottom("取消支付");
+                }else if(TextUtils.equals(result, "invalid")){
+                    PopUtil.toastInBottom("payment plugin not installed");
                 }
             }
         }
@@ -454,14 +471,19 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         TextView btnOk = (TextView) layout.findViewById(R.id.dialog_btn_ok);
         RadioGroup radioGroup = (RadioGroup) layout.findViewById(R.id.radio_group);
         channel = 1 + "";
+        isScanCodePay = false;
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton selectRadioButton = (RadioButton) layout.findViewById(checkedId);
                 if (TextUtils.equals(selectRadioButton.getText(), "支付宝")) {
+                    isScanCodePay = false;
                     channel = 1 + "";
                 } else if (TextUtils.equals(selectRadioButton.getText(), "微信支付")) {
+                    isScanCodePay = false;
                     channel = 5 + "";
+                }else if(TextUtils.equals(selectRadioButton.getText(), "微信扫码支付")){
+                    isScanCodePay = true;
                 }
             }
         });
