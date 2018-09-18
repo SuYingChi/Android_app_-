@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.msht.mshtlpgmaster.Bean.RefreshOrdersListBean;
+import com.msht.mshtlpgmaster.Bean.SimpleEventbusBean;
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.adapter.BaseLazyFragmentPagerAdapter;
 import com.msht.mshtlpgmaster.constant.Constants;
@@ -20,6 +23,8 @@ import com.msht.mshtlpgmaster.fragment.MySettingFragment;
 import com.msht.mshtlpgmaster.fragment.OrdersListLazyFragment;
 import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.util.SharePreferenceUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -185,7 +190,14 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        Log.e("HomeActivity", "onNewIntent: " );
     }
 
-
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e("HomeActivity", "onRestart: " );
+        //EventBus.getDefault().postSticky(new RefreshOrdersListBean());
+        f0.refreshOrdersList();
+    }
 }

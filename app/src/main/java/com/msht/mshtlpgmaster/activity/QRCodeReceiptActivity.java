@@ -5,15 +5,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.msht.mshtlpgmaster.Bean.GetPayQRCodeBean;
-import com.msht.mshtlpgmaster.Bean.GetPayQRErrorBean;
-import com.msht.mshtlpgmaster.Bean.PayFinishBean;
+import com.msht.mshtlpgmaster.Bean.SimpleEventbusBean;
 import com.msht.mshtlpgmaster.Bean.QueryOrderBean;
 import com.msht.mshtlpgmaster.Bean.WxcodePayErroBean;
 import com.msht.mshtlpgmaster.Present.GetOrderStatusPresenter;
@@ -133,7 +131,7 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
                 Intent intent = new Intent(this, SendBottleOrdersDetailFinishActivity.class);
                 intent.putExtra(Constants.ORDER_ID, orderId);
                 startActivity(intent);
-                EventBus.getDefault().postSticky(new PayFinishBean());
+                EventBus.getDefault().postSticky(new SimpleEventbusBean());
                 finish();
 
                 break;

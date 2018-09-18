@@ -17,7 +17,7 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:src="@drawable/orders" />
 
         <TextView
@@ -25,7 +25,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_Modules"
-            android:text="001241242" />
+            android:text="001241242"
+            android:textSize="@dimen/text_16"
+            />
 
         <View
             android:layout_width="0dp"
@@ -36,7 +38,9 @@
             android:id="@+id/item_rcl_transfer_to_storage_orders_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="已完成" />
+            android:text="已完成"
+            android:textSize="@dimen/text_16"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -57,12 +61,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5kg气瓶"
-                android:textColor="@color/head_text_color" />
+                android:textColor="@color/head_text_color"
+                android:textSize="@dimen/text_16"
+                />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textSize="@dimen/text_16"
+                />
 
             <TextView
                 android:id="@+id/item_rcl_transfer_to_storage_orders_five_kg_number"
@@ -87,7 +95,7 @@
 
                 android:text="15kg气瓶"
                 android:textColor="@color/head_text_color"
-
+                android:textSize="@dimen/text_16"
                 />
 
             <View
@@ -99,7 +107,7 @@
                 android:id="@+id/item_rcl_transfer_to_storage_orders_fifteen_kg_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:textSize="@dimen/text_16"
                 android:text="x1"
                 android:textColor="@color/lpg_text_light_color" />
         </LinearLayout>
@@ -115,7 +123,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:textSize="@dimen/text_16"
                 android:text="50kg气瓶"
                 android:textColor="@color/head_text_color"
 
@@ -153,6 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_Modules"
                 android:text="共计"
+                android:textSize="@dimen/text_16"
                 android:textColor="@color/head_text_color" />
 
             <TextView

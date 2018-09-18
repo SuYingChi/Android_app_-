@@ -14,12 +14,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.msht.mshtlpgmaster.Bean.LogoutEvent;
 import com.msht.mshtlpgmaster.Bean.OrdersListBeanV2;
+import com.msht.mshtlpgmaster.Bean.RefreshOrdersListBean;
 import com.msht.mshtlpgmaster.Present.IOrdersListPresenter;
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.activity.BackBottleOrdersCancleActivity;
 import com.msht.mshtlpgmaster.activity.BackBottleOrdersDetailActivity;
 import com.msht.mshtlpgmaster.activity.BackBottleOrdersFinishActivity;
+import com.msht.mshtlpgmaster.activity.LoginActivity;
 import com.msht.mshtlpgmaster.activity.SendBottleOrdersDetailActivity;
 import com.msht.mshtlpgmaster.activity.SendBottleOrdersDetailCancleActivity;
 import com.msht.mshtlpgmaster.activity.SendBottleOrdersDetailFinishActivity;
@@ -37,12 +40,23 @@ import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yanzhenjie.permission.Permission;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
+/**
+ onVisible:
+ initView:
+ initData:
+ onGetOrdersSuccess: page=1
+ onVisible:
+ onGetOrdersSuccess: page=1
+* */
 public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderView, OnRefreshListener, OrdersListRclAdapter.OnOrdersFragmentRclClicklistener, PermissionUtils.PermissionRequestFinishListener, OnLoadMoreListener {
     private IOrdersListPresenter iOrdersListPresenter;
     @BindView(R.id.rcl_home_orders_fragment)
@@ -66,7 +80,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     private final String[] tabTitles = {"全部", "待验瓶", "待付款", "已完成"};
     private final String[] tabTitlesReturnBottle = {"全部", "待验瓶", "已完成", "已取消"};
     private String mobile;
-
+    private static final String TAG = "ListFrag";
 
     @Override
     protected int setLayoutId() {
@@ -75,7 +89,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
 
     @Override
     protected void initView() {
-
+        Log.e(TAG, "initView: " );
         iOrdersListPresenter = new IOrdersListPresenter(OrdersListLazyFragment.this);
         refreshLayout.setEnableAutoLoadMore(true);
         refreshLayout.setOnRefreshListener(this);
@@ -172,10 +186,23 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
 
     @Override
     protected void initData() {
-        page = 1;
-        iOrdersListPresenter.getOrders();
+        Log.e(TAG, "initData: ");
+        if (iOrdersListPresenter != null) {
+            page = 1;
+            iOrdersListPresenter.getOrders();
+        }
+        EventBus.getDefault().register(this);
     }
 
+    @Override
+    protected void onVisible() {
+        super.onVisible();
+        Log.e(TAG, "onVisible: ");
+        if (iOrdersListPresenter != null) {
+            page = 1;
+            iOrdersListPresenter.getOrders();
+        }
+    }
 
     @Override
     public int getPage() {
@@ -189,6 +216,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
 
     @Override
     public void onGetOrdersSuccess(OrdersListBeanV2 ordersBean) {
+        Log.e(TAG, "onGetOrdersSuccess: page=" + page);
         refreshLayout.finishRefresh();
         if (page == 1) {
             list.clear();
@@ -265,7 +293,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
             Intent intent = new Intent(getActivity(), BackBottleOrdersCancleActivity.class);
             intent.putExtra(Constants.ORDER_ID, orderId + "");
             startActivity(intent);
-        }else if (orderType == 6) {
+        } else if (orderType == 6) {
             Intent intent = new Intent(getActivity(), SendBottleOrdersDetailCancleActivity.class);
             intent.putExtra(Constants.ORDER_ID, orderId + "");
             startActivity(intent);
@@ -331,6 +359,19 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         page++;
         Log.d("suyingchi", "onLoadMore: page = " + page);
+        iOrdersListPresenter.getOrders();
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(RefreshOrdersListBean messageEvent) {
+        if (iOrdersListPresenter != null) {
+            Log.e(TAG, "onEvent: ");
+            page = 1;
+            iOrdersListPresenter.getOrders();
+        }
+    }
+
+    public void refreshOrdersList() {
+        page = 1;
         iOrdersListPresenter.getOrders();
     }
 }

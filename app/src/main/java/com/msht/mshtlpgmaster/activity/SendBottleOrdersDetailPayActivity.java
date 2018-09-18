@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.msht.mshtlpgmaster.Bean.DeliveryBean;
 import com.msht.mshtlpgmaster.Bean.EmpPayBean;
 import com.msht.mshtlpgmaster.Bean.OrderDetailBean;
-import com.msht.mshtlpgmaster.Bean.PayFinishBean;
+import com.msht.mshtlpgmaster.Bean.SimpleEventbusBean;
 import com.msht.mshtlpgmaster.Present.ICashPayPresenter;
 import com.msht.mshtlpgmaster.Present.IOrderDetailPresenter;
 import com.msht.mshtlpgmaster.R;
@@ -348,14 +348,15 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
                  * "cancel"  - user canceld
                  * "invalid" - payment plugin not installed
                  */
-                String errorMsg = data.getStringExtra("error_msg"); // 错误信息
-                String extraMsg = data.getExtras().getString("extra_msg"); // 错误信息
-                    PopUtil.toastInBottom("error_msg=="+errorMsg+"extra_msg=="+extraMsg);
                 if (TextUtils.equals(result, "success")) {
                     Intent intent = new Intent(this, SendBottleOrdersDetailFinishActivity.class);
                     intent.putExtra(Constants.ORDER_ID, orderId);
                     startActivity(intent);
                     finish();
+                }else {
+                    String errorMsg = data.getStringExtra("error_msg"); // 错误信息
+                    String extraMsg = data.getExtras().getString("extra_msg"); // 错误信息
+                    PopUtil.toastInBottom("result=="+result+"  error_msg=="+errorMsg+"   extra_msg=="+extraMsg);
                 }
             }
         }
@@ -431,7 +432,7 @@ public class SendBottleOrdersDetailPayActivity extends BaseActivity implements I
         EventBus.getDefault().unregister(this);
     }
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(PayFinishBean event) {
+    public void onMessageEvent(SimpleEventbusBean event) {
        finish();
     }
     private void payDialog(Context mContext, String title,

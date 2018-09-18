@@ -141,7 +141,7 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
 
     @Override
     public String getPageSize() {
-        return "2";
+        return "5";
     }
 
     @Override
@@ -152,7 +152,7 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
         }
         refreshLayout.finishLoadMore();
         List<TransferStorageListBean.DataBean.ListBean> listTemp = transferStorageListBean.getData().getList();
-        list.addAll(filterList(listTemp));
+            list.addAll(filterList(listTemp));
         if (pageNum == transferStorageListBean.getData().getPage().getPages()) {
             refreshLayout.setEnableAutoLoadMore(false);
         } else {
@@ -255,5 +255,14 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
         super.onError(s);
         refreshLayout.finishRefresh();
         refreshLayout.finishLoadMore();
+        list.clear();
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        pageNum = 1;
+        iTransferToStoragePresenter.getTransferOrdersList();
     }
 }

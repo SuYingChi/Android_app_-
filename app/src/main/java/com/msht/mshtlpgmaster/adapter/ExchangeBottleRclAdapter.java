@@ -182,9 +182,9 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
 
                 }
             });
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
-                public void onClick(View v) {
+                public boolean onLongClick(View v) {
                     PopUtil.showComfirmDialog(activity, "移除该项空瓶置换", "确认移除该项空瓶置换", "取消", "确认", null, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -192,7 +192,7 @@ public class ExchangeBottleRclAdapter extends RecyclerView.Adapter {
                             notifyDataSetChanged();
                         }
                     }, true);
-
+                     return  true;
                 }
             });
 
