@@ -49,14 +49,15 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
 /**
- onVisible:
- initView:
- initData:
- onGetOrdersSuccess: page=1
- onVisible:
- onGetOrdersSuccess: page=1
-* */
+ * onVisible:
+ * initView:
+ * initData:
+ * onGetOrdersSuccess: page=1
+ * onVisible:
+ * onGetOrdersSuccess: page=1
+ */
 public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderView, OnRefreshListener, OrdersListRclAdapter.OnOrdersFragmentRclClicklistener, PermissionUtils.PermissionRequestFinishListener, OnLoadMoreListener {
     private IOrdersListPresenter iOrdersListPresenter;
     @BindView(R.id.rcl_home_orders_fragment)
@@ -89,7 +90,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
 
     @Override
     protected void initView() {
-        Log.e(TAG, "initView: " );
+        Log.e(TAG, "initView: ");
         refreshLayout.setEnableAutoLoadMore(true);
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
@@ -99,7 +100,6 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
             public void onTabSelected(TabLayout.Tab tab) {
                 ordersStatus = tab.getPosition();
                 SharePreferenceUtil.setLoginSpIntValue(Constants.HOME_ORDERS_SCHEDULE_CITEM, ordersStatus);
-
                 onRefresh(refreshLayout);
             }
 
@@ -186,7 +186,9 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     @Override
     protected void initData() {
         Log.e(TAG, "initData: ");
-        iOrdersListPresenter = new IOrdersListPresenter(OrdersListLazyFragment.this);
+        if(iOrdersListPresenter == null){
+            iOrdersListPresenter = new IOrdersListPresenter(OrdersListLazyFragment.this);
+        }
         page = 1;
         iOrdersListPresenter.getOrders();
         EventBus.getDefault().register(this);
@@ -232,7 +234,9 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         page = 1;
-        iOrdersListPresenter.getOrders();
+        if (iOrdersListPresenter != null) {
+            iOrdersListPresenter.getOrders();
+        }
     }
 
     @Override
@@ -359,6 +363,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
         Log.d("suyingchi", "onLoadMore: page = " + page);
         iOrdersListPresenter.getOrders();
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(RefreshOrdersListBean messageEvent) {
         if (iOrdersListPresenter != null) {
@@ -369,7 +374,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     }
 
     public void refreshOrdersList() {
-        Log.e(TAG, "refreshOrdersList:" );
+        Log.e(TAG, "refreshOrdersList:");
         page = 1;
         iOrdersListPresenter.getOrders();
     }

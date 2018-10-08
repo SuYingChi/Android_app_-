@@ -56,6 +56,10 @@
             android:enabled="true"
             android:process="system"
             />
+        <service android:name=".services.KillSelfService"
+            android:enabled="true"
+            android:process="system"
+            />
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -137,6 +141,7 @@
         <activity android:name="com.msht.mshtlpgmaster.activity.SendOrderScanBottleActivity" />
         <activity android:name="com.msht.mshtlpgmaster.activity.WebActivity" />
         <activity android:name="com.msht.mshtlpgmaster.activity.SendBottleOrdersDetailCancleActivity" />
+        <activity android:name=".activity.EmptyActivity" />
 
         <!--apk安装-->
         <provider

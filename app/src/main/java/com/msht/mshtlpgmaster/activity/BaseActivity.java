@@ -65,10 +65,10 @@ public class BaseActivity extends AppCompatActivity implements IBaseView, BGASwi
     }
 
     protected void initStateBar() {
- /*       mImmersionBar = ImmersionBar.with(this);
+      /*  mImmersionBar = ImmersionBar.with(this);
         //ImmersionBar.with(this).statusBarColor(R.color.msb_color).statusBarDarkFont(true, 0.2f).fitsSystemWindows(true).init();
-        mImmersionBar.statusBarColor(R.color.msb_color).transparentNavigationBar().init();*/
-
+        mImmersionBar.statusBarColor(R.color.msb_color).transparentNavigationBar().init();
+*/
     }
 
     private void setSoftInPutMode() {
@@ -237,6 +237,8 @@ public class BaseActivity extends AppCompatActivity implements IBaseView, BGASwi
         }
         return onTouchEvent(ev);
     }
+
+
 
     public boolean isShouldHideInput(View v, MotionEvent event) {
         if (v != null && (v instanceof EditText)) {

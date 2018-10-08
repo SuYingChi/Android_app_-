@@ -16,7 +16,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/return_btn" />
+            android:src="@drawable/return_btn"
+            android:padding="@dimen/margin_Modules"
+            />
 
         <include
             layout="@layout/homefragment_top_tab"

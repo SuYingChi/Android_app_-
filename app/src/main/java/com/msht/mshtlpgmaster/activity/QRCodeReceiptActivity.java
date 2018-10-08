@@ -52,7 +52,7 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
     private ScheduledFuture<?> b;
     private ScheduledThreadPoolExecutor executor;
     private String payType;
-    private String body = "付款";
+    private String body="";
     private String payAmount;
     private String orderId;
     Handler handler = new Handler();
@@ -67,6 +67,7 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
         unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
+        body = "液化气: "+orderId;
         payAmount = intent.getStringExtra(Constants.PAY_AMOUNT);
         payType = intent.getStringExtra(Constants.PAY_TYPE);
         getQRcodeImageUrlPresenter = new GetQRcodeImageUrlPresenter(this);
