@@ -71,9 +71,9 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
                 public void onClick(View v) {
                     if(!AppUtil.isWifiConnect()){
                         if(AppUtil.isNetworkAvailable()) {
-                            PopUtil.showComfirmDialog(UpdateVersionActivity.this, "下载提示",   "当前版本为V" + AppUtil.getVerName(UpdateVersionActivity.this)
-                                            + ",最新版本为V" + appInfoBean.getData().getVersion()
-                                            + ",是否更新到最新版本？"+String.format("当前不在WiFi环境，安装包大小：%.2fMB,请确认是否使用流量下载", Float.valueOf(appInfoBean.getData().getApkSize()) / 1000),
+                            PopUtil.showComfirmDialog(UpdateVersionActivity.this, "下载提示",   "当前版本为V" + vision
+                                            + ",最新版本为V" + appInfoBean.getData().getVersion()+"\n"+"新版本更新如下"
+                                            +"\n"+String.format("当前不在WiFi环境，安装包大小：%.2fMB,请确认是否使用流量下载", Float.valueOf(appInfoBean.getData().getApkSize()) / 1000)+"\n"+"\n"+AppUtil.isNumeric(appInfoBean.getData().getRemarks())+"\n"+"\n"+"是否更新到最新版本？",
                                     "取消", "确定更新", null, new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -84,9 +84,9 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
                             PopUtil.toastInBottom("无可用网络下载安装包");
                         }
                     }else {
-                        PopUtil.showComfirmDialog(UpdateVersionActivity.this, appInfoBean.getData().getTitle(), "当前版本为V" + AppUtil.getVerName(UpdateVersionActivity.this)
-                                        + ",最新版本为V" + appInfoBean.getData().getVersion()
-                                        + ",是否更新到最新版本？",
+                        PopUtil.showComfirmDialog(UpdateVersionActivity.this, appInfoBean.getData().getTitle(), "当前版本为V" + vision
+                                        + ",最新版本为V" + appInfoBean.getData().getVersion()+"\n"+"新版本更新如下"
+                                       +"\n"+"\n"+AppUtil.isNumeric(appInfoBean.getData().getRemarks())+"\n"+"\n"+"是否更新到最新版本？",
                                 "取消", "确定更新", null, new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {

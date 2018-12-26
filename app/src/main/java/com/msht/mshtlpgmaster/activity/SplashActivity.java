@@ -41,7 +41,6 @@ public class SplashActivity extends BaseActivity implements PermissionUtils.Perm
             @Override
             public void run() {
                 gotoActivity();
-                finish();
             }
         };
         time.schedule(tk, timelong);

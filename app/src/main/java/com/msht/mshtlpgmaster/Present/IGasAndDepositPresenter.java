@@ -11,6 +11,8 @@ import com.msht.mshtlpgmaster.gsonInstance.GsonUtil;
 import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.viewInterface.IOrdesDespositView;
 import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.builder.GetBuilder;
+import com.zhy.http.okhttp.builder.PostFormBuilder;
 
 public class IGasAndDepositPresenter {
     private IOrdesDespositView iOrdesDespositView;
@@ -20,6 +22,7 @@ public class IGasAndDepositPresenter {
     }
 
     public void getGasAndDeposit() {
+        PostFormBuilder s = OkHttpUtils.post().url(Constants.GET_GAS_AND_DEPOSIT).addParams("siteId", iOrdesDespositView.getSiteId());
         OkHttpUtils.get().url(Constants.GET_GAS_AND_DEPOSIT).addParams("siteId", iOrdesDespositView.getSiteId())
                 .build().execute(new DataStringCallback(iOrdesDespositView) {
             @Override

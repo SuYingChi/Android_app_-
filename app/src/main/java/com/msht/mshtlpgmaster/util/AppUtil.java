@@ -25,8 +25,11 @@ import com.msht.mshtlpgmaster.application.LPGApplication;
 import com.msht.mshtlpgmaster.constant.Constants;
 import com.msht.mshtlpgmaster.fragment.BaseFragment;
 
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
@@ -66,7 +69,7 @@ public class AppUtil {
 
     public static boolean isNetworkAvailable() {
         ConnectivityManager manager = (ConnectivityManager) LPGApplication.getLPGApplicationContext().getSystemService(
-                        Context.CONNECTIVITY_SERVICE);
+                Context.CONNECTIVITY_SERVICE);
 
         if (manager == null) {
             return false;
@@ -77,6 +80,7 @@ public class AppUtil {
         }
         return true;
     }
+
     /**
      * 检查wifi是否处开连接状态
      *
@@ -140,6 +144,7 @@ public class AppUtil {
 
         return verName;
     }
+
     public static String getPackageName(Context context) {
         String verName = "";
         try {
@@ -150,6 +155,7 @@ public class AppUtil {
 
         return verName;
     }
+
     //未指定应用商店，让用户选择去哪个应用商店
     public static void goMarket(Context context) {
         try {
@@ -163,6 +169,7 @@ public class AppUtil {
             e.printStackTrace();
         }
     }
+
     /**
      * 跳转应用商店.
      *
@@ -170,7 +177,7 @@ public class AppUtil {
      * @param marketPkg 应用商店包名
      * @return {@code true} 跳转成功 <br> {@code false} 跳转失败
      */
-    public static void toMarket(Context context,  String marketPkg) {
+    public static void toMarket(Context context, String marketPkg) {
         Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         if (marketPkg != null) {// 如果没给市场的包名，则系统会弹出市场的列表让你进行选择。
@@ -182,6 +189,7 @@ public class AppUtil {
             ex.printStackTrace();
         }
     }
+
     //三星应用市场
     public static void goToSamsungappsMarket(Context context) {
         Uri uri = Uri.parse("http://www.samsungapps.com/appquery/appDetail.as?appId=" + context.getPackageName());
@@ -195,6 +203,7 @@ public class AppUtil {
             e.printStackTrace();
         }
     }
+
     //乐视手机应用市场
     public static void goToLeTVStoreDetail(Context context) {
         Intent intent = new Intent();
@@ -208,10 +217,12 @@ public class AppUtil {
             e.printStackTrace();
         }
     }
+
     /**
      * 跳转索尼精选
+     *
      * @param context {@link Context}
-     * @param appId 索尼精选中分配得appId
+     * @param appId   索尼精选中分配得appId
      * @return {@code true} 跳转成功 <br> {@code false} 跳转失败
      */
     public static void goToSonyMarket(Context context, String appId) {
@@ -228,6 +239,7 @@ public class AppUtil {
             ex.printStackTrace();
         }
     }
+
     public static void replaceFragment(BaseFragment showfragment, BaseFragment currentFragment, FragmentManager fragmentManager) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.remove(currentFragment).commit();
@@ -241,56 +253,58 @@ public class AppUtil {
         transaction.replace(R.id.fl_my_container, showfragment).commit();
     }
 
-        /**
-         * 获取当前手机系统语言。
-         *
-         * @return 返回当前系统语言。例如：当前设置的是“中文-中国”，则返回“zh-CN”
-         */
-        public static String getSystemLanguage() {
-            return Locale.getDefault().getLanguage();
-        }
+    /**
+     * 获取当前手机系统语言。
+     *
+     * @return 返回当前系统语言。例如：当前设置的是“中文-中国”，则返回“zh-CN”
+     */
+    public static String getSystemLanguage() {
+        return Locale.getDefault().getLanguage();
+    }
 
-        /**
-         * 获取当前系统上的语言列表(Locale列表)
-         *
-         * @return  语言列表
-         */
-        public static Locale[] getSystemLanguageList() {
-            return Locale.getAvailableLocales();
-        }
+    /**
+     * 获取当前系统上的语言列表(Locale列表)
+     *
+     * @return 语言列表
+     */
+    public static Locale[] getSystemLanguageList() {
+        return Locale.getAvailableLocales();
+    }
 
-        /**
-         * 获取当前手机系统版本号
-         *
-         * @return  系统版本号
-         */
-        public static String getSystemVersion() {
-            return android.os.Build.VERSION.RELEASE;
-        }
+    /**
+     * 获取当前手机系统版本号
+     *
+     * @return 系统版本号
+     */
+    public static String getSystemVersion() {
+        return android.os.Build.VERSION.RELEASE;
+    }
 
-        /**
-         * 获取手机型号
-         *
-         * @return  手机型号
-         */
-        public static String getSystemModel() {
-            return android.os.Build.MODEL;
-        }
+    /**
+     * 获取手机型号
+     *
+     * @return 手机型号
+     */
+    public static String getSystemModel() {
+        return android.os.Build.MODEL;
+    }
 
-        /**
-         * 获取手机厂商
-         *
-         * @return  手机厂商
-         */
-        public static String getDeviceBrand() {
-            return android.os.Build.BRAND.trim().toUpperCase();
-        }
+    /**
+     * 获取手机厂商
+     *
+     * @return 手机厂商
+     */
+    public static String getDeviceBrand() {
+        return android.os.Build.BRAND.trim().toUpperCase();
+    }
 
-    /*    *//**
-         * 获取手机IMEI(需要“android.permission.READ_PHONE_STATE”权限)
-         *
-         * @return  手机IMEI
-         *//*
+    /*    */
+
+    /**
+     * 获取手机IMEI(需要“android.permission.READ_PHONE_STATE”权限)
+     *
+     * @return 手机IMEI
+     *//*
         public static String getIMEI(Context ctx) {
             TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Activity.TELEPHONY_SERVICE);
             if (tm != null) {
@@ -298,15 +312,13 @@ public class AppUtil {
             }
             return null;
         }*/
-    public static String formattedOutputDecimal(double decimal)
-    {
-        DecimalFormat df=new DecimalFormat("######0.00");
-        String result=df.format(decimal);
+    public static String formattedOutputDecimal(double decimal) {
+        DecimalFormat df = new DecimalFormat("######0.00");
+        String result = df.format(decimal);
         return result;
     }
 
-    public static String formattedDecimalToPercentage(double decimal)
-    {
+    public static String formattedDecimalToPercentage(double decimal) {
         //获取格式化对象
         NumberFormat nt = NumberFormat.getPercentInstance();
         //设置百分数精确度2即保留两位小数
@@ -314,5 +326,25 @@ public class AppUtil {
         return nt.format(decimal);
     }
 
-
+    public static String isNumeric(String str) {
+        List<Integer> list = new ArrayList<Integer>();
+        for (int i = 0; i < str.length(); i++) {
+            if (Character.isDigit(str.charAt(i))) {
+                list.add(i);
+            }
+        }
+        StringBuilder strbuilder = new StringBuilder();
+        for (int position = 0; position < list.size(); position++) {
+            Integer startIndex = list.get(position);
+            String strr;
+            if (position == list.size() - 1) {
+                 strr = str.substring(startIndex);
+            }else {
+                Integer endIndex = list.get(position+1);
+                 strr = str.substring(startIndex, endIndex - 1);
+            }
+            strbuilder.append(strr + "\n");
+        }
+        return strbuilder.toString();
+    }
 }

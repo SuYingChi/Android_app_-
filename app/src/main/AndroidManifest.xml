@@ -24,7 +24,10 @@
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
+    <!-- 显示系统窗口权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <!-- 在 屏幕最顶部显示addview-->
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
 
     <application
         android:name="com.msht.mshtlpgmaster.application.LPGApplication"
@@ -45,7 +48,6 @@
         </activity>
         <activity android:name="com.msht.mshtlpgmaster.activity.LoginActivity"
             android:theme="@style/AppThemeTransparentStatusbar"
-            android:launchMode="singleTask"
             />
         <activity
             android:name="com.msht.mshtlpgmaster.activity.HomeActivity"

@@ -205,7 +205,7 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity implement
         tvDeliverFee.setText(totalDeliveryfare + "");
         double exchange = orderDetailBean.getData().getRetrieveAmount();
         if (exchange == 0) {
-            llDiscount.setVisibility(View.INVISIBLE);
+            llDiscount.setVisibility(View.GONE);
         } else {
             tvDiscount.setText(exchange + "");
         }

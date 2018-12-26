@@ -36,14 +36,14 @@ public class DownLoadApkService extends Service {
     private String url;
     private String fileName;
     private RemoteViews contentView;
-    private Notification.Builder builder;
-    private NotificationCompat.Builder builder25;
+    private NotificationCompat.Builder builder;
     private NotificationManager notificationManager;
     private String TAG = "DownLoadApk";
     public static final String ONCLICK = "com.app.onclick";
     public File file;
     public static final String channelId = "channel_1";
     public static final String channelName = "channel_name_1";
+    private Notification notify;
     private BroadcastReceiver receiver_onclick = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -55,6 +55,7 @@ public class DownLoadApkService extends Service {
         }
     };
 
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -65,50 +66,51 @@ public class DownLoadApkService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null) {
             url = intent.getStringExtra("url");
-           long apksize = intent.getLongExtra("apksize",0);
+            long apksize = intent.getLongExtra("apksize", 0);
             if (!TextUtils.isEmpty(url)) {
                 fileName = this.url.substring(this.url.lastIndexOf("/") + 1, this.url.length());
-                OkHttpUtils.get().url(url).build().execute(new FileCallBack(Environment.getExternalStorageDirectory().getAbsolutePath() + "/LpgDownloads/", fileName) {
-                    public float prepercent = 0;
+                    OkHttpUtils.get().url(url).build().execute(new FileCallBack(Environment.getExternalStorageDirectory().getAbsolutePath() + "/LpgDownloads/", fileName) {
+                        public float prepercent = 0;
 
-                    @Override
-                    public void onBefore(Request request, int id) {
-                        super.onBefore(request, id);
-                        FileUtil.deleteFile(Environment.getExternalStorageDirectory().getAbsolutePath() + "/LpgDownloads/");
-                        creatNotification(apksize,"安装包正在下载...");
-                    }
-
-                    @Override
-                    public void inProgress(float progress, long total, int id) {
-                        Log.e(TAG, "安装包正在下载... inProgress: progress/ " + AppUtil.formattedDecimalToPercentage((double) (progress / apksize)) + "   progress   " + progress + "     total=  " + apksize);
-                        float currentPercent = progress / apksize;
-                        //notify频率降低些，不然会出现notify不生效的bug
-                        if (currentPercent - prepercent >= 0.1) {
-                            notifyNotification(progress, apksize, "安装包正在下载...");
-                            prepercent = currentPercent;
+                        @Override
+                        public void onBefore(Request request, int id) {
+                            super.onBefore(request, id);
+                            FileUtil.deleteFile(Environment.getExternalStorageDirectory().getAbsolutePath() + "/LpgDownloads/");
+                            creatNotification(apksize, "安装包正在下载...");
+                            PopUtil.toastInBottom("开始下载最新安装包");
                         }
 
-                    }
+                        @Override
+                        public void inProgress(float progress, long total, int id) {
+                            Log.e(TAG, "安装包正在下载... inProgress: progress/ " + AppUtil.formattedDecimalToPercentage((double) (progress / apksize)) + "   progress   " + progress + "     total=  " + apksize);
+                            float currentPercent = progress / apksize;
+                            //notify频率降低些，不然会出现notify不生效的bug
+                            if (currentPercent - prepercent >= 0.1) {
+                                notifyNotification(progress, apksize, "安装包正在下载...");
+                                prepercent = currentPercent;
+                            }
 
-                    @Override
-                    public void onError(Call call, Exception e, int i) {
-                        PopUtil.toastInBottom("下载安装包发生异常" + e.getMessage());
-                    }
+                        }
 
-                    @Override
-                    public void onResponse(File file, int i) {
-                        DownLoadApkService.this.file = file;
-                        PopUtil.toastInBottom("安装包下载完成");
-                        Log.e(TAG, "onResponse: 安装包下载完成");
-                        notifyNotificationOnDownLoadFinish(apksize);
-                    }
-                });
+                        @Override
+                        public void onError(Call call, Exception e, int i) {
+                            PopUtil.toastInBottom("下载安装包发生异常" + e.getMessage());
+                        }
+
+                        @Override
+                        public void onResponse(File file, int i) {
+                            DownLoadApkService.this.file = file;
+                            PopUtil.toastInBottom("安装包下载完成");
+                            Log.e(TAG, "onResponse: 安装包下载完成");
+                            notifyNotificationOnDownLoadFinish(apksize);
+                            installApk();
+                        }
+                    });
+                }
             } else {
                 PopUtil.toastInBottom("安装包下载链接为空");
                 stopSelf();
             }
-
-        }
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -133,14 +135,10 @@ public class DownLoadApkService extends Service {
         contentView.setTextViewText(R.id.tv_progress, AppUtil.formattedDecimalToPercentage((double) (progress / total)));
         contentView.setProgressBar(R.id.progress, (int) total, (int) progress, false);
         contentView.setTextViewText(R.id.id_tv_download, text);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            getNotificationManager().notify(R.layout.item_notification, builder.build());
-        }else {
-            getNotificationManager().notify(R.layout.item_notification,builder25.build());
-        }
+        getNotificationManager().notify(R.layout.item_notification, notify);
     }
 
-    private void creatNotification( long total, String s) {
+    private void creatNotification(long total, String s) {
         //*** 自定义  Notification 的显示****//
         contentView = new RemoteViews(getPackageName(), R.layout.item_notification);
         contentView.setProgressBar(R.id.progress, (int) total, 0, false);
@@ -148,26 +146,24 @@ public class DownLoadApkService extends Service {
         contentView.setTextViewText(R.id.id_tv_download, "安装包正在下载...");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
+            channel.enableVibration(false);
+            channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
             getNotificationManager().createNotificationChannel(channel);
-            builder = new Notification.Builder(DownLoadApkService.this,channelId);
-            builder.setSmallIcon(R.mipmap.logo);
-            builder.setContentTitle("下载");
-            builder.setContentText(s);
-            builder .setAutoCancel(true);
-            builder.setCustomContentView(contentView);
-
+            builder = new NotificationCompat.Builder(DownLoadApkService.this, channelId);
+            builder.setChannelId(channelId);
         }else {
-            builder25 = new NotificationCompat.Builder(getApplicationContext())
-                    .setContentTitle("下载")
-                    .setContentText(s)
-                    .setSmallIcon(R.mipmap.logo)
-                    .setAutoCancel(true);
-            builder25.setCustomContentView(contentView);
-
+            builder = new NotificationCompat.Builder(DownLoadApkService.this);
         }
-
+        builder.setSmallIcon(R.mipmap.logo);
+        builder.setContentTitle("下载");
+        builder.setContentText(s);
+        builder.setAutoCancel(true);
+        builder.setCustomContentView(contentView);
+        notify = builder.build();
+        getNotificationManager().notify(R.layout.item_notification, notify);
 
     }
+
     private NotificationManager getNotificationManager() {
         if (notificationManager == null) {
             notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -175,7 +171,7 @@ public class DownLoadApkService extends Service {
         return notificationManager;
     }
 
-    private void notifyNotificationOnDownLoadFinish(long total){
+    private void notifyNotificationOnDownLoadFinish(long total) {
         IntentFilter filterClick = new IntentFilter();
         filterClick.addAction(ONCLICK);
         //注册广播
@@ -188,10 +184,6 @@ public class DownLoadApkService extends Service {
         contentView.setTextViewText(R.id.tv_progress, AppUtil.formattedDecimalToPercentage((double) (1)));
         contentView.setProgressBar(R.id.progress, (int) total, (int) total, false);
         contentView.setTextViewText(R.id.id_tv_download, "下载完成");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            getNotificationManager().notify(R.layout.item_notification, builder.build());
-        }else {
-            getNotificationManager().notify(R.layout.item_notification,builder25.build());
-        }
+        getNotificationManager().notify(R.layout.item_notification, notify);
     }
 }

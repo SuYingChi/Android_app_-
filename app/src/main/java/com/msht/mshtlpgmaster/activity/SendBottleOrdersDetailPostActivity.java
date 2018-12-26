@@ -590,6 +590,10 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
                         default:
                             break;
                     }
+                    if(year==7||level.equals("D")){
+                       year=7;
+                       level="D";
+                    }
                     if (i == 0) {
                         stringBuilder.append(weight).append(",").append(year).append(",").append(num).append(",").append(level);
                     } else {
