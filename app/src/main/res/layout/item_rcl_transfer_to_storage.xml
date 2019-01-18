@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/line_color_lib"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    >
 
     <View
         android:layout_width="match_parent"
@@ -58,7 +61,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5kg气瓶"
+                android:text="5kg空瓶"
                 android:textColor="@color/head_text_color"
                 android:textSize="@dimen/text_16" />
 
@@ -92,7 +95,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="15kg气瓶"
+                android:text="15kg空瓶"
                 android:textColor="@color/head_text_color"
                 android:textSize="@dimen/text_16"
 
@@ -128,7 +131,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="50kg气瓶"
+                android:text="50kg空瓶"
                 android:textColor="@color/head_text_color"
                 android:textSize="@dimen/text_16"
 
@@ -154,7 +157,114 @@
 
                 />
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_five_full"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.5dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_Modules">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5kg重瓶"
+                android:textColor="@color/head_text_color"
+                android:textSize="@dimen/text_16" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/five_full_kg_number"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_Modules"
+                android:paddingLeft="@dimen/margin_Modules"
+                android:text="0"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.5dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_Modules">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15kg重瓶"
+                android:textColor="@color/head_text_color"
+                android:textSize="@dimen/text_16"
+
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/fifteen_full_number"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_Modules"
+                android:paddingLeft="@dimen/margin_Modules"
+                android:text="0"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.5dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_Modules">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50kg重瓶"
+                android:textColor="@color/head_text_color"
+                android:textSize="@dimen/text_16"
+
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/fifty_full_kg_number"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_Modules"
+                android:paddingLeft="@dimen/margin_Modules"
+                android:text="0"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="@dimen/text_16"
+
+                />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -209,8 +319,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_Modules"
-                android:text="扫描入库"
-                android:textColor="@color/head_text_color"
+                android:text="扫描钢瓶"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_normal"
+                android:paddingLeft="@dimen/margin"
+                android:paddingRight="@dimen/margin"
                 android:textSize="@dimen/text_16" />
 
             <ImageView

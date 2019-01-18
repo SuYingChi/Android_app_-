@@ -24,4 +24,10 @@ public interface ITransferToStorageView extends IBaseView{
     String getFifthCount();
 
     void onUpdateTransferSuccess(UpdateTransferBean updateTransferBean);
+
+    String getFiveFullCount();
+
+    String getFifteenFullCount();
+
+    String getFifthFullCount();
 }

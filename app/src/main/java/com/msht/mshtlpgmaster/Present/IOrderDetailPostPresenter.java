@@ -57,7 +57,6 @@ public class IOrderDetailPostPresenter {
                 Log.d("suyingchi", "onResponse: after from json");
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "fail")) {
                     iOrderDetailPostView.onError(bean.getMsg());
-
                 } else if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "success")) {
                     try{
                     ComfirmOrdersBean comfirmOrdersBean = GsonUtil.getGson().fromJson(s, ComfirmOrdersBean.class);

@@ -26,4 +26,5 @@ public interface IPostTransferView extends IBaseView {
     String getTransferId();
 
     String getStationId();
+
 }

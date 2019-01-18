@@ -65,10 +65,7 @@ public class BaseActivity extends AppCompatActivity implements IBaseView, BGASwi
     }
 
     protected void initStateBar() {
-      /*  mImmersionBar = ImmersionBar.with(this);
-        //ImmersionBar.with(this).statusBarColor(R.color.msb_color).statusBarDarkFont(true, 0.2f).fitsSystemWindows(true).init();
-        mImmersionBar.statusBarColor(R.color.msb_color).transparentNavigationBar().init();
-*/
+
     }
 
     private void setSoftInPutMode() {
@@ -99,7 +96,7 @@ public class BaseActivity extends AppCompatActivity implements IBaseView, BGASwi
         // 设置触发释放后自动滑动返回的阈值，默认值为 0.3f
         mSwipeBackHelper.setSwipeBackThreshold(0.3f);
         // 设置底部导航条是否悬浮在内容上，默认值为 false
-        mSwipeBackHelper.setIsNavigationBarOverlap(false);
+        mSwipeBackHelper.setIsNavigationBarOverlap(true);
     }
 
     @Override

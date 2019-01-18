@@ -7,7 +7,7 @@ public class TransferStorageListBean {
     /**
      * result : success
      * msg : 查询成功
-     * data : {"page":{"pageNum":1,"pageSize":0,"pages":0,"total":0},"list":[{"id":1,"ids":"","transformType":1,"dept":"龙华门市部","siteName":"秀英气站","planDay":1543075200000,"proposer":"小年轻","siteId":2,"fiveCount":15,"fifteenCount":20,"fifthCount":50,"trackName":"--","state":1,"bottleIds":""},{"id":5,"ids":"","transformType":1,"dept":"","siteName":"","planDay":1530374400000,"proposer":"","siteId":2,"fiveCount":1,"fifteenCount":1,"fifthCount":1,"trackName":"--","state":0,"bottleIds":""}]}
+     * data : {"page":{"pageNum":1,"pageSize":6,"pages":1,"total":6},"list":[{"id":113,"ids":"","transformType":2,"dept":"测试网点","siteName":"","planDay":1545840000000,"proposer":"13005099965","siteId":21,"stationId":14,"fiveCount":0,"fifteenCount":0,"fifthCount":0,"fiveFullCount":3,"fifteenFullCount":5,"fiftyFullCount":5,"trackName":"","state":2,"orderAmount":0,"scanner":"","bottleIds":"","heavryBottleIds":"","lightBottleIds":"","startDate":"","endDate":""},{"id":114,"ids":"","transformType":2,"dept":"测试网点","siteName":"","planDay":1545926400000,"proposer":"13005099965","siteId":21,"stationId":14,"fiveCount":1,"fifteenCount":3,"fifthCount":5,"fiveFullCount":2,"fifteenFullCount":4,"fiftyFullCount":6,"trackName":"","state":0,"orderAmount":3200,"scanner":"","bottleIds":"","heavryBottleIds":"","lightBottleIds":"","startDate":"","endDate":""},{"id":115,"ids":"","transformType":2,"dept":"测试网点","siteName":"","planDay":1546012800000,"proposer":"13005099965","siteId":21,"stationId":14,"fiveCount":5,"fifteenCount":2,"fifthCount":1,"fiveFullCount":1,"fifteenFullCount":2,"fiftyFullCount":3,"trackName":"","state":0,"orderAmount":1600,"scanner":"","bottleIds":"","heavryBottleIds":"","lightBottleIds":"","startDate":"","endDate":""},{"id":116,"ids":"","transformType":2,"dept":"测试网点","siteName":"","planDay":1545926400000,"proposer":"13005099965","siteId":21,"stationId":14,"fiveCount":0,"fifteenCount":0,"fifthCount":0,"fiveFullCount":2,"fifteenFullCount":3,"fiftyFullCount":3,"trackName":"","state":0,"orderAmount":1950,"scanner":"","bottleIds":"","heavryBottleIds":"","lightBottleIds":"","startDate":"","endDate":""},{"id":117,"ids":"","transformType":2,"dept":"测试网点","siteName":"","planDay":1546185600000,"proposer":"13005099965","siteId":21,"stationId":14,"fiveCount":1,"fifteenCount":0,"fifthCount":0,"fiveFullCount":0,"fifteenFullCount":1,"fiftyFullCount":0,"trackName":"","state":0,"orderAmount":200,"scanner":"","bottleIds":"","heavryBottleIds":"","lightBottleIds":"","startDate":"","endDate":""},{"id":118,"ids":"","transformType":2,"dept":"测试网点","siteName":"","planDay":1546444800000,"proposer":"13005099965","siteId":21,"stationId":14,"fiveCount":1,"fifteenCount":2,"fifthCount":1,"fiveFullCount":1,"fifteenFullCount":2,"fiftyFullCount":1,"trackName":"","state":0,"orderAmount":900,"scanner":"","bottleIds":"","heavryBottleIds":"","lightBottleIds":"","startDate":"","endDate":""}]}
      */
 
     private String result;
@@ -40,8 +40,8 @@ public class TransferStorageListBean {
 
     public static class DataBean {
         /**
-         * page : {"pageNum":1,"pageSize":0,"pages":0,"total":0}
-         * list : [{"id":1,"ids":"","transformType":1,"dept":"龙华门市部","siteName":"秀英气站","planDay":1543075200000,"proposer":"小年轻","siteId":2,"fiveCount":15,"fifteenCount":20,"fifthCount":50,"trackName":"--","state":1,"bottleIds":""},{"id":5,"ids":"","transformType":1,"dept":"","siteName":"","planDay":1530374400000,"proposer":"","siteId":2,"fiveCount":1,"fifteenCount":1,"fifthCount":1,"trackName":"--","state":0,"bottleIds":""}]
+         * page : {"pageNum":1,"pageSize":6,"pages":1,"total":6}
+         * list : [{"id":113,"ids":"","transformType":2,"dept":"测试网点","siteName":"","planDay":1545840000000,"proposer":"13005099965","siteId":21,"stationId":14,"fiveCount":0,"fifteenCount":0,"fifthCount":0,"fiveFullCount":3,"fifteenFullCount":5,"fiftyFullCount":5,"trackName":"","state":2,"orderAmount":0,"scanner":"","bottleIds":"","heavryBottleIds":"","lightBottleIds":"","startDate":"","endDate":""},{"id":114,"ids":"","transformType":2,"dept":"测试网点","siteName":"","planDay":1545926400000,"proposer":"13005099965","siteId":21,"stationId":14,"fiveCount":1,"fifteenCount":3,"fifthCount":5,"fiveFullCount":2,"fifteenFullCount":4,"fiftyFullCount":6,"trackName":"","state":0,"orderAmount":3200,"scanner":"","bottleIds":"","heavryBottleIds":"","lightBottleIds":"","startDate":"","endDate":""},{"id":115,"ids":"","transformType":2,"dept":"测试网点","siteName":"","planDay":1546012800000,"proposer":"13005099965","siteId":21,"stationId":14,"fiveCount":5,"fifteenCount":2,"fifthCount":1,"fiveFullCount":1,"fifteenFullCount":2,"fiftyFullCount":3,"trackName":"","state":0,"orderAmount":1600,"scanner":"","bottleIds":"","heavryBottleIds":"","lightBottleIds":"","startDate":"","endDate":""},{"id":116,"ids":"","transformType":2,"dept":"测试网点","siteName":"","planDay":1545926400000,"proposer":"13005099965","siteId":21,"stationId":14,"fiveCount":0,"fifteenCount":0,"fifthCount":0,"fiveFullCount":2,"fifteenFullCount":3,"fiftyFullCount":3,"trackName":"","state":0,"orderAmount":1950,"scanner":"","bottleIds":"","heavryBottleIds":"","lightBottleIds":"","startDate":"","endDate":""},{"id":117,"ids":"","transformType":2,"dept":"测试网点","siteName":"","planDay":1546185600000,"proposer":"13005099965","siteId":21,"stationId":14,"fiveCount":1,"fifteenCount":0,"fifthCount":0,"fiveFullCount":0,"fifteenFullCount":1,"fiftyFullCount":0,"trackName":"","state":0,"orderAmount":200,"scanner":"","bottleIds":"","heavryBottleIds":"","lightBottleIds":"","startDate":"","endDate":""},{"id":118,"ids":"","transformType":2,"dept":"测试网点","siteName":"","planDay":1546444800000,"proposer":"13005099965","siteId":21,"stationId":14,"fiveCount":1,"fifteenCount":2,"fifthCount":1,"fiveFullCount":1,"fifteenFullCount":2,"fiftyFullCount":1,"trackName":"","state":0,"orderAmount":900,"scanner":"","bottleIds":"","heavryBottleIds":"","lightBottleIds":"","startDate":"","endDate":""}]
          */
 
         private PageBean page;
@@ -66,9 +66,9 @@ public class TransferStorageListBean {
         public static class PageBean {
             /**
              * pageNum : 1
-             * pageSize : 0
-             * pages : 0
-             * total : 0
+             * pageSize : 6
+             * pages : 1
+             * total : 6
              */
 
             private int pageNum;
@@ -111,20 +111,30 @@ public class TransferStorageListBean {
 
         public static class ListBean {
             /**
-             * id : 1
+             * id : 113
              * ids :
-             * transformType : 1
-             * dept : 龙华门市部
-             * siteName : 秀英气站
-             * planDay : 1543075200000
-             * proposer : 小年轻
-             * siteId : 2
-             * fiveCount : 15
-             * fifteenCount : 20
-             * fifthCount : 50
-             * trackName : --
-             * state : 1
+             * transformType : 2
+             * dept : 测试网点
+             * siteName :
+             * planDay : 1545840000000
+             * proposer : 13005099965
+             * siteId : 21
+             * stationId : 14
+             * fiveCount : 0
+             * fifteenCount : 0
+             * fifthCount : 0
+             * fiveFullCount : 3
+             * fifteenFullCount : 5
+             * fiftyFullCount : 5
+             * trackName :
+             * state : 2
+             * orderAmount : 0
+             * scanner :
              * bottleIds :
+             * heavryBottleIds :
+             * lightBottleIds :
+             * startDate :
+             * endDate :
              */
 
             private int id;
@@ -135,12 +145,22 @@ public class TransferStorageListBean {
             private long planDay;
             private String proposer;
             private int siteId;
+            private int stationId;
             private int fiveCount;
             private int fifteenCount;
             private int fifthCount;
+            private int fiveFullCount;
+            private int fifteenFullCount;
+            private int fiftyFullCount;
             private String trackName;
             private int state;
+            private int orderAmount;
+            private String scanner;
             private String bottleIds;
+            private String heavryBottleIds;
+            private String lightBottleIds;
+            private String startDate;
+            private String endDate;
 
             public int getId() {
                 return id;
@@ -206,6 +226,14 @@ public class TransferStorageListBean {
                 this.siteId = siteId;
             }
 
+            public int getStationId() {
+                return stationId;
+            }
+
+            public void setStationId(int stationId) {
+                this.stationId = stationId;
+            }
+
             public int getFiveCount() {
                 return fiveCount;
             }
@@ -230,6 +258,30 @@ public class TransferStorageListBean {
                 this.fifthCount = fifthCount;
             }
 
+            public int getFiveFullCount() {
+                return fiveFullCount;
+            }
+
+            public void setFiveFullCount(int fiveFullCount) {
+                this.fiveFullCount = fiveFullCount;
+            }
+
+            public int getFifteenFullCount() {
+                return fifteenFullCount;
+            }
+
+            public void setFifteenFullCount(int fifteenFullCount) {
+                this.fifteenFullCount = fifteenFullCount;
+            }
+
+            public int getFiftyFullCount() {
+                return fiftyFullCount;
+            }
+
+            public void setFiftyFullCount(int fiftyFullCount) {
+                this.fiftyFullCount = fiftyFullCount;
+            }
+
             public String getTrackName() {
                 return trackName;
             }
@@ -246,12 +298,60 @@ public class TransferStorageListBean {
                 this.state = state;
             }
 
+            public int getOrderAmount() {
+                return orderAmount;
+            }
+
+            public void setOrderAmount(int orderAmount) {
+                this.orderAmount = orderAmount;
+            }
+
+            public String getScanner() {
+                return scanner;
+            }
+
+            public void setScanner(String scanner) {
+                this.scanner = scanner;
+            }
+
             public String getBottleIds() {
                 return bottleIds;
             }
 
             public void setBottleIds(String bottleIds) {
                 this.bottleIds = bottleIds;
+            }
+
+            public String getHeavryBottleIds() {
+                return heavryBottleIds;
+            }
+
+            public void setHeavryBottleIds(String heavryBottleIds) {
+                this.heavryBottleIds = heavryBottleIds;
+            }
+
+            public String getLightBottleIds() {
+                return lightBottleIds;
+            }
+
+            public void setLightBottleIds(String lightBottleIds) {
+                this.lightBottleIds = lightBottleIds;
+            }
+
+            public String getStartDate() {
+                return startDate;
+            }
+
+            public void setStartDate(String startDate) {
+                this.startDate = startDate;
+            }
+
+            public String getEndDate() {
+                return endDate;
+            }
+
+            public void setEndDate(String endDate) {
+                this.endDate = endDate;
             }
         }
     }

@@ -89,6 +89,8 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity implement
     LinearLayout lldeliver;
     @BindView(R.id.pay_time)
     TextView tvPayTime;
+    @BindView(R.id.status)
+    TextView tvStatus;
     private String orderId;
     private double fiveTotalDeposite;
     private double fifteenteenTotalDeposite;
@@ -108,6 +110,7 @@ public class SendBottleOrdersDetailFinishActivity extends BaseActivity implement
         unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
+        tvStatus.setText("已完成");
         IOrderDetailPresenter iOrderDetailPresenter = new IOrderDetailPresenter(this);
         iOrderDetailPresenter.getOrderDetail();
         iOrderDetailPresenter.getFirstDelivery();

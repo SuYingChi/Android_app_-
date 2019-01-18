@@ -51,7 +51,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/line_color_lib">
+       >
 
         <include
             android:id="@+id/header"
@@ -62,8 +62,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/header"
-            android:layout_marginLeft="@dimen/margin_Modules"
-            android:layout_marginRight="@dimen/margin_Modules"
             android:background="@color/white" />
     </RelativeLayout>
 </LinearLayout>

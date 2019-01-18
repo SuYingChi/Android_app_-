@@ -34,6 +34,7 @@ import com.msht.mshtlpgmaster.util.BottleCaculteUtil;
 import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.util.SharePreferenceUtil;
 import com.msht.mshtlpgmaster.viewInterface.IPostTransferView;
+import com.msht.mshtlpgmaster.viewInterface.IPostUnityTransferView;
 import com.msht.mshtlpgmaster.viewInterface.IScanCodeDeliverSteelBottleView;
 import com.uuzuche.lib_zxing.camera.CameraManager;
 import com.uuzuche.lib_zxing.view.ViewfinderView;
@@ -44,7 +45,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyScanTransferBottleFragment extends BaseScanFragmengt implements IScanCodeDeliverSteelBottleView, IPostTransferView {
+public class MyScanTransferBottleFragment extends BaseScanFragmengt implements IScanCodeDeliverSteelBottleView, IPostTransferView, IPostUnityTransferView {
     @BindView(R.id.scan_delive_steel_bottle_qrcode_viewfinder_view)
     ViewfinderView viewfinderView;
     @BindView(R.id.scan_delive_steel_bottle_preview_view)
@@ -82,6 +83,9 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
     private String transferType;
     private String url;
     private String verifyType;
+    private String fivefullCount;
+    private String fifteenfullCount;
+    private String fiftyfullCount;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,9 +96,12 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
             fiveCount = bundles.getString(Constants.ORDER_FIVE_NUM);
             fifteenCount = bundles.getString(Constants.ORDER_FIFTEEN_NUM);
             fiftyCount = bundles.getString(Constants.ORDER_FIFTY_NUM);
+            fivefullCount = bundles.getString(Constants.ORDER_FIVE_FULL_NUM);
+            fifteenfullCount = bundles.getString(Constants.ORDER_FIFTEEN_FULL_NUM);
+            fiftyfullCount = bundles.getString(Constants.ORDER_FIFTY_FULL_NUM);
             transferType = bundles.getString("TransferType");
             iScanbottleCodePresenter = new IScanbottleCodePresenter(this);
-            iPostTransferPresenter = new IPostTransferPresenter(this);
+            iPostTransferPresenter = new IPostTransferPresenter(this, this);
         }
 
     }
@@ -126,6 +133,13 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
                 title.setText("请扫描要调拨入库钢瓶");
                 verifyType = "4";
                 break;
+            //统一调拨
+            case "2":
+                url = Constants.POST_TRANSFER_REPERTORY;
+                topBarView.setTitle("统一调拨");
+                title.setText("请扫描要调拨钢瓶");
+                verifyType = "1";
+                break;
             default:
                 break;
         }
@@ -139,8 +153,12 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (BottleCaculteUtil.checkBottleListbyOrderNum(list, Integer.valueOf(fiveCount), Integer.valueOf(fifteenCount), Integer.valueOf(fiftyCount))) {
-                    iPostTransferPresenter.postTransferOrders();
+                if (BottleCaculteUtil.checkBottleListbyOrderNum(list, Integer.valueOf(fiveCount), Integer.valueOf(fifteenCount), Integer.valueOf(fiftyCount),Integer.valueOf(fivefullCount), Integer.valueOf(fifteenfullCount), Integer.valueOf(fiftyfullCount))) {
+                    if("1".equals(verifyType)) {
+                        iPostTransferPresenter.postUnityTransferOrders();
+                    }else {
+                        iPostTransferPresenter.postTransferOrders();
+                    }
                 }
             }
         });
@@ -158,7 +176,7 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.toString().length() == 10) {
-                    AppUtil.hideInput(MyScanTransferBottleFragment.this.getContext(), etInput);
+                    AppUtil.hideInput(getContext(), etInput);
                 }
             }
         });
@@ -199,32 +217,71 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
         if (BottleCaculteUtil.isContainBottle(list, verifyBottleBean.getData().getBottleCode())) {
             PopUtil.toastInBottom("钢瓶已添加");
         } else {
-            if (verifyBottleBean.getData().getBottleWeight() == 5 && BottleCaculteUtil.getBottleNum(list, 5) >= Integer.valueOf(fiveCount)) {
-                PopUtil.toastInBottom("5kg钢瓶已达到订单数");
-            } else if (verifyBottleBean.getData().getBottleWeight() == 15 && BottleCaculteUtil.getBottleNum(list, 15) >= Integer.valueOf(fifteenCount)) {
-                PopUtil.toastInBottom("15kg钢瓶已达到订单数");
-            } else if (verifyBottleBean.getData().getBottleWeight() == 50 && BottleCaculteUtil.getBottleNum(list, 50) >= Integer.valueOf(fiftyCount)) {
-                PopUtil.toastInBottom("50kg钢瓶已达到订单数");
-                //空瓶调拨出库单
-            } else if (TextUtils.equals(transferType, "0") && verifyBottleBean.getData().getIsHeavy() == 1) {
+            //1是空瓶 0是重瓶 0出库，1入库
+            if (verifyBottleBean.getData().getIsHeavy() == 1) {
+                if (verifyBottleBean.getData().getBottleWeight() == 5 && BottleCaculteUtil.getBottleNum(list, 5,1) >= Integer.valueOf(fiveCount)) {
+                    PopUtil.toastInBottom("5kg空瓶已达到订单数");
+                } else if (verifyBottleBean.getData().getBottleWeight() == 15 && BottleCaculteUtil.getBottleNum(list, 15,1) >= Integer.valueOf(fifteenCount)) {
+                    PopUtil.toastInBottom("15kg空瓶已达到订单数");
+                } else if (verifyBottleBean.getData().getBottleWeight() == 50 && BottleCaculteUtil.getBottleNum(list, 50,1) >= Integer.valueOf(fiftyCount)) {
+                    PopUtil.toastInBottom("50kg空瓶已达到订单数");
+                } else if (TextUtils.equals(transferType, "2")) {
+                    list.add(verifyBottleBean);
+                    adapter.notifyDataSetChanged();
+                    fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5)));
+                    fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15)));
+                    fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50)));
+                } else if (TextUtils.equals(transferType, "0")) {
+                    list.add(verifyBottleBean);
+                    adapter.notifyDataSetChanged();
+                    fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5,1)));
+                    fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15,1)));
+                    fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50,1)));
+                } else if (TextUtils.equals(transferType, "1")) {
+                    PopUtil.toastInBottom("只能调拨空瓶出库");
+                }
+            } else if (verifyBottleBean.getData().getIsHeavy() == 0) {
+                if (verifyBottleBean.getData().getBottleWeight() == 5 && BottleCaculteUtil.getBottleNum(list, 5,0) >= Integer.valueOf(fivefullCount)) {
+                    PopUtil.toastInBottom("5kg重瓶已达到订单数");
+                } else if (verifyBottleBean.getData().getBottleWeight() == 15 && BottleCaculteUtil.getBottleNum(list, 15,0) >= Integer.valueOf(fifteenfullCount)) {
+                    PopUtil.toastInBottom("15kg重瓶已达到订单数");
+                } else if (verifyBottleBean.getData().getBottleWeight() == 50 && BottleCaculteUtil.getBottleNum(list, 50,0) >= Integer.valueOf(fiftyfullCount)) {
+                    PopUtil.toastInBottom("50kg重瓶已达到订单数");
+                } else if (TextUtils.equals(transferType, "2")) {
+                    list.add(verifyBottleBean);
+                    adapter.notifyDataSetChanged();
+                    fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5)));
+                    fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15)));
+                    fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50)));
+                } else if (TextUtils.equals(transferType, "1")) {
+                    list.add(verifyBottleBean);
+                    adapter.notifyDataSetChanged();
+                    fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5,0)));
+                    fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15,0)));
+                    fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50,0)));
+                } else if (TextUtils.equals(transferType, "0")) {
+                    PopUtil.toastInBottom("只能调拨重瓶入库");
+                }
+            } /*else if (TextUtils.equals(transferType, "0") && verifyBottleBean.getData().getIsHeavy() == 1) {
                 list.add(verifyBottleBean);
                 adapter.notifyDataSetChanged();
                 fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5)));
                 fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15)));
                 fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50)));
 
-            } else if (TextUtils.equals(transferType, "0") && verifyBottleBean.getData().getIsHeavy() == 0) {
+            }*/ /*else if (TextUtils.equals(transferType, "0") && verifyBottleBean.getData().getIsHeavy() == 0) {
                 PopUtil.toastInBottom("只能调拨空瓶出库");
-            } else if (TextUtils.equals(transferType, "1") && verifyBottleBean.getData().getIsHeavy() == 1) {
+            }*//* else if (TextUtils.equals(transferType, "1") && verifyBottleBean.getData().getIsHeavy() == 1) {
                 PopUtil.toastInBottom("只能调拨重瓶入库");
-            }  //重瓶调拨入库单
-            else if (TextUtils.equals(transferType, "1") && verifyBottleBean.getData().getIsHeavy() == 0) {
+            } */ //重瓶调拨入库单
+        /*    else if (TextUtils.equals(transferType, "1") && verifyBottleBean.getData().getIsHeavy() == 0) {
                 list.add(verifyBottleBean);
                 adapter.notifyDataSetChanged();
                 fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5)));
                 fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15)));
                 fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50)));
-            } else {
+            }*/
+            else {
                 PopUtil.toastInBottom("不能扫描钢瓶");
             }
         }
@@ -262,9 +319,16 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
     }
 
     @Override
+    public void onPostTransUnityfersuccess(PostTransferBean bean) {
+        PopUtil.toastInBottom("调拨成功");
+        getActivity().finish();
+    }
+
+    @Override
     public String getStationId() {
         return "1";
     }
+
 
     @Override
     public String getFiveCount() {
@@ -285,8 +349,36 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
     }
 
     @Override
+    public String fiveFullCount() {
+        return fivefullCount;
+    }
+
+    @Override
+    public String fifteenFullCount() {
+        return fifteenfullCount;
+    }
+
+    @Override
+    public String fiftyFullCount() {
+        return fiftyfullCount;
+    }
+
+    @Override
     public String carNum() {
         return carNum;
+    }
+
+    @Override
+    public String heavryBottleIds() {
+        List<VerifyBottleBean> heavrylist = BottleCaculteUtil.filterList(list, 0);
+        return BottleCaculteUtil.getBottleIds(heavrylist);
+
+    }
+
+    @Override
+    public String lightBottleIds() {
+        List<VerifyBottleBean> lightlist = BottleCaculteUtil.filterList(list, 1);
+        return BottleCaculteUtil.getBottleIds(lightlist);
     }
 
     @Override

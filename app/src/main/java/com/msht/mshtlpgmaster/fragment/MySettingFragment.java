@@ -2,6 +2,7 @@ package com.msht.mshtlpgmaster.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.MainThread;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,9 +10,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.msht.mshtlpgmaster.Bean.IMyMenuBean;
 import com.msht.mshtlpgmaster.Bean.LoginEventBean;
 import com.msht.mshtlpgmaster.Bean.LogoutEvent;
 import com.msht.mshtlpgmaster.Present.ILogoutPresenter;
+import com.msht.mshtlpgmaster.Present.MyMenu;
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.activity.CurrentVersionInfoActivity;
 import com.msht.mshtlpgmaster.activity.LoginActivity;
@@ -21,7 +24,10 @@ import com.msht.mshtlpgmaster.activity.MyIncomeActivity;
 import com.msht.mshtlpgmaster.activity.RegisterEmployerActivity;
 import com.msht.mshtlpgmaster.activity.RegisterBottleActivity;
 import com.msht.mshtlpgmaster.activity.TransferStorageListActivity;
+import com.msht.mshtlpgmaster.gsonInstance.GsonUtil;
+import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.util.SharePreferenceUtil;
+import com.msht.mshtlpgmaster.viewInterface.IMyMenu;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -29,7 +35,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 
-public class MySettingFragment extends BaseLazyFragment {
+public class MySettingFragment extends BaseLazyFragment implements IMyMenu {
     @BindView(R.id.my_setting_username)
     TextView tvName;
     @BindView(R.id.my_setting_user_location)
@@ -42,18 +48,24 @@ public class MySettingFragment extends BaseLazyFragment {
     ImageView ivRegisterBottle;
     @BindView(R.id.ll_my_setting_unregister_login)
     LinearLayout llUnregister;
-    @BindView(R.id.my_setting_out_warehouse)
-    RelativeLayout out_transfer;
     @BindView(R.id.my_setting_in_storage)
     RelativeLayout in_transfer;
-    @BindView(R.id.my_setting_my_steel_bottle)
-    RelativeLayout myBottle;
     @BindView(R.id.my_setting_mobile_open_account)
     RelativeLayout register;
     @BindView(R.id.ll_my_setting_my_income)
     LinearLayout llMyIncome;
     @BindView(R.id.ll_my_setting_about_me)
     LinearLayout llAboutme;
+    @BindView(R.id.rlt_get_steel_bottle_out)
+    RelativeLayout rltGetout;
+    @BindView(R.id.rlt_my_steel_bottle)
+    RelativeLayout rltMyBottlt;
+    @BindView(R.id.rlt_transfer)
+    RelativeLayout rlt_transfer;
+    @BindView(R.id.rlt_register_steel_bottle)
+    RelativeLayout rltRegister;
+    @BindView(R.id.rlt_setting_get_steel_bottle_in)
+    RelativeLayout rltIn;
     private String name = "";
     private String siteName = "";
 
@@ -104,11 +116,12 @@ public class MySettingFragment extends BaseLazyFragment {
                 new ILogoutPresenter(MySettingFragment.this).logout();
             }
         });
-        out_transfer.setOnClickListener(new View.OnClickListener() {
+        rlt_transfer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), TransferStorageListActivity.class);
-                intent.putExtra("TransferType", "0");
+                //  intent.putExtra("TransferType", "0");
+                intent.putExtra("TransferType", "2");
                 startActivity(intent);
             }
         });
@@ -116,11 +129,12 @@ public class MySettingFragment extends BaseLazyFragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), TransferStorageListActivity.class);
-                intent.putExtra("TransferType", "1");
+                //   intent.putExtra("TransferType", "1");
+                intent.putExtra("TransferType", "2");
                 startActivity(intent);
             }
         });
-        myBottle.setOnClickListener(new View.OnClickListener() {
+        rltMyBottlt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MyBottleActivity.class);
@@ -151,6 +165,12 @@ public class MySettingFragment extends BaseLazyFragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        MyMenu.getMyIncome(this);
+    }
+
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onMessageEvent(LoginEventBean event) {
         name = event.getUserLoginBean().getData().getEmployeeName();
@@ -158,14 +178,49 @@ public class MySettingFragment extends BaseLazyFragment {
         tvName.setText(name);
         tvSite.setText(siteName);
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(LogoutEvent messageEvent) {
         Intent goLogin = new Intent(getActivity(), LoginActivity.class);
         startActivity(goLogin);
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
+    @Override
+    public void onGetMyMenuSuccess(String s) {
+        IMyMenuBean bean = GsonUtil.getGson().fromJson(s, IMyMenuBean.class);
+        if (bean.getData().contains("领瓶出库")) {
+            rltGetout.setVisibility(View.VISIBLE);
+        } else {
+            rltGetout.setVisibility(View.GONE);
+        }
+        if (bean.getData().contains("返瓶入库")) {
+            rltIn.setVisibility(View.VISIBLE);
+        } else {
+            rltIn.setVisibility(View.GONE);
+        }
+        if (bean.getData().contains("钢瓶注册")) {
+            rltRegister.setVisibility(View.VISIBLE);
+        } else {
+            rltRegister.setVisibility(View.INVISIBLE);
+        }
+        if (bean.getData().contains("调拨出库")) {
+            rlt_transfer.setVisibility(View.VISIBLE);
+        } else {
+            rlt_transfer.setVisibility(View.INVISIBLE);
+        }
+        if (bean.getData().contains("我的钢瓶")) {
+            rltMyBottlt.setVisibility(View.VISIBLE);
+        } else {
+            rltMyBottlt.setVisibility(View.GONE);
+        }
+
+    }
+
+
 }

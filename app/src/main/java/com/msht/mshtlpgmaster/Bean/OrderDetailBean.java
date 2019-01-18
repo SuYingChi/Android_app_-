@@ -90,6 +90,15 @@ public class OrderDetailBean  {
         private String appointmentTime;
         private String createDate;
 
+        public int getBusinessFlag() {
+            return businessFlag;
+        }
+
+        public void setBusinessFlag(int businessFlag) {
+            this.businessFlag = businessFlag;
+        }
+
+        private int businessFlag;
         public String getPayTime() {
             return payTime;
         }

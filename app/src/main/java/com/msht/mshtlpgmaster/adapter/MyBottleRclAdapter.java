@@ -30,7 +30,7 @@ public class MyBottleRclAdapter extends RecyclerView.Adapter<MyBottleRclAdapter.
     @NonNull
     @Override
     public MyBottleRclAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(inflater.inflate(R.layout.item_rcl_deliver_steel_bottle, parent, false));
+        return new ViewHolder(inflater.inflate(R.layout.item_my_steel_bottle, parent, false));
     }
 
     @Override

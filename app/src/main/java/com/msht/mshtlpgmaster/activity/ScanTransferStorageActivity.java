@@ -36,6 +36,9 @@ public class ScanTransferStorageActivity extends BaseActivity implements Permiss
     private String fifteenCount;
     private String ffityCount;
     private String transferType;
+    private String fivefullCount;
+    private String fifteenfullCount;
+    private String ffityfullCount;
 
 
     @Override
@@ -47,6 +50,9 @@ public class ScanTransferStorageActivity extends BaseActivity implements Permiss
         fiveCount = getIntent().getStringExtra(Constants.ORDER_FIVE_NUM);
         fifteenCount = getIntent().getStringExtra(Constants.ORDER_FIFTEEN_NUM);
         ffityCount = getIntent().getStringExtra(Constants.ORDER_FIFTY_NUM);
+        fivefullCount = getIntent().getStringExtra(Constants.ORDER_FIVE_FULL_NUM);
+        fifteenfullCount = getIntent().getStringExtra(Constants.ORDER_FIFTEEN_FULL_NUM);
+        ffityfullCount = getIntent().getStringExtra(Constants.ORDER_FIFTY_FULL_NUM);
         transferType = getIntent().getStringExtra("TransferType");
         PermissionUtils.requestPermissions(this, this, Permission.CAMERA);
 
@@ -83,6 +89,9 @@ public class ScanTransferStorageActivity extends BaseActivity implements Permiss
         bundle.putString(Constants.ORDER_FIVE_NUM, fiveCount);
         bundle.putString(Constants.ORDER_FIFTEEN_NUM, fifteenCount);
         bundle.putString(Constants.ORDER_FIFTY_NUM, ffityCount);
+        bundle.putString(Constants.ORDER_FIVE_FULL_NUM, fivefullCount);
+        bundle.putString(Constants.ORDER_FIFTEEN_FULL_NUM, fifteenfullCount);
+        bundle.putString(Constants.ORDER_FIFTY_FULL_NUM, ffityfullCount);
         bundle.putString("TransferType", transferType);
         scanTransferBottleFragment.setArguments(bundle);
         AppUtil.showFragment(scanTransferBottleFragment, getSupportFragmentManager());

@@ -3,10 +3,11 @@ package com.msht.mshtlpgmaster.Bean;
 import java.io.Serializable;
 
 public class VerifyBottleBean implements Serializable {
+
     /**
      * result : success
      * msg : 钢瓶验证成功
-     * data : {"id":1,"ids":"","isScrap":1,"isHeavy":0,"siteId":"","bottleCode":"8880000001","bottleNum":"mmmm0","bottleWeight":15,"producer":"浙江tt瓶厂","propertyUnit":"海南民生液化气有限公司","createTime":"2018-08","checkTime":"","lastCheckTime":"","nextCheckTime":"2022-08","checkStatus":0,"discardTime":"","status":1,"stationId":"","trackId":"","employeeId":"","employeeName":"","userId":"","orderId":"","deliveryBottleIds":"","recycleBottleIds":"","builder":"系统","bottleDownloadUrl":"","useDays":"","fillsite":"","filltime":"","fillweight":"","startDate":"","endDate":""}
+     * data : {"id":24994,"ids":"","isScrap":1,"isHeavy":1,"siteId":-1,"bottleCode":"8880024994","bottleNum":"","bottleWeight":15,"producer":"浙江民泰钢瓶厂","propertyUnit":"海南民生液化气有限公司","createTime":"2018-08","checkTime":"","lastCheckTime":"","nextCheckTime":"2022-08","checkStatus":0,"discardTime":"","status":3,"stationId":21,"trackId":"","employeeId":"","employeeName":"","userId":"","orderId":"","deliveryBottleIds":"","recycleBottleIds":"","builder":"系统","bottleDownloadUrl":"http://lpg-code.oss-cn-shenzhen.aliyuncs.com/barcode/8880024994_label.png","useDays":"","fillsite":"","filltime":"","fillweight":"","actualFillWeight":"","flowDetail":"","scanner":"","startDate":"","endDate":""}
      */
 
     private String result;
@@ -39,15 +40,15 @@ public class VerifyBottleBean implements Serializable {
 
     public static class DataBean implements Serializable{
         /**
-         * id : 1
+         * id : 24994
          * ids :
          * isScrap : 1
-         * isHeavy : 0
-         * siteId :
-         * bottleCode : 8880000001
-         * bottleNum : mmmm0
+         * isHeavy : 1
+         * siteId : -1
+         * bottleCode : 8880024994
+         * bottleNum :
          * bottleWeight : 15
-         * producer : 浙江tt瓶厂
+         * producer : 浙江民泰钢瓶厂
          * propertyUnit : 海南民生液化气有限公司
          * createTime : 2018-08
          * checkTime :
@@ -55,8 +56,8 @@ public class VerifyBottleBean implements Serializable {
          * nextCheckTime : 2022-08
          * checkStatus : 0
          * discardTime :
-         * status : 1
-         * stationId :
+         * status : 3
+         * stationId : 21
          * trackId :
          * employeeId :
          * employeeName :
@@ -65,11 +66,14 @@ public class VerifyBottleBean implements Serializable {
          * deliveryBottleIds :
          * recycleBottleIds :
          * builder : 系统
-         * bottleDownloadUrl :
+         * bottleDownloadUrl : http://lpg-code.oss-cn-shenzhen.aliyuncs.com/barcode/8880024994_label.png
          * useDays :
          * fillsite :
          * filltime :
          * fillweight :
+         * actualFillWeight :
+         * flowDetail :
+         * scanner :
          * startDate :
          * endDate :
          */
@@ -91,7 +95,7 @@ public class VerifyBottleBean implements Serializable {
         private int checkStatus;
         private String discardTime;
         private int status;
-        private String stationId;
+        private int stationId;
         private String trackId;
         private String employeeId;
         private String employeeName;
@@ -105,6 +109,9 @@ public class VerifyBottleBean implements Serializable {
         private String fillsite;
         private String filltime;
         private String fillweight;
+        private String actualFillWeight;
+        private String flowDetail;
+        private String scanner;
         private String startDate;
         private String endDate;
 
@@ -244,11 +251,11 @@ public class VerifyBottleBean implements Serializable {
             this.status = status;
         }
 
-        public String getStationId() {
+        public int getStationId() {
             return stationId;
         }
 
-        public void setStationId(String stationId) {
+        public void setStationId(int stationId) {
             this.stationId = stationId;
         }
 
@@ -354,6 +361,30 @@ public class VerifyBottleBean implements Serializable {
 
         public void setFillweight(String fillweight) {
             this.fillweight = fillweight;
+        }
+
+        public String getActualFillWeight() {
+            return actualFillWeight;
+        }
+
+        public void setActualFillWeight(String actualFillWeight) {
+            this.actualFillWeight = actualFillWeight;
+        }
+
+        public String getFlowDetail() {
+            return flowDetail;
+        }
+
+        public void setFlowDetail(String flowDetail) {
+            this.flowDetail = flowDetail;
+        }
+
+        public String getScanner() {
+            return scanner;
+        }
+
+        public void setScanner(String scanner) {
+            this.scanner = scanner;
         }
 
         public String getStartDate() {

@@ -63,6 +63,9 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
             int fifteen = bean.getFifteenCount();
             int fifty = bean.getFifthCount();
             int orderId = bean.getId();
+            int fivefull = bean.getFiveFullCount();
+            int fifteenfull = bean.getFifteenFullCount();
+            int fiftyfull = bean.getFiftyFullCount();
             ((OrdersHolder) holder).etFive.setText(five + "");
             ((OrdersHolder) holder).etFive.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -84,6 +87,27 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
                     ((OrdersHolder) holder).tvTotal.setText(total);
                 }
             });
+            ((OrdersHolder) holder).etFiveFull.setText(fivefull + "");
+            ((OrdersHolder) holder).etFiveFull.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if (TextUtils.isEmpty(s.toString())) {
+                        ((OrdersHolder) holder).etFiveFull.setText(0 + "");
+                    }
+                    String total = Integer.valueOf(((OrdersHolder) holder).etFive.getText().toString())+Integer.valueOf(((OrdersHolder) holder).etFiveFull.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteen.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteenfull.getText().toString())+ Integer.valueOf(((OrdersHolder) holder).etFifty.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFiftyfull.getText().toString())+ "";
+                    ((OrdersHolder) holder).tvTotal.setText(total);
+                }
+            });
             ((OrdersHolder) holder).etFifteen.setText(fifteen + "");
             ((OrdersHolder) holder).etFifteen.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -100,9 +124,30 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
                     if (TextUtils.isEmpty(s.toString())) {
                         ((OrdersHolder) holder).etFifteen.setText(0 + "");
                     }
-                    String total = Integer.valueOf(((OrdersHolder) holder).etFive.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteen.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifty.getText().toString()) + "";
+                    String total = Integer.valueOf(((OrdersHolder) holder).etFive.getText().toString())+Integer.valueOf(((OrdersHolder) holder).etFiveFull.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteen.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteenfull.getText().toString())+ Integer.valueOf(((OrdersHolder) holder).etFifty.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFiftyfull.getText().toString())+ "";
                     ((OrdersHolder) holder).tvTotal.setText(total);
 
+                }
+            });
+            ((OrdersHolder) holder).etFifteenfull.setText(fifteenfull + "");
+            ((OrdersHolder) holder).etFifteenfull.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if (TextUtils.isEmpty(s.toString())) {
+                        ((OrdersHolder) holder).etFifteenfull.setText(0 + "");
+                    }
+                    String total = Integer.valueOf(((OrdersHolder) holder).etFive.getText().toString())+Integer.valueOf(((OrdersHolder) holder).etFiveFull.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteen.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteenfull.getText().toString())+ Integer.valueOf(((OrdersHolder) holder).etFifty.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFiftyfull.getText().toString())+ "";
+                    ((OrdersHolder) holder).tvTotal.setText(total);
                 }
             });
             ((OrdersHolder) holder).etFifty.setText(fifty + "");
@@ -121,17 +166,38 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
                     if (TextUtils.isEmpty(s.toString())) {
                         ((OrdersHolder) holder).etFifty.setText(0 + "");
                     }
-                    String total = Integer.valueOf(((OrdersHolder) holder).etFive.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteen.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifty.getText().toString()) + "";
+                    String total = Integer.valueOf(((OrdersHolder) holder).etFive.getText().toString())+Integer.valueOf(((OrdersHolder) holder).etFiveFull.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteen.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteenfull.getText().toString())+ Integer.valueOf(((OrdersHolder) holder).etFifty.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFiftyfull.getText().toString())+ "";
                     ((OrdersHolder) holder).tvTotal.setText(total);
 
                 }
             });
+            ((OrdersHolder) holder).etFiftyfull.setText(fiftyfull + "");
+            ((OrdersHolder) holder).etFiftyfull.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if (TextUtils.isEmpty(s.toString())) {
+                        ((OrdersHolder) holder).etFiftyfull.setText(0 + "");
+                    }
+                    String total = Integer.valueOf(((OrdersHolder) holder).etFive.getText().toString())+Integer.valueOf(((OrdersHolder) holder).etFiveFull.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteen.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteenfull.getText().toString())+ Integer.valueOf(((OrdersHolder) holder).etFifty.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFiftyfull.getText().toString())+ "";
+                    ((OrdersHolder) holder).tvTotal.setText(total);
+                }
+            });
             ((OrdersHolder) holder).tvOrder.setText(orderId + "");
-            ((OrdersHolder) holder).tvTotal.setText(five + fifteen + fifty + "");
+            ((OrdersHolder) holder).tvTotal.setText(five + fifteen + fifty + +fivefull+fifteenfull+fiftyfull+"");
             ((OrdersHolder) holder).tvModify.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onClckModifyBtn(position, ((OrdersHolder) holder).etFive.getText().toString(), ((OrdersHolder) holder).etFifteen.getText().toString(), ((OrdersHolder) holder).etFifty.getText().toString(), orderId + "");
+                    listener.onClckModifyBtn(position, ((OrdersHolder) holder).etFive.getText().toString(), ((OrdersHolder) holder).etFifteen.getText().toString(), ((OrdersHolder) holder).etFifty.getText().toString(), ((OrdersHolder) holder).etFiveFull.getText().toString(),((OrdersHolder) holder).etFiftyfull.getText().toString(),((OrdersHolder) holder).etFiftyfull.getText().toString(),orderId + "");
                 }
             });
             ((OrdersHolder) holder).tvScan.setOnClickListener(new View.OnClickListener() {
@@ -145,11 +211,17 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
             int fifteen = bean.getFifteenCount();
             int fifty = bean.getFifthCount();
             int orderId = bean.getId();
+            int fivefull = bean.getFiveFullCount();
+            int fifteenfull = bean.getFifteenFullCount();
+            int fiftyfull = bean.getFiftyFullCount();
             ((OrdersFinishHolder) holder).tvFive.setText(five + "");
             ((OrdersFinishHolder) holder).tvFifteen.setText(fifteen + "");
             ((OrdersFinishHolder) holder).tvFifty.setText(fifty + "");
             ((OrdersFinishHolder) holder).tvOrder.setText(orderId + "");
-            ((OrdersFinishHolder) holder).tvTotal.setText(five + fifteen + fifty + "");
+            ((OrdersFinishHolder) holder).tvFivefull.setText(fivefull+"");
+            ((OrdersFinishHolder) holder).tvfifteenFull.setText(fifteenfull+"");
+            ((OrdersFinishHolder) holder).tvFiftyFull.setText(fiftyfull+"");
+            ((OrdersFinishHolder) holder).tvTotal.setText(five + fifteen + fifty +fivefull+fifteenfull+fiftyfull+ "");
         }
     }
 
@@ -211,6 +283,12 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
         TextView tvTotal;
         @BindView(R.id.item_rcl_transfer_to_storage_orders_modify)
         TextView tvModify;
+        @BindView(R.id.five_full_kg_number)
+        EditText etFiveFull;
+        @BindView(R.id.fifteen_full_number)
+        EditText etFifteenfull;
+        @BindView(R.id.fifty_full_kg_number)
+        EditText etFiftyfull;
         @BindView(R.id.tv_scan)
         TextView tvScan;
 
@@ -230,6 +308,12 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
         TextView tvFifteen;
         @BindView(R.id.item_rcl_transfer_to_storage_orders_fifty_kg_number)
         TextView tvFifty;
+        @BindView(R.id.tv_five_full_number)
+        TextView tvFivefull;
+        @BindView(R.id.tv_fifteen_full_number)
+        TextView tvfifteenFull;
+        @BindView(R.id.tv_fifty_full)
+        TextView tvFiftyFull;
         @BindView(R.id.item_rcl_transfer_to_storage_orders_total_number)
         TextView tvTotal;
 
@@ -243,7 +327,7 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
     public interface onTransferToStorageRclAdapterClickListener {
         void onClickScanCodeBtn(int itemPosition, String orderId);
 
-        void onClckModifyBtn(final int position, final String five, final String fifteen, final String itemPosition, final String orderId);
+        void onClckModifyBtn(final int position, final String five, final String fifteen, final String fifty, final String fivefull, final String fifteenfull, final String fiftyfull,final String orderId);
 
     }
 }

@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/line_color_lib"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    >
 
     <View
         android:layout_width="match_parent"
@@ -142,7 +145,102 @@
                 android:textColor="@color/lpg_text_light_color"
                 android:textSize="@dimen/text_16" />
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_five_full"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.5dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_Modules">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5kg气瓶"
+                android:textColor="@color/head_text_color"
+                android:textSize="@dimen/text_16"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_16"
+                />
+
+            <TextView
+                android:id="@+id/tv_five_full_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x1"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_fifteen_full"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.5dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_Modules">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15kg气瓶"
+                android:textColor="@color/head_text_color"
+                android:textSize="@dimen/text_16"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_16"
+                />
+
+            <TextView
+                android:id="@+id/tv_fifteen_full_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x1"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_fifty_full"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.5dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_Modules">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50kg气瓶"
+                android:textColor="@color/head_text_color"
+                android:textSize="@dimen/text_16"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_16"
+                />
+
+            <TextView
+                android:id="@+id/tv_fifty_full"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x1"
+                android:textColor="@color/lpg_text_light_color"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

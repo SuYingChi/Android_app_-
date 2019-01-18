@@ -143,6 +143,7 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
     private boolean isGetFirstDeliverySuccess = false;
     private String address;
     private boolean isGetSecondDeliverySuccess = false;
+    private int businessFlag;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -418,14 +419,24 @@ public class SendBottleOrdersDetailPostActivity extends BaseActivity implements 
                 }
             }
         });
+        businessFlag = bean.getData().getBusinessFlag();
     }
 
     @Override
     public void onPostOrdersSuccess(ComfirmOrdersBean bean) {
-        Intent intent = new Intent(this, SendBottleOrdersDetailPayActivity.class);
-        intent.putExtra(Constants.ORDER_ID, orderId);
-        startActivity(intent);
-        finish();
+        if(businessFlag==1){
+            Intent intent = new Intent(this, SendBottleOrdersDetailFinishActivity.class);
+            intent.putExtra(Constants.ORDER_ID, orderId);
+            intent.putExtra("business",1);
+            startActivity(intent);
+            finish();
+        }else {
+            Intent intent = new Intent(this, SendBottleOrdersDetailPayActivity.class);
+            intent.putExtra(Constants.ORDER_ID, orderId);
+            startActivity(intent);
+            finish();
+        }
+
     }
 
     @Override

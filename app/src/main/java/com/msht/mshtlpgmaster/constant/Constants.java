@@ -6,7 +6,7 @@ public class Constants {
     //凡是接口里有replacelist的都去掉，改为增加一个retrieveAmount字段，空瓶置换有单独接口返回数据
 
     //阿里云地址 http://120.76.193.86:7799
-    public static final String BASE_URL = BuildConfig.DEBUG ? "https://lpgtest.msbapp.cn/api/msht/" : "https://lpg.msbapp.cn/api/msht/";
+    public static final String BASE_URL = BuildConfig.DEBUG ? "https://lpgtest.msbapp.cn/api/msht/"/*"http://192.168.1.199:7899/api/msht/"*/ : "https://lpg.msbapp.cn/api/msht/";
    // public static final String BASE_URL = BuildConfig.DEBUG ? "https://lpg.msbapp.cn/api/msht/" : "https://lpg.msbapp.cn/api/msht/";
     public static final String LOGIN = BASE_URL + "lpgEmpOrder/login";
     //1是送气单 0是退瓶单
@@ -51,6 +51,8 @@ public class Constants {
     public static final String POST_INPUT_REPERTORY = BASE_URL + "lpgEmpBottle/inputRepertory";
     //调拨出库
     public static final String POST_OUT_REPERTORY = BASE_URL + "lpgEmpBottle/outputRepertory";
+    //新的调拨接口
+    public static final String POST_TRANSFER_REPERTORY = BASE_URL + "lpgEmpBottle/transferBottle";
     //我的钢瓶
     public static final String MY_BOTTLE_LIST = BASE_URL + "lpgEmpBottle/myBottle";
     //用户注册
@@ -63,7 +65,7 @@ public class Constants {
     public static final String GET_NEWESTAPPINFO = BASE_URL + "lpgApkManager/getVersion";
     //现金代付
     public static final String CASH_PAY = BASE_URL + "lpgOrder/empPay";
-
+    public static final String   MENU =  BASE_URL+"lpgEmployee/getEmpMenu";
 
     public static final String URL_PARAMS_LOGIN_TOKEN = "loginToken";
     public static final String URL_PARAMS_ORDER_TYPE = "orderType";
@@ -87,6 +89,9 @@ public class Constants {
     public static final String ORDER_FIVE_NUM = "fivenum";
     public static final String ORDER_FIFTEEN_NUM = "fifteennum";
     public static final String ORDER_FIFTY_NUM = "fiftynum";
+    public static final String ORDER_FIVE_FULL_NUM = "fivefullnum";
+    public static final String ORDER_FIFTEEN_FULL_NUM = "fifteenfullnum";
+    public static final String ORDER_FIFTY_FULL_NUM = "fiftyfullnum";
     public static final String ORDER_DETAIL_PAYBEAN = "ORDER_DETAIL_PAYBEAN";
     public static final String REMAIN_FIVE_NUM = "REMAIN_FIVE_NUM";
     public static final String REMAIN_FIFTEEN_NUM = "REMAIN_FIFTEEN_NUM";

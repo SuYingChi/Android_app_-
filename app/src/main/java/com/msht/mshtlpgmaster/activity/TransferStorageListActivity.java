@@ -26,6 +26,7 @@ import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -56,6 +57,9 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
     private String fiveTemp;
     private String fifteenTemp;
     private String fiftyTemp;
+    private String fivefullTemp;
+    private String fifteenfullTemp;
+    private String fiftyfullTemp;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +67,8 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
         setContentView(R.layout.activity_transfer_to_storage);
         unBinder = ButterKnife.bind(this);
         transferType = getIntent().getStringExtra("TransferType");
+        //统一调拨单
+        //transferType = "2";
         iTransferToStoragePresenter = new ITransferToStorageListPresenter(this);
         refreshLayout.setEnableAutoLoadMore(true);
         refreshLayout.setOnRefreshListener(this);
@@ -71,11 +77,11 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int tabPosition = tab.getPosition();
-                //调拨单状态：0-待验瓶， 1-已完成， 2-全部
+                //调拨单状态：0-待验瓶， 1-已完成， 3-全部
                 switch (tabPosition) {
                     //全部
                     case 0:
-                        state = 2 + "";
+                        state = 3 + "";
                         break;
                     //待验瓶
                     case 1:
@@ -114,6 +120,8 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
             topBarView.setTitle("重瓶入库");
         } else if (TextUtils.equals(transferType, "0")) {
             topBarView.setTitle("空瓶出库");
+        }else if(TextUtils.equals(transferType, "2")){
+            topBarView.setTitle("统一调拨");
         }
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
@@ -152,7 +160,7 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
         }
         refreshLayout.finishLoadMore();
         List<TransferStorageListBean.DataBean.ListBean> listTemp = transferStorageListBean.getData().getList();
-            list.addAll(filterList(listTemp));
+        list.addAll(filterList(listTemp));
         if (pageNum == transferStorageListBean.getData().getPage().getPages()) {
             refreshLayout.setEnableAutoLoadMore(false);
         } else {
@@ -199,6 +207,21 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
     }
 
     @Override
+    public String getFiveFullCount() {
+        return fivefullTemp;
+    }
+
+    @Override
+    public String getFifteenFullCount() {
+        return fifteenfullTemp;
+    }
+
+    @Override
+    public String getFifthFullCount() {
+        return fiftyfullTemp;
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         unBinder.unbind();
@@ -222,16 +245,44 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
         String fiveCount = list.get(itemPosition).getFiveCount() + "";
         String fifteenCount = list.get(itemPosition).getFifteenCount() + "";
         String fiftyCount = list.get(itemPosition).getFifthCount() + "";
+        String fivefullCount = list.get(itemPosition).getFiveFullCount() + "";
+        String fifteenfullCount = list.get(itemPosition).getFifteenFullCount() + "";
+        String fiftyfullCount = list.get(itemPosition).getFiftyFullCount() + "";
         Intent intent = new Intent(this, ScanTransferStorageActivity.class);
         intent.putExtra(Constants.ORDER_ID, id);
         intent.putExtra(Constants.ORDER_FIVE_NUM, fiveCount);
         intent.putExtra(Constants.ORDER_FIFTEEN_NUM, fifteenCount);
         intent.putExtra(Constants.ORDER_FIFTY_NUM, fiftyCount);
+        intent.putExtra(Constants.ORDER_FIVE_FULL_NUM, fivefullCount);
+        intent.putExtra(Constants.ORDER_FIFTEEN_FULL_NUM, fifteenfullCount);
+        intent.putExtra(Constants.ORDER_FIFTY_FULL_NUM, fiftyfullCount);
         intent.putExtra("TransferType", transferType + "");
         startActivity(intent);
     }
 
     @Override
+    public void onClckModifyBtn(int position, String five, String fifteen, String fifty, String fivefull, String fifteenfull, String fiftyfull, String orderId) {
+        PopUtil.showComfirmDialog(this, "修改调拨单", "确认提交修改调拨单钢瓶数量", "取消", "确认", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iTransferToStoragePresenter.getTransferOrdersList();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                id = orderId;
+                fiveTemp = five;
+                fifteenTemp = fifteen;
+                fiftyTemp = fifty;
+                fivefullTemp  = fivefull;
+                fifteenfullTemp = fifteen;
+                fiftyfullTemp = fifty;
+                iTransferToStoragePresenter.updateTransfer();
+            }
+        }, false);
+    }
+
+   /* @Override
     public void onClckModifyBtn(final int position, final String five, final String fifteen, final String fifty, final String orderId) {
         PopUtil.showComfirmDialog(this, "修改调拨单", "确认提交修改调拨单钢瓶数量", "取消", "确认", new View.OnClickListener() {
             @Override
@@ -248,7 +299,7 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
                 iTransferToStoragePresenter.updateTransfer();
             }
         }, false);
-    }
+    }*/
 
     @Override
     public void onError(String s) {
