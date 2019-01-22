@@ -23,6 +23,7 @@ public class IOrdersListPresenter {
 
     public void getOrders() {
         OkHttpUtils.get().url(Constants.QUERY_ORDERS)
+                .tag(iOrderView)
                 .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iOrderView.getToken()).
                 addParams(Constants.URL_PARAMS_ORDER_STATUS, iOrderView.getOrdersStatus() + "")
                 .addParams(Constants.URL_PARAMS_ORDER_TYPE, iOrderView.getOrderType())

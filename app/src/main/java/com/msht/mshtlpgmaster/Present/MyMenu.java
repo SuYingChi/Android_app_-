@@ -18,6 +18,7 @@ public class MyMenu {
 
     public static  void getMyIncome(IMyMenu iMyMenu) {
         OkHttpUtils.get().url(Constants.MENU)
+                .tag(iMyMenu)
                 .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, SharePreferenceUtil.getInstance().getToken()).
                 build().execute(new DataStringCallback(iMyMenu) {
             @Override

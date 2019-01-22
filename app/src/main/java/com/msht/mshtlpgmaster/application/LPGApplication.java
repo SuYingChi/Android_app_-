@@ -35,7 +35,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
+
 import okhttp3.OkHttpClient;
 
 public class LPGApplication extends Application {
@@ -77,7 +77,6 @@ public class LPGApplication extends Application {
         super.onCreate();
         instance = this;
         ZXingLibrary.initDisplayOpinion(this);
-        BGASwipeBackHelper.init(this, null);
         OkHttpClient okHttpClient;
         if (BuildConfig.DEBUG) {
             okHttpClient = new OkHttpClient.Builder()

@@ -20,7 +20,7 @@ public class ICashPayPresenter {
     }
 
     public void cashPay() {
-        OkHttpUtils.get().url(Constants.CASH_PAY).addParams("id", iCashPayView.getOrderId())
+        OkHttpUtils.get().url(Constants.CASH_PAY).addParams("id", iCashPayView.getOrderId()).tag(iCashPayView)
                 .addParams("payChannel", iCashPayView.getPayChannel())
                 .addParams("msbUserId", iCashPayView.getMsbUserId())
                 .build().execute(new DataStringCallback(iCashPayView) {

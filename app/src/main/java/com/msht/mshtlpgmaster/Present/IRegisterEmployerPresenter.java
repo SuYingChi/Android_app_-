@@ -21,6 +21,7 @@ public class IRegisterEmployerPresenter {
 
     public void postRegisterEmployer() {
         OkHttpUtils.get().url(Constants.REGISTER_EMPLOYER)
+                .tag(iRegisterEmployerView)
                 .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iRegisterEmployerView.getToken()).
                 addParams("", iRegisterEmployerView.getName())
                 .addParams("", iRegisterEmployerView.getSex())

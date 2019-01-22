@@ -28,6 +28,7 @@ public class IOrderDetailPostPresenter {
 
     public void postOrders() {
         OkHttpUtils.get().url(Constants.POST_ORDER).addParams(Constants.ORDER_ID, iOrderDetailPostView.getOrderId())
+               .tag(iOrderDetailPostView)
                 .addParams(Constants.URL_PARAMS_ORDER_TYPE, iOrderDetailPostView.getOrderType())
                 .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iOrderDetailPostView.getToken())
                 .addParams(Constants.IS_DELIVERY, iOrderDetailPostView.getIsDelivery())
@@ -81,6 +82,7 @@ public class IOrderDetailPostPresenter {
                 .addParams("recycleBottleIds", iBackBottleDetailPostView.getRecycleBottleIds())
                 .addParams("floor", iBackBottleDetailPostView.getFloor())
                 .addParams("isElevator", iBackBottleDetailPostView.getIsElevator())
+                .tag(iBackBottleDetailPostView)
                 .build().execute(new DataStringCallback(iBackBottleDetailPostView) {
             @Override
             public void onResponse(String s, int i) {

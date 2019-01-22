@@ -26,6 +26,7 @@ public class ITransferToStorageListPresenter {
                 .addParams("pageNum", iTransferToStorageView.getPageNum())
                 .addParams("pageSize", iTransferToStorageView.getPageSize())
                 .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iTransferToStorageView.getToken())
+                .tag(iTransferToStorageView)
                 .build().execute(new DataStringCallback(iTransferToStorageView) {
             @Override
             public void onResponse(String s, int i) {

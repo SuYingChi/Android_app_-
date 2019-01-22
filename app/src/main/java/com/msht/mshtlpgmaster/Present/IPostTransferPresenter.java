@@ -23,7 +23,7 @@ public class IPostTransferPresenter {
     }
 
     public void postTransferOrders() {
-        OkHttpUtils.get().url(iPostTransferView.getUrl()).addParams("fiveCount", iPostTransferView.getFiveCount()).
+        OkHttpUtils.get().url(iPostTransferView.getUrl()).tag(iPostTransferView).addParams("fiveCount", iPostTransferView.getFiveCount()).
                 addParams("fifteenCount", iPostTransferView.getFifteenCount())
                 .addParams("fifthCount", iPostTransferView.getFiftyCount())
                 .addParams("trackNumber", iPostTransferView.carNum())
@@ -59,6 +59,7 @@ public class IPostTransferPresenter {
     }
  public void postUnityTransferOrders() {
      OkHttpUtils.get().url(iPostUnityTransferView.getUrl())
+             .tag(iPostUnityTransferView)
              .addParams("fiveCount", iPostUnityTransferView.getFiveCount()).
              addParams("fifteenCount", iPostUnityTransferView.getFifteenCount())
              .addParams("fifthCount", iPostUnityTransferView.getFiftyCount())

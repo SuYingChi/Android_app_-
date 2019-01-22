@@ -27,6 +27,7 @@ public class IExchangeSteelBottlePresenter {
                 addParams("bottleWeight", iExchangeSteelBottleView.getBottleWeight()).
                 addParams("corrosionType", iExchangeSteelBottleView.getCorrosionType()).
                 addParams("years", iExchangeSteelBottleView.getYear()).
+                tag(iExchangeSteelBottleView).
                 build().execute(new DataStringCallback(iExchangeSteelBottleView) {
             @Override
             public void onResponse(String s, int i) {
@@ -56,6 +57,7 @@ public class IExchangeSteelBottlePresenter {
 
     public void getinitBottleReplacePrice() {
         OkHttpUtils.get().url(Constants.QUERY_REPLACE_PRICE)
+                .tag(iExchangeSteelBottleView)
                 .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iExchangeSteelBottleView.getToken()).
                 addParams("bottleWeight", "5").
                 addParams("bottleProduceDate", "1").

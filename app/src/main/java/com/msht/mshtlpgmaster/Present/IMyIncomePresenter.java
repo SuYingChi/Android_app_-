@@ -21,7 +21,7 @@ public class IMyIncomePresenter {
 
     public void getMyIncome() {
         OkHttpUtils.get().url(Constants.MY_INCOME)
-                .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iMyIncomeView.getToken()).
+               .tag(iMyIncomeView) .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iMyIncomeView.getToken()).
                 build().execute(new DataStringCallback(iMyIncomeView) {
             @Override
             public void onResponse(String s, int i) {

@@ -27,7 +27,7 @@ public class IScanbottleCodePresenter {
 
     public void queryBottleByQRCode() {
         OkHttpUtils.get().url(Constants.VERIFY_BOTTLE_BY_QR_CODE).addParams(Constants.URL_PARAMS_BOTTLE_CODE, iScanCodeDeliverSteelBottleView.getBottleCode()).
-                addParams(Constants.URL_PARAMS_VERIFYTYPE, iScanCodeDeliverSteelBottleView.getVerifyType()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iScanCodeDeliverSteelBottleView.getToken()).build().execute(new DataStringCallback(iScanCodeDeliverSteelBottleView) {
+                tag(iScanCodeDeliverSteelBottleView).addParams(Constants.URL_PARAMS_VERIFYTYPE, iScanCodeDeliverSteelBottleView.getVerifyType()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iScanCodeDeliverSteelBottleView.getToken()).build().execute(new DataStringCallback(iScanCodeDeliverSteelBottleView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
@@ -51,7 +51,7 @@ public class IScanbottleCodePresenter {
 
     public void queryBackBottleByQRCode() {
         OkHttpUtils.get().url(Constants.VERIFY_BOTTLE_BY_QR_CODE).addParams(Constants.URL_PARAMS_BOTTLE_CODE, iBackBottleView.getBottleCode()).
-                addParams(Constants.URL_PARAMS_VERIFYTYPE, iBackBottleView.getVerifyType()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iBackBottleView.getToken()).build().execute(new DataStringCallback(iBackBottleView) {
+                tag(iBackBottleView).addParams(Constants.URL_PARAMS_VERIFYTYPE, iBackBottleView.getVerifyType()).addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iBackBottleView.getToken()).build().execute(new DataStringCallback(iBackBottleView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景

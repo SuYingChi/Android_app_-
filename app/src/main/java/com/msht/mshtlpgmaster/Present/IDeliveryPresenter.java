@@ -20,7 +20,7 @@ public class IDeliveryPresenter {
     }
 
     public void getDelivery() {
-        OkHttpUtils.get().url(Constants.GET_ALL_Delivery_FEE).addParams("floors", iDeliveryView.getFloors())
+        OkHttpUtils.get().url(Constants.GET_ALL_Delivery_FEE).addParams("floors", iDeliveryView.getFloors()).tag(iDeliveryView)
                 .addParams("isElevator", 0 + "")
                 .build().execute(new DataStringCallback(iDeliveryView) {
             @Override
@@ -50,7 +50,7 @@ public class IDeliveryPresenter {
     }
 
     public void getElevatorDelivery() {
-        OkHttpUtils.get().url(Constants.GET_ALL_Delivery_FEE).addParams("floors", "1")
+        OkHttpUtils.get().url(Constants.GET_ALL_Delivery_FEE).addParams("floors", "1").tag(iDeliveryView)
                 .addParams("isElevator", 0 + "")
                 .build().execute(new DataStringCallback(iDeliveryView) {
             @Override

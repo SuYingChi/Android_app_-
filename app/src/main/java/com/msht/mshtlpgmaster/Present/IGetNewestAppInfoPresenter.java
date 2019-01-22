@@ -22,7 +22,7 @@ public class IGetNewestAppInfoPresenter {
     }
 
     public void getNewestAppInfo() {
-        OkHttpUtils.get().url(Constants.GET_NEWESTAPPINFO).build().execute(new DataStringCallback(iUpdateVersionView) {
+        OkHttpUtils.get().url(Constants.GET_NEWESTAPPINFO).tag(iUpdateVersionView).build().execute(new DataStringCallback(iUpdateVersionView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景

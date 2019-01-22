@@ -22,7 +22,7 @@ public class IRegisterBottlePresenter {
     }
 
     public void getBottleInfo() {
-        OkHttpUtils.get().url(Constants.GET_BOOTLEINFO_BY_ID).addParams(Constants.URL_PARAMS_BOTTLE_CODE, iRegisterBottleView.getBottleCode()).build().execute(new DataStringCallback(iRegisterBottleView) {
+        OkHttpUtils.get().url(Constants.GET_BOOTLEINFO_BY_ID).tag(iRegisterBottleView).addParams(Constants.URL_PARAMS_BOTTLE_CODE, iRegisterBottleView.getBottleCode()).build().execute(new DataStringCallback(iRegisterBottleView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
@@ -45,7 +45,7 @@ public class IRegisterBottlePresenter {
     }
 
     public void update_bottle_info() {
-        OkHttpUtils.get().url(Constants.UPDATE_BOTTLE_INFO).addParams(Constants.URL_PARAMS_BOTTLE_CODE, iRegisterBottleView.getBottleCode())
+        OkHttpUtils.get().url(Constants.UPDATE_BOTTLE_INFO).tag(iRegisterBottleView).addParams(Constants.URL_PARAMS_BOTTLE_CODE, iRegisterBottleView.getBottleCode())
                 .addParams("bottleNum", iRegisterBottleView.getBottleNum()).
                 addParams("bottleWeight", iRegisterBottleView.getBottleWeight())
                 .addParams("producer", iRegisterBottleView.getProducer())

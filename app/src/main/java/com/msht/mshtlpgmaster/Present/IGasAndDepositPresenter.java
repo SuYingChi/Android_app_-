@@ -24,7 +24,7 @@ public class IGasAndDepositPresenter {
     public void getGasAndDeposit() {
         PostFormBuilder s = OkHttpUtils.post().url(Constants.GET_GAS_AND_DEPOSIT).addParams("siteId", iOrdesDespositView.getSiteId());
         OkHttpUtils.get().url(Constants.GET_GAS_AND_DEPOSIT).addParams("siteId", iOrdesDespositView.getSiteId())
-                .build().execute(new DataStringCallback(iOrdesDespositView) {
+                .tag(iOrdesDespositView).build().execute(new DataStringCallback(iOrdesDespositView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景

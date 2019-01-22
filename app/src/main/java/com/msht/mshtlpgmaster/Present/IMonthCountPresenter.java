@@ -21,7 +21,7 @@ public class IMonthCountPresenter {
 
     public void getMonthCount() {
         OkHttpUtils.get().url(Constants.MONTH_COUNT)
-                .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iMonthCountView.getToken()).
+                .tag(iMonthCountView).addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iMonthCountView.getToken()).
                 build().execute(new DataStringCallback(iMonthCountView) {
             @Override
             public void onResponse(String s, int i) {

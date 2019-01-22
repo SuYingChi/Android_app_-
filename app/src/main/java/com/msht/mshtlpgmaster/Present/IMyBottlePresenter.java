@@ -21,7 +21,7 @@ public class IMyBottlePresenter {
 
     public void getMyBottleList() {
         OkHttpUtils.get().url(Constants.MY_BOTTLE_LIST)
-                .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iMyBottleView.getToken()).
+               .tag(iMyBottleView).addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iMyBottleView.getToken()).
                 build().execute(new DataStringCallback(iMyBottleView) {
             @Override
             public void onResponse(String s, int i) {

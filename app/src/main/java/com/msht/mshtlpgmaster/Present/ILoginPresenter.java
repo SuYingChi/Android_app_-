@@ -24,7 +24,7 @@ public class ILoginPresenter {
     }
 
     public void login(String mobileNumber, String password) {
-        OkHttpUtils.get().url(Constants.LOGIN).addParams("mobile", mobileNumber).addParams("password", password).build().execute(new DataStringCallback(iView) {
+        OkHttpUtils.get().url(Constants.LOGIN).addParams("mobile", mobileNumber).tag(iView).addParams("password", password).build().execute(new DataStringCallback(iView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景

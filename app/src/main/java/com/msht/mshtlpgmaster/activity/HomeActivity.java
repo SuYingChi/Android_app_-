@@ -203,10 +203,7 @@ public class HomeActivity extends BaseActivity implements IUpdateVersionView, Pe
         unbinder.unbind();
     }
 
-    @Override
-    public boolean isSupportSwipeBack() {
-        return false;
-    }
+
 
     //在别的页面再次开启首页时回调
     @Override

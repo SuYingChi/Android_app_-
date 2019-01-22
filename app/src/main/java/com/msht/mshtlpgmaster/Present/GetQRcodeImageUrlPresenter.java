@@ -21,7 +21,7 @@ public class GetQRcodeImageUrlPresenter {
     }
 
     public void getQRcodeUrl() {
-        OkHttpUtils.post().url(Constants.WEIXIN_PAY).addParams("orderId", iGetPayQRcodeView.getOrderId())
+        OkHttpUtils.post().url(Constants.WEIXIN_PAY).addParams("orderId", iGetPayQRcodeView.getOrderId()).tag(iGetPayQRcodeView)
                 .addParams("payType", iGetPayQRcodeView.getPayType()).addParams("body", iGetPayQRcodeView.getBody()).addParams("payAmount", iGetPayQRcodeView.getPayAmount()).build().execute(new DataStringCallback(iGetPayQRcodeView) {
             @Override
             public void onResponse(String s, int i) {

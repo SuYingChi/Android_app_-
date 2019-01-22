@@ -28,7 +28,7 @@ public class IOrderDetailPresenter {
 
     public void getOrderDetail() {
         OkHttpUtils.get().url(Constants.ORDER_DETAIL).addParams("id", iOrderDetailView.getOrderId())
-                .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iOrderDetailView.getToken()).build().execute(new DataStringCallback(iOrderDetailView) {
+               .tag(iOrderDetailView) .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iOrderDetailView.getToken()).build().execute(new DataStringCallback(iOrderDetailView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
@@ -56,7 +56,7 @@ public class IOrderDetailPresenter {
 
     public void getSimpleOrderDetail() {
         OkHttpUtils.get().url(Constants.ORDER_DETAIL).addParams("id", iSimpleOrderDetailView.getOrderId())
-                .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iSimpleOrderDetailView.getToken()).build().execute(new DataStringCallback(iSimpleOrderDetailView) {
+                .tag(iSimpleOrderDetailView).addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iSimpleOrderDetailView.getToken()).build().execute(new DataStringCallback(iSimpleOrderDetailView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景
@@ -81,6 +81,7 @@ public class IOrderDetailPresenter {
     public void getFourDelivery() {
         OkHttpUtils.get().url(Constants.GET_ALL_Delivery_FEE).addParams("floors", "4")
                 .addParams("isElevator", 0 + "")
+                .tag(iOrderDetailView)
                 .build().execute(new DataStringCallback(iOrderDetailView) {
             @Override
             public void onResponse(String s, int i) {
@@ -106,6 +107,7 @@ public class IOrderDetailPresenter {
     public void getSixDelivery() {
         OkHttpUtils.get().url(Constants.GET_ALL_Delivery_FEE).addParams("floors", "6")
                 .addParams("isElevator", 0 + "")
+                .tag(iOrderDetailView)
                 .build().execute(new DataStringCallback(iOrderDetailView) {
             @Override
             public void onResponse(String s, int i) {
@@ -131,6 +133,7 @@ public class IOrderDetailPresenter {
     public void getFirstDelivery() {
         OkHttpUtils.get().url(Constants.GET_ALL_Delivery_FEE).addParams("floors", "1")
                 .addParams("isElevator", 0 + "")
+                .tag(iOrderDetailView)
                 .build().execute(new DataStringCallback(iOrderDetailView) {
             @Override
             public void onResponse(String s, int i) {
@@ -156,6 +159,7 @@ public class IOrderDetailPresenter {
     public void getSecondDelivery() {
         OkHttpUtils.get().url(Constants.GET_ALL_Delivery_FEE).addParams("floors", "2")
                 .addParams("isElevator", 0 + "")
+                .tag(iOrderDetailView)
                 .build().execute(new DataStringCallback(iOrderDetailView) {
             @Override
             public void onResponse(String s, int i) {

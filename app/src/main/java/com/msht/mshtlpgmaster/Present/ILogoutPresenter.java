@@ -24,7 +24,7 @@ public class ILogoutPresenter {
             PopUtil.toastInBottom("未登录");
             return;
         }
-        OkHttpUtils.get().url(Constants.LOGOUT).addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iView.getToken()).build().execute(new DataStringCallback(iView) {
+        OkHttpUtils.get().url(Constants.LOGOUT).tag(iView).addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iView.getToken()).build().execute(new DataStringCallback(iView) {
             @Override
             public void onResponse(String s, int i) {
                 //先继承再重写或重写覆盖请求错误的场景

@@ -21,7 +21,7 @@ public class IExchangeReviewPresenter {
 
     public void getExchangeReview() {
         OkHttpUtils.get().url(Constants.REPLACE_BOTTLE_LIST)
-                .addParams(Constants.ORDER_ID, iExchangeReviewView.getOrderId()).
+                .addParams(Constants.ORDER_ID, iExchangeReviewView.getOrderId()).tag(iExchangeReviewView).
                 build().execute(new DataStringCallback(iExchangeReviewView) {
             @Override
             public void onResponse(String s, int i) {
