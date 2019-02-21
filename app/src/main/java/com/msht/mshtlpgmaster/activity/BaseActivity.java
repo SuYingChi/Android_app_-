@@ -4,9 +4,12 @@ package com.msht.mshtlpgmaster.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,6 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.gyf.barlibrary.ImmersionBar;
+import com.gyf.barlibrary.OSUtils;
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.constant.Constants;
 import com.msht.mshtlpgmaster.customView.LoadingDialog;
@@ -23,6 +27,7 @@ import com.msht.mshtlpgmaster.Bean.LogoutEvent;
 import com.msht.mshtlpgmaster.util.SharePreferenceUtil;
 import com.msht.mshtlpgmaster.viewInterface.IBaseView;
 import com.umeng.analytics.MobclickAgent;
+import com.zhy.http.okhttp.OkHttpUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -68,11 +73,27 @@ public class BaseActivity extends AppCompatActivity implements IBaseView ,SwipeB
         if (mImmersionBar != null)
             mImmersionBar.destroy();  //在BaseActivity里销毁
         MobclickAgent.onPause(this);
+        OkHttpUtils.getInstance().cancelTag(this);
         super.onDestroy();
     }
 
     protected void initStateBar() {
-
+        if(!OSUtils.isEMUI3_0()) {
+            mImmersionBar = ImmersionBar.with(this);
+            mImmersionBar.statusBarDarkFont(true,0.2f).navigationBarEnable(false).init();
+        }else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                // activity.getWindow().setNavigationBarColor(Color.parseColor("#ff000000"));
+               getWindow().setNavigationBarColor(Color.BLACK);
+            }else if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT){
+                if (ImmersionBar.hasNavigationBar(this)){
+                    getWindow().getDecorView().setFitsSystemWindows(true);
+                }
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            }
+           getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        }
     }
 
     private void setSoftInPutMode() {
@@ -111,6 +132,10 @@ public class BaseActivity extends AppCompatActivity implements IBaseView ,SwipeB
         if (!AppUtil.isNetworkAvailable()) {
             PopUtil.toastInBottom(R.string.net_no_available);
             onNetError();
+        }else if(TextUtils.isEmpty(SharePreferenceUtil.getInstance().getToken())){
+            AppUtil.logout();
+            Intent goLogin = new Intent(this, LoginActivity.class);
+            startActivity(goLogin);
         } else {
             PopUtil.toastInBottom(s);
             switch (s) {

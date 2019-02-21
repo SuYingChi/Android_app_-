@@ -5,17 +5,16 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/topbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/msb_color"
-        android:paddingBottom="@dimen/margin_Modules"
-        android:paddingTop="@dimen/margin_Modules">
+       >
 
         <ImageView
             android:id="@+id/return_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:src="@drawable/return_btn"
             android:padding="@dimen/margin_Modules"
             />

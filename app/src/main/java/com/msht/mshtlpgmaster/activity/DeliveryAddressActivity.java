@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.customView.TopBarView;
 
@@ -30,6 +31,7 @@ public class DeliveryAddressActivity extends BaseActivity implements View.OnClic
         unbinder = ButterKnife.bind(this);
         layoutSelectAddress.setOnClickListener(this);
         topBarView.setOnClickListener(this);
+
 
     }
 

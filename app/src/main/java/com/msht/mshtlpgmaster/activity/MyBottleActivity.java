@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.Bean.MyBottleListBean;
 import com.msht.mshtlpgmaster.Present.IMyBottlePresenter;
 import com.msht.mshtlpgmaster.R;

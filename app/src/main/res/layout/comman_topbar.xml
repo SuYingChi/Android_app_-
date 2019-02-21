@@ -6,7 +6,6 @@
         android:id="@+id/return_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:padding="5dp"
         android:layout_marginLeft="@dimen/margin_Modules"
         android:src="@drawable/return_btn" />
@@ -16,7 +15,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:text=""
         android:textColor="@color/white"
         android:textSize="@dimen/common_text_size_middle_2" />

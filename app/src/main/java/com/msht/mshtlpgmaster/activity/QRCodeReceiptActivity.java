@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.Bean.GetPayQRCodeBean;
 import com.msht.mshtlpgmaster.Bean.SimpleEventbusBean;
 import com.msht.mshtlpgmaster.Bean.QueryOrderBean;

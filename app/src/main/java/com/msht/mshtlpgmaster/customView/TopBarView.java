@@ -9,7 +9,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.R;
+import com.msht.mshtlpgmaster.util.DimenUtil;
 
 public class TopBarView extends RelativeLayout {
     private ImageView titleBarLeftBtn;
@@ -18,6 +20,7 @@ public class TopBarView extends RelativeLayout {
     public TopBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.comman_topbar, this, true);
+        setPadding(0, getStateBarHeight()+DimenUtil.dip2px(5),0,DimenUtil.dip2px(5));
         titleBarLeftBtn = (ImageView) findViewById(R.id.return_btn);
         titleBarTitle = (TextView) findViewById(R.id.tv_comman_topbar_title);
         TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.topBar);
@@ -30,7 +33,13 @@ public class TopBarView extends RelativeLayout {
             attributes.recycle();
         }
     }
-
+    private int  getStateBarHeight(){
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+           return getResources().getDimensionPixelSize(resourceId);
+        }
+        return 0;
+    }
 
     public void setLeftBtnClickListener(OnClickListener onClickListener) {
         if (onClickListener != null) {

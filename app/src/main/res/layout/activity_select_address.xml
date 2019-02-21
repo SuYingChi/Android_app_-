@@ -10,7 +10,7 @@
     <com.msht.mshtlpgmaster.customView.TopBarView
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_bar_height_normol"
+        android:layout_height="wrap_content"
         android:background="@color/msb_color"
         app:title_text="填写地址" />
 

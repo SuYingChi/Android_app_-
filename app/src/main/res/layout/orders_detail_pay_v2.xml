@@ -7,7 +7,7 @@
     <com.msht.mshtlpgmaster.customView.TopBarView
         android:id="@+id/orders_detail_pay_topbar_v2"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_bar_height_normol"
+        android:layout_height="wrap_content"
         android:background="@color/msb_color"
         app:title_text="订单详情" />
 

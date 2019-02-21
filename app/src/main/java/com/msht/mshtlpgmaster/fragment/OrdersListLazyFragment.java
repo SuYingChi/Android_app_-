@@ -13,7 +13,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.Bean.LogoutEvent;
 import com.msht.mshtlpgmaster.Bean.OrdersListBeanV2;
 import com.msht.mshtlpgmaster.Bean.RefreshOrdersListBean;
@@ -30,6 +32,7 @@ import com.msht.mshtlpgmaster.activity.SendBottleOrdersDetailPayActivity;
 import com.msht.mshtlpgmaster.adapter.OrdersListRclAdapter;
 import com.msht.mshtlpgmaster.application.LPGApplication;
 import com.msht.mshtlpgmaster.constant.Constants;
+import com.msht.mshtlpgmaster.util.DimenUtil;
 import com.msht.mshtlpgmaster.util.PermissionUtils;
 import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.util.SharePreferenceUtil;
@@ -70,7 +73,8 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     Button btnTab0;
     @BindView(R.id.recede_order)
     Button btnTab1;
-
+    @BindView(R.id.topbar)
+    LinearLayout topbar;
 
     private List<OrdersListBeanV2.DataBean.ListBean> list = new ArrayList<OrdersListBeanV2.DataBean.ListBean>();
     private OrdersListRclAdapter adapter;
@@ -91,6 +95,7 @@ public class OrdersListLazyFragment extends BaseLazyFragment implements IOrderVi
     @Override
     protected void initView() {
         Log.e(TAG, "initView: ");
+        topbar.setPadding(0, ImmersionBar.getStatusBarHeight(getActivity())+ DimenUtil.dip2px(5),0,DimenUtil.dip2px(5));
         refreshLayout.setEnableAutoLoadMore(true);
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);

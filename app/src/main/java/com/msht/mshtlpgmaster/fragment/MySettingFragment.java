@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.Bean.IMyMenuBean;
 import com.msht.mshtlpgmaster.Bean.LoginEventBean;
 import com.msht.mshtlpgmaster.Bean.LogoutEvent;
@@ -25,6 +26,7 @@ import com.msht.mshtlpgmaster.activity.RegisterEmployerActivity;
 import com.msht.mshtlpgmaster.activity.RegisterBottleActivity;
 import com.msht.mshtlpgmaster.activity.TransferStorageListActivity;
 import com.msht.mshtlpgmaster.gsonInstance.GsonUtil;
+import com.msht.mshtlpgmaster.util.DimenUtil;
 import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.util.SharePreferenceUtil;
 import com.msht.mshtlpgmaster.viewInterface.IMyMenu;
@@ -66,6 +68,10 @@ public class MySettingFragment extends BaseLazyFragment implements IMyMenu {
     RelativeLayout rltRegister;
     @BindView(R.id.rlt_setting_get_steel_bottle_in)
     RelativeLayout rltIn;
+    @BindView(R.id.my_setting_fragment_layout_topbar)
+    LinearLayout topbar;
+    @BindView(R.id.my_setting_online)
+    TextView tvOnline;
     private String name = "";
     private String siteName = "";
 
@@ -87,6 +93,7 @@ public class MySettingFragment extends BaseLazyFragment implements IMyMenu {
         siteName = SharePreferenceUtil.getLoginSpStringValue("siteName");
         tvName.setText(name);
         tvSite.setText(siteName);
+        topbar.setPadding(0, ImmersionBar.getStatusBarHeight(getActivity())+ DimenUtil.dip2px(5),0,DimenUtil.dip2px(5));
         tvInnerDistribute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -177,12 +184,18 @@ public class MySettingFragment extends BaseLazyFragment implements IMyMenu {
         siteName = event.getUserLoginBean().getData().getSiteName();
         tvName.setText(name);
         tvSite.setText(siteName);
+        tvOnline.setText("在线");
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(LogoutEvent messageEvent) {
         Intent goLogin = new Intent(getActivity(), LoginActivity.class);
         startActivity(goLogin);
+        name = "未登录";
+        siteName = "未登录";
+        tvName.setText(name);
+        tvSite.setText(siteName);
+        tvOnline.setText("离线");
     }
 
     @Override

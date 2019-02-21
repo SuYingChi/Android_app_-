@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_Modules"
-            android:text="世贸彭于晏"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="@dimen/text_top_title" />
 
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/my_setting_username"
             android:layout_marginTop="@dimen/margin_Modules"
-            android:text="服务点：海口市龙华区国贸网点"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="@dimen/text_16" />
 
@@ -42,14 +42,14 @@
 
         <TextView
             android:id="@+id/my_setting_online"
-            android:layout_width="50dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/iv_my_setting"
             android:layout_marginBottom="@dimen/margin_Modules"
             android:layout_marginTop="@dimen/margin_Modules"
             android:background="@drawable/onlline"
             android:gravity="center"
-            android:text="在线"
+            android:text=""
             android:textColor="@color/warning_red" />
     </LinearLayout>
     <LinearLayout

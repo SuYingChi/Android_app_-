@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.customView.TopBarView;
 import com.msht.mshtlpgmaster.util.AppUtil;

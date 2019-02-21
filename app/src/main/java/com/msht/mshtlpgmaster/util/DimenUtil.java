@@ -29,7 +29,7 @@ public class DimenUtil {
 
     public static int dip2px(float dipValue) {
         final float scale = LPGApplication.getLPGApplicationContext().getResources().getDisplayMetrics().density;
-        return (int) (dipValue * scale + 0.5f);
+        return (int)Math.ceil(dipValue * scale);
     }
 
     public static int px2dip(float pxValue) {

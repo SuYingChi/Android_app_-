@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.Bean.DeliveryBean;
 import com.msht.mshtlpgmaster.Bean.OrderDetailBean;
 import com.msht.mshtlpgmaster.Present.IOrderDetailPresenter;

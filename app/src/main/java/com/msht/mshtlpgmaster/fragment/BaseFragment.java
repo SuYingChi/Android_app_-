@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import com.google.zxing.Result;
 import com.gyf.barlibrary.ImmersionBar;
@@ -18,6 +19,7 @@ import com.msht.mshtlpgmaster.util.AppUtil;
 import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.util.SharePreferenceUtil;
 import com.msht.mshtlpgmaster.viewInterface.IBaseView;
+import com.zhy.http.okhttp.OkHttpUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -72,13 +74,17 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
         if (!AppUtil.isNetworkAvailable()) {
             PopUtil.toastInBottom(R.string.net_no_available);
             onNetError();
+        }else if(TextUtils.isEmpty(SharePreferenceUtil.getInstance().getToken())){
+            AppUtil.logout();
+            Intent goLogin = new Intent(getActivity(), LoginActivity.class);
+            startActivity(goLogin);
+            PopUtil.toastInBottom("请登录使用LPG配送端");
         } else {
             PopUtil.toastInBottom(s);
             switch (s) {
                 case "未登录":
-                case "登出返回结果为空":
                     AppUtil.logout();
-                    Intent goLogin = new Intent(this.getActivity(), LoginActivity.class);
+                    Intent goLogin = new Intent(getActivity(), LoginActivity.class);
                     startActivity(goLogin);
                     break;
                 default:
@@ -116,6 +122,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
         super.onDestroy();
         if (mImmersionBar != null)
             mImmersionBar.destroy();
+        OkHttpUtils.getInstance().cancelTag(this);
     }
 
     @Override

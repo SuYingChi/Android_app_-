@@ -79,12 +79,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     }
 
 
-    @Override
-    protected void initStateBar() {
-        ImmersionBar.with(this).transparentStatusBar().fullScreen(true).init();
-
-
-    }
 
     @Override
     protected void onDestroy() {

@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.Bean.TransferStorageListBean;
 import com.msht.mshtlpgmaster.Bean.UpdateTransferBean;
 import com.msht.mshtlpgmaster.Present.ITransferToStorageListPresenter;

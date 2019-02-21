@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.Bean.RegisterBean;
 import com.msht.mshtlpgmaster.Present.IRegisterEmployerPresenter;
 import com.msht.mshtlpgmaster.R;
@@ -62,6 +63,12 @@ public class RegisterEmployerActivity extends BaseActivity implements IRegisterE
             @Override
             public void onClick(View v) {
                 iRegisterEmployerPresenter.postRegisterEmployer();
+            }
+        });
+        topBarView.setLeftBtnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

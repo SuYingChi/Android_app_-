@@ -4,10 +4,13 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.adapter.BaseLazyFragmentPagerAdapter;
 import com.msht.mshtlpgmaster.customView.SlidableViewPager;
+import com.msht.mshtlpgmaster.util.DimenUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +28,8 @@ public class DispatchOrdersLazyFragement extends BaseLazyFragment {
     Button btnTab0;
     @BindView(R.id.recede_order)
     Button btnTab1;
+    @BindView(R.id.topbar)
+    RelativeLayout topbar;
     private DispatchSendOrdersLazyFragment f0;
     private DispatchReturnOrdersFragment f1;
     private List<BaseLazyFragment> list = new ArrayList<BaseLazyFragment>();
@@ -48,6 +53,7 @@ public class DispatchOrdersLazyFragement extends BaseLazyFragment {
         vp.setOffscreenPageLimit(2);
         vp.setScanScroll(false);
         vp.setPageTransformer(true, null);
+        topbar.setPadding(0, ImmersionBar.getStatusBarHeight(getActivity())+ DimenUtil.dip2px(5),0,DimenUtil.dip2px(5));
     }
 
     private void initTopTab(int item) {

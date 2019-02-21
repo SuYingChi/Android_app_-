@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/line_color_lib"
-    android:fitsSystemWindows="true">
+>
 
     <SurfaceView
         android:id="@+id/scan_delive_steel_bottle_preview_view"
@@ -26,9 +26,8 @@
     <com.msht.mshtlpgmaster.customView.TopBarView
         android:id="@+id/scan_delive_topbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_bar_height_normol"
+        android:layout_height="wrap_content"
         android:background="@color/msb_color"
-        android:padding="@dimen/margin_Modules"
         app:title_text="内部领瓶" />
 
     <TextView

@@ -4,13 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <com.msht.mshtlpgmaster.customView.TopBarView
         android:id="@+id/my_income_layout_topbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_bar_height_normol"
+        android:layout_height="wrap_content"
         android:background="@color/msb_color"
-        android:padding="@dimen/margin_Modules"
         app:title_text="我的收入" />
 
     <LinearLayout
@@ -33,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/margin_Modules"
-            android:text="22.00"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="50sp" />
 

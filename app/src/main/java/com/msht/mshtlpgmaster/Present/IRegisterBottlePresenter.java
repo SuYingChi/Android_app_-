@@ -9,7 +9,9 @@ import com.msht.mshtlpgmaster.callback.DataStringCallback;
 import com.msht.mshtlpgmaster.constant.Constants;
 import com.msht.mshtlpgmaster.gsonInstance.GsonUtil;
 import com.msht.mshtlpgmaster.util.PopUtil;
+import com.msht.mshtlpgmaster.util.SharePreferenceUtil;
 import com.msht.mshtlpgmaster.viewInterface.IRegisterBottleView;
+import com.uuzuche.lib_zxing.decoding.Intents;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 public class IRegisterBottlePresenter {
@@ -52,6 +54,7 @@ public class IRegisterBottlePresenter {
                 .addParams("propertyUnit", iRegisterBottleView.getPropertyUnit())
                 .addParams("createTime", iRegisterBottleView.getCreateTime())
                 .addParams("nextCheckTime", iRegisterBottleView.getNextCheckTime()).
+                addParams("employeeId", SharePreferenceUtil.getLoginSpStringValue(Constants.EMPLOYERID)).
                 build().execute(new DataStringCallback(iRegisterBottleView) {
             @Override
             public void onResponse(String s, int i) {

@@ -4,13 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/line_color_lib"
-    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <com.msht.mshtlpgmaster.customView.TopBarView
         android:id="@+id/exchange_topbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_bar_height_normol"
+        android:layout_height="wrap_content"
         android:background="@color/msb_color"
         app:title_text="钢瓶置换" />
 

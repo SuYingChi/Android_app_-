@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true"
@@ -12,9 +11,8 @@
     <com.msht.mshtlpgmaster.customView.TopBarView
         android:id="@+id/my_setting_fragment_layout_topbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_bar_height_normol"
+        android:layout_height="wrap_content"
         android:background="@color/msb_color"
-        android:padding="@dimen/margin_Modules"
         app:title_text="调拨入库" />
 
     <android.support.design.widget.TabLayout

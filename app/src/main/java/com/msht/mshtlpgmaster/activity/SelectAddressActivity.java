@@ -25,6 +25,7 @@ import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.Bean.LocationBean;
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.adapter.PoiAdapter;

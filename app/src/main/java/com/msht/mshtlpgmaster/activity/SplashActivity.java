@@ -29,13 +29,6 @@ public class SplashActivity extends BaseActivity implements PermissionUtils.Perm
 
     }
 
-    @Override
-    protected void initStateBar() {
-        mImmersionBar = ImmersionBar.with(this);
-        ImmersionBar.with(this).transparentStatusBar().fullScreen(true).init();
-
-    }
-
     private void waitGo() {
         tk = new TimerTask() {
             @Override

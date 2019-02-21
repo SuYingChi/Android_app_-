@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.msht.mshtLpgMaster.activity.DispatchCustomerOrderActivity">
+    >
 
     <com.msht.mshtlpgmaster.customView.TopBarView
         android:id="@+id/scan_delive_topbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_bar_height_normol"
+        android:layout_height="wrap_content"
         android:background="@color/msb_color"
-        android:padding="@dimen/margin_Modules"
         app:title_text="提交订单" />
 
     <ScrollView

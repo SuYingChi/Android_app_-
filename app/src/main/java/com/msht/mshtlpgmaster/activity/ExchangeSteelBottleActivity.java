@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.Bean.BottleReplacePriceBean;
 import com.msht.mshtlpgmaster.Bean.ExchangeRclBean;
 import com.msht.mshtlpgmaster.Present.IExchangeSteelBottlePresenter;

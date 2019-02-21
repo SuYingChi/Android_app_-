@@ -25,9 +25,8 @@
     <com.msht.mshtlpgmaster.customView.TopBarView
         android:id="@+id/scan_empty_topbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_bar_height_normol"
+        android:layout_height="wrap_content"
         android:background="@color/msb_color"
-        android:padding="@dimen/margin_Modules"
         app:title_text="回收空瓶" />
 
     <TextView
