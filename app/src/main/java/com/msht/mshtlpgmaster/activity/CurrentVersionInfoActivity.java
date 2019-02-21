@@ -32,8 +32,7 @@ public class CurrentVersionInfoActivity extends BaseActivity {
                 finish();
             }
         });
-        int vision = AppUtil.getVersion(this);
-        tvCurrentAppInfo.setText("员工端液化气移动终端V" + vision);
+        tvCurrentAppInfo.setText("员工端液化气移动终端V" + AppUtil.getVerName(this));
         tvCheckUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
