@@ -37,12 +37,14 @@ public class ILoginPresenter {
                 if (!TextUtils.isEmpty(bean.getResult()) && TextUtils.equals(bean.getResult(), "failed")) {
                     switch (bean.getData().getErrorCode()) {
                         case "100":
-                            iView.onError(LPGApplication.getLPGApplicationContext().getResources().getString(R.string.login_error_password));
+                            iView.onError(bean.getMsg());
                             break;
                         case "101":
-                            iView.onError(LPGApplication.getLPGApplicationContext().getResources().getString(R.string.login_account_not_register));
+                            iView.onError(bean.getMsg());
                             break;
                         case "102":
+                            iView.onError(bean.getMsg());
+                            break;
                         default:
                             iView.onError(LPGApplication.getLPGApplicationContext().getResources().getString(R.string.login_unknown_error));
                             iView.onLogout();

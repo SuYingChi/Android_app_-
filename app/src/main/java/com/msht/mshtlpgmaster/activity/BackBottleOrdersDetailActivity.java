@@ -6,15 +6,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.Bean.OrderDetailBean;
 import com.msht.mshtlpgmaster.Present.IOrderDetailPresenter;
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.constant.Constants;
 import com.msht.mshtlpgmaster.util.BottleCaculteUtil;
+import com.msht.mshtlpgmaster.util.DimenUtil;
 import com.msht.mshtlpgmaster.util.PermissionUtils;
 import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.viewInterface.ISimpleOrderDetailView;
@@ -60,6 +64,8 @@ public class BackBottleOrdersDetailActivity extends BaseActivity implements ISim
     TextView tvOrderId;
     @BindView(R.id.dispatch_bottle_time)
     TextView tvDispatchBottleTime;
+    @BindView(R.id.tv_comman_topbar_title)
+    TextView title;
     private String orderId;
     private Unbinder unbinder;
 
@@ -69,6 +75,10 @@ public class BackBottleOrdersDetailActivity extends BaseActivity implements ISim
         setContentView(R.layout.back_bottle_orders_detail_layout);
         unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
+        returnBtn.setPadding(DimenUtil.dip2px(10),ImmersionBar.getStatusBarHeight(this),ImmersionBar.getStatusBarHeight(this),ImmersionBar.getStatusBarHeight(this));
+        RelativeLayout.LayoutParams lay = (RelativeLayout.LayoutParams)title.getLayoutParams();
+        lay.topMargin=ImmersionBar.getStatusBarHeight(this);
+        title.setLayoutParams(lay);
         orderId = intent.getStringExtra(Constants.ORDER_ID);
         IOrderDetailPresenter iOrderDetailPresenter = new IOrderDetailPresenter(this);
         iOrderDetailPresenter.getSimpleOrderDetail();

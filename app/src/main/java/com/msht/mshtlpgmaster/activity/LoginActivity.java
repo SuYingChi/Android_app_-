@@ -87,4 +87,10 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         ImmersionBar.with(this).destroy();
         EventBus.getDefault().unregister(this);
     }
+   public void reinputUserinfo(){
+       mobileNumber.setText("");
+       loginPassword.setText("");
+       mobileNumber.setHint("请输入手机号");
+       loginPassword.setHint("请输入密码");
+    }
 }

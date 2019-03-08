@@ -7,13 +7,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.Bean.OrderDetailBean;
 import com.msht.mshtlpgmaster.Present.IOrderDetailPresenter;
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.constant.Constants;
 import com.msht.mshtlpgmaster.util.BottleCaculteUtil;
+import com.msht.mshtlpgmaster.util.DimenUtil;
 import com.msht.mshtlpgmaster.util.PermissionUtils;
 import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.viewInterface.ISimpleOrderDetailView;
@@ -57,6 +60,9 @@ public class BackBottleOrdersFinishActivity extends BaseActivity implements ISim
     TextView tvDispatchBottleTime;
     @BindView(R.id.pay_time)
     TextView tvPayTime;
+    @BindView(R.id.tv_comman_topbar_title)
+    TextView title;
+
     private Unbinder unbinder;
     private String orderId;
 
@@ -75,6 +81,10 @@ public class BackBottleOrdersFinishActivity extends BaseActivity implements ISim
                 finish();
             }
         });
+        returnBtn.setPadding(DimenUtil.dip2px(10), ImmersionBar.getStatusBarHeight(this),ImmersionBar.getStatusBarHeight(this),ImmersionBar.getStatusBarHeight(this));
+        RelativeLayout.LayoutParams lay = (RelativeLayout.LayoutParams)title.getLayoutParams();
+        lay.topMargin=ImmersionBar.getStatusBarHeight(this);
+        title.setLayoutParams(lay);
     }
 
     @Override

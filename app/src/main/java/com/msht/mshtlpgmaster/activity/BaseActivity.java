@@ -42,7 +42,7 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 /**
  * @author mshtyfb
  */
-public class BaseActivity extends AppCompatActivity implements IBaseView ,SwipeBackActivityBase {
+public class BaseActivity extends AppCompatActivity implements IBaseView, SwipeBackActivityBase {
 
     protected LoadingDialog centerLoadingDialog;
     private SwipeBackActivityHelper mHelper;
@@ -52,7 +52,7 @@ public class BaseActivity extends AppCompatActivity implements IBaseView ,SwipeB
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         //这个框架滑动返回与immersionbar 不兼容
-       /* initSwipeBackFinish();*/
+        /* initSwipeBackFinish();*/
         super.onCreate(savedInstanceState);
         mHelper = new SwipeBackActivityHelper(this);
         mHelper.onActivityCreate();
@@ -78,21 +78,21 @@ public class BaseActivity extends AppCompatActivity implements IBaseView ,SwipeB
     }
 
     protected void initStateBar() {
-        if(!OSUtils.isEMUI3_0()) {
+        if (!OSUtils.isEMUI3_0()) {
             mImmersionBar = ImmersionBar.with(this);
-            mImmersionBar.statusBarDarkFont(true,0.2f).navigationBarEnable(false).init();
-        }else {
+            mImmersionBar.statusBarDarkFont(true, 0.2f).navigationBarEnable(false).init();
+        } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                 // activity.getWindow().setNavigationBarColor(Color.parseColor("#ff000000"));
-               getWindow().setNavigationBarColor(Color.BLACK);
-            }else if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT){
-                if (ImmersionBar.hasNavigationBar(this)){
+                getWindow().setNavigationBarColor(Color.BLACK);
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                if (ImmersionBar.hasNavigationBar(this)) {
                     getWindow().getDecorView().setFitsSystemWindows(true);
                 }
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             }
-           getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         }
     }
 
@@ -132,10 +132,15 @@ public class BaseActivity extends AppCompatActivity implements IBaseView ,SwipeB
         if (!AppUtil.isNetworkAvailable()) {
             PopUtil.toastInBottom(R.string.net_no_available);
             onNetError();
-        }else if(TextUtils.isEmpty(SharePreferenceUtil.getInstance().getToken())){
+        } else if (TextUtils.isEmpty(SharePreferenceUtil.getInstance().getToken())) {
             AppUtil.logout();
-            Intent goLogin = new Intent(this, LoginActivity.class);
-            startActivity(goLogin);
+            PopUtil.toastInBottom(s);
+            if (this instanceof LoginActivity) {
+                ((LoginActivity) this).reinputUserinfo();
+            } else {
+                Intent goLogin = new Intent(this, LoginActivity.class);
+                startActivity(goLogin);
+            }
         } else {
             PopUtil.toastInBottom(s);
             switch (s) {
@@ -197,7 +202,6 @@ public class BaseActivity extends AppCompatActivity implements IBaseView ,SwipeB
     }
 
 
-
     public boolean isShouldHideInput(View v, MotionEvent event) {
         if (v != null && (v instanceof EditText)) {
             int[] leftTop = {0, 0};
@@ -223,6 +227,7 @@ public class BaseActivity extends AppCompatActivity implements IBaseView ,SwipeB
         super.onPostCreate(savedInstanceState);
         mHelper.onPostCreate();
     }
+
     @Override
     public View findViewById(int id) {
         View v = super.findViewById(id);
@@ -230,10 +235,12 @@ public class BaseActivity extends AppCompatActivity implements IBaseView ,SwipeB
             return mHelper.findViewById(id);
         return v;
     }
+
     @Override
     public SwipeBackLayout getSwipeBackLayout() {
         return mHelper.getSwipeBackLayout();
     }
+
     @Override
     public void setSwipeBackEnable(boolean enable) {
         getSwipeBackLayout().setEnableGesture(enable);

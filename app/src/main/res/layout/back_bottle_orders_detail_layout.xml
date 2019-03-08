@@ -9,7 +9,8 @@
         android:background="@color/line_color_lib"
         >
 
-        <include layout="@layout/item_orders_detail_command_topbar" />
+        <include layout="@layout/item_orders_detail_command_topbar"
+            />
 
         <LinearLayout
             android:id="@+id/orders_status"
