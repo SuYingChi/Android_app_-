@@ -10,12 +10,15 @@ import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.Bean.OrderDetailBean;
 import com.msht.mshtlpgmaster.Present.IOrderDetailPresenter;
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.constant.Constants;
+import com.msht.mshtlpgmaster.util.DimenUtil;
 import com.msht.mshtlpgmaster.util.PermissionUtils;
 import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.viewInterface.ISimpleOrderDetailView;
@@ -63,6 +66,8 @@ public class SendBottleOrdersDetailCancleActivity extends BaseActivity implement
     TextView tvDispatchBottleTime;
     @BindView(R.id.tv_orders_status)
     TextView tvOrdersStatus;
+    @BindView(R.id.tv_comman_topbar_title)
+    TextView title;
     private String orderId;
     private Unbinder unbinder;
 
@@ -73,6 +78,10 @@ public class SendBottleOrdersDetailCancleActivity extends BaseActivity implement
         unbinder = ButterKnife.bind(this);
         Intent intent = getIntent();
         orderId = intent.getStringExtra(Constants.ORDER_ID);
+        returnBtn.setPadding(DimenUtil.dip2px(10), ImmersionBar.getStatusBarHeight(this),ImmersionBar.getStatusBarHeight(this),ImmersionBar.getStatusBarHeight(this));
+        RelativeLayout.LayoutParams lay = (RelativeLayout.LayoutParams)title.getLayoutParams();
+        lay.topMargin=ImmersionBar.getStatusBarHeight(this);
+        title.setLayoutParams(lay);
         IOrderDetailPresenter iOrderDetailPresenter = new IOrderDetailPresenter(this);
         iOrderDetailPresenter.getSimpleOrderDetail();
     }
