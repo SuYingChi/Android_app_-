@@ -83,7 +83,7 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
                     if (TextUtils.isEmpty(s.toString())) {
                         ((OrdersHolder) holder).etFive.setText(0 + "");
                     }
-                    String total = Integer.valueOf(((OrdersHolder) holder).etFive.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteen.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifty.getText().toString()) + "";
+                    String total = Integer.valueOf(((OrdersHolder) holder).etFive.getText().toString())+Integer.valueOf(((OrdersHolder) holder).etFiveFull.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteen.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFifteenfull.getText().toString())+ Integer.valueOf(((OrdersHolder) holder).etFifty.getText().toString()) + Integer.valueOf(((OrdersHolder) holder).etFiftyfull.getText().toString())+ "";
                     ((OrdersHolder) holder).tvTotal.setText(total);
                 }
             });
@@ -197,7 +197,7 @@ public class TransferToStorageRclAdapter extends RecyclerView.Adapter {
             ((OrdersHolder) holder).tvModify.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onClckModifyBtn(position, ((OrdersHolder) holder).etFive.getText().toString(), ((OrdersHolder) holder).etFifteen.getText().toString(), ((OrdersHolder) holder).etFifty.getText().toString(), ((OrdersHolder) holder).etFiveFull.getText().toString(),((OrdersHolder) holder).etFiftyfull.getText().toString(),((OrdersHolder) holder).etFiftyfull.getText().toString(),orderId + "");
+                    listener.onClckModifyBtn(position, ((OrdersHolder) holder).etFive.getText().toString(), ((OrdersHolder) holder).etFifteen.getText().toString(), ((OrdersHolder) holder).etFifty.getText().toString(), ((OrdersHolder) holder).etFiveFull.getText().toString(),((OrdersHolder) holder).etFifteenfull.getText().toString(),((OrdersHolder) holder).etFiftyfull.getText().toString(),orderId + "");
                 }
             });
             ((OrdersHolder) holder).tvScan.setOnClickListener(new View.OnClickListener() {

@@ -330,7 +330,7 @@ public class MyScanBackBottleFragment extends BaseFragment implements IBackBottl
         } else if (verifyBottleBean.getData().getBottleWeight() == 50 && BottleCaculteUtil.getBottleNum(list, 50) >= orderFiftyNum) {
             PopUtil.toastInBottom("50kg钢瓶已达到订单数");
         } else {
-            list.add(verifyBottleBean);
+            list.add(0,verifyBottleBean);
             adapter.notifyDataSetChanged();
             fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5)));
             fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15)));

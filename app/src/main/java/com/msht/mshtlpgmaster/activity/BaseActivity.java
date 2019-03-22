@@ -140,6 +140,7 @@ public class BaseActivity extends AppCompatActivity implements IBaseView, SwipeB
             } else {
                 Intent goLogin = new Intent(this, LoginActivity.class);
                 startActivity(goLogin);
+                finish();
             }
         } else {
             PopUtil.toastInBottom(s);
@@ -148,6 +149,7 @@ public class BaseActivity extends AppCompatActivity implements IBaseView, SwipeB
                     AppUtil.logout();
                     Intent goLogin = new Intent(this, LoginActivity.class);
                     startActivity(goLogin);
+                    finish();
                     break;
                 default:
 

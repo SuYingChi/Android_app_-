@@ -398,12 +398,12 @@ public class MyScanInnerFragment extends BaseFragment implements IinnerFetchView
             PopUtil.toastInBottom("钢瓶已添加");
         } else if (fragmentType == 2) {
             if (getInnerType() == 1 && verifyBottleBean.getData().getIsHeavy() == 0) {
-                list.add(verifyBottleBean);
+                list.add(0,verifyBottleBean);
                 adapter.notifyDataSetChanged();
             } else if (getInnerType() == 1 && verifyBottleBean.getData().getIsHeavy() == 1) {
                 PopUtil.toastInBottom("不能领空瓶");
             } else if (getInnerType() == 2) {
-                list.add(verifyBottleBean);
+                list.add(0,verifyBottleBean);
                 adapter.notifyDataSetChanged();
             }
         }

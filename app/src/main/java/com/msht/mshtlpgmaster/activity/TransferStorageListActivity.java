@@ -276,8 +276,8 @@ public class TransferStorageListActivity extends BaseActivity implements ITransf
                 fifteenTemp = fifteen;
                 fiftyTemp = fifty;
                 fivefullTemp  = fivefull;
-                fifteenfullTemp = fifteen;
-                fiftyfullTemp = fifty;
+                fifteenfullTemp = fifteenfull;
+                fiftyfullTemp = fiftyfull;
                 iTransferToStoragePresenter.updateTransfer();
             }
         }, false);

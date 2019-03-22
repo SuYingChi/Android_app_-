@@ -79,6 +79,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
             Intent goLogin = new Intent(getActivity(), LoginActivity.class);
             startActivity(goLogin);
             PopUtil.toastInBottom("请登录使用LPG配送端");
+            getActivity().finish();
         } else {
             PopUtil.toastInBottom(s);
             switch (s) {
@@ -86,6 +87,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
                     AppUtil.logout();
                     Intent goLogin = new Intent(getActivity(), LoginActivity.class);
                     startActivity(goLogin);
+                    getActivity().finish();
                     break;
                 default:
 

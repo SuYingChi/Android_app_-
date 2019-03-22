@@ -226,13 +226,13 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
                 } else if (verifyBottleBean.getData().getBottleWeight() == 50 && BottleCaculteUtil.getBottleNum(list, 50,1) >= Integer.valueOf(fiftyCount)) {
                     PopUtil.toastInBottom("50kg空瓶已达到订单数");
                 } else if (TextUtils.equals(transferType, "2")) {
-                    list.add(verifyBottleBean);
+                    list.add(0,verifyBottleBean);
                     adapter.notifyDataSetChanged();
                     fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5)));
                     fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15)));
                     fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50)));
                 } else if (TextUtils.equals(transferType, "0")) {
-                    list.add(verifyBottleBean);
+                    list.add(0,verifyBottleBean);
                     adapter.notifyDataSetChanged();
                     fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5,1)));
                     fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15,1)));
@@ -248,13 +248,13 @@ public class MyScanTransferBottleFragment extends BaseScanFragmengt implements I
                 } else if (verifyBottleBean.getData().getBottleWeight() == 50 && BottleCaculteUtil.getBottleNum(list, 50,0) >= Integer.valueOf(fiftyfullCount)) {
                     PopUtil.toastInBottom("50kg重瓶已达到订单数");
                 } else if (TextUtils.equals(transferType, "2")) {
-                    list.add(verifyBottleBean);
+                    list.add(0,verifyBottleBean);
                     adapter.notifyDataSetChanged();
                     fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5)));
                     fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15)));
                     fiftyBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 50)));
                 } else if (TextUtils.equals(transferType, "1")) {
-                    list.add(verifyBottleBean);
+                    list.add(0,verifyBottleBean);
                     adapter.notifyDataSetChanged();
                     fiveBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 5,0)));
                     fifteenBottleNumber.setText(String.format("%d", BottleCaculteUtil.getBottleNum(list, 15,0)));

@@ -196,6 +196,7 @@ public class MySettingFragment extends BaseLazyFragment implements IMyMenu {
         tvName.setText(name);
         tvSite.setText(siteName);
         tvOnline.setText("离线");
+        getActivity().finish();
     }
 
     @Override

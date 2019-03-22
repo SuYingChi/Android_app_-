@@ -60,7 +60,7 @@ public class ITransferToStorageListPresenter {
                 .addParams("fifthCount", iTransferToStorageView.getFifthCount())
                 .addParams("fiveFullCount", iTransferToStorageView.getFiveFullCount())
                 .addParams("fifteenFullCount", iTransferToStorageView.getFifteenFullCount())
-                .addParams("fifthFullCount", iTransferToStorageView.getFifthFullCount())
+                .addParams("fiftyFullCount", iTransferToStorageView.getFifthFullCount())
                 .addParams(Constants.URL_PARAMS_LOGIN_TOKEN, iTransferToStorageView.getToken())
                 .build().execute(new DataStringCallback(iTransferToStorageView) {
             @Override
