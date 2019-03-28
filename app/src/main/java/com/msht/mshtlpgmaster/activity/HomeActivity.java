@@ -220,6 +220,7 @@ public class HomeActivity extends BaseActivity implements IUpdateVersionView, Pe
         //EventBus.getDefault().postSticky(new RefreshOrdersListBean());
         if (vp.getCurrentItem() == 0) {
             f0.refreshOrdersList();
+            checkVersion();
         }
     }
 
@@ -240,7 +241,7 @@ public class HomeActivity extends BaseActivity implements IUpdateVersionView, Pe
                             "取消", "确定更新", null, new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    PermissionUtils.requestPermissions(HomeActivity.this, HomeActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.SYSTEM_ALERT_WINDOW);
+                                    PermissionUtils.requestPermissions(HomeActivity.this, HomeActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
                                 }
                             }, true);
                 } else {
@@ -263,16 +264,7 @@ public class HomeActivity extends BaseActivity implements IUpdateVersionView, Pe
 
     @Override
     public void onBackFromSettingPage() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (Settings.canDrawOverlays(HomeActivity.this)) {
-                Intent intent = new Intent(this, DownLoadApkService.class);
-                intent.putExtra("url", url);
-                intent.putExtra("apksize", apksize);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                LogUtils.d("DownLoadApk", "onPermissionRequestSuccess: ");
-                startService(intent);
-            }
-        }
+
     }
 
     @Override
@@ -286,7 +278,6 @@ public class HomeActivity extends BaseActivity implements IUpdateVersionView, Pe
             Intent intent = new Intent(this, DownLoadApkService.class);
             intent.putExtra("url", url);
             intent.putExtra("apksize", apksize);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             LogUtils.d("DownLoadApk", "onPermissionRequestSuccess: ");
             startService(intent);
         }

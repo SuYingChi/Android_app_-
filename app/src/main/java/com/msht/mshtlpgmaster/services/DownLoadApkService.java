@@ -24,6 +24,7 @@ import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.callback.FileCallBack;
 import com.msht.mshtlpgmaster.util.AppUtil;
 import com.msht.mshtlpgmaster.util.FileUtil;
+import com.msht.mshtlpgmaster.util.LogUtils;
 import com.msht.mshtlpgmaster.util.PopUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -66,6 +67,7 @@ public class DownLoadApkService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null) {
             url = intent.getStringExtra("url");
+            LogUtils.d("download","onStartCommand   url=="+url);
             long apksize = intent.getLongExtra("apksize", 0);
             if (!TextUtils.isEmpty(url)) {
                 fileName = this.url.substring(this.url.lastIndexOf("/") + 1, this.url.length());
@@ -78,6 +80,7 @@ public class DownLoadApkService extends Service {
                             FileUtil.deleteFile(Environment.getExternalStorageDirectory().getAbsolutePath() + "/LpgDownloads/");
                             creatNotification(apksize, "安装包正在下载...");
                             PopUtil.toastInBottom("开始下载最新安装包");
+                            LogUtils.d("download","onBefore");
                         }
 
                         @Override
@@ -89,12 +92,14 @@ public class DownLoadApkService extends Service {
                                 notifyNotification(progress, apksize, "安装包正在下载...");
                                 prepercent = currentPercent;
                             }
-
+                            LogUtils.d("download","inProgress");
                         }
 
                         @Override
                         public void onError(Call call, Exception e, int i) {
                             PopUtil.toastInBottom("下载安装包发生异常" + e.getMessage());
+                            LogUtils.e("download","onError  "+e.getMessage());
+                            e.printStackTrace();
                         }
 
                         @Override
@@ -117,16 +122,16 @@ public class DownLoadApkService extends Service {
     //安装文件(适配Android7.0)
     public void installApk() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         //判断是否是AndroidN以及更高的版本
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             //先设置new task启动再add，不然会导致Permission Denial: opening provider android.support.v4.content.FileProvider from ProcessRecord
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+           LogUtils.d("download","installApk");
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             Uri contentUri = FileProvider.getUriForFile(this, "com.msht.mshtlpgmaster.fileProvider", file);
             intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
         } else {
             intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         startActivity(intent);
     }
@@ -145,20 +150,15 @@ public class DownLoadApkService extends Service {
         contentView.setTextViewText(R.id.tv_progress, AppUtil.formattedDecimalToPercentage(0));
         contentView.setTextViewText(R.id.id_tv_download, "安装包正在下载...");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
-            channel.enableVibration(false);
-            channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
             getNotificationManager().createNotificationChannel(channel);
-            builder = new NotificationCompat.Builder(DownLoadApkService.this, channelId);
-            builder.setChannelId(channelId);
-        }else {
-            builder = new NotificationCompat.Builder(DownLoadApkService.this);
         }
+        builder = new NotificationCompat.Builder(DownLoadApkService.this, channelId);
         builder.setSmallIcon(R.mipmap.logo);
         builder.setContentTitle("下载");
         builder.setContentText(s);
         builder.setAutoCancel(true);
-        builder.setCustomContentView(contentView);
+        builder.setContent(contentView);
         notify = builder.build();
         getNotificationManager().notify(R.layout.item_notification, notify);
 

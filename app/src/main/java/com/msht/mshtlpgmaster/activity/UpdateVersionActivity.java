@@ -120,11 +120,12 @@ public class UpdateVersionActivity extends BaseActivity implements IUpdateVersio
 
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
-        Intent intent = new Intent(UpdateVersionActivity.this,DownLoadApkService.class);
-        intent.putExtra("url", url);
-        intent.putExtra("apksize",apksize);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        LogUtils.d("DownLoadApk", "onPermissionRequestSuccess: ");
-        startService(intent);
+        if (permissions.contains(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Intent intent = new Intent(UpdateVersionActivity.this, DownLoadApkService.class);
+            intent.putExtra("url", url);
+            intent.putExtra("apksize", apksize);
+            LogUtils.d("DownLoadApk", "onPermissionRequestSuccess: ");
+            startService(intent);
+        }
     }
 }
