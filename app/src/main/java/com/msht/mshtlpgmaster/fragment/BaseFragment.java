@@ -73,7 +73,6 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     public void onError(String s) {
         if (!AppUtil.isNetworkAvailable()) {
             PopUtil.toastInBottom(R.string.net_no_available);
-            onNetError();
         }else if(TextUtils.isEmpty(SharePreferenceUtil.getInstance().getToken())){
             AppUtil.logout();
             Intent goLogin = new Intent(getActivity(), LoginActivity.class);
@@ -101,10 +100,6 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
         return SharePreferenceUtil.getInstance().getToken();
     }
 
-    @Override
-    public String getEmployerId() {
-        return SharePreferenceUtil.getLoginSpStringValue(Constants.EMPLOYERID);
-    }
 
     @Override
     public void onLogout() {
@@ -112,12 +107,6 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
         EventBus.getDefault().post(new LogoutEvent());
     }
 
-    @Override
-    public void onNetError() {
-
-    }
-
-    ;
 
     @Override
     public void onDestroy() {

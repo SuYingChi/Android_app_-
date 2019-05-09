@@ -2,11 +2,14 @@ package com.msht.mshtlpgmaster.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -17,6 +20,7 @@ import com.msht.mshtlpgmaster.Present.ILoginPresenter;
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.constant.Constants;
 import com.msht.mshtlpgmaster.services.KillSelfService;
+import com.msht.mshtlpgmaster.util.AndroidBug5497Workaround;
 import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.util.SharePreferenceUtil;
 import com.msht.mshtlpgmaster.viewInterface.ILoginView;
@@ -61,7 +65,9 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         setContentView(R.layout.activity_login);
         unbinder = ButterKnife.bind(this);
         iLoginPresenter = new ILoginPresenter(this);
+        AndroidBug5497Workaround.assistActivity(this);
     }
+
 
     @OnClick(R.id.btn_login)
     public void onViewClicked(View view) {
@@ -99,7 +105,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     protected void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
-        ImmersionBar.with(this).destroy();
         EventBus.getDefault().unregister(this);
     }
    public void reinputUserinfo(){

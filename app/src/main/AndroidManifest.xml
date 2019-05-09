@@ -61,7 +61,6 @@
             </intent-filter>
         </activity>
         <activity android:name="com.msht.mshtlpgmaster.activity.LoginActivity"
-            android:theme="@style/AppThemeTransparentStatusbar"
             />
         <activity
             android:name="com.msht.mshtlpgmaster.activity.HomeActivity"

@@ -9,18 +9,11 @@ public  interface IBaseView {
 
     String getToken();
 
-    String getEmployerId();
 
     void onLogout();
 
-    void onNetError();
 
     String getOrderType();
 
-  /*  String getEmployeeName();
-
-    String getSiteName();
-
-    String getSiteId();*/
 
 }

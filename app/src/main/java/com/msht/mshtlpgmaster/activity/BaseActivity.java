@@ -96,7 +96,11 @@ public class BaseActivity extends AppCompatActivity implements IBaseView, SwipeB
         }
     }
 
-    private void setSoftInPutMode() {
+    public boolean isImmesioBbar(){
+        return mImmersionBar!=null;
+    }
+
+    protected void setSoftInPutMode() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
 
@@ -131,7 +135,7 @@ public class BaseActivity extends AppCompatActivity implements IBaseView, SwipeB
     public void onError(String s) {
         if (!AppUtil.isNetworkAvailable()) {
             PopUtil.toastInBottom(R.string.net_no_available);
-            onNetError();
+
         } else if (TextUtils.isEmpty(SharePreferenceUtil.getInstance().getToken())) {
             AppUtil.logout();
             PopUtil.toastInBottom(s);
@@ -163,20 +167,13 @@ public class BaseActivity extends AppCompatActivity implements IBaseView, SwipeB
         return SharePreferenceUtil.getInstance().getToken();
     }
 
-    @Override
-    public String getEmployerId() {
-        return SharePreferenceUtil.getLoginSpStringValue(Constants.EMPLOYERID);
-    }
 
     @Override
     public void onLogout() {
         AppUtil.logout();
     }
 
-    @Override
-    public void onNetError() {
 
-    }
 
     @Override
     public String getOrderType() {
