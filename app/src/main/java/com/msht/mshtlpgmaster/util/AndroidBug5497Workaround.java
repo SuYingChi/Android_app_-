@@ -47,7 +47,7 @@ public class AndroidBug5497Workaround {
                 frameLayoutParams.height = usableHeightNow;
             } else {
                 // keyboard probably just became hidden
-                frameLayoutParams.height = usableHeightSansKeyboard;
+                frameLayoutParams.height = usableHeightSansKeyboard-ImmersionBar.getNavigationBarHeight(activity);
             }
             mChildOfContent.requestLayout();
             usableHeightPrevious = usableHeightNow;
@@ -57,7 +57,18 @@ public class AndroidBug5497Workaround {
     private int computeUsableHeight() {
         Rect r = new Rect();
         mChildOfContent.getWindowVisibleDisplayFrame(r);
-        return (r.bottom - r.top)+ (activity.isImmesioBbar()?ImmersionBar.getStatusBarHeight(activity):0);// 全屏模式下： return r.bottom
+        return activity.isImmesioBbar()?r.bottom:r.bottom-r.top;
     }
 
+    private boolean isSoftShowing() {
+        //获取当前屏幕内容的高度
+        int screenHeight = activity.getWindow().getDecorView().getHeight();
+        //获取View可见区域的bottom
+        Rect rect = new Rect();
+        //DecorView即为activity的顶级view
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+        //考虑到虚拟导航栏的情况（虚拟导航栏情况下：screenHeight = rect.bottom + 虚拟导航栏高度）
+        //选取screenHeight*2/3进行判断
+        return screenHeight * 2 / 3 > rect.bottom;
+    }
 }

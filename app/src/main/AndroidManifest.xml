@@ -90,7 +90,6 @@
         <activity android:name="com.msht.mshtlpgmaster.activity.ExchangeSteelBottleActivity" />
         <activity android:name="com.msht.mshtlpgmaster.activity.InnerActivity" />
         <activity android:name="com.msht.mshtlpgmaster.activity.RegisterBottleActivity"
-            android:windowSoftInputMode="adjustPan"
             />
         <activity android:name="com.msht.mshtlpgmaster.activity.BackBottleOrdersFinishActivity" />
         <activity android:name="com.msht.mshtlpgmaster.activity.BackBottleOrdersDetailActivity" />

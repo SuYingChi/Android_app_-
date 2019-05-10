@@ -3,11 +3,13 @@ package com.msht.mshtlpgmaster.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.fragment.MyScanDeliverUserBottleFragment;
 import com.msht.mshtlpgmaster.fragment.MyScanRegisterBottleFragment;
+import com.msht.mshtlpgmaster.util.AndroidBug5497Workaround;
 import com.msht.mshtlpgmaster.util.AppUtil;
 import com.msht.mshtlpgmaster.util.LogUtils;
 import com.msht.mshtlpgmaster.util.PermissionUtils;
@@ -38,7 +40,10 @@ public class RegisterBottleActivity extends BaseActivity implements PermissionUt
         PermissionUtils.requestPermissions(this, this, Permission.CAMERA);
     }
 
+    @Override
+    protected void setSoftInPutMode() {
 
+    }
     @Override
     public void onBackFromSettingPage() {
         if (!PermissionUtils.cameraIsCanUse()) {
@@ -65,6 +70,7 @@ public class RegisterBottleActivity extends BaseActivity implements PermissionUt
             }
         });
         AppUtil.showFragment(registerBottleFragment, getSupportFragmentManager());
+        AndroidBug5497Workaround.assistActivity(this);
     }
 
     @Override
