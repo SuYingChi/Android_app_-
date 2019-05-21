@@ -61,6 +61,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.msht.mshtlpgmaster.activity.LoginActivity"
+            android:launchMode="singleTask"
             />
         <activity
             android:name="com.msht.mshtlpgmaster.activity.HomeActivity"

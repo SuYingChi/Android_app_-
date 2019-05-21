@@ -1,6 +1,8 @@
 package com.msht.mshtlpgmaster.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -20,8 +22,10 @@ import com.msht.mshtlpgmaster.Present.GetQRcodeImageUrlPresenter;
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.constant.Constants;
 import com.msht.mshtlpgmaster.customView.TopBarView;
+import com.msht.mshtlpgmaster.util.DimenUtil;
 import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.viewInterface.IGetPayQRcodeView;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -99,9 +103,11 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
     @Override
     public void onGetQRCodeImageURLSuccess(GetPayQRCodeBean bean) {
         QRCodeUrl = bean.getData();
-        Glide.with(QRCodeReceiptActivity.this).load(QRCodeUrl)
+      /*  Glide.with(QRCodeReceiptActivity.this).load(QRCodeUrl)
                 .apply(new RequestOptions().centerCrop())
-                .into(ivqrQRCode);
+                .into(ivqrQRCode);*/
+        Bitmap mBitmap = CodeUtils.createImage(QRCodeUrl, DimenUtil.dip2px(200),  DimenUtil.dip2px(200), null);
+        ivqrQRCode.setImageBitmap(mBitmap);
 
     }
 
@@ -202,7 +208,7 @@ public class QRCodeReceiptActivity extends BaseActivity implements IGetPayQRcode
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    getQRcodeImageUrlPresenter.getQRcodeUrl();
+                    getQRcodeImageUrlPresenter.getQRcodeUrlNew();
                 }
             });
 

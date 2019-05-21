@@ -41,10 +41,6 @@ public class RegisterBottleActivity extends BaseActivity implements PermissionUt
     }
 
     @Override
-    protected void setSoftInPutMode() {
-
-    }
-    @Override
     public void onBackFromSettingPage() {
         if (!PermissionUtils.cameraIsCanUse()) {
             finish();
@@ -70,7 +66,7 @@ public class RegisterBottleActivity extends BaseActivity implements PermissionUt
             }
         });
         AppUtil.showFragment(registerBottleFragment, getSupportFragmentManager());
-        AndroidBug5497Workaround.assistActivity(this);
+      /*  AndroidBug5497Workaround.assistActivity(this);*/
     }
 
     @Override

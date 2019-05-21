@@ -25,6 +25,7 @@ public class Constants {
     public static final String QUERY_REPLACE_PRICE = BASE_URL + "lpgReplacePrice/queryReplacePrice";
     //微信付款
     public static final String WEIXIN_PAY = "https://smart-market.msbapp.cn:442/msht/weixinScanPay/scanPay2";
+    public static final String NEW_WEIXIN_PAY = BASE_URL+"lpgOrder/scanPay";
     //根据订单ID查询订单状态，再微信支付后查询订单是否已付款
     public static final String QUERY_ORDER_DETAIL_BY_ORDER_ID = BASE_URL + "lpgOrder/queryOrder";
     //订单详情提交页面，点击自有产权瓶时的查询接口
