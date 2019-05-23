@@ -2,7 +2,9 @@ package com.msht.mshtlpgmaster.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -116,6 +118,7 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
     private String sendTime;
     private int dispatchOrdersType;
     private Timer time = new Timer();
+    private Handler handler = new Handler();
     private TimerTask tk;
 
     @Override
@@ -155,28 +158,30 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
                 systemMinute = Calendar.getInstance().get(Calendar.MINUTE);
                 systemDates = systemYear + "-" + ((systemMonth) < 10 ? "0" + (systemMonth) : (systemMonth)) + "-" + (systemDate < 10 ? "0" + systemDate : systemDate);
                 systemTime = systemHour + "-" + ((systemMinute) < 10 ? "0" + (systemMinute) : (systemMinute));
-                validateDate = checkDate(sendOrderYear,sendOrderMonth,sendOrderDate);
-                validateTime = checkTime(sendOrderHour,sendOrderMinute);
-                if(!validateTime) {
+                validateDate = checkDate(sendOrderYear, sendOrderMonth, sendOrderDate);
+                validateTime = checkTime(sendOrderHour, sendOrderMinute);
+                if (!validateTime) {
                     sendOrderYear = systemYear;
                     sendOrderMonth = systemMonth;
                     sendOrderDate = systemDate;
                     sendDates = systemDates;
-                    tvChooseTime.setText(new StringBuffer().append(systemDates).append("  ").append(systemTime).toString());
-                    if (timeSelecteDialog != null && timeSelecteDialog.isShowing()) {
-                        timeSelecteDialog.dismiss();
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                showCurrentTimeSelectDialog();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tvChooseTime.setText(new StringBuffer().append(systemDates).append("  ").append(systemTime).toString());
+                            if (timeSelecteDialog != null && timeSelecteDialog.isShowing()) {
+                               timeSelecteDialog.dismiss();
+                               showCurrentTimeSelectDialog();
                             }
-                        });
-                    }
+                        }
+                    });
+
                 }
             }
         };
         int systemMillisecond = Calendar.getInstance().get(Calendar.MILLISECOND);
         int delay = 60000 - systemMillisecond;
+        Log.d("task", "systemMillisecond===="+systemMillisecond+"      delay=="+delay);
         time.schedule(tk, delay, 60000);
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
@@ -205,9 +210,12 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
         tvChooseTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!validateTime) {
+                if (timeSelecteDialog != null && timeSelecteDialog.isShowing() && !isFinishing()) {
+                    timeSelecteDialog.dismiss();
+                }
+                if (!validateTime) {
                     showCurrentTimeSelectDialog();
-                }else {
+                } else {
                     showSelectedTimeSelectDialog();
                 }
 
@@ -304,41 +312,47 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
     }
 
     private void showCurrentTimeSelectDialog() {
-            timeSelecteDialog = new TimeSelecteDialog(this, systemYear, systemMonth, systemDate, systemHour, systemMinute, DispatchCustomerOrderActivity.this);
-            timeSelecteDialog.show();
-    }
-    private void showSelectedTimeSelectDialog() {
-        timeSelecteDialog = new TimeSelecteDialog(this, systemYear, systemMonth, systemDate, systemHour, systemMinute, DispatchCustomerOrderActivity.this);
+        timeSelecteDialog = new TimeSelecteDialog(this, DispatchCustomerOrderActivity.this);
         timeSelecteDialog.show();
-        timeSelecteDialog.setSendDates(sendOrderYear,sendOrderMonth,sendOrderDate,sendOrderHour,sendOrderMinute);
+    }
+
+    private void showSelectedTimeSelectDialog() {
+        timeSelecteDialog = new TimeSelecteDialog(this, DispatchCustomerOrderActivity.this);
+        timeSelecteDialog.show();
+        timeSelecteDialog.setSendDates(sendOrderYear, sendOrderMonth, sendOrderDate, sendOrderHour, sendOrderMinute);
     }
 
 
     @Override
     public void onSelectDate(int year, int month, int date) {
-        validateDate = checkDate(year, month + 1, date);
-        if (validateDate) {
-            sendOrderYear = year;
-            sendOrderMonth = month + 1;
-            sendOrderDate = date;
-            sendDates = sendOrderYear + "-" + ((DispatchCustomerOrderActivity.this.sendOrderMonth) < 10 ? "0" + (sendOrderMonth) : (sendOrderMonth)) + "-" + (sendOrderDate < 10 ? "0" + sendOrderDate :sendOrderDate);
-            tvChooseTime.setText(new StringBuffer().append(sendDates).append(" ").append(sendTime).toString());
-        } else {
-            PopUtil.toastInBottom("不能选择" + systemDates + "之前的日期");
+        if (!(year == sendOrderYear && month + 1 == sendOrderMonth && date == sendOrderDate)) {
+            validateDate = checkDate(year, month + 1, date);
+            if (validateDate) {
+                sendOrderYear = year;
+                sendOrderMonth = month + 1;
+                sendOrderDate = date;
+                sendDates = sendOrderYear + "-" + ((sendOrderMonth) < 10 ? "0" + (sendOrderMonth) : (sendOrderMonth)) + "-" + (sendOrderDate < 10 ? "0" + sendOrderDate : sendOrderDate);
+                tvChooseTime.setText(new StringBuffer().append(sendDates).append(" ").append(sendTime).toString());
+            } else {
+                PopUtil.toastInBottom("不能选择" + systemDates + "之前的日期");
+                timeSelecteDialog.reverseDate(sendOrderYear, sendOrderMonth, sendOrderDate);
+            }
         }
     }
 
     @Override
     public void onSelectTime(int hourOfDay, int minute) {
-        validateTime = checkTime(hourOfDay, minute);
-        if (validateTime) {
-            DispatchCustomerOrderActivity.this.sendOrderHour = hourOfDay;
-            DispatchCustomerOrderActivity.this.sendOrderMinute = minute;
-            sendTime = sendOrderHour + "-" + ((sendOrderMinute) < 10 ? "0" + (sendOrderMinute) : (sendOrderMinute));
-            tvChooseTime.setText(new StringBuffer().append(sendDates).append(" ").append(sendTime).toString());
-        } else {
-            PopUtil.toastInBottom("不能选择" + systemTime + "之前的日期");
-            timeSelecteDialog.reverseTime(systemHour, systemMinute);
+        if (!(hourOfDay == sendOrderHour && minute == sendOrderMinute)) {
+            validateTime = checkTime(hourOfDay, minute);
+            if (validateTime) {
+                DispatchCustomerOrderActivity.this.sendOrderHour = hourOfDay;
+                DispatchCustomerOrderActivity.this.sendOrderMinute = minute;
+                sendTime = sendOrderHour + "-" + ((sendOrderMinute) < 10 ? "0" + (sendOrderMinute) : (sendOrderMinute));
+                tvChooseTime.setText(new StringBuffer().append(sendDates).append(" ").append(sendTime).toString());
+            } else {
+                PopUtil.toastInBottom("不能选择" + systemTime + "之前的日期");
+                timeSelecteDialog.reverseTime(systemHour, systemMinute);
+            }
         }
     }
 

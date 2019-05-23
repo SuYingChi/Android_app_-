@@ -18,12 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TimeSelecteDialog extends Dialog {
-    private int systemYear;
-    private int systemMonth;
-    private int systemDate;
-    private int systemHour;
-    private int systemMinute;
-    private Context context;
+
     @BindView(R.id.calendarView)
     CalendarView calendarView;
     @BindView(R.id.time_pick)
@@ -31,15 +26,11 @@ public class TimeSelecteDialog extends Dialog {
 
     private OnSelectTimeListener onSelectTimeListener;
 
-    public TimeSelecteDialog(Context context, int systemYear, int systemMonth, int systemDate, int systemHour, int systemMinute, OnSelectTimeListener onSelectTimeListener) {
+    public TimeSelecteDialog(Context context,  OnSelectTimeListener onSelectTimeListener) {
         super(context, R.style.BottomAnimDialogStyle);
-        this.context = context;
+
         this.onSelectTimeListener = onSelectTimeListener;
-        this.systemYear = systemYear;
-        this.systemMonth = systemMonth;
-        this.systemDate = systemDate;
-        this.systemHour = systemHour;
-        this.systemMinute = systemMinute;
+
     }
 
 
@@ -66,7 +57,6 @@ public class TimeSelecteDialog extends Dialog {
         setCanceledOnTouchOutside(true);
         WindowManager.LayoutParams attributes = this.getWindow().getAttributes();
         attributes.width = WindowManager.LayoutParams.MATCH_PARENT;
-        attributes.height = WindowManager.LayoutParams.WRAP_CONTENT;
         attributes.gravity = Gravity.BOTTOM;
         this.getWindow().setAttributes(attributes);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -75,7 +65,7 @@ public class TimeSelecteDialog extends Dialog {
                 TimeSelecteDialog.this.onSelectTimeListener.onSelectDate(year, month, dayOfMonth);
             }
         });
-        calendarView.setMinDate(DateUtils.getStringToDate(systemYear + "-" + systemMonth + "-" + systemDate, "yyyy-MM-dd"));
+    //    calendarView.setMinDate(DateUtils.getStringToDate(systemYear + "-" + systemMonth + "-" + systemDate, "yyyy-MM-dd"));
         timePicker.setIs24HourView(true);
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
@@ -85,14 +75,6 @@ public class TimeSelecteDialog extends Dialog {
         });
 
 
-    }
-
-    public void setSystemTime(int systemYear, int systemMonth, int systemDate, int systemHour, int systemMinute) {
-        this.systemYear = systemYear;
-        this.systemMonth = systemMonth;
-        this.systemDate = systemDate;
-        this.systemHour = systemHour;
-        this.systemMinute = systemMinute;
     }
 
     public void reverseTime(int systemHour, int systemMinute) {
@@ -108,6 +90,10 @@ public class TimeSelecteDialog extends Dialog {
             timePicker.setHour(sendOrderHour);
             timePicker.setMinute(sendOrderMinute);
         }
+    }
+
+    public void reverseDate(int sendOrderYear, int sendOrderMonth, int sendOrderDate) {
+        calendarView.setDate(DateUtils.getStringToDate(sendOrderYear + "-" + sendOrderMonth + "-" + sendOrderDate, "yyyy-MM-dd"));
     }
 
 

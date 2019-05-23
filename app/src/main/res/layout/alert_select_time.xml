@@ -1,53 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="350dp"
-    android:layout_gravity="bottom"
+    android:layout_height="400dp"
     android:background="@drawable/deliever_dialog_custom_bg"
-    android:orientation="vertical">
-
+    >
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="选择配送时间"
+        android:textColor="@color/white"
         android:background="@color/msb_color"
+        android:textSize="@dimen/text_16"
         android:gravity="center"
         android:paddingBottom="@dimen/margin_Modules"
         android:paddingTop="@dimen/margin_Modules"
-        android:text="选择配送时间"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_16" />
-
+        />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:layout_height="match_parent"
+        android:layout_below="@id/title"
+        android:orientation="horizontal"
+        >
         <CalendarView
             android:id="@+id/calendarView"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:focusedMonthDateColor="@color/text_blue"
-            android:selectedDateVerticalBar="@color/warning_red"
+            android:layout_weight="3"
+            android:layout_height="match_parent"
+            android:focusedMonthDateColor ="@color/text_blue"
+            android:selectedDateVerticalBar = "@color/warning_red"
             android:selectedWeekBackgroundColor="@color/white"
-            android:unfocusedMonthDateColor="@color/black" />
+            android:unfocusedMonthDateColor="@color/black"
 
+            />
         <TimePicker
             android:id="@+id/time_pick"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:timePickerMode="spinner">
-
-
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_gravity="center_vertical"
+            >
         </TimePicker>
-        <!--  &lt;!&ndash; //当月日期显示为蓝色&ndash;&gt;
-               android:focusedMonthDateColor="#12c8cf"
-          &lt;!&ndash; //选中的日期为红色&ndash;&gt;
-           android:selectedDateVerticalBar="@color/red_price"
-          &lt;!&ndash; //选中一周的背景色为白色&ndash;&gt;
-           android:selectedWeekBackgroundColor="#FFFFFF"
-          &lt;!&ndash; //不是当月的日期显示为黑色&ndash;&gt;
-           android:unfocusedMonthDateColor="#4c4948"  -->
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

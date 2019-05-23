@@ -1,1 +1,1 @@
-include ':app'/*,':lib-zxing'*/,':pingpp'
+include ':app'/*,':lib-zxing'*/,':pingpp',':time_library'

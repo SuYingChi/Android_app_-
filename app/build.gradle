@@ -93,4 +93,5 @@ dependencies {
     // 使用支付宝时添加
     implementation 'com.pingxx:pingpp-alipay:2.1.19'*/
     implementation project(':pingpp')
+    implementation project(':time_library')
 }
