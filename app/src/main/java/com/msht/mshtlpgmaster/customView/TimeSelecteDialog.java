@@ -28,7 +28,7 @@ public class TimeSelecteDialog extends Dialog {
     CalendarView calendarView;
     @BindView(R.id.time_pick)
     TimePicker timePicker;
-    ;
+
     private OnSelectTimeListener onSelectTimeListener;
 
     public TimeSelecteDialog(Context context, int systemYear, int systemMonth, int systemDate, int systemHour, int systemMinute, OnSelectTimeListener onSelectTimeListener) {
@@ -75,21 +75,8 @@ public class TimeSelecteDialog extends Dialog {
                 TimeSelecteDialog.this.onSelectTimeListener.onSelectDate(year, month, dayOfMonth);
             }
         });
-        calendarView.setMinDate(DateUtils.getStringToDate(systemYear + "-" + systemMonth + "-" + systemDate + "-", "yyyy-MM-dd"));
+        calendarView.setMinDate(DateUtils.getStringToDate(systemYear + "-" + systemMonth + "-" + systemDate, "yyyy-MM-dd"));
         timePicker.setIs24HourView(true);
-        /*        *//*接下来就是一些需要用到反射的方法了，比如更改分割线的样式，设置起始截止时间等：
-        首先我们要通过反射获取TimePicker源码里hour和minute的id：*//*
-        Resources systemResources = Resources.getSystem();
-        int hourNumberPickerId = systemResources.getIdentifier("hour", "id", "android");
-        int minuteNumberPickerId = systemResources.getIdentifier("minute", "id", "android");
-        //然后用我们定义的TimePicker来获取这个id并转换成hour和minute对应的NumberPicker:
-        NumberPicker hourNumberPicker = (NumberPicker) timePicker.findViewById(hourNumberPickerId);
-        NumberPicker minuteNumberPicker = (NumberPicker) timePicker.findViewById(minuteNumberPickerId);
-        //通过获取到的hourNumberPicker和minuteNumberPicker我们可以先进行TimePicker的时间限制：
-        //设置最小hour
-        hourNumberPicker.setMinValue(systemHour);
-        //设置最小minute
-        minuteNumberPicker.setMinValue(systemMinute);*/
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
@@ -112,6 +99,14 @@ public class TimeSelecteDialog extends Dialog {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             timePicker.setHour(systemHour);
             timePicker.setMinute(systemMinute);
+        }
+    }
+
+    public void setSendDates(int sendOrderYear, int sendOrderMonth, int sendOrderDate, int sendOrderHour, int sendOrderMinute) {
+        calendarView.setDate(DateUtils.getStringToDate(sendOrderYear + "-" + sendOrderMonth + "-" + sendOrderDate, "yyyy-MM-dd"));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            timePicker.setHour(sendOrderHour);
+            timePicker.setMinute(sendOrderMinute);
         }
     }
 

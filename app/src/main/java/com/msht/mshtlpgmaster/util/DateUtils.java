@@ -3,6 +3,7 @@ package com.msht.mshtlpgmaster.util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by hong on 2017/9/22.
@@ -52,12 +53,11 @@ public class DateUtils {
      * @return
      */
     public static long getStringToDate(String dateString, String pattern) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern, Locale.CHINA);
         Date date = new Date();
         try {
             date = dateFormat.parse(dateString);
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return date.getTime();

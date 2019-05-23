@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
@@ -89,18 +90,15 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
         setContentView(R.layout.activity_select_address);
         mContext = this;
         unbinder = ButterKnife.bind(this);
-        locationClient = ALocationClientFactory.createLocationClient(this, ALocationClientFactory.createDefaultOption(), this);
+       // locationClient = ALocationClientFactory.createLocationClient(this, ALocationClientFactory.createDefaultOption(), this);
+        locationClient = new AMapLocationClient(mContext);
+        AMapLocationClientOption mLocationOption = new AMapLocationClientOption();
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        //设置定位间隔,单位毫秒,默认为2000ms
+        mLocationOption.setInterval(5000);
+        locationClient.setLocationOption(mLocationOption);
+        locationClient.setLocationListener(this);
         PermissionUtils.requestPermissions(this, this, new String[]{Permission.ACCESS_FINE_LOCATION, Permission.ACCESS_COARSE_LOCATION});
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                    ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                PermissionUtils.requestPermissions(this, this, new String[]{Permission.ACCESS_FINE_LOCATION, Permission.ACCESS_COARSE_LOCATION});
-            }else {
-                locationClient.startLocation();
-            }
-        }else {
-            locationClient.startLocation();
-        }*/
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

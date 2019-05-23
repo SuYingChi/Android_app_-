@@ -65,7 +65,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         setContentView(R.layout.activity_login);
         unbinder = ButterKnife.bind(this);
         iLoginPresenter = new ILoginPresenter(this);
-        AndroidBug5497Workaround.assistActivity(this);
     }
 
 

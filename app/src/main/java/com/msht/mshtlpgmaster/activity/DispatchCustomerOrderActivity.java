@@ -155,6 +155,24 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
                 systemMinute = Calendar.getInstance().get(Calendar.MINUTE);
                 systemDates = systemYear + "-" + ((systemMonth) < 10 ? "0" + (systemMonth) : (systemMonth)) + "-" + (systemDate < 10 ? "0" + systemDate : systemDate);
                 systemTime = systemHour + "-" + ((systemMinute) < 10 ? "0" + (systemMinute) : (systemMinute));
+                validateDate = checkDate(sendOrderYear,sendOrderMonth,sendOrderDate);
+                validateTime = checkTime(sendOrderHour,sendOrderMinute);
+                if(!validateTime) {
+                    sendOrderYear = systemYear;
+                    sendOrderMonth = systemMonth;
+                    sendOrderDate = systemDate;
+                    sendDates = systemDates;
+                    tvChooseTime.setText(new StringBuffer().append(systemDates).append("  ").append(systemTime).toString());
+                    if (timeSelecteDialog != null && timeSelecteDialog.isShowing()) {
+                        timeSelecteDialog.dismiss();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                showCurrentTimeSelectDialog();
+                            }
+                        });
+                    }
+                }
             }
         };
         int systemMillisecond = Calendar.getInstance().get(Calendar.MILLISECOND);
@@ -187,7 +205,12 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
         tvChooseTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showTimeSelectDialog();
+                if(!validateTime) {
+                    showCurrentTimeSelectDialog();
+                }else {
+                    showSelectedTimeSelectDialog();
+                }
+
             }
         });
         if (dispatchOrdersType == SEND_BOTTLE) {
@@ -198,12 +221,7 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
                         PopUtil.toastInBottom("请编辑配送地址是否有电梯以及楼层");
                     } else if (!isGetFirstDeliverySuccess || !isGetFourDeliverySuccess || !isGetSixDeliverySuccess || !isGetSecondDeliverySuccess) {
                         PopUtil.toastInBottom("正在获取运费信息，请稍后再试");
-                    } /*else if (deliverFareDialog == null) {
-                        deliverFareDialog = new DeliverFareDialog(DispatchCustomerOrderActivity.this, map);
-                        deliverFareDialog.show();
-                    } else if (!deliverFareDialog.isShowing()) {
-                        deliverFareDialog.show();
-                    }*/else {
+                    } else {
                         PopUtil.showWebViewDialog(DispatchCustomerOrderActivity.this, Constants.PEI_SONG_SHUO_MING);
                     }
                 }
@@ -285,32 +303,25 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
 
     }
 
-    private void showTimeSelectDialog() {
-        if (!isFinishing() && timeSelecteDialog == null) {
+    private void showCurrentTimeSelectDialog() {
             timeSelecteDialog = new TimeSelecteDialog(this, systemYear, systemMonth, systemDate, systemHour, systemMinute, DispatchCustomerOrderActivity.this);
             timeSelecteDialog.show();
-        } else if (!isFinishing() && !timeSelecteDialog.isShowing()) {
-            timeSelecteDialog.setSystemTime(systemYear, systemMonth, systemDate, systemHour, systemMinute);
-            timeSelecteDialog.show();
-        }
+    }
+    private void showSelectedTimeSelectDialog() {
+        timeSelecteDialog = new TimeSelecteDialog(this, systemYear, systemMonth, systemDate, systemHour, systemMinute, DispatchCustomerOrderActivity.this);
+        timeSelecteDialog.show();
+        timeSelecteDialog.setSendDates(sendOrderYear,sendOrderMonth,sendOrderDate,sendOrderHour,sendOrderMinute);
     }
 
-
-    private void hideTimeSelectDialog() {
-        if (timeSelecteDialog != null && timeSelecteDialog.isShowing() && !isFinishing()) {
-            timeSelecteDialog.dismiss();
-        }
-    }
 
     @Override
     public void onSelectDate(int year, int month, int date) {
-        Log.d("SendCustomerOrder", "onSelectDate: systemYear=" + year + "systemMonth=" + month + "systemDate=" + date);
         validateDate = checkDate(year, month + 1, date);
         if (validateDate) {
-            DispatchCustomerOrderActivity.this.sendOrderYear = year;
-            DispatchCustomerOrderActivity.this.sendOrderMonth = month + 1;
-            DispatchCustomerOrderActivity.this.sendOrderDate = date;
-            sendDates = DispatchCustomerOrderActivity.this.sendOrderYear + "-" + ((DispatchCustomerOrderActivity.this.sendOrderMonth) < 10 ? "0" + (DispatchCustomerOrderActivity.this.sendOrderMonth) : (DispatchCustomerOrderActivity.this.sendOrderMonth)) + "-" + (DispatchCustomerOrderActivity.this.sendOrderDate < 10 ? "0" + DispatchCustomerOrderActivity.this.sendOrderDate : DispatchCustomerOrderActivity.this.sendOrderDate);
+            sendOrderYear = year;
+            sendOrderMonth = month + 1;
+            sendOrderDate = date;
+            sendDates = sendOrderYear + "-" + ((DispatchCustomerOrderActivity.this.sendOrderMonth) < 10 ? "0" + (sendOrderMonth) : (sendOrderMonth)) + "-" + (sendOrderDate < 10 ? "0" + sendOrderDate :sendOrderDate);
             tvChooseTime.setText(new StringBuffer().append(sendDates).append(" ").append(sendTime).toString());
         } else {
             PopUtil.toastInBottom("不能选择" + systemDates + "之前的日期");
@@ -425,7 +436,6 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
                         double fiftyDeleivery = Double.valueOf(fiftyWeightCount) * Double.valueOf(map.get("six50"));
                         totalAmount = fiveDeleivery + fifteenDeleivery + fiftyDeleivery;
                         tvTotalAmount.setText(totalAmount + "");
-                        ;
                     }
                 }
             }
