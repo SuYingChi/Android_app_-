@@ -5,6 +5,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +27,17 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.amap.api.maps2d.AMap;
+import com.amap.api.maps2d.CameraUpdateFactory;
+import com.amap.api.maps2d.LocationSource;
+import com.amap.api.maps2d.MapView;
+import com.amap.api.maps2d.model.BitmapDescriptor;
+import com.amap.api.maps2d.model.BitmapDescriptorFactory;
+import com.amap.api.maps2d.model.Circle;
+import com.amap.api.maps2d.model.CircleOptions;
+import com.amap.api.maps2d.model.LatLng;
+import com.amap.api.maps2d.model.Marker;
+import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.poisearch.PoiResult;
@@ -36,6 +52,7 @@ import com.msht.mshtlpgmaster.customView.TopBarView;
 import com.msht.mshtlpgmaster.mapAddress.ALocationClientFactory;
 import com.msht.mshtlpgmaster.mapAddress.PoiSearchTask;
 import com.msht.mshtlpgmaster.util.PermissionUtils;
+import com.msht.mshtlpgmaster.util.SensorEventHelper;
 import com.yanzhenjie.permission.Permission;
 
 import java.util.ArrayList;
@@ -69,6 +86,8 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
     View layoutEdit;
     @BindView(R.id.top_bar)
     TopBarView topBarView;
+    @BindView(R.id.map)
+    MapView mapView;
     private String mCity;
     private String mArea;
     private Unbinder unbinder;
@@ -82,23 +101,25 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
     private String addressDescribe;
     private String addressName;
     private String addressStr;
+    private AMap aMap;
+    private SensorEventHelper mSensorHelper;
+    private boolean mFirstFix = false;
+    private AMapLocationClientOption locationOption;
+    private Circle mCircle;
+    private Marker mLocMarker;
+    private static final int STROKE_COLOR = Color.argb(180, 3, 145, 255);
+    private static final int FILL_COLOR = Color.argb(10, 0, 0, 180);
+    private Sensor mSensor;
+    private PoiSearchTask ponSearchTask;
 
-    @SuppressLint("ClickableViewAccessibility")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_address);
         mContext = this;
         unbinder = ButterKnife.bind(this);
-       // locationClient = ALocationClientFactory.createLocationClient(this, ALocationClientFactory.createDefaultOption(), this);
-        locationClient = new AMapLocationClient(mContext);
-        AMapLocationClientOption mLocationOption = new AMapLocationClientOption();
-        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-        //设置定位间隔,单位毫秒,默认为2000ms
-        mLocationOption.setInterval(5000);
-        locationClient.setLocationOption(mLocationOption);
-        locationClient.setLocationListener(this);
-        PermissionUtils.requestPermissions(this, this, new String[]{Permission.ACCESS_FINE_LOCATION, Permission.ACCESS_COARSE_LOCATION});
+        mapView.onCreate(savedInstanceState);// 此方法必须重写
         topBarView.setLeftBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -177,6 +198,36 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
                 finish();
             }
         });
+        SensorManager mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+    }
+
+    private void initMap() {
+        if (aMap == null) {
+            aMap = mapView.getMap();
+          //  aMap.setLocationSource(this);// 设置定位监听
+            aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
+            aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
+        }
+        if(mSensor!=null) {
+            mSensorHelper = new SensorEventHelper(this);
+            mSensorHelper.registerSensorListener();
+        }
+        ponSearchTask = PoiSearchTask.getInstance(this).setAdapter(poiAdapter);
+        locationClient = new AMapLocationClient(this);
+        locationOption = new AMapLocationClientOption();
+        //设置定位监听
+        locationClient.setLocationListener(this);
+        //设置为高精度定位模式
+        locationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        locationOption.setInterval(5000);
+        //设置定位参数
+        locationClient.setLocationOption(locationOption);
+        // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
+        // 注意设置合适的定位时间的间隔（最小间隔支持为2000ms），并且在合适时间调用stopLocation()方法来取消定位请求
+        // 在定位结束后，在合适的生命周期调用onDestroy()方法
+        // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
+        locationClient.startLocation();
     }
 
     @OnClick({R.id.id_cancel, R.id.id_edit_layout, R.id.id_current_address})
@@ -220,6 +271,48 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
         }
     }
 
+    /**
+     * 方法必须重写
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mapView.onResume();
+        PermissionUtils.requestPermissions(this, this, Permission.ACCESS_FINE_LOCATION, Permission.ACCESS_COARSE_LOCATION);
+    }
+
+    /**
+     * 方法必须重写
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mapView.onPause();
+        if (mSensor!=null&&mSensorHelper != null) {
+            mSensorHelper.unRegisterSensorListener();
+            mSensorHelper.setCurrentMarker(null);
+            mSensorHelper = null;
+        }
+        deactivate();
+        mFirstFix = false;
+    }
+    public void deactivate() {
+        if (locationClient != null) {
+            locationClient.stopLocation();
+            locationClient.onDestroy();
+        }
+        locationClient = null;
+    }
+    /**
+     * 方法必须重写
+     */
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
+    }
+
+
     @Override
     public void onPermissionRequestDenied(List<String> permissions) {
         finish();
@@ -227,12 +320,13 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
 
     @Override
     public void onPermissionRequestSuccess(List<String> permissions) {
-        locationClient.startLocation();
+        initMap();
     }
 
     @Override
     public void onLocationChanged(AMapLocation aMapLocation) {
         if (aMapLocation != null && aMapLocation.getErrorCode() == 0) {
+            Log.d("location", "onLocationChanged: ");
             //获取定位信息
             double latitude = aMapLocation.getLatitude();
             lat = latitude + "";
@@ -251,10 +345,55 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
             tvCurrent.setText(addressStr);
             tvCity.setText(mCity);
             //这里是定位完成之后开始poi的附近搜索，代码在后面
-            PoiSearchTask.getInstance(this).setAdapter(poiAdapter).onSearch("", "", latitude, longitude);
+             ponSearchTask.onSearch("", "", latitude, longitude);
+            LatLng latlng = new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude());
+            if (!mFirstFix) {
+                mFirstFix = true;
+                addCircle(latlng, aMapLocation.getAccuracy());//添加定位精度圆
+                addMarker(latlng);//添加定位图标
+                if(mSensor!=null) {
+                    mSensorHelper.setCurrentMarker(mLocMarker);//定位图标旋转
+                }
+            } else {
+                mCircle.setCenter(latlng);
+                mCircle.setRadius(aMapLocation.getAccuracy());
+                mLocMarker.setPosition(latlng);
+            }
+            aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, 18));
         } else {
             Log.d("aMapLocation=", aMapLocation.getErrorInfo() + "错误码=" + aMapLocation.getErrorCode());
         }
+    }
+
+    private void addCircle(LatLng latlng, double radius) {
+        CircleOptions options = new CircleOptions();
+        options.strokeWidth(1f);
+        options.fillColor(FILL_COLOR);
+        options.strokeColor(STROKE_COLOR);
+        options.center(latlng);
+        options.radius(radius);
+        mCircle = aMap.addCircle(options);
+    }
+
+    private void addMarker(LatLng latlng) {
+        if (mLocMarker != null) {
+            return;
+        }
+        Bitmap bMap;
+        if(mSensor!=null) {
+             bMap = BitmapFactory.decodeResource(this.getResources(),
+                    R.drawable.navi_map_gps_locked);
+        }else {
+             bMap = BitmapFactory.decodeResource(this.getResources(),
+                    R.drawable.gps_point);
+        }
+        BitmapDescriptor des = BitmapDescriptorFactory.fromBitmap(bMap);
+        MarkerOptions options = new MarkerOptions();
+        options.icon(des);
+        options.anchor(0.5f, 0.5f);
+        options.position(latlng);
+        mLocMarker = aMap.addMarker(options);
+        mLocMarker.setTitle("我的当前位置");
     }
 
     @Override
@@ -293,6 +432,7 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
     @Override
     public void onPoiItemSearched(PoiItem poiItem, int i) {
     }
+
 
     private class MyTextWatcher implements TextWatcher {
         @Override
@@ -333,5 +473,12 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
     protected void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
+        //必须重写
+        if (mapView != null) {
+            mapView.onDestroy();
+        }
+        if (null != locationClient) {
+            locationClient.onDestroy();
+        }
     }
 }

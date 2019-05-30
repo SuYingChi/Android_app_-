@@ -32,8 +32,11 @@ import com.msht.mshtlpgmaster.Bean.ErrorBean;
 import com.msht.mshtlpgmaster.Bean.GetBottleInfo;
 import com.msht.mshtlpgmaster.Present.IRegisterBottlePresenter;
 import com.msht.mshtlpgmaster.R;
+import com.msht.mshtlpgmaster.activity.DispatchCustomerOrderActivity;
 import com.msht.mshtlpgmaster.adapter.SpinnerAdapter;
 import com.msht.mshtlpgmaster.application.LPGApplication;
+import com.msht.mshtlpgmaster.customView.LoadingDialog;
+import com.msht.mshtlpgmaster.customView.TimeSelecteDayDialog;
 import com.msht.mshtlpgmaster.customView.TimeSelecteDialog;
 import com.msht.mshtlpgmaster.customView.TopBarView;
 import com.msht.mshtlpgmaster.handler.MyScanHandler;
@@ -45,13 +48,14 @@ import com.uuzuche.lib_zxing.view.ViewfinderView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Vector;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyScanRegisterBottleFragment extends BaseFragment implements IRegisterBottleView, SurfaceHolder.Callback {
+public class MyScanRegisterBottleFragment extends BaseFragment implements IRegisterBottleView, SurfaceHolder.Callback, TimeSelecteDayDialog.OnSelectTimeListener {
     private static final String TAG = MyScanRegisterBottleFragment.class.getSimpleName();
     @BindView(R.id.scan_delive_topbar)
     TopBarView topBarView;
@@ -99,8 +103,10 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
     private String createTime;
     private String nextCheckTime;
     private SpinnerAdapter spWeightAdapter;
-    private TimeSelecteDialog timeSelecteDialog;
-    private boolean isRestart;
+    private TimeSelecteDayDialog timeSelecteDialog;
+    private int sendOrderYear;
+    private int sendOrderMonth;
+    private int sendOrderDate;
 
 
     @Override
@@ -109,11 +115,11 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
         CameraManager.init(LPGApplication.getLPGApplicationContext());
         iRegisterBottlePresenter = new IRegisterBottlePresenter(this);
         hasSurface = false;
-        isRestart = false;
         inactivityTimer = new InactivityTimer(this.getActivity());
         spinnerList.add("    5kg     ");
         spinnerList.add("   15kg     ");
         spinnerList.add("   50kg     ");
+
     }
 
 
@@ -146,6 +152,12 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
         spWeight.setAdapter(spWeightAdapter);
         spWeightAdapter.setData(spinnerList);
         spWeightAdapter.notifyDataSetChanged();
+        tvCreatTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSelectDayDialog();
+            }
+        });
         etInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -168,6 +180,16 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
         return view;
     }
 
+    private void showSelectDayDialog() {
+        if (!this.getActivity().isFinishing() && timeSelecteDialog == null) {
+            timeSelecteDialog = new TimeSelecteDayDialog(getContext(), this);
+            timeSelecteDialog.show();
+        } else if (!this.getActivity().isFinishing() && !timeSelecteDialog.isShowing()) {
+            timeSelecteDialog.show();
+        }
+
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -184,19 +206,6 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
         CameraManager.get().closeDriver();
     }
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Log.d("suyingchi", "onSaveInstanceState: ");
-        isRestart = true;
-
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop: ");
-    }
 
     @Override
     public void onResume() {
@@ -379,7 +388,7 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
         tvCreatTime.setText(createTime);
         etProduceUnit.setText(propertyUnit);
         tvBottleCode.setText(bottleCode);
-        switch (bottleWeight){
+        switch (bottleWeight) {
             case "5":
                 spWeight.setSelection(0);
                 break;
@@ -389,16 +398,18 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
             case "50":
                 spWeight.setSelection(2);
                 break;
-                    default:break;
+            default:
+                break;
         }
-        hideInput(MyScanRegisterBottleFragment.this.getContext(), etInput);
+        hideInput(getContext(), etInput);
         tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (etBottleNumber.getText().toString().length() == 9) {
+                String str = etBottleNumber.getText().toString().replaceAll(" ", "");
+                if (str.length() == 9) {
                     iRegisterBottlePresenter.update_bottle_info();
                 } else {
-                    PopUtil.toastInBottom("必须是9位数的瓶身钢码");
+                    PopUtil.toastInBottom("必须是9位数不包含空格符的瓶身钢码");
                 }
             }
         });
@@ -477,7 +488,6 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
 
     @Override
     public String getCreateTime() {
-        createTime = tvCreatTime.getText().toString();
         return createTime;
     }
 
@@ -492,5 +502,17 @@ public class MyScanRegisterBottleFragment extends BaseFragment implements IRegis
         super.onError(s);
         Message reDecode = Message.obtain(handler, R.id.redecode_after_decodeSuccess);
         handler.sendMessageDelayed(reDecode, 1000);
+    }
+
+    @Override
+    public void onSelectDate(int year, int month, int date) {
+             sendOrderYear = year;
+             sendOrderMonth = month + 1;
+             sendOrderDate = date;
+             createTime = sendOrderYear + "-" + ((sendOrderMonth) < 10 ? "0" + (sendOrderMonth) : (sendOrderMonth)) + "-" + (sendOrderDate < 10 ? "0" + sendOrderDate : sendOrderDate);
+             tvCreatTime.setText(createTime);
+             if (timeSelecteDialog != null && timeSelecteDialog.isShowing() && !getActivity().isFinishing()) {
+                 timeSelecteDialog.dismiss();
+             }
     }
 }

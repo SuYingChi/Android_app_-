@@ -15,7 +15,10 @@
         app:title_text="填写地址" />
 
     <include layout="@layout/layout_select_address_header" />
-
+    <com.amap.api.maps2d.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/map_view" />
     <include
         android:id="@+id/id_current_layout"
         layout="@layout/layout_current_location_address" />

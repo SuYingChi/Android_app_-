@@ -334,7 +334,6 @@
 
                 />
 
-
             <TextView
                 android:id="@+id/creat_time"
                 android:layout_width="match_parent"
@@ -342,9 +341,20 @@
                 android:layout_marginLeft="@dimen/register_bottle_et_space"
                 android:layout_toEndOf="@id/tv4"
                 android:layout_toRightOf="@id/tv4"
+                android:paddingBottom="@dimen/margin_Modules"
                 android:text=""
                 android:textColor="@color/textcolor"
                 android:textSize="@dimen/text_16" />
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/line_color"
+                android:layout_marginLeft="@dimen/register_bottle_et_space"
+                android:layout_marginBottom="@dimen/margin_Modules"
+                android:layout_below="@id/creat_time"
+                android:layout_toEndOf="@id/tv4"
+                android:layout_toRightOf="@id/tv4"
+                android:layout_height="3dp"/>
+
         </RelativeLayout>
     </LinearLayout>
 

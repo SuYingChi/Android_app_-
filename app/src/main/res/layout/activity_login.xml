@@ -19,7 +19,7 @@
         android:layout_below="@+id/iv_login_logol"
         android:layout_marginLeft="43dp"
         android:layout_marginRight="43dp"
-        android:layout_marginTop="@dimen/dim400"
+        android:layout_marginTop="@dimen/margin_Modules"
         android:orientation="horizontal">
 
         <ImageView
@@ -59,7 +59,7 @@
         android:layout_alignLeft="@+id/ll_login_mobile_input"
         android:layout_alignRight="@+id/ll_login_mobile_input"
         android:layout_below="@+id/ll_login_mobile_input"
-        android:layout_marginTop="@dimen/dim200"
+        android:layout_marginTop="@dimen/margin_Modules"
         android:orientation="horizontal">
 
         <ImageView
@@ -100,7 +100,7 @@
         android:layout_alignLeft="@+id/ll_login_mobile_input"
         android:layout_alignRight="@+id/ll_login_mobile_input"
         android:layout_below="@+id/ll_login_mobile_input_password"
-        android:layout_marginTop="@dimen/dim300"
+        android:layout_marginTop="@dimen/margin_Modules"
         android:background="@drawable/btn_normal"
         android:text="登录"
         android:textColor="@color/white_lib"

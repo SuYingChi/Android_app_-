@@ -19,7 +19,7 @@
             <com.msht.mshtlpgmaster.customView.ListViewForScrollView
                 android:id="@+id/id_search_recycleView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></com.msht.mshtlpgmaster.customView.ListViewForScrollView>
+                android:layout_height="wrap_content"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
