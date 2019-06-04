@@ -4,16 +4,18 @@ import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,9 +28,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
-import android.widget.Button;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.Interpolator;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -42,8 +43,8 @@ import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps2d.AMap;
 import com.amap.api.maps2d.AMapUtils;
 import com.amap.api.maps2d.CameraUpdateFactory;
-import com.amap.api.maps2d.LocationSource;
 import com.amap.api.maps2d.MapView;
+import com.amap.api.maps2d.Projection;
 import com.amap.api.maps2d.model.BitmapDescriptor;
 import com.amap.api.maps2d.model.BitmapDescriptorFactory;
 import com.amap.api.maps2d.model.Circle;
@@ -62,7 +63,6 @@ import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
-import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.Bean.LocationBean;
 import com.msht.mshtlpgmaster.R;
 import com.msht.mshtlpgmaster.adapter.PoiAdapter;
@@ -70,11 +70,8 @@ import com.msht.mshtlpgmaster.adapter.PoiSearchAdapter;
 import com.msht.mshtlpgmaster.customView.ListViewForScrollView;
 import com.msht.mshtlpgmaster.customView.SelecteMapDialog;
 import com.msht.mshtlpgmaster.customView.TopBarView;
-import com.msht.mshtlpgmaster.mapAddress.ALocationClientFactory;
 import com.msht.mshtlpgmaster.mapAddress.PoiSearchTask;
 import com.msht.mshtlpgmaster.util.AppUtil;
-import com.msht.mshtlpgmaster.util.DimenUtil;
-import com.msht.mshtlpgmaster.util.LogUtils;
 import com.msht.mshtlpgmaster.util.PermissionUtils;
 import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.util.SensorEventHelper;
@@ -143,7 +140,7 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
     private Sensor mSensor;
     private PoiSearchTask ponSearchTask;
     private GeocodeSearch geocoderSearch;
-    private LatLonPoint latLonPoint;
+    private LatLonPoint clicklatLonPoint;
     private float accuracy;
     private boolean isLocationBySelf = false;
     private int maplayoutHeight=-100;
@@ -466,12 +463,14 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
                 if(mSensor!=null) {
                     mSensorHelper.setCurrentMarker(mLocMarker);//定位图标旋转
                 }
+                aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, 18));
             } else {
                 mCircle.setCenter(latlng);
                 mCircle.setRadius(aMapLocation.getAccuracy());
                 mLocMarker.setPosition(latlng);
+                aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng,aMap.getCameraPosition().zoom));
             }
-            aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, 18));
+
             if(isLocationBySelf){
                 isLocationBySelf = false;
                 locationClient.stopLocation();
@@ -567,16 +566,14 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
         locationClient.stopLocation();
         lat= latLng.latitude+"";
         lon = latLng.longitude+ "";
-        latLonPoint = new LatLonPoint(latLng.latitude, latLng.longitude);
-        RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200,
+        clicklatLonPoint = new LatLonPoint(latLng.latitude, latLng.longitude);
+        RegeocodeQuery query = new RegeocodeQuery(clicklatLonPoint, 200,
                 GeocodeSearch.AMAP);// 第一个参数表示一个Latlng，第二参数表示范围多少米，第三个参数表示是火系坐标系还是GPS原生坐标系
         geocoderSearch.getFromLocationAsyn(query);// 设置异步逆地理编码请求
-        showCenterLodaingDialog();
     }
 
     @Override
     public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int rCode) {
-        dismissLoading();
         if (rCode == AMapException.CODE_AMAP_SUCCESS) {
             if (regeocodeResult != null && regeocodeResult.getRegeocodeAddress() != null
                     && regeocodeResult.getRegeocodeAddress().getFormatAddress() != null) {
@@ -589,8 +586,8 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
                 tvCurrent.setText(addressStr);
                 tvCity.setText(mCity);
                 //这里是定位完成之后开始poi的附近搜索，代码在后面
-                ponSearchTask.onSearch("", "", latLonPoint.getLatitude(), latLonPoint.getLongitude());
-                LatLng latlng = new LatLng(latLonPoint.getLatitude(), latLonPoint.getLongitude());
+                ponSearchTask.onSearch("", "", clicklatLonPoint.getLatitude(), clicklatLonPoint.getLongitude());
+                LatLng latlng = new LatLng(clicklatLonPoint.getLatitude(), clicklatLonPoint.getLongitude());
                 if (!mFirstFix) {
                     mFirstFix = true;
                     addCircle(latlng, accuracy);//添加定位精度圆
@@ -603,7 +600,7 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
                     mCircle.setRadius(accuracy);
                     mLocMarker.setPosition(latlng);
                 }
-                aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, 18));
+                aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, aMap.getCameraPosition().zoom));
             } else {
                 PopUtil.toastInBottom("没搜索到具体位置名称");
             }
@@ -794,7 +791,37 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
         Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(stringBuffer.toString()));
         startActivity(intent);
     }
+    /**
+     * marker点击时跳动一下
+     */
+    public void jumpPoint(final Marker marker) {
+        final Handler handler = new Handler();
+        final long start = SystemClock.uptimeMillis();
+        Projection proj = aMap.getProjection();
+        final LatLng markerLatlng = marker.getPosition();
+        Point markerPoint = proj.toScreenLocation(markerLatlng);
+        markerPoint.offset(0, -100);
+        final LatLng startLatLng = proj.fromScreenLocation(markerPoint);
+        final long duration = 1500;
 
+        final Interpolator interpolator = new BounceInterpolator();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                long elapsed = SystemClock.uptimeMillis() - start;
+                float t = interpolator.getInterpolation((float) elapsed
+                        / duration);
+                double lng = t * markerLatlng.longitude + (1 - t)
+                        * startLatLng.longitude;
+                double lat = t * markerLatlng.latitude + (1 - t)
+                        * startLatLng.latitude;
+                marker.setPosition(new LatLng(lat, lng));
+                if (t < 1.0) {
+                    handler.postDelayed(this, 16);
+                }
+            }
+        });
+    }
 
 
 }
