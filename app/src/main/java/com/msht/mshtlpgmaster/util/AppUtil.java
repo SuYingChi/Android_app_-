@@ -38,20 +38,17 @@ public class AppUtil {
     private static final String TAG = "AppUtil";
     private static PackageInfo packageInfo;
 
-    public static boolean isLPGInstalled(String packageName) {
-        PackageManager pm = LPGApplication.getLPGApplicationContext().getPackageManager();
-        boolean installed;
-        try {
-            packageInfo = pm.getPackageInfo(packageName, 0);
-            if (packageInfo != null) {
-                installed = true;
-            } else {
-                installed = false;
+    public static boolean isInstalled(String packageName) {
+        PackageManager manager = LPGApplication.getLPGApplicationContext().getPackageManager();
+        //获取所有已安装程序的包信息
+        List<PackageInfo> installedPackages = manager.getInstalledPackages(0);
+        if (installedPackages != null) {
+            for (PackageInfo info : installedPackages) {
+                if (info.packageName.equals(packageName))
+                    return true;
             }
-        } catch (PackageManager.NameNotFoundException e) {
-            installed = false;
         }
-        return installed;
+        return false;
     }
 
     public static void hideSoftInput(Activity mActivity) {

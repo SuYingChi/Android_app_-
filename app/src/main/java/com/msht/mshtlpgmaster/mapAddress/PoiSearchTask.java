@@ -2,6 +2,8 @@ package com.msht.mshtlpgmaster.mapAddress;
 
 import android.content.Context;
 
+import com.amap.api.maps2d.MapView;
+import com.amap.api.maps2d.overlay.PoiOverlay;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.poisearch.PoiResult;

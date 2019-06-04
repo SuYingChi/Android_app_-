@@ -65,7 +65,6 @@ public class TimeSelecteDialog extends Dialog {
                 TimeSelecteDialog.this.onSelectTimeListener.onSelectDate(year, month, dayOfMonth);
             }
         });
-    //    calendarView.setMinDate(DateUtils.getStringToDate(systemYear + "-" + systemMonth + "-" + systemDate, "yyyy-MM-dd"));
         timePicker.setIs24HourView(true);
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
