@@ -13,7 +13,10 @@ import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.amap.api.maps2d.model.LatLng;
+import com.amap.api.maps2d.model.Marker;
 import com.msht.mshtlpgmaster.R;
+import com.msht.mshtlpgmaster.activity.SelectAddressActivity;
 import com.msht.mshtlpgmaster.util.DateUtils;
 
 import butterknife.BindView;
@@ -21,19 +24,31 @@ import butterknife.ButterKnife;
 
 public class SelecteMapDialog extends Dialog {
 
+
+    private final String addressName;
+    private final double latitude;
+    private final double longtitude;
+    private final LatLng latlon;
     @BindView(R.id.baidu)
     TextView baidu;
     @BindView(R.id.gaode)
     TextView gaode;
-
+    @BindView(R.id.tencent)
+    TextView tencent;
     private OnSelectMapListener listener;
 
-    public SelecteMapDialog(Context context, OnSelectMapListener listener) {
+    public SelecteMapDialog(Context context, OnSelectMapListener listener, Marker marker) {
         super(context, R.style.BottomAnimDialogStyle);
 
         this.listener = listener;
+        addressName = marker.getSnippet();
+        latitude = marker.getPosition().latitude;
+        longtitude = marker.getPosition().longitude;
+        latlon = marker.getPosition();
 
     }
+
+
 
 
     @Override
@@ -65,13 +80,20 @@ public class SelecteMapDialog extends Dialog {
         baidu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onSelectBaidu();
+                listener.onSelectBaidu(latitude,longtitude,addressName);
             }
         });
         gaode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onSelectGaode();
+                listener.onSelectGaode(latlon
+                );
+            }
+        });
+        tencent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onSelectTencent(latitude,longtitude,addressName);
             }
         });
     }
@@ -83,8 +105,11 @@ public class SelecteMapDialog extends Dialog {
 
 
     public interface OnSelectMapListener {
-        void onSelectGaode();
+        void onSelectGaode(LatLng latLng);
 
-        void onSelectBaidu();
+        void onSelectBaidu(double latitude,double longitude,String addressName);
+
+        void onSelectTencent(double latitude,double longitude,String addressName);
+
     }
 }

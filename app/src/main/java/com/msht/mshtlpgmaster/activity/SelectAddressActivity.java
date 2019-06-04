@@ -90,7 +90,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
-public class SelectAddressActivity extends BaseActivity implements PermissionUtils.PermissionRequestFinishListener, AMapLocationListener, PoiSearch.OnPoiSearchListener, AMap.OnMapClickListener, GeocodeSearch.OnGeocodeSearchListener, AMap.InfoWindowAdapter, SelecteMapDialog.OnSelectMapListener {
+public class SelectAddressActivity extends BaseActivity implements PermissionUtils.PermissionRequestFinishListener, AMapLocationListener, PoiSearch.OnPoiSearchListener, AMap.OnMapClickListener, GeocodeSearch.OnGeocodeSearchListener, AMap.InfoWindowAdapter, SelecteMapDialog.OnSelectMapListener, AMap.OnInfoWindowClickListener {
     @BindView(R.id.tv_city)
     TextView tvCity;
     @BindView(R.id.id_cancel)
@@ -148,7 +148,7 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
     private boolean isLocationBySelf = false;
     private int maplayoutHeight=-100;
     private SelecteMapDialog selectMapDialog;
-    private Marker selectMarker;
+    private Marker clickedMarker;
 
 
     @Override
@@ -292,6 +292,7 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
             aMap.setMyLocationEnabled(false);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
             aMap.setOnMapClickListener(this);
             aMap.setInfoWindowAdapter(this);
+            aMap.setOnInfoWindowClickListener(this);
         }
         geocoderSearch = new GeocodeSearch(this);
         geocoderSearch.setOnGeocodeSearchListener(this);
@@ -397,7 +398,14 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
         etSearch.setText("");
         tvCancel.setVisibility(View.GONE);
         layoutSearch.setVisibility(View.GONE);
+        mList.clear();
+        searchAdapter.notifyDataSetChanged();
+
         layoutCurrent.setVisibility(View.VISIBLE);
+        if(selectMapDialog!=null&&selectMapDialog.isShowing()){
+            selectMapDialog.dismiss();
+            selectMapDialog=null;
+        }
     }
     public void deactivate() {
         if (locationClient != null) {
@@ -553,6 +561,9 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
 
     @Override
     public void onMapClick(LatLng latLng) {
+        if(clickedMarker!=null&&clickedMarker.isInfoWindowShown()){
+            clickedMarker.hideInfoWindow();
+        }
         locationClient.stopLocation();
         lat= latLng.latitude+"";
         lon = latLng.longitude+ "";
@@ -608,41 +619,38 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
 
     @Override
     public View getInfoWindow(Marker marker) {
-        selectMarker=marker;
         View view = getLayoutInflater().inflate(R.layout.poikeywordsearch_uri, null);
         TextView title = (TextView) view.findViewById(R.id.title);
         title.setText(marker.getTitle());
-
         TextView snippet = (TextView) view.findViewById(R.id.snippet);
         snippet.setText(marker.getSnippet());
-        ImageButton button = (ImageButton) view
-                .findViewById(R.id.start_amap_app);
-        // 调起高德地图app
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSlectMapDialog();
-            }
-        });
+        ImageButton start_amap_app = (ImageButton)view.findViewById(R.id.start_amap_app);
+        if(marker.getTitle().equals("我的当前位置")){
+            start_amap_app.setVisibility(View.GONE);
+        }else {
+            start_amap_app.setVisibility(View.VISIBLE);
+        }
         return view;
     }
-  private void showSlectMapDialog() {
-      if (!isFinishing() && selectMapDialog == null) {
-          selectMapDialog = new SelecteMapDialog(this,this);
-          selectMapDialog.show();
-      } else if (!isFinishing() && !selectMapDialog.isShowing()) {
-          selectMapDialog.show();
+  private void showSlectMapDialog(Marker marker) {
+      if (!isFinishing()) {
+          if(selectMapDialog!=null&&selectMapDialog.isShowing()){
+              selectMapDialog.dismiss();
+          }else {
+              selectMapDialog = new SelecteMapDialog(this,this,marker);
+              selectMapDialog.show();
+          }
       }
   }
 
     /**
      * 调起高德地图导航功能，如果没安装高德地图，会进入异常，可以在异常中处理，调起高德地图app的下载页面
      */
-    public void startAMapNavi(Marker marker) {
+    public void startAMapNavi(LatLng latlon) {
         // 构造导航参数
         NaviPara naviPara = new NaviPara();
         // 设置终点位置
-        naviPara.setTargetPoint(marker.getPosition());
+        naviPara.setTargetPoint(latlon);
         // 设置导航策略，这里是避免拥堵
         naviPara.setNaviStyle(AMapUtils.DRIVING_AVOID_CONGESTION);
 
@@ -663,15 +671,29 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
     }
 
     @Override
-    public void onSelectGaode() {
-        startAMapNavi(selectMarker);
+    public void onSelectGaode(LatLng latLng) {
+        startAMapNavi(latLng);
 
     }
 
     @Override
-    public void onSelectBaidu() {
-        double[] latlong = gcj02_To_Bd09(selectMarker.getPosition().latitude, selectMarker.getPosition().longitude);
-        goToBaiduMap(latlong[0], latlong[1], selectMarker.getTitle());
+    public void onSelectBaidu(double latitude,double longitude,String addressName) {
+        double[] latlong = gcj02_To_Bd09(latitude, longitude);
+        goToBaiduMap(latlong[0], latlong[1], addressName);
+    }
+
+    @Override
+    public void onSelectTencent(double latitude,double longitude,String addressName) {
+        goToTencentMap(latitude,longitude,addressName);
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        clickedMarker = marker;
+        marker.hideInfoWindow();
+        if(!marker.getTitle().equals("我的当前位置")) {
+            showSlectMapDialog(marker);
+        }
     }
 
 
@@ -756,6 +778,23 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
      //   intent.setData(Uri.parse("baidumap://map/navi?query=+"+mAddressStr+"+&src=andr.baidu.openAPIdemo"));
         startActivity(intent); // 启动调用
     }
+    /**
+     * 跳转腾讯地图
+     * @param latitude
+     * @param longitude
+     * @param addressName
+     */
+    private void goToTencentMap(double latitude, double longitude, String addressName) {
+        if (!AppUtil.isInstalled("com.tencent.map")) {
+            PopUtil.toastInBottom("请先安装腾讯地图客户端");
+            return;
+        }
+        StringBuffer stringBuffer = new StringBuffer("qqmap://map/routeplan?type=drive")
+                .append("&tocoord=").append(latitude).append(",").append(longitude).append("&to=" +addressName);
+        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(stringBuffer.toString()));
+        startActivity(intent);
+    }
+
 
 
 }
