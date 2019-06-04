@@ -87,7 +87,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
-public class SelectAddressActivity extends BaseActivity implements PermissionUtils.PermissionRequestFinishListener, AMapLocationListener, PoiSearch.OnPoiSearchListener, AMap.OnMapClickListener, GeocodeSearch.OnGeocodeSearchListener, AMap.InfoWindowAdapter, SelecteMapDialog.OnSelectMapListener, AMap.OnInfoWindowClickListener {
+public class SelectAddressActivity extends BaseActivity implements PermissionUtils.PermissionRequestFinishListener, AMapLocationListener, PoiSearch.OnPoiSearchListener, AMap.OnMapClickListener, GeocodeSearch.OnGeocodeSearchListener, AMap.InfoWindowAdapter, SelecteMapDialog.OnSelectMapListener, AMap.OnInfoWindowClickListener, AMap.OnMarkerClickListener {
     @BindView(R.id.tv_city)
     TextView tvCity;
     @BindView(R.id.id_cancel)
@@ -290,6 +290,7 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
             aMap.setOnMapClickListener(this);
             aMap.setInfoWindowAdapter(this);
             aMap.setOnInfoWindowClickListener(this);
+            aMap.setOnMarkerClickListener(this);
         }
         geocoderSearch = new GeocodeSearch(this);
         geocoderSearch.setOnGeocodeSearchListener(this);
@@ -578,11 +579,15 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
             if (regeocodeResult != null && regeocodeResult.getRegeocodeAddress() != null
                     && regeocodeResult.getRegeocodeAddress().getFormatAddress() != null) {
                 mCity = regeocodeResult.getRegeocodeAddress().getCity();
-                addressName = regeocodeResult.getRegeocodeAddress().getFormatAddress();
+                if(regeocodeResult.getRegeocodeAddress().getAois().size()>0&&!TextUtils.isEmpty(regeocodeResult.getRegeocodeAddress().getAois().get(0).getAoiName())) {
+                    addressName = regeocodeResult.getRegeocodeAddress().getAois().get(0).getAoiName();
+                }else {
+                    addressName = regeocodeResult.getRegeocodeAddress().getStreetNumber().getStreet()+regeocodeResult.getRegeocodeAddress().getStreetNumber().getNumber();
+                }
                 addressDescribe = regeocodeResult.getRegeocodeAddress().getProvince() + regeocodeResult.getRegeocodeAddress().getCity()
                         + regeocodeResult.getRegeocodeAddress().getDistrict()
-                        + regeocodeResult.getRegeocodeAddress().getNeighborhood() + regeocodeResult.getRegeocodeAddress().getStreetNumber();
-                addressStr = addressName;
+                        + regeocodeResult.getRegeocodeAddress().getStreetNumber().getStreet()+regeocodeResult.getRegeocodeAddress().getStreetNumber().getNumber();
+                addressStr = regeocodeResult.getRegeocodeAddress().getFormatAddress();
                 tvCurrent.setText(addressStr);
                 tvCity.setText(mCity);
                 //这里是定位完成之后开始poi的附近搜索，代码在后面
@@ -618,14 +623,13 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
     public View getInfoWindow(Marker marker) {
         View view = getLayoutInflater().inflate(R.layout.poikeywordsearch_uri, null);
         TextView title = (TextView) view.findViewById(R.id.title);
-        title.setText(marker.getTitle());
         TextView snippet = (TextView) view.findViewById(R.id.snippet);
-        snippet.setText(marker.getSnippet());
         ImageButton start_amap_app = (ImageButton)view.findViewById(R.id.start_amap_app);
         if(marker.getTitle().equals("我的当前位置")){
-            start_amap_app.setVisibility(View.GONE);
+            title.setText("所选位置");
         }else {
-            start_amap_app.setVisibility(View.VISIBLE);
+            title.setText(marker.getTitle());
+            snippet.setText(marker.getSnippet());
         }
         return view;
     }
@@ -691,6 +695,14 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
         if(!marker.getTitle().equals("我的当前位置")) {
             showSlectMapDialog(marker);
         }
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        layoutCurrent.setVisibility(View.VISIBLE);
+        layoutSearch.setVisibility(View.GONE);
+        tvCancel.setVisibility(View.GONE);
+        return false;
     }
 
 
