@@ -2,7 +2,6 @@ package com.msht.mshtlpgmaster.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -12,7 +11,6 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.gyf.barlibrary.ImmersionBar;
 import com.msht.mshtlpgmaster.Bean.DeliveryBean;
 import com.msht.mshtlpgmaster.Bean.OrderDetailBean;
 import com.msht.mshtlpgmaster.Present.IOrderDetailPresenter;
@@ -263,7 +261,7 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
     }
 
     private void onStartDeliveryAddress() {
-        Intent intent = new Intent(mContext, DispatchSendOrdersEditAddressActivity.class);
+        Intent intent = new Intent(mContext, EditCustomerAddressActivity.class);
         startActivityForResult(intent, SELECT_SUCCESS_CODE);
     }
 

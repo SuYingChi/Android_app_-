@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
 
 <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_color"
     android:orientation="vertical"
-    android:layout_marginTop="25dp"
     >
 
     <RelativeLayout
@@ -81,11 +77,3 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>
-    <ImageView
-        android:id="@+id/collpsed"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/shop_star"
-        android:layout_centerHorizontal="true"
-        />
-</RelativeLayout>

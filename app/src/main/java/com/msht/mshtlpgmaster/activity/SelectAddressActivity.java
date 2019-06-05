@@ -72,6 +72,8 @@ import com.msht.mshtlpgmaster.customView.SelecteMapDialog;
 import com.msht.mshtlpgmaster.customView.TopBarView;
 import com.msht.mshtlpgmaster.mapAddress.PoiSearchTask;
 import com.msht.mshtlpgmaster.util.AppUtil;
+import com.msht.mshtlpgmaster.util.DimenUtil;
+import com.msht.mshtlpgmaster.util.MapUtil;
 import com.msht.mshtlpgmaster.util.PermissionUtils;
 import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.util.SensorEventHelper;
@@ -128,7 +130,6 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
     private String lon;
     private String addressDescribe;
     private String addressName;
-    private String addressStr;
     private AMap aMap;
     private SensorEventHelper mSensorHelper;
     private boolean mFirstFix = false;
@@ -145,7 +146,7 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
     private boolean isLocationBySelf = false;
     private int maplayoutHeight=-100;
     private SelecteMapDialog selectMapDialog;
-    private Marker clickedMarker;
+
 
 
     @Override
@@ -250,35 +251,54 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
             public void onClick(View v) {
                 if(maplayout.getVisibility()==View.GONE){
                     maplayout.setVisibility(View.VISIBLE);
-                    createDropAnim(maplayout,0,maplayoutHeight).start();
-                }else if(maplayout.getVisibility()==View.VISIBLE){
-                    ValueAnimator va = createDropAnim(maplayout, maplayoutHeight, 0);
-                    va.addListener(new AnimatorListenerAdapter() {
+                    ValueAnimator va = ValueAnimator.ofInt(0, maplayoutHeight);
+                    va.setDuration(300);
+                    va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
-                        public void onAnimationEnd(Animator animation) {
-                            maplayout.setVisibility(View.GONE);
+                        public void onAnimationUpdate(ValueAnimator animation) {
+
+                            int value = (int) animation.getAnimatedValue();
+                            ViewGroup.LayoutParams layoutParams = maplayout.getLayoutParams();
+                            layoutParams.height = value;
+                            maplayout.setLayoutParams(layoutParams);//设置高度
+                            Log.d("animation","value==="+value);
+                            if(value<=DimenUtil.dip2px(25)) {
+                                ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) collpsed.getLayoutParams();
+                                mlp.setMargins(0, DimenUtil.dip2px(-value), 0, 0);
+                                collpsed.setLayoutParams(mlp);
+                            }else {
+                                ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) collpsed.getLayoutParams();
+                                mlp.setMargins(0, DimenUtil.dip2px(-25), 0, 0);
+                                collpsed.setLayoutParams(mlp);
+                            }
+                        }
+                    });
+                   va.start();
+                }else if(maplayout.getVisibility()==View.VISIBLE){
+                    ValueAnimator va = ValueAnimator.ofInt(maplayoutHeight, 0);
+                    va.setDuration(300);
+                    va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+
+                            int value = (int) animation.getAnimatedValue();
+                            ViewGroup.LayoutParams layoutParams = maplayout.getLayoutParams();
+                            layoutParams.height = value;
+                            maplayout.setLayoutParams(layoutParams);//设置高度
+                            if(value<=DimenUtil.dip2px(25)){
+                                ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) collpsed.getLayoutParams();
+                                mlp.setMargins(0, 0,0,0);
+                                collpsed.setLayoutParams(mlp);
+                                if(value==0){
+                                    maplayout.setVisibility(View.GONE);
+                                }
+                            }
                         }
                     });
                     va.start();
                 }
             }
         });
-    }
-    private ValueAnimator createDropAnim(final  View view, int start, int end) {
-        ValueAnimator va = ValueAnimator.ofInt(start, end);
-        va.setDuration(300);
-        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-
-                int value = (int) animation.getAnimatedValue();
-                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-                layoutParams.height = value;
-                view.setLayoutParams(layoutParams);//设置高度
-                Log.d("animation","value==="+value);
-            }
-        });
-        return va;
     }
 
     private void initMap() {
@@ -444,15 +464,16 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
             lon = longitude + "";
             mCity = aMapLocation.getCity();
             addressName = aMapLocation.getAoiName();
-            addressDescribe = aMapLocation.getProvince() + aMapLocation.getCity()
-                    + aMapLocation.getDistrict()
-                    + aMapLocation.getStreet() + aMapLocation.getStreetNum();
-            if (!TextUtils.isEmpty(aMapLocation.getPoiName())) {
-                addressStr = addressDescribe + aMapLocation.getAoiName() + "附近";
-            } else {
-                addressStr = addressDescribe + aMapLocation.getAoiName();
+            mArea = aMapLocation.getPoiName();
+            clicklatLonPoint = new LatLonPoint(latitude,longitude);
+            if(TextUtils.isEmpty(aMapLocation.getAddress())){
+                addressDescribe = aMapLocation.getProvince() + aMapLocation.getCity()
+                        + aMapLocation.getDistrict()
+                        + aMapLocation.getStreet() + aMapLocation.getStreetNum()+addressName+"附近";
+            }else {
+                addressDescribe = aMapLocation.getAddress();
             }
-            tvCurrent.setText(addressStr);
+            tvCurrent.setText(addressDescribe);
             tvCity.setText(mCity);
             //这里是定位完成之后开始poi的附近搜索，代码在后面
              ponSearchTask.onSearch("", "", latitude, longitude);
@@ -469,6 +490,8 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
                 mCircle.setCenter(latlng);
                 mCircle.setRadius(aMapLocation.getAccuracy());
                 mLocMarker.setPosition(latlng);
+                mLocMarker.setSnippet(addressDescribe);
+                mLocMarker.setTitle(addressName);
                 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng,aMap.getCameraPosition().zoom));
             }
 
@@ -509,7 +532,8 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
         options.anchor(0.5f, 0.5f);
         options.position(latlng);
         mLocMarker = aMap.addMarker(options);
-        mLocMarker.setTitle("我的当前位置");
+        mLocMarker.setTitle(addressName);
+        mLocMarker.setSnippet(addressDescribe);
     }
 
     @Override
@@ -540,7 +564,8 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
                     String area = item.getBusinessArea();
                     String mContent = item.getProvinceName() + item.getCityName()
                             + item.getAdName()
-                            + item.getSnippet();
+                            + item.getSnippet()+item.getTitle();
+
                     HashMap<String, String> map = new HashMap<String, String>();
                     map.put("longitude", longitude);
                     map.put("latitude", latitude);
@@ -561,8 +586,8 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
 
     @Override
     public void onMapClick(LatLng latLng) {
-        if(clickedMarker!=null&&clickedMarker.isInfoWindowShown()){
-            clickedMarker.hideInfoWindow();
+        if(mLocMarker!=null&&mLocMarker.isInfoWindowShown()){
+            mLocMarker.hideInfoWindow();
         }
         locationClient.stopLocation();
         lat= latLng.latitude+"";
@@ -584,11 +609,19 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
                 }else {
                     addressName = regeocodeResult.getRegeocodeAddress().getStreetNumber().getStreet()+regeocodeResult.getRegeocodeAddress().getStreetNumber().getNumber();
                 }
-                addressDescribe = regeocodeResult.getRegeocodeAddress().getProvince() + regeocodeResult.getRegeocodeAddress().getCity()
-                        + regeocodeResult.getRegeocodeAddress().getDistrict()
-                        + regeocodeResult.getRegeocodeAddress().getStreetNumber().getStreet()+regeocodeResult.getRegeocodeAddress().getStreetNumber().getNumber();
-                addressStr = regeocodeResult.getRegeocodeAddress().getFormatAddress();
-                tvCurrent.setText(addressStr);
+                if(regeocodeResult.getRegeocodeAddress().getPois().size()>0&&!TextUtils.isEmpty(regeocodeResult.getRegeocodeAddress().getPois().get(0).getBusinessArea())) {
+                    mArea = regeocodeResult.getRegeocodeAddress().getPois().get(0).getBusinessArea();
+                }else {
+                    mArea = regeocodeResult.getRegeocodeAddress().getStreetNumber().getStreet()+regeocodeResult.getRegeocodeAddress().getStreetNumber().getNumber();
+                }
+                if(TextUtils.isEmpty(regeocodeResult.getRegeocodeAddress().getFormatAddress())) {
+                    addressDescribe = regeocodeResult.getRegeocodeAddress().getProvince() + regeocodeResult.getRegeocodeAddress().getCity()
+                            + regeocodeResult.getRegeocodeAddress().getDistrict()
+                            + regeocodeResult.getRegeocodeAddress().getStreetNumber().getStreet() + regeocodeResult.getRegeocodeAddress().getStreetNumber().getNumber()+addressName+"附近";
+                }else{
+                    addressDescribe=regeocodeResult.getRegeocodeAddress().getFormatAddress();
+                }
+                tvCurrent.setText(addressDescribe);
                 tvCity.setText(mCity);
                 //这里是定位完成之后开始poi的附近搜索，代码在后面
                 ponSearchTask.onSearch("", "", clicklatLonPoint.getLatitude(), clicklatLonPoint.getLongitude());
@@ -604,6 +637,8 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
                     mCircle.setCenter(latlng);
                     mCircle.setRadius(accuracy);
                     mLocMarker.setPosition(latlng);
+                    mLocMarker.setSnippet(addressDescribe);
+                    mLocMarker.setTitle(addressName);
                 }
                 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, aMap.getCameraPosition().zoom));
             } else {
@@ -625,12 +660,8 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
         TextView title = (TextView) view.findViewById(R.id.title);
         TextView snippet = (TextView) view.findViewById(R.id.snippet);
         ImageButton start_amap_app = (ImageButton)view.findViewById(R.id.start_amap_app);
-        if(marker.getTitle().equals("我的当前位置")){
-            title.setText("所选位置");
-        }else {
-            title.setText(marker.getTitle());
-            snippet.setText(marker.getSnippet());
-        }
+        title.setText(marker.getTitle());
+        snippet.setText(marker.getSnippet());
         return view;
     }
   private void showSlectMapDialog(Marker marker) {
@@ -644,28 +675,7 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
       }
   }
 
-    /**
-     * 调起高德地图导航功能，如果没安装高德地图，会进入异常，可以在异常中处理，调起高德地图app的下载页面
-     */
-    public void startAMapNavi(LatLng latlon) {
-        // 构造导航参数
-        NaviPara naviPara = new NaviPara();
-        // 设置终点位置
-        naviPara.setTargetPoint(latlon);
-        // 设置导航策略，这里是避免拥堵
-        naviPara.setNaviStyle(AMapUtils.DRIVING_AVOID_CONGESTION);
 
-        // 调起高德地图导航
-        try {
-            AMapUtils.openAMapNavi(naviPara, getApplicationContext());
-        } catch (com.amap.api.maps2d.AMapException e) {
-
-            // 如果没安装会进入异常，调起下载页面
-            AMapUtils.getLatestAMapApp(getApplicationContext());
-
-        }
-
-    }
     @Override
     public View getInfoContents(Marker marker) {
         return null;
@@ -673,28 +683,24 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
 
     @Override
     public void onSelectGaode(LatLng latLng) {
-        startAMapNavi(latLng);
-
+        MapUtil.startAMapNavi(latLng);
     }
 
     @Override
     public void onSelectBaidu(double latitude,double longitude,String addressName) {
-        double[] latlong = gcj02_To_Bd09(latitude, longitude);
-        goToBaiduMap(latlong[0], latlong[1], addressName);
+        double[] latlong = MapUtil.gcj02_To_Bd09(latitude, longitude);
+        MapUtil.goToBaiduMap(latlong[0], latlong[1], addressName,this);
     }
 
     @Override
     public void onSelectTencent(double latitude,double longitude,String addressName) {
-        goToTencentMap(latitude,longitude,addressName);
+        MapUtil.goToTencentMap(latitude,longitude,addressName,this);
     }
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        clickedMarker = marker;
         marker.hideInfoWindow();
-        if(!marker.getTitle().equals("我的当前位置")) {
-            showSlectMapDialog(marker);
-        }
+        showSlectMapDialog(marker);
     }
 
     @Override
@@ -714,31 +720,13 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (s.length() > 0) {
-                doSearchQuery(s.toString().trim());
+                MapUtil.doSearchQuery(mCity,s.toString().trim(),SelectAddressActivity.this,SelectAddressActivity.this);
             }
         }
 
         @Override
         public void afterTextChanged(Editable s) {
         }
-    }
-
-    private void doSearchQuery(String keyWord) {
-        int currentPage = 0;
-        /*
-         *  Poi查询条件类
-         *  第一个参数表示搜索字符串，第二个参数表示poi搜索类型，第三个参数表示poi搜索区域（空字符串代表全国）
-         */
-        PoiSearch.Query query = new PoiSearch.Query(keyWord, "", mCity);
-        // 设置每页最多返回多少条poiitem
-        query.setPageSize(20);
-        // 设置查第一页
-        query.setPageNum(currentPage);
-        query.setCityLimit(true);
-        // POI搜索
-        PoiSearch poiSearch = new PoiSearch(this, query);
-        poiSearch.setOnPoiSearchListener(this);
-        poiSearch.searchPOIAsyn();
     }
 
     @Override
@@ -753,87 +741,5 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
             locationClient.onDestroy();
         }
     }
-    /**
-     * 火星坐标系 (GCJ-02) 与百度坐标系 (BD-09) 的转换算法 将 GCJ-02 坐标转换成 BD-09 坐标
-     *
-     * @param lat
-     * @param lon
-     */
-    public static double[] gcj02_To_Bd09(double lat, double lon) {
-        double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
-        double x = lon, y = lat;
-        double z = Math.sqrt(x * x + y * y) + 0.00002 * Math.sin(y * x_pi);
-        double theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * x_pi);
-        double tempLat = z * Math.sin(theta) + 0.006;
-        double tempLon = z * Math.cos(theta) + 0.0065;
-        double[] gps = {tempLat, tempLon};
-        return gps;
-    }
-    /**
-     * 跳转百度地图
-     */
-    private void goToBaiduMap(double mLat,double mLng,String mAddressStr) {
-        if (!AppUtil.isInstalled("com.baidu.BaiduMap.auto")) {
-            PopUtil.toastInBottom( "请先安装百度地图客户端");
-            return;
-        }
-        Intent intent = new Intent();
-        intent.setData(Uri.parse("baidumap://map/direction?destination=latlng:"
-                + mLat + ","
-                + mLng + "|name:" + mAddressStr + // 终点
-                "&mode=driving" + // 导航路线方式
-                "&src="+getPackageName()));
-
-     //   intent.setData(Uri.parse("baidumap://map/navi?query=+"+mAddressStr+"+&src=andr.baidu.openAPIdemo"));
-        startActivity(intent); // 启动调用
-    }
-    /**
-     * 跳转腾讯地图
-     * @param latitude
-     * @param longitude
-     * @param addressName
-     */
-    private void goToTencentMap(double latitude, double longitude, String addressName) {
-        if (!AppUtil.isInstalled("com.tencent.map")) {
-            PopUtil.toastInBottom("请先安装腾讯地图客户端");
-            return;
-        }
-        StringBuffer stringBuffer = new StringBuffer("qqmap://map/routeplan?type=drive")
-                .append("&tocoord=").append(latitude).append(",").append(longitude).append("&to=" +addressName);
-        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(stringBuffer.toString()));
-        startActivity(intent);
-    }
-    /**
-     * marker点击时跳动一下
-     */
-    public void jumpPoint(final Marker marker) {
-        final Handler handler = new Handler();
-        final long start = SystemClock.uptimeMillis();
-        Projection proj = aMap.getProjection();
-        final LatLng markerLatlng = marker.getPosition();
-        Point markerPoint = proj.toScreenLocation(markerLatlng);
-        markerPoint.offset(0, -100);
-        final LatLng startLatLng = proj.fromScreenLocation(markerPoint);
-        final long duration = 1500;
-
-        final Interpolator interpolator = new BounceInterpolator();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                long elapsed = SystemClock.uptimeMillis() - start;
-                float t = interpolator.getInterpolation((float) elapsed
-                        / duration);
-                double lng = t * markerLatlng.longitude + (1 - t)
-                        * startLatLng.longitude;
-                double lat = t * markerLatlng.latitude + (1 - t)
-                        * startLatLng.latitude;
-                marker.setPosition(new LatLng(lat, lng));
-                if (t < 1.0) {
-                    handler.postDelayed(this, 16);
-                }
-            }
-        });
-    }
-
 
 }
