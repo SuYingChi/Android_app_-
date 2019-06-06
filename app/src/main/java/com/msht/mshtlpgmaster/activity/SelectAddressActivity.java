@@ -469,11 +469,11 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
             if(TextUtils.isEmpty(aMapLocation.getAddress())){
                 addressDescribe = aMapLocation.getProvince() + aMapLocation.getCity()
                         + aMapLocation.getDistrict()
-                        + aMapLocation.getStreet() + aMapLocation.getStreetNum()+addressName+"附近";
+                        + aMapLocation.getStreet() + aMapLocation.getStreetNum();
             }else {
                 addressDescribe = aMapLocation.getAddress();
             }
-            tvCurrent.setText(addressDescribe);
+            tvCurrent.setText(addressDescribe+addressName+"附近");
             tvCity.setText(mCity);
             //这里是定位完成之后开始poi的附近搜索，代码在后面
              ponSearchTask.onSearch("", "", latitude, longitude);
@@ -564,7 +564,7 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
                     String area = item.getBusinessArea();
                     String mContent = item.getProvinceName() + item.getCityName()
                             + item.getAdName()
-                            + item.getSnippet()+item.getTitle();
+                            + item.getSnippet();
 
                     HashMap<String, String> map = new HashMap<String, String>();
                     map.put("longitude", longitude);
@@ -617,11 +617,11 @@ public class SelectAddressActivity extends BaseActivity implements PermissionUti
                 if(TextUtils.isEmpty(regeocodeResult.getRegeocodeAddress().getFormatAddress())) {
                     addressDescribe = regeocodeResult.getRegeocodeAddress().getProvince() + regeocodeResult.getRegeocodeAddress().getCity()
                             + regeocodeResult.getRegeocodeAddress().getDistrict()
-                            + regeocodeResult.getRegeocodeAddress().getStreetNumber().getStreet() + regeocodeResult.getRegeocodeAddress().getStreetNumber().getNumber()+addressName+"附近";
+                            + regeocodeResult.getRegeocodeAddress().getStreetNumber().getStreet() + regeocodeResult.getRegeocodeAddress().getStreetNumber().getNumber();
                 }else{
                     addressDescribe=regeocodeResult.getRegeocodeAddress().getFormatAddress();
                 }
-                tvCurrent.setText(addressDescribe);
+                tvCurrent.setText(addressDescribe+addressName+"附近");
                 tvCity.setText(mCity);
                 //这里是定位完成之后开始poi的附近搜索，代码在后面
                 ponSearchTask.onSearch("", "", clicklatLonPoint.getLatitude(), clicklatLonPoint.getLongitude());

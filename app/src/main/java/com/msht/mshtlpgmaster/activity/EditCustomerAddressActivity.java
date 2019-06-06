@@ -41,19 +41,18 @@ public class EditCustomerAddressActivity extends BaseActivity {
     EditText etName;
     @BindView(R.id.id_et_phone)
     TextView etPhone;
-    @BindView(R.id.id_et_ridgepole)
-    EditText etRidgepole;
+    /*@BindView(R.id.id_et_ridgepole)
+    EditText etRidgepole;*/
     @BindView(R.id.id_et_floor)
     EditText etFloor;
-    @BindView(R.id.id_et_room)
-    EditText etRoom;
+ /*   @BindView(R.id.id_et_room)
+    EditText etRoom;*/
     List<String> list = new ArrayList<String>();
     @BindView(R.id.save_user_location)
     Button saveBtn;
     @BindView(R.id.et_address)
     EditText etAddress;
     private Unbinder unbinder;
-    private String locationName;
     private String addressDescribe;
     private String latitude;
     private String longitude;
@@ -86,18 +85,21 @@ public class EditCustomerAddressActivity extends BaseActivity {
                     PopUtil.toastInBottom("请编辑用户姓名");
                 }else if(TextUtils.isEmpty(latitude)||TextUtils.isEmpty(longitude)){
                     PopUtil.toastInBottom("请点击用户地址选择用户地址");
-                }else if(TextUtils.isEmpty(etPhone.getText().toString())){
+                }else if(TextUtils.isEmpty(etPhone.getText().toString())||etPhone.getText().toString().length()!=11){
                     PopUtil.toastInBottom("请点击用户联系电话");
-                }else if(TextUtils.isEmpty(etRidgepole.getText().toString())){
+                }/*else if(TextUtils.isEmpty(etRidgepole.getText().toString())){
                     PopUtil.toastInBottom("请编辑楼号,无楼号请填1");
-                }else if(TextUtils.isEmpty( etFloor.getText().toString())){
+                }*/else if(TextUtils.isEmpty( etFloor.getText().toString())){
                     PopUtil.toastInBottom("请编辑楼层数，无楼层数请填1");
-                }else if(TextUtils.isEmpty(etRoom.getText().toString())){
+                }/*else if(TextUtils.isEmpty(etRoom.getText().toString())){
                     PopUtil.toastInBottom("请编辑门牌号,无门牌号请填1");
-                }else{
+                }*/else if(TextUtils.isEmpty(etAddress.getText().toString())){
+                    PopUtil.toastInBottom("请补充大厦，单位，小区名称等地址说明");
+                }
+                else{
                     Intent intent = new Intent();
-                    intent.putExtra("addressName", locationName);
-                    intent.putExtra("addressDescribe", addressDescribe + etAddress.getText().toString());
+                    intent.putExtra("addressName", etAddress.getText().toString());
+                    intent.putExtra("addressDescribe", addressDescribe);
                     intent.putExtra("lat", latitude);
                     intent.putExtra("lon", longitude);
                     intent.putExtra("mArea", mArea);
@@ -106,9 +108,9 @@ public class EditCustomerAddressActivity extends BaseActivity {
                     intent.putExtra("sex", tvSex.getText());
                     intent.putExtra("phone", etPhone.getText().toString());
                     intent.putExtra("isElevator", tvElevator.getText());
-                    intent.putExtra("Ridgepole", etRidgepole.getText().toString());
+                    /*intent.putExtra("Ridgepole", etRidgepole.getText().toString());*/
                     intent.putExtra("Floor", etFloor.getText().toString());
-                    intent.putExtra("Room", etRoom.getText().toString());
+                    /*intent.putExtra("Room", etRoom.getText().toString());*/
                     setResult(1, intent);
                     finish();
                 }
@@ -126,11 +128,11 @@ public class EditCustomerAddressActivity extends BaseActivity {
                 if (data != null) {
                     mArea = data.getStringExtra("mArea");
                     mCity = data.getStringExtra("mCity");
-                    locationName = data.getStringExtra("addressName");
                     addressDescribe = data.getStringExtra("addressDescribe");
                     latitude = data.getStringExtra("lat");
                     longitude = data.getStringExtra("lon");
                     tvAddress.setText(addressDescribe);
+                    etAddress.setText(data.getStringExtra("addressName")+"附近");
                 }
                 break;
             default:
@@ -159,9 +161,9 @@ public class EditCustomerAddressActivity extends BaseActivity {
     private void onSelectAddress() {
         Intent intent = new Intent(mContext, SelectAddressActivity.class);
         etAddress.setText("");
-        etRidgepole.setText("");
+       /* etRidgepole.setText("");*/
         etFloor.setText("");
-        etRoom.setText("");
+      /*  etRoom.setText("");*/
         startActivityForResult(intent, SELECT_SUCCESS_CODE);
     }
 

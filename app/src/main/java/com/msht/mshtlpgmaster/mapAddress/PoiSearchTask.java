@@ -78,7 +78,7 @@ public class PoiSearchTask implements PoiSearch.OnPoiSearchListener {
                     //获取内容
                     String mContent = item.getProvinceName() + item.getCityName()
                             + item.getAdName()
-                            + item.getSnippet()+item.getTitle();
+                            + item.getSnippet();
                     datas.add(new LocationBean(lon, lat, title, mContent, mCity, mArea));
                 }
                 mAdapter.setData(datas);

@@ -54,9 +54,9 @@
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@+id/id_name_text"
                     android:layout_toRightOf="@+id/id_name_text"
-                    android:background="@null"
                     android:hint="请输入您的姓名"
                     android:inputType="textPersonName"
+                    android:background="@drawable/edit_text_background"
                     android:maxLength="11"
                     android:textColor="@color/lpg_text_light_color"
                     android:textColorHint="@color/text_hint"
@@ -150,7 +150,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@+id/id_phone_text"
                     android:layout_toRightOf="@+id/id_phone_text"
-                    android:background="@null"
+                    android:background="@drawable/edit_text_background"
                     android:hint="请输入您的手机号"
                     android:inputType="phone"
                     android:maxLength="11"
@@ -245,16 +245,17 @@
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@+id/text"
                     android:layout_toRightOf="@+id/text"
-                    android:background="@null"
-                    android:hint="地址补充说明(选填)"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="大厦,单位,小区名称等补充说明"
                     android:inputType="textPersonName"
-                    android:maxLength="11"
                     android:textColor="@color/lpg_text_light_color"
                     android:textColorHint="@color/text_hint"
                     android:textCursorDrawable="@null"
-                    android:textSize="@dimen/text_16" />
+                    android:textSize="@dimen/text_16"
+                    />
             </RelativeLayout>
-            <include layout="@layout/layout_line_interval" />
+            <include
+                layout="@layout/layout_line_interval" />
             <RelativeLayout
                 android:id="@+id/id_elevator_layout"
                 android:layout_width="match_parent"
@@ -328,7 +329,7 @@
                     android:textColor="@color/textcolor"
                     android:textSize="@dimen/text_16" />
 
-                <EditText
+             <!--   <EditText
                     android:id="@+id/id_et_ridgepole"
                     android:layout_width="45dp"
                     android:layout_height="wrap_content"
@@ -355,7 +356,7 @@
                     android:layout_toRightOf="@+id/id_et_ridgepole"
                     android:text="栋"
                     android:textColor="@color/textcolor"
-                    android:textSize="@dimen/text_16" />
+                    android:textSize="@dimen/text_16" />-->
 
                 <EditText
                     android:id="@+id/id_et_floor"
@@ -366,8 +367,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@+id/id_ridgepole_text"
-                    android:layout_toRightOf="@+id/id_ridgepole_text"
+                    android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
                     android:inputType="number"
                     android:textColor="@color/lpg_text_light_color"
@@ -384,10 +384,10 @@
                     android:layout_marginStart="1dp"
                     android:layout_toEndOf="@+id/id_et_floor"
                     android:layout_toRightOf="@+id/id_et_floor"
-                    android:text="楼"
+                    android:text="层"
                     android:textColor="@color/textcolor"
                     android:textSize="@dimen/text_16" />
-
+<!--
                 <EditText
                     android:id="@+id/id_et_room"
                     android:layout_width="45dp"
@@ -415,7 +415,7 @@
                     android:layout_toRightOf="@+id/id_et_room"
                     android:text="房"
                     android:textColor="@color/textcolor"
-                    android:textSize="@dimen/text_16" />
+                    android:textSize="@dimen/text_16" />-->
             </RelativeLayout>
 
             <RelativeLayout

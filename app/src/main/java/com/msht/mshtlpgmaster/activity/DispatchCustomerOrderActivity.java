@@ -19,6 +19,8 @@ import com.msht.mshtlpgmaster.constant.Constants;
 import com.msht.mshtlpgmaster.customView.DeliverFareDialog;
 import com.msht.mshtlpgmaster.customView.TimeSelecteDialog;
 import com.msht.mshtlpgmaster.customView.TopBarView;
+import com.msht.mshtlpgmaster.util.DateUtils;
+import com.msht.mshtlpgmaster.util.LogUtils;
 import com.msht.mshtlpgmaster.util.PopUtil;
 import com.msht.mshtlpgmaster.viewInterface.IOrderDetailView;
 
@@ -85,9 +87,9 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
     private String name;
     private String sex;
     private String isElevator;
-    private String ridgepole;
+/*    private String ridgepole;*/
     private String floor;
-    private String room;
+  /*  private String room;*/
     private String total;
     private TimeSelecteDialog timeSelecteDialog;
     private int systemYear;
@@ -116,7 +118,6 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
     private String sendTime;
     private int dispatchOrdersType;
     private Timer time = new Timer();
-    private Handler handler = new Handler();
     private TimerTask tk;
 
     @Override
@@ -131,11 +132,21 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
         }
         mContext = this;
         layoutSelectAddress.setOnClickListener(this);
-        systemYear = Calendar.getInstance().get(Calendar.YEAR);
+  /*      systemYear = Calendar.getInstance().get(Calendar.YEAR);
         systemMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
         systemDate = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         systemHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        systemMinute = Calendar.getInstance().get(Calendar.MINUTE);
+        systemMinute = Calendar.getInstance().get(Calendar.MINUTE);*/
+        String formattime = DateUtils.getDateToString(System.currentTimeMillis() + 18000000, "yyyy-MM-dd-HH-mm");
+        String[] timesplit = formattime.split("-");
+        if(timesplit.length==5){
+            systemYear = Integer.valueOf(timesplit[0]);
+            systemMonth = Integer.valueOf(timesplit[1]);
+            systemDate =Integer.valueOf(timesplit[2]);
+            systemHour = Integer.valueOf(timesplit[3]);
+            systemMinute=Integer.valueOf(timesplit[4]);
+        }
+        LogUtils.d("time",formattime);
         sendOrderYear = systemYear;
         sendOrderMonth = systemMonth;
         sendOrderDate = systemDate;
@@ -149,11 +160,21 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
         tk = new TimerTask() {
             @Override
             public void run() {
-                systemYear = Calendar.getInstance().get(Calendar.YEAR);
+       /*         systemYear = Calendar.getInstance().get(Calendar.YEAR);
                 systemMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
                 systemDate = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
                 systemHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-                systemMinute = Calendar.getInstance().get(Calendar.MINUTE);
+                systemMinute = Calendar.getInstance().get(Calendar.MINUTE);*/
+                String formattime = DateUtils.getDateToString(System.currentTimeMillis() + 18000000, "yyyy-MM-dd-HH-mm");
+                String[] timesplit = formattime.split("-");
+                if(timesplit.length==5){
+                    systemYear = Integer.valueOf(timesplit[0]);
+                    systemMonth = Integer.valueOf(timesplit[1]);
+                    systemDate =Integer.valueOf(timesplit[2]);
+                    systemHour = Integer.valueOf(timesplit[3]);
+                    systemMinute=Integer.valueOf(timesplit[4]);
+                }
+                LogUtils.d("time",formattime);
                 systemDates = systemYear + "-" + ((systemMonth) < 10 ? "0" + (systemMonth) : (systemMonth)) + "-" + (systemDate < 10 ? "0" + systemDate : systemDate);
                 systemTime = systemHour + "-" + ((systemMinute) < 10 ? "0" + (systemMinute) : (systemMinute));
                 validateDate = checkDate(sendOrderYear, sendOrderMonth, sendOrderDate);
@@ -191,13 +212,13 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
             @Override
             public void onClick(View v) {
                 if (dispatchOrdersType == SEND_BOTTLE) {
-                    if (TextUtils.isEmpty(addressDescribe) || TextUtils.isEmpty(locationName) || TextUtils.isEmpty(name) || TextUtils.isEmpty(sex) || TextUtils.isEmpty(isElevator) || TextUtils.isEmpty(ridgepole) || TextUtils.isEmpty(floor) || TextUtils.isEmpty(room)) {
+                    if (TextUtils.isEmpty(addressDescribe) || TextUtils.isEmpty(locationName) || TextUtils.isEmpty(name) || TextUtils.isEmpty(sex) || TextUtils.isEmpty(isElevator)  || TextUtils.isEmpty(floor) ) {
                         PopUtil.toastInBottom("请完善订单信息");
                     } else {
                         PopUtil.showComfirmDialog(DispatchCustomerOrderActivity.this, "提示", "下版本增加代客下退瓶订单功能，感谢新老用户的支持", "", "", null, null, true);
                     }
                 } else {
-                    if (TextUtils.isEmpty(addressDescribe) || TextUtils.isEmpty(locationName) || TextUtils.isEmpty(name) || TextUtils.isEmpty(sex) || TextUtils.isEmpty(isElevator) || TextUtils.isEmpty(ridgepole) || TextUtils.isEmpty(floor) || TextUtils.isEmpty(room)) {
+                    if (TextUtils.isEmpty(addressDescribe) || TextUtils.isEmpty(locationName) || TextUtils.isEmpty(name) || TextUtils.isEmpty(sex) || TextUtils.isEmpty(isElevator)  || TextUtils.isEmpty(floor)) {
                         PopUtil.toastInBottom("请完善订单信息");
                     } else {
                         PopUtil.showComfirmDialog(DispatchCustomerOrderActivity.this, "提示", "下版本增加代客下退瓶订单功能，感谢新老用户的支持", "", "", null, null, true);
@@ -291,10 +312,10 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
                     tvMobile.setText(phone);
                     isElevator = data.getStringExtra("isElevator");
                     tvElevator.setText(isElevator);
-                    ridgepole = data.getStringExtra("Ridgepole");
+                  /*  ridgepole = data.getStringExtra("Ridgepole");*/
                     floor = data.getStringExtra("Floor");
-                    room = data.getStringExtra("Room");
-                    textView.setText(addressDescribe + ridgepole + "栋" + floor + "楼" + room + "房");
+               /*     room = data.getStringExtra("Room");*/
+                    textView.setText(addressDescribe + locationName+ floor + "楼");
                     if (dispatchOrdersType == SEND_BOTTLE) {
                         iOrderDetailPresenter.getFirstDelivery();
                         iOrderDetailPresenter.getSecondDelivery();
@@ -359,7 +380,7 @@ public class DispatchCustomerOrderActivity extends BaseActivity implements View.
     }
 
     private boolean checkDate(int year, int month, int date) {
-        return DispatchCustomerOrderActivity.this.systemYear <= year && (DispatchCustomerOrderActivity.this.systemYear != year || DispatchCustomerOrderActivity.this.systemMonth <= month && (DispatchCustomerOrderActivity.this.systemMonth != month || DispatchCustomerOrderActivity.this.systemDate <= date));
+        return systemYear <= year && (systemYear != year ||systemMonth <= month && (systemMonth != month || systemDate <= date));
     }
 
     @Override

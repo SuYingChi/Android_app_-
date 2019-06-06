@@ -69,15 +69,6 @@ public class TimeSelecteDayDialog extends Dialog {
     }
 
 
-    public void setSendDates(int sendOrderYear, int sendOrderMonth, int sendOrderDate, int sendOrderHour, int sendOrderMinute) {
-        calendarView.setDate(DateUtils.getStringToDate(sendOrderYear + "-" + sendOrderMonth + "-" + sendOrderDate, "yyyy-MM-dd"));
-
-    }
-
-    public void reverseDate(int sendOrderYear, int sendOrderMonth, int sendOrderDate) {
-        calendarView.setDate(DateUtils.getStringToDate(sendOrderYear + "-" + sendOrderMonth + "-" + sendOrderDate, "yyyy-MM-dd"));
-    }
-
 
     public interface OnSelectTimeListener {
         void onSelectDate(int year, int month, int date);
